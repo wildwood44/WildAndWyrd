@@ -1,15 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
-
 package wildwyrd.game.playable;
 
-import wildwyrd.game.GamePanel;
 import wildwyrd.game.Entity;
+import wildwyrd.game.GamePanel;
 
-public class Playable extends Entity
-{
-    public Playable(final GamePanel gp) {
-        super(gp);
-    }
+public class Playable extends Entity {
+	public Playable(GamePanel gp) {
+		super(gp);
+	}
 }
