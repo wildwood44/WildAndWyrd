@@ -1,5 +1,20 @@
 package wildwyrd.game.playable;
 
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
+import wildwyrd.game.Entity;
+import wildwyrd.game.GamePanel;
+import wildwyrd.game.KeyHandler;
+import wildwyrd.game.items.Itm_Bandage;
+import wildwyrd.game.items.Itm_Hazelnut;
+
 public class Player extends Entity {
 	GamePanel gp;
 	KeyHandler keyH;

@@ -523,7 +523,7 @@ public class UI {
 			}
 		}
 
-		int frameX = 300;
+		frameX = 300;
 		frameY = 25;
 		this.gp.getClass();
 		frameWidth = 64 * 7;

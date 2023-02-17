@@ -187,7 +187,7 @@ public class GamePanel extends JPanel implements Runnable {
 			int y = 400;
 			int lineHeight = 20;
 			this.g2.drawString("WorldX" + this.player.worldX, x, y);
-			int y = y + lineHeight;
+			y = y + lineHeight;
 			this.g2.drawString("WorldY" + this.player.worldY, x, y);
 			y += lineHeight;
 			this.g2.drawString("Col" + (this.player.worldX + this.player.solidArea.x) / 64, x, y);

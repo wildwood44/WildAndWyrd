@@ -27,7 +27,7 @@ public class Glossary {
 			BufferedReader b = new BufferedReader(new InputStreamReader(f));
 
 			for (String i = b.readLine(); i != null; i = b.readLine()) {
-				int count = false;
+				int count = 0;
 				String[] line = i.split("\\$ ", 3);
 
 				for (int j = 0; j < this.sections.length; ++j) {
