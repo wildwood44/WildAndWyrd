@@ -103,5 +103,12 @@ public class AssetSetter {
 		var10000 = this.gp.obj[1][11];
 		this.gp.getClass();
 		var10000.worldY = 9 * 64;
+		this.gp.obj[1][12] = new Obj_Bookshelf(this.gp);
+		var10000 = this.gp.obj[1][12];
+		this.gp.getClass();
+		var10000.worldX = 10 * 64;
+		var10000 = this.gp.obj[1][12];
+		this.gp.getClass();
+		var10000.worldY = 3 * 64;
 	}
 }
