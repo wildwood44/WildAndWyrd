@@ -22,7 +22,7 @@ public class Obj_Bookshelf extends Entity {
 			var3.printStackTrace();
 		}
 
-		this.solidArea.height = 60;
+		this.solidArea.width = 64;
 		this.solidArea.y = 5;
 		this.solidAreaDefaultY = this.solidArea.y;
 		this.setDialogue();

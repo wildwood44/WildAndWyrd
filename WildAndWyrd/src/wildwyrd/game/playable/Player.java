@@ -34,13 +34,13 @@ public class Player extends Entity {
 		this.screenY = 512 / 2;
 		gp.getClass();
 		gp.getClass();
-		this.solidArea = new Rectangle(0, 0, 64, 64);
+		this.solidArea = new Rectangle(12, 0, 64, 64);
 		this.solidAreaDefaultX = this.solidArea.x;
 		this.solidAreaDefaultY = this.solidArea.y;
-		this.solidArea.width = 56;
-		this.solidArea.height = 56;
+		this.solidArea.width = 24;
+		this.solidArea.height = 48;
 		this.setDefaultValues();
-		this.getPlayerImage(0, 1);
+		this.getPlayerImage(3, 3);
 	}
 
 	public void setDefaultValues() {
@@ -56,7 +56,7 @@ public class Player extends Entity {
 		BufferedImage sprite = null;
 
 		try {
-			sprite = ImageIO.read(this.getClass().getResourceAsStream("/res/sprite/spt_Alder.png"));
+			sprite = ImageIO.read(this.getClass().getResourceAsStream("/res/sprite/WildWyrdSprites.png"));
 		} catch (IOException var3) {
 			var3.printStackTrace();
 		}
@@ -68,8 +68,7 @@ public class Player extends Entity {
 		if (this.image == null) {
 			this.image = this.getSpriteSheet();
 		}
-
-		return this.image.getSubimage(xGrid * 0, yGrid * 0, 48, 48);
+		return this.image.getSubimage(xGrid * 48, yGrid * 48, 48, 48);
 	}
 
 	public void update() {
@@ -113,6 +112,22 @@ public class Player extends Entity {
 						}
 				}
 			}
+			
+			spriteCounter++;
+			if (spriteCounter > 10) {
+				if(spriteNum == 1) {
+					spriteNum = 2;
+				} else if (spriteNum == 2) {
+					spriteNum = 3;
+				} else if (spriteNum == 3) {
+					spriteNum = 4;
+				} else if (spriteNum == 4) {
+					spriteNum = 1;
+				}
+				spriteCounter = 0;
+			}
+		} else {
+			spriteNum = 1;
 		}
 
 		if (this.keyH.enterPressed) {
@@ -124,7 +139,6 @@ public class Player extends Entity {
 
 	public void pickUpObject(int i) {
 		if (i != 999) {
-			System.out.println(this.gp.obj[1][i]);
 			if (this.gp.obj[1][i].type == 3 && this.keyH.enterPressed) {
 				this.gp.obj[1][i].interact();
 			}
@@ -139,7 +153,7 @@ public class Player extends Entity {
 
 	public void draw(Graphics2D g2) {
 		BufferedImage image = null;
-		image = this.getPlayerImage(0, 0);
+		image = this.getPlayerImage(4, 0);
 		int x = this.screenX;
 		int y = this.screenY;
 		if (this.screenX > this.worldX) {
@@ -148,6 +162,52 @@ public class Player extends Entity {
 
 		if (this.screenY > this.worldY) {
 			y = this.worldY;
+		}
+		switch(this.direction) {
+		case "up":
+			if(spriteNum == 1) {
+				image = getPlayerImage(4, 3);
+			} else if(spriteNum == 2) {
+				image = getPlayerImage(3, 3);
+			} else if(spriteNum == 3) {
+				image = getPlayerImage(4, 3);
+			} else if(spriteNum == 4) {
+				image = getPlayerImage(5, 3);
+			}
+			break;
+		case "down":
+			if(spriteNum == 1) {
+				image = getPlayerImage(4, 0);
+			} else if(spriteNum == 2) {
+				image = getPlayerImage(3, 0);
+			} else if(spriteNum == 3) {
+				image = getPlayerImage(4, 0);
+			} else if(spriteNum == 4) {
+				image = getPlayerImage(5, 0);
+			}
+			break;
+		case "left":
+			if(spriteNum == 1) {
+				image = getPlayerImage(4, 1);
+			} else if(spriteNum == 2) {
+				image = getPlayerImage(3, 1);
+			} else if(spriteNum == 3) {
+				image = getPlayerImage(4, 1);
+			} else if(spriteNum == 4) {
+				image = getPlayerImage(5, 1);
+			}
+			break;
+		case "right":
+			if(spriteNum == 1) {
+				image = getPlayerImage(4, 2);
+			} else if(spriteNum == 2) {
+				image = getPlayerImage(3, 2);
+			} else if(spriteNum == 3) {
+				image = getPlayerImage(4, 2);
+			} else if(spriteNum == 4) {
+				image = getPlayerImage(5, 2);
+			}
+			break;
 		}
 
 		this.gp.getClass();

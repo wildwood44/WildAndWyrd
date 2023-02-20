@@ -20,7 +20,7 @@ public class Obj_Table_Left extends Entity {
 		} catch (IOException var3) {
 			var3.printStackTrace();
 		}
-
+		this.solidArea.width = 40;
 		this.setDialogue();
 	}
 

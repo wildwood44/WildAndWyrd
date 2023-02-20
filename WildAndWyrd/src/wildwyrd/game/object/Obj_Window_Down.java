@@ -2,33 +2,29 @@ package wildwyrd.game.object;
 
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
-public class Obj_Table extends Entity {
+public class Obj_Window_Down extends Entity {
 	GamePanel gp;
-
-	public Obj_Table(GamePanel gp) {
+	public Obj_Window_Down(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.name = "Tables";
+		this.name = "Window";
 		this.type = 3;
-		this.collision = true;
-
+		this.collision = false;
+	
 		try {
-			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/img_table2.png"));
+			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/img_window_down.png"));
 		} catch (IOException var3) {
 			var3.printStackTrace();
 		}
-
-		this.setDialogue();
-		this.solidArea.width = 60;
 	}
 
 	public void setDialogue() {
 		this.dialogues[0][0] = new Dialoge(
-				"A single round wooden table sat a safe :distance from the fire, but close enough to feel its warmth.",
-				1);
+				"There were four windows showing the clearing on either side of the cottage.", 1);
 	}
 
 	public void interact() {

@@ -22,7 +22,7 @@ public class Obj_Larder extends Entity {
 		}
 
 		this.setDialogue();
-		this.solidArea.width = 10;
+		this.solidArea.width = 20;
 	}
 
 	public void setDialogue() {

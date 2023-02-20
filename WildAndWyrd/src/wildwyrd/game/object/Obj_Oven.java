@@ -16,14 +16,14 @@ public class Obj_Oven extends Entity {
 		this.collision = true;
 
 		try {
-			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/img_chair.png"));
+			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/img_Oven.png"));
 		} catch (IOException var3) {
 			var3.printStackTrace();
 		}
 
-		this.solidArea.height = 60;
-		this.solidArea.y = 5;
-		this.solidAreaDefaultY = this.solidArea.y;
+		this.solidArea.width = 42;
+		this.solidArea.x = 10;
+		this.solidAreaDefaultX = this.solidArea.x;
 		this.setDialogue();
 	}
 
