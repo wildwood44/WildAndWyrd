@@ -20,7 +20,7 @@ public class Player extends Entity {
 	KeyHandler keyH;
 	public final int screenX;
 	public final int screenY;
-	public ArrayList<Entity> inventory = new ArrayList();
+	public ArrayList<Entity> inventory = new ArrayList<Entity>();
 	public final int inventorySize = 20;
 	public Boolean approval;
 

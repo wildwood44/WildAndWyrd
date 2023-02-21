@@ -20,7 +20,7 @@ public class TileManager {
 		this.tile = new Tile[10];
 		gp.getClass();
 		gp.getClass();
-		this.mapTileNum = new int[26][12];
+		this.mapTileNum = new int[22][12];
 		this.getTileImage();
 		this.loadMap("/res/maps/map01");
 	}
@@ -46,6 +46,9 @@ public class TileManager {
 			this.tile[5].image = ImageIO
 					.read(this.getClass().getResourceAsStream("/res/tiles/Cottage_Window_Tile.png"));
 			this.tile[5].collision = true;
+			this.tile[6] = new Tile();
+			this.tile[6].image = ImageIO
+					.read(this.getClass().getResourceAsStream("/res/tiles/stair_tile_horizontal.png"));
 		} catch (IOException var2) {
 			var2.printStackTrace();
 		}
@@ -61,7 +64,7 @@ public class TileManager {
 
 			while (true) {
 				this.gp.getClass();
-				if (col >= 26) {
+				if (col >= 22) {
 					break;
 				}
 
@@ -74,9 +77,9 @@ public class TileManager {
 
 				while (true) {
 					this.gp.getClass();
-					if (col >= 26) {
+					if (col >= 22) {
 						this.gp.getClass();
-						if (col == 26) {
+						if (col == 22) {
 							col = 0;
 							++row;
 						}
@@ -103,7 +106,7 @@ public class TileManager {
 
 		while (true) {
 			this.gp.getClass();
-			if (worldCol >= 26) {
+			if (worldCol >= 22) {
 				break;
 			}
 
@@ -184,7 +187,7 @@ public class TileManager {
 
 			++worldCol;
 			this.gp.getClass();
-			if (worldCol == 26) {
+			if (worldCol == 22) {
 				worldCol = 0;
 				++worldRow;
 			}

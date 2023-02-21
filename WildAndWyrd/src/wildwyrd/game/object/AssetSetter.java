@@ -134,16 +134,16 @@ public class AssetSetter {
 		this.gp.obj[1][16] = new Obj_Window_Down(this.gp);
 		var10000 = this.gp.obj[1][16];
 		this.gp.getClass();
-		var10000.worldX = 10 * 64;
+		var10000.worldX = 9 * 64;
 		var10000 = this.gp.obj[1][16];
 		this.gp.getClass();
 		var10000.worldY = 10 * 64;
 		this.gp.obj[1][17] = new Obj_Window_Down(this.gp);
 		var10000 = this.gp.obj[1][17];
 		this.gp.getClass();
-		var10000.worldX = 10 * 64;
+		var10000.worldX = 14 * 64;
 		var10000 = this.gp.obj[1][17];
 		this.gp.getClass();
-		var10000.worldY = 17 * 64;
+		var10000.worldY = 10 * 64;
 	}
 }
