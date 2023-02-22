@@ -74,7 +74,7 @@ public class Entity {
 		return var10000 / 64;
 	}
 
-	public void draw(Graphics2D g2, GamePanel gp) {
+	public void draw(Graphics2D g2) {
 		int screenX = this.worldX - gp.player.worldX + gp.player.screenX;
 		int screenY = this.worldY - gp.player.worldY + gp.player.screenY;
 		if (gp.player.worldX < gp.player.screenX) {

@@ -43,14 +43,14 @@ public class AssetSetter {
 		this.gp.obj[1][3] = new Obj_Cauldron(this.gp);
 		var10000 = this.gp.obj[1][3];
 		this.gp.getClass();
-		var10000.worldX = 12 * 64;
+		var10000.worldX = 11 * 64;
 		var10000 = this.gp.obj[1][3];
 		this.gp.getClass();
 		var10000.worldY = 2 * 64;
 		this.gp.obj[1][4] = new Obj_Hearth(this.gp);
 		var10000 = this.gp.obj[1][4];
 		this.gp.getClass();
-		var10000.worldX = 13 * 64;
+		var10000.worldX = 12 * 64;
 		var10000 = this.gp.obj[1][4];
 		this.gp.getClass();
 		var10000.worldY = 2 * 64;

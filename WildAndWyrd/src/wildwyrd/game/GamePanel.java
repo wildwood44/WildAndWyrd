@@ -8,6 +8,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 import javax.swing.JPanel;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.cutscenes.CutsceneManager;
@@ -67,11 +70,11 @@ public class GamePanel extends JPanel implements Runnable {
 	public int currentRoom = 0;
 	public Story s = new Story();
 	public Cutscene c;
-	public Entity[][] obj;
+	public Entity[][] obj = new Entity[10][20];
+	public Entity[][] npc = new Entity[10][5];
 	public Room[] rm;
-	public Player player;
-	ArrayList<Entity> entityList;
-	public Entity[] npc;
+	public Player player = new Player(this, keyH);
+	ArrayList<Entity> entityList = new ArrayList<>();
 
 	public GamePanel() {
 		this.c = new Cutscene(this.s);
@@ -164,17 +167,32 @@ public class GamePanel extends JPanel implements Runnable {
 			} else if (this.gameState == 1) {
 				this.rm[this.currentRoom].draw(this.g2);
 				this.tileM.draw(this.g2);
-
+				entityList.add(player);
 				for (int i = 0; i < this.obj[1].length; ++i) {
 					if (this.obj[1][i] != null) {
-						this.obj[1][i].draw(this.g2, this);
+						entityList.add(this.obj[1][i]);
+						//this.obj[1][i].draw(this.g2, this);
 					}
 				}
+				Collections.sort(entityList, new Comparator<Entity>() {
+					@Override
+					public int compare(Entity e1, Entity e2) {
+						int result = Integer.compare(e1.worldY, e2.worldY);
+						return result;
+					}
+					
+				});
+				
+				for(int i = 0; i < entityList.size(); i++) {
+					entityList.get(i).draw(this.g2);
+				}
+				for(int i = 0; i < entityList.size(); i++) {
+					entityList.remove(i);
+				}
 
-				this.player.draw(this.g2);
+				//this.player.draw(this.g2);
 				this.ui.draw(this.g2);
 			}
-
 			this.ui.draw(this.g2);
 		}
 

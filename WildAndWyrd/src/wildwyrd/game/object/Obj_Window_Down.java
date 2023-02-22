@@ -21,8 +21,8 @@ public class Obj_Window_Down extends Entity {
 			var3.printStackTrace();
 		}
 		this.setDialogue();
-		//this.solidArea.y = 48;
-		//this.solidAreaDefaultY = this.solidArea.y;
+		this.solidArea.y = 56;
+		this.solidAreaDefaultY = this.solidArea.y;
 	}
 
 	public void setDialogue() {
