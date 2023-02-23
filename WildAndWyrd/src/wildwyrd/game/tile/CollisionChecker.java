@@ -33,8 +33,8 @@ public class CollisionChecker {
 					var10000 = entityTopWorldY - entity.speed;
 					this.gp.getClass();
 					entityTopRow = var10000 / 64;
-					tileNum1 = this.gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
-					tileNum2 = this.gp.tileM.mapTileNum[entityRightCol][entityTopRow];
+					tileNum1 = this.gp.tileM.mapTileNum[gp.currentMap][entityLeftCol][entityTopRow];
+					tileNum2 = this.gp.tileM.mapTileNum[gp.currentMap][entityRightCol][entityTopRow];
 					if (this.gp.tileM.tile[tileNum1].collision || this.gp.tileM.tile[tileNum2].collision) {
 						entity.collisionOn = true;
 					}
@@ -45,8 +45,8 @@ public class CollisionChecker {
 					var10000 = entityBottomWorldY + entity.speed;
 					this.gp.getClass();
 					entityBottomRow = var10000 / 64;
-					tileNum1 = this.gp.tileM.mapTileNum[entityLeftCol][entityBottomRow];
-					tileNum2 = this.gp.tileM.mapTileNum[entityRightCol][entityBottomRow];
+					tileNum1 = this.gp.tileM.mapTileNum[gp.currentMap][entityLeftCol][entityBottomRow];
+					tileNum2 = this.gp.tileM.mapTileNum[gp.currentMap][entityRightCol][entityBottomRow];
 					if (this.gp.tileM.tile[tileNum1].collision || this.gp.tileM.tile[tileNum2].collision) {
 						entity.collisionOn = true;
 					}
@@ -57,8 +57,8 @@ public class CollisionChecker {
 					var10000 = entityLeftWorldX - entity.speed;
 					this.gp.getClass();
 					entityLeftCol = var10000 / 64;
-					tileNum1 = this.gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
-					tileNum2 = this.gp.tileM.mapTileNum[entityLeftCol][entityBottomRow];
+					tileNum1 = this.gp.tileM.mapTileNum[gp.currentMap][entityLeftCol][entityTopRow];
+					tileNum2 = this.gp.tileM.mapTileNum[gp.currentMap][entityLeftCol][entityBottomRow];
 					if (this.gp.tileM.tile[tileNum1].collision || this.gp.tileM.tile[tileNum2].collision) {
 						entity.collisionOn = true;
 					}
@@ -69,8 +69,8 @@ public class CollisionChecker {
 					var10000 = entityRightWorldX + entity.speed;
 					this.gp.getClass();
 					entityRightCol = var10000 / 64;
-					tileNum1 = this.gp.tileM.mapTileNum[entityRightCol][entityTopRow];
-					tileNum2 = this.gp.tileM.mapTileNum[entityRightCol][entityBottomRow];
+					tileNum1 = this.gp.tileM.mapTileNum[gp.currentMap][entityRightCol][entityTopRow];
+					tileNum2 = this.gp.tileM.mapTileNum[gp.currentMap][entityRightCol][entityBottomRow];
 					if (this.gp.tileM.tile[tileNum1].collision || this.gp.tileM.tile[tileNum2].collision) {
 						entity.collisionOn = true;
 					}

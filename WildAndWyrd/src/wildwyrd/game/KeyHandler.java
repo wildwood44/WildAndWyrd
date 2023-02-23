@@ -251,7 +251,16 @@ public class KeyHandler implements KeyListener {
 									this.downPressed = true;
 									break;
 								case 82 :
-									this.gp.tileM.loadMap("/res/maps/map01");
+									switch(gp.currentMap)
+									{
+									case 0:
+										this.gp.tileM.loadMap("/res/maps/map01",0);
+										break;
+									case 1:
+										this.gp.tileM.loadMap("/res/maps/map02",1);
+										break;
+									}
+									
 									break;
 								case 84 :
 									if (!this.showDebugText) {

@@ -13,16 +13,17 @@ import wildwyrd.game.GamePanel;
 public class TileManager {
 	GamePanel gp;
 	public Tile[] tile;
-	public int[][] mapTileNum;
+	public int[][][] mapTileNum;
 
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
 		this.tile = new Tile[10];
 		gp.getClass();
 		gp.getClass();
-		this.mapTileNum = new int[22][12];
+		this.mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 		this.getTileImage();
-		this.loadMap("/res/maps/map01");
+		this.loadMap("/res/maps/map01",0);
+		this.loadMap("/res/maps/map02",1);
 	}
 
 	public void getTileImage() {
@@ -55,7 +56,7 @@ public class TileManager {
 
 	}
 
-	public void loadMap(String filePath) {
+	public void loadMap(String filePath, int map) {
 		try {
 			InputStream is = this.getClass().getResourceAsStream(filePath);
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -64,12 +65,12 @@ public class TileManager {
 
 			while (true) {
 				this.gp.getClass();
-				if (col >= 22) {
+				if (col >= gp.maxWorldCol) {
 					break;
 				}
 
 				this.gp.getClass();
-				if (row >= 12) {
+				if (row >= gp.maxWorldRow) {
 					break;
 				}
 
@@ -77,9 +78,9 @@ public class TileManager {
 
 				while (true) {
 					this.gp.getClass();
-					if (col >= 22) {
+					if (col >= gp.maxWorldCol) {
 						this.gp.getClass();
-						if (col == 22) {
+						if (col == gp.maxWorldCol) {
 							col = 0;
 							++row;
 						}
@@ -87,8 +88,9 @@ public class TileManager {
 					}
 
 					String[] numbers = line.split(" ");
+					//System.out.println(numbers[col]);
 					int num = Integer.parseInt(numbers[col]);
-					this.mapTileNum[col][row] = num;
+					this.mapTileNum[map][col][row] = num;
 					++col;
 				}
 			}
@@ -106,16 +108,16 @@ public class TileManager {
 
 		while (true) {
 			this.gp.getClass();
-			if (worldCol >= 22) {
+			if (worldCol >= gp.maxWorldCol) {
 				break;
 			}
 
 			this.gp.getClass();
-			if (worldRow >= 12) {
+			if (worldRow >= gp.maxWorldRow) {
 				break;
 			}
 
-			int tileNum = this.mapTileNum[worldCol][worldRow];
+			int tileNum = this.mapTileNum[gp.currentMap][worldCol][worldRow];
 			this.gp.getClass();
 			int worldX = worldCol * 64;
 			this.gp.getClass();
@@ -187,7 +189,7 @@ public class TileManager {
 
 			++worldCol;
 			this.gp.getClass();
-			if (worldCol == 22) {
+			if (worldCol == gp.maxWorldCol) {
 				worldCol = 0;
 				++worldRow;
 			}

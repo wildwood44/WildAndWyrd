@@ -29,10 +29,11 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int maxScreenRow = 8;
 	public final int screenWidth = 768;
 	public final int screenHeight = 512;
-	public final int maxWorldCol = 26;
+	public final int maxWorldCol = 22;
 	public final int maxWorldRow = 12;
 	public final int worldWidth = 1664;
 	public final int worldHeight = 768;
+	public final int maxMap = 5;
 	public final int maxRoom = 2;
 	int screenWidth2 = 768;
 	int screenHeight2 = 512;
@@ -67,6 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int glossaryState = 11;
 	public boolean cutsceneOn = false;
 	public Integer selectedObj;
+	public int currentMap = 0;
 	public int currentRoom = 0;
 	public Story s = new Story();
 	public Cutscene c;
@@ -81,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable {
 		this.obj = new Entity[2][20];
 		this.rm = new Room[2];
 		this.player = new Player(this, this.keyH);
-		this.entityList = new ArrayList();
+		this.entityList = new ArrayList<>();
 		this.setPreferredSize(new Dimension(768, 512));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);

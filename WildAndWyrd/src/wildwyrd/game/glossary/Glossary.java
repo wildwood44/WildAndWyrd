@@ -36,9 +36,7 @@ public class Glossary {
 
 						for (int k = 0; k <= this.page[j].length; ++k) {
 							if (this.page[j][k] == null) {
-								System.out.println(j + " " + k);
 								this.page[j][k] = new GlossaryPage(j, name, desc);
-								System.out.println(this.page[j][k].getTitle());
 								break;
 							}
 						}
