@@ -19,6 +19,7 @@ import wildwyrd.game.object.AssetSetter;
 import wildwyrd.game.playable.Player;
 import wildwyrd.game.rooms.Room;
 import wildwyrd.game.tile.CollisionChecker;
+import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -29,21 +30,21 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int maxScreenRow = 8;
 	public final int screenWidth = 768;
 	public final int screenHeight = 512;
-	public final int maxWorldCol = 22;
-	public final int maxWorldRow = 12;
-	public final int worldWidth = 1664;
-	public final int worldHeight = 768;
+	//public final int maxWorldCol = 22;
+	//public final int maxWorldRow = 12;
+	//public final int worldWidth = maxWorldCol * tileSize;
+	//public final int worldHeight = maxWorldRow * tileSize;
 	public final int maxMap = 5;
 	public final int maxRoom = 2;
-	int screenWidth2 = 768;
-	int screenHeight2 = 512;
+	int screenWidth2 = screenWidth;
+	int screenHeight2 = screenHeight;
 	BufferedImage tempScreen;
 	Graphics2D g2;
-	public EventHandler eHandler = new EventHandler(this);
+	public EventHandler eHandler;
 	int FPS = 60;
-	public TileManager tileM = new TileManager(this);
+	public TileManager tileM;
 	public KeyHandler keyH = new KeyHandler(this);
-	public CollisionChecker cChecker = new CollisionChecker(this);
+	public CollisionChecker cChecker;
 	public UI ui = new UI(this);
 	public Room room = new Room(this);
 	public AssetSetter aSetter = new AssetSetter(this);
@@ -67,14 +68,15 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int inventoryState = 10;
 	public final int glossaryState = 11;
 	public boolean cutsceneOn = false;
+	public Map currentMap;
 	public Integer selectedObj;
-	public int currentMap = 0;
 	public int currentRoom = 0;
 	public Story s = new Story();
 	public Cutscene c;
 	public Entity[][] obj = new Entity[10][20];
 	public Entity[][] npc = new Entity[10][5];
 	public Room[] rm;
+	public Map[] maps;
 	public Player player = new Player(this, keyH);
 	ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -82,9 +84,10 @@ public class GamePanel extends JPanel implements Runnable {
 		this.c = new Cutscene(this.s);
 		this.obj = new Entity[2][20];
 		this.rm = new Room[2];
+		this.maps = new Map[5];
 		this.player = new Player(this, this.keyH);
 		this.entityList = new ArrayList<>();
-		this.setPreferredSize(new Dimension(768, 512));
+		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(this.keyH);
@@ -94,8 +97,14 @@ public class GamePanel extends JPanel implements Runnable {
 	public void setupGame() {
 		this.aSetter.setRooms();
 		this.aSetter.setObject();
+		this.aSetter.setMaps();
 		this.gameState = 0;
-		this.tempScreen = new BufferedImage(768, 512, 2);
+		currentMap = maps[0];
+		System.out.println(maxMap +" "+ currentMap.getMaxWorldCol() + " " + currentMap.getMaxWorldRow());
+		tileM = new TileManager(this);
+		eHandler = new EventHandler(this);
+		cChecker = new CollisionChecker(this);
+		this.tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
 		this.g2 = (Graphics2D) this.tempScreen.getGraphics();
 	}
 
@@ -160,19 +169,19 @@ public class GamePanel extends JPanel implements Runnable {
 				this.ui.draw(this.g2);
 			} else if (this.gameState == 7) {
 				this.ui.draw(this.g2);
-			} else if (this.gameState == 3) {
+			} else if (this.gameState == menuState) {
 				this.ui.draw(this.g2);
 			} else if (this.gameState == 10) {
 				this.ui.draw(this.g2);
 			} else if (this.gameState == 11) {
 				this.ui.draw(this.g2);
-			} else if (this.gameState == 1) {
+			} else if (this.gameState == playState) {
 				this.rm[this.currentRoom].draw(this.g2);
 				this.tileM.draw(this.g2);
 				entityList.add(player);
-				for (int i = 0; i < this.obj[1].length; ++i) {
-					if (this.obj[1][i] != null) {
-						entityList.add(this.obj[1][i]);
+				for (int i = 0; i < this.obj[currentMap.getId()].length; ++i) {
+					if (this.obj[currentMap.getId()][i] != null) {
+						entityList.add(this.obj[currentMap.getId()][i]);
 						//this.obj[1][i].draw(this.g2, this);
 					}
 				}
@@ -210,9 +219,9 @@ public class GamePanel extends JPanel implements Runnable {
 			y = y + lineHeight;
 			this.g2.drawString("WorldY" + this.player.worldY, x, y);
 			y += lineHeight;
-			this.g2.drawString("Col" + (this.player.worldX + this.player.solidArea.x) / 64, x, y);
+			this.g2.drawString("Col" + (this.player.worldX + this.player.solidArea.x) / tileSize, x, y);
 			y += lineHeight;
-			this.g2.drawString("Row" + (this.player.worldY + this.player.solidArea.y) / 64, x, y);
+			this.g2.drawString("Row" + (this.player.worldY + this.player.solidArea.y) / tileSize, x, y);
 			y += lineHeight;
 			this.g2.drawString("Story: " + this.s.chapter + " " + this.s.part, x, y);
 			y += lineHeight;

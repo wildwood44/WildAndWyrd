@@ -65,13 +65,13 @@ public class Entity {
 	public int getCol() {
 		int var10000 = this.worldX + this.solidArea.x;
 		this.gp.getClass();
-		return var10000 / 64;
+		return var10000 / gp.tileSize;
 	}
 
 	public int getRow() {
 		int var10000 = this.worldY + this.solidArea.y;
 		this.gp.getClass();
-		return var10000 / 64;
+		return var10000 / gp.tileSize;
 	}
 
 	public void draw(Graphics2D g2) {
@@ -86,39 +86,39 @@ public class Entity {
 		}
 
 		gp.getClass();
-		int rightOffset = 768 - gp.player.screenX;
+		int rightOffset = gp.screenWidth - gp.player.screenX;
 		gp.getClass();
-		if (rightOffset > 1664 - gp.player.worldX) {
+		if (rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX) {
 			gp.getClass();
 			gp.getClass();
-			screenX = 768 - (1664 - this.worldX);
+			screenX = gp.screenWidth - (gp.currentMap.getWorldWidth() - this.worldX);
 		}
 
 		gp.getClass();
-		int bottomOffset = 512 - gp.player.screenY;
+		int bottomOffset = gp.screenHeight - gp.player.screenY;
 		gp.getClass();
-		if (bottomOffset > 768 - gp.player.worldY) {
+		if (bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
 			gp.getClass();
 			gp.getClass();
-			screenY = 512 - (768 - this.worldY);
+			screenY = gp.screenHeight - (gp.currentMap.getWorldHeight() - this.worldY);
 		}
 
 		int var10000 = this.worldX;
 		gp.getClass();
-		if (var10000 + 64 > gp.player.worldX - gp.player.screenX) {
+		if (var10000 + gp.tileSize > gp.player.worldX - gp.player.screenX) {
 			var10000 = this.worldX;
 			gp.getClass();
-			if (var10000 - 64 < gp.player.worldX + gp.player.screenX) {
+			if (var10000 - gp.tileSize < gp.player.worldX + gp.player.screenX) {
 				var10000 = this.worldY;
 				gp.getClass();
-				if (var10000 + 64 > gp.player.worldY - gp.player.screenY) {
+				if (var10000 + gp.tileSize > gp.player.worldY - gp.player.screenY) {
 					var10000 = this.worldY;
 					gp.getClass();
-					if (var10000 - 64 < gp.player.worldY + gp.player.screenY) {
+					if (var10000 - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 						BufferedImage var10001 = this.image;
 						gp.getClass();
 						gp.getClass();
-						g2.drawImage(var10001, screenX, screenY, 64, 64, (ImageObserver) null);
+						g2.drawImage(var10001, screenX, screenY, gp.tileSize, gp.tileSize, (ImageObserver) null);
 					}
 				}
 			}
@@ -165,9 +165,9 @@ public class Entity {
 		}
 
 		this.gp.getClass();
-		int col = nextWorldX / 64;
+		int col = nextWorldX / gp.tileSize;
 		this.gp.getClass();
-		int row = nextWorldY / 64;
+		int row = nextWorldY / gp.tileSize;
 
 		for (int i = 0; i < target[i].length; ++i) {
 			if (target[1][i] != null && target[1][i].getCol() == col && target[1][i].getRow() == row

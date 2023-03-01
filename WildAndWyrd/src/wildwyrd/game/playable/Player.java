@@ -29,25 +29,25 @@ public class Player extends Entity {
 		this.gp = gp;
 		this.keyH = keyH;
 		gp.getClass();
-		this.screenX = 768 / 2;
+		screenX = gp.screenWidth / 2;
 		gp.getClass();
-		this.screenY = 512 / 2;
+		screenY = gp.screenHeight / 2;
 		gp.getClass();
 		gp.getClass();
-		this.solidArea = new Rectangle(12, 0, 64, 64);
+		this.solidArea = new Rectangle(12, 0, gp.tileSize, gp.tileSize);
 		this.solidAreaDefaultX = this.solidArea.x;
 		this.solidAreaDefaultY = this.solidArea.y;
 		this.solidArea.width = 24;
-		this.solidArea.height = 48;
+		this.solidArea.height = 32;
 		this.setDefaultValues();
 		this.getPlayerImage(3, 3);
 	}
 
 	public void setDefaultValues() {
 		this.gp.getClass();
-		this.worldX = 64 * 5;
+		this.worldX = gp.tileSize * 5;
 		this.gp.getClass();
-		this.worldY = 64 * 5;
+		this.worldY = gp.tileSize * 7;
 		this.speed = 5;
 		this.direction = "down";
 	}
@@ -83,6 +83,8 @@ public class Player extends Entity {
 			} else if (this.keyH.rightPressed) {
 				this.direction = "right";
 			}
+			
+			gp.eHandler.checkEvent();
 
 			this.collisionOn = false;
 			this.gp.cChecker.checkTile(this);
@@ -139,8 +141,8 @@ public class Player extends Entity {
 
 	public void pickUpObject(int i) {
 		if (i != 999) {
-			if (this.gp.obj[1][i].type == 3 && this.keyH.enterPressed) {
-				this.gp.obj[1][i].interact();
+			if (this.gp.obj[gp.currentMap.getId()][i].type == 3 && this.keyH.enterPressed) {
+				this.gp.obj[gp.currentMap.getId()][i].interact();
 			}
 		}
 
@@ -154,13 +156,13 @@ public class Player extends Entity {
 	public void draw(Graphics2D g2) {
 		BufferedImage image = null;
 		image = this.getPlayerImage(4, 0);
-		int x = this.screenX;
-		int y = this.screenY;
-		if (this.screenX > this.worldX) {
+		int x = screenX;
+		int y = screenY;
+		if (screenX > this.worldX) {
 			x = this.worldX;
 		}
 
-		if (this.screenY > this.worldY) {
+		if (screenY > this.worldY) {
 			y = this.worldY;
 		}
 		switch(this.direction) {
@@ -211,21 +213,21 @@ public class Player extends Entity {
 		}
 
 		this.gp.getClass();
-		int rightOffset = 768 - this.screenX;
+		int rightOffset = gp.screenWidth - screenX;
 		this.gp.getClass();
-		if (rightOffset > 1664 - this.gp.player.worldX) {
+		if (rightOffset > gp.currentMap.getWorldWidth() - this.gp.player.worldX) {
 			this.gp.getClass();
 			this.gp.getClass();
-			x = 768 - (1664 - this.worldX);
+			x = gp.screenWidth - (gp.currentMap.getWorldWidth() - this.worldX);
 		}
 
 		this.gp.getClass();
-		int bottomOffset = 512 - this.screenY;
+		int bottomOffset = gp.screenHeight - screenY;
 		this.gp.getClass();
-		if (bottomOffset > 768 - this.gp.player.worldY) {
+		if (bottomOffset > gp.currentMap.getWorldHeight() - this.gp.player.worldY) {
 			this.gp.getClass();
 			this.gp.getClass();
-			y = 512 - (768 - this.worldY);
+			y = gp.screenHeight - (gp.currentMap.getWorldHeight() - this.worldY);
 		}
 
 		g2.drawImage(image, x, y, (ImageObserver) null);

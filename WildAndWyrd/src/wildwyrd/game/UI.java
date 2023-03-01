@@ -76,7 +76,7 @@ public class UI {
 
 		var10000 = this.gp.gameState;
 		this.gp.getClass();
-		if (var10000 == 3) {
+		if (var10000 == gp.menuState) {
 			this.drawMenuBarScreen();
 		}
 
@@ -125,7 +125,7 @@ public class UI {
 		FontMetrics fm = this.g2.getFontMetrics();
 		this.getXforCenteredText(text);
 		this.gp.getClass();
-		int y = (512 - fm.getHeight()) / 2;
+		int y = (gp.screenHeight - fm.getHeight()) / 2;
 		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
 		this.g2.setColor(Color.white);
 		this.message = text;
@@ -148,23 +148,23 @@ public class UI {
 
 	public void drawDialogueScreen() {
 		this.gp.getClass();
-		int x = 64 * 3 / 2;
+		int x = gp.tileSize * 3 / 2;
 		this.gp.getClass();
-		int y = 64 * 5;
+		int y = gp.tileSize * 5;
 		this.gp.getClass();
 		this.gp.getClass();
-		int width = 768 - 64 * 3;
+		int width = gp.screenWidth - gp.tileSize * 3;
 		this.gp.getClass();
-		int height = 64 * 3;
+		int height = gp.tileSize * 3;
 		String[][] dia = this.gp.c.dialogues;
 		this.drawImageWindow(300, 0, 200, 400);
 		this.drawDialogueWindow(x, y, width, height);
 		this.g2.setFont(this.g2.getFont().deriveFont(0, 18.0F));
 		this.g2.setColor(Color.white);
 		this.gp.getClass();
-		x += 64;
+		x += gp.tileSize;
 		this.gp.getClass();
-		y += 64;
+		y += gp.tileSize;
 		int var10000;
 		if (dia[this.gp.c.dialogueSet][this.gp.c.dialogueIndex] != null) {
 			char[] characters = this.gp.c.dialogues[this.gp.c.dialogueSet][this.gp.c.dialogueIndex].toCharArray();
@@ -253,21 +253,21 @@ public class UI {
 
 	public void drawExamineScreen() {
 		this.gp.getClass();
-		int x = 64 * 3 / 2;
+		int x = gp.tileSize * 3 / 2;
 		this.gp.getClass();
-		int y = 64 * 5;
+		int y = gp.tileSize * 5;
 		this.gp.getClass();
 		this.gp.getClass();
-		int width = 768 - 64 * 3;
+		int width = gp.screenWidth - gp.tileSize * 3;
 		this.gp.getClass();
-		int height = 64 * 3;
+		int height = gp.tileSize * 3;
 		this.drawDialogueWindow(x, y, width, height);
 		this.g2.setFont(this.g2.getFont().deriveFont(0, 18.0F));
 		this.g2.setColor(Color.white);
 		this.gp.getClass();
-		x += 64;
+		x += gp.tileSize;
 		this.gp.getClass();
-		y += 64;
+		y += gp.tileSize;
 		int var10000;
 		if (this.selectedObject.dialogues[this.selectedObject.dialogueSet][this.selectedObject.dialogueIndex] != null) {
 			char[] characters = this.selectedObject.dialogues[this.selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
@@ -377,47 +377,47 @@ public class UI {
 		int frameX = 20;
 		int frameY = 25;
 		this.gp.getClass();
-		int frameWidth = 64 * 4;
+		int frameWidth = gp.tileSize * 4;
 		this.gp.getClass();
-		int frameHeight = 64 * 7;
+		int frameHeight = gp.tileSize * 7;
 		this.drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		int slotXstart = frameX + 0;
 		int slotYstart = frameY + 15;
 		this.gp.getClass();
-		int cursorX = slotXstart + 64 * this.slotRow;
+		int cursorX = slotXstart + gp.tileSize * this.slotRow;
 		double var10000 = (double) slotYstart;
 		this.gp.getClass();
-		int cursorY = (int) (var10000 + 64.0D * 0.75D * (double) this.slotCol);
+		int cursorY = (int) (var10000 + gp.tileSize * 0.75D * (double) this.slotCol);
 		this.gp.getClass();
-		int cursorWidth = 64 * 2;
+		int cursorWidth = gp.tileSize * 2;
 		int cursorHeight = 30;
 		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
 		this.g2.setColor(Color.white);
 		this.g2.setStroke(new BasicStroke());
 		Graphics2D var12 = this.g2;
 		this.gp.getClass();
-		var12.drawString("Save", 30, 64);
+		var12.drawString("Save", 30, gp.tileSize);
 		var12 = this.g2;
 		this.gp.getClass();
-		var12.drawString("Stats", 30, (int) (64.0D * 1.75D));
+		var12.drawString("Stats", 30, (int) (gp.tileSize * 1.75D));
 		var12 = this.g2;
 		this.gp.getClass();
-		var12.drawString("Items", 30, (int) (64.0D * 2.5D));
+		var12.drawString("Items", 30, (int) (gp.tileSize * 2.5D));
 		var12 = this.g2;
 		this.gp.getClass();
-		var12.drawString("Equipment", 30, (int) (64.0D * 3.25D));
+		var12.drawString("Equipment", 30, (int) (gp.tileSize * 3.25D));
 		var12 = this.g2;
 		this.gp.getClass();
-		var12.drawString("Objecties", 30, 64 * 4);
+		var12.drawString("Objecties", 30, gp.tileSize * 4);
 		var12 = this.g2;
 		this.gp.getClass();
-		var12.drawString("Skill", 30, (int) (64.0D * 4.75D));
+		var12.drawString("Skill", 30, (int) (gp.tileSize * 4.75D));
 		var12 = this.g2;
 		this.gp.getClass();
-		var12.drawString("Glossary", 30, (int) (64.0D * 5.5D));
+		var12.drawString("Glossary", 30, (int) (gp.tileSize * 5.5D));
 		var12 = this.g2;
 		this.gp.getClass();
-		var12.drawString("Quit", 30, (int) (64.0D * 6.25D));
+		var12.drawString("Quit", 30, (int) (gp.tileSize * 6.25D));
 		this.g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 	}
 
@@ -425,9 +425,9 @@ public class UI {
 		int frameX = 300;
 		int frameY = 25;
 		this.gp.getClass();
-		int frameWidth = 64 * 7;
+		int frameWidth = gp.tileSize * 7;
 		this.gp.getClass();
-		int frameHeight = 64 * 4;
+		int frameHeight = gp.tileSize * 4;
 		this.drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		int slotXstart = frameX + 15;
 		int slotYstart = frameY + 15;
@@ -438,33 +438,33 @@ public class UI {
 		for (i = 0; i < this.gp.player.inventory.size(); ++i) {
 			this.g2.drawImage(((Entity) this.gp.player.inventory.get(i)).image, slotX, slotY, (ImageObserver) null);
 			this.gp.getClass();
-			slotX += 64;
+			slotX += gp.tileSize;
 			if (i == 6 || i == 13 || i == 20) {
 				slotX = slotXstart;
 				this.gp.getClass();
-				slotY += 64;
+				slotY += gp.tileSize;
 			}
 		}
 
 		this.gp.getClass();
-		i = slotXstart + 64 * this.slotCol2;
+		i = slotXstart + gp.tileSize * this.slotCol2;
 		this.gp.getClass();
-		int cursorY = slotYstart + 64 * this.slotRow2;
+		int cursorY = slotYstart + gp.tileSize * this.slotRow2;
 		this.gp.getClass();
-		int cursorWidth = (int) (64.0D / 1.65D);
+		int cursorWidth = (int) (gp.tileSize / 1.65D);
 		this.gp.getClass();
-		int cursorHeight = (int) (64.0D / 1.65D);
+		int cursorHeight = (int) (gp.tileSize / 1.65D);
 		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
 		this.g2.setColor(Color.white);
 		this.g2.setStroke(new BasicStroke());
 		this.g2.drawRoundRect(i, cursorY, cursorWidth, cursorHeight, 10, 10);
 		int dFrameY = frameY + frameHeight;
 		this.gp.getClass();
-		int dFrameHeight = 64 * 3;
+		int dFrameHeight = gp.tileSize * 3;
 		this.drawDialogueWindow(frameX, dFrameY, frameWidth, dFrameHeight);
 		int textX = frameX + 20;
 		this.gp.getClass();
-		int textY = dFrameY + 64;
+		int textY = dFrameY + gp.tileSize;
 		int itemIndex = this.getItemIndexOnSlot();
 		this.g2.setColor(Color.white);
 		if (itemIndex < this.gp.player.inventory.size()) {
@@ -484,19 +484,19 @@ public class UI {
 		int frameX = 20;
 		int frameY = 25;
 		this.gp.getClass();
-		int frameWidth = 64 * 4;
+		int frameWidth = gp.tileSize * 4;
 		this.gp.getClass();
-		int frameHeight = 64 * 7;
+		int frameHeight = gp.tileSize * 7;
 		this.drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		int slotXstart = frameX + 0;
 		int slotYstart = frameY + 15;
 		this.gp.getClass();
-		int cursorX = slotXstart + 64 * this.slotRow;
+		int cursorX = slotXstart + gp.tileSize * this.slotRow;
 		double var10000 = (double) slotYstart * 2.25D;
 		this.gp.getClass();
-		int cursorY = (int) (var10000 + (double) (64 * 1 * this.slotCol));
+		int cursorY = (int) (var10000 + (double) (gp.tileSize * 1 * this.slotCol));
 		this.gp.getClass();
-		int cursorWidth = 64 * 2;
+		int cursorWidth = gp.tileSize * 2;
 		int cursorHeight = 30;
 		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
 		this.g2.setColor(Color.white);
@@ -504,16 +504,16 @@ public class UI {
 		Graphics2D var17 = this.g2;
 		String var10001 = this.gp.glossary.sections[this.section];
 		this.gp.getClass();
-		var17.drawString(var10001, 30, 64);
+		var17.drawString(var10001, 30, gp.tileSize);
 		this.gp.getClass();
-		int pos = (int) (64.0D * 0.75D);
+		int pos = (int) (gp.tileSize * 0.75D);
 		this.bottomValue = this.gp.glossary.getSize(this.section);
 		this.g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
 		for (int i = 0; i < 6; ++i) {
 			if (this.gp.glossary.page[this.section][i] != null) {
 				this.gp.getClass();
-				pos += 64;
+				pos += gp.tileSize;
 
 				try {
 					this.g2.drawString(this.gp.glossary.page[this.section][i + this.topValue].getTitle(), 30, pos);
@@ -526,9 +526,9 @@ public class UI {
 		frameX = 300;
 		frameY = 25;
 		this.gp.getClass();
-		frameWidth = 64 * 7;
+		frameWidth = gp.tileSize * 7;
 		this.gp.getClass();
-		frameHeight = 64 * 4;
+		frameHeight = gp.tileSize * 4;
 		this.drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
 		this.g2.setColor(Color.white);
@@ -579,7 +579,7 @@ public class UI {
 		String text = "Wild and Wyrd";
 		int x = this.getXforCenteredText(text);
 		this.gp.getClass();
-		int y = 512 / 3;
+		int y = gp.screenHeight / 3;
 		this.g2.setColor(Color.white);
 		this.g2.drawString(text, x, y);
 		this.g2.setFont(this.g2.getFont().deriveFont(1, 40.0F));
@@ -587,35 +587,35 @@ public class UI {
 		x = this.getXforCenteredText(text);
 		double var10000 = (double) y;
 		this.gp.getClass();
-		y = (int) (var10000 + 64.0D * 2.5D);
+		y = (int) (var10000 + gp.tileSize * 2.5D);
 		this.g2.drawString(text, x, y);
 		Graphics2D var4;
 		if (this.commandNum == 0) {
 			var4 = this.g2;
 			this.gp.getClass();
-			var4.drawString(">", x - 64, y);
+			var4.drawString(">", x - gp.tileSize, y);
 		}
 
 		text = "Load Game";
 		x = this.getXforCenteredText(text);
 		this.gp.getClass();
-		y += 64;
+		y += gp.tileSize;
 		this.g2.drawString(text, x, y);
 		if (this.commandNum == 1) {
 			var4 = this.g2;
 			this.gp.getClass();
-			var4.drawString(">", x - 64, y);
+			var4.drawString(">", x - gp.tileSize, y);
 		}
 
 		text = "Quit";
 		x = this.getXforCenteredText(text);
 		this.gp.getClass();
-		y += 64;
+		y += gp.tileSize;
 		this.g2.drawString(text, x, y);
 		if (this.commandNum == 2) {
 			var4 = this.g2;
 			this.gp.getClass();
-			var4.drawString(">", x - 64, y);
+			var4.drawString(">", x - gp.tileSize, y);
 		}
 
 	}
@@ -623,7 +623,7 @@ public class UI {
 	public int getXforCenteredText(String text) {
 		int length = (int) this.g2.getFontMetrics().getStringBounds(text, this.g2).getWidth();
 		this.gp.getClass();
-		int x = 768 / 2 - length / 2;
+		int x = gp.screenWidth / 2 - length / 2;
 		return x;
 	}
 
