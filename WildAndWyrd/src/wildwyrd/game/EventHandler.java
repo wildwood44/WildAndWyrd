@@ -99,7 +99,7 @@ public class EventHandler {
 		GamePanel var10000 = this.gp;
 		this.gp.getClass();
 		var10000.gameState = 4;
-		System.out.println("Get Chapter 1");
+		//System.out.println("Get Chapter 1");
 		CutsceneManager var2 = this.gp.csManager;
 		this.gp.csManager.getClass();
 		var2.sceneNum = 2;

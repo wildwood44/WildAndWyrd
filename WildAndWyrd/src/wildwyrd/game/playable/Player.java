@@ -28,19 +28,15 @@ public class Player extends Entity {
 		super(gp);
 		this.gp = gp;
 		this.keyH = keyH;
-		gp.getClass();
 		screenX = gp.screenWidth / 2;
-		gp.getClass();
 		screenY = gp.screenHeight / 2;
-		gp.getClass();
-		gp.getClass();
-		this.solidArea = new Rectangle(12, 0, gp.tileSize, gp.tileSize);
-		this.solidAreaDefaultX = this.solidArea.x;
-		this.solidAreaDefaultY = this.solidArea.y;
-		this.solidArea.width = 24;
-		this.solidArea.height = 32;
-		this.setDefaultValues();
-		this.getPlayerImage(3, 3);
+		solidArea = new Rectangle(12, 0, gp.tileSize, gp.tileSize);
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
+		solidArea.width = 24;
+		solidArea.height = 40;
+		setDefaultValues();
+		getPlayerImage(3, 3);
 	}
 
 	public void setDefaultValues() {

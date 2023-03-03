@@ -48,8 +48,6 @@ public class CollisionChecker {
 				break;
 			case "right":
 					entityRightCol = (entityRightWorldX + entity.speed) / gp.tileSize;
-					System.out.println(gp.currentMap.getId());
-					System.out.println(entityRightCol);
 					tileNum1 = this.gp.tileM.mapTileNum[gp.currentMap.getId()][entityRightCol][entityTopRow];
 					tileNum2 = this.gp.tileM.mapTileNum[gp.currentMap.getId()][entityRightCol][entityBottomRow];
 					if (this.gp.tileM.tile[tileNum1].collision || this.gp.tileM.tile[tileNum2].collision) {
@@ -68,10 +66,8 @@ public class CollisionChecker {
 				entity.solidArea.y += entity.worldY;
 				this.gp.obj[gp.currentMap.getId()][i].solidArea.x += this.gp.obj[gp.currentMap.getId()][i].worldX;
 				this.gp.obj[gp.currentMap.getId()][i].solidArea.y += this.gp.obj[gp.currentMap.getId()][i].worldY;
-				String var5 = entity.direction;
-				switch (entity.direction.hashCode()) {
-					case 3739 :
-						if (var5.equals("up")) {
+				switch (entity.direction) {
+					case "up":
 							entity.solidArea.y -= entity.speed;
 							if (entity.solidArea.intersects(this.gp.obj[gp.currentMap.getId()][i].solidArea)) {
 								if (this.gp.obj[gp.currentMap.getId()][i].collision) {
@@ -82,10 +78,8 @@ public class CollisionChecker {
 									index = i;
 								}
 							}
-						}
 						break;
-					case 3089570 :
-						if (var5.equals("down")) {
+					case "down":
 							entity.solidArea.y += entity.speed;
 							if (entity.solidArea.intersects(this.gp.obj[gp.currentMap.getId()][i].solidArea)) {
 								if (this.gp.obj[gp.currentMap.getId()][i].collision) {
@@ -96,10 +90,8 @@ public class CollisionChecker {
 									index = i;
 								}
 							}
-						}
 						break;
-					case 3317767 :
-						if (var5.equals("left")) {
+					case "left":
 							entity.solidArea.x -= entity.speed;
 							if (entity.solidArea.intersects(this.gp.obj[gp.currentMap.getId()][i].solidArea)) {
 								if (this.gp.obj[gp.currentMap.getId()][i].collision) {
@@ -110,10 +102,8 @@ public class CollisionChecker {
 									index = i;
 								}
 							}
-						}
 						break;
-					case 108511772 :
-						if (var5.equals("right")) {
+					case "right":
 							entity.solidArea.x += entity.speed;
 							if (entity.solidArea.intersects(this.gp.obj[gp.currentMap.getId()][i].solidArea)) {
 								if (this.gp.obj[gp.currentMap.getId()][i].collision) {
@@ -124,7 +114,6 @@ public class CollisionChecker {
 									index = i;
 								}
 							}
-						}
 				}
 
 				entity.solidArea.x = entity.solidAreaDefaultX;
@@ -146,43 +135,34 @@ public class CollisionChecker {
 				entity.solidArea.y += entity.worldY;
 				target[gp.currentMap.getId()][i].solidArea.x += target[gp.currentMap.getId()][i].worldX;
 				target[gp.currentMap.getId()][i].solidArea.y += target[gp.currentMap.getId()][i].worldY;
-				String var5 = entity.direction;
-				switch (entity.direction.hashCode()) {
-					case 3739 :
-						if (var5.equals("up")) {
+				switch (entity.direction) {
+					case "up":
 							entity.solidArea.y -= entity.speed;
 							if (entity.solidArea.intersects(target[gp.currentMap.getId()][i].solidArea)) {
 								entity.collisionOn = true;
 								index = i;
 							}
-						}
 						break;
-					case 3089570 :
-						if (var5.equals("down")) {
+					case "down":
 							entity.solidArea.y += entity.speed;
 							if (entity.solidArea.intersects(target[gp.currentMap.getId()][i].solidArea)) {
 								entity.collisionOn = true;
 								index = i;
 							}
-						}
 						break;
-					case 3317767 :
-						if (var5.equals("left")) {
+					case "left":
 							entity.solidArea.x -= entity.speed;
 							if (entity.solidArea.intersects(target[gp.currentMap.getId()][i].solidArea)) {
 								entity.collisionOn = true;
 								index = i;
 							}
-						}
 						break;
-					case 108511772 :
-						if (var5.equals("right")) {
+					case "right":
 							entity.solidArea.x += entity.speed;
 							if (entity.solidArea.intersects(target[gp.currentMap.getId()][i].solidArea)) {
 								entity.collisionOn = true;
 								index = i;
 							}
-						}
 						break;
 				}
 

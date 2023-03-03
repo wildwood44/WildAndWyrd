@@ -152,8 +152,8 @@ public class KeyHandler implements KeyListener {
 							case 37 :
 							case 65 :
 								if (this.gp.ui.section != 0) {
-									System.out.println(this.gp.glossary.getSize(this.gp.ui.section) + " "
-											+ this.gp.glossary.getSize(this.gp.ui.section - 1));
+									//System.out.println(this.gp.glossary.getSize(this.gp.ui.section) + " "
+									//		+ this.gp.glossary.getSize(this.gp.ui.section - 1));
 									if (this.gp.glossary.getSize(this.gp.ui.section) > this.gp.glossary
 											.getSize(this.gp.ui.section - 1)) {
 										this.gp.ui.slotCol = 0;
@@ -173,7 +173,7 @@ public class KeyHandler implements KeyListener {
 								break;
 							case 38 :
 							case 87 :
-								System.out.println(this.gp.ui.topValue + " " + this.gp.ui.slotCol);
+								//System.out.println(this.gp.ui.topValue + " " + this.gp.ui.slotCol);
 								if (this.gp.ui.slotCol != 0) {
 									--this.gp.ui.slotCol;
 								} else if (this.gp.ui.topValue != 0) {
@@ -207,8 +207,8 @@ public class KeyHandler implements KeyListener {
 								if (this.gp.ui.slotCol != 5) {
 									++this.gp.ui.slotCol;
 								} else {
-									System.out.println(
-											this.gp.ui.slotCol + this.gp.ui.topValue + " " + this.gp.ui.bottomValue);
+									//System.out.println(
+									//		this.gp.ui.slotCol + this.gp.ui.topValue + " " + this.gp.ui.bottomValue);
 									if (this.gp.ui.slotCol + this.gp.ui.topValue != this.gp.ui.bottomValue - 1) {
 										++this.gp.ui.topValue;
 									} else {

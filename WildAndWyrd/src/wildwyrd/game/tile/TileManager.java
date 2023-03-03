@@ -20,7 +20,6 @@ public class TileManager {
 		tile = new Tile[10];
 		gp.getClass();
 		gp.getClass();
-		System.out.println(gp.currentMap.getMaxWorldCol());
 		this.mapTileNum = new int[gp.maxMap][gp.currentMap.getMaxWorldCol()][gp.currentMap.getMaxWorldRow()];
 		this.getTileImage();
 		this.loadMap("/res/maps/map01",0);
@@ -32,7 +31,8 @@ public class TileManager {
 			this.tile[0] = new Tile();
 			this.tile[0].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/kitchen_tiles.png"));
 			this.tile[1] = new Tile();
-			this.tile[1].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/Grass_Tile.png"));
+			this.tile[1].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/blank_tiles.png"));
+			this.tile[1].collision = true;
 			this.tile[2] = new Tile();
 			this.tile[2].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/Cottage_Wall_Tile.png"));
 			this.tile[2].collision = true;
@@ -51,6 +51,13 @@ public class TileManager {
 			this.tile[6] = new Tile();
 			this.tile[6].image = ImageIO
 					.read(this.getClass().getResourceAsStream("/res/tiles/stair_tile_horizontal.png"));
+			this.tile[7] = new Tile();
+			this.tile[7].image = ImageIO
+					.read(this.getClass().getResourceAsStream("/res/tiles/Balcony_Wood.png"));
+			this.tile[7].collision = true;
+			this.tile[8] = new Tile();
+			this.tile[8].image = ImageIO
+					.read(this.getClass().getResourceAsStream("/res/tiles/Balcony_Wooden_Left.png"));
 		} catch (IOException var2) {
 			var2.printStackTrace();
 		}
@@ -157,7 +164,6 @@ public class TileManager {
 					worldX - gp.tileSize < this.gp.player.worldX + this.gp.player.screenX &&
 					worldY + gp.tileSize > this.gp.player.worldY - this.gp.player.screenY &&
 					worldY - gp.tileSize < this.gp.player.worldY + this.gp.player.screenY) {
-					System.out.println(gp.player.worldX + " " + gp.player.worldY);
 					g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 				}
 

@@ -100,7 +100,6 @@ public class GamePanel extends JPanel implements Runnable {
 		this.aSetter.setMaps();
 		this.gameState = 0;
 		currentMap = maps[0];
-		System.out.println(maxMap +" "+ currentMap.getMaxWorldCol() + " " + currentMap.getMaxWorldRow());
 		tileM = new TileManager(this);
 		eHandler = new EventHandler(this);
 		cChecker = new CollisionChecker(this);
