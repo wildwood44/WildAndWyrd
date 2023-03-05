@@ -46,8 +46,8 @@ public class EventHandler {
 			canTouchEvent = true;
 		}
 		if(canTouchEvent == true) {
-			if(hit(0,15,9,"up") == true) {teleport(gp.maps[1],15,3);}
-			if(hit(1,15,4,"down") == true) {teleport(gp.maps[0],15,10);}
+			if(hit(0,14,9,"up") == true) {teleport(gp.maps[1],15,3);}
+			if(hit(1,15,4,"down") == true) {teleport(gp.maps[0],14,10);}
 		}
 		//System.out.println(gp.player.worldX + " " + gp.player.worldY);
 		
@@ -88,7 +88,6 @@ public class EventHandler {
 
 	public void prologueCutscene(int read) {
 		GamePanel var10000 = this.gp;
-		this.gp.getClass();
 		var10000.gameState = 4;
 		CutsceneManager var2 = this.gp.csManager;
 		this.gp.csManager.getClass();
@@ -97,7 +96,6 @@ public class EventHandler {
 
 	public void c1s_Cutscene(int read) {
 		GamePanel var10000 = this.gp;
-		this.gp.getClass();
 		var10000.gameState = 4;
 		//System.out.println("Get Chapter 1");
 		CutsceneManager var2 = this.gp.csManager;
@@ -107,7 +105,6 @@ public class EventHandler {
 
 	public void message() {
 		GamePanel var10000 = this.gp;
-		this.gp.getClass();
 		var10000.gameState = 6;
 	}
 	

@@ -376,47 +376,34 @@ public class UI {
 	public void drawMenuBarScreen() {
 		int frameX = 20;
 		int frameY = 25;
-		this.gp.getClass();
 		int frameWidth = gp.tileSize * 4;
-		this.gp.getClass();
 		int frameHeight = gp.tileSize * 7;
-		this.drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		int slotXstart = frameX + 0;
 		int slotYstart = frameY + 15;
-		this.gp.getClass();
 		int cursorX = slotXstart + gp.tileSize * this.slotRow;
 		double var10000 = (double) slotYstart;
-		this.gp.getClass();
 		int cursorY = (int) (var10000 + gp.tileSize * 0.75D * (double) this.slotCol);
-		this.gp.getClass();
 		int cursorWidth = gp.tileSize * 2;
 		int cursorHeight = 30;
 		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
 		this.g2.setColor(Color.white);
 		this.g2.setStroke(new BasicStroke());
 		Graphics2D var12 = this.g2;
-		this.gp.getClass();
 		var12.drawString("Save", 30, gp.tileSize);
 		var12 = this.g2;
-		this.gp.getClass();
 		var12.drawString("Stats", 30, (int) (gp.tileSize * 1.75D));
 		var12 = this.g2;
-		this.gp.getClass();
 		var12.drawString("Items", 30, (int) (gp.tileSize * 2.5D));
 		var12 = this.g2;
-		this.gp.getClass();
 		var12.drawString("Equipment", 30, (int) (gp.tileSize * 3.25D));
 		var12 = this.g2;
-		this.gp.getClass();
 		var12.drawString("Objecties", 30, gp.tileSize * 4);
 		var12 = this.g2;
-		this.gp.getClass();
 		var12.drawString("Skill", 30, (int) (gp.tileSize * 4.75D));
 		var12 = this.g2;
-		this.gp.getClass();
 		var12.drawString("Glossary", 30, (int) (gp.tileSize * 5.5D));
 		var12 = this.g2;
-		this.gp.getClass();
 		var12.drawString("Quit", 30, (int) (gp.tileSize * 6.25D));
 		this.g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 	}
@@ -424,59 +411,57 @@ public class UI {
 	public void drawInventoryScreen() {
 		int frameX = 300;
 		int frameY = 25;
-		this.gp.getClass();
 		int frameWidth = gp.tileSize * 7;
-		this.gp.getClass();
 		int frameHeight = gp.tileSize * 4;
-		this.drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		int slotXstart = frameX + 15;
 		int slotYstart = frameY + 15;
 		int slotX = slotXstart;
 		int slotY = slotYstart;
 
 		int i;
-		for (i = 0; i < this.gp.player.inventory.size(); ++i) {
-			this.g2.drawImage(((Entity) this.gp.player.inventory.get(i)).image, slotX, slotY, (ImageObserver) null);
-			this.gp.getClass();
+		for (i = 0; i < gp.player.inventory.size(); ++i) {
+			this.g2.drawImage(((Entity) gp.player.inventory.get(i)).image, slotX, slotY, (ImageObserver) null);
 			slotX += gp.tileSize;
 			if (i == 6 || i == 13 || i == 20) {
 				slotX = slotXstart;
-				this.gp.getClass();
 				slotY += gp.tileSize;
 			}
 		}
 
-		this.gp.getClass();
 		i = slotXstart + gp.tileSize * this.slotCol2;
-		this.gp.getClass();
 		int cursorY = slotYstart + gp.tileSize * this.slotRow2;
-		this.gp.getClass();
 		int cursorWidth = (int) (gp.tileSize / 1.65D);
-		this.gp.getClass();
 		int cursorHeight = (int) (gp.tileSize / 1.65D);
-		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
-		this.g2.setColor(Color.white);
-		this.g2.setStroke(new BasicStroke());
-		this.g2.drawRoundRect(i, cursorY, cursorWidth, cursorHeight, 10, 10);
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke());
+		g2.drawRoundRect(i, cursorY, cursorWidth, cursorHeight, 10, 10);
 		int dFrameY = frameY + frameHeight;
-		this.gp.getClass();
 		int dFrameHeight = gp.tileSize * 3;
-		this.drawDialogueWindow(frameX, dFrameY, frameWidth, dFrameHeight);
+		drawDialogueWindow(frameX, dFrameY, frameWidth, dFrameHeight);
 		int textX = frameX + 20;
-		this.gp.getClass();
 		int textY = dFrameY + gp.tileSize;
 		int itemIndex = this.getItemIndexOnSlot();
-		this.g2.setColor(Color.white);
-		if (itemIndex < this.gp.player.inventory.size()) {
+		g2.setColor(Color.white);
+		if (itemIndex < gp.player.inventory.size()) {
 			String[] var23;
 			int var22 = (var23 = ((Entity) this.gp.player.inventory.get(itemIndex)).description.split(":")).length;
 
 			for (int var21 = 0; var21 < var22; ++var21) {
 				String line = var23[var21];
-				this.g2.drawString(line, textX, textY);
+				g2.drawString(line, textX, textY);
 				textY += 40;
 			}
 		}
+		frameX = 20;
+		frameY = 25;
+		frameWidth = gp.tileSize * 4;
+		frameHeight = gp.tileSize * 7;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		g2.drawString("Shillings: " + gp.player.getShillings(), 30, gp.tileSize);
 
 	}
 

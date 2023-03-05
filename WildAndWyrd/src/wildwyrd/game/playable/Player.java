@@ -21,6 +21,7 @@ public class Player extends Entity {
 	public final int screenX;
 	public final int screenY;
 	public ArrayList<Entity> inventory = new ArrayList<Entity>();
+	private int shillings;
 	public final int inventorySize = 20;
 	public Boolean approval;
 
@@ -30,7 +31,7 @@ public class Player extends Entity {
 		this.keyH = keyH;
 		screenX = gp.screenWidth / 2;
 		screenY = gp.screenHeight / 2;
-		solidArea = new Rectangle(12, 0, gp.tileSize, gp.tileSize);
+		solidArea = new Rectangle(12, 12, gp.tileSize, gp.tileSize);
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 		solidArea.width = 24;
@@ -133,6 +134,20 @@ public class Player extends Entity {
 			this.pickUpObject(objIndex);
 		}
 
+	}
+	
+	public int pickUpShillings(int i) {
+		shillings += i;
+		return shillings;
+	}
+	
+	public int spendShillings(int i) {
+		shillings -= i;
+		return shillings;
+	}
+	
+	public int getShillings() {
+		return shillings;
 	}
 
 	public void pickUpObject(int i) {

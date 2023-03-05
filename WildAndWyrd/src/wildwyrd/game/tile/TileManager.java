@@ -18,61 +18,47 @@ public class TileManager {
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
 		tile = new Tile[10];
-		gp.getClass();
-		gp.getClass();
-		this.mapTileNum = new int[gp.maxMap][gp.currentMap.getMaxWorldCol()][gp.currentMap.getMaxWorldRow()];
-		this.getTileImage();
-		this.loadMap("/res/maps/map01",0);
-		this.loadMap("/res/maps/map02",1);
+		mapTileNum = new int[gp.maxMap][gp.currentMap.getMaxWorldCol()][gp.currentMap.getMaxWorldRow()];
+		getTileImage();
+		loadMap("/res/maps/map01",0);
+		loadMap("/res/maps/map02",1);
 	}
 
 	public void getTileImage() {
-		try {
-			this.tile[0] = new Tile();
-			this.tile[0].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/kitchen_tiles.png"));
-			this.tile[1] = new Tile();
-			this.tile[1].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/blank_tiles.png"));
-			this.tile[1].collision = true;
-			this.tile[2] = new Tile();
-			this.tile[2].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/Cottage_Wall_Tile.png"));
-			this.tile[2].collision = true;
-			this.tile[3] = new Tile();
-			this.tile[3].image = ImageIO
-					.read(this.getClass().getResourceAsStream("/res/tiles/Cottage_Ceiling1_Tile.png"));
-			this.tile[3].collision = true;
-			this.tile[4] = new Tile();
-			this.tile[4].image = ImageIO
-					.read(this.getClass().getResourceAsStream("/res/tiles/Cottage_Ceiling2_Tile.png"));
-			this.tile[4].collision = true;
-			this.tile[5] = new Tile();
-			this.tile[5].image = ImageIO
-					.read(this.getClass().getResourceAsStream("/res/tiles/Cottage_Window_Tile.png"));
-			this.tile[5].collision = true;
-			this.tile[6] = new Tile();
-			this.tile[6].image = ImageIO
-					.read(this.getClass().getResourceAsStream("/res/tiles/stair_tile_horizontal.png"));
-			this.tile[7] = new Tile();
-			this.tile[7].image = ImageIO
-					.read(this.getClass().getResourceAsStream("/res/tiles/Balcony_Wood.png"));
-			this.tile[7].collision = true;
-			this.tile[8] = new Tile();
-			this.tile[8].image = ImageIO
-					.read(this.getClass().getResourceAsStream("/res/tiles/Balcony_Wooden_Left.png"));
-		} catch (IOException var2) {
-			var2.printStackTrace();
+		if(gp.currentMap.getType() == "Interior") {
+			setup(0, "kitchen_tiles", false);
+			setup(1, "blank_tiles", true);
+			setup(2, "Cottage_Wall_Tile", true);
+			setup(3, "Cottage_Ceiling1_Tile", true);
+			setup(4, "Cottage_Ceiling2_Tile", true);
+			setup(5, "Cottage_Window_Tile", true);
+			setup(6, "stair_tile_horizontal", false);
+			setup(7, "Balcony_Wood", true);
+			setup(8, "Balcony_Wooden_Left", false);
 		}
-
+		
+	}
+	
+	public void setup(int index, String imageName, boolean collision) {
+		UtilityTool uTool = new UtilityTool();
+		try {
+			tile[index] = new Tile();
+			tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/"+imageName+".png"));
+			tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+			tile[index].collision = collision;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void loadMap(String filePath, int map) {
 		try {
-			InputStream is = this.getClass().getResourceAsStream(filePath);
+			InputStream is = getClass().getResourceAsStream(filePath);
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			int col = 0;
 			int row = 0;
 
 			while (col< gp.maps[map].getMaxWorldCol() && row < gp.currentMap.getMaxWorldRow()) {
-				this.gp.getClass();
 				if (col >= gp.maps[map].getMaxWorldCol()) {
 					break;
 				}
@@ -103,8 +89,8 @@ public class TileManager {
 			}
 
 			br.close();
-		} catch (Exception var9) {
-			var9.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -114,20 +100,16 @@ public class TileManager {
 		int worldRow = 0;
 
 		while (true) {
-			this.gp.getClass();
 			if (worldCol >= gp.currentMap.getMaxWorldCol()) {
 				break;
 			}
 
-			this.gp.getClass();
 			if (worldRow >= gp.currentMap.getMaxWorldRow()) {
 				break;
 			}
 
 			int tileNum = this.mapTileNum[gp.currentMap.getId()][worldCol][worldRow];
-			this.gp.getClass();
 			int worldX = worldCol * gp.tileSize;
-			this.gp.getClass();
 			int worldY = worldRow * gp.tileSize;
 			int screenX = worldX - this.gp.player.worldX + this.gp.player.screenX;
 			int screenY = worldY - this.gp.player.worldY + this.gp.player.screenY;
