@@ -14,17 +14,17 @@ public class Obj_Wooden_Bowl extends Entity {
 		super(gp);
 		this.gp = gp;
 		this.loot = loot;
-		this.name = "Wooden Bowl";
-		this.type = 3;
-		this.collision = true;
+		name = "Wooden Bowl";
+		type = 3;
+		collision = true;
 
 		try {
-			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/Table_Tile_Bowl.png"));
-		} catch (IOException var4) {
-			var4.printStackTrace();
+			this.image = ImageIO.read(getClass().getResourceAsStream("/res/objects/Table_Tile_Bowl.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
-		this.setDialogue();
+		setDialogue();
 	}
 
 	public void setDialogue() {

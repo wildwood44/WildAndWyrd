@@ -312,12 +312,9 @@ public class UI {
 					.getType() == 2) {
 				if (this.gp.keyH.enterPressed) {
 					++this.charIndex;
-					UI var11;
 					if (this.slotyn == 0) {
-						var11 = this.gp.ui;
 						binaryRes = true;
 					} else {
-						var11 = this.gp.ui;
 						binaryRes = false;
 					}
 
@@ -344,11 +341,9 @@ public class UI {
 		} else {
 			this.selectedObject.dialogueIndex = 0;
 			var10000 = this.gp.gameState;
-			this.gp.getClass();
 			if (var10000 == 7) {
-				GamePanel var12 = this.gp;
-				this.gp.getClass();
-				var12.gameState = 1;
+				GamePanel gp = this.gp;
+				gp.gameState = 1;
 			}
 		}
 
@@ -468,63 +463,62 @@ public class UI {
 	public void drawGlossaryScreen() {
 		int frameX = 20;
 		int frameY = 25;
-		this.gp.getClass();
 		int frameWidth = gp.tileSize * 4;
-		this.gp.getClass();
 		int frameHeight = gp.tileSize * 7;
-		this.drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		int slotXstart = frameX + 0;
 		int slotYstart = frameY + 15;
-		this.gp.getClass();
 		int cursorX = slotXstart + gp.tileSize * this.slotRow;
 		double var10000 = (double) slotYstart * 2.25D;
 		this.gp.getClass();
 		int cursorY = (int) (var10000 + (double) (gp.tileSize * 1 * this.slotCol));
-		this.gp.getClass();
 		int cursorWidth = gp.tileSize * 2;
 		int cursorHeight = 30;
 		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
 		this.g2.setColor(Color.white);
 		this.g2.setStroke(new BasicStroke());
-		Graphics2D var17 = this.g2;
-		String var10001 = this.gp.glossary.sections[this.section];
-		this.gp.getClass();
-		var17.drawString(var10001, 30, gp.tileSize);
-		this.gp.getClass();
+		Graphics2D g2 = this.g2;
+		String var10001 = gp.glossary.sections[section];
+		g2.drawString(var10001, 30, gp.tileSize);
 		int pos = (int) (gp.tileSize * 0.75D);
-		this.bottomValue = this.gp.glossary.getSize(this.section);
-		this.g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+		bottomValue = gp.glossary.getSize(section);
+		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
 		for (int i = 0; i < 6; ++i) {
 			if (this.gp.glossary.page[this.section][i] != null) {
-				this.gp.getClass();
 				pos += gp.tileSize;
 
 				try {
-					this.g2.drawString(this.gp.glossary.page[this.section][i + this.topValue].getTitle(), 30, pos);
-				} catch (Exception var15) {
-					System.out.println(var15);
+					this.g2.drawString(this.gp.glossary.page[section][i + topValue].getTitle(), 30, pos);
+				} catch (Exception e) {
+					System.out.println(e);
 				}
 			}
 		}
 
+		StringBuilder htmlBuilder = new StringBuilder();
 		frameX = 300;
 		frameY = 25;
-		this.gp.getClass();
 		frameWidth = gp.tileSize * 7;
-		this.gp.getClass();
-		frameHeight = gp.tileSize * 4;
-		this.drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
-		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
-		this.g2.setColor(Color.white);
+		//frameHeight = gp.tileSize * 4;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
 
 		try {
-			this.g2.drawString(this.gp.glossary.page[this.section][this.slotCol + this.topValue].getTitle(),
+			htmlBuilder.append("<html>");
+			htmlBuilder.append("<head><title>"+gp.glossary.page[section][slotCol + topValue].getTitle()+"</title></head></br>");
+			g2.drawString(gp.glossary.page[section][slotCol + topValue].getTitle(),
 					frameX + 40, frameY + 40);
-			this.g2.drawString(this.gp.glossary.page[this.section][this.slotCol + this.topValue].getDesc(), frameX + 40,
+			g2.drawString(gp.glossary.page[section][slotCol + topValue].getDesc(), frameX + 40,
 					frameY + 80);
-		} catch (Exception var14) {
-			System.out.println(var14);
+			htmlBuilder.append("<body><p>"+gp.glossary.page[section][slotCol + topValue].getDesc()+"</p></body>");
+			htmlBuilder.append("</html>");
+			String html = htmlBuilder.toString();
+			g2.drawString(html,
+					frameX + 160, frameY + 40);
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 
 	}

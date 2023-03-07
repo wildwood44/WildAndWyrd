@@ -23,7 +23,7 @@ public class Glossary {
 		this.dialogueSet = dialogueSet;
 
 		try {
-			InputStream f = this.getClass().getResourceAsStream("/res/dialogue/Glossary.txt");
+			InputStream f = getClass().getResourceAsStream("/res/dialogue/Glossary.txt");
 			BufferedReader b = new BufferedReader(new InputStreamReader(f));
 
 			for (String i = b.readLine(); i != null; i = b.readLine()) {
@@ -35,16 +35,16 @@ public class Glossary {
 						String desc = line[2];
 
 						for (int k = 0; k <= this.page[j].length; ++k) {
-							if (this.page[j][k] == null) {
-								this.page[j][k] = new GlossaryPage(j, name, desc);
+							if (page[j][k] == null) {
+								page[j][k] = new GlossaryPage(j, name, desc);
 								break;
 							}
 						}
 					}
 				}
 			}
-		} catch (IOException var13) {
-			System.out.println(var13);
+		} catch (IOException e) {
+			System.out.println(e);
 		}
 	}
 

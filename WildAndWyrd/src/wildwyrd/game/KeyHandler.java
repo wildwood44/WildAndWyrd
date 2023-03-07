@@ -11,7 +11,6 @@ public class KeyHandler implements KeyListener {
 	public boolean rightPressed;
 	public boolean enterPressed;
 	public boolean skipPressed;
-	public Integer selectedObj;
 	public boolean showDebugText = false;
 
 	public KeyHandler(GamePanel gp) {
@@ -41,7 +40,6 @@ public class KeyHandler implements KeyListener {
 			if (code == 10) {
 				if (this.gp.ui.commandNum == 0) {
 					var3 = this.gp;
-					this.gp.getClass();
 					var3.gameState = 1;
 				}
 

@@ -8,20 +8,19 @@ public class Map {
 	GamePanel gp;
 	BufferedImage worldMap[];
 	private int id;
-	private String type;
+	private MapType type;
 	private int maxWorldCol;
 	private int maxWorldRow;
 	private int worldWidth;
 	private int worldHeight;
 	public boolean miniMapOn = false;
 	
-	public Map(GamePanel gp, String type, int id, int maxWorldCol, int maxWorldRow) {
+	public Map(GamePanel gp, MapType type, int id, int maxWorldCol, int maxWorldRow) {
 		this.gp = gp;
 		this.id = id;
 		this.type = type;
 		this.maxWorldCol = maxWorldCol;
 		this.maxWorldRow = maxWorldRow;
-		System.out.println(maxWorldCol + " ");
 		worldWidth = this.maxWorldCol * gp.tileSize;
 		worldHeight = this.maxWorldRow * gp.tileSize;
 	}
@@ -30,7 +29,7 @@ public class Map {
 		return id;
 	}
 
-	public String getType() {
+	public MapType getType() {
 		return type;
 	}
 

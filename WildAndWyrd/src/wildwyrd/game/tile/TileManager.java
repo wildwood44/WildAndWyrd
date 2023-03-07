@@ -18,14 +18,15 @@ public class TileManager {
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
 		tile = new Tile[10];
-		mapTileNum = new int[gp.maxMap][gp.currentMap.getMaxWorldCol()][gp.currentMap.getMaxWorldRow()];
+		mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 		getTileImage();
 		loadMap("/res/maps/map01",0);
 		loadMap("/res/maps/map02",1);
+		loadMap("/res/maps/map03",2);
 	}
 
 	public void getTileImage() {
-		if(gp.currentMap.getType() == "Interior") {
+		if(gp.currentMap.getType() == MapType.INTERIOR) {
 			setup(0, "kitchen_tiles", false);
 			setup(1, "blank_tiles", true);
 			setup(2, "Cottage_Wall_Tile", true);
@@ -35,6 +36,11 @@ public class TileManager {
 			setup(6, "stair_tile_horizontal", false);
 			setup(7, "Balcony_Wood", true);
 			setup(8, "Balcony_Wooden_Left", false);
+		}
+		else if(gp.currentMap.getType() == MapType.OUTSIDE) {
+			setup(0, "Grass_Tile", false);
+			setup(1, "forestFloor_tile", false);
+			setup(2, "StoneWall_Tile", true);
 		}
 		
 	}
@@ -63,7 +69,6 @@ public class TileManager {
 					break;
 				}
 
-				this.gp.getClass();
 				if (row >= gp.maps[map].getMaxWorldRow()) {
 					break;
 				}
@@ -71,7 +76,6 @@ public class TileManager {
 				String line = br.readLine();
 
 				while (true) {
-					this.gp.getClass();
 					if (col >= gp.maps[map].getMaxWorldCol()) {
 						this.gp.getClass();
 						if (col == gp.maps[map].getMaxWorldCol()) {
@@ -108,12 +112,12 @@ public class TileManager {
 				break;
 			}
 
-			int tileNum = this.mapTileNum[gp.currentMap.getId()][worldCol][worldRow];
+			int tileNum = mapTileNum[gp.currentMap.getId()][worldCol][worldRow];
 			int worldX = worldCol * gp.tileSize;
 			int worldY = worldRow * gp.tileSize;
-			int screenX = worldX - this.gp.player.worldX + this.gp.player.screenX;
-			int screenY = worldY - this.gp.player.worldY + this.gp.player.screenY;
-			if (this.gp.player.screenX > this.gp.player.worldX) {
+			int screenX = worldX - gp.player.worldX + gp.player.screenX;
+			int screenY = worldY - gp.player.worldY + gp.player.screenY;
+			if (gp.player.screenX > gp.player.worldX) {
 				screenX = worldX;
 			}
 
@@ -121,18 +125,14 @@ public class TileManager {
 				screenY = worldY;
 			}
 
-			this.gp.getClass();
 			int rightOffset = gp.screenWidth - this.gp.player.screenX;
-			this.gp.getClass();
 			if (rightOffset > gp.currentMap.getWorldWidth() - this.gp.player.worldX) {
 				this.gp.getClass();
 				this.gp.getClass();
 				screenX = gp.screenWidth - (gp.currentMap.getWorldWidth() - worldX);
 			}
 
-			this.gp.getClass();
 			int bottomOffset = gp.screenHeight - this.gp.player.screenY;
-			this.gp.getClass();
 			if (bottomOffset > gp.currentMap.getWorldHeight() - this.gp.player.worldY) {
 				this.gp.getClass();
 				this.gp.getClass();
@@ -161,8 +161,6 @@ public class TileManager {
 				}
 
 				var10001 = this.tile[tileNum].image;
-				this.gp.getClass();
-				this.gp.getClass();
 				g2.drawImage(var10001, screenX, screenY, gp.tileSize, gp.tileSize, (ImageObserver) null);
 			}
 

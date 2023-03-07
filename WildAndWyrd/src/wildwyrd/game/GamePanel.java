@@ -30,8 +30,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int maxScreenRow = 8;
 	public final int screenWidth = 768;
 	public final int screenHeight = 512;
-	//public final int maxWorldCol = 22;
-	//public final int maxWorldRow = 12;
+	public final int maxWorldCol = 50;
+	public final int maxWorldRow = 50;
 	//public final int worldWidth = maxWorldCol * tileSize;
 	//public final int worldHeight = maxWorldRow * tileSize;
 	public final int maxMap = 5;
@@ -82,9 +82,9 @@ public class GamePanel extends JPanel implements Runnable {
 
 	public GamePanel() {
 		this.c = new Cutscene(this.s);
-		this.obj = new Entity[2][20];
+		this.obj = new Entity[maxMap][20];
 		this.rm = new Room[2];
-		this.maps = new Map[5];
+		this.maps = new Map[maxMap];
 		this.player = new Player(this, this.keyH);
 		this.entityList = new ArrayList<>();
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -95,10 +95,10 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
 	public void setupGame() {
-		this.aSetter.setRooms();
-		this.aSetter.setObject();
-		this.aSetter.setMaps();
-		this.gameState = 0;
+		aSetter.setRooms();
+		aSetter.setObject();
+		aSetter.setMaps();
+		gameState = 0;
 		currentMap = maps[0];
 		tileM = new TileManager(this);
 		eHandler = new EventHandler(this);
@@ -108,8 +108,8 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
 	public void startGameThread() {
-		this.gameThread = new Thread(this);
-		this.gameThread.start();
+		gameThread = new Thread(this);
+		gameThread.start();
 	}
 
 	public void run() {
@@ -142,9 +142,9 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
 	public void update() {
-		if (this.gameState == 1) {
-			this.player.update();
-			this.eHandler.checkCutscene();
+		if (gameState == playState) {
+			player.update();
+			eHandler.checkCutscene();
 		}
 
 	}
@@ -176,7 +176,7 @@ public class GamePanel extends JPanel implements Runnable {
 				this.ui.draw(this.g2);
 			} else if (this.gameState == playState) {
 				this.rm[this.currentRoom].draw(this.g2);
-				this.tileM.draw(this.g2);
+				tileM.draw(g2);
 				entityList.add(player);
 				for (int i = 0; i < this.obj[currentMap.getId()].length; ++i) {
 					if (this.obj[currentMap.getId()][i] != null) {

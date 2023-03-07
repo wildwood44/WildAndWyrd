@@ -12,14 +12,14 @@ public class GlossaryPage {
 	}
 
 	public int getSection() {
-		return this.section;
+		return section;
 	}
 
 	public String getTitle() {
-		return this.title;
+		return title;
 	}
 
 	public String getDesc() {
-		return this.desc;
+		return desc;
 	}
 }

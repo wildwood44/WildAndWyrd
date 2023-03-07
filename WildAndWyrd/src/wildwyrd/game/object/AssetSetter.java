@@ -2,9 +2,11 @@ package wildwyrd.game.object;
 
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.items.Itm_Hazelnut;
+import wildwyrd.game.items.Itm_P_Mushroom;
 import wildwyrd.game.rooms.Rm_Blank;
 import wildwyrd.game.rooms.Rm_Kitchen;
 import wildwyrd.game.tile.Map;
+import wildwyrd.game.tile.MapType;
 
 public class AssetSetter {
 	GamePanel gp;
@@ -14,8 +16,9 @@ public class AssetSetter {
 	}
 	
 	public void setMaps() {
-		gp.maps[0] = new Map(gp, "Interior", 0, 22, 12);
-		gp.maps[1] = new Map(gp, "Interior", 1, 17, 12);
+		gp.maps[0] = new Map(gp, MapType.INTERIOR, 0, 22, 12);
+		gp.maps[1] = new Map(gp, MapType.INTERIOR, 1, 17, 12);
+		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 31, 31);
 	}
 
 	public void setRooms() {
@@ -84,6 +87,9 @@ public class AssetSetter {
 		gp.obj[1][1] = new Obj_Alder_Window(gp);
 		gp.obj[1][1].worldX = 6 * gp.tileSize;
 		gp.obj[1][1].worldY = 3 * gp.tileSize;
+		gp.obj[2][0] = new Obj_P_Mushroom(gp, new Itm_P_Mushroom(gp));
+		gp.obj[2][0].worldX = 10 * gp.tileSize;
+		gp.obj[2][0].worldY = 8 * gp.tileSize;
 	}
 	public int getRandomNumber(int min, int max) {
 	    return (int) ((Math.random() * (max - min)) + min);

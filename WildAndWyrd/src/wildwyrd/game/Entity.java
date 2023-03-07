@@ -64,13 +64,11 @@ public class Entity {
 
 	public int getCol() {
 		int var10000 = this.worldX + this.solidArea.x;
-		this.gp.getClass();
 		return var10000 / gp.tileSize;
 	}
 
 	public int getRow() {
 		int var10000 = this.worldY + this.solidArea.y;
-		this.gp.getClass();
 		return var10000 / gp.tileSize;
 	}
 
@@ -84,40 +82,27 @@ public class Entity {
 		if (gp.player.worldY < gp.player.screenY) {
 			screenY = this.worldY;
 		}
-
-		gp.getClass();
 		int rightOffset = gp.screenWidth - gp.player.screenX;
-		gp.getClass();
 		if (rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX) {
 			gp.getClass();
 			gp.getClass();
 			screenX = gp.screenWidth - (gp.currentMap.getWorldWidth() - this.worldX);
 		}
-
-		gp.getClass();
 		int bottomOffset = gp.screenHeight - gp.player.screenY;
-		gp.getClass();
 		if (bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
 			gp.getClass();
 			gp.getClass();
 			screenY = gp.screenHeight - (gp.currentMap.getWorldHeight() - this.worldY);
 		}
-
 		int var10000 = this.worldX;
-		gp.getClass();
 		if (var10000 + gp.tileSize > gp.player.worldX - gp.player.screenX) {
 			var10000 = this.worldX;
-			gp.getClass();
 			if (var10000 - gp.tileSize < gp.player.worldX + gp.player.screenX) {
 				var10000 = this.worldY;
-				gp.getClass();
 				if (var10000 + gp.tileSize > gp.player.worldY - gp.player.screenY) {
 					var10000 = this.worldY;
-					gp.getClass();
 					if (var10000 - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 						BufferedImage var10001 = this.image;
-						gp.getClass();
-						gp.getClass();
 						g2.drawImage(var10001, screenX, screenY, gp.tileSize, gp.tileSize, (ImageObserver) null);
 					}
 				}
@@ -127,9 +112,8 @@ public class Entity {
 	}
 
 	public void startDialogue(Entity object, int setNum) {
-		GamePanel var10000 = this.gp;
-		this.gp.getClass();
-		var10000.gameState = 7;
+		GamePanel gp = this.gp;
+		gp.gameState = 7;
 		this.gp.ui.selectedObject = object;
 		this.dialogueSet = setNum;
 	}

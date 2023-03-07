@@ -47,7 +47,9 @@ public class EventHandler {
 		}
 		if(canTouchEvent == true) {
 			if(hit(0,14,9,"up") == true) {teleport(gp.maps[1],15,3);}
+			if(hit(0,11,11,"down") == true) {teleport(gp.maps[2],15,3);}
 			if(hit(1,15,4,"down") == true) {teleport(gp.maps[0],14,10);}
+			if(hit(2,15,3,"up") == true) {teleport(gp.maps[0],11,10);}
 		}
 		//System.out.println(gp.player.worldX + " " + gp.player.worldY);
 		
@@ -87,8 +89,8 @@ public class EventHandler {
 	}
 
 	public void prologueCutscene(int read) {
-		GamePanel var10000 = this.gp;
-		var10000.gameState = 4;
+		GamePanel gp = this.gp;
+		gp.gameState = 4;
 		CutsceneManager var2 = this.gp.csManager;
 		this.gp.csManager.getClass();
 		var2.sceneNum = 1;
@@ -110,6 +112,7 @@ public class EventHandler {
 	
 	public void teleport(Map map, int col, int row) {
 		gp.currentMap = map;
+		gp.tileM = new TileManager(gp);
 		//System.out.println(gp.player.worldX + " " + gp.player.worldY);
 		gp.player.worldX = gp.tileSize * col;
 		gp.player.worldY = gp.tileSize * row;

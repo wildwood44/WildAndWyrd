@@ -59,7 +59,7 @@ public class CollisionChecker {
 
 	public int checkObject(Entity entity, boolean player) {
 		int index = 999;
-
+		System.out.println(gp.currentMap.getId());
 		for (int i = 0; i < this.gp.obj[gp.currentMap.getId()].length; ++i) {
 			if (this.gp.obj[gp.currentMap.getId()][i] != null) {
 				entity.solidArea.x += entity.worldX;
