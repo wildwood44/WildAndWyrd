@@ -112,6 +112,7 @@ public class CollisionChecker {
 						entity.collisionOn = true;
 						index = i;
 					}
+					
 				}
 				entity.solidArea.x = entity.solidAreaDefaultX;
 				entity.solidArea.y = entity.solidAreaDefaultY;
