@@ -19,6 +19,7 @@ import wildwyrd.game.object.AssetSetter;
 import wildwyrd.game.playable.Player;
 import wildwyrd.game.rooms.Room;
 import wildwyrd.game.tile.CollisionChecker;
+import wildwyrd.game.tile.InteractiveTile;
 import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.TileManager;
 
@@ -54,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
 	int playerY = 100;
 	int playerX = 100;
 	int playerSpeed = 4;
-	public int gameState;
+	public GameState gameState;
 	public final int titleState = 0;
 	public final int playState = 1;
 	public final int pauseState = 2;
@@ -75,6 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Cutscene c;
 	public Entity[][] obj = new Entity[10][20];
 	public Entity[][] npc = new Entity[10][5];
+	public InteractiveTile iTile[][] = new InteractiveTile[10][50];
 	public Room[] rm;
 	public Map[] maps;
 	public Player player = new Player(this, keyH);
@@ -98,13 +100,15 @@ public class GamePanel extends JPanel implements Runnable {
 		aSetter.setRooms();
 		aSetter.setObject();
 		aSetter.setMaps();
-		gameState = 0;
+		aSetter.setInteractiveTile();
+		System.out.println(iTile[2][0]);
+		gameState = GameState.titleState;
 		currentMap = maps[0];
 		tileM = new TileManager(this);
 		eHandler = new EventHandler(this);
 		cChecker = new CollisionChecker(this);
-		this.tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
-		this.g2 = (Graphics2D) this.tempScreen.getGraphics();
+		tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
+		g2 = (Graphics2D) tempScreen.getGraphics();
 	}
 
 	public void startGameThread() {
@@ -133,6 +137,7 @@ public class GamePanel extends JPanel implements Runnable {
 			}
 
 			if (timer >= 1000000000L) {
+				//System.out.println(gameState);
 				System.out.println("FPS:" + drawCount);
 				drawCount = 0;
 				timer = 0L;
@@ -142,9 +147,15 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
 	public void update() {
-		if (gameState == playState) {
+		if (gameState == GameState.playState) {
 			player.update();
 			eHandler.checkCutscene();
+			for(int i = 0; i < iTile[currentMap.getId()].length; i++) {
+				if(iTile[currentMap.getId()][i] != null) {
+					//System.out.println("Ping");
+					iTile[currentMap.getId()][i].update();
+				}
+			}
 		}
 
 	}
@@ -155,32 +166,37 @@ public class GamePanel extends JPanel implements Runnable {
 			drawStart = System.nanoTime();
 		}
 
-		if (this.gameState == 0) {
-			this.rm[this.currentRoom].draw(this.g2);
-			this.ui.draw(this.g2);
+		if (gameState == GameState.titleState) {
+			rm[currentRoom].draw(g2);
+			ui.draw(g2);
 		} else {
-			if (this.gameState == 5) {
-				this.rm[this.currentRoom].draw(this.g2);
-				this.ui.draw(this.g2);
-			} else if (this.gameState == 4) {
-				this.rm[this.currentRoom].draw(this.g2);
-				this.csManager.draw(this.g2);
-				this.ui.draw(this.g2);
-			} else if (this.gameState == 7) {
-				this.ui.draw(this.g2);
-			} else if (this.gameState == menuState) {
-				this.ui.draw(this.g2);
-			} else if (this.gameState == 10) {
-				this.ui.draw(this.g2);
-			} else if (this.gameState == 11) {
-				this.ui.draw(this.g2);
-			} else if (this.gameState == playState) {
-				this.rm[this.currentRoom].draw(this.g2);
+			if (gameState == GameState.dialogueState) {
+				rm[currentRoom].draw(g2);
+				ui.draw(g2);
+			} else if (gameState == GameState.cutsceneState) {
+				rm[currentRoom].draw(g2);
+				csManager.draw(g2);
+				ui.draw(g2);
+			} else if (gameState == GameState.examineState) {
+				ui.draw(g2);
+			} else if (gameState == GameState.menuState) {
+				ui.draw(g2);
+			} else if (gameState == GameState.inventoryState) {
+				ui.draw(g2);
+			} else if (gameState == GameState.glossaryState) {
+				ui.draw(g2);
+			} else if (gameState == GameState.playState) {
+				rm[currentRoom].draw(g2);
 				tileM.draw(g2);
+				for(int i = 0; i < iTile[currentMap.getId()].length; i++) {
+					if(iTile[currentMap.getId()][i] != null) {
+						iTile[currentMap.getId()][i].draw(g2);
+					}
+				}
 				entityList.add(player);
-				for (int i = 0; i < this.obj[currentMap.getId()].length; ++i) {
-					if (this.obj[currentMap.getId()][i] != null) {
-						entityList.add(this.obj[currentMap.getId()][i]);
+				for (int i = 0; i < obj[currentMap.getId()].length; ++i) {
+					if (obj[currentMap.getId()][i] != null) {
+						entityList.add(obj[currentMap.getId()][i]);
 						//this.obj[1][i].draw(this.g2, this);
 					}
 				}
@@ -194,16 +210,16 @@ public class GamePanel extends JPanel implements Runnable {
 				});
 				
 				for(int i = 0; i < entityList.size(); i++) {
-					entityList.get(i).draw(this.g2);
+					entityList.get(i).draw(g2);
 				}
 				for(int i = 0; i < entityList.size(); i++) {
 					entityList.remove(i);
 				}
 
 				//this.player.draw(this.g2);
-				this.ui.draw(this.g2);
+				ui.draw(g2);
 			}
-			this.ui.draw(this.g2);
+			ui.draw(g2);
 		}
 
 		if (this.keyH.showDebugText) {

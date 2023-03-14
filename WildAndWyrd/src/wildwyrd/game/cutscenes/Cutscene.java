@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.GameState;
 import wildwyrd.game.Story;
 
 public class Cutscene {
@@ -64,9 +65,8 @@ public class Cutscene {
 	}
 
 	public void startDialogue(Cutscene cut, int setNum) {
-		GamePanel var10000 = this.gp;
-		this.gp.getClass();
-		var10000.gameState = 5;
+		GamePanel gp = this.gp;
+		gp.gameState = GameState.dialogueState;
 	}
 
 	public void cutsceneDialog(String text) {
@@ -79,7 +79,7 @@ public class Cutscene {
 
 	public void setImages() {
 		try {
-			this.image_Dilecto = ImageIO.read(this.getClass().getResourceAsStream("/res/character/chr_Dilecto.png"));
+			this.image_Dilecto = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Dilecto.png"));
 		} catch (IOException var2) {
 			var2.printStackTrace();
 		}

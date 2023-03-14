@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.GameState;
 
 public class Obj_Kitchen_Window extends Entity {
 	GamePanel gp;
@@ -11,9 +12,9 @@ public class Obj_Kitchen_Window extends Entity {
 	public Obj_Kitchen_Window(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.name = "Window";
-		this.type = 3;
-		this.collision = true;
+		name = "Window";
+		type = 3;
+		collision = true;
 
 		try {
 			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/img_window_light.png"));
@@ -37,9 +38,8 @@ public class Obj_Kitchen_Window extends Entity {
 	}
 
 	public void interact() {
-		GamePanel var10000 = this.gp;
-		this.gp.getClass();
-		var10000.gameState = 7;
+		GamePanel gp = this.gp;
+		gp.gameState = GameState.examineState;
 		if (this.gp.s.tutorialSwitch[2]) {
 			this.startDialogue(this, 1);
 			System.out.println(this.dialogueSet + " " + this.gp.s.tutorialSwitch[2]);

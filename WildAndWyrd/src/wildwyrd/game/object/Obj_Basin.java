@@ -11,32 +11,32 @@ public class Obj_Basin extends Entity {
 	public Obj_Basin(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.name = "Basin";
-		this.type = 3;
-		this.collision = true;
+		name = "Basin";
+		type = 3;
+		collision = true;
 
 		try {
-			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/img_basin.png"));
-		} catch (IOException var3) {
-			var3.printStackTrace();
+			image = ImageIO.read(getClass().getResourceAsStream("/res/objects/img_basin.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
-		this.setDialogue();
-		this.solidArea.x = 15;
-		this.solidArea.y = 40;
-		this.solidArea.height = 50;
-		this.solidAreaDefaultX = this.solidArea.x;
-		this.solidAreaDefaultY = this.solidArea.y;
+		setDialogue();
+		solidArea.x = 15;
+		solidArea.y = 40;
+		solidArea.height = 50;
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
 	}
 
 	public void setDialogue() {
-		this.dialogues[0][0] = new Dialoge(
+		dialogues[0][0] = new Dialoge(
 				"The basin Alder was washing in was full of :water from Alder cleaning dishes. Clean :plates were lined up to the side.",
 				1);
 	}
 
 	public void interact() {
-		this.startDialogue(this, 0);
-		this.gp.keyH.enterPressed = false;
+		startDialogue(this, 0);
+		gp.keyH.enterPressed = false;
 	}
 }

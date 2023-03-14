@@ -38,9 +38,10 @@ public class TileManager {
 			setup(8, "Balcony_Wooden_Left", false);
 		}
 		else if(gp.currentMap.getType() == MapType.OUTSIDE) {
-			setup(0, "Grass_Tile", false);
+			setup(0, "grass_tile", false);
 			setup(1, "forestFloor_tile", false);
-			setup(2, "StoneWall_Tile", true);
+			setup(2, "Rockwall_Tile", true);
+			setup(3, "bramble_tile", true);
 		}
 		
 	}
@@ -127,20 +128,15 @@ public class TileManager {
 
 			int rightOffset = gp.screenWidth - this.gp.player.screenX;
 			if (rightOffset > gp.currentMap.getWorldWidth() - this.gp.player.worldX) {
-				this.gp.getClass();
-				this.gp.getClass();
 				screenX = gp.screenWidth - (gp.currentMap.getWorldWidth() - worldX);
 			}
 
 			int bottomOffset = gp.screenHeight - this.gp.player.screenY;
 			if (bottomOffset > gp.currentMap.getWorldHeight() - this.gp.player.worldY) {
-				this.gp.getClass();
-				this.gp.getClass();
 				screenY = gp.screenHeight - (gp.currentMap.getWorldHeight() - worldY);
 			}
 
 			label60 : {
-				this.gp.getClass();
 				BufferedImage var10001;
 				if (worldX + gp.tileSize > this.gp.player.worldX - this.gp.player.screenX && 
 					worldX - gp.tileSize < this.gp.player.worldX + this.gp.player.screenX &&

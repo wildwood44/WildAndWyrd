@@ -19,10 +19,10 @@ public class KeyHandler implements KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
-		int var10000 = this.gp.gameState;
+		GameState gameState = gp.gameState;
 		this.gp.getClass();
 		GamePanel var3;
-		if (var10000 == 0) {
+		if (gameState == GameState.titleState) {
 			if (code == 87) {
 				--this.gp.ui.commandNum;
 				if (this.gp.ui.commandNum < 0) {
@@ -40,42 +40,37 @@ public class KeyHandler implements KeyListener {
 			if (code == 10) {
 				if (this.gp.ui.commandNum == 0) {
 					var3 = this.gp;
-					var3.gameState = 1;
+					var3.gameState = GameState.playState;
 				}
 
-				var10000 = this.gp.ui.commandNum;
+				//gameState = this.gp.ui.commandNum;
 				if (this.gp.ui.commandNum == 2) {
 					System.exit(0);
 				}
 			}
 		} else {
-			var10000 = this.gp.gameState;
-			this.gp.getClass();
-			if (var10000 == 3) {
+			gameState = this.gp.gameState;
+			if (gameState == GameState.menuState) {
 				switch (e.getKeyCode()) {
 					case 10 :
 						if (this.gp.ui.slotCol == 2) {
 							var3 = this.gp;
-							this.gp.getClass();
-							var3.gameState = 10;
+							var3.gameState = GameState.inventoryState;
 							this.gp.ui.drawInventoryScreen();
 						} else if (this.gp.ui.slotCol == 6) {
 							this.gp.ui.resetSlots();
 							var3 = this.gp;
-							this.gp.getClass();
-							var3.gameState = 11;
+							var3.gameState = GameState.glossaryState;
 							this.gp.ui.drawGlossaryScreen();
 						} else if (this.gp.ui.slotCol == 7) {
 							this.gp.currentRoom = 0;
 							var3 = this.gp;
-							this.gp.getClass();
-							var3.gameState = 0;
+							var3.gameState = GameState.titleState;
 						}
 						break;
 					case 27 :
 						var3 = this.gp;
-						this.gp.getClass();
-						var3.gameState = 1;
+						var3.gameState = GameState.playState;
 						break;
 					case 38 :
 					case 87 :
@@ -94,15 +89,14 @@ public class KeyHandler implements KeyListener {
 						}
 				}
 			} else {
-				var10000 = this.gp.gameState;
-				this.gp.getClass();
-				if (var10000 == 10) {
+				gameState = this.gp.gameState;
+				if (gameState == GameState.inventoryState) {
 					switch (e.getKeyCode()) {
 						case 27 :
 							this.gp.ui.resetSlots();
 							var3 = this.gp;
 							this.gp.getClass();
-							var3.gameState = 3;
+							var3.gameState = GameState.menuState;
 							break;
 						case 37 :
 						case 65 :
@@ -137,15 +131,14 @@ public class KeyHandler implements KeyListener {
 							}
 					}
 				} else {
-					var10000 = this.gp.gameState;
-					this.gp.getClass();
-					if (var10000 == 11) {
+					gameState = gp.gameState;
+					if (gameState == GameState.glossaryState) {
 						switch (e.getKeyCode()) {
 							case 27 :
 								this.gp.ui.resetSlots();
 								var3 = this.gp;
 								this.gp.getClass();
-								var3.gameState = 3;
+								var3.gameState = GameState.menuState;
 								break;
 							case 37 :
 							case 65 :
@@ -216,9 +209,8 @@ public class KeyHandler implements KeyListener {
 								}
 						}
 					} else {
-						var10000 = this.gp.gameState;
-						this.gp.getClass();
-						if (var10000 == 1) {
+						gameState = this.gp.gameState;
+						if (gameState == GameState.playState) {
 							switch (e.getKeyCode()) {
 								case 10 :
 									this.enterPressed = true;
@@ -230,7 +222,7 @@ public class KeyHandler implements KeyListener {
 									this.gp.selectedObj = null;
 									var3 = this.gp;
 									this.gp.getClass();
-									var3.gameState = 3;
+									var3.gameState = GameState.menuState;
 									break;
 								case 37 :
 								case 65 :
@@ -268,18 +260,14 @@ public class KeyHandler implements KeyListener {
 									}
 							}
 						} else {
-							var10000 = this.gp.gameState;
-							this.gp.getClass();
-							if (var10000 != 5) {
-								var10000 = this.gp.gameState;
-								this.gp.getClass();
-								if (var10000 != 4) {
-									var10000 = this.gp.gameState;
-									this.gp.getClass();
-									if (var10000 != 6) {
-										var10000 = this.gp.gameState;
-										this.gp.getClass();
-										if (var10000 != 7) {
+							gameState = this.gp.gameState;
+							if (gameState != GameState.dialogueState) {
+								gameState = this.gp.gameState;
+								if (gameState != GameState.cutsceneState) {
+									gameState = this.gp.gameState;
+									if (gameState != GameState.messageState) {
+										gameState = this.gp.gameState;
+										if (gameState != GameState.examineState) {
 											return;
 										}
 									}

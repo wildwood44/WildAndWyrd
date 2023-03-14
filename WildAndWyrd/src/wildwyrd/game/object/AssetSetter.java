@@ -18,7 +18,8 @@ public class AssetSetter {
 	public void setMaps() {
 		gp.maps[0] = new Map(gp, MapType.INTERIOR, 0, 22, 12);
 		gp.maps[1] = new Map(gp, MapType.INTERIOR, 1, 17, 12);
-		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 31, 31);
+		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 31, 20);
+		gp.maps[3] = new Map(gp, MapType.OUTSIDE, 3, 31, 20);
 	}
 
 	public void setRooms() {
@@ -90,6 +91,14 @@ public class AssetSetter {
 		gp.obj[2][0] = new Obj_P_Mushroom(gp, new Itm_P_Mushroom(gp));
 		gp.obj[2][0].worldX = 10 * gp.tileSize;
 		gp.obj[2][0].worldY = 8 * gp.tileSize;
+		gp.obj[2][3] = new Plant_1(gp);
+		gp.obj[2][3].worldX = 15 * gp.tileSize;
+		gp.obj[2][3].worldY = 6 * gp.tileSize;
+	}
+	public void setInteractiveTile() {
+		gp.iTile[2][0] = new IT_StoneDoor(gp, 15, 3);
+		gp.iTile[2][1] = new IT_StoneDoor(gp, 24, 2);
+		
 	}
 	public int getRandomNumber(int min, int max) {
 	    return (int) ((Math.random() * (max - min)) + min);

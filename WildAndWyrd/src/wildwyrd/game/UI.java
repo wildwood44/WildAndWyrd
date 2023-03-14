@@ -42,53 +42,46 @@ public class UI {
 
 	public UI(GamePanel gp) {
 		this.gp = gp;
-		this.arial_40 = new Font("Monospaced", 0, 40);
+		arial_40 = new Font("Monospaced", 0, 40);
 	}
 
 	public void draw(Graphics2D g2) {
 		this.g2 = g2;
-		g2.setFont(this.arial_40);
+		g2.setFont(arial_40);
 		g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		g2.setColor(Color.white);
-		int var10000 = this.gp.gameState;
-		this.gp.getClass();
-		if (var10000 == 0) {
-			this.drawTitleScreen();
+		GameState gameState = gp.gameState;
+		if (gameState == GameState.titleState) {
+			drawTitleScreen();
 		}
 
-		var10000 = this.gp.gameState;
-		this.gp.getClass();
-		if (var10000 == 1) {
-			Integer var2 = this.gp.selectedObj;
+		gameState = gp.gameState;
+		if (gameState == GameState.playState) {
+			Integer var2 = gp.selectedObj;
 		}
 
-		var10000 = this.gp.gameState;
-		this.gp.getClass();
-		if (var10000 == 7 && this.selectedObject != null) {
-			this.drawExamineScreen();
+		gameState = gp.gameState;
+		if (gameState == GameState.examineState && this.selectedObject != null) {
+			drawExamineScreen();
 		}
 
-		var10000 = this.gp.gameState;
-		this.gp.getClass();
-		if (var10000 == 5) {
-			this.drawDialogueScreen();
+		gameState = gp.gameState;
+		if (gameState == GameState.dialogueState) {
+			drawDialogueScreen();
 		}
 
-		var10000 = this.gp.gameState;
-		this.gp.getClass();
-		if (var10000 == gp.menuState) {
+		gameState = this.gp.gameState;
+		if (gameState == GameState.menuState) {
 			this.drawMenuBarScreen();
 		}
 
-		var10000 = this.gp.gameState;
-		this.gp.getClass();
-		if (var10000 == 10) {
+		gameState = this.gp.gameState;
+		if (gameState == GameState.inventoryState) {
 			this.drawInventoryScreen();
 		}
 
-		var10000 = this.gp.gameState;
-		this.gp.getClass();
-		if (var10000 == 11) {
+		gameState = this.gp.gameState;
+		if (gameState == GameState.glossaryState) {
 			this.drawGlossaryScreen();
 		}
 
@@ -147,25 +140,18 @@ public class UI {
 	}
 
 	public void drawDialogueScreen() {
-		this.gp.getClass();
 		int x = gp.tileSize * 3 / 2;
-		this.gp.getClass();
 		int y = gp.tileSize * 5;
-		this.gp.getClass();
-		this.gp.getClass();
 		int width = gp.screenWidth - gp.tileSize * 3;
-		this.gp.getClass();
 		int height = gp.tileSize * 3;
-		String[][] dia = this.gp.c.dialogues;
-		this.drawImageWindow(300, 0, 200, 400);
-		this.drawDialogueWindow(x, y, width, height);
-		this.g2.setFont(this.g2.getFont().deriveFont(0, 18.0F));
-		this.g2.setColor(Color.white);
-		this.gp.getClass();
+		String[][] dia = gp.c.dialogues;
+		drawImageWindow(300, 0, 200, 400);
+		drawDialogueWindow(x, y, width, height);
+		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+		g2.setColor(Color.white);
 		x += gp.tileSize;
-		this.gp.getClass();
 		y += gp.tileSize;
-		int var10000;
+		GameState gameState;
 		if (dia[this.gp.c.dialogueSet][this.gp.c.dialogueIndex] != null) {
 			char[] characters = this.gp.c.dialogues[this.gp.c.dialogueSet][this.gp.c.dialogueIndex].toCharArray();
 			if (this.charIndex < characters.length) {
@@ -182,12 +168,12 @@ public class UI {
 				label72 : {
 					this.charIndex = 0;
 					this.combinedText = "";
-					var10000 = this.gp.gameState;
+					gameState = this.gp.gameState;
 					this.gp.getClass();
-					if (var10000 != 5) {
-						var10000 = this.gp.gameState;
+					if (gameState != GameState.dialogueState) {
+						gameState = this.gp.gameState;
 						this.gp.getClass();
-						if (var10000 != 4) {
+						if (gameState != GameState.cutsceneState) {
 							break label72;
 						}
 					}
@@ -199,12 +185,12 @@ public class UI {
 				label67 : {
 					this.charIndex = 0;
 					this.combinedText = "";
-					var10000 = this.gp.gameState;
+					gameState = this.gp.gameState;
 					this.gp.getClass();
-					if (var10000 != 5) {
-						var10000 = this.gp.gameState;
+					if (gameState != GameState.dialogueState) {
+						gameState = this.gp.gameState;
 						this.gp.getClass();
-						if (var10000 != 4) {
+						if (gameState != GameState.cutsceneState) {
 							break label67;
 						}
 					}
@@ -215,17 +201,17 @@ public class UI {
 			}
 		} else {
 			this.c.dialogueIndex = 0;
-			var10000 = this.gp.gameState;
+			gameState = this.gp.gameState;
 			this.gp.getClass();
-			if (var10000 == 5) {
+			if (gameState == GameState.dialogueState) {
 				GamePanel var12 = this.gp;
 				this.gp.getClass();
-				var12.gameState = 1;
+				var12.gameState = GameState.playState;
 			}
 
-			var10000 = this.gp.gameState;
+			gameState = this.gp.gameState;
 			this.gp.getClass();
-			if (var10000 == 4) {
+			if (gameState == GameState.cutsceneState) {
 				++this.gp.csManager.scenePhase;
 			}
 		}
@@ -252,31 +238,24 @@ public class UI {
 	}
 
 	public void drawExamineScreen() {
-		this.gp.getClass();
 		int x = gp.tileSize * 3 / 2;
-		this.gp.getClass();
 		int y = gp.tileSize * 5;
-		this.gp.getClass();
-		this.gp.getClass();
 		int width = gp.screenWidth - gp.tileSize * 3;
-		this.gp.getClass();
 		int height = gp.tileSize * 3;
 		this.drawDialogueWindow(x, y, width, height);
-		this.g2.setFont(this.g2.getFont().deriveFont(0, 18.0F));
-		this.g2.setColor(Color.white);
-		this.gp.getClass();
+		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+		g2.setColor(Color.white);
 		x += gp.tileSize;
-		this.gp.getClass();
 		y += gp.tileSize;
-		int var10000;
-		if (this.selectedObject.dialogues[this.selectedObject.dialogueSet][this.selectedObject.dialogueIndex] != null) {
-			char[] characters = this.selectedObject.dialogues[this.selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
+		GameState gameState;
+		if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
+			char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getText().toCharArray();
-			if (this.charIndex < characters.length) {
+			if (charIndex < characters.length) {
 				String s = String.valueOf(characters[this.charIndex]);
-				this.combinedText = this.combinedText + s;
-				this.currentDialogue = this.combinedText;
-				++this.charIndex;
+				combinedText = combinedText + s;
+				currentDialogue = combinedText;
+				++charIndex;
 				if (this.gp.keyH.enterPressed) {
 					this.currentDialogue = this.selectedObject.dialogues[this.selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
 							.getText();
@@ -291,9 +270,8 @@ public class UI {
 									.getText().length()) {
 						this.charIndex = 0;
 						this.combinedText = "";
-						var10000 = this.gp.gameState;
-						this.gp.getClass();
-						if (var10000 == 7) {
+						gameState = gp.gameState;
+						if (gameState == GameState.examineState) {
 							++this.selectedObject.dialogueIndex;
 							this.gp.keyH.enterPressed = false;
 						}
@@ -301,9 +279,8 @@ public class UI {
 				} else if (this.gp.keyH.skipPressed) {
 					this.charIndex = 0;
 					this.combinedText = "";
-					var10000 = this.gp.gameState;
-					this.gp.getClass();
-					if (var10000 == 7) {
+					gameState = this.gp.gameState;
+					if (gameState == GameState.examineState) {
 						this.selectedObject.dialogueIndex = this.selectedObject.dialogues.length - 1;
 						this.gp.keyH.skipPressed = false;
 					}
@@ -320,9 +297,9 @@ public class UI {
 
 					this.charIndex = 0;
 					this.combinedText = "";
-					var10000 = this.gp.gameState;
+					gameState = this.gp.gameState;
 					this.gp.getClass();
-					if (var10000 == 7) {
+					if (gameState == GameState.examineState) {
 						this.selectedObject.choiceResponce();
 						++this.selectedObject.dialogueIndex;
 						this.gp.keyH.enterPressed = false;
@@ -340,10 +317,10 @@ public class UI {
 			}
 		} else {
 			this.selectedObject.dialogueIndex = 0;
-			var10000 = this.gp.gameState;
-			if (var10000 == 7) {
+			gameState = this.gp.gameState;
+			if (gameState == GameState.examineState) {
 				GamePanel gp = this.gp;
-				gp.gameState = 1;
+				gp.gameState = GameState.playState;
 			}
 		}
 
@@ -470,13 +447,12 @@ public class UI {
 		int slotYstart = frameY + 15;
 		int cursorX = slotXstart + gp.tileSize * this.slotRow;
 		double var10000 = (double) slotYstart * 2.25D;
-		this.gp.getClass();
 		int cursorY = (int) (var10000 + (double) (gp.tileSize * 1 * this.slotCol));
 		int cursorWidth = gp.tileSize * 2;
 		int cursorHeight = 30;
-		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
-		this.g2.setColor(Color.white);
-		this.g2.setStroke(new BasicStroke());
+		g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke());
 		Graphics2D g2 = this.g2;
 		String var10001 = gp.glossary.sections[section];
 		g2.drawString(var10001, 30, gp.tileSize);
@@ -485,11 +461,11 @@ public class UI {
 		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
 		for (int i = 0; i < 6; ++i) {
-			if (this.gp.glossary.page[this.section][i] != null) {
+			if (gp.glossary.page[section][i] != null) {
 				pos += gp.tileSize;
 
 				try {
-					this.g2.drawString(this.gp.glossary.page[section][i + topValue].getTitle(), 30, pos);
+					g2.drawString(gp.glossary.page[section][i + topValue].getTitle(), 30, pos);
 				} catch (Exception e) {
 					System.out.println(e);
 				}
@@ -506,14 +482,14 @@ public class UI {
 		g2.setColor(Color.white);
 
 		try {
-			htmlBuilder.append("<html>");
-			htmlBuilder.append("<head><title>"+gp.glossary.page[section][slotCol + topValue].getTitle()+"</title></head></br>");
+			//htmlBuilder.append("<html>");
+			//htmlBuilder.append("<head><title>"+gp.glossary.page[section][slotCol + topValue].getTitle()+"</title></head></br>");
 			g2.drawString(gp.glossary.page[section][slotCol + topValue].getTitle(),
 					frameX + 40, frameY + 40);
 			g2.drawString(gp.glossary.page[section][slotCol + topValue].getDesc(), frameX + 40,
 					frameY + 80);
-			htmlBuilder.append("<body><p>"+gp.glossary.page[section][slotCol + topValue].getDesc()+"</p></body>");
-			htmlBuilder.append("</html>");
+			//htmlBuilder.append("<body><p>"+gp.glossary.page[section][slotCol + topValue].getDesc()+"</p></body>");
+			//htmlBuilder.append("</html>");
 			String html = htmlBuilder.toString();
 			g2.drawString(html,
 					frameX + 160, frameY + 40);

@@ -41,74 +41,66 @@ public class Player extends Entity {
 	}
 
 	public void setDefaultValues() {
-		this.gp.getClass();
-		this.worldX = gp.tileSize * 5;
-		this.gp.getClass();
-		this.worldY = gp.tileSize * 7;
-		this.speed = 5;
-		this.direction = "down";
+		worldX = gp.tileSize * 5;
+		worldY = gp.tileSize * 7;
+		speed = 5;
+		direction = "down";
 	}
 
 	public BufferedImage getSpriteSheet() {
 		BufferedImage sprite = null;
 
 		try {
-			sprite = ImageIO.read(this.getClass().getResourceAsStream("/res/sprite/WildWyrdSprites.png"));
-		} catch (IOException var3) {
-			var3.printStackTrace();
+			sprite = ImageIO.read(getClass().getResourceAsStream("/res/sprite/WildWyrdSprites.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 		return sprite;
 	}
 
 	public BufferedImage getPlayerImage(int xGrid, int yGrid) {
-		if (this.image == null) {
-			this.image = this.getSpriteSheet();
+		if (image == null) {
+			image = getSpriteSheet();
 		}
-		return this.image.getSubimage(xGrid * 48, yGrid * 48, 48, 48);
+		return image.getSubimage(xGrid * 48, yGrid * 48, 48, 48);
 	}
 
 	public void update() {
 		int objIndex;
-		if (this.keyH.upPressed || this.keyH.downPressed || this.keyH.leftPressed || this.keyH.rightPressed) {
-			if (this.keyH.upPressed) {
-				this.direction = "up";
-			} else if (this.keyH.downPressed) {
-				this.direction = "down";
-			} else if (this.keyH.leftPressed) {
-				this.direction = "left";
-			} else if (this.keyH.rightPressed) {
-				this.direction = "right";
+		if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+			if (keyH.upPressed) {
+				direction = "up";
+			} else if (keyH.downPressed) {
+				direction = "down";
+			} else if (keyH.leftPressed) {
+				direction = "left";
+			} else if (keyH.rightPressed) {
+				direction = "right";
 			}
 			
 			gp.eHandler.checkEvent();
 
-			this.collisionOn = false;
-			this.gp.cChecker.checkTile(this);
-			objIndex = this.gp.cChecker.checkObject(this, true);
-			this.pickUpObject(objIndex);
-			if (!this.collisionOn) {
-				String var2 = this.direction;
-				switch (this.direction.hashCode()) {
-					case 3739 :
-						if (var2.equals("up")) {
-							this.worldY -= this.speed;
-						}
+			collisionOn = false;
+			gp.cChecker.checkTile(this);
+			objIndex = gp.cChecker.checkObject(this, true);
+			pickUpObject(objIndex);
+			int iTileIndex = gp.cChecker.checkEntity(this,gp.iTile);
+			changeInteractiveTile(iTileIndex);
+			gp.eHandler.checkEvent();
+			if (collisionOn == false && keyH.enterPressed == false) {
+				switch (direction) {
+					case "up":
+						worldY -= speed;
 						break;
-					case 3089570 :
-						if (var2.equals("down")) {
-							this.worldY += this.speed;
-						}
+					case "down":
+						worldY += speed;
 						break;
-					case 3317767 :
-						if (var2.equals("left")) {
-							this.worldX -= this.speed;
-						}
+					case "left":
+						worldX -= speed;
 						break;
-					case 108511772 :
-						if (var2.equals("right")) {
-							this.worldX += this.speed;
-						}
+					case "right":
+						worldX += speed;
 				}
 			}
 			
@@ -129,11 +121,10 @@ public class Player extends Entity {
 			spriteNum = 1;
 		}
 
-		if (this.keyH.enterPressed) {
-			objIndex = this.gp.cChecker.checkObject(this, true);
-			this.pickUpObject(objIndex);
+		if (keyH.enterPressed) {
+			objIndex = gp.cChecker.checkObject(this, true);
+			pickUpObject(objIndex);
 		}
-
 	}
 	
 	public int pickUpShillings(int i) {
@@ -152,31 +143,38 @@ public class Player extends Entity {
 
 	public void pickUpObject(int i) {
 		if (i != 999) {
-			if (this.gp.obj[gp.currentMap.getId()][i].type == 3 && this.keyH.enterPressed) {
-				this.gp.obj[gp.currentMap.getId()][i].interact();
+			if (gp.obj[gp.currentMap.getId()][i].type == 3 && keyH.enterPressed) {
+				gp.obj[gp.currentMap.getId()][i].interact();
 			}
 		}
-
 	}
 
 	public void setItems() {
-		this.inventory.add(new Itm_Hazelnut(this.gp));
-		this.inventory.add(new Itm_Bandage(this.gp));
+		inventory.add(new Itm_Hazelnut(gp));
+		inventory.add(new Itm_Bandage(gp));
+	}
+	
+	public void changeInteractiveTile(int i) {
+		//System.out.println(gp.iTile[gp.currentMap.getId()][i] + " " + gp.currentMap.getId() + " " + i);
+		
+		if(i != 999 && gp.iTile[gp.currentMap.getId()][i].transformable == true) {
+			gp.iTile[gp.currentMap.getId()][i] = null;
+		}
 	}
 
 	public void draw(Graphics2D g2) {
 		BufferedImage image = null;
-		image = this.getPlayerImage(4, 0);
+		image = getPlayerImage(4, 0);
 		int x = screenX;
 		int y = screenY;
-		if (screenX > this.worldX) {
-			x = this.worldX;
+		if (screenX > worldX) {
+			x = worldX;
 		}
 
-		if (screenY > this.worldY) {
-			y = this.worldY;
+		if (screenY > worldY) {
+			y = worldY;
 		}
-		switch(this.direction) {
+		switch(direction) {
 		case "up":
 			if(spriteNum == 1) {
 				image = getPlayerImage(4, 3);
@@ -223,22 +221,14 @@ public class Player extends Entity {
 			break;
 		}
 
-		this.gp.getClass();
 		int rightOffset = gp.screenWidth - screenX;
-		this.gp.getClass();
-		if (rightOffset > gp.currentMap.getWorldWidth() - this.gp.player.worldX) {
-			this.gp.getClass();
-			this.gp.getClass();
-			x = gp.screenWidth - (gp.currentMap.getWorldWidth() - this.worldX);
+		if (rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX) {
+			x = gp.screenWidth - (gp.currentMap.getWorldWidth() - worldX);
 		}
 
-		this.gp.getClass();
 		int bottomOffset = gp.screenHeight - screenY;
-		this.gp.getClass();
-		if (bottomOffset > gp.currentMap.getWorldHeight() - this.gp.player.worldY) {
-			this.gp.getClass();
-			this.gp.getClass();
-			y = gp.screenHeight - (gp.currentMap.getWorldHeight() - this.worldY);
+		if (bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
+			y = gp.screenHeight - (gp.currentMap.getWorldHeight() - worldY);
 		}
 
 		g2.drawImage(image, x, y, (ImageObserver) null);

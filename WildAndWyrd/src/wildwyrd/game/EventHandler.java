@@ -14,14 +14,14 @@ public class EventHandler {
 
 	public EventHandler(GamePanel gp) {
 		this.gp = gp;
-		this.eventRect = new EventRect[gp.maxMap][gp.currentMap.getMaxWorldCol()][gp.currentMap.getMaxWorldRow()];//new Rectangle();
+		eventRect = new EventRect[gp.maxMap][gp.currentMap.getMaxWorldCol()][gp.currentMap.getMaxWorldRow()];//new Rectangle();
 		int map = 0;
 		int col = 0;
 		int row = 0;
 		while(map < gp.maxMap && col < gp.currentMap.getMaxWorldCol() && row < gp.currentMap.getMaxWorldRow()) {
 			eventRect[map][col][row] = new EventRect();
-			eventRect[map][col][row].x = 23;
-			eventRect[map][col][row].y = 23;
+			eventRect[map][col][row].x = 25;
+			eventRect[map][col][row].y = 25;
 			eventRect[map][col][row].width = 32;
 			eventRect[map][col][row].height = 32;
 			eventRect[map][col][row].eventRectDefaultX = this.eventRect[map][col][row].x;
@@ -46,10 +46,18 @@ public class EventHandler {
 			canTouchEvent = true;
 		}
 		if(canTouchEvent == true) {
-			if(hit(0,14,9,"up") == true) {teleport(gp.maps[1],15,3);}
-			if(hit(0,11,11,"down") == true) {teleport(gp.maps[2],15,3);}
-			if(hit(1,15,4,"down") == true) {teleport(gp.maps[0],14,10);}
-			if(hit(2,15,3,"up") == true) {teleport(gp.maps[0],11,10);}
+			if(gp.currentMap.getId() == 0) {
+				if(hit(0,14,9,"up") == true) {teleport(gp.maps[1],15,3);}
+				if(hit(0,11,11,"down") == true) {teleport(gp.maps[2],15,4);}
+				if(hit(0,18,10,"down") == true) {teleport(gp.maps[2],24,3);}
+			}
+			else if(gp.currentMap.getId() == 1) {
+				if(hit(1,15,4,"down") == true) {teleport(gp.maps[0],14,10);}
+			}
+			else if(gp.currentMap.getId() == 2) {
+				if(hit(2,15,3,"up") == true) {teleport(gp.maps[0],11,10);}
+				if(hit(2,24,2,"up") == true) {teleport(gp.maps[0],18,9);}
+			}
 		}
 		//System.out.println(gp.player.worldX + " " + gp.player.worldY);
 		
@@ -69,6 +77,7 @@ public class EventHandler {
 	public boolean hit(int map, int col, int row, String reqDirection) {
 		boolean hit = false;
 		if(map == gp.currentMap.getId()) {
+			//System.out.println(gp.currentMap.getMaxWorldCol());
 			gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
 			gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
 			eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
@@ -90,29 +99,28 @@ public class EventHandler {
 
 	public void prologueCutscene(int read) {
 		GamePanel gp = this.gp;
-		gp.gameState = 4;
+		gp.gameState = GameState.cutsceneState;
 		CutsceneManager var2 = this.gp.csManager;
-		this.gp.csManager.getClass();
 		var2.sceneNum = 1;
 	}
 
 	public void c1s_Cutscene(int read) {
-		GamePanel var10000 = this.gp;
-		var10000.gameState = 4;
+		GamePanel gp = this.gp;
+		gp.gameState = GameState.cutsceneState;
 		//System.out.println("Get Chapter 1");
-		CutsceneManager var2 = this.gp.csManager;
-		this.gp.csManager.getClass();
+		CutsceneManager var2 = gp.csManager;
 		var2.sceneNum = 2;
 	}
 
 	public void message() {
-		GamePanel var10000 = this.gp;
-		var10000.gameState = 6;
+		GamePanel gp = this.gp;
+		gp.gameState = GameState.messageState;
 	}
 	
 	public void teleport(Map map, int col, int row) {
 		gp.currentMap = map;
 		gp.tileM = new TileManager(gp);
+		gp.eHandler = new EventHandler(gp);
 		//System.out.println(gp.player.worldX + " " + gp.player.worldY);
 		gp.player.worldX = gp.tileSize * col;
 		gp.player.worldY = gp.tileSize * row;

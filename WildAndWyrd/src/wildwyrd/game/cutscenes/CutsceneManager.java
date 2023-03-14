@@ -2,6 +2,7 @@ package wildwyrd.game.cutscenes;
 
 import java.awt.Graphics2D;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.GameState;
 
 public class CutsceneManager {
 	GamePanel gp;
@@ -45,9 +46,8 @@ public class CutsceneManager {
 			this.gp.c.dialogueIndex = 0;
 			this.sceneNum = 0;
 			this.scenePhase = 0;
-			GamePanel var10000 = this.gp;
-			this.gp.getClass();
-			var10000.gameState = 1;
+			GamePanel gp = this.gp;
+			gp.gameState = GameState.playState;
 		}
 
 	}
@@ -67,9 +67,8 @@ public class CutsceneManager {
 		} else if (this.scenePhase == 2) {
 			this.gp.s.swh[this.read] = false;
 			this.gp.cutsceneOn = false;
-			GamePanel var10000 = this.gp;
-			this.gp.getClass();
-			var10000.gameState = 1;
+			GamePanel gp = this.gp;
+			gp.gameState = GameState.playState;
 		}
 
 	}
