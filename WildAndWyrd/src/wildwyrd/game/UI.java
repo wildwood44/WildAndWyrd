@@ -14,6 +14,7 @@ import java.text.DecimalFormat;
 import javax.imageio.ImageIO;
 
 import wildwyrd.game.cutscenes.Cutscene;
+import wildwyrd.game.tile.UtilityTool;
 
 public class UI {
 	GamePanel gp;
@@ -573,9 +574,11 @@ public class UI {
 	}
 
 	public void drawBackground(String image) {
+		UtilityTool uTool = new UtilityTool();
 		BufferedImage background = null;
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream(image));
+			background = uTool.scaleImage(background, gp.screenWidth, gp.screenHeight);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -18,6 +18,7 @@ public class Cutscene {
 	public int dialogueIndex = 0;
 	public int dialogueSet = 0;
 	BufferedImage image_Dilecto;
+	BufferedImage image_Thay;
 
 	public Cutscene(Story s) {
 		this.s = s;
@@ -70,45 +71,52 @@ public class Cutscene {
 	}
 
 	public void cutsceneDialog(String text) {
-		if (this.gp.keyH.enterPressed) {
-			this.gp.ui.currentDialogue = text;
+		if (gp.keyH.enterPressed) {
+			gp.ui.currentDialogue = text;
 		}
 
-		this.gp.keyH.enterPressed = false;
+		gp.keyH.enterPressed = false;
 	}
 
 	public void setImages() {
 		try {
-			this.image_Dilecto = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Dilecto.png"));
-		} catch (IOException var2) {
-			var2.printStackTrace();
+			image_Dilecto = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Dilecto.png"));
+			image_Thay = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Thay.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 	}
 
 	public void setSprites() {
-		this.setImages();
-		this.sprites[0][8] = this.image_Dilecto;
-		this.sprites[0][9] = this.image_Dilecto;
-		this.sprites[0][16] = this.image_Dilecto;
-		this.sprites[0][17] = this.image_Dilecto;
-		this.sprites[0][21] = this.image_Dilecto;
-		this.sprites[0][22] = this.image_Dilecto;
-		this.sprites[0][23] = this.image_Dilecto;
-		this.sprites[0][28] = this.image_Dilecto;
-		this.sprites[0][29] = this.image_Dilecto;
-		this.sprites[0][30] = this.image_Dilecto;
-		this.sprites[0][36] = this.image_Dilecto;
-		this.sprites[0][38] = this.image_Dilecto;
-		this.sprites[0][39] = this.image_Dilecto;
-		this.sprites[0][41] = this.image_Dilecto;
-		this.sprites[0][42] = this.image_Dilecto;
-		this.sprites[0][43] = this.image_Dilecto;
-		this.sprites[0][45] = this.image_Dilecto;
-		this.sprites[0][47] = this.image_Dilecto;
-		this.sprites[0][48] = this.image_Dilecto;
-		this.sprites[0][59] = this.image_Dilecto;
-		this.sprites[0][60] = this.image_Dilecto;
-		this.sprites[0][61] = this.image_Dilecto;
+		setImages();
+		sprites[0][8] = image_Dilecto;
+		sprites[0][9] = image_Dilecto;
+		sprites[0][16] = image_Dilecto;
+		sprites[0][17] = image_Dilecto;
+		sprites[0][21] = image_Dilecto;
+		sprites[0][22] = image_Dilecto;
+		sprites[0][23] = image_Dilecto;
+		sprites[0][28] = image_Dilecto;
+		sprites[0][29] = image_Dilecto;
+		sprites[0][30] = image_Dilecto;
+		sprites[0][36] = image_Dilecto;
+		sprites[0][38] = image_Dilecto;
+		sprites[0][39] = image_Dilecto;
+		sprites[0][41] = image_Dilecto;
+		sprites[0][42] = image_Dilecto;
+		sprites[0][43] = image_Dilecto;
+		sprites[0][45] = image_Dilecto;
+		sprites[0][47] = image_Dilecto;
+		sprites[0][48] = image_Dilecto;
+		sprites[0][59] = image_Dilecto;
+		sprites[0][60] = image_Dilecto;
+		sprites[0][61] = image_Dilecto;
+		sprites[1][0] = image_Thay;
+		sprites[1][1] = image_Thay;
+		sprites[1][2] = image_Thay;
+		sprites[1][6] = image_Thay;
+		sprites[1][7] = image_Thay;
+		sprites[1][9] = image_Thay;
 	}
 }

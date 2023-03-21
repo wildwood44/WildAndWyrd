@@ -2,7 +2,6 @@ package wildwyrd.game.tile;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Timer;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
