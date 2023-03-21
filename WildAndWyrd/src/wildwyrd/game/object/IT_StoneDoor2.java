@@ -15,6 +15,12 @@ public class IT_StoneDoor2 extends InteractiveTile {
 		
 		//image = setup("/res/objects/Rockwall_Door1");
 		image = setup("/res/objects/Rockwall_Door4");
-		transformable = true;
+		
+		solidArea.x = 0;
+		solidArea.y = 0;
+		solidArea.width = 0;
+		solidArea.height = 0;
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
 	}
 }

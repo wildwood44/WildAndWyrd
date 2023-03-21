@@ -17,6 +17,7 @@ public class KeyHandler implements KeyListener {
 		this.gp = gp;
 	}
 
+	@Override
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
 		GameState gameState = gp.gameState;
@@ -250,7 +251,7 @@ public class KeyHandler implements KeyListener {
 										this.gp.tileM.loadMap("/res/maps/map02",1);
 										break;
 									}
-									
+
 									break;
 								case 84 :
 									if (!this.showDebugText) {
@@ -316,6 +317,7 @@ public class KeyHandler implements KeyListener {
 
 	}
 
+	@Override
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
 			case 10 :
@@ -341,6 +343,7 @@ public class KeyHandler implements KeyListener {
 
 	}
 
+	@Override
 	public void keyTyped(KeyEvent e) {
 	}
 

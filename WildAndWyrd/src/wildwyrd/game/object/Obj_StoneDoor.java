@@ -2,9 +2,6 @@ package wildwyrd.game.object;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.ImageObserver;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import wildwyrd.game.Entity;
@@ -20,12 +17,8 @@ public class Obj_StoneDoor extends Entity {
 		type = 3;
 		collision = true;
 
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/res/objects/Rockwall_Door1.png"));
-			image2 = ImageIO.read(getClass().getResourceAsStream("/res/objects/Rockwall_Door4.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		image = setup("/res/objects/Rockwall_Door1");
+		image2 = setup("/res/objects/Rockwall_Door4");
 		timer = new Timer(20, (ActionListener) this);
 		solidArea.height = 60;
 		solidArea.y = 5;

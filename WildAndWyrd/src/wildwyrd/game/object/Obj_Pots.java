@@ -1,7 +1,5 @@
 package wildwyrd.game.object;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
@@ -11,28 +9,24 @@ public class Obj_Pots extends Entity {
 	public Obj_Pots(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.name = "Pots";
-		this.type = 3;
-		this.collision = true;
+		name = "Pots";
+		type = 3;
+		collision = true;
 
-		try {
-			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/img_pots.png"));
-		} catch (IOException var3) {
-			var3.printStackTrace();
-		}
+		image = setup("/res/objects/img_pots");
 
-		this.solidArea.height = 60;
-		this.solidArea.y = 5;
-		this.solidAreaDefaultY = this.solidArea.y;
-		this.setDialogue();
+		solidArea.height = 60;
+		solidArea.y = 5;
+		solidAreaDefaultY = solidArea.y;
+		setDialogue();
 	}
 
 	public void setDialogue() {
-		this.dialogues[0][0] = new Dialoge("Various pots and pans were hung on hooks :on the wall.", 1);
+		dialogues[0][0] = new Dialoge("Various pots and pans were hung on hooks :on the wall.", 1);
 	}
 
 	public void interact() {
-		this.startDialogue(this, 0);
-		this.gp.keyH.enterPressed = false;
+		startDialogue(this, 0);
+		gp.keyH.enterPressed = false;
 	}
 }

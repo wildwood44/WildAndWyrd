@@ -1,6 +1,7 @@
 package wildwyrd.game.object;
 
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.items.Itm_Bandage;
 import wildwyrd.game.items.Itm_Hazelnut;
 import wildwyrd.game.items.Itm_P_Mushroom;
 import wildwyrd.game.rooms.Rm_Blank;
@@ -16,7 +17,7 @@ public class AssetSetter {
 	}
 	
 	public void setMaps() {
-		gp.maps[0] = new Map(gp, MapType.INTERIOR, 0, 22, 12);
+		gp.maps[0] = new Map(gp, MapType.INTERIOR, 0, 20, 12);
 		gp.maps[1] = new Map(gp, MapType.INTERIOR, 1, 17, 12);
 		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 31, 20);
 		gp.maps[3] = new Map(gp, MapType.OUTSIDE, 3, 31, 20);
@@ -82,6 +83,15 @@ public class AssetSetter {
 		gp.obj[0][17] = new Obj_Window_Down(gp);
 		gp.obj[0][17].worldX = 13 * gp.tileSize;
 		gp.obj[0][17].worldY = 10 * gp.tileSize;
+		gp.obj[0][18] = new Obj_Pot(gp, null);
+		gp.obj[0][18].worldX = 16 * gp.tileSize;
+		gp.obj[0][18].worldY = 4 * gp.tileSize;
+		gp.obj[0][19] = new Obj_Pot(gp, new Itm_Bandage(gp));
+		gp.obj[0][19].worldX = 16 * gp.tileSize;
+		gp.obj[0][19].worldY = 5 * gp.tileSize;
+		gp.obj[0][20] = new Obj_Crate(gp);
+		gp.obj[0][20].worldX = 18 * gp.tileSize;
+		gp.obj[0][20].worldY = 4 * gp.tileSize;
 		gp.obj[1][0] = new Obj_Alder_Bed(gp, getRandomNumber(2,3));
 		gp.obj[1][0].worldX = 5 * gp.tileSize;
 		gp.obj[1][0].worldY = 5 * gp.tileSize;

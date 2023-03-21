@@ -8,7 +8,11 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
+import java.io.IOException;
 import java.text.DecimalFormat;
+
+import javax.imageio.ImageIO;
+
 import wildwyrd.game.cutscenes.Cutscene;
 
 public class UI {
@@ -115,28 +119,27 @@ public class UI {
 	}
 
 	public void drawMessageScreen(String text) {
-		FontMetrics fm = this.g2.getFontMetrics();
-		this.getXforCenteredText(text);
-		this.gp.getClass();
+		FontMetrics fm = g2.getFontMetrics();
+		getXforCenteredText(text);
 		int y = (gp.screenHeight - fm.getHeight()) / 2;
-		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
-		this.g2.setColor(Color.white);
-		this.message = text;
-		if (this.gp.keyH.enterPressed) {
-			++this.gp.csManager.scenePhase;
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		message = text;
+		if (gp.keyH.enterPressed) {
+			++gp.csManager.scenePhase;
 		}
 
 		String[] var8;
-		int var7 = (var8 = this.message.split(":")).length;
+		int var7 = (var8 = message.split(":")).length;
 
 		for (int var6 = 0; var6 < var7; ++var6) {
 			String line = var8[var6];
-			int x = this.getXforCenteredText(line);
-			this.g2.drawString(line, x, y);
+			int x = getXforCenteredText(line);
+			g2.drawString(line, x, y);
 			y += 40;
 		}
 
-		this.gp.keyH.enterPressed = false;
+		gp.keyH.enterPressed = false;
 	}
 
 	public void drawDialogueScreen() {
@@ -354,8 +357,8 @@ public class UI {
 		int slotXstart = frameX + 0;
 		int slotYstart = frameY + 15;
 		int cursorX = slotXstart + gp.tileSize * this.slotRow;
-		double var10000 = (double) slotYstart;
-		int cursorY = (int) (var10000 + gp.tileSize * 0.75D * (double) this.slotCol);
+		double var10000 = slotYstart;
+		int cursorY = (int) (var10000 + gp.tileSize * 0.75D * this.slotCol);
 		int cursorWidth = gp.tileSize * 2;
 		int cursorHeight = 30;
 		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
@@ -393,7 +396,7 @@ public class UI {
 
 		int i;
 		for (i = 0; i < gp.player.inventory.size(); ++i) {
-			this.g2.drawImage(((Entity) gp.player.inventory.get(i)).image, slotX, slotY, (ImageObserver) null);
+			this.g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY, (ImageObserver) null);
 			slotX += gp.tileSize;
 			if (i == 6 || i == 13 || i == 20) {
 				slotX = slotXstart;
@@ -418,7 +421,7 @@ public class UI {
 		g2.setColor(Color.white);
 		if (itemIndex < gp.player.inventory.size()) {
 			String[] var23;
-			int var22 = (var23 = ((Entity) this.gp.player.inventory.get(itemIndex)).description.split(":")).length;
+			int var22 = (var23 = this.gp.player.inventory.get(itemIndex).description.split(":")).length;
 
 			for (int var21 = 0; var21 < var22; ++var21) {
 				String line = var23[var21];
@@ -446,8 +449,8 @@ public class UI {
 		int slotXstart = frameX + 0;
 		int slotYstart = frameY + 15;
 		int cursorX = slotXstart + gp.tileSize * this.slotRow;
-		double var10000 = (double) slotYstart * 2.25D;
-		int cursorY = (int) (var10000 + (double) (gp.tileSize * 1 * this.slotCol));
+		double var10000 = slotYstart * 2.25D;
+		int cursorY = (int) (var10000 + gp.tileSize * 1 * this.slotCol);
 		int cursorWidth = gp.tileSize * 2;
 		int cursorHeight = 30;
 		g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
@@ -507,77 +510,80 @@ public class UI {
 	private void drawImageWindow(int x, int y, int width, int height) {
 		BufferedImage image = this.gp.c.sprites[this.gp.c.dialogueSet][this.gp.c.dialogueIndex];
 		if (image != null) {
-			this.g2.drawImage(image, x, y, width, height, (ImageObserver) null);
+			g2.drawImage(image, x, y, width, height, (ImageObserver) null);
 		}
 
 	}
 
 	public void drawDialogueWindow(int x, int y, int width, int height) {
 		Color c = new Color(255, 255, 255);
-		this.g2.setColor(c);
-		this.g2.fillRoundRect(x, y, width, height, 35, 35);
+		g2.setColor(c);
+		g2.fillRoundRect(x, y, width, height, 35, 35);
 		c = new Color(0, 0, 0, 210);
-		this.g2.setColor(c);
-		this.g2.setStroke(new BasicStroke(5.0F));
-		this.g2.fillRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+		g2.setColor(c);
+		g2.setStroke(new BasicStroke(5.0F));
+		g2.fillRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
 	}
 
 	public void drawSubWindow(int x, int y, int width, int height) {
 		Color c = new Color(255, 255, 255);
-		this.g2.setColor(c);
-		this.g2.fillRoundRect(x, y, width, height, 35, 35);
+		g2.setColor(c);
+		g2.fillRoundRect(x, y, width, height, 35, 35);
 	}
 
 	public void drawTitleScreen() {
-		this.g2.setBackground(Color.green);
-		this.g2.setFont(this.g2.getFont().deriveFont(1, 80.0F));
+		g2.setBackground(Color.green);
+		this.g2.setFont(g2.getFont().deriveFont(1, 80.0F));
 		String text = "Wild and Wyrd";
 		int x = this.getXforCenteredText(text);
-		this.gp.getClass();
 		int y = gp.screenHeight / 3;
 		this.g2.setColor(Color.white);
 		this.g2.drawString(text, x, y);
-		this.g2.setFont(this.g2.getFont().deriveFont(1, 40.0F));
+		this.g2.setFont(g2.getFont().deriveFont(1, 40.0F));
 		text = "New Game";
 		x = this.getXforCenteredText(text);
-		double var10000 = (double) y;
+		double var10000 = y;
 		this.gp.getClass();
 		y = (int) (var10000 + gp.tileSize * 2.5D);
 		this.g2.drawString(text, x, y);
 		Graphics2D var4;
 		if (this.commandNum == 0) {
 			var4 = this.g2;
-			this.gp.getClass();
 			var4.drawString(">", x - gp.tileSize, y);
 		}
 
 		text = "Load Game";
 		x = this.getXforCenteredText(text);
-		this.gp.getClass();
 		y += gp.tileSize;
 		this.g2.drawString(text, x, y);
 		if (this.commandNum == 1) {
 			var4 = this.g2;
-			this.gp.getClass();
 			var4.drawString(">", x - gp.tileSize, y);
 		}
 
 		text = "Quit";
 		x = this.getXforCenteredText(text);
-		this.gp.getClass();
 		y += gp.tileSize;
 		this.g2.drawString(text, x, y);
 		if (this.commandNum == 2) {
 			var4 = this.g2;
-			this.gp.getClass();
 			var4.drawString(">", x - gp.tileSize, y);
 		}
 
 	}
 
+	public void drawBackground(String image) {
+		BufferedImage background = null;
+		try {
+			background = ImageIO.read(getClass().getResourceAsStream(image));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		g2.drawImage(background, 0, 0, gp.screenWidth, gp.screenHeight, (ImageObserver) null);
+	}
+
 	public int getXforCenteredText(String text) {
-		int length = (int) this.g2.getFontMetrics().getStringBounds(text, this.g2).getWidth();
-		this.gp.getClass();
+		int length = (int) g2.getFontMetrics().getStringBounds(text, this.g2).getWidth();
 		int x = gp.screenWidth / 2 - length / 2;
 		return x;
 	}

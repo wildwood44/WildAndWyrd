@@ -1,7 +1,5 @@
 package wildwyrd.game.object;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
@@ -18,38 +16,35 @@ public class Obj_Wooden_Bowl extends Entity {
 		type = 3;
 		collision = true;
 
-		try {
-			this.image = ImageIO.read(getClass().getResourceAsStream("/res/objects/Table_Tile_Bowl.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		image = setup("/res/objects/Table_Tile_Bowl");
+		
 
 		setDialogue();
 	}
 
 	public void setDialogue() {
-		this.dialogues[0][0] = new Dialoge("A wooden bowl.", 1);
-		this.dialogues[0][1] = new Dialoge("It has hazelnuts in it.", 1);
-		this.dialogues[0][2] = new Dialoge("Pick up " + this.loot.name, 2);
-		this.dialogues[1][0] = new Dialoge("A wooden bowl.", 1);
-		this.dialogues[1][1] = new Dialoge("It's empty.", 1);
+		dialogues[0][0] = new Dialoge("A wooden bowl.", 1);
+		dialogues[0][1] = new Dialoge("It has hazelnuts in it.", 1);
+		dialogues[0][2] = new Dialoge("Pick up " + loot.name, 2);
+		dialogues[1][0] = new Dialoge("A wooden bowl.", 1);
+		dialogues[1][1] = new Dialoge("It's empty.", 1);
 	}
 
 	public void choiceResponce() {
-		if (this.gp.ui.slotyn == 0) {
-			this.gp.player.inventory.add(this.loot);
-			this.opened = true;
+		if (gp.ui.slotyn == 0) {
+			gp.player.inventory.add(loot);
+			opened = true;
 		}
 
 	}
 
 	public void interact() {
-		if (!this.opened) {
-			this.startDialogue(this, 0);
+		if (!opened) {
+			startDialogue(this, 0);
 		} else {
-			this.startDialogue(this, 1);
+			startDialogue(this, 1);
 		}
 
-		this.gp.keyH.enterPressed = false;
+		gp.keyH.enterPressed = false;
 	}
 }

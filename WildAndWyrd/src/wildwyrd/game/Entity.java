@@ -6,13 +6,14 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 
-import wildwyrd.game.object.Dialoge;
-import wildwyrd.game.tile.UtilityTool;
-
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
+import wildwyrd.game.object.Dialoge;
+import wildwyrd.game.tile.UtilityTool;
+
 public class Entity {
+	public static final long RUNNING_TIME = 2000;
 	public int speed;
 	public BufferedImage image;
 	public BufferedImage image2;
@@ -45,6 +46,7 @@ public class Entity {
 	public final int type_npc = 2;
 	public final int type_obstacle = 3;
 	public Timer timer;
+	public long startTime = -1;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -55,7 +57,7 @@ public class Entity {
 		gp.cChecker.checkTile(this);
 		gp.cChecker.checkObject(this, false);
 		gp.cChecker.checkPlayer(this);
-		if(collisionOn == false) {
+		if(!collisionOn) {
 			switch(direction) {
 			case "up": worldY -= speed; break;
 			case "down": worldY += speed; break;
@@ -64,7 +66,7 @@ public class Entity {
 			}
 		}
 	}
-	
+
 	public BufferedImage setup(String imagePath) {
 		UtilityTool uTool = new UtilityTool();
 		BufferedImage image = null;
@@ -121,15 +123,15 @@ public class Entity {
 		if (bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
 			screenY = gp.screenHeight - (gp.currentMap.getWorldHeight() - worldY);
 		}
-		int var10000 = this.worldX;
+		int var10000 = worldX;
 		if (var10000 + gp.tileSize > gp.player.worldX - gp.player.screenX) {
-			var10000 = this.worldX;
+			var10000 = worldX;
 			if (var10000 - gp.tileSize < gp.player.worldX + gp.player.screenX) {
-				var10000 = this.worldY;
+				var10000 = worldY;
 				if (var10000 + gp.tileSize > gp.player.worldY - gp.player.screenY) {
-					var10000 = this.worldY;
+					var10000 = worldY;
 					if (var10000 - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-						BufferedImage var10001 = this.image;
+						BufferedImage var10001 = image;
 						g2.drawImage(var10001, screenX, screenY, gp.tileSize, gp.tileSize, (ImageObserver) null);
 					}
 				}

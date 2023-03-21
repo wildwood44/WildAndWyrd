@@ -45,22 +45,22 @@ public class EventHandler {
 		if(distance > gp.tileSize) {
 			canTouchEvent = true;
 		}
-		if(canTouchEvent == true) {
+		if(canTouchEvent) {
 			if(gp.currentMap.getId() == 0) {
-				if(hit(0,14,9,"up") == true) {teleport(gp.maps[1],15,3);}
-				if(hit(0,11,11,"down") == true) {teleport(gp.maps[2],15,4);}
-				if(hit(0,18,10,"down") == true) {teleport(gp.maps[2],24,3);}
+				if(hit(0,14,9,"up")) {teleport(gp.maps[1],15,3);}
+				if(hit(0,11,11,"down")) {teleport(gp.maps[2],15,4);}
+				if(hit(0,18,10,"down")) {teleport(gp.maps[2],24,3);}
 			}
 			else if(gp.currentMap.getId() == 1) {
-				if(hit(1,15,4,"down") == true) {teleport(gp.maps[0],14,10);}
+				if(hit(1,15,4,"down")) {teleport(gp.maps[0],14,10);}
 			}
 			else if(gp.currentMap.getId() == 2) {
-				if(hit(2,15,3,"up") == true) {teleport(gp.maps[0],11,10);}
-				if(hit(2,24,2,"up") == true) {teleport(gp.maps[0],18,9);}
+				if(hit(2,15,3,"up")) {teleport(gp.maps[0],11,10);}
+				if(hit(2,24,2,"up")) {teleport(gp.maps[0],18,9);}
 			}
 		}
 		//System.out.println(gp.player.worldX + " " + gp.player.worldY);
-		
+
 	}
 
 	public void checkCutscene() {
@@ -73,7 +73,7 @@ public class EventHandler {
 		}
 
 	}
-	
+
 	public boolean hit(int map, int col, int row, String reqDirection) {
 		boolean hit = false;
 		if(map == gp.currentMap.getId()) {
@@ -82,7 +82,7 @@ public class EventHandler {
 			gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
 			eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
 			eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
-			if(gp.player.solidArea.intersects(eventRect[map][col][row]) && eventRect[map][col][row].eventDone == false) { 
+			if(gp.player.solidArea.intersects(eventRect[map][col][row]) && !eventRect[map][col][row].eventDone) {
 				if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
 					hit = true;
 					previousEventX = gp.player.worldX;
@@ -116,7 +116,7 @@ public class EventHandler {
 		GamePanel gp = this.gp;
 		gp.gameState = GameState.messageState;
 	}
-	
+
 	public void teleport(Map map, int col, int row) {
 		gp.currentMap = map;
 		gp.tileM = new TileManager(gp);
@@ -126,7 +126,7 @@ public class EventHandler {
 		gp.player.worldY = gp.tileSize * row;
 		//System.out.println(col + " " + row);
 		//System.out.println(gp.player.worldX + " " + gp.player.worldY);
-		previousEventX = gp.player.worldX; 
+		previousEventX = gp.player.worldX;
 		previousEventY = gp.player.worldY;
 		canTouchEvent = false;
 	}

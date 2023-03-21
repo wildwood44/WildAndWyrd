@@ -1,6 +1,7 @@
 package wildwyrd.game;
 
 import java.awt.Component;
+
 import javax.swing.JFrame;
 
 public class Main {

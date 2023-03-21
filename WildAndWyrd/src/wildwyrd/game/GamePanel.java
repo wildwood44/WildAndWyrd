@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import javax.swing.JPanel;
+
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.cutscenes.CutsceneManager;
 import wildwyrd.game.glossary.Glossary;
@@ -74,7 +75,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public int currentRoom = 0;
 	public Story s = new Story();
 	public Cutscene c;
-	public Entity[][] obj = new Entity[10][20];
+	public Entity[][] obj = new Entity[10][25];
 	public Entity[][] npc = new Entity[10][5];
 	public InteractiveTile iTile[][] = new InteractiveTile[10][50];
 	public Room[] rm;
@@ -83,17 +84,17 @@ public class GamePanel extends JPanel implements Runnable {
 	ArrayList<Entity> entityList = new ArrayList<>();
 
 	public GamePanel() {
-		this.c = new Cutscene(this.s);
-		this.obj = new Entity[maxMap][20];
-		this.rm = new Room[2];
-		this.maps = new Map[maxMap];
-		this.player = new Player(this, this.keyH);
-		this.entityList = new ArrayList<>();
-		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-		this.setBackground(Color.black);
-		this.setDoubleBuffered(true);
-		this.addKeyListener(this.keyH);
-		this.setFocusable(true);
+		c = new Cutscene(s);
+		obj = new Entity[maxMap][25];
+		rm = new Room[2];
+		maps = new Map[maxMap];
+		player = new Player(this, keyH);
+		entityList = new ArrayList<>();
+		setPreferredSize(new Dimension(screenWidth, screenHeight));
+		setBackground(Color.black);
+		setDoubleBuffered(true);
+		addKeyListener(keyH);
+		setFocusable(true);
 	}
 
 	public void setupGame() {
@@ -116,22 +117,23 @@ public class GamePanel extends JPanel implements Runnable {
 		gameThread.start();
 	}
 
+	@Override
 	public void run() {
-		double drawInterval = (double) (1000000000 / this.FPS);
+		double drawInterval = 1000000000 / this.FPS;
 		double delta = 0.0D;
 		long lastTime = System.nanoTime();
 		long timer = 0L;
 		int drawCount = 0;
 
-		while (this.gameThread != null) {
+		while (gameThread != null) {
 			long currentTime = System.nanoTime();
-			delta += (double) (currentTime - lastTime) / drawInterval;
+			delta += (currentTime - lastTime) / drawInterval;
 			timer += currentTime - lastTime;
 			lastTime = currentTime;
 			if (delta >= 1.0D) {
-				this.update();
-				this.drawToTempScreen();
-				this.drawToScreen();
+				update();
+				drawToTempScreen();
+				drawToScreen();
 				--delta;
 				++drawCount;
 			}
@@ -206,11 +208,11 @@ public class GamePanel extends JPanel implements Runnable {
 						int result = Integer.compare(e1.worldY, e2.worldY);
 						return result;
 					}
-					
+
 				});
-				
-				for(int i = 0; i < entityList.size(); i++) {
-					entityList.get(i).draw(g2);
+
+				for (Entity element : entityList) {
+					element.draw(g2);
 				}
 				for(int i = 0; i < entityList.size(); i++) {
 					entityList.remove(i);
@@ -225,12 +227,12 @@ public class GamePanel extends JPanel implements Runnable {
 		if (this.keyH.showDebugText) {
 			long drawEnd = System.nanoTime();
 			long passed = drawEnd - drawStart;
-			this.g2.setFont(new Font("Arial", 0, 20));
-			this.g2.setColor(Color.white);
+			g2.setFont(new Font("Arial", 0, 20));
+			g2.setColor(Color.white);
 			int x = 10;
 			int y = 400;
 			int lineHeight = 20;
-			this.g2.drawString("WorldX" + this.player.worldX, x, y);
+			g2.drawString("WorldX" + player.worldX, x, y);
 			y = y + lineHeight;
 			this.g2.drawString("WorldY" + this.player.worldY, x, y);
 			y += lineHeight;

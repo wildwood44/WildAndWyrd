@@ -158,7 +158,7 @@ public class Player extends Entity {
 		//System.out.println(gp.iTile[gp.currentMap.getId()][i] + " " + gp.currentMap.getId() + " " + i);
 		
 		if(i != 999 && gp.iTile[gp.currentMap.getId()][i].transformable == true) {
-			gp.iTile[gp.currentMap.getId()][i] = null;
+			gp.iTile[gp.currentMap.getId()][i] = gp.iTile[gp.currentMap.getId()][i].uncoverIllusion();
 		}
 	}
 

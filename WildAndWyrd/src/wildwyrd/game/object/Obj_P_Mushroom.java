@@ -1,7 +1,5 @@
 package wildwyrd.game.object;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
@@ -18,11 +16,7 @@ public class Obj_P_Mushroom extends Entity {
 		type = 3;
 		collision = true;
 
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/res/items/Parasol_Mushroom.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		image = setup("/res/items/Parasol_Mushroom");
 		solidArea.x = 20;
 		solidAreaDefaultX = solidArea.x;
 		setDialogue();
@@ -30,11 +24,11 @@ public class Obj_P_Mushroom extends Entity {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge(
-				"There were a variety of late-summer mushrooms growing around the area.",
+				"There were a variety of late-summer :mushrooms growing around the area.",
 				1);
 		dialogues[0][1] = new Dialoge("Pick " + loot.name, 2);
 		dialogues[1][0] = new Dialoge(
-				"There were a variety of late-summer mushrooms growing around the area.",
+				"There were a variety of late-summer :mushrooms growing around the area.",
 				1);
 	}
 

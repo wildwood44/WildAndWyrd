@@ -3,26 +3,26 @@ package wildwyrd.game.object;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
-public class Obj_Oven extends Entity {
+public class Obj_Crate extends Entity {
 	GamePanel gp;
 
-	public Obj_Oven(GamePanel gp) {
+	public Obj_Crate(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Oven";
+		name = "Crate";
 		type = 3;
 		collision = true;
 
-		image = setup("/res/objects/img_Oven");
+		image = setup("/res/objects/img_create");
 
-		solidArea.width = 42;
-		solidArea.x = 10;
-		solidAreaDefaultX = solidArea.x;
 		setDialogue();
+		solidArea.width = 60;
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge("The oven was unlit.", 1);
+		dialogues[0][0] = new Dialoge(
+				"Kyla had put spare magical tools in sturdy :crates to keep them from breaking.",
+				1);
 	}
 
 	public void interact() {

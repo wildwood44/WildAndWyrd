@@ -42,6 +42,7 @@ public class TileManager {
 			setup(1, "forestFloor_tile", false);
 			setup(2, "Rockwall_Tile", true);
 			setup(3, "bramble_tile", true);
+			setup(4, "nettle_tile", true);
 		}
 		
 	}
@@ -122,46 +123,43 @@ public class TileManager {
 				screenX = worldX;
 			}
 
-			if (this.gp.player.screenY > this.gp.player.worldY) {
+			if (gp.player.screenY > gp.player.worldY) {
 				screenY = worldY;
 			}
 
-			int rightOffset = gp.screenWidth - this.gp.player.screenX;
-			if (rightOffset > gp.currentMap.getWorldWidth() - this.gp.player.worldX) {
+			int rightOffset = gp.screenWidth - gp.player.screenX;
+			if (rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX) {
 				screenX = gp.screenWidth - (gp.currentMap.getWorldWidth() - worldX);
 			}
 
-			int bottomOffset = gp.screenHeight - this.gp.player.screenY;
-			if (bottomOffset > gp.currentMap.getWorldHeight() - this.gp.player.worldY) {
+			int bottomOffset = gp.screenHeight - gp.player.screenY;
+			if (bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
 				screenY = gp.screenHeight - (gp.currentMap.getWorldHeight() - worldY);
 			}
 
 			label60 : {
 				BufferedImage var10001;
-				if (worldX + gp.tileSize > this.gp.player.worldX - this.gp.player.screenX && 
-					worldX - gp.tileSize < this.gp.player.worldX + this.gp.player.screenX &&
-					worldY + gp.tileSize > this.gp.player.worldY - this.gp.player.screenY &&
-					worldY - gp.tileSize < this.gp.player.worldY + this.gp.player.screenY) {
+				if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX && 
+					worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+					worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
+					worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 					g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 				}
 
-				if (this.gp.player.screenX <= this.gp.player.worldX
-						&& this.gp.player.screenY <= this.gp.player.worldY) {
-					this.gp.getClass();
-					if (rightOffset <= gp.currentMap.getWorldWidth() - this.gp.player.worldX) {
-						this.gp.getClass();
-						if (bottomOffset <= gp.currentMap.getWorldHeight() - this.gp.player.worldY) {
+				if (gp.player.screenX <= gp.player.worldX
+						&& gp.player.screenY <= gp.player.worldY) {
+					if (rightOffset <= gp.currentMap.getWorldWidth() - gp.player.worldX) {
+						if (bottomOffset <= gp.currentMap.getWorldHeight() - gp.player.worldY) {
 							break label60;
 						}
 					}
 				}
 
-				var10001 = this.tile[tileNum].image;
+				var10001 = tile[tileNum].image;
 				g2.drawImage(var10001, screenX, screenY, gp.tileSize, gp.tileSize, (ImageObserver) null);
 			}
 
 			++worldCol;
-			this.gp.getClass();
 			if (worldCol == gp.currentMap.getMaxWorldCol()) {
 				worldCol = 0;
 				++worldRow;
