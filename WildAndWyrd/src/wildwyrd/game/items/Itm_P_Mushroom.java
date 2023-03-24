@@ -1,7 +1,5 @@
 package wildwyrd.game.items;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
@@ -14,12 +12,7 @@ public class Itm_P_Mushroom extends Entity {
 		name = "Parasol Mushroom";
 		description = "";
 
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/res/items/Parasol_Mushroom.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+		image = setup("/res/items/Parasol_Mushroom");
 	}
 
 	public void use() {

@@ -80,6 +80,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public InteractiveTile iTile[][] = new InteractiveTile[10][50];
 	public Room[] rm;
 	public Map[] maps;
+	public Backdrop backdrop = new Backdrop(this);
 	public Player player = new Player(this, keyH);
 	ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -224,7 +225,7 @@ public class GamePanel extends JPanel implements Runnable {
 			ui.draw(g2);
 		}
 
-		if (this.keyH.showDebugText) {
+		if (keyH.showDebugText) {
 			long drawEnd = System.nanoTime();
 			long passed = drawEnd - drawStart;
 			g2.setFont(new Font("Arial", 0, 20));
@@ -234,22 +235,22 @@ public class GamePanel extends JPanel implements Runnable {
 			int lineHeight = 20;
 			g2.drawString("WorldX" + player.worldX, x, y);
 			y = y + lineHeight;
-			this.g2.drawString("WorldY" + this.player.worldY, x, y);
+			g2.drawString("WorldY" + player.worldY, x, y);
 			y += lineHeight;
-			this.g2.drawString("Col" + (this.player.worldX + this.player.solidArea.x) / tileSize, x, y);
+			g2.drawString("Col" + (player.worldX + player.solidArea.x) / tileSize, x, y);
 			y += lineHeight;
-			this.g2.drawString("Row" + (this.player.worldY + this.player.solidArea.y) / tileSize, x, y);
+			g2.drawString("Row" + (player.worldY + player.solidArea.y) / tileSize, x, y);
 			y += lineHeight;
-			this.g2.drawString("Story: " + this.s.chapter + " " + this.s.part, x, y);
+			g2.drawString("Story: " + s.chapter + " " + s.part, x, y);
 			y += lineHeight;
-			this.g2.drawString("Draw Time: " + passed, x, y);
+			g2.drawString("Draw Time: " + passed, x, y);
 		}
 
 	}
 
 	public void drawToScreen() {
-		Graphics g = this.getGraphics();
-		g.drawImage(this.tempScreen, 0, 0, this.screenWidth2, this.screenHeight2, (ImageObserver) null);
+		Graphics g = getGraphics();
+		g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, (ImageObserver) null);
 		g.dispose();
 	}
 

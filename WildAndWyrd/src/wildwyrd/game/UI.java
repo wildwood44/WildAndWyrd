@@ -509,7 +509,7 @@ public class UI {
 	}
 
 	private void drawImageWindow(int x, int y, int width, int height) {
-		BufferedImage image = this.gp.c.sprites[this.gp.c.dialogueSet][this.gp.c.dialogueIndex];
+		BufferedImage image = gp.c.sprites[gp.c.dialogueSet][gp.c.dialogueIndex];
 		if (image != null) {
 			g2.drawImage(image, x, y, width, height, (ImageObserver) null);
 		}
@@ -534,19 +534,18 @@ public class UI {
 
 	public void drawTitleScreen() {
 		g2.setBackground(Color.green);
-		this.g2.setFont(g2.getFont().deriveFont(1, 80.0F));
+		g2.setFont(g2.getFont().deriveFont(1, 80.0F));
 		String text = "Wild and Wyrd";
-		int x = this.getXforCenteredText(text);
+		int x = getXforCenteredText(text);
 		int y = gp.screenHeight / 3;
-		this.g2.setColor(Color.white);
-		this.g2.drawString(text, x, y);
-		this.g2.setFont(g2.getFont().deriveFont(1, 40.0F));
+		g2.setColor(Color.white);
+		g2.drawString(text, x, y);
+		g2.setFont(g2.getFont().deriveFont(1, 40.0F));
 		text = "New Game";
-		x = this.getXforCenteredText(text);
+		x = getXforCenteredText(text);
 		double var10000 = y;
-		this.gp.getClass();
 		y = (int) (var10000 + gp.tileSize * 2.5D);
-		this.g2.drawString(text, x, y);
+		g2.drawString(text, x, y);
 		Graphics2D var4;
 		if (this.commandNum == 0) {
 			var4 = this.g2;

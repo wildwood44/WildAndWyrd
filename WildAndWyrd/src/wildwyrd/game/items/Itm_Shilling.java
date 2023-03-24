@@ -9,7 +9,7 @@ public class Itm_Shilling extends Entity {
 	public Itm_Shilling(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.name = "Shilling";
+		name = "Shilling";
 	}
 	
 	

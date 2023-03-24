@@ -30,21 +30,15 @@ public class Room {
 	public void draw(Graphics2D g2) {
 		while (this.roomX < this.room_width && this.roomY < this.room_height) {
 			int var10000 = this.roomX;
-			this.gp.getClass();
 			int worldX = var10000 * 64;
 			var10000 = this.roomY;
-			this.gp.getClass();
 			int worldY = var10000 * 64;
 			this.screenX = worldX - this.gp.player.worldX * this.gp.player.screenX;
 			this.screenY = worldY - this.gp.player.worldY * this.gp.player.screenY;
 			System.out.println(this.image);
-			this.gp.getClass();
 			if (worldX + 64 > this.gp.player.worldX - this.gp.player.screenX) {
-				this.gp.getClass();
 				if (worldX - 64 < this.gp.player.worldX + this.gp.player.screenX) {
-					this.gp.getClass();
 					if (worldY + 64 > this.gp.player.worldY - this.gp.player.screenY) {
-						this.gp.getClass();
 						var10000 = this.gp.player.worldY;
 						var10000 = this.gp.player.screenY;
 					}

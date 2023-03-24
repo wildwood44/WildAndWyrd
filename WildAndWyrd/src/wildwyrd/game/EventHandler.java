@@ -49,14 +49,20 @@ public class EventHandler {
 			if(gp.currentMap.getId() == 0) {
 				if(hit(0,14,9,"up")) {teleport(gp.maps[1],15,3);}
 				if(hit(0,11,11,"down")) {teleport(gp.maps[2],15,4);}
-				if(hit(0,18,10,"down")) {teleport(gp.maps[2],24,3);}
+				if(hit(0,17,10,"down")) {teleport(gp.maps[2],24,3);}
 			}
 			else if(gp.currentMap.getId() == 1) {
 				if(hit(1,15,4,"down")) {teleport(gp.maps[0],14,10);}
 			}
 			else if(gp.currentMap.getId() == 2) {
 				if(hit(2,15,3,"up")) {teleport(gp.maps[0],11,10);}
-				if(hit(2,24,2,"up")) {teleport(gp.maps[0],18,9);}
+				if(hit(2,24,2,"up")) {teleport(gp.maps[0],17,9);}
+				if(hit(2,12,19,"down")) {teleport(gp.maps[3],3,1);}
+				if(hit(2,13,19,"down")) {teleport(gp.maps[3],4,1);}
+			}
+			else if(gp.currentMap.getId() == 3) {
+				if(hit(3,3,0,"up")) {teleport(gp.maps[2],12,18);}
+				if(hit(3,4,0,"up")) {teleport(gp.maps[2],13,18);}
 			}
 		}
 		//System.out.println(gp.player.worldX + " " + gp.player.worldY);

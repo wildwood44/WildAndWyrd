@@ -96,13 +96,11 @@ public class Entity {
 	}
 
 	public int getCol() {
-		int var10000 = worldX + solidArea.x;
-		return var10000 / gp.tileSize;
+		return (worldX + solidArea.x) / gp.tileSize;
 	}
 
 	public int getRow() {
-		int var10000 = worldY + solidArea.y;
-		return var10000 / gp.tileSize;
+		return (worldY + solidArea.y) / gp.tileSize;
 	}
 
 	public void draw(Graphics2D g2) {
@@ -123,21 +121,18 @@ public class Entity {
 		if (bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
 			screenY = gp.screenHeight - (gp.currentMap.getWorldHeight() - worldY);
 		}
-		int var10000 = worldX;
-		if (var10000 + gp.tileSize > gp.player.worldX - gp.player.screenX) {
-			var10000 = worldX;
-			if (var10000 - gp.tileSize < gp.player.worldX + gp.player.screenX) {
-				var10000 = worldY;
-				if (var10000 + gp.tileSize > gp.player.worldY - gp.player.screenY) {
-					var10000 = worldY;
-					if (var10000 - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-						BufferedImage var10001 = image;
-						g2.drawImage(var10001, screenX, screenY, gp.tileSize, gp.tileSize, (ImageObserver) null);
-					}
-				}
-			}
+		if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
+			worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+			worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
+			worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, (ImageObserver) null);
 		}
-
+		else if(gp.player.worldX < gp.player.screenX ||
+			    gp.player.worldY < gp.player.screenY ||
+			    rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX ||
+			    bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
+			   g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null); 
+		}
 	}
 
 	public void startDialogue(Entity object, int setNum) {
@@ -171,7 +166,6 @@ public class Entity {
 				break;
 			}
 		}
-
 		return index;
 	}
 
