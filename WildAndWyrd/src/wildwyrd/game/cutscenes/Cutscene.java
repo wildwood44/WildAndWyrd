@@ -43,7 +43,7 @@ public class Cutscene {
 						name = newline[0];
 						text = newline[1];
 					} else {
-						text = line[4].strip();
+						text = line[4].trim();
 					}
 
 					this.dialogues[dialogueSet][count] = name + text;

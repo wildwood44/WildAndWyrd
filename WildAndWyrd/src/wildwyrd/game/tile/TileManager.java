@@ -67,39 +67,32 @@ public class TileManager {
 			int col = 0;
 			int row = 0;
 
-			while (col< gp.maps[map].getMaxWorldCol() && row < gp.currentMap.getMaxWorldRow()) {
+			while (col < gp.maps[map].getMaxWorldCol() && row < gp.currentMap.getMaxWorldRow()) {
 				if (col >= gp.maps[map].getMaxWorldCol()) {
 					break;
 				}
-
 				if (row >= gp.maps[map].getMaxWorldRow()) {
 					break;
 				}
-
 				String line = br.readLine();
-
 				while (true) {
 					if (col >= gp.maps[map].getMaxWorldCol()) {
-						this.gp.getClass();
 						if (col == gp.maps[map].getMaxWorldCol()) {
 							col = 0;
 							++row;
 						}
 						break;
 					}
-
 					String[] numbers = line.split(" ");
 					int num = Integer.parseInt(numbers[col]);
 					this.mapTileNum[map][col][row] = num;
 					++col;
 				}
 			}
-
 			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public void draw(Graphics2D g2) {
@@ -139,7 +132,6 @@ public class TileManager {
 			}
 
 			label60 : {
-				BufferedImage var10001;
 				if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX && 
 					worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
 					worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
@@ -155,9 +147,7 @@ public class TileManager {
 						}
 					}
 				}
-
-				var10001 = tile[tileNum].image;
-				g2.drawImage(var10001, screenX, screenY, gp.tileSize, gp.tileSize, (ImageObserver) null);
+				g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 			}
 
 			++worldCol;

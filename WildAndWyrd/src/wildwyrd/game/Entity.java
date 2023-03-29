@@ -155,7 +155,6 @@ public class Entity {
 			case "left": nextWorldX = user.getLeftX() - 1; break;
 			case "right": nextWorldX = user.getRightX() + 1; break;
 		}
-
 		int col = nextWorldX / gp.tileSize;
 		int row = nextWorldY / gp.tileSize;
 

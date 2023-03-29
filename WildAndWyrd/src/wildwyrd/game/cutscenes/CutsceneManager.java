@@ -43,11 +43,14 @@ public class CutsceneManager {
 			gp.ui.drawMessageScreen(
 					"The game will now begin. Press any key to continue.:You may skip the dialogue by pressing 'skip'.");
 		} else if (scenePhase == 1) {
-			gp.ui.drawBackground("/res/backgrounds/Forton_Backgound.png");
+			//gp.ui.drawBackground("/res/backgrounds/Forton_Backgound.png");
+			//gp.currentRoom = new Rm_Forton(gp);
+			gp.currentRoom = 1;
 			gp.c.setCutscene(0, read);
 			gp.c.setSprites();
 			gp.ui.drawDialogueScreen();
 		} else if (scenePhase == 2) {
+			gp.currentRoom = 0;
 			gp.s.chapter = 1;
 			gp.cutsceneOn = false;
 			gp.c.dialogueIndex = 0;

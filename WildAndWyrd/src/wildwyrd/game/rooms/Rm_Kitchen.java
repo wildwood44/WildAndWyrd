@@ -12,19 +12,19 @@ public class Rm_Kitchen extends Room {
 	public Rm_Kitchen(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.roomId = 1;
-		this.room_width = 1600;
-		this.room_height = 600;
+		roomId = 1;
+		room_width = 1600;
+		room_height = 600;
 	}
 
 	public void getBackgroundImage() {
 		try {
-			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/backgrounds/bg_cottage_kitchen.png"));
-		} catch (IOException var2) {
-			var2.printStackTrace();
+			image = ImageIO.read(getClass().getResourceAsStream("/res/backgrounds/bg_cottage_kitchen.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
-		this.g2.drawImage(this.image, this.screenX, this.screenY, this.gp);
+		g2.drawImage(image, screenX, screenY, gp);
 	}
 
 	public void setObjects() {
@@ -35,7 +35,7 @@ public class Rm_Kitchen extends Room {
 
 	public void draw(Graphics2D g2) {
 		this.g2 = g2;
-		this.getBackgroundImage();
-		this.setObjects();
+		getBackgroundImage();
+		setObjects();
 	}
 }

@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
 	//public final int worldWidth = maxWorldCol * tileSize;
 	//public final int worldHeight = maxWorldRow * tileSize;
 	public final int maxMap = 5;
-	public final int maxRoom = 2;
+	public final int maxRoom = 5;
 	int screenWidth2 = screenWidth;
 	int screenHeight2 = screenHeight;
 	BufferedImage tempScreen;
@@ -73,6 +73,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Map currentMap;
 	public Integer selectedObj;
 	public int currentRoom = 0;
+	public BufferedImage background;
 	public Story s = new Story();
 	public Cutscene c;
 	public Entity[][] obj = new Entity[10][25];
@@ -80,14 +81,14 @@ public class GamePanel extends JPanel implements Runnable {
 	public InteractiveTile iTile[][] = new InteractiveTile[10][50];
 	public Room[] rm;
 	public Map[] maps;
-	public Backdrop backdrop = new Backdrop(this);
+	//public Backdrop backdrop = new Backdrop(this);
 	public Player player = new Player(this, keyH);
 	ArrayList<Entity> entityList = new ArrayList<>();
 
 	public GamePanel() {
 		c = new Cutscene(s);
 		obj = new Entity[maxMap][25];
-		rm = new Room[2];
+		rm = new Room[maxRoom];
 		maps = new Map[maxMap];
 		player = new Player(this, keyH);
 		entityList = new ArrayList<>();
@@ -178,6 +179,7 @@ public class GamePanel extends JPanel implements Runnable {
 				ui.draw(g2);
 			} else if (gameState == GameState.cutsceneState) {
 				rm[currentRoom].draw(g2);
+				//g2.drawImage(background, 0, 0, this);
 				csManager.draw(g2);
 				ui.draw(g2);
 			} else if (gameState == GameState.examineState) {
@@ -189,7 +191,7 @@ public class GamePanel extends JPanel implements Runnable {
 			} else if (gameState == GameState.glossaryState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.playState) {
-				rm[currentRoom].draw(g2);
+				//rm[currentRoom].draw(g2);
 				tileM.draw(g2);
 				for(int i = 0; i < iTile[currentMap.getId()].length; i++) {
 					if(iTile[currentMap.getId()][i] != null) {

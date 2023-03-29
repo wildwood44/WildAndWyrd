@@ -26,26 +26,23 @@ public class Room {
 		this.roomY = 0;
 		this.gp = gp;
 	}
+	
+	public void getBackgroundImage() {
+		
+	}
+
 
 	public void draw(Graphics2D g2) {
-		while (this.roomX < this.room_width && this.roomY < this.room_height) {
-			int var10000 = this.roomX;
-			int worldX = var10000 * 64;
-			var10000 = this.roomY;
-			int worldY = var10000 * 64;
-			this.screenX = worldX - this.gp.player.worldX * this.gp.player.screenX;
-			this.screenY = worldY - this.gp.player.worldY * this.gp.player.screenY;
-			System.out.println(this.image);
-			if (worldX + 64 > this.gp.player.worldX - this.gp.player.screenX) {
-				if (worldX - 64 < this.gp.player.worldX + this.gp.player.screenX) {
-					if (worldY + 64 > this.gp.player.worldY - this.gp.player.screenY) {
-						var10000 = this.gp.player.worldY;
-						var10000 = this.gp.player.screenY;
-					}
+		this.g2 = g2;
+		//new Thread(() -> {
+			//while(true) {
+				if (image != null) {
+					//continue;
+					getBackgroundImage();
 				}
-			}
-		}
-
+			//}
+		//}).start();
+		
 	}
 
 	public void setDefaultValues() {

@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.tile.UtilityTool;
@@ -44,6 +46,7 @@ public class UI {
 	public int topValue = 0;
 	int charIndex = 0;
 	String combinedText = "";
+	public JPanel bgPanel[] = new JPanel[10];
 
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -95,10 +98,10 @@ public class UI {
 	public void drawHeadingScreen(String text) {
 		int x = 5;
 		int y = 20;
-		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
-		this.g2.setColor(Color.white);
-		this.message = text;
-		this.g2.drawString(this.message, x, y);
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		message = text;
+		g2.drawString(message, x, y);
 	}
 
 	public void drawItemLabel() {
@@ -173,10 +176,8 @@ public class UI {
 					this.charIndex = 0;
 					this.combinedText = "";
 					gameState = this.gp.gameState;
-					this.gp.getClass();
 					if (gameState != GameState.dialogueState) {
 						gameState = this.gp.gameState;
-						this.gp.getClass();
 						if (gameState != GameState.cutsceneState) {
 							break label72;
 						}
@@ -190,10 +191,8 @@ public class UI {
 					this.charIndex = 0;
 					this.combinedText = "";
 					gameState = this.gp.gameState;
-					this.gp.getClass();
 					if (gameState != GameState.dialogueState) {
 						gameState = this.gp.gameState;
-						this.gp.getClass();
 						if (gameState != GameState.cutsceneState) {
 							break label67;
 						}
@@ -229,12 +228,12 @@ public class UI {
 					&& !line.equals("Thay") && !line.equals("Florence") && !line.equals("Alder") && !line.equals("Kyla")
 					&& !line.equals("Shrew") && !line.equals("Vole") && !line.equals("Mole") && !line.equals("Hedgehog")
 					&& !line.equals("Woman")) {
-				this.g2.setFont(this.g2.getFont().deriveFont(0, 18.0F));
-				this.g2.drawString(line, x, y);
+				g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+				g2.drawString(line, x, y);
 				y += 30;
 			} else {
-				this.g2.setFont(this.g2.getFont().deriveFont(1, 24.0F));
-				this.g2.drawString(line, x, y);
+				g2.setFont(g2.getFont().deriveFont(1, 24.0F));
+				g2.drawString(line, x, y);
 				y += 40;
 			}
 		}
@@ -246,7 +245,7 @@ public class UI {
 		int y = gp.tileSize * 5;
 		int width = gp.screenWidth - gp.tileSize * 3;
 		int height = gp.tileSize * 3;
-		this.drawDialogueWindow(x, y, width, height);
+		drawDialogueWindow(x, y, width, height);
 		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 		g2.setColor(Color.white);
 		x += gp.tileSize;
@@ -362,26 +361,18 @@ public class UI {
 		int cursorY = (int) (var10000 + gp.tileSize * 0.75D * this.slotCol);
 		int cursorWidth = gp.tileSize * 2;
 		int cursorHeight = 30;
-		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
-		this.g2.setColor(Color.white);
-		this.g2.setStroke(new BasicStroke());
-		Graphics2D var12 = this.g2;
-		var12.drawString("Save", 30, gp.tileSize);
-		var12 = this.g2;
-		var12.drawString("Stats", 30, (int) (gp.tileSize * 1.75D));
-		var12 = this.g2;
-		var12.drawString("Items", 30, (int) (gp.tileSize * 2.5D));
-		var12 = this.g2;
-		var12.drawString("Equipment", 30, (int) (gp.tileSize * 3.25D));
-		var12 = this.g2;
-		var12.drawString("Objecties", 30, gp.tileSize * 4);
-		var12 = this.g2;
-		var12.drawString("Skill", 30, (int) (gp.tileSize * 4.75D));
-		var12 = this.g2;
-		var12.drawString("Glossary", 30, (int) (gp.tileSize * 5.5D));
-		var12 = this.g2;
-		var12.drawString("Quit", 30, (int) (gp.tileSize * 6.25D));
-		this.g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke());
+		g2.drawString("Save", 30, gp.tileSize);
+		g2.drawString("Stats", 30, (int) (gp.tileSize * 1.75D));
+		g2.drawString("Items", 30, (int) (gp.tileSize * 2.5D));
+		g2.drawString("Equipment", 30, (int) (gp.tileSize * 3.25D));
+		g2.drawString("Objecties", 30, gp.tileSize * 4);
+		g2.drawString("Skill", 30, (int) (gp.tileSize * 4.75D));
+		g2.drawString("Glossary", 30, (int) (gp.tileSize * 5.5D));
+		g2.drawString("Quit", 30, (int) (gp.tileSize * 6.25D));
+		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 	}
 
 	public void drawInventoryScreen() {
@@ -573,7 +564,7 @@ public class UI {
 	}
 
 	public void drawBackground(String image) {
-		UtilityTool uTool = new UtilityTool();
+		/*UtilityTool uTool = new UtilityTool();
 		BufferedImage background = null;
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream(image));
@@ -581,7 +572,14 @@ public class UI {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		g2.drawImage(background, 0, 0, gp.screenWidth, gp.screenHeight, (ImageObserver) null);
+		g2.drawImage(background, 0, 0, gp.screenWidth, gp.screenHeight, (ImageObserver) null);*/
+		System.out.println("Ping");
+		bgPanel[1] = new JPanel();
+		bgPanel[1].setBounds(0,0,gp.screenWidth,gp.screenHeight);
+		bgPanel[1].setBackground(Color.black);
+		bgPanel[1].setLayout(null);
+		//gp.window.add
+		ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource(image));
 	}
 
 	public int getXforCenteredText(String text) {
