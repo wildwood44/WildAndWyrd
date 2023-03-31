@@ -1,10 +1,7 @@
 package wildwyrd.game.cutscenes;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
 
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
@@ -42,12 +39,12 @@ public class CutsceneManager {
 			gp.ui.drawHeadingScreen("Prologue");
 			gp.ui.drawMessageScreen(
 					"The game will now begin. Press any key to continue.:You may skip the dialogue by pressing 'skip'.");
+			gp.c.setSprites();
 		} else if (scenePhase == 1) {
 			//gp.ui.drawBackground("/res/backgrounds/Forton_Backgound.png");
 			//gp.currentRoom = new Rm_Forton(gp);
 			gp.currentRoom = 1;
 			gp.c.setCutscene(0, read);
-			gp.c.setSprites();
 			gp.ui.drawDialogueScreen();
 		} else if (scenePhase == 2) {
 			gp.currentRoom = 0;

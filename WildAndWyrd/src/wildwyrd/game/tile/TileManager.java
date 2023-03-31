@@ -17,7 +17,7 @@ public class TileManager {
 
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
-		tile = new Tile[10];
+		tile = new Tile[11];
 		mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 		getTileImage();
 		loadMap("/res/maps/map01",0);
@@ -44,6 +44,12 @@ public class TileManager {
 			setup(2, "Rockwall_Tile", true);
 			setup(3, "bramble_tile", true);
 			setup(4, "nettle_tile", true);
+			setup(5, "img_tree1", true);
+			setup(6, "img_tree2", true);
+			setup(7, "img_tree3", true);
+			setup(8, "img_tree4", true);
+			setup(9, "img_tree5", true);
+			setup(10, "img_tree6", true);
 		}
 		
 	}

@@ -1,5 +1,6 @@
 package wildwyrd.game.object;
 
+import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.items.Itm_Bandage;
 import wildwyrd.game.items.Itm_Hazelnut;
@@ -103,9 +104,45 @@ public class AssetSetter {
 		gp.obj[2][0] = new Obj_P_Mushroom(gp, new Itm_P_Mushroom(gp));
 		gp.obj[2][0].worldX = 10 * gp.tileSize;
 		gp.obj[2][0].worldY = 8 * gp.tileSize;
-		gp.obj[2][3] = new Plant_1(gp);
-		gp.obj[2][3].worldX = 15 * gp.tileSize;
-		gp.obj[2][3].worldY = 6 * gp.tileSize;
+		gp.obj[2][1] = new Plant_1(gp);
+		gp.obj[2][1].worldX = 15 * gp.tileSize;
+		gp.obj[2][1].worldY = 6 * gp.tileSize;
+		//Object3x2(Obj_Tree);
+		for(int i = 1; i <= 6; i++) {
+			int xAxis = 0;
+			int yAxis = 0;
+			if(i > 2) {
+				xAxis++;
+			}
+			if(i > 4) {
+				xAxis++;
+			}
+			if(i % 2 == 0) {
+				yAxis++;
+			}
+			System.out.println(i + " " + 1 * xAxis + " " + 12 * yAxis);
+			gp.obj[2][i + 1] = new Obj_Tree(gp,i);
+			gp.obj[2][i + 1].worldX = (1 + xAxis) * gp.tileSize;
+			gp.obj[2][i + 1].worldY = (12 + yAxis) * gp.tileSize;
+		}
+		/*gp.obj[2][2] = new Obj_Tree(gp,1);
+		gp.obj[2][2].worldX = 1 * gp.tileSize;
+		gp.obj[2][2].worldY = 12 * gp.tileSize;
+		gp.obj[2][3] = new Obj_Tree(gp,2);
+		gp.obj[2][3].worldX = 1 * gp.tileSize;
+		gp.obj[2][3].worldY = 13 * gp.tileSize;
+		gp.obj[2][4] = new Obj_Tree(gp,3);
+		gp.obj[2][4].worldX = 2 * gp.tileSize;
+		gp.obj[2][4].worldY = 12 * gp.tileSize;
+		gp.obj[2][5] = new Obj_Tree(gp,4);
+		gp.obj[2][5].worldX = 2 * gp.tileSize;
+		gp.obj[2][5].worldY = 13 * gp.tileSize;
+		gp.obj[2][6] = new Obj_Tree(gp,5);
+		gp.obj[2][6].worldX = 3 * gp.tileSize;
+		gp.obj[2][6].worldY = 12 * gp.tileSize;
+		gp.obj[2][7] = new Obj_Tree(gp,6);
+		gp.obj[2][7].worldX = 3 * gp.tileSize;
+		gp.obj[2][7].worldY = 13 * gp.tileSize;*/
 	}
 	public void setInteractiveTile() {
 		gp.iTile[2][0] = new IT_StoneDoor(gp, 15, 3);
@@ -114,5 +151,24 @@ public class AssetSetter {
 	}
 	public int getRandomNumber(int min, int max) {
 	    return (int) ((Math.random() * (max - min)) + min);
+	}
+	public void Object3x2(Entity en) {
+		for(int i = 1; i <= 6; i++) {
+			int xAxis = 0;
+			int yAxis = 0;
+			if(i > 2) {
+				xAxis++;
+			}
+			if(i > 4) {
+				xAxis++;
+			}
+			if(i % 2 == 0) {
+				yAxis++;
+			}
+			System.out.println(i + " " + 1 * xAxis + " " + 12 * yAxis);
+			//gp.obj[2][i + 1] = new en(gp,i);
+			gp.obj[2][i + 1].worldX = (1 + xAxis) * gp.tileSize;
+			gp.obj[2][i + 1].worldY = (12 + yAxis) * gp.tileSize;
+		}
 	}
 }
