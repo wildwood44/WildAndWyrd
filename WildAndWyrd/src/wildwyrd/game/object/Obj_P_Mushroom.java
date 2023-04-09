@@ -16,7 +16,7 @@ public class Obj_P_Mushroom extends Entity {
 		type = 3;
 		collision = true;
 
-		image = setup("/res/items/Parasol_Mushroom");
+		image = setup("/res/items/Parasol_Mushroom", gp.tileSize, gp.tileSize);
 		solidArea.x = 20;
 		solidAreaDefaultX = solidArea.x;
 		setDialogue();

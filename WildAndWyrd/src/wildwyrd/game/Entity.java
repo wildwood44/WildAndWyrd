@@ -65,14 +65,27 @@ public class Entity {
 			case "right": worldX += speed; break;
 			}
 		}
+		spriteCounter++;
+		if (spriteCounter > 10) {
+			if(spriteNum == 1) {
+				spriteNum = 2;
+			} else if (spriteNum == 2) {
+				spriteNum = 3;
+			} else if (spriteNum == 3) {
+				spriteNum = 4;
+			} else if (spriteNum == 4) {
+				spriteNum = 1;
+			}
+			spriteCounter = 0;
+		}
 	}
 
-	public BufferedImage setup(String imagePath) {
+	public BufferedImage setup(String imagePath, int width, int height) {
 		UtilityTool uTool = new UtilityTool();
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
-			image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+			image = uTool.scaleImage(image, width, height);
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -101,6 +114,16 @@ public class Entity {
 
 	public int getRow() {
 		return (worldY + solidArea.y) / gp.tileSize;
+	}
+	
+	public int GetCentreX() {
+		int centreX = worldX + solidArea.width;
+		return centreX;
+	}
+	
+	public int GetCentreY() {
+		int centreY = worldY + solidArea.height;
+		return centreY;
 	}
 
 	public void draw(Graphics2D g2) {
@@ -131,7 +154,7 @@ public class Entity {
 			    gp.player.worldY < gp.player.screenY ||
 			    rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX ||
 			    bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
-			   g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null); 
+			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null); 
 		}
 	}
 
@@ -143,6 +166,27 @@ public class Entity {
 	}
 
 	public void interact() {
+	}
+	
+	public void speak() {
+		
+	}
+	
+	public void facePlayer() {
+		switch(gp.player.direction) {
+		case "up":
+			direction = "down";
+			break;
+		case "down":
+			direction = "up";
+			break;
+		case "left":
+			direction = "right";
+			break;
+		case "right":
+			direction = "left";
+			break;
+		}
 	}
 
 	public int getDetected(Entity user, Entity[][] target, String targetName) {

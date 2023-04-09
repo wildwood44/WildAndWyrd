@@ -13,7 +13,7 @@ public class Obj_Table extends Entity {
 		type = 3;
 		collision = true;
 
-		image = setup("/res/objects/img_table2");
+		image = setup("/res/objects/img_table2", gp.tileSize, gp.tileSize);
 
 		setDialogue();
 		solidArea.width = 60;

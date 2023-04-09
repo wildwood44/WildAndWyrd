@@ -79,12 +79,12 @@ public class Player extends Entity {
 				direction = "right";
 			}
 			
-			gp.eHandler.checkEvent();
-
 			collisionOn = false;
 			gp.cChecker.checkTile(this);
 			objIndex = gp.cChecker.checkObject(this, true);
 			pickUpObject(objIndex);
+			int npcIndex = gp.cChecker.checkEntity(this,gp.npc);
+			interactNPC(npcIndex);
 			int iTileIndex = gp.cChecker.checkEntity(this,gp.iTile);
 			changeInteractiveTile(iTileIndex);
 			gp.eHandler.checkEvent();
@@ -145,6 +145,14 @@ public class Player extends Entity {
 		if (i != 999) {
 			if (gp.obj[gp.currentMap.getId()][i].type == 3 && keyH.enterPressed) {
 				gp.obj[gp.currentMap.getId()][i].interact();
+			}
+		}
+	}
+	
+	public void interactNPC(int i) {
+		if (i != 999) {
+			if (keyH.enterPressed) {
+				gp.npc[gp.currentMap.getId()][i].speak();
 			}
 		}
 	}

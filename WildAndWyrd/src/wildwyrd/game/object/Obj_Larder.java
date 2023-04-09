@@ -1,7 +1,5 @@
 package wildwyrd.game.object;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
@@ -15,7 +13,7 @@ public class Obj_Larder extends Entity {
 		type = 3;
 		collision = true;
 
-		image = setup("/res/objects/img_cupboard");
+		image = setup("/res/objects/img_cupboard", gp.tileSize, gp.tileSize);
 
 		setDialogue();
 		solidArea.width = 20;

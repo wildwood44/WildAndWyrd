@@ -16,7 +16,7 @@ public class Obj_Pot extends Entity {
 		type = 3;
 		collision = true;
 
-		image = setup("/res/objects/img_clay_pot_four");
+		image = setup("/res/objects/img_clay_pot_four", gp.tileSize, gp.tileSize);
 
 		setDialogue();
 	}

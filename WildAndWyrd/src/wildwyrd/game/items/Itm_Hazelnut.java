@@ -12,7 +12,7 @@ public class Itm_Hazelnut extends Entity {
 		name = "Hazelnut";
 		description = "Seed of a hazel tree.";
 
-		image = setup("/res/items/img_hazelnut");
+		image = setup("/res/items/img_hazelnut", gp.tileSize, gp.tileSize);
 
 	}
 

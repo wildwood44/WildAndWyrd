@@ -12,7 +12,7 @@ public class Itm_P_Mushroom extends Entity {
 		name = "Parasol Mushroom";
 		description = "";
 
-		image = setup("/res/items/Parasol_Mushroom");
+		image = setup("/res/items/Parasol_Mushroom", gp.tileSize, gp.tileSize);
 	}
 
 	public void use() {

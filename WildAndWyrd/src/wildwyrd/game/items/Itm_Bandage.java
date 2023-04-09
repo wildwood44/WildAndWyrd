@@ -12,7 +12,7 @@ public class Itm_Bandage extends Entity {
 		name = "Bandage";
 		description = "A cloth bandage to treat :wounds.";
 
-		image = setup("/res/items/img_bandage");
+		image = setup("/res/items/img_bandage", gp.tileSize, gp.tileSize);
 
 	}
 

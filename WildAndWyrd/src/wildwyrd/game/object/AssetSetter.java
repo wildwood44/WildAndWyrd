@@ -10,6 +10,8 @@ import wildwyrd.game.rooms.Rm_Forton;
 import wildwyrd.game.rooms.Rm_Kitchen;
 import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.MapType;
+import wildwyrd.npc.NPC_Dilecto;
+import wildwyrd.npc.NPC_Florence;
 
 public class AssetSetter {
 	GamePanel gp;
@@ -21,7 +23,7 @@ public class AssetSetter {
 	public void setMaps() {
 		gp.maps[0] = new Map(gp, MapType.INTERIOR, 0, 20, 12);
 		gp.maps[1] = new Map(gp, MapType.INTERIOR, 1, 17, 12);
-		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 31, 20);
+		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 31, 17);
 		gp.maps[3] = new Map(gp, MapType.OUTSIDE, 3, 31, 20);
 	}
 
@@ -107,42 +109,60 @@ public class AssetSetter {
 		gp.obj[2][1] = new Plant_1(gp);
 		gp.obj[2][1].worldX = 15 * gp.tileSize;
 		gp.obj[2][1].worldY = 6 * gp.tileSize;
-		//Object3x2(Obj_Tree);
-		for(int i = 1; i <= 6; i++) {
-			int xAxis = 0;
-			int yAxis = 0;
-			if(i > 2) {
-				xAxis++;
-			}
-			if(i > 4) {
-				xAxis++;
-			}
-			if(i % 2 == 0) {
-				yAxis++;
-			}
-			System.out.println(i + " " + 1 * xAxis + " " + 12 * yAxis);
-			gp.obj[2][i + 1] = new Obj_Tree(gp,i);
-			gp.obj[2][i + 1].worldX = (1 + xAxis) * gp.tileSize;
-			gp.obj[2][i + 1].worldY = (12 + yAxis) * gp.tileSize;
-		}
-		/*gp.obj[2][2] = new Obj_Tree(gp,1);
+		gp.obj[2][2] = new Obj_Tree(gp,1);
 		gp.obj[2][2].worldX = 1 * gp.tileSize;
 		gp.obj[2][2].worldY = 12 * gp.tileSize;
-		gp.obj[2][3] = new Obj_Tree(gp,2);
+		gp.obj[2][3] = new Obj_Tree(gp,7);
 		gp.obj[2][3].worldX = 1 * gp.tileSize;
 		gp.obj[2][3].worldY = 13 * gp.tileSize;
 		gp.obj[2][4] = new Obj_Tree(gp,3);
 		gp.obj[2][4].worldX = 2 * gp.tileSize;
 		gp.obj[2][4].worldY = 12 * gp.tileSize;
-		gp.obj[2][5] = new Obj_Tree(gp,4);
+		gp.obj[2][5] = new Obj_Tree(gp,8);
 		gp.obj[2][5].worldX = 2 * gp.tileSize;
 		gp.obj[2][5].worldY = 13 * gp.tileSize;
 		gp.obj[2][6] = new Obj_Tree(gp,5);
 		gp.obj[2][6].worldX = 3 * gp.tileSize;
 		gp.obj[2][6].worldY = 12 * gp.tileSize;
-		gp.obj[2][7] = new Obj_Tree(gp,6);
+		gp.obj[2][7] = new Obj_Tree(gp,9);
 		gp.obj[2][7].worldX = 3 * gp.tileSize;
-		gp.obj[2][7].worldY = 13 * gp.tileSize;*/
+		gp.obj[2][7].worldY = 13 * gp.tileSize;
+		gp.obj[2][8] = new Obj_SilverBirch(gp, 1);
+		gp.obj[2][8].worldX = 28 * gp.tileSize;
+		gp.obj[2][8].worldY = 8 * gp.tileSize;
+		gp.obj[2][9] = new Obj_SilverBirch(gp, 2);
+		gp.obj[2][9].worldX = 28 * gp.tileSize;
+		gp.obj[2][9].worldY = 9 * gp.tileSize;
+		gp.obj[2][10] = new Obj_SilverBirch(gp, 3);
+		gp.obj[2][10].worldX = 29 * gp.tileSize;
+		gp.obj[2][10].worldY = 8 * gp.tileSize;
+		gp.obj[2][11] = new Obj_SilverBirch(gp, 4);
+		gp.obj[2][11].worldX = 29 * gp.tileSize;
+		gp.obj[2][11].worldY = 9 * gp.tileSize;
+		gp.obj[2][12] = new Obj_Rock(gp);
+		gp.obj[2][12].worldX = 23 * gp.tileSize;
+		gp.obj[2][12].worldY = 9 * gp.tileSize;
+		/**/
+		gp.obj[3][0] = new Obj_SilverBirch(gp, 1);
+		gp.obj[3][0].worldX = 25 * gp.tileSize;
+		gp.obj[3][0].worldY = 8 * gp.tileSize;
+		gp.obj[3][1] = new Obj_SilverBirch(gp, 2);
+		gp.obj[3][1].worldX = 25 * gp.tileSize;
+		gp.obj[3][1].worldY = 9 * gp.tileSize;
+		gp.obj[3][2] = new Obj_SilverBirch(gp, 3);
+		gp.obj[3][2].worldX = 26 * gp.tileSize;
+		gp.obj[3][2].worldY = 8 * gp.tileSize;
+		gp.obj[3][3] = new Obj_SilverBirch(gp, 4);
+		gp.obj[3][3].worldX = 26 * gp.tileSize;
+		gp.obj[3][3].worldY = 9 * gp.tileSize;
+	}
+	public void setNPC() {
+		gp.npc[2][0] = new NPC_Florence(gp);
+		gp.npc[2][0].worldX = gp.tileSize * 14;
+		gp.npc[2][0].worldY = gp.tileSize * 4;
+		gp.npc[2][1] = new NPC_Dilecto(gp);
+		gp.npc[2][1].worldX = gp.tileSize * 13;
+		gp.npc[2][1].worldY = gp.tileSize * 4;
 	}
 	public void setInteractiveTile() {
 		gp.iTile[2][0] = new IT_StoneDoor(gp, 15, 3);
@@ -151,6 +171,9 @@ public class AssetSetter {
 	}
 	public int getRandomNumber(int min, int max) {
 	    return (int) ((Math.random() * (max - min)) + min);
+	}
+	public void Object1x2(Entity en) {
+		
 	}
 	public void Object3x2(Entity en) {
 		for(int i = 1; i <= 6; i++) {

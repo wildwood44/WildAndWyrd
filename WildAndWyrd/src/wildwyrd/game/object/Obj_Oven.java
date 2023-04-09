@@ -13,7 +13,7 @@ public class Obj_Oven extends Entity {
 		type = 3;
 		collision = true;
 
-		image = setup("/res/objects/img_Oven");
+		image = setup("/res/objects/img_Oven", gp.tileSize, gp.tileSize);
 
 		solidArea.width = 42;
 		solidArea.x = 10;

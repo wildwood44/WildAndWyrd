@@ -15,7 +15,7 @@ public class Obj_Tree extends Entity {
 		type = 3;
 		collision = true;
 
-		image = setup("/res/objects/img_tree" + num);
+		image = setup("/res/objects/img_tree" + num, gp.tileSize, gp.tileSize);
 
 		setDialogue();
 	}

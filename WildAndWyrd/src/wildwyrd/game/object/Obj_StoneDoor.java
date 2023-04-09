@@ -17,8 +17,8 @@ public class Obj_StoneDoor extends Entity {
 		type = 3;
 		collision = true;
 
-		image = setup("/res/objects/Rockwall_Door1");
-		image2 = setup("/res/objects/Rockwall_Door4");
+		image = setup("/res/objects/Rockwall_Door1", gp.tileSize, gp.tileSize);
+		image2 = setup("/res/objects/Rockwall_Door4", gp.tileSize, gp.tileSize);
 		timer = new Timer(20, (ActionListener) this);
 		solidArea.height = 60;
 		solidArea.y = 5;

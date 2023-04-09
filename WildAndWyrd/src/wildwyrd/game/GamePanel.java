@@ -102,9 +102,9 @@ public class GamePanel extends JPanel implements Runnable {
 	public void setupGame() {
 		aSetter.setRooms();
 		aSetter.setObject();
+		aSetter.setNPC();
 		aSetter.setMaps();
 		aSetter.setInteractiveTile();
-		System.out.println(iTile[2][0]);
 		gameState = GameState.titleState;
 		currentMap = maps[0];
 		tileM = new TileManager(this);
@@ -199,10 +199,18 @@ public class GamePanel extends JPanel implements Runnable {
 					}
 				}
 				entityList.add(player);
-				for (int i = 0; i < obj[currentMap.getId()].length; ++i) {
+				//OBJECTS
+				for (int i = 0; i < obj[currentMap.getId()].length; i++) {
 					if (obj[currentMap.getId()][i] != null) {
 						entityList.add(obj[currentMap.getId()][i]);
-						//this.obj[1][i].draw(this.g2, this);
+						//this.obj[1][i].draw(g2, this);
+					}
+				}
+				//NPC
+				for (int i = 0; i < npc[currentMap.getId()].length; i++) {
+					if (npc[currentMap.getId()][i] != null) {
+						//entityList.add(npc[currentMap.getId()][i]);
+						npc[currentMap.getId()][i].draw(g2);
 					}
 				}
 				Collections.sort(entityList, new Comparator<Entity>() {

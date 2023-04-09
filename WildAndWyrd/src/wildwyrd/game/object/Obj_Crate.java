@@ -13,7 +13,7 @@ public class Obj_Crate extends Entity {
 		type = 3;
 		collision = true;
 
-		image = setup("/res/objects/img_create");
+		image = setup("/res/objects/img_create", gp.tileSize, gp.tileSize);
 
 		setDialogue();
 		solidArea.width = 60;

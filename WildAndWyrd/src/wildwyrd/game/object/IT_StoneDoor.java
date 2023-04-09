@@ -17,7 +17,7 @@ public class IT_StoneDoor extends InteractiveTile {
 		worldX = gp.tileSize * col;
 		worldY = gp.tileSize * row;
 		
-		image = setup("/res/objects/Rockwall_Door1");
+		image = setup("/res/objects/Rockwall_Door1", gp.tileSize, gp.tileSize);
 		//image2 = setup("/res/objects/Rockwall_Door4");
 		transformable = true;
 		collisionOn = true;

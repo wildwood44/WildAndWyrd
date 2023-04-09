@@ -21,7 +21,6 @@ public class KeyHandler implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
 		GameState gameState = gp.gameState;
-		this.gp.getClass();
 		GamePanel var3;
 		if (gameState == GameState.titleState) {
 			if (code == 87) {
@@ -96,7 +95,6 @@ public class KeyHandler implements KeyListener {
 						case 27 :
 							this.gp.ui.resetSlots();
 							var3 = this.gp;
-							this.gp.getClass();
 							var3.gameState = GameState.menuState;
 							break;
 						case 37 :
@@ -138,7 +136,6 @@ public class KeyHandler implements KeyListener {
 							case 27 :
 								this.gp.ui.resetSlots();
 								var3 = this.gp;
-								this.gp.getClass();
 								var3.gameState = GameState.menuState;
 								break;
 							case 37 :
@@ -214,9 +211,9 @@ public class KeyHandler implements KeyListener {
 						if (gameState == GameState.playState) {
 							switch (e.getKeyCode()) {
 								case 10 :
-									this.enterPressed = true;
-									if (this.gp.selectedObj != null) {
-										this.gp.obj[1][this.gp.selectedObj].interact();
+									enterPressed = true;
+									if (gp.selectedObj != null) {
+										gp.obj[1][this.gp.selectedObj].interact();
 									}
 									break;
 								case 27 :

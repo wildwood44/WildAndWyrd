@@ -13,7 +13,7 @@ public class Obj_Pots extends Entity {
 		type = 3;
 		collision = true;
 
-		image = setup("/res/objects/img_pots");
+		image = setup("/res/objects/img_pots", gp.tileSize, gp.tileSize);
 
 		solidArea.height = 60;
 		solidArea.y = 5;

@@ -16,11 +16,8 @@ public class Obj_Alder_Window extends Entity {
 		this.type = 3;
 		this.collision = false;
 	
-		try {
-			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/img_window_2.png"));
-		} catch (IOException var3) {
-			var3.printStackTrace();
-		}
+		image = setup("/res/objects/img_window_2", gp.tileSize, gp.tileSize);
+
 		this.setDialogue();
 		this.solidArea.y = 56;
 		this.solidAreaDefaultY = this.solidArea.y;
@@ -32,7 +29,7 @@ public class Obj_Alder_Window extends Entity {
 	}
 
 	public void interact() {
-		this.startDialogue(this, 0);
-		this.gp.keyH.enterPressed = false;
+		startDialogue(this, 0);
+		gp.keyH.enterPressed = false;
 	}
 }
