@@ -142,9 +142,12 @@ public class AssetSetter {
 		gp.obj[2][11] = new Obj_SilverBirch(gp, 4);
 		gp.obj[2][11].worldX = 29 * gp.tileSize;
 		gp.obj[2][11].worldY = 9 * gp.tileSize;
-		gp.obj[2][12] = new Obj_Rock(gp);
+		gp.obj[2][12] = new Obj_Rock(gp, 0);
 		gp.obj[2][12].worldX = 23 * gp.tileSize;
 		gp.obj[2][12].worldY = 9 * gp.tileSize;
+		gp.obj[2][13] = new Obj_Rock(gp, 1);
+		gp.obj[2][13].worldX = 30 * gp.tileSize;
+		gp.obj[2][13].worldY = 5 * gp.tileSize;
 		/**/
 		gp.obj[3][0] = new Obj_SilverBirch(gp, 1);
 		gp.obj[3][0].worldX = 1 * gp.tileSize;

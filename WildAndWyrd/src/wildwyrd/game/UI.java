@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import wildwyrd.game.cutscenes.Cutscene;
+import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.tile.UtilityTool;
 
 public class UI {
@@ -151,90 +152,61 @@ public class UI {
 		int y = gp.tileSize * 5;
 		int width = gp.screenWidth - gp.tileSize * 3;
 		int height = gp.tileSize * 3;
-		String[][] dia = gp.c.dialogues;
+		Dialoge[][] dia = gp.c.dialogues;
 		drawImageWindow(300, 0, 200, 400);
 		drawDialogueWindow(x, y, width, height);
 		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 		g2.setColor(Color.white);
 		x += gp.tileSize;
 		y += gp.tileSize;
-		GameState gameState;
-		if (dia[this.gp.c.dialogueSet][this.gp.c.dialogueIndex] != null) {
-			char[] characters = this.gp.c.dialogues[this.gp.c.dialogueSet][this.gp.c.dialogueIndex].toCharArray();
-			if (this.charIndex < characters.length) {
-				String s = String.valueOf(characters[this.charIndex]);
-				this.combinedText = this.combinedText + s;
-				this.currentDialogue = this.combinedText;
-				++this.charIndex;
-				if (this.gp.keyH.enterPressed) {
-					this.currentDialogue = this.gp.c.dialogues[this.gp.c.dialogueSet][this.gp.c.dialogueIndex];
+		if (dia[gp.c.dialogueSet][gp.c.dialogueIndex] != null) {
+			char[] characters = gp.c.dialogues[gp.c.dialogueSet][gp.c.dialogueIndex].getText().toCharArray();
+			if (charIndex < characters.length) {
+				String s = String.valueOf(characters[charIndex]);
+				combinedText = combinedText + s;
+				currentDialogue = combinedText;
+				charIndex++;
+				if (gp.keyH.enterPressed) {
+					currentDialogue = gp.c.dialogues[gp.c.dialogueSet][gp.c.dialogueIndex].getText();
 				}
 			}
 
-			if (this.gp.keyH.enterPressed) {
-				label72 : {
-					this.charIndex = 0;
-					this.combinedText = "";
-					gameState = this.gp.gameState;
-					if (gameState != GameState.dialogueState) {
-						gameState = this.gp.gameState;
-						if (gameState != GameState.cutsceneState) {
-							break label72;
-						}
-					}
-
-					++this.gp.c.dialogueIndex;
-					this.gp.keyH.enterPressed = false;
+			if (gp.keyH.enterPressed == true) {
+				this.charIndex = 0;
+				this.combinedText = "";
+				if (gp.gameState == GameState.dialogueState || 
+					gp.gameState == GameState.cutsceneState) {
+						gp.c.dialogueIndex++;
+						gp.keyH.enterPressed = false;
 				}
-			} else if (this.gp.keyH.skipPressed) {
-				label67 : {
-					this.charIndex = 0;
-					this.combinedText = "";
-					gameState = this.gp.gameState;
-					if (gameState != GameState.dialogueState) {
-						gameState = this.gp.gameState;
-						if (gameState != GameState.cutsceneState) {
-							break label67;
-						}
+			} else if (gp.keyH.skipPressed) {
+				charIndex = 0;
+				combinedText = "";
+				if (gp.gameState == GameState.dialogueState ||
+					gp.gameState == GameState.cutsceneState) {
+						gp.c.dialogueIndex = gp.c.dialogues.length - 1;
+						gp.keyH.skipPressed = false;
 					}
-
-					this.gp.c.dialogueIndex = this.gp.c.dialogues.length - 1;
-					this.gp.keyH.skipPressed = false;
 				}
-			}
 		} else {
-			this.c.dialogueIndex = 0;
-			gameState = this.gp.gameState;
-			this.gp.getClass();
-			if (gameState == GameState.dialogueState) {
-				GamePanel var12 = this.gp;
-				this.gp.getClass();
-				var12.gameState = GameState.playState;
+			c.dialogueIndex = 0;
+			if (gp.gameState == GameState.dialogueState) {
+				gp.gameState = GameState.playState;
 			}
-
-			gameState = this.gp.gameState;
-			this.gp.getClass();
-			if (gameState == GameState.cutsceneState) {
+			if (gp.gameState == GameState.cutsceneState) {
 				++this.gp.csManager.scenePhase;
 			}
 		}
-
-		String[] var9;
-		int var8 = (var9 = this.currentDialogue.split(":")).length;
-
-		for (int var11 = 0; var11 < var8; ++var11) {
-			String line = var9[var11];
-			if (!line.equals("Dilecto") && !line.equals("Dean") && !line.equals("Ralph") && !line.equals("Plumm")
-					&& !line.equals("Thay") && !line.equals("Florence") && !line.equals("Alder") && !line.equals("Kyla")
-					&& !line.equals("Shrew") && !line.equals("Vole") && !line.equals("Mole") && !line.equals("Hedgehog")
-					&& !line.equals("Woman")) {
+		if(gp.c.dialogues[gp.c.dialogueSet][gp.c.dialogueIndex] != null) {
+			if (gp.c.dialogues[gp.c.dialogueSet][gp.c.dialogueIndex].getSpeaker() != null) {
+				g2.setFont(g2.getFont().deriveFont(1, 24.0F));
+				g2.drawString(gp.c.dialogues[gp.c.dialogueSet][gp.c.dialogueIndex].getSpeaker(), x, y);
+				y += 40;
+			}
+			for (String line : currentDialogue.split(":")) {
 				g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 				g2.drawString(line, x, y);
 				y += 30;
-			} else {
-				g2.setFont(g2.getFont().deriveFont(1, 24.0F));
-				g2.drawString(line, x, y);
-				y += 40;
 			}
 		}
 
@@ -250,7 +222,6 @@ public class UI {
 		g2.setColor(Color.white);
 		x += gp.tileSize;
 		y += gp.tileSize;
-		GameState gameState;
 		if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
 			char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getText().toCharArray();
@@ -265,47 +236,43 @@ public class UI {
 				}
 			}
 
-			if (this.selectedObject.dialogues[this.selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
+			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 1) {
 				if (this.gp.keyH.enterPressed) {
-					if (this.currentDialogue
-							.length() == this.selectedObject.dialogues[this.selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
+					if (currentDialogue
+							.length() == selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 									.getText().length()) {
-						this.charIndex = 0;
-						this.combinedText = "";
-						gameState = gp.gameState;
-						if (gameState == GameState.examineState) {
-							++this.selectedObject.dialogueIndex;
-							this.gp.keyH.enterPressed = false;
+						charIndex = 0;
+						combinedText = "";
+						if (gp.gameState == GameState.examineState) {
+							selectedObject.dialogueIndex++;
+							gp.keyH.enterPressed = false;
 						}
 					}
-				} else if (this.gp.keyH.skipPressed) {
-					this.charIndex = 0;
-					this.combinedText = "";
-					gameState = this.gp.gameState;
-					if (gameState == GameState.examineState) {
-						this.selectedObject.dialogueIndex = this.selectedObject.dialogues.length - 1;
-						this.gp.keyH.skipPressed = false;
+				} else if (gp.keyH.skipPressed) {
+					charIndex = 0;
+					combinedText = "";
+					if (gp.gameState == GameState.examineState) {
+						selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
+						gp.keyH.skipPressed = false;
 					}
 				}
-			} else if (this.selectedObject.dialogues[this.selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
+			} else if (selectedObject.dialogues[selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
 					.getType() == 2) {
-				if (this.gp.keyH.enterPressed) {
-					++this.charIndex;
-					if (this.slotyn == 0) {
+				if (gp.keyH.enterPressed) {
+					charIndex++;
+					if (slotyn == 0) {
 						binaryRes = true;
 					} else {
 						binaryRes = false;
 					}
 
-					this.charIndex = 0;
-					this.combinedText = "";
-					gameState = this.gp.gameState;
-					this.gp.getClass();
-					if (gameState == GameState.examineState) {
-						this.selectedObject.choiceResponce();
-						++this.selectedObject.dialogueIndex;
-						this.gp.keyH.enterPressed = false;
+					charIndex = 0;
+					combinedText = "";
+					if (gp.gameState == GameState.examineState) {
+						selectedObject.choiceResponce();
+						selectedObject.dialogueIndex++;
+						gp.keyH.enterPressed = false;
 					}
 				}
 
@@ -319,32 +286,30 @@ public class UI {
 				this.g2.drawString("No", x + 20, y + 80);
 			}
 		} else {
-			this.selectedObject.dialogueIndex = 0;
-			gameState = this.gp.gameState;
-			if (gameState == GameState.examineState) {
-				GamePanel gp = this.gp;
+			selectedObject.dialogueIndex = 0;
+			if (gp.gameState == GameState.examineState) {
 				gp.gameState = GameState.playState;
 			}
 		}
-
-		String[] var8;
-		int var7 = (var8 = this.currentDialogue.split(":")).length;
-
-		for (int var10 = 0; var10 < var7; ++var10) {
-			String line = var8[var10];
-			if (!line.equals("Dilecto") && !line.equals("Dean") && !line.equals("Ralph") && !line.equals("Plumm")
-					&& !line.equals("Thay") && !line.equals("Florence") && !line.equals("Alder") && !line.equals("Kyla")
-					&& !line.equals("Shrew") && !line.equals("Vole") && !line.equals("Mole") && !line.equals("Hedgehog")
-					&& !line.equals("Woman")) {
-				this.g2.setFont(this.g2.getFont().deriveFont(0, 18.0F));
-				this.g2.drawString(line, x, y);
-				y += 30;
-			} else {
-				this.g2.setFont(this.g2.getFont().deriveFont(1, 24.0F));
-				this.g2.drawString(line, x, y);
-				y += 40;
+		if(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
+			for (String line : currentDialogue.split(":")) {
+				if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker() == null) {
+					g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+					g2.drawString(line, x, y);
+					y += 30;
+				} else {
+					g2.setFont(g2.getFont().deriveFont(1, 24.0F));
+					g2.drawString(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker(), x, y);
+					y += 40;
+					g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+					g2.drawString(line, x, y);
+					y += 30;
+				}
 			}
 		}
+		
+		//System.out.println(selectedObject.dialogueSet + " " + selectedObject.dialogueIndex);
+		
 
 	}
 
@@ -537,28 +502,24 @@ public class UI {
 		double var10000 = y;
 		y = (int) (var10000 + gp.tileSize * 2.5D);
 		g2.drawString(text, x, y);
-		Graphics2D var4;
-		if (this.commandNum == 0) {
-			var4 = this.g2;
-			var4.drawString(">", x - gp.tileSize, y);
+		if (commandNum == 0) {
+			g2.drawString(">", x - gp.tileSize, y);
 		}
 
 		text = "Load Game";
-		x = this.getXforCenteredText(text);
+		x = getXforCenteredText(text);
 		y += gp.tileSize;
-		this.g2.drawString(text, x, y);
-		if (this.commandNum == 1) {
-			var4 = this.g2;
-			var4.drawString(">", x - gp.tileSize, y);
+		g2.drawString(text, x, y);
+		if (commandNum == 1) {
+			g2.drawString(">", x - gp.tileSize, y);
 		}
 
 		text = "Quit";
-		x = this.getXforCenteredText(text);
+		x = getXforCenteredText(text);
 		y += gp.tileSize;
-		this.g2.drawString(text, x, y);
-		if (this.commandNum == 2) {
-			var4 = this.g2;
-			var4.drawString(">", x - gp.tileSize, y);
+		g2.drawString(text, x, y);
+		if (commandNum == 2) {
+			g2.drawString(">", x - gp.tileSize, y);
 		}
 
 	}
@@ -573,7 +534,6 @@ public class UI {
 			e.printStackTrace();
 		}
 		g2.drawImage(background, 0, 0, gp.screenWidth, gp.screenHeight, (ImageObserver) null);*/
-		System.out.println("Ping");
 		bgPanel[1] = new JPanel();
 		bgPanel[1].setBounds(0,0,gp.screenWidth,gp.screenHeight);
 		bgPanel[1].setBackground(Color.black);

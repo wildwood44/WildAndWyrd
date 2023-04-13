@@ -9,11 +9,12 @@ import javax.imageio.ImageIO;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
 import wildwyrd.game.Story;
+import wildwyrd.game.object.Dialoge;
 
 public class Cutscene {
 	GamePanel gp;
 	Story s;
-	public String[][] dialogues = new String[100][100];
+	public Dialoge[][] dialogues = new Dialoge[100][100];
 	public BufferedImage[][] sprites = new BufferedImage[100][100];
 	public int dialogueIndex = 0;
 	public int dialogueSet = 0;
@@ -38,7 +39,7 @@ public class Cutscene {
 			for (String i = b.readLine(); i != null; i = b.readLine()) {
 				String[] line = i.split("\\$ ", 5);
 				if (line[0].equals(Integer.toString(this.s.chapter)) && line[1].equals(Integer.toString(read))
-						&& line[2].equals(Integer.toString(this.s.part))) {
+						&& line[2].equals(Integer.toString(s.part))) {
 					String[] newline = line[4].split("£");
 					String name = "";
 					String text = "";
@@ -48,24 +49,28 @@ public class Cutscene {
 					} else {
 						text = line[4].trim();
 					}
-
-					this.dialogues[dialogueSet][count] = name + text;
-					++count;
+					if (name != "") {
+						dialogues[dialogueSet][count] = new Dialoge(name, text, 1);
+					} else {
+						dialogues[dialogueSet][count] = new Dialoge(text, 1);
+					}
+					
+					count++;
 				}
 			}
-		} catch (IOException var11) {
-			System.out.println(var11);
+		} catch (IOException e) {
+			System.out.println(e);
 		}
 
 	}
 
 	public void nextDialogue(String currentDialogue) {
-		String[][] dia = this.dialogues;
-		if (dia[this.dialogueIndex] == null) {
-			this.dialogueIndex = 0;
+		Dialoge[][] dia = dialogues;
+		if (dia[dialogueIndex] == null) {
+			dialogueIndex = 0;
 		}
 
-		++this.dialogueIndex;
+		dialogueIndex++;
 	}
 
 	public void startDialogue(Cutscene cut, int setNum) {

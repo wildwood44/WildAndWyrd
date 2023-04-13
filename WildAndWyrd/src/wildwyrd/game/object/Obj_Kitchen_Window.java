@@ -16,38 +16,34 @@ public class Obj_Kitchen_Window extends Entity {
 		type = 3;
 		collision = true;
 
-		try {
-			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/img_window_light.png"));
-		} catch (IOException var3) {
-			var3.printStackTrace();
-		}
+		image = setup("/res/objects/img_window_light", gp.tileSize, gp.tileSize);
 
-		this.setDialogue();
-		this.solidArea.x = 15;
-		this.solidArea.y = 40;
-		this.solidArea.height = 50;
-		this.solidAreaDefaultX = this.solidArea.x;
-		this.solidAreaDefaultY = this.solidArea.y;
+		setDialogue();
+		solidArea.x = 15;
+		solidArea.y = 40;
+		solidArea.height = 50;
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
 	}
 
 	public void setDialogue() {
-		this.dialogues[0][0] = new Dialoge(
+		dialogues[0][0] = new Dialoge(
 				"The clearing at the front of of the cottage :could be seen through the window.", 1);
-		this.dialogues[1][0] = new Dialoge("Florence and Thay were talking outside the :window.", 1);
-		this.dialogues[1][1] = new Dialoge("Alder:I'm coming out", 1);
+		dialogues[1][0] = new Dialoge("Florence and Thay were talking outside the :window.", 1);
+		dialogues[1][1] = new Dialoge("Alder","I'm coming out", 1);
 	}
 
 	public void interact() {
 		GamePanel gp = this.gp;
 		gp.gameState = GameState.examineState;
-		if (this.gp.s.tutorialSwitch[2]) {
-			this.startDialogue(this, 1);
-			System.out.println(this.dialogueSet + " " + this.gp.s.tutorialSwitch[2]);
-			this.gp.s.tutorialSwitch[2] = false;
+		if (gp.s.tutorialSwitch[2]) {
+			startDialogue(this, 1);
+			System.out.println(dialogueSet + " " + gp.s.tutorialSwitch[2]);
+			gp.s.tutorialSwitch[2] = false;
 		} else {
-			this.startDialogue(this, 0);
+			startDialogue(this, 0);
 		}
 
-		this.gp.keyH.enterPressed = false;
+		gp.keyH.enterPressed = false;
 	}
 }
