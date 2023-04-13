@@ -1,7 +1,5 @@
 package wildwyrd.game.object;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
@@ -15,11 +13,7 @@ public class Obj_Basin extends Entity {
 		type = 3;
 		collision = true;
 
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/res/objects/img_basin.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		image = setup("/res/objects/img_basin", gp.tileSize, gp.tileSize);
 
 		setDialogue();
 		solidArea.x = 15;

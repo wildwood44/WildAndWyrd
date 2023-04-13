@@ -1,13 +1,7 @@
 package wildwyrd.game.object;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
-import wildwyrd.game.tile.UtilityTool;
 
 public class Obj_SilverBirch extends Entity {
 	GamePanel gp;

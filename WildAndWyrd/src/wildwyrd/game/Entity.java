@@ -27,6 +27,7 @@ public class Entity {
 	public int worldY;
 	public Boolean selected;
 	public Dialoge[][] dialogues = new Dialoge[5][20];
+	public String[] options = new String[2];
 	public int dialogueSet = 0;
 	public int dialogueIndex = 0;
 	public Rectangle solidArea = new Rectangle(0, 0, 48, 48);

@@ -2,7 +2,6 @@ package wildwyrd.npc;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -18,6 +17,7 @@ public class NPC_Florence extends Entity {
 		direction = "down";
 		speed = 1;
 		setDialogue();
+		setDialogueOptions();
 	}
 
 	public BufferedImage getSpriteSheet() {
@@ -103,8 +103,14 @@ public class NPC_Florence extends Entity {
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge("Florence: Potions probably.", 1);
-		dialogues[0][1] = new Dialoge("Florence: He usually comes here for sanctuary or :potions.", 1);
+		dialogues[0][0] = new Dialoge("" ,3);
+		dialogues[1][0] = new Dialoge("Florence: Potions probably.", 1);
+		dialogues[1][1] = new Dialoge("Florence: He usually comes here for sanctuary or :potions.", 1);
+	}
+	
+	public void setDialogueOptions() {
+		options[0] = "1 - So what's Thay here for?";
+		options[1] = "2 - How does the magic around the cottage work again?";
 	}
 	
 	public void speak() {

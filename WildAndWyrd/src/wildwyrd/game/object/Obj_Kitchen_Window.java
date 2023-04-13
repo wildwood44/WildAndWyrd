@@ -1,7 +1,5 @@
 package wildwyrd.game.object;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
@@ -34,11 +32,9 @@ public class Obj_Kitchen_Window extends Entity {
 	}
 
 	public void interact() {
-		GamePanel gp = this.gp;
 		gp.gameState = GameState.examineState;
 		if (gp.s.tutorialSwitch[2]) {
 			startDialogue(this, 1);
-			System.out.println(dialogueSet + " " + gp.s.tutorialSwitch[2]);
 			gp.s.tutorialSwitch[2] = false;
 		} else {
 			startDialogue(this, 0);

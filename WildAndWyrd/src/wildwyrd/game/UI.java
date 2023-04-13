@@ -276,14 +276,42 @@ public class UI {
 					}
 				}
 
-				if (this.slotyn == 0) {
-					this.g2.drawString(">", x, y + 40);
+				if (slotyn == 0) {
+					g2.drawString(">", x, y + 40);
 				} else {
-					this.g2.drawString(">", x, y + 80);
+					g2.drawString(">", x, y + 80);
 				}
 
-				this.g2.drawString("Yes", x + 20, y + 40);
-				this.g2.drawString("No", x + 20, y + 80);
+				g2.drawString("Yes", x + 20, y + 40);
+				g2.drawString("No", x + 20, y + 80);
+			} else if (selectedObject.dialogues[selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
+					.getType() == 3) {
+				if (gp.keyH.enterPressed) {
+					charIndex++;
+					if (slotyn == 0) {
+						binaryRes = true;
+					} else {
+						binaryRes = false;
+					}
+
+					charIndex = 0;
+					combinedText = "";
+					if (gp.gameState == GameState.examineState) {
+						selectedObject.choiceResponce();
+						selectedObject.dialogueIndex++;
+						gp.keyH.enterPressed = false;
+					}
+				}
+
+				if (slotyn == 0) {
+					g2.drawString(">", x, y);
+				} else {
+					g2.drawString(">", x, y + 40);
+				}
+				for(String option : selectedObject.options) {
+					g2.drawString(option, x + 20, y);
+					y += 40;
+				}
 			}
 		} else {
 			selectedObject.dialogueIndex = 0;
@@ -292,19 +320,15 @@ public class UI {
 			}
 		}
 		if(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
+			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker() != null) {
+				g2.setFont(g2.getFont().deriveFont(1, 24.0F));
+				g2.drawString(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker(), x, y);
+				y += 40;
+			}
 			for (String line : currentDialogue.split(":")) {
-				if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker() == null) {
-					g2.setFont(g2.getFont().deriveFont(0, 18.0F));
-					g2.drawString(line, x, y);
-					y += 30;
-				} else {
-					g2.setFont(g2.getFont().deriveFont(1, 24.0F));
-					g2.drawString(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker(), x, y);
-					y += 40;
-					g2.setFont(g2.getFont().deriveFont(0, 18.0F));
-					g2.drawString(line, x, y);
-					y += 30;
-				}
+				g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+				g2.drawString(line, x, y);
+				y += 30;
 			}
 		}
 		
