@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -106,19 +107,19 @@ public class UI {
 	}
 
 	public void drawItemLabel() {
-		FontMetrics fm = this.g2.getFontMetrics();
-		this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
-		this.g2.setColor(Color.white);
-		if (this.gp.selectedObj != null) {
-			this.selectedObject = this.gp.obj[this.gp.currentRoom][this.gp.selectedObj];
-			this.drawDialogueWindow(
-					this.selectedObject.x + this.gp.obj[this.gp.currentRoom][this.gp.selectedObj].width - 10,
-					this.selectedObject.y - 35, fm.stringWidth(this.selectedObject.name), 50);
-			this.g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
-			this.g2.setColor(Color.white);
-			this.g2.drawString(this.selectedObject.name,
-					this.selectedObject.x + this.gp.obj[this.gp.currentRoom][this.gp.selectedObj].width,
-					this.selectedObject.y);
+		FontMetrics fm = g2.getFontMetrics();
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		if (gp.selectedObj != null) {
+			selectedObject = gp.obj[gp.currentRoom][gp.selectedObj];
+			drawDialogueWindow(
+					selectedObject.x + gp.obj[gp.currentRoom][gp.selectedObj].width - 10,
+					selectedObject.y - 35, fm.stringWidth(selectedObject.name), 50);
+			g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+			g2.setColor(Color.white);
+			g2.drawString(selectedObject.name,
+					selectedObject.x + gp.obj[gp.currentRoom][gp.selectedObj].width,
+					selectedObject.y);
 		}
 
 	}
@@ -131,7 +132,7 @@ public class UI {
 		g2.setColor(Color.white);
 		message = text;
 		if (gp.keyH.enterPressed) {
-			++gp.csManager.scenePhase;
+			gp.csManager.scenePhase++;
 		}
 
 		String[] var8;
@@ -194,7 +195,7 @@ public class UI {
 				gp.gameState = GameState.playState;
 			}
 			if (gp.gameState == GameState.cutsceneState) {
-				++this.gp.csManager.scenePhase;
+				gp.csManager.scenePhase++;
 			}
 		}
 		if(gp.c.dialogues[gp.c.dialogueSet][gp.c.dialogueIndex] != null) {
@@ -226,12 +227,12 @@ public class UI {
 			char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getText().toCharArray();
 			if (charIndex < characters.length) {
-				String s = String.valueOf(characters[this.charIndex]);
+				String s = String.valueOf(characters[charIndex]);
 				combinedText = combinedText + s;
 				currentDialogue = combinedText;
-				++charIndex;
-				if (this.gp.keyH.enterPressed) {
-					this.currentDialogue = this.selectedObject.dialogues[this.selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
+				charIndex++;
+				if (gp.keyH.enterPressed) {
+					currentDialogue = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 							.getText();
 				}
 			}
@@ -256,7 +257,143 @@ public class UI {
 						selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
 						gp.keyH.skipPressed = false;
 					}
+				} 
+				if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] == null) {
+					for (boolean checkConditions: selectedObject.contConditions) {
+						if(checkConditions == false) {
+							selectedObject.dialogueIndex = 0;
+							selectedObject.speak();
+						}
+					}
 				}
+			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+					.getType() == 2) {
+				if (gp.keyH.enterPressed) {
+					charIndex++;
+					if (slotyn == 0) {
+						binaryRes = true;
+					} else {
+						binaryRes = false;
+					}
+
+					charIndex = 0;
+					combinedText = "";
+					if (gp.gameState == GameState.examineState) {
+						selectedObject.choiceResponce();
+						selectedObject.dialogueIndex++;
+						gp.keyH.enterPressed = false;
+					}
+				}
+
+				if (slotyn == 0) {
+					g2.drawString(">", x, y + 40);
+				} else {
+					g2.drawString(">", x, y + 80);
+				}
+
+				g2.drawString("Yes", x + 20, y + 40);
+				g2.drawString("No", x + 20, y + 80);
+			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+					.getType() == 3) {
+				if (gp.keyH.enterPressed) {
+					charIndex = 0;
+					combinedText = "";
+					if (gp.gameState == GameState.examineState) {
+						//selectedObject.dialogueIndex++;
+						selectedObject.choiceResponce();
+						gp.keyH.enterPressed = false;
+					}
+				}
+				for(int i = 0; i < selectedObject.options.length; i++) {
+					if (slotyn == i) {
+						g2.drawString(">", x, y);
+					}
+					int j = 1;
+					if(selectedObject.options[i] != null) {
+						for (String line : selectedObject.options[i].split(":")) {
+							if (j > 1) {
+								y += 30;
+							}
+							g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+							g2.drawString(line, x + 20, y);
+							System.out.println(j + " " + selectedObject.options[i].length());
+							j++;
+						}
+					}
+					y += 40;
+				}
+			}
+		} else {
+			selectedObject.dialogueIndex = 0;
+			if (gp.gameState == GameState.examineState) {
+				gp.gameState = GameState.playState;
+			}
+		}
+		if(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
+			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker() != null) {
+				g2.setFont(g2.getFont().deriveFont(1, 24.0F));
+				g2.drawString(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker(), x, y);
+				y += 40;
+			}
+			for (String line : currentDialogue.split(":")) {
+				g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+				g2.drawString(line, x, y);
+				y += 30;
+			}
+		}
+	}public void drawTalkingScreen() {
+		int x = gp.tileSize * 3 / 2;
+		int y = gp.tileSize * 5;
+		int width = gp.screenWidth - gp.tileSize * 3;
+		int height = gp.tileSize * 3;
+		drawDialogueWindow(x, y, width, height);
+		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+		g2.setColor(Color.white);
+		x += gp.tileSize;
+		y += gp.tileSize;
+		if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
+			char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+					.getText().toCharArray();
+			if (charIndex < characters.length) {
+				String s = String.valueOf(characters[this.charIndex]);
+				combinedText = combinedText + s;
+				currentDialogue = combinedText;
+				++charIndex;
+				if (this.gp.keyH.enterPressed) {
+					this.currentDialogue = this.selectedObject.dialogues[this.selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
+							.getText();
+				}
+			}
+
+			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+					.getType() == 1) {
+				if (gp.keyH.enterPressed) {
+					if (currentDialogue
+							.length() == selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+									.getText().length()) {
+						charIndex = 0;
+						combinedText = "";
+						if (gp.gameState == GameState.examineState) {
+							selectedObject.dialogueIndex++;
+							gp.keyH.enterPressed = false;
+						}
+					}
+				} else if (gp.keyH.skipPressed) {
+					charIndex = 0;
+					combinedText = "";
+					if (gp.gameState == GameState.examineState) {
+						selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
+						gp.keyH.skipPressed = false;
+					}
+				}
+				if (selectedObject.dialogueIndex >= selectedObject.dialogues[selectedObject.dialogueSet].length) {
+					for (boolean checkConditions: selectedObject.contConditions) {
+						if(checkConditions = false) {
+							selectedObject.speak();
+						}
+					}
+				}
+				
 			} else if (selectedObject.dialogues[selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
 					.getType() == 2) {
 				if (gp.keyH.enterPressed) {
@@ -284,32 +421,33 @@ public class UI {
 
 				g2.drawString("Yes", x + 20, y + 40);
 				g2.drawString("No", x + 20, y + 80);
-			} else if (selectedObject.dialogues[selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
+			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 3) {
 				if (gp.keyH.enterPressed) {
-					charIndex++;
-					if (slotyn == 0) {
-						binaryRes = true;
-					} else {
-						binaryRes = false;
-					}
-
 					charIndex = 0;
 					combinedText = "";
 					if (gp.gameState == GameState.examineState) {
+						//selectedObject.dialogueIndex++;
 						selectedObject.choiceResponce();
-						selectedObject.dialogueIndex++;
 						gp.keyH.enterPressed = false;
 					}
 				}
-
-				if (slotyn == 0) {
-					g2.drawString(">", x, y);
-				} else {
-					g2.drawString(">", x, y + 40);
-				}
-				for(String option : selectedObject.options) {
-					g2.drawString(option, x + 20, y);
+				System.out.println(selectedObject.options.length);
+				for(int i = 0; i < selectedObject.options.length; i++) {
+					if (slotyn == i) {
+						g2.drawString(">", x, y);
+					}
+					int j = 1;
+					for (String line : selectedObject.options[i].split(":")) {
+						if (j > 1) {
+							y += 30;
+						}
+						g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+						g2.drawString(line, x + 20, y);
+						System.out.println(j + " " + selectedObject.options[i].length());
+						j++;
+					}
+					
 					y += 40;
 				}
 			}
@@ -331,10 +469,6 @@ public class UI {
 				y += 30;
 			}
 		}
-		
-		//System.out.println(selectedObject.dialogueSet + " " + selectedObject.dialogueIndex);
-		
-
 	}
 
 	public void drawMenuBarScreen() {
@@ -429,17 +563,15 @@ public class UI {
 		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		int slotXstart = frameX + 0;
 		int slotYstart = frameY + 15;
-		int cursorX = slotXstart + gp.tileSize * this.slotRow;
+		int cursorX = slotXstart + gp.tileSize * slotRow;
 		double var10000 = slotYstart * 2.25D;
-		int cursorY = (int) (var10000 + gp.tileSize * 1 * this.slotCol);
+		int cursorY = (int) (var10000 + gp.tileSize * slotCol);
 		int cursorWidth = gp.tileSize * 2;
 		int cursorHeight = 30;
-		g2.setFont(this.g2.getFont().deriveFont(0, 22.0F));
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
 		g2.setStroke(new BasicStroke());
-		Graphics2D g2 = this.g2;
-		String var10001 = gp.glossary.sections[section];
-		g2.drawString(var10001, 30, gp.tileSize);
+		g2.drawString(gp.glossary.sections[section], 30, gp.tileSize);
 		int pos = (int) (gp.tileSize * 0.75D);
 		bottomValue = gp.glossary.getSize(section);
 		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
@@ -470,6 +602,7 @@ public class UI {
 			//htmlBuilder.append("<head><title>"+gp.glossary.page[section][slotCol + topValue].getTitle()+"</title></head></br>");
 			g2.drawString(gp.glossary.page[section][slotCol + topValue].getTitle(),
 					frameX + 40, frameY + 40);
+			g2.setFont(g2.getFont().deriveFont(0, 16.0F));
 			g2.drawString(gp.glossary.page[section][slotCol + topValue].getDesc(), frameX + 40,
 					frameY + 80);
 			//htmlBuilder.append("<body><p>"+gp.glossary.page[section][slotCol + topValue].getDesc()+"</p></body>");

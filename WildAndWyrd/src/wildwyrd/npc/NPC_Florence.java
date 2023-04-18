@@ -14,8 +14,13 @@ public class NPC_Florence extends Entity {
 	public NPC_Florence(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
+		options = new String[2];
+		contConditions = new boolean[2];
+		name = "Florence";
 		direction = "down";
 		speed = 1;
+		contConditions[0] = false;
+		contConditions[1] = false;
 		setDialogue();
 		setDialogueOptions();
 	}
@@ -103,24 +108,33 @@ public class NPC_Florence extends Entity {
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge("" ,3);
-		dialogues[1][0] = new Dialoge("Florence: Potions probably.", 1);
-		dialogues[1][1] = new Dialoge("Florence: He usually comes here for sanctuary or :potions.", 1);
+		dialogues[0][0] = new Dialoge(" " ,3);
+		dialogues[1][0] = new Dialoge("Florence", "Potions probably.", 1);
+		dialogues[1][1] = new Dialoge("Florence", "He usually comes here for sanctuary or :potions.", 1);
+		dialogues[2][0] = new Dialoge("Florence", "Well.", 1);
+		dialogues[2][1] = new Dialoge("Florence", "Kyla’s cast several illusions on the :cottage, one of which makes it looks like a :boulder from the outside.", 1);
+		dialogues[2][2] = new Dialoge("Florence", "She's also muted the rooms and made our :scents smell somewhat grassy.", 1);
+		dialogues[2][3] = new Dialoge("Florence", "This place cannot be seen from the outside :world, so we tend to call it the burrow.", 1);
 	}
 	
 	public void setDialogueOptions() {
-		options[0] = "1 - So what's Thay here for?";
-		options[1] = "2 - How does the magic around the cottage work again?";
+		options[0] = "So what's Thay here for?";
+		options[1] = "How does the magic around the cottage :work again?";
+	}
+	public void choiceResponce() {
+		if (gp.ui.slotyn == 0) {
+			startDialogue(this, 1);
+			contConditions[0] = true;
+		}
+		if (gp.ui.slotyn == 1) {
+			startDialogue(this, 2);
+			contConditions[1] = true;
+		}
 	}
 	
 	public void speak() {
-		/*if(dialogues[dialogueIndex] == null) {
-			dialogueIndex = 0;
-		}*/
-		//gp.ui.currentDialogue = dialogues[dialogueIndex];
 		facePlayer();
 		startDialogue(this, 0);
 		gp.keyH.enterPressed = false;
-		//dialogueIndex++;
 	}
 }

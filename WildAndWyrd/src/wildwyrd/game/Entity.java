@@ -26,8 +26,9 @@ public class Entity {
 	public int worldX;
 	public int worldY;
 	public Boolean selected;
-	public Dialoge[][] dialogues = new Dialoge[5][20];
-	public String[] options = new String[2];
+	public Dialoge[][] dialogues = new Dialoge[10][20];
+	public String[] options = new String[8];
+	public boolean[] contConditions = new boolean[8];
 	public int dialogueSet = 0;
 	public int dialogueIndex = 0;
 	public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
@@ -149,7 +150,7 @@ public class Entity {
 			worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
 			worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
 			worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, (ImageObserver) null);
+			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 		}
 		else if(gp.player.worldX < gp.player.screenX ||
 			    gp.player.worldY < gp.player.screenY ||
@@ -166,6 +167,12 @@ public class Entity {
 		dialogueSet = setNum;
 	}
 
+	public void restartDialogue(Dialoge[] object, int getSize) {
+		if(object.length == getSize) {
+			speak();
+		}
+	}
+	
 	public void interact() {
 	}
 	

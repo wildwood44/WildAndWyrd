@@ -23,24 +23,23 @@ public class KeyHandler implements KeyListener {
 		GameState gameState = gp.gameState;
 		GamePanel var3;
 		if (gameState == GameState.titleState) {
-			if (code == 87) {
-				--this.gp.ui.commandNum;
-				if (this.gp.ui.commandNum < 0) {
-					this.gp.ui.commandNum = 2;
+			if (code == KeyEvent.VK_W) {
+				gp.ui.commandNum--;
+				if (gp.ui.commandNum < 0) {
+					gp.ui.commandNum = 2;
 				}
 			}
 
-			if (code == 83) {
-				++this.gp.ui.commandNum;
-				if (this.gp.ui.commandNum > 2) {
-					this.gp.ui.commandNum = 0;
+			if (code == KeyEvent.VK_S) {
+				gp.ui.commandNum++;
+				if (gp.ui.commandNum > 2) {
+					gp.ui.commandNum = 0;
 				}
 			}
 
-			if (code == 10) {
+			if (code == KeyEvent.VK_ENTER) {
 				if (this.gp.ui.commandNum == 0) {
-					var3 = this.gp;
-					var3.gameState = GameState.playState;
+					gp.gameState = GameState.playState;
 				}
 
 				//gameState = this.gp.ui.commandNum;
@@ -52,36 +51,32 @@ public class KeyHandler implements KeyListener {
 			gameState = this.gp.gameState;
 			if (gameState == GameState.menuState) {
 				switch (e.getKeyCode()) {
-					case 10 :
+					case KeyEvent.VK_ENTER :
 						if (this.gp.ui.slotCol == 2) {
-							var3 = this.gp;
-							var3.gameState = GameState.inventoryState;
-							this.gp.ui.drawInventoryScreen();
+							gp.gameState = GameState.inventoryState;
+							gp.ui.drawInventoryScreen();
 						} else if (this.gp.ui.slotCol == 6) {
 							this.gp.ui.resetSlots();
-							var3 = this.gp;
-							var3.gameState = GameState.glossaryState;
-							this.gp.ui.drawGlossaryScreen();
+							gp.gameState = GameState.glossaryState;
+							gp.ui.drawGlossaryScreen();
 						} else if (this.gp.ui.slotCol == 7) {
-							this.gp.currentRoom = 0;
-							var3 = this.gp;
-							var3.gameState = GameState.titleState;
+							gp.currentRoom = 0;
+							gp.gameState = GameState.titleState;
 						}
 						break;
 					case 27 :
-						var3 = this.gp;
-						var3.gameState = GameState.playState;
+						gp.gameState = GameState.playState;
 						break;
-					case 38 :
-					case 87 :
+					case KeyEvent.VK_UP :
+					case KeyEvent.VK_W :
 						if (this.gp.ui.slotCol != 0) {
 							--this.gp.ui.slotCol;
 						} else {
 							this.gp.ui.slotCol = 7;
 						}
 						break;
-					case 40 :
-					case 83 :
+					case KeyEvent.VK_DOWN :
+					case KeyEvent.VK_S :
 						if (this.gp.ui.slotCol != 7) {
 							++this.gp.ui.slotCol;
 						} else {
@@ -93,36 +88,35 @@ public class KeyHandler implements KeyListener {
 				if (gameState == GameState.inventoryState) {
 					switch (e.getKeyCode()) {
 						case 27 :
-							this.gp.ui.resetSlots();
-							var3 = this.gp;
-							var3.gameState = GameState.menuState;
+							gp.ui.resetSlots();
+							gp.gameState = GameState.menuState;
 							break;
-						case 37 :
-						case 65 :
+						case KeyEvent.VK_LEFT :
+						case KeyEvent.VK_A :
 							if (this.gp.ui.slotCol2 != 0) {
 								--this.gp.ui.slotCol2;
 							} else {
 								this.gp.ui.slotCol2 = 6;
 							}
 							break;
-						case 38 :
-						case 87 :
+						case KeyEvent.VK_UP :
+						case KeyEvent.VK_W :
 							if (this.gp.ui.slotRow2 != 0) {
 								--this.gp.ui.slotRow2;
 							} else {
 								this.gp.ui.slotRow2 = 3;
 							}
 							break;
-						case 39 :
-						case 68 :
+						case KeyEvent.VK_RIGHT :
+						case KeyEvent.VK_D :
 							if (this.gp.ui.slotCol2 != 6) {
 								++this.gp.ui.slotCol2;
 							} else {
 								this.gp.ui.slotCol2 = 0;
 							}
 							break;
-						case 40 :
-						case 83 :
+						case KeyEvent.VK_DOWN :
+						case KeyEvent.VK_S :
 							if (this.gp.ui.slotRow2 != 3) {
 								++this.gp.ui.slotRow2;
 							} else {
@@ -134,34 +128,33 @@ public class KeyHandler implements KeyListener {
 					if (gameState == GameState.glossaryState) {
 						switch (e.getKeyCode()) {
 							case 27 :
-								this.gp.ui.resetSlots();
-								var3 = this.gp;
-								var3.gameState = GameState.menuState;
+								gp.ui.resetSlots();
+								gp.gameState = GameState.menuState;
 								break;
-							case 37 :
-							case 65 :
+							case KeyEvent.VK_LEFT :
+							case KeyEvent.VK_A :
 								if (this.gp.ui.section != 0) {
 									//System.out.println(this.gp.glossary.getSize(this.gp.ui.section) + " "
 									//		+ this.gp.glossary.getSize(this.gp.ui.section - 1));
-									if (this.gp.glossary.getSize(this.gp.ui.section) > this.gp.glossary
-											.getSize(this.gp.ui.section - 1)) {
-										this.gp.ui.slotCol = 0;
-										this.gp.ui.topValue = 0;
+									if (gp.glossary.getSize(gp.ui.section) > gp.glossary
+											.getSize(gp.ui.section - 1)) {
+										gp.ui.slotCol = 0;
+										gp.ui.topValue = 0;
 									}
 
-									--this.gp.ui.section;
+									gp.ui.section--;
 								} else {
-									if (this.gp.glossary.getSize(this.gp.ui.section) > this.gp.glossary
-											.getSize(this.gp.glossary.sections.length - 1)) {
-										this.gp.ui.slotCol = 0;
-										this.gp.ui.topValue = 0;
+									if (gp.glossary.getSize(gp.ui.section) > gp.glossary
+											.getSize(gp.glossary.sections.length - 1)) {
+										gp.ui.slotCol = 0;
+										gp.ui.topValue = 0;
 									}
 
-									this.gp.ui.section = this.gp.glossary.sections.length - 1;
+									gp.ui.section = gp.glossary.sections.length - 1;
 								}
 								break;
-							case 38 :
-							case 87 :
+							case KeyEvent.VK_UP :
+							case KeyEvent.VK_W :
 								//System.out.println(this.gp.ui.topValue + " " + this.gp.ui.slotCol);
 								if (this.gp.ui.slotCol != 0) {
 									--this.gp.ui.slotCol;
@@ -172,8 +165,8 @@ public class KeyHandler implements KeyListener {
 									this.gp.ui.slotCol = 5;
 								}
 								break;
-							case 39 :
-							case 68 :
+							case KeyEvent.VK_RIGHT :
+							case KeyEvent.VK_D :
 								if (this.gp.ui.section < this.gp.glossary.sections.length - 1) {
 									if (this.gp.glossary.getSize(this.gp.ui.section) > this.gp.glossary
 											.getSize(this.gp.ui.section + 1)) {
@@ -191,8 +184,8 @@ public class KeyHandler implements KeyListener {
 									this.gp.ui.section = 0;
 								}
 								break;
-							case 40 :
-							case 83 :
+							case KeyEvent.VK_DOWN :
+							case KeyEvent.VK_S :
 								if (this.gp.ui.slotCol != 5) {
 									++this.gp.ui.slotCol;
 								} else {
@@ -207,54 +200,51 @@ public class KeyHandler implements KeyListener {
 								}
 						}
 					} else {
-						gameState = this.gp.gameState;
-						if (gameState == GameState.playState) {
+						if (gp.gameState == GameState.playState) {
 							switch (e.getKeyCode()) {
-								case 10 :
+								case KeyEvent.VK_ENTER :
 									enterPressed = true;
 									if (gp.selectedObj != null) {
-										gp.obj[1][this.gp.selectedObj].interact();
+										gp.obj[1][gp.selectedObj].interact();
 									}
 									break;
 								case 27 :
-									this.gp.selectedObj = null;
-									var3 = this.gp;
-									this.gp.getClass();
-									var3.gameState = GameState.menuState;
+									gp.selectedObj = null;
+									gp.gameState = GameState.menuState;
 									break;
-								case 37 :
-								case 65 :
-									this.leftPressed = true;
+								case KeyEvent.VK_LEFT :
+								case KeyEvent.VK_A :
+									leftPressed = true;
 									break;
-								case 38 :
-								case 87 :
-									this.upPressed = true;
+								case KeyEvent.VK_UP :
+								case KeyEvent.VK_W :
+									upPressed = true;
 									break;
-								case 39 :
-								case 68 :
-									this.rightPressed = true;
+								case KeyEvent.VK_RIGHT :
+								case KeyEvent.VK_D :
+									rightPressed = true;
 									break;
-								case 40 :
-								case 83 :
-									this.downPressed = true;
+								case KeyEvent.VK_DOWN :
+								case KeyEvent.VK_S :
+									downPressed = true;
 									break;
 								case 82 :
 									switch(gp.currentMap.getId())
 									{
 									case 0:
-										this.gp.tileM.loadMap("/res/maps/map01",0);
+										gp.tileM.loadMap("/res/maps/map01",0);
 										break;
 									case 1:
-										this.gp.tileM.loadMap("/res/maps/map02",1);
+										gp.tileM.loadMap("/res/maps/map02",1);
 										break;
 									}
 
 									break;
 								case 84 :
-									if (!this.showDebugText) {
-										this.showDebugText = true;
-									} else if (this.showDebugText) {
-										this.showDebugText = false;
+									if (!showDebugText) {
+										showDebugText = true;
+									} else if (showDebugText) {
+										showDebugText = false;
 									}
 							}
 						} else {
@@ -282,33 +272,33 @@ public class KeyHandler implements KeyListener {
 	}
 
 	public void dialogueState(int code) {
-		if (code == 10) {
-			this.enterPressed = true;
+		if (code == KeyEvent.VK_ENTER) {
+			enterPressed = true;
 		}
 
-		if (code == 83) {
-			this.skipPressed = true;
+		if (code == KeyEvent.VK_S) {
+			skipPressed = true;
 		}
 
-		if (code == 38 || code == 87) {
-			--this.gp.ui.slotyn;
-			if (this.gp.ui.slotyn < 0) {
-				this.gp.ui.slotyn = 1;
+		if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W) {
+			gp.ui.slotyn--;
+			if (gp.ui.slotyn < 0) {
+				gp.ui.slotyn = gp.ui.selectedObject.options.length -1;
 			}
 		}
 
-		if (code == 40 || code == 83) {
-			++this.gp.ui.slotyn;
-			if (this.gp.ui.slotyn > 1) {
-				this.gp.ui.slotyn = 0;
+		if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_S) {
+			gp.ui.slotyn++;
+			if (gp.ui.slotyn > gp.ui.selectedObject.options.length -1) {
+				gp.ui.slotyn = 0;
 			}
 		}
 
 		if (code == 84) {
-			if (!this.showDebugText) {
-				this.showDebugText = true;
-			} else if (this.showDebugText) {
-				this.showDebugText = false;
+			if (!showDebugText) {
+				showDebugText = true;
+			} else if (showDebugText) {
+				showDebugText = false;
 			}
 		}
 
@@ -317,25 +307,25 @@ public class KeyHandler implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
-			case 10 :
-				this.enterPressed = false;
+			case KeyEvent.VK_ENTER :
+				enterPressed = false;
 				break;
-			case 37 :
-			case 65 :
-				this.leftPressed = false;
+			case KeyEvent.VK_LEFT :
+			case KeyEvent.VK_A :
+				leftPressed = false;
 				break;
-			case 38 :
-			case 87 :
-				this.upPressed = false;
+			case KeyEvent.VK_UP :
+			case KeyEvent.VK_W :
+				upPressed = false;
 				break;
-			case 39 :
-			case 68 :
-				this.rightPressed = false;
+			case KeyEvent.VK_RIGHT :
+			case KeyEvent.VK_D :
+				rightPressed = false;
 				break;
-			case 40 :
-			case 83 :
-				this.downPressed = false;
-				this.skipPressed = false;
+			case KeyEvent.VK_DOWN :
+			case KeyEvent.VK_S :
+				downPressed = false;
+				skipPressed = false;
 		}
 
 	}

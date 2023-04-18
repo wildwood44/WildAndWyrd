@@ -12,6 +12,7 @@ import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.MapType;
 import wildwyrd.npc.NPC_Dilecto;
 import wildwyrd.npc.NPC_Florence;
+import wildwyrd.npc.NPC_Thay;
 
 public class AssetSetter {
 	GamePanel gp;
@@ -190,9 +191,12 @@ public class AssetSetter {
 		gp.npc[2][0] = new NPC_Florence(gp);
 		gp.npc[2][0].worldX = gp.tileSize * 14;
 		gp.npc[2][0].worldY = gp.tileSize * 4;
-		gp.npc[2][1] = new NPC_Dilecto(gp);
-		gp.npc[2][1].worldX = gp.tileSize * 13;
+		gp.npc[2][1] = new NPC_Thay(gp);
+		gp.npc[2][1].worldX = gp.tileSize * 16;
 		gp.npc[2][1].worldY = gp.tileSize * 4;
+		gp.npc[2][2] = new NPC_Dilecto(gp);
+		gp.npc[2][2].worldX = gp.tileSize * 13;
+		gp.npc[2][2].worldY = gp.tileSize * 4;
 	}
 	public void setInteractiveTile() {
 		gp.iTile[2][0] = new IT_StoneDoor(gp, 15, 3);

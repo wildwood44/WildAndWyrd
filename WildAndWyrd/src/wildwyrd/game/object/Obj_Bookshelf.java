@@ -1,9 +1,5 @@
 package wildwyrd.game.object;
 
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
@@ -12,20 +8,16 @@ public class Obj_Bookshelf extends Entity {
 	public Obj_Bookshelf(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.name = "Bookshelf";
-		this.type = 3;
-		this.collision = true;
+		name = "Bookshelf";
+		type = 3;
+		collision = true;
 
-		try {
-			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/img_bookshelf.png"));
-		} catch (IOException var3) {
-			var3.printStackTrace();
-		}
+		image = setup("/res/objects/img_bookshelf", gp.tileSize, gp.tileSize);
 
-		this.solidArea.width = 64;
-		this.solidArea.y = 5;
-		this.solidAreaDefaultY = this.solidArea.y;
-		this.setDialogue();
+		solidArea.width = 64;
+		solidArea.y = 5;
+		solidAreaDefaultY = solidArea.y;
+		setDialogue();
 	}
 
 	public void setDialogue() {
@@ -33,8 +25,8 @@ public class Obj_Bookshelf extends Entity {
 	}
 
 	public void interact() {
-		this.startDialogue(this, 0);
-		this.gp.keyH.enterPressed = false;
+		startDialogue(this, 0);
+		gp.keyH.enterPressed = false;
 	}
 
 	
