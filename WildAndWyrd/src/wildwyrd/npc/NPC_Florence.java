@@ -119,14 +119,27 @@ public class NPC_Florence extends Entity {
 	
 	public void setDialogueOptions() {
 		options[0] = "So what's Thay here for?";
-		options[1] = "How does the magic around the cottage :work again?";
+		options[1] = "How does the magic on cottage work?";
 	}
+	
+	public void checkConditions() {
+
+		if (dialogues[dialogueSet][dialogueIndex] == null) {
+			for (boolean checkCondition: contConditions) {
+				if(checkCondition == false) {
+					dialogueIndex = 0;
+					speak();
+				}
+			}
+		}
+	}
+	
 	public void choiceResponce() {
-		if (gp.ui.slotyn == 0) {
+		if (gp.ui.choiceSlot == 0) {
 			startDialogue(this, 1);
 			contConditions[0] = true;
 		}
-		if (gp.ui.slotyn == 1) {
+		if (gp.ui.choiceSlot == 1) {
 			startDialogue(this, 2);
 			contConditions[1] = true;
 		}
@@ -134,6 +147,8 @@ public class NPC_Florence extends Entity {
 	
 	public void speak() {
 		facePlayer();
+		gp.ui.choiceSlot = 0;
+		gp.ui.firstValue = 0;
 		startDialogue(this, 0);
 		gp.keyH.enterPressed = false;
 	}

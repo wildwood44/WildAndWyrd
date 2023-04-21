@@ -33,7 +33,7 @@ public class Obj_Alder_Bed extends Entity {
 	}
 
 	public void choiceResponce() {
-		if (this.gp.ui.slotyn == 0) {
+		if (this.gp.ui.choiceSlot == 0) {
 			this.gp.player.pickUpShillings(this.loot);
 			this.opened = true;
 		}

@@ -3,7 +3,6 @@ package wildwyrd.game;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -221,5 +220,8 @@ public class Entity {
 	}
 
 	public void choiceResponce() {
+	}
+	public void checkConditions() {
+		
 	}
 }

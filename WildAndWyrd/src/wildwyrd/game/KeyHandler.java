@@ -262,7 +262,7 @@ public class KeyHandler implements KeyListener {
 								}
 							}
 
-							this.dialogueState(code);
+							dialogueState(code);
 						}
 					}
 				}
@@ -279,18 +279,48 @@ public class KeyHandler implements KeyListener {
 		if (code == KeyEvent.VK_S) {
 			skipPressed = true;
 		}
-
-		if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W) {
-			gp.ui.slotyn--;
-			if (gp.ui.slotyn < 0) {
-				gp.ui.slotyn = gp.ui.selectedObject.options.length -1;
-			}
-		}
-
-		if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_S) {
-			gp.ui.slotyn++;
-			if (gp.ui.slotyn > gp.ui.selectedObject.options.length -1) {
-				gp.ui.slotyn = 0;
+		if(gp.ui.selectedObject != null) {
+			if (gp.ui.selectedObject.dialogues[gp.ui.selectedObject.dialogueSet][gp.ui.selectedObject.dialogueIndex]
+					.getType() == 2) {
+				if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W) {
+					gp.ui.choiceSlot--;
+					if (gp.ui.choiceSlot < 0) {
+						gp.ui.choiceSlot = 1;
+					}
+				}
+		
+				if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_S) {
+					gp.ui.choiceSlot++;
+					if (gp.ui.choiceSlot > 1) {
+						gp.ui.choiceSlot = 0;
+					}
+				}
+			} else if (gp.ui.selectedObject.dialogues[gp.ui.selectedObject.dialogueSet][gp.ui.selectedObject.dialogueIndex]
+					.getType() == 3) {
+				if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W) {
+					gp.ui.choiceSlot--;
+					if (gp.ui.choiceSlot < 0) {
+						gp.ui.choiceSlot = gp.ui.selectedObject.options.length - 1;
+						if(gp.ui.selectedObject.options.length > 2) {
+							gp.ui.firstValue = gp.ui.choiceSlot - 2;
+						}
+						
+					}
+					if (gp.ui.firstValue > gp.ui.choiceSlot) {
+						gp.ui.firstValue = gp.ui.choiceSlot;
+					}
+				}
+		
+				if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_S) {
+					if (gp.ui.choiceSlot > 1 && gp.ui.choiceSlot == gp.ui.firstValue + 2) {
+						gp.ui.firstValue++;
+					}
+					gp.ui.choiceSlot++;
+					if (gp.ui.choiceSlot > gp.ui.selectedObject.options.length - 1) {
+						gp.ui.choiceSlot = 0;
+						gp.ui.firstValue = gp.ui.choiceSlot;
+					}
+				}
 			}
 		}
 

@@ -121,7 +121,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 	@Override
 	public void run() {
-		double drawInterval = 1000000000 / this.FPS;
+		double drawInterval = 1000000000 / FPS;
 		double delta = 0.0D;
 		long lastTime = System.nanoTime();
 		long timer = 0L;
@@ -183,6 +183,8 @@ public class GamePanel extends JPanel implements Runnable {
 				csManager.draw(g2);
 				ui.draw(g2);
 			} else if (gameState == GameState.examineState) {
+				ui.draw(g2);
+			} else if (gameState == GameState.talkingState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.menuState) {
 				ui.draw(g2);

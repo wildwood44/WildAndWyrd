@@ -42,7 +42,7 @@ public class UI {
 	public int section = 0;
 	public int glossPage = 0;
 	public static Boolean binaryRes = false;
-	public int slotyn = 0;
+	public int choiceSlot = 0;
 	public int firstValue = 0;
 	public int bottomValue = 0;
 	public int topValue = 0;
@@ -258,19 +258,12 @@ public class UI {
 						gp.keyH.skipPressed = false;
 					}
 				} 
-				if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] == null) {
-					for (boolean checkConditions: selectedObject.contConditions) {
-						if(checkConditions == false) {
-							selectedObject.dialogueIndex = 0;
-							selectedObject.speak();
-						}
-					}
-				}
+				selectedObject.checkConditions();
 			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 2) {
 				if (gp.keyH.enterPressed) {
 					charIndex++;
-					if (slotyn == 0) {
+					if (choiceSlot == 0) {
 						binaryRes = true;
 					} else {
 						binaryRes = false;
@@ -285,7 +278,7 @@ public class UI {
 					}
 				}
 
-				if (slotyn == 0) {
+				if (choiceSlot == 0) {
 					g2.drawString(">", x, y + 40);
 				} else {
 					g2.drawString(">", x, y + 80);
@@ -304,8 +297,15 @@ public class UI {
 						gp.keyH.enterPressed = false;
 					}
 				}
-				for(int i = 0; i < selectedObject.options.length; i++) {
-					if (slotyn == i) {
+				//int startValue = 0;
+				System.out.println(choiceSlot + " " + firstValue);
+				for(int i = firstValue; i < selectedObject.options.length; i++) {
+					if(y + 30 > 500) {
+					//	startValue++;
+						break;
+					}
+					System.out.println(y);
+					if (choiceSlot == i) {
 						g2.drawString(">", x, y);
 					}
 					int j = 1;
@@ -316,7 +316,6 @@ public class UI {
 							}
 							g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 							g2.drawString(line, x + 20, y);
-							System.out.println(j + " " + selectedObject.options[i].length());
 							j++;
 						}
 					}
@@ -398,7 +397,7 @@ public class UI {
 					.getType() == 2) {
 				if (gp.keyH.enterPressed) {
 					charIndex++;
-					if (slotyn == 0) {
+					if (choiceSlot == 0) {
 						binaryRes = true;
 					} else {
 						binaryRes = false;
@@ -413,7 +412,7 @@ public class UI {
 					}
 				}
 
-				if (slotyn == 0) {
+				if (choiceSlot == 0) {
 					g2.drawString(">", x, y + 40);
 				} else {
 					g2.drawString(">", x, y + 80);
@@ -432,11 +431,19 @@ public class UI {
 						gp.keyH.enterPressed = false;
 					}
 				}
-				System.out.println(selectedObject.options.length);
-				for(int i = 0; i < selectedObject.options.length; i++) {
-					if (slotyn == i) {
-						g2.drawString(">", x, y);
-					}
+				//topValue = 0;
+				System.out.println(topValue);
+				int endValue = 2;
+					for(int i = topValue; i < selectedObject.options.length; i++) {
+						System.out.println();
+						/*if (y + 30 > 500) {
+							endValue = selectedObject.options.length;
+						} else {
+							endValue = selectedObject.options.length;
+						}
+						if (slotyn == i) {
+							g2.drawString(">", x, y);
+						}*/
 					int j = 1;
 					for (String line : selectedObject.options[i].split(":")) {
 						if (j > 1) {
@@ -444,7 +451,6 @@ public class UI {
 						}
 						g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 						g2.drawString(line, x + 20, y);
-						System.out.println(j + " " + selectedObject.options[i].length());
 						j++;
 					}
 					
