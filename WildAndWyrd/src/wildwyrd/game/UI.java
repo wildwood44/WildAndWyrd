@@ -17,7 +17,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import wildwyrd.game.cutscenes.Cutscene;
+import wildwyrd.game.library.Book;
 import wildwyrd.game.object.Dialoge;
+import wildwyrd.game.playable.Playable;
 import wildwyrd.game.tile.UtilityTool;
 
 public class UI {
@@ -46,6 +48,9 @@ public class UI {
 	public int firstValue = 0;
 	public int bottomValue = 0;
 	public int topValue = 0;
+	public boolean openBook = false;
+	public Book[] selectedBookshelf;
+	public Book selectedBook;
 	int charIndex = 0;
 	String combinedText = "";
 	public JPanel bgPanel[] = new JPanel[10];
@@ -60,39 +65,40 @@ public class UI {
 		g2.setFont(arial_40);
 		g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		g2.setColor(Color.white);
-		GameState gameState = gp.gameState;
-		if (gameState == GameState.titleState) {
+		if (gp.gameState == GameState.titleState) {
 			drawTitleScreen();
 		}
 
-		gameState = gp.gameState;
-		if (gameState == GameState.playState) {
+		if (gp.gameState == GameState.playState) {
 			Integer var2 = gp.selectedObj;
 		}
 
-		gameState = gp.gameState;
-		if (gameState == GameState.examineState && this.selectedObject != null) {
+		if (gp.gameState == GameState.examineState && selectedObject != null) {
 			drawExamineScreen();
 		}
 
-		gameState = gp.gameState;
-		if (gameState == GameState.dialogueState) {
+		if (gp.gameState == GameState.dialogueState) {
 			drawDialogueScreen();
 		}
 
-		gameState = this.gp.gameState;
-		if (gameState == GameState.menuState) {
-			this.drawMenuBarScreen();
+		if (gp.gameState == GameState.menuState) {
+			drawMenuBarScreen();
 		}
 
-		gameState = this.gp.gameState;
-		if (gameState == GameState.inventoryState) {
-			this.drawInventoryScreen();
+		if (gp.gameState == GameState.statusState) {
+			drawStatusScreen();
 		}
 
-		gameState = this.gp.gameState;
-		if (gameState == GameState.glossaryState) {
-			this.drawGlossaryScreen();
+		if (gp.gameState == GameState.inventoryState) {
+			drawInventoryScreen();
+		}
+
+		if (gp.gameState == GameState.glossaryState) {
+			drawGlossaryScreen();
+		}
+		
+		if (gp.gameState == GameState.readingState) {
+			drawBookshelfScreen();
 		}
 
 	}
@@ -304,7 +310,6 @@ public class UI {
 					//	startValue++;
 						break;
 					}
-					System.out.println(y);
 					if (choiceSlot == i) {
 						g2.drawString(">", x, y);
 					}
@@ -431,19 +436,7 @@ public class UI {
 						gp.keyH.enterPressed = false;
 					}
 				}
-				//topValue = 0;
-				System.out.println(topValue);
-				int endValue = 2;
-					for(int i = topValue; i < selectedObject.options.length; i++) {
-						System.out.println();
-						/*if (y + 30 > 500) {
-							endValue = selectedObject.options.length;
-						} else {
-							endValue = selectedObject.options.length;
-						}
-						if (slotyn == i) {
-							g2.drawString(">", x, y);
-						}*/
+				for(int i = firstValue; i < selectedObject.options.length; i++) {
 					int j = 1;
 					for (String line : selectedObject.options[i].split(":")) {
 						if (j > 1) {
@@ -453,7 +446,6 @@ public class UI {
 						g2.drawString(line, x + 20, y);
 						j++;
 					}
-					
 					y += 40;
 				}
 			}
@@ -485,7 +477,7 @@ public class UI {
 		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		int slotXstart = frameX + 0;
 		int slotYstart = frameY + 15;
-		int cursorX = slotXstart + gp.tileSize * this.slotRow;
+		int cursorX = slotXstart + gp.tileSize * slotRow;
 		double var10000 = slotYstart;
 		int cursorY = (int) (var10000 + gp.tileSize * 0.75D * this.slotCol);
 		int cursorWidth = gp.tileSize * 2;
@@ -503,6 +495,44 @@ public class UI {
 		g2.drawString("Quit", 30, (int) (gp.tileSize * 6.25D));
 		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 	}
+	
+	public void drawStatusScreen() {
+		int frameX = 20;
+		int frameY = 25;
+		int frameWidth = gp.tileSize * 4;
+		int frameHeight = gp.tileSize * 7;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		int slotXstart = frameX + 0;
+		int slotYstart = frameY + 15;
+		int cursorX = slotXstart + gp.tileSize * slotRow;
+		int cursorY = (int) (slotYstart + gp.tileSize * 0.75D * slotCol);
+		int cursorWidth = gp.tileSize * 2;
+		int cursorHeight = 30;
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke());
+		double characterSlot = 1.75;
+		for(Playable p : gp.playable) {
+			if(p != null) {
+				g2.drawString(p.name, 30, (int) (gp.tileSize * characterSlot));
+				characterSlot += 0.75;
+			}
+		}
+		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+		frameX = (int) (4.7 * gp.tileSize);
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		g2.setColor(Color.white);
+		for(int i = 0; i < gp.playable.length; i++) {
+			if(gp.playable[i] != null) {
+				double lineNum  = 1;
+				for (String line : gp.playable[i].toString().split("£")) {
+					g2.drawString(line, gp.tileSize * 5, (int) (gp.tileSize * lineNum));
+					lineNum += 0.5;
+				}
+				
+			}
+		}
+	}
 
 	public void drawInventoryScreen() {
 		int frameX = 300;
@@ -517,7 +547,7 @@ public class UI {
 
 		int i;
 		for (i = 0; i < gp.player.inventory.size(); ++i) {
-			this.g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY, (ImageObserver) null);
+			g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY, (ImageObserver) null);
 			slotX += gp.tileSize;
 			if (i == 6 || i == 13 || i == 20) {
 				slotX = slotXstart;
@@ -538,7 +568,7 @@ public class UI {
 		drawDialogueWindow(frameX, dFrameY, frameWidth, dFrameHeight);
 		int textX = frameX + 20;
 		int textY = dFrameY + gp.tileSize;
-		int itemIndex = this.getItemIndexOnSlot();
+		int itemIndex = getItemIndexOnSlot();
 		g2.setColor(Color.white);
 		if (itemIndex < gp.player.inventory.size()) {
 			String[] var23;
@@ -621,10 +651,64 @@ public class UI {
 		}
 
 	}
+	
+	public void drawBookshelfScreen() {
+		int frameX = 20;
+		int frameY = 25;
+		int frameWidth = gp.tileSize * 8;
+		int frameHeight = gp.tileSize * 7;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		int slotXstart = frameX + 10;
+		int slotYstart = frameY + gp.tileSize;
+		int cursorX = slotXstart + gp.tileSize * slotRow;
+		int cursorY = (int) (slotYstart + gp.tileSize * 0.75D * slotCol);
+		int cursorWidth = (int) (gp.tileSize * 7.5);
+		int cursorHeight = 30;
+		if(openBook) {
+			drawBookScreen(selectedBookshelf[slotCol]);
+		} else {
+			g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+			g2.setColor(Color.white);
+			g2.setStroke(new BasicStroke());
+			double bookSlot = 1.75;
+			for(Book s : selectedBookshelf) {
+				if(s != null) {
+					g2.drawString(s.getTitle(), 35, (int) (gp.tileSize * bookSlot));
+					bookSlot += 0.75;
+				}
+			}
+			g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+		}
+		
+	}
+	
+	public void drawBookScreen(Book selectedBook) {
+		this.selectedBook = selectedBook;
+		int frameX = 20;
+		int frameY = 25;
+		int frameWidth = gp.tileSize * 8;
+		int frameHeight = gp.tileSize * 7;
+		int y = gp.tileSize * 2;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke());
+		g2.drawString(selectedBook.getTitle(), 35, (int) (gp.tileSize));
+		System.out.println(slotRow);
+		for (String line : selectedBook.getContent()[slotRow].split(":")) {
+			g2.setFont(g2.getFont().deriveFont(0, 14.0F));
+			g2.drawString(line, 35, y);
+			y += 30;
+		}
+	}
 
 	public int getItemIndexOnSlot() {
 		int itemIndex = this.slotCol2 + this.slotRow2 * 5;
 		return itemIndex;
+	}
+	
+	private void drawMenuWindow() {
+		
 	}
 
 	private void drawImageWindow(int x, int y, int width, int height) {

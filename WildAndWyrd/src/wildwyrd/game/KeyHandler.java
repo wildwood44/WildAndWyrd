@@ -21,7 +21,6 @@ public class KeyHandler implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
 		GameState gameState = gp.gameState;
-		GamePanel var3;
 		if (gameState == GameState.titleState) {
 			if (code == KeyEvent.VK_W) {
 				gp.ui.commandNum--;
@@ -48,23 +47,25 @@ public class KeyHandler implements KeyListener {
 				}
 			}
 		} else {
-			gameState = this.gp.gameState;
-			if (gameState == GameState.menuState) {
+			if (gp.gameState == GameState.menuState) {
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_ENTER :
-						if (this.gp.ui.slotCol == 2) {
+						if (gp.ui.slotCol == 1) {
+							gp.gameState = GameState.statusState;
+							gp.ui.drawStatusScreen();
+						} else if (gp.ui.slotCol == 2) {
 							gp.gameState = GameState.inventoryState;
 							gp.ui.drawInventoryScreen();
-						} else if (this.gp.ui.slotCol == 6) {
-							this.gp.ui.resetSlots();
+						} else if (gp.ui.slotCol == 6) {
+							gp.ui.resetSlots();
 							gp.gameState = GameState.glossaryState;
 							gp.ui.drawGlossaryScreen();
-						} else if (this.gp.ui.slotCol == 7) {
+						} else if (gp.ui.slotCol == 7) {
 							gp.currentRoom = 0;
 							gp.gameState = GameState.titleState;
 						}
 						break;
-					case 27 :
+					case KeyEvent.VK_ESCAPE :
 						gp.gameState = GameState.playState;
 						break;
 					case KeyEvent.VK_UP :
@@ -84,10 +85,31 @@ public class KeyHandler implements KeyListener {
 						}
 				}
 			} else {
-				gameState = this.gp.gameState;
-				if (gameState == GameState.inventoryState) {
+				if (gp.gameState == GameState.statusState) {
 					switch (e.getKeyCode()) {
-						case 27 :
+						case KeyEvent.VK_ESCAPE :
+							gp.ui.resetSlots();
+							gp.gameState = GameState.menuState;
+							break;
+						case KeyEvent.VK_UP :
+						case KeyEvent.VK_W :
+							if (this.gp.ui.slotRow2 != 0) {
+								--this.gp.ui.slotRow2;
+							} else {
+								this.gp.ui.slotRow2 = 3;
+							}
+							break;
+						case KeyEvent.VK_DOWN :
+						case KeyEvent.VK_S :
+							if (this.gp.ui.slotRow2 != 3) {
+								++this.gp.ui.slotRow2;
+							} else {
+								this.gp.ui.slotRow2 = 0;
+							}
+					}
+				}else if (gameState == GameState.inventoryState) {
+					switch (e.getKeyCode()) {
+						case KeyEvent.VK_ESCAPE :
 							gp.ui.resetSlots();
 							gp.gameState = GameState.menuState;
 							break;
@@ -127,7 +149,7 @@ public class KeyHandler implements KeyListener {
 					gameState = gp.gameState;
 					if (gameState == GameState.glossaryState) {
 						switch (e.getKeyCode()) {
-							case 27 :
+							case KeyEvent.VK_ESCAPE :
 								gp.ui.resetSlots();
 								gp.gameState = GameState.menuState;
 								break;
@@ -176,12 +198,12 @@ public class KeyHandler implements KeyListener {
 
 									++this.gp.ui.section;
 								} else {
-									if (this.gp.glossary.getSize(this.gp.ui.section) > this.gp.glossary.getSize(0)) {
-										this.gp.ui.slotCol = 0;
-										this.gp.ui.topValue = 0;
+									if (gp.glossary.getSize(gp.ui.section) > gp.glossary.getSize(0)) {
+										gp.ui.slotCol = 0;
+										gp.ui.topValue = 0;
 									}
 
-									this.gp.ui.section = 0;
+									gp.ui.section = 0;
 								}
 								break;
 							case KeyEvent.VK_DOWN :
@@ -199,7 +221,54 @@ public class KeyHandler implements KeyListener {
 									}
 								}
 						}
-					} else {
+					} else if (gp.gameState == GameState.readingState) {
+						switch (e.getKeyCode()) {
+						case KeyEvent.VK_ESCAPE :
+							if(gp.ui.openBook) {
+								gp.ui.openBook = false;
+							} else {
+								gp.ui.resetSlots();
+								gp.gameState = GameState.playState;
+							}
+							break;
+						case KeyEvent.VK_ENTER:
+							gp.ui.openBook = true;
+							break;
+						case KeyEvent.VK_UP :
+						case KeyEvent.VK_W :
+							if(!gp.ui.openBook) {
+								if (gp.ui.slotCol != 0) {
+									gp.ui.slotCol--;
+								} else {
+									gp.ui.slotCol = gp.ui.selectedBookshelf.length - 1;
+								}
+							}
+							break;
+						case KeyEvent.VK_DOWN :
+						case KeyEvent.VK_S :
+							if(!gp.ui.openBook) {
+								if (gp.ui.slotCol != gp.ui.selectedBookshelf.length - 1) {
+									gp.ui.slotCol++;
+								} else {
+									gp.ui.slotCol = 0;
+								}
+							}
+							break;
+						default :
+							if(gp.ui.openBook) {
+								if (gp.ui.slotRow != gp.ui.selectedBookshelf.length - 1) {
+									gp.ui.slotRow++;
+								} else {
+									gp.ui.slotRow = 0;
+								}
+								if(gp.ui.selectedBook.getContent()[gp.ui.slotRow] == null) {
+									gp.ui.openBook = false;
+									gp.ui.slotRow = 0;
+								}
+							}
+							break;
+					}
+				} else {
 						if (gp.gameState == GameState.playState) {
 							switch (e.getKeyCode()) {
 								case KeyEvent.VK_ENTER :
@@ -208,7 +277,7 @@ public class KeyHandler implements KeyListener {
 										gp.obj[1][gp.selectedObj].interact();
 									}
 									break;
-								case 27 :
+								case KeyEvent.VK_ESCAPE :
 									gp.selectedObj = null;
 									gp.gameState = GameState.menuState;
 									break;

@@ -17,6 +17,7 @@ import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.cutscenes.CutsceneManager;
 import wildwyrd.game.glossary.Glossary;
 import wildwyrd.game.object.AssetSetter;
+import wildwyrd.game.playable.Playable;
 import wildwyrd.game.playable.Player;
 import wildwyrd.game.rooms.Room;
 import wildwyrd.game.tile.CollisionChecker;
@@ -76,6 +77,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public BufferedImage background;
 	public Story s = new Story();
 	public Cutscene c;
+	public Playable[] playable = new Playable[6];
 	public Entity[][] obj = new Entity[10][25];
 	public Entity[][] npc = new Entity[10][5];
 	public InteractiveTile iTile[][] = new InteractiveTile[10][50];
@@ -91,6 +93,8 @@ public class GamePanel extends JPanel implements Runnable {
 		rm = new Room[maxRoom];
 		maps = new Map[maxMap];
 		player = new Player(this, keyH);
+		playable[0] = new Playable(this, "Alder", 60, 60,
+				10, 10, 5, 10, 5);
 		entityList = new ArrayList<>();
 		setPreferredSize(new Dimension(screenWidth, screenHeight));
 		setBackground(Color.black);
@@ -187,6 +191,8 @@ public class GamePanel extends JPanel implements Runnable {
 			} else if (gameState == GameState.talkingState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.menuState) {
+				ui.draw(g2);
+			} else if (gameState == GameState.statusState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.inventoryState) {
 				ui.draw(g2);
