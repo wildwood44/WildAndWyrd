@@ -211,7 +211,7 @@ public class UI {
 				g2.drawString(gp.c.dialogues[gp.c.dialogueSet][gp.c.dialogueIndex].getSpeaker(), x, y);
 				y += 40;
 			}
-			for (String line : currentDialogue.split(":")) {
+			for (String line : breakLines(currentDialogue,42)) {
 				g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 				g2.drawString(line, x, y);
 				y += 30;
@@ -340,7 +340,7 @@ public class UI {
 				g2.drawString(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker(), x, y);
 				y += 40;
 			}
-			for (String line : currentDialogue.split(":")) {
+			for (String line : breakLines(currentDialogue,40)) {
 				g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 				g2.drawString(line, x, y);
 				y += 30;
@@ -439,7 +439,7 @@ public class UI {
 				}
 				for(int i = firstValue; i < selectedObject.options.length; i++) {
 					int j = 1;
-					for (String line : selectedObject.options[i].split(":")) {
+					for (String line : breakLines(selectedObject.options[i],40)) {
 						if (j > 1) {
 							y += 30;
 						}
@@ -462,7 +462,7 @@ public class UI {
 				g2.drawString(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker(), x, y);
 				y += 40;
 			}
-			for (String line : currentDialogue.split(":")) {
+			for (String line : breakLines(currentDialogue, 60)) {
 				g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 				g2.drawString(line, x, y);
 				y += 30;
@@ -573,7 +573,7 @@ public class UI {
 		g2.setColor(Color.white);
 		if (itemIndex < gp.player.inventory.size()) {
 			String[] var23;
-			int var22 = (var23 = this.gp.player.inventory.get(itemIndex).description.split(":")).length;
+			int var22 = (var23 = breakLines(gp.player.inventory.get(itemIndex).description,40)).length;
 
 			for (int var21 = 0; var21 < var22; ++var21) {
 				String line = var23[var21];
@@ -640,8 +640,13 @@ public class UI {
 			g2.drawString(gp.glossary.page[section][slotCol + topValue].getTitle(),
 					frameX + 40, frameY + 40);
 			g2.setFont(g2.getFont().deriveFont(0, 16.0F));
-			g2.drawString(gp.glossary.page[section][slotCol + topValue].getDesc(), frameX + 40,
-					frameY + 80);
+			int lineNum = 80;
+			for (String line : breakLines((gp.glossary.page[section][slotCol + topValue].getDesc()), 35)){
+				g2.drawString(line, frameX + 40,
+					frameY + lineNum);
+				lineNum += 20;
+			}
+			
 			//htmlBuilder.append("<body><p>"+gp.glossary.page[section][slotCol + topValue].getDesc()+"</p></body>");
 			//htmlBuilder.append("</html>");
 			String html = htmlBuilder.toString();

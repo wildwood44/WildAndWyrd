@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
-import wildwyrd.game.object.Dialoge;
 
 public class Book extends Entity {
 	private int bookId;
