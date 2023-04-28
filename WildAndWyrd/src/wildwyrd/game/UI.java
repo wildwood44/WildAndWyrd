@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.imageio.ImageIO;
@@ -694,8 +695,7 @@ public class UI {
 		g2.setColor(Color.white);
 		g2.setStroke(new BasicStroke());
 		g2.drawString(selectedBook.getTitle(), 35, (int) (gp.tileSize));
-		System.out.println(slotRow);
-		for (String line : selectedBook.getContent()[slotRow].split(":")) {
+		for (String line : breakLines(selectedBook.getContent()[slotRow], 60)) {
 			g2.setFont(g2.getFont().deriveFont(0, 14.0F));
 			g2.drawString(line, 35, y);
 			y += 30;
@@ -705,6 +705,21 @@ public class UI {
 	public int getItemIndexOnSlot() {
 		int itemIndex = this.slotCol2 + this.slotRow2 * 5;
 		return itemIndex;
+	}
+	
+	public String[] breakLines(String text, int size) {
+		ArrayList<String> lines = new ArrayList<String>();
+		while(text.length() > 0){
+			int pos = text.lastIndexOf(" ", size);
+			if (size > text.length()) {
+				pos = text.length() - 1;
+			}
+			String found = text.substring(0, pos);
+			text = text.substring(pos + 1);
+			lines.add(found);
+		}
+		String[] lineBreaks = lines.toArray(new String[lines.size()]);
+		return lineBreaks;
 	}
 	
 	private void drawMenuWindow() {
