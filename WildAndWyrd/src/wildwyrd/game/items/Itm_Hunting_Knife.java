@@ -1,6 +1,7 @@
 package wildwyrd.game.items;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Itm_Hunting_Knife extends Entity {
@@ -10,6 +11,7 @@ public class Itm_Hunting_Knife extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Hunting Knife";
+		type = EntityType.Item;
 		description = "A knife used to hunt insects.";
 
 		image = setup("/res/items/img_hunting_knife", gp.tileSize, gp.tileSize);

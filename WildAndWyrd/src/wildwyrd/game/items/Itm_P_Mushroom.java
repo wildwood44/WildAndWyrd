@@ -1,6 +1,7 @@
 package wildwyrd.game.items;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Itm_P_Mushroom extends Entity {
@@ -10,6 +11,7 @@ public class Itm_P_Mushroom extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Parasol Mushroom";
+		type = EntityType.Item;
 		description = "";
 
 		image = setup("/res/items/Parasol_Mushroom", gp.tileSize, gp.tileSize);

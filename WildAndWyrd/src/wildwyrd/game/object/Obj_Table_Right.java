@@ -1,6 +1,7 @@
 package wildwyrd.game.object;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Obj_Table_Right extends Entity {
@@ -10,7 +11,7 @@ public class Obj_Table_Right extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Tables";
-		type = 3;
+		type = EntityType.Object;
 		collision = true;
 
 		image = setup("/res/objects/Table_Tile_Right", gp.tileSize, gp.tileSize);

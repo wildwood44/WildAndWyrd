@@ -1,6 +1,7 @@
 package wildwyrd.game.object;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Obj_P_Mushroom extends Entity {
@@ -13,7 +14,7 @@ public class Obj_P_Mushroom extends Entity {
 		this.gp = gp;
 		this.loot = loot;
 		name = "Parasol Mushroom";
-		type = 3;
+		type = EntityType.Object;
 		collision = true;
 
 		image = setup("/res/items/Parasol_Mushroom", gp.tileSize, gp.tileSize);

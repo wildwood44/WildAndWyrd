@@ -3,6 +3,7 @@ package wildwyrd.game.object;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Plant_1 extends Entity {
@@ -13,7 +14,7 @@ public class Plant_1 extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Greater Plantain";
-		type = 3;
+		type = EntityType.Object;
 		collision = true;
 
 		try {

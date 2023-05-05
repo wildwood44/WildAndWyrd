@@ -1,6 +1,7 @@
 package wildwyrd.game.object;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Obj_Rock extends Entity {
@@ -12,7 +13,7 @@ public class Obj_Rock extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Rock";
-		type = 3;
+		type = EntityType.Object;
 		collision = true;
 		if (varient == 1) {
 			image = setup("/res/objects/nettle_rock_tile", gp.tileSize, gp.tileSize);

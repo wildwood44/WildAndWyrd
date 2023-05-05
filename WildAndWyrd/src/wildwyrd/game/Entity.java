@@ -41,7 +41,7 @@ public class Entity {
 	public int spriteNum = 1;
 	public boolean collision = false;
 	public boolean collisionOn = false;
-	public int type;
+	public EntityType type;
 	public final int type_player = 0;
 	public final int type_object = 1;
 	public final int type_npc = 2;

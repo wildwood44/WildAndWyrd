@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.KeyHandler;
 import wildwyrd.game.items.Itm_Bandage;
@@ -143,7 +144,7 @@ public class Player extends Entity {
 
 	public void pickUpObject(int i) {
 		if (i != 999) {
-			if (gp.obj[gp.currentMap.getId()][i].type == 3 && keyH.enterPressed) {
+			if (gp.obj[gp.currentMap.getId()][i].type == EntityType.Object && keyH.enterPressed) {
 				gp.obj[gp.currentMap.getId()][i].interact();
 			}
 		}

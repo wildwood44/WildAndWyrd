@@ -1,6 +1,7 @@
 package wildwyrd.game.items;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Itm_Bandage extends Entity {
@@ -10,6 +11,7 @@ public class Itm_Bandage extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Bandage";
+		type = EntityType.Item;
 		description = "A cloth bandage to treat wounds.";
 
 		image = setup("/res/items/img_bandage", gp.tileSize, gp.tileSize);

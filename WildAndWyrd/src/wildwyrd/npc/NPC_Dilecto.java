@@ -7,12 +7,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class NPC_Dilecto extends Entity {
 	public NPC_Dilecto(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
+		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;
 	}

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Obj_StoneDoor extends Entity {
@@ -14,7 +15,7 @@ public class Obj_StoneDoor extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Door";
-		type = 3;
+		type = EntityType.Object;
 		collision = true;
 
 		image = setup("/res/objects/Rockwall_Door1", gp.tileSize, gp.tileSize);

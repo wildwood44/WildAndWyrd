@@ -1,6 +1,7 @@
 package wildwyrd.game.object;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Obj_SilverBirch extends Entity {
@@ -12,7 +13,7 @@ public class Obj_SilverBirch extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Tree";
-		type = 3;
+		type = EntityType.Object;
 		collision = true;
 		image = setup("/res/objects/img_silver_birch" + num, gp.tileSize, gp.tileSize);
 

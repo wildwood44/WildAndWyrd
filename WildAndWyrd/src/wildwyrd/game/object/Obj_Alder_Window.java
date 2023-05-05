@@ -1,6 +1,7 @@
 package wildwyrd.game.object;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Obj_Alder_Window extends Entity {
@@ -9,7 +10,7 @@ public class Obj_Alder_Window extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Window";
-		type = 3;
+		type = EntityType.Object;
 		collision = false;
 	
 		image = setup("/res/objects/img_window_2", gp.tileSize, gp.tileSize);

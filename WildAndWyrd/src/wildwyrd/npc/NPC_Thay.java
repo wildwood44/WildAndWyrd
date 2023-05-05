@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
 
@@ -15,6 +16,7 @@ public class NPC_Thay extends Entity {
 		super(gp);
 		//this.gp = gp;
 		name = "Thay";
+		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;
 		contConditions[0] = false;

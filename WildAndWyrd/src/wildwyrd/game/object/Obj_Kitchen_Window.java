@@ -1,6 +1,7 @@
 package wildwyrd.game.object;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
 
@@ -11,7 +12,7 @@ public class Obj_Kitchen_Window extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Window";
-		type = 3;
+		type = EntityType.Object;
 		collision = true;
 
 		image = setup("/res/objects/img_window_light", gp.tileSize, gp.tileSize);

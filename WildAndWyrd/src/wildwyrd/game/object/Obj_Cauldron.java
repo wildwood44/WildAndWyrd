@@ -1,6 +1,7 @@
 package wildwyrd.game.object;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Obj_Cauldron extends Entity {
@@ -10,7 +11,7 @@ public class Obj_Cauldron extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Cauldron";
-		type = 3;
+		type = EntityType.Object;
 		collision = true;
 
 		image = setup("/res/objects/img_hearth_left", gp.tileSize, gp.tileSize);

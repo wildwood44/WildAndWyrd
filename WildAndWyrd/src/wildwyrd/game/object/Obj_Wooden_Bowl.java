@@ -1,6 +1,7 @@
 package wildwyrd.game.object;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Obj_Wooden_Bowl extends Entity {
@@ -13,7 +14,7 @@ public class Obj_Wooden_Bowl extends Entity {
 		this.gp = gp;
 		this.loot = loot;
 		name = "Wooden Bowl";
-		type = 3;
+		type = EntityType.Object;
 		collision = true;
 		options = new String[2];
 

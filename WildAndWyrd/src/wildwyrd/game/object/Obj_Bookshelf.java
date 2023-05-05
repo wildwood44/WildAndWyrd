@@ -1,6 +1,7 @@
 package wildwyrd.game.object;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
 import wildwyrd.game.library.Book;
@@ -13,7 +14,7 @@ public class Obj_Bookshelf extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Bookshelf";
-		type = 3;
+		type = EntityType.Object;
 		collision = true;
 
 		image = setup("/res/objects/img_bookshelf", gp.tileSize, gp.tileSize);

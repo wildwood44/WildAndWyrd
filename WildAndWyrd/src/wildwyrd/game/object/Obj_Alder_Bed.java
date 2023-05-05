@@ -3,6 +3,7 @@ package wildwyrd.game.object;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Obj_Alder_Bed extends Entity {
@@ -14,37 +15,37 @@ public class Obj_Alder_Bed extends Entity {
 		super(gp);
 		this.gp = gp;
 		this.loot = loot;
-		this.name = "Alder's bed";
-		this.type = 3;
-		this.collision = true;
+		name = "Alder's bed";
+		type = EntityType.Object;
+		collision = true;
 
 		try {
-			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/Img_Alder_Bed.png"));
-		} catch (IOException var3) {
-			var3.printStackTrace();
+			image = ImageIO.read(getClass().getResourceAsStream("/res/objects/Img_Alder_Bed.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		this.setDialogue();
+		setDialogue();
 	}
 
 	public void setDialogue() {
-		this.dialogues[0][0] = new Dialoge("It was cheaply made from dry wood and partridge feathers. It was powdered with herbs to stop it smelling. Thay helped Alder make it.", 1);
-		this.dialogues[1][0] = new Dialoge("Among the feathers were Alder's savings.",1);
-		this.dialogues[1][1] = new Dialoge("Take them? ", 2);
+		dialogues[0][0] = new Dialoge("It was cheaply made from dry wood and partridge feathers. It was powdered with herbs to stop it smelling. Thay helped Alder make it.", 1);
+		dialogues[1][0] = new Dialoge("Among the feathers were Alder's savings.",1);
+		dialogues[1][1] = new Dialoge("Take them? ", 2);
 	}
 
 	public void choiceResponce() {
-		if (this.gp.ui.choiceSlot == 0) {
-			this.gp.player.pickUpShillings(this.loot);
-			this.opened = true;
+		if (gp.ui.choiceSlot == 0) {
+			gp.player.pickUpShillings(loot);
+			opened = true;
 		}
 
 	}
 
 	public void interact() {
-		this.startDialogue(this, 0);
-		if (!this.opened) {
-			this.startDialogue(this, 1);
+		startDialogue(this, 0);
+		if (!opened) {
+			startDialogue(this, 1);
 		}
-		this.gp.keyH.enterPressed = false;
+		gp.keyH.enterPressed = false;
 	}
 }

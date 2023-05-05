@@ -1,6 +1,7 @@
 package wildwyrd.game.object;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Obj_Worktable extends Entity {
@@ -13,7 +14,7 @@ public class Obj_Worktable extends Entity {
 		this.gp = gp;
 		this.loot = loot;
 		name = "Worktable";
-		type = 3;
+		type = EntityType.Object;
 		collision = true;
 
 		image = setup("/res/objects/img_worktable", gp.tileSize, gp.tileSize);

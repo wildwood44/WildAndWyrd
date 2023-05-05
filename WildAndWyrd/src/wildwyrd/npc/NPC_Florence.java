@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
 
@@ -17,6 +18,7 @@ public class NPC_Florence extends Entity {
 		options = new String[2];
 		contConditions = new boolean[2];
 		name = "Florence";
+		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;
 		contConditions[0] = false;

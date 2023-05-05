@@ -3,6 +3,7 @@ package wildwyrd.game.object;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Obj_Chair_Left extends Entity {
@@ -12,7 +13,7 @@ public class Obj_Chair_Left extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Chair";
-		type = 3;
+		type = EntityType.Object;
 		collision = true;
 
 		try {

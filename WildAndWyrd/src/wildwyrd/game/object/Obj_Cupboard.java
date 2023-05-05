@@ -3,6 +3,7 @@ package wildwyrd.game.object;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
+import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class Obj_Cupboard extends Entity {
@@ -11,27 +12,27 @@ public class Obj_Cupboard extends Entity {
 	public Obj_Cupboard(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.name = "Cupboard";
-		this.type = 3;
-		this.collision = true;
+		name = "Cupboard";
+		type = EntityType.Object;
+		collision = true;
 
 		try {
-			this.image = ImageIO.read(this.getClass().getResourceAsStream("/res/objects/img_cupboard.png"));
-		} catch (IOException var3) {
-			var3.printStackTrace();
+			image = ImageIO.read(getClass().getResourceAsStream("/res/objects/img_cupboard.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
-		this.setDialogue();
-		this.solidArea.width = 20;
+		setDialogue();
+		solidArea.width = 20;
 	}
 
 	public void setDialogue() {
-		this.dialogues[0][0] = new Dialoge("The cupboard was full of plates, bowls and :other kitchen and dining ware.",
+		dialogues[0][0] = new Dialoge("The cupboard was full of plates, bowls and :other kitchen and dining ware.",
 				1);
 	}
 
 	public void interact() {
-		this.startDialogue(this, 0);
-		this.gp.keyH.enterPressed = false;
+		startDialogue(this, 0);
+		gp.keyH.enterPressed = false;
 	}
 }
