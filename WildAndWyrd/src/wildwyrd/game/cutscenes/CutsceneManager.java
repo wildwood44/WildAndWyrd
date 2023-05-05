@@ -38,7 +38,7 @@ public class CutsceneManager {
 			gp.cutsceneOn = true;
 			gp.ui.drawHeadingScreen("Prologue");
 			gp.ui.drawMessageScreen(
-					"The game will now begin. Press any key to continue.:You may skip the dialogue by pressing 'skip'.");
+					"The game will now begin. Press any key to continue. You may skip the dialogue by pressing 'skip'.");
 			gp.c.setSprites();
 		} else if (scenePhase == 1) {
 			//gp.ui.drawBackground("/res/backgrounds/Forton_Backgound.png");
@@ -53,7 +53,6 @@ public class CutsceneManager {
 			gp.c.dialogueIndex = 0;
 			sceneNum = 0;
 			scenePhase = 0;
-			GamePanel gp = this.gp;
 			gp.gameState = GameState.playState;
 		}
 
@@ -74,9 +73,12 @@ public class CutsceneManager {
 		} else if (scenePhase == 2) {
 			gp.s.swh[read] = false;
 			gp.cutsceneOn = false;
-			GamePanel gp = this.gp;
 			gp.gameState = GameState.playState;
 		}
 
+	}
+	
+	private void scene_c1_1() {
+		
 	}
 }

@@ -27,7 +27,7 @@ public class Obj_Chair_Left extends Entity {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge(
-				"There were two wooden armchairs both with :partridge feather cushions.",
+				"There were two wooden armchairs both with partridge feather cushions.",
 				1);
 	}
 

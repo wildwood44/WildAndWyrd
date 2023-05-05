@@ -141,12 +141,7 @@ public class UI {
 		if (gp.keyH.enterPressed) {
 			gp.csManager.scenePhase++;
 		}
-
-		String[] var8;
-		int var7 = (var8 = message.split(":")).length;
-
-		for (int var6 = 0; var6 < var7; ++var6) {
-			String line = var8[var6];
+		for (String line : breakLines(message, 40)) {
 			int x = getXforCenteredText(line);
 			g2.drawString(line, x, y);
 			y += 40;
@@ -601,8 +596,7 @@ public class UI {
 		int slotXstart = frameX + 0;
 		int slotYstart = frameY + 15;
 		int cursorX = slotXstart + gp.tileSize * slotRow;
-		double var10000 = slotYstart * 2.25D;
-		int cursorY = (int) (var10000 + gp.tileSize * slotCol);
+		int cursorY = (int) (slotYstart * 2.25D + gp.tileSize * slotCol);
 		int cursorWidth = gp.tileSize * 2;
 		int cursorHeight = 30;
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
@@ -701,25 +695,37 @@ public class UI {
 		g2.setStroke(new BasicStroke());
 		g2.drawString(selectedBook.getTitle(), 35, (int) (gp.tileSize));
 		for (String line : breakLines(selectedBook.getContent()[slotRow], 60)) {
-			g2.setFont(g2.getFont().deriveFont(0, 14.0F));
-			g2.drawString(line, 35, y);
-			y += 30;
+			for (String list : line.split("£")) {
+				g2.setFont(g2.getFont().deriveFont(0, 14.0F));
+				g2.drawString(list, 35, y);
+				y += 30;
+			}
+			
 		}
 	}
 
 	public int getItemIndexOnSlot() {
-		int itemIndex = this.slotCol2 + this.slotRow2 * 5;
+		int itemIndex = slotCol2 + slotRow2 * 5;
 		return itemIndex;
 	}
 	
+	//Automatic line breaks
 	public String[] breakLines(String text, int size) {
 		ArrayList<String> lines = new ArrayList<String>();
 		while(text.length() > 0){
 			int pos = text.lastIndexOf(" ", size);
+			if(text.contains("£")) {
+				pos = text.lastIndexOf("£", size);
+				System.out.println(pos);
+				if (pos == -1) {
+					pos = text.lastIndexOf(" ", size);
+				}
+			}
 			if (size > text.length()) {
 				pos = text.length() - 1;
 			}
-			String found = text.substring(0, pos);
+			String found = text.substring(0, pos + 1);
+			System.out.println(found);
 			text = text.substring(pos + 1);
 			lines.add(found);
 		}
@@ -766,8 +772,7 @@ public class UI {
 		g2.setFont(g2.getFont().deriveFont(1, 40.0F));
 		text = "New Game";
 		x = getXforCenteredText(text);
-		double var10000 = y;
-		y = (int) (var10000 + gp.tileSize * 2.5D);
+		y = (int) (y + gp.tileSize * 2.5D);
 		g2.drawString(text, x, y);
 		if (commandNum == 0) {
 			g2.drawString(">", x - gp.tileSize, y);

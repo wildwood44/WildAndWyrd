@@ -21,7 +21,7 @@ public class Obj_Table extends Entity {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge(
-				"A single round wooden table sat a safe :distance from the fire, but close enough to feel its warmth.",
+				"A single round wooden table sat a safe distance from the fire, but close enough to feel its warmth.",
 				1);
 	}
 

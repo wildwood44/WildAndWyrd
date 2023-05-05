@@ -23,7 +23,7 @@ public class Obj_Cauldron extends Entity {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge(
-				"A small metal cauldron was suspended above :the stove by a chain. It was empty.", 1);
+				"A small metal cauldron was suspended above the hearth by a chain. It was empty.", 1);
 	}
 
 	public void interact() {

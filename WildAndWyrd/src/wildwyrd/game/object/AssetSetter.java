@@ -4,6 +4,7 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.items.Itm_Bandage;
 import wildwyrd.game.items.Itm_Hazelnut;
+import wildwyrd.game.items.Itm_Hunting_Knife;
 import wildwyrd.game.items.Itm_P_Mushroom;
 import wildwyrd.game.rooms.Rm_Blank;
 import wildwyrd.game.rooms.Rm_Forton;
@@ -98,7 +99,7 @@ public class AssetSetter {
 		gp.obj[0][20] = new Obj_Crate(gp);
 		gp.obj[0][20].worldX = 18 * gp.tileSize;
 		gp.obj[0][20].worldY = 4 * gp.tileSize;
-		gp.obj[0][21] = new Obj_Worktable(gp);
+		gp.obj[0][21] = new Obj_Worktable(gp, new Itm_Hunting_Knife(gp));
 		gp.obj[0][21].worldX = 17 * gp.tileSize;
 		gp.obj[0][21].worldY = 4 * gp.tileSize;
 		gp.obj[1][0] = new Obj_Alder_Bed(gp, getRandomNumber(2,3));

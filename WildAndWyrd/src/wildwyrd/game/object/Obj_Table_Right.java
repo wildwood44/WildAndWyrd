@@ -21,7 +21,7 @@ public class Obj_Table_Right extends Entity {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge(
-				"A rectangular wooden table stood in the :centre of the room while a thinner one with :a basin stood by the window.",
+				"A rectangular wooden table stood in the centre of the room while a thinner one with a basin stood by the window.",
 				1);
 	}
 

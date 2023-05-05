@@ -25,7 +25,7 @@ public class Obj_Basin extends Entity {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge(
-				"The basin Alder was washing in was full of :water from Alder cleaning dishes. Clean :plates were lined up to the side.",
+				"The basin Alder was washing in was full of water from Alder cleaning dishes. Clean plates were lined up to the side.",
 				1);
 	}
 

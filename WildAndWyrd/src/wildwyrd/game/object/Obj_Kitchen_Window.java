@@ -26,8 +26,8 @@ public class Obj_Kitchen_Window extends Entity {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge(
-				"The clearing at the front of of the cottage :could be seen through the window.", 1);
-		dialogues[1][0] = new Dialoge("Florence and Thay were talking outside the :window.", 1);
+				"The clearing at the front of of the cottage could be seen through the window.", 1);
+		dialogues[1][0] = new Dialoge("Florence and Thay were talking outside the window.", 1);
 		dialogues[1][1] = new Dialoge("Alder","I'm coming out", 1);
 	}
 

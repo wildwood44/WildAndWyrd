@@ -232,7 +232,9 @@ public class KeyHandler implements KeyListener {
 							}
 							break;
 						case KeyEvent.VK_ENTER:
-							gp.ui.openBook = true;
+							if(!gp.ui.openBook) {
+								gp.ui.openBook = true;
+							}
 							break;
 						case KeyEvent.VK_UP :
 						case KeyEvent.VK_W :

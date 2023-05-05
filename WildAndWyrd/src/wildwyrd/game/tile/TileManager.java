@@ -37,7 +37,7 @@ public class TileManager {
 			setup(8, "Balcony_Wooden_Left", false);
 		}
 		else if(gp.currentMap.getType() == MapType.OUTSIDE) {
-			setup(0, "grass_tile", false);
+			setup(0, "dirt_grass_tile", false);
 			setup(1, "forestFloor_tile", false);
 			setup(2, "Rockwall_Tile", true);
 			setup(3, "bramble_tile", true);
@@ -89,8 +89,8 @@ public class TileManager {
 					}
 					String[] numbers = line.split(" ");
 					int num = Integer.parseInt(numbers[col]);
-					this.mapTileNum[map][col][row] = num;
-					++col;
+					mapTileNum[map][col][row] = num;
+					col++;
 				}
 			}
 			br.close();
@@ -154,10 +154,10 @@ public class TileManager {
 				g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 			}
 
-			++worldCol;
+			worldCol++;
 			if (worldCol == gp.currentMap.getMaxWorldCol()) {
 				worldCol = 0;
-				++worldRow;
+				worldRow++;
 			}
 		}
 
