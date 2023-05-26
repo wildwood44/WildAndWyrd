@@ -1,9 +1,9 @@
 package wildwyrd.game;
 
 public enum EntityType {
-Object, Item, Sprite
+Object, Sprite, Food, Health, Hat, Shirt, Trouser, Primary, Secondary
 }
 
-enum equipmentType {
+enum EquipmentType {
 	head, body, legs, primary, secondary
 }
