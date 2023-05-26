@@ -93,6 +93,14 @@ public class Entity {
 		return image;
 	}
 
+	public String getName() {
+		System.out.println(name);
+		if (name == null) {
+			return "None";
+		}
+		return name;
+	}
+
 	public int getLeftX() {
 		return worldX + solidArea.x;
 	}
