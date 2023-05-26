@@ -58,18 +58,6 @@ public class GamePanel extends JPanel implements Runnable {
 	int playerX = 100;
 	int playerSpeed = 4;
 	public GameState gameState;
-	public final int titleState = 0;
-	public final int playState = 1;
-	public final int pauseState = 2;
-	public final int menuState = 3;
-	public final int cutsceneState = 4;
-	public final int dialogueState = 5;
-	public final int messageState = 6;
-	public final int examineState = 7;
-	public final int talkingState = 8;
-	public final int movingState = 9;
-	public final int inventoryState = 10;
-	public final int glossaryState = 11;
 	public boolean cutsceneOn = false;
 	public Map currentMap;
 	public Integer selectedObj;
@@ -195,6 +183,8 @@ public class GamePanel extends JPanel implements Runnable {
 			} else if (gameState == GameState.statusState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.inventoryState) {
+				ui.draw(g2);
+			} else if (gameState == GameState.equipState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.glossaryState) {
 				ui.draw(g2);
