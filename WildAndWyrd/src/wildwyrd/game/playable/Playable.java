@@ -1,5 +1,10 @@
 package wildwyrd.game.playable;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
@@ -18,11 +23,12 @@ public class Playable extends Entity {
 	private int baseAccuracy;
 	private int baseEvasion;
 	private int baseSpeed;
-	private Entity head;
-	private Entity body;
-	private Entity legs;
-	private Entity weapon_prime;
-	private Entity weapon_second;
+	public BufferedImage combatSpt;
+	private Entity head = new Entity(gp);
+	private Entity body = new Entity(gp);
+	private Entity legs = new Entity(gp);
+	private Entity weapon_prime = new Entity(gp);
+	private Entity weapon_second = new Entity(gp);
 	public Playable(GamePanel gp, String name, int health, int stamina,
 			int baseAttack, int baseDefence, int baseAccuracy, int baseEvasion, int baseSpeed) {
 		super(gp);
@@ -37,6 +43,11 @@ public class Playable extends Entity {
 		this.baseAccuracy = baseAccuracy;
 		this.baseEvasion = baseEvasion;
 		this.baseSpeed = baseSpeed;
+		try {
+			combatSpt = ImageIO.read(getClass().getResourceAsStream("/res/sprite/combat/Alder_Combat_Base.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	public Entity getHead() {
 		return head;
@@ -68,15 +79,43 @@ public class Playable extends Entity {
 	public void setWeapon_second(Entity weapon_second) {
 		this.weapon_second = weapon_second;
 	}
+	public int getHealth() {
+		return health;
+	}
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+	public int getMaxStamina() {
+		return maxStamina;
+	}
+	public int getAttack() {
+		if(weapon_prime == null) {
+			return baseAttack;
+		}
+		System.out.println(weapon_prime.attackValue);
+		return baseAttack + weapon_prime.attackValue;
+	}
+	public int getDefence() {
+		return baseDefence;
+	}
+	public int getAccuracy() {
+		return baseAccuracy;
+	}
+	public int getEvasion() {
+		return baseEvasion;
+	}
+	public int getSpeed() {
+		return baseSpeed;
+	}
 	@Override
 	public String toString() {
 		return name + " - " + level + 
 				"£ £Health:  " + health + "\\" + maxHealth +
 				"£Stamina: " + stamina + "\\" + maxStamina +
-				"£Attack: " + baseAttack +
-				"£Defence: " + baseDefence +
-				"£Accuracy: " + baseAccuracy +
-				"£Evasion: " + baseEvasion +
-				"£Speed: " + baseSpeed;
+				"£Attack: " + getAttack() +
+				"£Defence: " + getDefence() +
+				"£Accuracy: " + getAccuracy() +
+				"£Evasion: " + getEvasion() +
+				"£Speed: " + getSpeed();
 	}
 }

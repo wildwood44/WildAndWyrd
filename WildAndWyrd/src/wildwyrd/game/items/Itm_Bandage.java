@@ -11,7 +11,7 @@ public class Itm_Bandage extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Bandage";
-		type = EntityType.Item;
+		type = EntityType.Health;
 		description = "A cloth bandage to treat wounds.";
 
 		image = setup("/res/items/img_bandage", gp.tileSize, gp.tileSize);

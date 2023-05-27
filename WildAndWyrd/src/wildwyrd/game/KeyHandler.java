@@ -56,6 +56,10 @@ public class KeyHandler implements KeyListener {
 						} else if (gp.ui.slotCol == 2) {
 							gp.gameState = GameState.inventoryState;
 							gp.ui.drawInventoryScreen();
+						} else if (gp.ui.slotCol == 3) {
+							gp.ui.resetSlots();
+							gp.gameState = GameState.equipState;
+							gp.ui.drawEquipScreen();
 						} else if (gp.ui.slotCol == 6) {
 							gp.ui.resetSlots();
 							gp.gameState = GameState.glossaryState;
@@ -139,11 +143,53 @@ public class KeyHandler implements KeyListener {
 							break;
 						case KeyEvent.VK_DOWN :
 						case KeyEvent.VK_S :
-							if (this.gp.ui.slotRow2 != 3) {
-								++this.gp.ui.slotRow2;
+							if (gp.ui.slotRow2 != 3) {
+								gp.ui.slotRow2++;
 							} else {
-								this.gp.ui.slotRow2 = 0;
+								gp.ui.slotRow2 = 0;
 							}
+							break;
+						case KeyEvent.VK_ENTER :
+							gp.player.selectedItem();
+							break;
+					}
+				} else if (gp.gameState == GameState.equipState) {
+					switch (e.getKeyCode()) {
+					case KeyEvent.VK_ESCAPE :
+						if (gp.ui.openInventory) {
+							gp.ui.openInventory = false;
+						}
+						else if (gp.ui.openEquipment) {
+							gp.ui.openEquipment = false;
+						} else {
+							gp.ui.resetSlots();
+							gp.gameState = GameState.menuState;
+						}
+						
+						break;
+					case KeyEvent.VK_ENTER:
+						//gp.ui.selectedPlayable = Playable;
+						if (!gp.ui.openEquipment) {
+							gp.ui.openEquipment = true;
+						}else if (!gp.ui.openInventory) {
+							gp.ui.openInventory = true;
+						}
+						break;
+					case KeyEvent.VK_UP :
+					case KeyEvent.VK_W :
+						if (gp.ui.slotCol != 0) {
+							gp.ui.slotCol--;
+						} else {
+							gp.ui.slotCol = 4;
+						}
+						break;
+					case KeyEvent.VK_DOWN :
+					case KeyEvent.VK_S :
+						if (gp.ui.slotCol != 4) {
+							gp.ui.slotCol++;
+						} else {
+							gp.ui.slotCol = 0;
+						}
 					}
 				} else {
 					gameState = gp.gameState;

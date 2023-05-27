@@ -49,6 +49,9 @@ public class UI {
 	public int firstValue = 0;
 	public int bottomValue = 0;
 	public int topValue = 0;
+	public boolean openEquipment = false;
+	public boolean openInventory = false;
+	public Entity selectedPlayable;
 	public boolean openBook = false;
 	public Book[] selectedBookshelf;
 	public Book selectedBook;
@@ -92,6 +95,10 @@ public class UI {
 
 		if (gp.gameState == GameState.inventoryState) {
 			drawInventoryScreen();
+		}
+
+		if (gp.gameState == GameState.equipState) {
+			drawEquipScreen();
 		}
 
 		if (gp.gameState == GameState.glossaryState) {
@@ -543,7 +550,7 @@ public class UI {
 
 		int i;
 		for (i = 0; i < gp.player.inventory.size(); ++i) {
-			g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY, (ImageObserver) null);
+			g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY, null);
 			slotX += gp.tileSize;
 			if (i == 6 || i == 13 || i == 20) {
 				slotX = slotXstart;
@@ -551,8 +558,8 @@ public class UI {
 			}
 		}
 
-		i = slotXstart + gp.tileSize * this.slotCol2;
-		int cursorY = slotYstart + gp.tileSize * this.slotRow2;
+		i = slotXstart + gp.tileSize * slotCol2;
+		int cursorY = slotYstart + gp.tileSize * slotRow2;
 		int cursorWidth = (int) (gp.tileSize / 1.65D);
 		int cursorHeight = (int) (gp.tileSize / 1.65D);
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
@@ -567,11 +574,8 @@ public class UI {
 		int itemIndex = getItemIndexOnSlot();
 		g2.setColor(Color.white);
 		if (itemIndex < gp.player.inventory.size()) {
-			String[] var23;
-			int var22 = (var23 = breakLines(gp.player.inventory.get(itemIndex).description,40)).length;
 
-			for (int var21 = 0; var21 < var22; ++var21) {
-				String line = var23[var21];
+			for (String line : breakLines(gp.player.inventory.get(itemIndex).description,40)) {
 				g2.drawString(line, textX, textY);
 				textY += 40;
 			}
@@ -585,6 +589,50 @@ public class UI {
 		g2.setColor(Color.white);
 		g2.drawString("Shillings: " + gp.player.getShillings(), 30, gp.tileSize);
 
+	}
+	
+	public void drawEquipScreen() {
+		int frameX = 20;
+		int frameY = 25;
+		int frameWidth = gp.tileSize * 4;
+		int frameHeight = gp.tileSize * 7;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		int slotXstart = frameX + 0;
+		int slotYstart = (int)((frameY + 15) + (gp.tileSize * 0.75D));
+		int cursorX = slotXstart + gp.tileSize * slotRow;
+		int cursorY = (int) (slotYstart + gp.tileSize * 0.75D * slotCol);
+		int cursorWidth = gp.tileSize * 3;
+		int cursorHeight = 30;
+
+		frameX = 300;
+		frameY = 25;
+		frameWidth = gp.tileSize * 7;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+
+		if(openEquipment) {
+			cursorX = frameX;
+		}
+
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke());
+		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke());
+		for(Playable p : gp.playable) {
+			if(p != null) {
+				g2.drawString(p.name, 30, (int) (gp.tileSize * 1.75D));
+				g2.drawString("Head: " + p.getHead().getName(), frameX + 15, (int) (gp.tileSize * 1.75D));
+				g2.drawString("Body: " + p.getBody().getName(), frameX + 15, (int) (gp.tileSize * 2.5D));
+				g2.drawString("Legs: " + p.getLegs().getName(), frameX + 15, (int) (gp.tileSize * 3.25D));
+				System.out.println(p.getWeapon_prime().getName());
+				g2.drawString("Primary WP: " + p.getWeapon_prime().getName(), frameX + 15, (int) (gp.tileSize * 4));
+				g2.drawString("Secondary WP: " +p.getWeapon_second().getName(), frameX + 15, (int) (gp.tileSize * 4.75D));
+				//g2.drawImage(p.combatSpt, frameX + (frameWidth / 3), frameY + (frameHeight / 4), frameWidth / 2 , frameHeight/2, null);
+			}
+		}
+		
 	}
 
 	public void drawGlossaryScreen() {
@@ -619,7 +667,6 @@ public class UI {
 			}
 		}
 
-		StringBuilder htmlBuilder = new StringBuilder();
 		frameX = 300;
 		frameY = 25;
 		frameWidth = gp.tileSize * 7;
@@ -643,9 +690,6 @@ public class UI {
 			
 			//htmlBuilder.append("<body><p>"+gp.glossary.page[section][slotCol + topValue].getDesc()+"</p></body>");
 			//htmlBuilder.append("</html>");
-			String html = htmlBuilder.toString();
-			g2.drawString(html,
-					frameX + 160, frameY + 40);
 		} catch (Exception e) {
 			System.out.println(e);
 		}

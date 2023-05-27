@@ -11,11 +11,15 @@ public class Itm_Hunting_Knife extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Hunting Knife";
-		type = EntityType.Item;
+		type = EntityType.Primary;
+		attackValue = 5;
 		description = "A knife used to hunt insects.";
 
 		image = setup("/res/items/img_hunting_knife", gp.tileSize, gp.tileSize);
 
+	}
+	public void selectedItem() {
+		int itemIndex = gp.ui.getItemIndexOnSlot();
 	}
 
 	public void use() {

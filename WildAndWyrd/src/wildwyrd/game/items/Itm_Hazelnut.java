@@ -11,7 +11,7 @@ public class Itm_Hazelnut extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = "Hazelnut";
-		type = EntityType.Item;
+		type = EntityType.Food;
 		description = "Seed of a hazel tree.";
 
 		image = setup("/res/items/img_hazelnut", gp.tileSize, gp.tileSize);

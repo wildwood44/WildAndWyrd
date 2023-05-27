@@ -157,6 +157,16 @@ public class Player extends Entity {
 			}
 		}
 	}
+	
+	public void selectedItem(){
+		int itemIndex = gp.ui.getItemIndexOnSlot();
+		if(itemIndex < inventory.size()) {
+			Entity selectedItem = inventory.get(itemIndex);
+			if(selectedItem.type == EntityType.Primary) {
+				gp.playable[0].setWeapon_prime(selectedItem);
+			}
+		}
+	}
 
 	public void setItems() {
 		inventory.add(new Itm_Hazelnut(gp));
