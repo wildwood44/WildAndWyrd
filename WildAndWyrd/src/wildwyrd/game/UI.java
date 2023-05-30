@@ -574,10 +574,12 @@ public class UI {
 		int itemIndex = getItemIndexOnSlot();
 		g2.setColor(Color.white);
 		if (itemIndex < gp.player.inventory.size()) {
-
 			for (String line : breakLines(gp.player.inventory.get(itemIndex).description,40)) {
 				g2.drawString(line, textX, textY);
 				textY += 40;
+			}
+			if(gp.player.inventory.get(itemIndex).type == EntityType.Primary) {
+				g2.drawString("" + gp.playable[0].getAttack() + " - " + (gp.playable[0].getBaseAttack() + gp.player.inventory.get(itemIndex).attackValue), textX, textY);
 			}
 		}
 		frameX = 20;
@@ -768,7 +770,7 @@ public class UI {
 				pos = text.length() - 1;
 			}
 			String found = text.substring(0, pos + 1);
-			System.out.println(found);
+			//System.out.println(found);
 			text = text.substring(pos + 1);
 			lines.add(found);
 		}

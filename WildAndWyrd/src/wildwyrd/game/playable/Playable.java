@@ -91,11 +91,17 @@ public class Playable extends Entity {
 	public int getMaxStamina() {
 		return maxStamina;
 	}
+	public int getBaseAttack() {
+		return baseAttack;
+	}
 	public int getAttack() {
 		if(weapon_prime == null) {
 			return baseAttack;
 		}
 		return baseAttack + weapon_prime.attackValue;
+	}
+	public int getBaseDefence() {
+		return baseDefence;
 	}
 	public int getDefence() {
 		return baseDefence;

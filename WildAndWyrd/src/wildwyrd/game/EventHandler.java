@@ -58,11 +58,20 @@ public class EventHandler {
 				if(hit(2,15,3,"up")) {teleport(gp.maps[0],11,10);}
 				if(hit(2,24,2,"up")) {teleport(gp.maps[0],17,9);}
 				//if(gp.playable[0].getWeapon_prime() == null) {
-					if(hit(2,12,16,"down")) {teleport(gp.maps[3],3,1);}
-					if(hit(2,13,16,"down")) {teleport(gp.maps[3],4,1);}
-				//} else {
-				//	System.out.println("It's dangerous to leave the cottage grounds unarmed.");
-				//}
+				if(hit(2,12,16,"down")) {
+					if(gp.playable[0].getWeapon_prime() != null) {
+						teleport(gp.maps[3],3,1);
+					} else {
+						System.out.println("It's dangerous to leave the cottage grounds unarmed.");
+					}
+				}
+				if(hit(2,13,16,"down")) {
+					if(gp.playable[0].getWeapon_prime() != null) {
+						teleport(gp.maps[3],4,1);
+					} else {
+						System.out.println("It's dangerous to leave the cottage grounds unarmed.");
+					}
+				}
 			}
 			else if(gp.currentMap.getId() == 3) {
 				if(hit(3,3,0,"up")) {teleport(gp.maps[2],12,18);}
@@ -70,7 +79,6 @@ public class EventHandler {
 			}
 		}
 		//System.out.println(gp.player.worldX + " " + gp.player.worldY);
-
 	}
 
 	public void checkCutscene() {
