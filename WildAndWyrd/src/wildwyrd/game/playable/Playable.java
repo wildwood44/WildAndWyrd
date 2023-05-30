@@ -77,6 +77,9 @@ public class Playable extends Entity {
 		return weapon_second;
 	}
 	public void setWeapon_second(Entity weapon_second) {
+		if(this.weapon_second != null) {
+			gp.player.inventory.add(this.weapon_second);
+		}
 		this.weapon_second = weapon_second;
 	}
 	public int getHealth() {
@@ -92,7 +95,6 @@ public class Playable extends Entity {
 		if(weapon_prime == null) {
 			return baseAttack;
 		}
-		System.out.println(weapon_prime.attackValue);
 		return baseAttack + weapon_prime.attackValue;
 	}
 	public int getDefence() {

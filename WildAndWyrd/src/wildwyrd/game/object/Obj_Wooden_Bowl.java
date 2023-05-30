@@ -19,7 +19,6 @@ public class Obj_Wooden_Bowl extends Entity {
 		options = new String[2];
 
 		image = setup("/res/objects/Table_Tile_Bowl", gp.tileSize, gp.tileSize);
-		
 
 		setDialogue();
 	}

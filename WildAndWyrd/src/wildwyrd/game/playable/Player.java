@@ -164,6 +164,7 @@ public class Player extends Entity {
 			Entity selectedItem = inventory.get(itemIndex);
 			if(selectedItem.type == EntityType.Primary) {
 				gp.playable[0].setWeapon_prime(selectedItem);
+				gp.player.inventory.remove(selectedItem);
 			}
 		}
 	}

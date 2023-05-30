@@ -57,8 +57,12 @@ public class EventHandler {
 			else if(gp.currentMap.getId() == 2) {
 				if(hit(2,15,3,"up")) {teleport(gp.maps[0],11,10);}
 				if(hit(2,24,2,"up")) {teleport(gp.maps[0],17,9);}
-				if(hit(2,12,16,"down")) {teleport(gp.maps[3],3,1);}
-				if(hit(2,13,16,"down")) {teleport(gp.maps[3],4,1);}
+				//if(gp.playable[0].getWeapon_prime() == null) {
+					if(hit(2,12,16,"down")) {teleport(gp.maps[3],3,1);}
+					if(hit(2,13,16,"down")) {teleport(gp.maps[3],4,1);}
+				//} else {
+				//	System.out.println("It's dangerous to leave the cottage grounds unarmed.");
+				//}
 			}
 			else if(gp.currentMap.getId() == 3) {
 				if(hit(3,3,0,"up")) {teleport(gp.maps[2],12,18);}
