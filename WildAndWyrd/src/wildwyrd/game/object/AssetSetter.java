@@ -11,6 +11,7 @@ import wildwyrd.game.rooms.Rm_Forton;
 import wildwyrd.game.rooms.Rm_Kitchen;
 import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.MapType;
+import wildwyrd.npc.NPC_Cricket;
 import wildwyrd.npc.NPC_Dilecto;
 import wildwyrd.npc.NPC_Florence;
 import wildwyrd.npc.NPC_Thay;
@@ -198,6 +199,9 @@ public class AssetSetter {
 		gp.npc[2][2] = new NPC_Dilecto(gp);
 		gp.npc[2][2].worldX = gp.tileSize * 13;
 		gp.npc[2][2].worldY = gp.tileSize * 4;
+		gp.npc[3][0] = new NPC_Cricket(gp);
+		gp.npc[3][0].worldX = gp.tileSize * 13;
+		gp.npc[3][0].worldY = gp.tileSize * 5;
 	}
 	public void setInteractiveTile() {
 		gp.iTile[2][0] = new IT_StoneDoor(gp, 15, 3);

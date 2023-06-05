@@ -11,27 +11,21 @@ import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
 
-public class NPC_Florence extends Entity {
-	public NPC_Florence(GamePanel gp) {
+public class NPC_Cricket extends Entity {
+	public NPC_Cricket(GamePanel gp) {
 		super(gp);
-		//this.gp = gp;
-		options = new String[2];
-		contConditions = new boolean[2];
-		name = "Florence";
+		name = "Cricket";
 		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;
-		contConditions[0] = false;
-		contConditions[1] = false;
 		setDialogue();
-		setDialogueOptions();
 	}
 
 	public BufferedImage getSpriteSheet() {
 		BufferedImage sprite = null;
 
 		try {
-			sprite = ImageIO.read(getClass().getResourceAsStream("/res/sprite/WildWyrdSprites.png"));
+			sprite = ImageIO.read(getClass().getResourceAsStream("/res/sprite/EnemySprites.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,13 +63,13 @@ public class NPC_Florence extends Entity {
 				break;
 			case "down":
 				if(spriteNum == 1) {
-					image = getPlayerImage(7, 0);
+					image = getPlayerImage(1, 0);
 				} else if(spriteNum == 2) {
-					image = getPlayerImage(6, 0);
+					image = getPlayerImage(0, 0);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(7, 0);
+					image = getPlayerImage(1, 0);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(8, 0);
+					image = getPlayerImage(2, 0);
 				}
 				break;
 			case "left":
@@ -110,30 +104,8 @@ public class NPC_Florence extends Entity {
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge(" " ,3);
-		dialogues[1][0] = new Dialoge("Florence", "Potions probably.", 1);
-		dialogues[1][1] = new Dialoge("Florence", "He usually comes here for sanctuary or potions.", 1);
-		dialogues[2][0] = new Dialoge("Florence", "Well.", 1);
-		dialogues[2][1] = new Dialoge("Florence", "Kyla’s cast several illusions on the cottage, one of which makes it looks like a boulder from the outside.", 1);
-		dialogues[2][2] = new Dialoge("Florence", "She's also muted the rooms and made our scents smell somewhat grassy.", 1);
-		dialogues[2][3] = new Dialoge("Florence", "This place cannot be seen from the outside world, so we tend to call it the burrow.", 1);
-	}
-	
-	public void setDialogueOptions() {
-		options[0] = "So what's Thay here for?";
-		options[1] = "How does the magic on cottage work?";
-	}
-	
-	public void checkConditions() {
-
-		if (dialogues[dialogueSet][dialogueIndex] == null) {
-			for (boolean checkCondition: contConditions) {
-				if(checkCondition == false) {
-					dialogueIndex = 0;
-					speak();
-				}
-			}
-		}
+		dialogues[0][0] = new Dialoge("Some crickets were in the area." ,1);
+		dialogues[0][1] = new Dialoge("Fight Crickets?" ,2);
 	}
 	
 	public void choiceResponce() {
@@ -148,7 +120,6 @@ public class NPC_Florence extends Entity {
 	}
 	
 	public void speak() {
-		facePlayer();
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
 		startDialogue(this, 0);

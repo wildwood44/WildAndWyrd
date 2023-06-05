@@ -108,6 +108,10 @@ public class UI {
 		if (gp.gameState == GameState.readingState) {
 			drawBookshelfScreen();
 		}
+		
+		if (gp.gameState == GameState.combatState) {
+			drawCombatScreen();
+		}
 
 	}
 
@@ -654,12 +658,12 @@ public class UI {
 		g2.drawString(gp.glossary.sections[section], 30, gp.tileSize);
 		int pos = (int) (gp.tileSize * 0.75D);
 		bottomValue = gp.glossary.getSize(section);
+		System.out.println(cursorX + " " + cursorY);
 		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
 		for (int i = 0; i < 6; ++i) {
 			if (gp.glossary.page[section][i] != null) {
 				pos += gp.tileSize;
-
 				try {
 					g2.drawString(gp.glossary.page[section][i + topValue].getTitle(), 30, pos);
 				} catch (Exception e) {
@@ -681,9 +685,10 @@ public class UI {
 			//htmlBuilder.append("<head><title>"+gp.glossary.page[section][slotCol + topValue].getTitle()+"</title></head></br>");
 			g2.drawString(gp.glossary.page[section][slotCol + topValue].getTitle(),
 					frameX + 40, frameY + 40);
-			g2.setFont(g2.getFont().deriveFont(0, 16.0F));
+			//g2.setFont(g2.getFont().deriveFont(0, 16.0F));
 			int lineNum = 80;
 			for (String line : breakLines((gp.glossary.page[section][slotCol + topValue].getDesc()), 35)){
+				g2.setFont(g2.getFont().deriveFont(0, 16.0F));
 				g2.drawString(line, frameX + 40,
 					frameY + lineNum);
 				lineNum += 20;
@@ -748,6 +753,10 @@ public class UI {
 			
 		}
 	}
+	
+	public void drawCombatScreen() {
+		
+	}
 
 	public int getItemIndexOnSlot() {
 		int itemIndex = slotCol2 + slotRow2 * 5;
@@ -761,7 +770,7 @@ public class UI {
 			int pos = text.lastIndexOf(" ", size);
 			if(text.contains("£")) {
 				pos = text.lastIndexOf("£", size);
-				System.out.println(pos);
+				//System.out.println(pos);
 				if (pos == -1) {
 					pos = text.lastIndexOf(" ", size);
 				}

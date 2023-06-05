@@ -165,6 +165,9 @@ public class GamePanel extends JPanel implements Runnable {
 		if (gameState == GameState.titleState) {
 			rm[currentRoom].draw(g2);
 			ui.draw(g2);
+		} else if (gameState == GameState.combatState) {
+			rm[currentRoom].draw(g2);
+			ui.draw(g2);
 		} else {
 			if (gameState == GameState.dialogueState) {
 				rm[currentRoom].draw(g2);
@@ -187,6 +190,10 @@ public class GamePanel extends JPanel implements Runnable {
 			} else if (gameState == GameState.equipState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.glossaryState) {
+				ui.draw(g2);
+			} else if (gameState == GameState.readingState) {
+				ui.draw(g2);
+			} else if (gameState == GameState.combatState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.playState) {
 				//rm[currentRoom].draw(g2);

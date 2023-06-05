@@ -46,346 +46,329 @@ public class KeyHandler implements KeyListener {
 					System.exit(0);
 				}
 			}
-		} else {
-			if (gp.gameState == GameState.menuState) {
-				switch (e.getKeyCode()) {
-					case KeyEvent.VK_ENTER :
-						if (gp.ui.slotCol == 1) {
-							gp.gameState = GameState.statusState;
-							gp.ui.drawStatusScreen();
-						} else if (gp.ui.slotCol == 2) {
-							gp.gameState = GameState.inventoryState;
-							gp.ui.drawInventoryScreen();
-						} else if (gp.ui.slotCol == 3) {
-							gp.ui.resetSlots();
-							gp.gameState = GameState.equipState;
-							gp.ui.drawEquipScreen();
-						} else if (gp.ui.slotCol == 6) {
-							gp.ui.resetSlots();
-							gp.gameState = GameState.glossaryState;
-							gp.ui.drawGlossaryScreen();
-						} else if (gp.ui.slotCol == 7) {
-							gp.currentRoom = 0;
-							gp.gameState = GameState.titleState;
-						}
-						break;
-					case KeyEvent.VK_ESCAPE :
-						gp.gameState = GameState.playState;
-						break;
-					case KeyEvent.VK_UP :
-					case KeyEvent.VK_W :
-						if (this.gp.ui.slotCol != 0) {
-							--this.gp.ui.slotCol;
-						} else {
-							this.gp.ui.slotCol = 7;
-						}
-						break;
-					case KeyEvent.VK_DOWN :
-					case KeyEvent.VK_S :
-						if (this.gp.ui.slotCol != 7) {
-							++this.gp.ui.slotCol;
-						} else {
-							this.gp.ui.slotCol = 0;
-						}
+		} else if (gp.gameState == GameState.menuState) {
+			switch (e.getKeyCode()) {
+				case KeyEvent.VK_ENTER :
+					if (gp.ui.slotCol == 1) {
+						gp.gameState = GameState.statusState;
+						gp.ui.drawStatusScreen();
+					} else if (gp.ui.slotCol == 2) {
+						gp.gameState = GameState.inventoryState;
+						gp.ui.drawInventoryScreen();
+					} else if (gp.ui.slotCol == 3) {
+						gp.ui.resetSlots();
+						gp.gameState = GameState.equipState;
+						gp.ui.drawEquipScreen();
+					} else if (gp.ui.slotCol == 6) {
+						gp.ui.resetSlots();
+						gp.gameState = GameState.glossaryState;
+						gp.ui.drawGlossaryScreen();
+					} else if (gp.ui.slotCol == 7) {
+						gp.currentRoom = 0;
+						gp.gameState = GameState.titleState;
+					}
+					break;
+				case KeyEvent.VK_ESCAPE :
+					gp.gameState = GameState.playState;
+					break;
+				case KeyEvent.VK_UP :
+				case KeyEvent.VK_W :
+					if (this.gp.ui.slotCol != 0) {
+						--this.gp.ui.slotCol;
+					} else {
+						this.gp.ui.slotCol = 7;
+					}
+					break;
+				case KeyEvent.VK_DOWN :
+				case KeyEvent.VK_S :
+					if (this.gp.ui.slotCol != 7) {
+						++this.gp.ui.slotCol;
+					} else {
+						this.gp.ui.slotCol = 0;
+					}
+			}
+		} else if (gp.gameState == GameState.statusState) {
+			switch (e.getKeyCode()) {
+				case KeyEvent.VK_ESCAPE :
+					gp.ui.resetSlots();
+					gp.gameState = GameState.menuState;
+					break;
+				case KeyEvent.VK_UP :
+				case KeyEvent.VK_W :
+					if (this.gp.ui.slotRow2 != 0) {
+						--this.gp.ui.slotRow2;
+					} else {
+						this.gp.ui.slotRow2 = 3;
+					}
+					break;
+				case KeyEvent.VK_DOWN :
+				case KeyEvent.VK_S :
+					if (this.gp.ui.slotRow2 != 3) {
+						++this.gp.ui.slotRow2;
+					} else {
+						this.gp.ui.slotRow2 = 0;
+					}
+			}
+		} else if (gameState == GameState.inventoryState) {
+			switch (e.getKeyCode()) {
+				case KeyEvent.VK_ESCAPE :
+					gp.ui.resetSlots();
+					gp.gameState = GameState.menuState;
+					break;
+				case KeyEvent.VK_LEFT :
+				case KeyEvent.VK_A :
+					if (this.gp.ui.slotCol2 != 0) {
+						--this.gp.ui.slotCol2;
+					} else {
+						this.gp.ui.slotCol2 = 6;
+					}
+					break;
+				case KeyEvent.VK_UP :
+				case KeyEvent.VK_W :
+					if (this.gp.ui.slotRow2 != 0) {
+						--this.gp.ui.slotRow2;
+					} else {
+						this.gp.ui.slotRow2 = 3;
+					}
+					break;
+				case KeyEvent.VK_RIGHT :
+				case KeyEvent.VK_D :
+					if (this.gp.ui.slotCol2 != 6) {
+						++this.gp.ui.slotCol2;
+					} else {
+						this.gp.ui.slotCol2 = 0;
+					}
+					break;
+				case KeyEvent.VK_DOWN :
+				case KeyEvent.VK_S :
+					if (gp.ui.slotRow2 != 3) {
+						gp.ui.slotRow2++;
+					} else {
+						gp.ui.slotRow2 = 0;
+					}
+					break;
+				case KeyEvent.VK_ENTER :
+					gp.player.selectedItem();
+					break;
+			}
+		} else if (gp.gameState == GameState.equipState) {
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_ESCAPE :
+				if (gp.ui.openInventory) {
+					gp.ui.openInventory = false;
 				}
-			} else {
-				if (gp.gameState == GameState.statusState) {
-					switch (e.getKeyCode()) {
-						case KeyEvent.VK_ESCAPE :
-							gp.ui.resetSlots();
-							gp.gameState = GameState.menuState;
-							break;
-						case KeyEvent.VK_UP :
-						case KeyEvent.VK_W :
-							if (this.gp.ui.slotRow2 != 0) {
-								--this.gp.ui.slotRow2;
-							} else {
-								this.gp.ui.slotRow2 = 3;
-							}
-							break;
-						case KeyEvent.VK_DOWN :
-						case KeyEvent.VK_S :
-							if (this.gp.ui.slotRow2 != 3) {
-								++this.gp.ui.slotRow2;
-							} else {
-								this.gp.ui.slotRow2 = 0;
-							}
+				else if (gp.ui.openEquipment) {
+					gp.ui.openEquipment = false;
+				} else {
+					gp.ui.resetSlots();
+					gp.gameState = GameState.menuState;
+				}
+				
+				break;
+			case KeyEvent.VK_ENTER:
+				//gp.ui.selectedPlayable = Playable;
+				if (!gp.ui.openEquipment) {
+					gp.ui.openEquipment = true;
+				}else if (!gp.ui.openInventory) {
+					gp.ui.openInventory = true;
+				}
+				break;
+			case KeyEvent.VK_UP :
+			case KeyEvent.VK_W :
+				if (gp.ui.slotCol != 0) {
+					gp.ui.slotCol--;
+				} else {
+					gp.ui.slotCol = 4;
+				}
+				break;
+			case KeyEvent.VK_DOWN :
+			case KeyEvent.VK_S :
+				if (gp.ui.slotCol != 4) {
+					gp.ui.slotCol++;
+				} else {
+					gp.ui.slotCol = 0;
+				}
+			}
+		} else if (gp.gameState == GameState.glossaryState) {
+			switch (e.getKeyCode()) {
+				case KeyEvent.VK_ESCAPE :
+					gp.ui.resetSlots();
+					gp.gameState = GameState.menuState;
+					break;
+				case KeyEvent.VK_LEFT :
+				case KeyEvent.VK_A :
+					if (gp.ui.section != 0) {
+						//System.out.println(this.gp.glossary.getSize(this.gp.ui.section) + " "
+						//		+ this.gp.glossary.getSize(this.gp.ui.section - 1));
+						if (gp.glossary.getSize(gp.ui.section) > gp.glossary
+								.getSize(gp.ui.section - 1)) {
+							gp.ui.slotCol = 0;
+							gp.ui.topValue = 0;
+						}
+
+						gp.ui.section--;
+					} else {
+						if (gp.glossary.getSize(gp.ui.section) > gp.glossary
+								.getSize(gp.glossary.sections.length - 1)) {
+							gp.ui.slotCol = 0;
+							gp.ui.topValue = 0;
+						}
+
+						gp.ui.section = gp.glossary.sections.length - 1;
 					}
-				}else if (gameState == GameState.inventoryState) {
-					switch (e.getKeyCode()) {
-						case KeyEvent.VK_ESCAPE :
-							gp.ui.resetSlots();
-							gp.gameState = GameState.menuState;
-							break;
-						case KeyEvent.VK_LEFT :
-						case KeyEvent.VK_A :
-							if (this.gp.ui.slotCol2 != 0) {
-								--this.gp.ui.slotCol2;
-							} else {
-								this.gp.ui.slotCol2 = 6;
-							}
-							break;
-						case KeyEvent.VK_UP :
-						case KeyEvent.VK_W :
-							if (this.gp.ui.slotRow2 != 0) {
-								--this.gp.ui.slotRow2;
-							} else {
-								this.gp.ui.slotRow2 = 3;
-							}
-							break;
-						case KeyEvent.VK_RIGHT :
-						case KeyEvent.VK_D :
-							if (this.gp.ui.slotCol2 != 6) {
-								++this.gp.ui.slotCol2;
-							} else {
-								this.gp.ui.slotCol2 = 0;
-							}
-							break;
-						case KeyEvent.VK_DOWN :
-						case KeyEvent.VK_S :
-							if (gp.ui.slotRow2 != 3) {
-								gp.ui.slotRow2++;
-							} else {
-								gp.ui.slotRow2 = 0;
-							}
-							break;
-						case KeyEvent.VK_ENTER :
-							gp.player.selectedItem();
-							break;
+					break;
+				case KeyEvent.VK_UP :
+				case KeyEvent.VK_W :
+					//System.out.println(this.gp.ui.topValue + " " + this.gp.ui.slotCol);
+					if (gp.ui.slotCol != 0) {
+						gp.ui.slotCol--;
+					} else if (gp.ui.topValue != 0) {
+						gp.ui.topValue--;
+					} else {
+						gp.ui.topValue = gp.ui.bottomValue - 6;
+						gp.ui.slotCol = 5;
 					}
-				} else if (gp.gameState == GameState.equipState) {
-					switch (e.getKeyCode()) {
-					case KeyEvent.VK_ESCAPE :
-						if (gp.ui.openInventory) {
-							gp.ui.openInventory = false;
+					break;
+				case KeyEvent.VK_RIGHT :
+				case KeyEvent.VK_D :
+					if (gp.ui.section < gp.glossary.sections.length - 1) {
+						if (gp.glossary.getSize(gp.ui.section) > gp.glossary
+								.getSize(gp.ui.section + 1)) {
+							gp.ui.slotCol = 0;
+							gp.ui.topValue = 0;
+							}
+						gp.ui.section++;
+					} else {
+						if (gp.glossary.getSize(gp.ui.section) > gp.glossary.getSize(0)) {
+							gp.ui.slotCol = 0;
+							gp.ui.topValue = 0;
 						}
-						else if (gp.ui.openEquipment) {
-							gp.ui.openEquipment = false;
-						} else {
-							gp.ui.resetSlots();
-							gp.gameState = GameState.menuState;
-						}
-						
-						break;
-					case KeyEvent.VK_ENTER:
-						//gp.ui.selectedPlayable = Playable;
-						if (!gp.ui.openEquipment) {
-							gp.ui.openEquipment = true;
-						}else if (!gp.ui.openInventory) {
-							gp.ui.openInventory = true;
-						}
-						break;
-					case KeyEvent.VK_UP :
-					case KeyEvent.VK_W :
-						if (gp.ui.slotCol != 0) {
-							gp.ui.slotCol--;
-						} else {
-							gp.ui.slotCol = 4;
-						}
-						break;
-					case KeyEvent.VK_DOWN :
-					case KeyEvent.VK_S :
-						if (gp.ui.slotCol != 4) {
-							gp.ui.slotCol++;
+						gp.ui.section = 0;
+					}
+					break;
+				case KeyEvent.VK_DOWN :
+				case KeyEvent.VK_S :
+					System.out.println(gp.ui.slotCol);
+					if (gp.ui.slotCol != 5) {
+						gp.ui.slotCol++;
+					} else {
+						//System.out.println(
+						//		this.gp.ui.slotCol + this.gp.ui.topValue + " " + this.gp.ui.bottomValue);
+						if (gp.ui.slotCol + gp.ui.topValue != gp.ui.bottomValue - 1) {
+							gp.ui.topValue++;
 						} else {
 							gp.ui.slotCol = 0;
+							gp.ui.topValue = 0;
 						}
 					}
+				}
+		} else if (gp.gameState == GameState.readingState) {
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_ESCAPE :
+				if(gp.ui.openBook) {
+					gp.ui.openBook = false;
 				} else {
-					gameState = gp.gameState;
-					if (gameState == GameState.glossaryState) {
-						switch (e.getKeyCode()) {
-							case KeyEvent.VK_ESCAPE :
-								gp.ui.resetSlots();
-								gp.gameState = GameState.menuState;
-								break;
-							case KeyEvent.VK_LEFT :
-							case KeyEvent.VK_A :
-								if (this.gp.ui.section != 0) {
-									//System.out.println(this.gp.glossary.getSize(this.gp.ui.section) + " "
-									//		+ this.gp.glossary.getSize(this.gp.ui.section - 1));
-									if (gp.glossary.getSize(gp.ui.section) > gp.glossary
-											.getSize(gp.ui.section - 1)) {
-										gp.ui.slotCol = 0;
-										gp.ui.topValue = 0;
-									}
-
-									gp.ui.section--;
-								} else {
-									if (gp.glossary.getSize(gp.ui.section) > gp.glossary
-											.getSize(gp.glossary.sections.length - 1)) {
-										gp.ui.slotCol = 0;
-										gp.ui.topValue = 0;
-									}
-
-									gp.ui.section = gp.glossary.sections.length - 1;
-								}
-								break;
-							case KeyEvent.VK_UP :
-							case KeyEvent.VK_W :
-								//System.out.println(this.gp.ui.topValue + " " + this.gp.ui.slotCol);
-								if (this.gp.ui.slotCol != 0) {
-									--this.gp.ui.slotCol;
-								} else if (this.gp.ui.topValue != 0) {
-									--this.gp.ui.topValue;
-								} else {
-									this.gp.ui.topValue = this.gp.ui.bottomValue - 6;
-									this.gp.ui.slotCol = 5;
-								}
-								break;
-							case KeyEvent.VK_RIGHT :
-							case KeyEvent.VK_D :
-								if (this.gp.ui.section < this.gp.glossary.sections.length - 1) {
-									if (this.gp.glossary.getSize(this.gp.ui.section) > this.gp.glossary
-											.getSize(this.gp.ui.section + 1)) {
-										this.gp.ui.slotCol = 0;
-										this.gp.ui.topValue = 0;
-									}
-
-									++this.gp.ui.section;
-								} else {
-									if (gp.glossary.getSize(gp.ui.section) > gp.glossary.getSize(0)) {
-										gp.ui.slotCol = 0;
-										gp.ui.topValue = 0;
-									}
-
-									gp.ui.section = 0;
-								}
-								break;
-							case KeyEvent.VK_DOWN :
-							case KeyEvent.VK_S :
-								if (this.gp.ui.slotCol != 5) {
-									++this.gp.ui.slotCol;
-								} else {
-									//System.out.println(
-									//		this.gp.ui.slotCol + this.gp.ui.topValue + " " + this.gp.ui.bottomValue);
-									if (this.gp.ui.slotCol + this.gp.ui.topValue != this.gp.ui.bottomValue - 1) {
-										++this.gp.ui.topValue;
-									} else {
-										this.gp.ui.slotCol = 0;
-										this.gp.ui.topValue = 0;
-									}
-								}
-						}
-					} else if (gp.gameState == GameState.readingState) {
-						switch (e.getKeyCode()) {
-						case KeyEvent.VK_ESCAPE :
-							if(gp.ui.openBook) {
-								gp.ui.openBook = false;
-							} else {
-								gp.ui.resetSlots();
-								gp.gameState = GameState.playState;
-							}
-							break;
-						case KeyEvent.VK_ENTER:
-							if(!gp.ui.openBook) {
-								gp.ui.openBook = true;
-							}
-							break;
-						case KeyEvent.VK_UP :
-						case KeyEvent.VK_W :
-							if(!gp.ui.openBook) {
-								if (gp.ui.slotCol != 0) {
-									gp.ui.slotCol--;
-								} else {
-									gp.ui.slotCol = gp.ui.selectedBookshelf.length - 1;
-								}
-							}
-							break;
-						case KeyEvent.VK_DOWN :
-						case KeyEvent.VK_S :
-							if(!gp.ui.openBook) {
-								if (gp.ui.slotCol != gp.ui.selectedBookshelf.length - 1) {
-									gp.ui.slotCol++;
-								} else {
-									gp.ui.slotCol = 0;
-								}
-							}
-							break;
-						default :
-							if(gp.ui.openBook) {
-								if (gp.ui.slotRow != gp.ui.selectedBookshelf.length - 1) {
-									gp.ui.slotRow++;
-								} else {
-									gp.ui.slotRow = 0;
-								}
-								if(gp.ui.selectedBook.getContent()[gp.ui.slotRow] == null) {
-									gp.ui.openBook = false;
-									gp.ui.slotRow = 0;
-								}
-							}
-							break;
+					gp.ui.resetSlots();
+					gp.gameState = GameState.playState;
+				}
+				break;
+			case KeyEvent.VK_ENTER:
+				if(!gp.ui.openBook) {
+					gp.ui.openBook = true;
+				}
+				break;
+			case KeyEvent.VK_UP :
+			case KeyEvent.VK_W :
+				if(!gp.ui.openBook) {
+					if (gp.ui.slotCol != 0) {
+						gp.ui.slotCol--;
+					} else {
+						gp.ui.slotCol = gp.ui.selectedBookshelf.length - 1;
 					}
-				} else {
-						if (gp.gameState == GameState.playState) {
-							switch (e.getKeyCode()) {
-								case KeyEvent.VK_ENTER :
-									enterPressed = true;
-									if (gp.selectedObj != null) {
-										gp.obj[1][gp.selectedObj].interact();
-									}
-									break;
-								case KeyEvent.VK_ESCAPE :
-									gp.selectedObj = null;
-									gp.gameState = GameState.menuState;
-									break;
-								case KeyEvent.VK_LEFT :
-								case KeyEvent.VK_A :
-									leftPressed = true;
-									break;
-								case KeyEvent.VK_UP :
-								case KeyEvent.VK_W :
-									upPressed = true;
-									break;
-								case KeyEvent.VK_RIGHT :
-								case KeyEvent.VK_D :
-									rightPressed = true;
-									break;
-								case KeyEvent.VK_DOWN :
-								case KeyEvent.VK_S :
-									downPressed = true;
-									break;
-								case 82 :
-									switch(gp.currentMap.getId())
-									{
-									case 0:
-										gp.tileM.loadMap("/res/maps/map01",0);
-										break;
-									case 1:
-										gp.tileM.loadMap("/res/maps/map02",1);
-										break;
-									}
+				}
+				break;
+			case KeyEvent.VK_DOWN :
+			case KeyEvent.VK_S :
+				if(!gp.ui.openBook) {
+					if (gp.ui.slotCol != gp.ui.selectedBookshelf.length - 1) {
+						gp.ui.slotCol++;
+					} else {
+						gp.ui.slotCol = 0;
+					}
+				}
+				break;
+			default :
+				if(gp.ui.openBook) {
+					if (gp.ui.slotRow != gp.ui.selectedBookshelf.length - 1) {
+						gp.ui.slotRow++;
+					} else {
+						gp.ui.slotRow = 0;
+					}
+					if(gp.ui.selectedBook.getContent()[gp.ui.slotRow] == null) {
+						gp.ui.openBook = false;
+						gp.ui.slotRow = 0;
+					}
+				}
+				break;
+			}
+		} else if (gp.gameState == GameState.playState) {
+			switch (e.getKeyCode()) {
+				case KeyEvent.VK_ENTER :
+					enterPressed = true;
+					if (gp.selectedObj != null) {
+						gp.obj[1][gp.selectedObj].interact();
+					}
+					break;
+				case KeyEvent.VK_ESCAPE :
+					gp.selectedObj = null;
+					gp.gameState = GameState.menuState;
+					break;
+				case KeyEvent.VK_LEFT :
+				case KeyEvent.VK_A :
+					leftPressed = true;
+					break;
+				case KeyEvent.VK_UP :
+				case KeyEvent.VK_W :
+					upPressed = true;
+					break;
+				case KeyEvent.VK_RIGHT :
+				case KeyEvent.VK_D :
+					rightPressed = true;
+					break;
+				case KeyEvent.VK_DOWN :
+				case KeyEvent.VK_S :
+					downPressed = true;
+					break;
+				case 82 :
+					switch(gp.currentMap.getId())
+					{
+					case 0:
+						gp.tileM.loadMap("/res/maps/map01",0);
+						break;
+					case 1:
+						gp.tileM.loadMap("/res/maps/map02",1);
+						break;
+					}
 
-									break;
-								case 84 :
-									if (!showDebugText) {
-										showDebugText = true;
-									} else if (showDebugText) {
-										showDebugText = false;
-									}
-							}
-						} else {
-							gameState = this.gp.gameState;
-							if (gameState != GameState.dialogueState) {
-								gameState = this.gp.gameState;
-								if (gameState != GameState.cutsceneState) {
-									gameState = this.gp.gameState;
-									if (gameState != GameState.messageState) {
-										gameState = this.gp.gameState;
-										if (gameState != GameState.examineState) {
-											return;
-										}
-									}
-								}
-							}
-
-							dialogueState(code);
-						}
+					break;
+				case 84 :
+					if (!showDebugText) {
+						showDebugText = true;
+					} else if (showDebugText) {
+						showDebugText = false;
+					}
+			}
+		} else if (gp.gameState != GameState.dialogueState) {
+			if (gp.gameState != GameState.cutsceneState) {
+				if (gp.gameState != GameState.messageState) {
+					if (gp.gameState != GameState.examineState) {
+						return;
 					}
 				}
 			}
 		}
 
+		dialogueState(code);
 	}
 
 	public void dialogueState(int code) {
