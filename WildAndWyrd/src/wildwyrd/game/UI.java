@@ -366,12 +366,12 @@ public class UI {
 			char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getText().toCharArray();
 			if (charIndex < characters.length) {
-				String s = String.valueOf(characters[this.charIndex]);
+				String s = String.valueOf(characters[charIndex]);
 				combinedText = combinedText + s;
 				currentDialogue = combinedText;
 				++charIndex;
-				if (this.gp.keyH.enterPressed) {
-					this.currentDialogue = this.selectedObject.dialogues[this.selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
+				if (gp.keyH.enterPressed) {
+					currentDialogue = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 							.getText();
 				}
 			}
@@ -755,7 +755,34 @@ public class UI {
 	}
 	
 	public void drawCombatScreen() {
+		int x = gp.tileSize * 3 / 2;
+		int y = gp.tileSize * 5;
+		int width = gp.screenWidth - gp.tileSize * 3;
+		int height = gp.tileSize * 3;
+		drawDialogueWindow(x, y, width, height);
+		x += gp.tileSize;
+		y += gp.tileSize;
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		int slotXstart = x;
+		int slotYstart = y;
+		int cursorX = slotXstart + gp.tileSize * slotCol;
+		int cursorY = slotYstart + gp.tileSize * slotRow;
+
+		g2.drawString(" Attack", x, y);
+		g2.drawString(" Block", x, y + (gp.tileSize));
+		g2.drawString(" Appraise", x + (gp.tileSize*3), y);
+		g2.drawString(" Special", x + (gp.tileSize*3), y + (gp.tileSize));
+		g2.drawString(" Items", x + (gp.tileSize*6), y);
+		g2.drawString(" Flee", x + (gp.tileSize*6), y + (gp.tileSize));
+
+		g2.drawString(">", cursorX - 5, cursorY);
 		
+		gp.playable[0].draw(g2);
+		for (Entity enemy : gp.combat.getEnemies()) {
+			enemy.draw(g2);
+			//g2.drawImage(enemy.draw(g2), gp.tileSize, gp.tileSize, gp.tileSize, gp.tileSize, null);
+		}
 	}
 
 	public int getItemIndexOnSlot() {
@@ -877,5 +904,6 @@ public class UI {
 	public void resetSlots() {
 		this.slotRow = 0;
 		this.slotCol = 0;
+		gp.ui.commandNum = 0;
 	}
 }

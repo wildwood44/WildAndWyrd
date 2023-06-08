@@ -248,7 +248,6 @@ public class KeyHandler implements KeyListener {
 					break;
 				case KeyEvent.VK_DOWN :
 				case KeyEvent.VK_S :
-					System.out.println(gp.ui.slotCol);
 					if (gp.ui.slotCol != 5) {
 						gp.ui.slotCol++;
 					} else {
@@ -311,6 +310,61 @@ public class KeyHandler implements KeyListener {
 				}
 				break;
 			}
+		}  else if (gp.gameState == GameState.combatState) {
+			System.out.println(gp.ui.commandNum);
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_ENTER :
+				enterPressed = true;
+				if (gp.ui.commandNum == 0) {
+					//System.out.println(gp.combat.getEnemies().get(0));
+					gp.combat.dealDamage(gp.combat.getEnemies().get(0),gp.playable[0].getAttack());	
+				}
+				break;
+			case KeyEvent.VK_LEFT :
+			case KeyEvent.VK_A :
+				leftPressed = true;
+				if (gp.ui.slotCol != 0) {
+					gp.ui.slotCol = gp.ui.slotCol - 3;
+					gp.ui.commandNum = gp.ui.commandNum - 2;
+				} else {
+					gp.ui.slotCol = 6;
+					gp.ui.commandNum = gp.ui.commandNum + 4;
+				}
+				break;
+			case KeyEvent.VK_UP :
+			case KeyEvent.VK_W :
+				upPressed = true;
+				if (gp.ui.slotRow != 0) {
+					gp.ui.slotRow--;
+					gp.ui.commandNum--;
+				} else {
+					gp.ui.slotRow = 1;
+					gp.ui.commandNum++;
+				}
+				break;
+			case KeyEvent.VK_RIGHT :
+			case KeyEvent.VK_D :
+				rightPressed = true;
+				if (gp.ui.slotCol != 6) {
+					gp.ui.slotCol = gp.ui.slotCol + 3;
+					gp.ui.commandNum = gp.ui.commandNum + 2;
+				} else {
+					gp.ui.slotCol = 0;
+					gp.ui.commandNum = gp.ui.commandNum - 4;
+				}
+				break;
+			case KeyEvent.VK_DOWN :
+			case KeyEvent.VK_S :
+				downPressed = true;
+				if (gp.ui.slotRow != 1) {
+					gp.ui.slotRow++;
+					gp.ui.commandNum++;
+				} else {
+					gp.ui.slotRow = 0;
+					gp.ui.commandNum--;
+				}
+				break;
+			}
 		} else if (gp.gameState == GameState.playState) {
 			switch (e.getKeyCode()) {
 				case KeyEvent.VK_ENTER :
@@ -366,9 +420,9 @@ public class KeyHandler implements KeyListener {
 					}
 				}
 			}
+			dialogueState(code);
 		}
 
-		dialogueState(code);
 	}
 
 	public void dialogueState(int code) {

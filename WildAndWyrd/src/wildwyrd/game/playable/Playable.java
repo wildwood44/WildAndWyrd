@@ -1,5 +1,6 @@
 package wildwyrd.game.playable;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -10,19 +11,19 @@ import wildwyrd.game.GamePanel;
 
 public class Playable extends Entity {
 	private int level;
-	private int health;
-	private int maxHealth;
+	//private int health;
+	//private int maxHealth;
 	private int stamina;
 	private int maxStamina;
 	private int exp;
 	private int nextLevelExp;
 	private int strength;
 	private int dexterity;
-	private int baseAttack;
-	private int baseDefence;
-	private int baseAccuracy;
-	private int baseEvasion;
-	private int baseSpeed;
+	//private int baseAttack;
+	//private int baseDefence;
+	//private int baseAccuracy;
+	//private int baseEvasion;
+	//private int baseSpeed;
 	public BufferedImage combatSpt;
 	private Entity head = new Entity(gp);
 	private Entity body = new Entity(gp);
@@ -114,6 +115,25 @@ public class Playable extends Entity {
 	}
 	public int getSpeed() {
 		return baseSpeed;
+	}
+
+	public BufferedImage getImage() {
+		BufferedImage sprite = null;
+
+		try {
+			sprite = ImageIO.read(getClass().getResourceAsStream("/res/sprite/combat/Alder_Combat_Base.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sprite;
+	}
+	
+	public void draw(Graphics2D g2) {
+		BufferedImage image = getImage();
+		int screenX = gp.tileSize*4;
+		int screenY = gp.tileSize*2;
+
+		g2.drawImage(image, screenX, screenY, gp.tileSize*2, gp.tileSize*2, null);
 	}
 	@Override
 	public String toString() {

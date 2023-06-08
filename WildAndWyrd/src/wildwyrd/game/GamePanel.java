@@ -13,6 +13,7 @@ import java.util.Comparator;
 
 import javax.swing.JPanel;
 
+import wildwyrd.game.combat.Combat;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.cutscenes.CutsceneManager;
 import wildwyrd.game.glossary.Glossary;
@@ -65,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public BufferedImage background;
 	public Story s = new Story();
 	public Cutscene c;
+	public Combat combat = new Combat(this);
 	public Playable[] playable = new Playable[6];
 	public Entity[][] obj = new Entity[10][25];
 	public Entity[][] npc = new Entity[10][5];
@@ -166,8 +168,11 @@ public class GamePanel extends JPanel implements Runnable {
 			rm[currentRoom].draw(g2);
 			ui.draw(g2);
 		} else if (gameState == GameState.combatState) {
+			//while(combat.enemies.get(0) != null) {
 			rm[currentRoom].draw(g2);
 			ui.draw(g2);
+			//}
+			
 		} else {
 			if (gameState == GameState.dialogueState) {
 				rm[currentRoom].draw(g2);

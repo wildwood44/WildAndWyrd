@@ -22,6 +22,15 @@ public class Entity {
 	public int width;
 	public int height;
 	public String name;
+	public int maxHealth;
+	public int health = maxHealth;
+	public int expDrop;
+	//private itemDrop = [{'item' : items.food[4], 'quantity':2}],
+	public int baseAttack;
+	public int baseDefence;
+	public int baseAccuracy;
+	public int baseSpeed;
+	public int baseEvasion;
 	public int worldX;
 	public int worldY;
 	public Boolean selected;
@@ -94,7 +103,7 @@ public class Entity {
 	}
 
 	public String getName() {
-		System.out.println(name);
+		//System.out.println(name);
 		if (name == null) {
 			return "None";
 		}
@@ -230,6 +239,10 @@ public class Entity {
 	public void choiceResponce() {
 	}
 	public void checkConditions() {
+		
+	}
+	
+	public void takeDamage() {
 		
 	}
 }

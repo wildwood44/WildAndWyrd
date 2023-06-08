@@ -9,6 +9,8 @@ import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.GameState;
+import wildwyrd.game.combat.En_Cricket;
 import wildwyrd.game.object.Dialoge;
 
 public class NPC_Cricket extends Entity {
@@ -107,16 +109,14 @@ public class NPC_Cricket extends Entity {
 		dialogues[0][0] = new Dialoge("Some crickets were in the area." ,1);
 		dialogues[0][1] = new Dialoge("Fight Crickets?" ,2);
 	}
-	
+
 	public void choiceResponce() {
 		if (gp.ui.choiceSlot == 0) {
-			startDialogue(this, 1);
-			contConditions[0] = true;
+			gp.combat.addEnemy(new En_Cricket(gp));
+			gp.combat.startCombat();
+			//gp.gameState = GameState.combatState;
 		}
-		if (gp.ui.choiceSlot == 1) {
-			startDialogue(this, 2);
-			contConditions[1] = true;
-		}
+
 	}
 	
 	public void speak() {
