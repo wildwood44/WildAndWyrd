@@ -412,15 +412,11 @@ public class KeyHandler implements KeyListener {
 						showDebugText = false;
 					}
 			}
-		} else if (gp.gameState != GameState.dialogueState) {
-			if (gp.gameState != GameState.cutsceneState) {
-				if (gp.gameState != GameState.messageState) {
-					if (gp.gameState != GameState.examineState) {
-						return;
-					}
-				}
-			}
-			dialogueState(code);
+		} else if (gp.gameState == GameState.dialogueState ||
+			gp.gameState == GameState.cutsceneState ||
+			gp.gameState == GameState.messageState ||
+			gp.gameState == GameState.examineState) {
+				dialogueState(code);
 		}
 
 	}

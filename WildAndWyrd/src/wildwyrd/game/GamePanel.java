@@ -78,7 +78,7 @@ public class GamePanel extends JPanel implements Runnable {
 	ArrayList<Entity> entityList = new ArrayList<>();
 
 	public GamePanel() {
-		c = new Cutscene(s);
+		c = new Cutscene(this,s);
 		obj = new Entity[maxMap][25];
 		rm = new Room[maxRoom];
 		maps = new Map[maxMap];

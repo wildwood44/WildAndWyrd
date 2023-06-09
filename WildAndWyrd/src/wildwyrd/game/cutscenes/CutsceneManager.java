@@ -45,6 +45,7 @@ public class CutsceneManager {
 			//gp.currentRoom = new Rm_Forton(gp);
 			gp.currentRoom = 1;
 			gp.c.setCutscene(0, read);
+			gp.ui.selectedObject = gp.c;
 			gp.ui.drawDialogueScreen();
 		} else if (scenePhase == 2) {
 			gp.currentRoom = 0;

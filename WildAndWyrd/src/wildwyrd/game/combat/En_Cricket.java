@@ -58,6 +58,14 @@ public class En_Cricket extends Entity {
 		//dialogues[0][0] = new Dialoge(name + "Some crickets were in the area." ,1);
 		//dialogues[0][1] = new Dialoge("Fight Crickets?" ,2);
 	}
+
+	public void startDialogue(Entity object, int setNum) {
+		GamePanel gp = this.gp;
+		System.out.println("Ping");
+		gp.gameState = GameState.dialogueState;
+		gp.ui.selectedObject = object;
+		dialogueSet = setNum;
+	}
 	
 	public void takeDamage() {
 		gp.ui.choiceSlot = 0;

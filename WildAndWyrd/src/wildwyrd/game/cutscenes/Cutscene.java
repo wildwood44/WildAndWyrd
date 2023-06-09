@@ -6,25 +6,28 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
+
+import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
 import wildwyrd.game.Story;
 import wildwyrd.game.object.Dialoge;
 
-public class Cutscene {
+public class Cutscene extends Entity {
 	GamePanel gp;
 	Story s;
-	public Dialoge[][] dialogues = new Dialoge[100][100];
-	public BufferedImage[][] sprites = new BufferedImage[100][100];
-	public int dialogueIndex = 0;
-	public int dialogueSet = 0;
+	//public Dialoge[][] dialogues = new Dialoge[100][100];
+	//public BufferedImage[][] sprites = new BufferedImage[100][100];
+	//public int dialogueIndex = 0;
+	//public int dialogueSet = 0;
 	BufferedImage image_Dilecto;
 	BufferedImage image_Thay;
 	BufferedImage image_Dean;
 	BufferedImage image_Ralph;
 	BufferedImage image_Plumm;
 
-	public Cutscene(Story s) {
+	public Cutscene(GamePanel gp, Story s) {
+		super(gp);
 		this.s = s;
 	}
 
@@ -73,10 +76,10 @@ public class Cutscene {
 		dialogueIndex++;
 	}
 
-	public void startDialogue(Cutscene cut, int setNum) {
-		GamePanel gp = this.gp;
-		gp.gameState = GameState.dialogueState;
-	}
+	//public void startDialogue(Cutscene cut, int setNum) {
+	//	GamePanel gp = this.gp;
+	//	gp.gameState = GameState.dialogueState;
+	//}
 
 	public void cutsceneDialog(String text) {
 		if (gp.keyH.enterPressed) {

@@ -34,7 +34,8 @@ public class Entity {
 	public int worldX;
 	public int worldY;
 	public Boolean selected;
-	public Dialoge[][] dialogues = new Dialoge[10][20];
+	public Dialoge[][] dialogues = new Dialoge[80][80];
+	public BufferedImage[][] sprites = new BufferedImage[100][100];
 	public String[] options = new String[8];
 	public boolean[] contConditions = new boolean[8];
 	public int dialogueSet = 0;

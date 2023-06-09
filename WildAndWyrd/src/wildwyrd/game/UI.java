@@ -25,7 +25,7 @@ import wildwyrd.game.tile.UtilityTool;
 
 public class UI {
 	GamePanel gp;
-	Cutscene c = new Cutscene(new Story());
+	Cutscene c;
 	Font arial_40;
 	Graphics2D g2;
 	public boolean messageOn = false;
@@ -62,6 +62,7 @@ public class UI {
 	public UI(GamePanel gp) {
 		this.gp = gp;
 		arial_40 = new Font("Monospaced", 0, 40);
+		c = new Cutscene(gp, new Story());
 	}
 
 	public void draw(Graphics2D g2) {
@@ -166,55 +167,58 @@ public class UI {
 		int y = gp.tileSize * 5;
 		int width = gp.screenWidth - gp.tileSize * 3;
 		int height = gp.tileSize * 3;
-		Dialoge[][] dia = gp.c.dialogues;
+		//Dialoge[][] dia = selectedObject.dialogues;
 		drawImageWindow(300, 0, 200, 400);
 		drawDialogueWindow(x, y, width, height);
 		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 		g2.setColor(Color.white);
 		x += gp.tileSize;
 		y += gp.tileSize;
-		if (dia[gp.c.dialogueSet][gp.c.dialogueIndex] != null) {
-			char[] characters = gp.c.dialogues[gp.c.dialogueSet][gp.c.dialogueIndex].getText().toCharArray();
+		//System.out.println(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] + " " + selectedObject.dialogueSet+" "+selectedObject.dialogueIndex);
+		if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
+			char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().toCharArray();
 			if (charIndex < characters.length) {
 				String s = String.valueOf(characters[charIndex]);
 				combinedText = combinedText + s;
 				currentDialogue = combinedText;
 				charIndex++;
 				if (gp.keyH.enterPressed) {
-					currentDialogue = gp.c.dialogues[gp.c.dialogueSet][gp.c.dialogueIndex].getText();
+					currentDialogue = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText();
 				}
 			}
 
 			if (gp.keyH.enterPressed == true) {
-				this.charIndex = 0;
-				this.combinedText = "";
+				charIndex = 0;
+				combinedText = "";
 				if (gp.gameState == GameState.dialogueState || 
 					gp.gameState == GameState.cutsceneState) {
-						gp.c.dialogueIndex++;
-						gp.keyH.enterPressed = false;
+					System.out.println("Ping");
+					selectedObject.dialogueIndex++;
+					gp.keyH.enterPressed = false;
 				}
 			} else if (gp.keyH.skipPressed) {
 				charIndex = 0;
 				combinedText = "";
 				if (gp.gameState == GameState.dialogueState ||
 					gp.gameState == GameState.cutsceneState) {
-						gp.c.dialogueIndex = gp.c.dialogues.length - 1;
+					selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
 						gp.keyH.skipPressed = false;
 					}
 				}
 		} else {
-			c.dialogueIndex = 0;
+			System.out.println("Ping");
+			selectedObject.dialogueIndex = 0;
 			if (gp.gameState == GameState.dialogueState) {
-				gp.gameState = GameState.playState;
+				gp.gameState = GameState.combatState;
 			}
 			if (gp.gameState == GameState.cutsceneState) {
 				gp.csManager.scenePhase++;
 			}
 		}
-		if(gp.c.dialogues[gp.c.dialogueSet][gp.c.dialogueIndex] != null) {
-			if (gp.c.dialogues[gp.c.dialogueSet][gp.c.dialogueIndex].getSpeaker() != null) {
+		if(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
+			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker() != null) {
 				g2.setFont(g2.getFont().deriveFont(1, 24.0F));
-				g2.drawString(gp.c.dialogues[gp.c.dialogueSet][gp.c.dialogueIndex].getSpeaker(), x, y);
+				g2.drawString(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker(), x, y);
 				y += 40;
 			}
 			for (String line : breakLines(currentDialogue,42)) {
@@ -819,7 +823,7 @@ public class UI {
 	}
 
 	private void drawImageWindow(int x, int y, int width, int height) {
-		BufferedImage image = gp.c.sprites[gp.c.dialogueSet][gp.c.dialogueIndex];
+		BufferedImage image = selectedObject.sprites[selectedObject.dialogueSet][selectedObject.dialogueIndex];
 		if (image != null) {
 			g2.drawImage(image, x, y, width, height, (ImageObserver) null);
 		}
