@@ -113,6 +113,7 @@ public class NPC_Cricket extends Entity {
 	public void choiceResponce() {
 		if (gp.ui.choiceSlot == 0) {
 			gp.combat.addEnemy(new En_Cricket(gp));
+			System.out.println(gp.gameState);
 			gp.combat.startCombat();
 			//gp.gameState = GameState.combatState;
 		}

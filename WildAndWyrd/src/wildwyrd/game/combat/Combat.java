@@ -1,6 +1,5 @@
 package wildwyrd.game.combat;
 
-import java.awt.Container;
 import java.util.ArrayList;
 
 import wildwyrd.game.Entity;
@@ -15,6 +14,7 @@ public class Combat extends Entity {
 	public int dialogueIndex = 0;
 	public ArrayList<Entity> enemies;
 	private int impact;
+	public Boolean inCombat;
 	
 	public Combat(GamePanel gp) {
 		super(gp);
@@ -38,14 +38,24 @@ public class Combat extends Entity {
 
 	public void startCombat() {
 		if(enemies.get(0) != null) {
+			System.out.println(gp.gameState);
 			gp.gameState = GameState.combatState;
+			inCombat = true;
 		}
+	}
+	
+	public void endCombat() {
+		gp.gameState = GameState.playState;
+		gp.keyH.enterPressed = false;
+
 	}
 	
 	public boolean enemiesActive() {
 		for (Entity enemy : enemies) {
 			if(enemy.health > 0) {
 				return true;
+			} else {
+				return false;
 			}
 		}
 		return false;
@@ -59,21 +69,33 @@ public class Combat extends Entity {
 		return enemies;
 	}
 	
+	public void enemyDeath(Entity enemy) {
+		gp.ui.choiceSlot = 0;
+		gp.ui.firstValue = 0;
+
+		gp.keyH.enterPressed = false;
+		dialogues[0][1] = new Dialoge(enemy.name + " was defeated!",1);
+		startDialogue(this, 0);
+		enemies.remove(enemy);
+		if(!enemiesActive()) {
+			inCombat = false;
+		}
+	}
+	
 	public void dealDamage(Entity target, int damage) {
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
-		//takeDamage();
-
-		startDialogue(this, 0);
 		gp.keyH.enterPressed = false;
 		impact = damage * 100/(100 + target.baseDefence);
-		//impact * (100/(100 + e.defence()))
-		//System.out.println(damage);
 		dialogues[0][0] = new Dialoge(target.name + " took " + impact + " damage!",1);
 		target.health -= impact;
-		if(!enemiesActive()) {
-			gp.gameState = GameState.playState;
+		startDialogue(this, 0);
+		if(target.health <= 0) {
+			enemyDeath(target);
 		}
+	}
+	
+	public void blockAttack(Entity target) {
 		
 	}
 }

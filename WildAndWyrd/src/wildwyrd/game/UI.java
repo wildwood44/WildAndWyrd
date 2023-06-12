@@ -209,7 +209,11 @@ public class UI {
 			System.out.println("Ping");
 			selectedObject.dialogueIndex = 0;
 			if (gp.gameState == GameState.dialogueState) {
-				gp.gameState = GameState.combatState;
+				if(gp.combat.inCombat) {
+					gp.gameState = GameState.combatState;
+				} else {
+					gp.combat.endCombat();
+				}
 			}
 			if (gp.gameState == GameState.cutsceneState) {
 				gp.csManager.scenePhase++;
