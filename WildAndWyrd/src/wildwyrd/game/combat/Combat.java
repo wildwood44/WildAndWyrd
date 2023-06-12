@@ -83,6 +83,7 @@ public class Combat extends Entity {
 	}
 	
 	public void dealDamage(Entity target, int damage) {
+		gp.playable[0].setCombatStatus(CombatStatus.Attacking);
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
 		gp.keyH.enterPressed = false;
@@ -96,6 +97,10 @@ public class Combat extends Entity {
 	}
 	
 	public void blockAttack(Entity target) {
+		gp.playable[0].setCombatStatus(CombatStatus.Blocking);
+	}
+	
+	public void advRet() {
 		
 	}
 }

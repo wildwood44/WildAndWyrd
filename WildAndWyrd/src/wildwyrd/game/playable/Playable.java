@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.combat.CombatStatus;
 
 public class Playable extends Entity {
 	private int level;
@@ -30,6 +31,7 @@ public class Playable extends Entity {
 	private Entity legs = new Entity(gp);
 	private Entity weapon_prime = new Entity(gp);
 	private Entity weapon_second = new Entity(gp);
+	private CombatStatus combatStatus = CombatStatus.Normal;
 	public Playable(GamePanel gp, String name, int health, int stamina,
 			int baseAttack, int baseDefence, int baseAccuracy, int baseEvasion, int baseSpeed) {
 		super(gp);
@@ -117,6 +119,12 @@ public class Playable extends Entity {
 		return baseSpeed;
 	}
 
+	public CombatStatus getCombatStatus() {
+		return combatStatus;
+	}
+	public void setCombatStatus(CombatStatus combatStatus) {
+		this.combatStatus = combatStatus;
+	}
 	public BufferedImage getImage() {
 		BufferedImage sprite = null;
 
