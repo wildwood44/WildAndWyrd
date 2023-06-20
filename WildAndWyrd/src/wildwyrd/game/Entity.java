@@ -4,11 +4,13 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Comparator;
 
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import wildwyrd.game.object.Dialoge;
+import wildwyrd.game.playable.Playable;
 import wildwyrd.game.tile.UtilityTool;
 
 public class Entity {
@@ -246,4 +248,14 @@ public class Entity {
 	public void takeDamage() {
 		
 	}
+	
+	public void action() {
+		
+	}
+
+	/*@Override
+	public int compare(Entity arg0, Entity arg1) {
+		// TODO Auto-generated method stub
+		return 0;
+	}*/
 }

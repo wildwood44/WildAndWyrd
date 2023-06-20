@@ -316,8 +316,13 @@ public class KeyHandler implements KeyListener {
 			case KeyEvent.VK_ENTER :
 				enterPressed = true;
 				if (gp.ui.commandNum == 0) {
-					//System.out.println(gp.combat.getEnemies().get(0));
-					gp.combat.dealDamage(gp.combat.getEnemies().get(0),gp.playable[0].getAttack());	
+					gp.combat.dealDamage(gp.combat.getEnemies().get(0),gp.playable.get(0).getAttack());
+				}
+				if (gp.ui.commandNum == 1) {
+					gp.combat.blockAttack();	
+				}
+				if (gp.ui.commandNum == 5) {
+					gp.gameState = GameState.playState;	
 				}
 				break;
 			case KeyEvent.VK_LEFT :

@@ -3,6 +3,7 @@ package wildwyrd.game.playable;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Comparator;
 
 import javax.imageio.ImageIO;
 
@@ -10,7 +11,7 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.combat.CombatStatus;
 
-public class Playable extends Entity {
+public class Playable extends Entity implements Comparable<Playable> {
 	private int level;
 	//private int health;
 	//private int maxHealth;
@@ -153,5 +154,15 @@ public class Playable extends Entity {
 				"£Accuracy: " + getAccuracy() +
 				"£Evasion: " + getEvasion() +
 				"£Speed: " + getSpeed();
+	}
+	
+	public int compareTo(Playable that) {
+		return Integer.compare(that.getSpeed(), this.getSpeed());
+	}
+	
+	public int compare(Playable p1, Playable p2) {
+		if (p1.getSpeed() < p2.getSpeed()) return 1;
+		if (p1.getSpeed() > p2.getSpeed()) return -1;
+		return 0;
 	}
 }

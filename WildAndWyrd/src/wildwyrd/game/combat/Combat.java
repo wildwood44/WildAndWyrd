@@ -1,25 +1,46 @@
 package wildwyrd.game.combat;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
 import wildwyrd.game.object.Dialoge;
+import wildwyrd.game.playable.Playable;
 
 public class Combat extends Entity {
 	GamePanel gp;
 	//public Dialoge[][] dialogues = new Dialoge[10][20];
 	public int dialogueSet = 0;
 	public int dialogueIndex = 0;
-	public ArrayList<Entity> enemies;
+	public List<Playable> enemies;
+	public ArrayList<Playable> combatant;
 	private int impact;
 	public Boolean inCombat;
+	private int turn = 0;
 	
 	public Combat(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		enemies = new ArrayList<Entity>(5);
+		enemies = new ArrayList<Playable>(5);
+		combatant = new ArrayList<Playable>(10);
+		//combatant.sort(combatant.compareTo(combatant.get(1)));
+	}
+	
+	public Playable getCombatant() {
+		System.out.println(turn);
+		return combatant.get(turn);
+	}
+	
+	public Playable getNextCombatant() {
+		int index = turn + 1;
+		if(index >= combatant.size()) {
+			return combatant.get(0);
+		}
+		return combatant.get(index);
 	}
 
 	public void setDialogue() {
@@ -38,10 +59,25 @@ public class Combat extends Entity {
 
 	public void startCombat() {
 		if(enemies.get(0) != null) {
-			System.out.println(gp.gameState);
+			gp.playable.get(0).setCombatStatus(CombatStatus.Normal);
 			gp.gameState = GameState.combatState;
 			inCombat = true;
 		}
+		for (Playable p : gp.playable) {
+			System.out.println(p);
+			if(p != null) {
+				combatant.add(p);
+			}
+		}
+		for (Playable e : enemies) {
+			if(e != null) {
+				combatant.add(e);
+			}
+		}
+
+		System.out.println(combatant);
+		Collections.sort(combatant);
+		System.out.println(combatant);
 	}
 	
 	public void endCombat() {
@@ -51,28 +87,23 @@ public class Combat extends Entity {
 	}
 	
 	public boolean enemiesActive() {
-		for (Entity enemy : enemies) {
+		for (Playable enemy : enemies) {
 			if(enemy.health > 0) {
 				return true;
-			} else {
-				return false;
 			}
 		}
 		return false;
 	}
 	
-	public void addEnemy(Entity enemy) {
+	public void addEnemy(Playable enemy) {
 		enemies.add(enemy);
 	}
 	
-	public ArrayList<Entity> getEnemies() {
+	public List<Playable> getEnemies() {
 		return enemies;
 	}
 	
-	public void enemyDeath(Entity enemy) {
-		gp.ui.choiceSlot = 0;
-		gp.ui.firstValue = 0;
-
+	public void enemyDeath(Playable enemy) {
 		gp.keyH.enterPressed = false;
 		dialogues[0][1] = new Dialoge(enemy.name + " was defeated!",1);
 		startDialogue(this, 0);
@@ -82,10 +113,8 @@ public class Combat extends Entity {
 		}
 	}
 	
-	public void dealDamage(Entity target, int damage) {
-		gp.playable[0].setCombatStatus(CombatStatus.Attacking);
-		gp.ui.choiceSlot = 0;
-		gp.ui.firstValue = 0;
+	public void dealDamage(Playable target, int damage) {
+		gp.playable.get(0).setCombatStatus(CombatStatus.Attacking);
 		gp.keyH.enterPressed = false;
 		impact = damage * 100/(100 + target.baseDefence);
 		dialogues[0][0] = new Dialoge(target.name + " took " + impact + " damage!",1);
@@ -94,13 +123,26 @@ public class Combat extends Entity {
 		if(target.health <= 0) {
 			enemyDeath(target);
 		}
+		incrementTurn();
 	}
 	
-	public void blockAttack(Entity target) {
-		gp.playable[0].setCombatStatus(CombatStatus.Blocking);
+	public void blockAttack() {
+		gp.playable.get(0).setCombatStatus(CombatStatus.Blocking);
+		incrementTurn();
 	}
 	
 	public void advRet() {
 		
+	}
+	
+	public int getTurn() {
+		return turn;
+	}
+	
+	public void incrementTurn() {
+		turn++;
+		if(turn >= combatant.size()) {
+			turn = 0;
+		}
 	}
 }

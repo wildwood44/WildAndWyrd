@@ -206,7 +206,6 @@ public class UI {
 					}
 				}
 		} else {
-			System.out.println("Ping");
 			selectedObject.dialogueIndex = 0;
 			if (gp.gameState == GameState.dialogueState) {
 				if(gp.combat.inCombat) {
@@ -537,10 +536,10 @@ public class UI {
 		frameX = (int) (4.7 * gp.tileSize);
 		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		g2.setColor(Color.white);
-		for(int i = 0; i < gp.playable.length; i++) {
-			if(gp.playable[i] != null) {
+		for(int i = 0; i < gp.playable.size(); i++) {
+			if(gp.playable.get(0) != null) {
 				double lineNum  = 1;
-				for (String line : gp.playable[i].toString().split("£")) {
+				for (String line : gp.playable.get(0).toString().split("£")) {
 					g2.drawString(line, gp.tileSize * 5, (int) (gp.tileSize * lineNum));
 					lineNum += 0.5;
 				}
@@ -591,7 +590,7 @@ public class UI {
 				textY += 40;
 			}
 			if(gp.player.inventory.get(itemIndex).type == EntityType.Primary) {
-				g2.drawString("" + gp.playable[0].getAttack() + " - " + (gp.playable[0].getBaseAttack() + gp.player.inventory.get(itemIndex).attackValue), textX, textY);
+				g2.drawString("" + gp.playable.get(0).getAttack() + " - " + (gp.playable.get(0).getBaseAttack() + gp.player.inventory.get(itemIndex).attackValue), textX, textY);
 			}
 		}
 		frameX = 20;
@@ -763,6 +762,7 @@ public class UI {
 	}
 	
 	public void drawCombatScreen() {
+		gp.rm[gp.currentRoom].draw(g2);
 		int x = gp.tileSize * 3 / 2;
 		int y = gp.tileSize * 5;
 		int width = gp.screenWidth - gp.tileSize * 3;
@@ -776,20 +776,23 @@ public class UI {
 		int slotYstart = y;
 		int cursorX = slotXstart + gp.tileSize * slotCol;
 		int cursorY = slotYstart + gp.tileSize * slotRow;
-
-		g2.drawString(" Attack", x, y);
-		g2.drawString(" Block", x, y + (gp.tileSize));
-		g2.drawString(" Appraise", x + (gp.tileSize*3), y);
-		g2.drawString(" Special", x + (gp.tileSize*3), y + (gp.tileSize));
-		g2.drawString(" Items", x + (gp.tileSize*6), y);
-		g2.drawString(" Flee", x + (gp.tileSize*6), y + (gp.tileSize));
-
-		g2.drawString(">", cursorX - 5, cursorY);
-		
-		gp.playable[0].draw(g2);
+		//int index = gp.combat.combatant.indexOf(gp.combat.getCombatant()) - 1;
+		//System.out.println(index + " " + gp.combat.getTurn());
+		if(gp.combat.getCombatant() == gp.playable.get(0)) {
+			g2.drawString(" Attack", x, y);
+			g2.drawString(" Block", x, y + (gp.tileSize));
+			g2.drawString(" Appraise", x + (gp.tileSize*3), y);
+			g2.drawString(" Special", x + (gp.tileSize*3), y + (gp.tileSize));
+			g2.drawString(" Items", x + (gp.tileSize*6), y);
+			g2.drawString(" Flee", x + (gp.tileSize*6), y + (gp.tileSize));
+	
+			g2.drawString(">", cursorX - 5, cursorY);
+		} else {
+			gp.combat.getCombatant().action();
+		}
+		gp.playable.get(0).draw(g2);
 		for (Entity enemy : gp.combat.getEnemies()) {
 			enemy.draw(g2);
-			//g2.drawImage(enemy.draw(g2), gp.tileSize, gp.tileSize, gp.tileSize, gp.tileSize, null);
 		}
 	}
 

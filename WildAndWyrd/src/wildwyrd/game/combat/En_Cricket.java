@@ -11,20 +11,11 @@ import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
 import wildwyrd.game.object.Dialoge;
+import wildwyrd.game.playable.Playable;
 
-public class En_Cricket extends Entity {
+public class En_Cricket extends Playable {
 	public En_Cricket(GamePanel gp) {
-		super(gp);
-		name = "Cricket";
-		maxHealth = 20;
-		health = maxHealth;
-		expDrop = 10;
-		//private itemDrop = [{'item' : items.food[4], 'quantity':2}],
-		baseAttack = 0;
-		baseDefence = 8;
-		baseAccuracy = 90;
-		baseSpeed = 10;
-		baseEvasion = 23;
+		super(gp,"Cricket",  20, 10, 0, 8, 90, 10, 23);
         String desc = "Big grasshoppers with long antenna. Can jump a fair distance.";
 		type = EntityType.Sprite;
 		speed = 1;
@@ -55,13 +46,11 @@ public class En_Cricket extends Entity {
 	}
 
 	public void setDialogue() {
-		//dialogues[0][0] = new Dialoge(name + "Some crickets were in the area." ,1);
-		//dialogues[0][1] = new Dialoge("Fight Crickets?" ,2);
+		dialogues[0][0] = new Dialoge(name + " stood wary." ,1);
 	}
 
 	public void startDialogue(Entity object, int setNum) {
 		GamePanel gp = this.gp;
-		System.out.println("Ping");
 		gp.gameState = GameState.dialogueState;
 		gp.ui.selectedObject = object;
 		dialogueSet = setNum;
@@ -72,5 +61,13 @@ public class En_Cricket extends Entity {
 		gp.ui.firstValue = 0;
 		startDialogue(this, 0);
 		gp.keyH.enterPressed = false;
+	}
+	
+	public void action() {
+		gp.ui.choiceSlot = 0;
+		gp.ui.firstValue = 0;
+		gp.keyH.enterPressed = false;
+		startDialogue(this, 0);
+		gp.combat.incrementTurn();
 	}
 }

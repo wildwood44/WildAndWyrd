@@ -10,6 +10,7 @@ import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -67,7 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Story s = new Story();
 	public Cutscene c;
 	public Combat combat = new Combat(this);
-	public Playable[] playable = new Playable[6];
+	public List<Playable> playable = new ArrayList<Playable>(5);
 	public Entity[][] obj = new Entity[10][25];
 	public Entity[][] npc = new Entity[10][5];
 	public InteractiveTile iTile[][] = new InteractiveTile[10][50];
@@ -83,8 +84,8 @@ public class GamePanel extends JPanel implements Runnable {
 		rm = new Room[maxRoom];
 		maps = new Map[maxMap];
 		player = new Player(this, keyH);
-		playable[0] = new Playable(this, "Alder", 60, 60,
-				10, 10, 5, 10, 5);
+		playable.add(0,new Playable(this, "Alder", 60, 60,
+				10, 10, 5, 10, 5));
 		entityList = new ArrayList<>();
 		setPreferredSize(new Dimension(screenWidth, screenHeight));
 		setBackground(Color.black);
@@ -168,14 +169,11 @@ public class GamePanel extends JPanel implements Runnable {
 			rm[currentRoom].draw(g2);
 			ui.draw(g2);
 		} else if (gameState == GameState.combatState) {
-			//while(combat.enemies.get(0) != null) {
-			rm[currentRoom].draw(g2);
+			//rm[currentRoom].draw(g2);
 			ui.draw(g2);
-			//}
-			
 		} else {
 			if (gameState == GameState.dialogueState) {
-				rm[currentRoom].draw(g2);
+				//rm[currentRoom].draw(g2);
 				ui.draw(g2);
 			} else if (gameState == GameState.cutsceneState) {
 				rm[currentRoom].draw(g2);
