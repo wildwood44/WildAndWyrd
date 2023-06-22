@@ -1,5 +1,6 @@
 package wildwyrd.game.combat;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -39,6 +40,14 @@ public class En_Cricket extends Playable {
 		int screenY = gp.tileSize*2;
 
 		g2.drawImage(image, screenX, screenY, gp.tileSize*2, gp.tileSize*2, null);
+		
+		//Health
+		double oneScale = (double)gp.tileSize/maxHealth;
+		double healthValue = oneScale * health;
+		g2.setColor(new Color(35,35,35));
+		g2.fillRect(screenX - 2, screenY - 2, gp.tileSize+2, 12);
+		g2.setColor(new Color(255,0,0));
+		g2.fillRect(screenX, screenY, (int)healthValue, 10);
 	}
 	
 	public void setAction() {

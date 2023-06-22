@@ -31,7 +31,6 @@ public class Combat extends Entity {
 	}
 	
 	public Playable getCombatant() {
-		System.out.println(turn);
 		return combatant.get(turn);
 	}
 	
@@ -74,10 +73,7 @@ public class Combat extends Entity {
 				combatant.add(e);
 			}
 		}
-
-		System.out.println(combatant);
 		Collections.sort(combatant);
-		System.out.println(combatant);
 	}
 	
 	public void endCombat() {
@@ -115,6 +111,7 @@ public class Combat extends Entity {
 	
 	public void dealDamage(Playable target, int damage) {
 		gp.playable.get(0).setCombatStatus(CombatStatus.Attacking);
+		gp.playable.get(0).loseStamina(5);
 		gp.keyH.enterPressed = false;
 		impact = damage * 100/(100 + target.baseDefence);
 		dialogues[0][0] = new Dialoge(target.name + " took " + impact + " damage!",1);

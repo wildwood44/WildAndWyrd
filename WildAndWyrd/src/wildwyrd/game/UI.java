@@ -795,6 +795,9 @@ public class UI {
 			enemy.draw(g2);
 		}
 	}
+	
+	public void healthBar(Playable p, int x, int y) {
+	}
 
 	public int getItemIndexOnSlot() {
 		int itemIndex = slotCol2 + slotRow2 * 5;
