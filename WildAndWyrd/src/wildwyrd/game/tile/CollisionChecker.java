@@ -5,12 +5,14 @@ import wildwyrd.game.GamePanel;
 
 public class CollisionChecker {
 	GamePanel gp;
+	private int collisionCount = 0;
 
 	public CollisionChecker(GamePanel gp) {
 		this.gp = gp;
 	}
 
 	public void checkTile(Entity entity) {
+		int damageOn = 10;
 		int entityLeftWorldX = entity.worldX + entity.solidArea.x;
 		int entityRightWorldX = entity.worldX + entity.solidArea.x + entity.solidArea.width;
 		int entityTopWorldY = entity.worldY + entity.solidArea.y;
@@ -29,6 +31,14 @@ public class CollisionChecker {
 					if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
 						entity.collisionOn = true;
 					}
+
+					if (gp.tileM.tile[tileNum1].nettles || gp.tileM.tile[tileNum2].nettles) {
+						collisionCount++;
+						if(collisionCount / damageOn == 0) {
+							entity.takeDamage = true;
+							collisionCount = 0;
+						}
+					}
 				break;
 			case "down":
 					entityBottomRow = (entityBottomWorldY + entity.speed) / gp.tileSize;
@@ -36,6 +46,13 @@ public class CollisionChecker {
 					tileNum2 = gp.tileM.mapTileNum[gp.currentMap.getId()][entityRightCol][entityBottomRow];
 					if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
 						entity.collisionOn = true;
+					}
+					if (gp.tileM.tile[tileNum1].nettles || gp.tileM.tile[tileNum2].nettles) {
+						collisionCount++;
+						if(collisionCount / damageOn == 0) {
+							entity.takeDamage = true;
+							collisionCount = 0;
+						}
 					}
 				break;
 			case "left":
@@ -45,6 +62,14 @@ public class CollisionChecker {
 					if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
 						entity.collisionOn = true;
 					}
+					if (gp.tileM.tile[tileNum1].nettles || gp.tileM.tile[tileNum2].nettles) {
+						collisionCount++;
+						if(collisionCount == damageOn) {
+							entity.takeDamage = true;
+							System.out.println(collisionCount);
+							collisionCount = 0;
+						}
+					}
 				break;
 			case "right":
 					entityRightCol = (entityRightWorldX + entity.speed) / gp.tileSize;
@@ -52,6 +77,13 @@ public class CollisionChecker {
 					tileNum2 = gp.tileM.mapTileNum[gp.currentMap.getId()][entityRightCol][entityBottomRow];
 					if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
 						entity.collisionOn = true;
+					}
+					if (gp.tileM.tile[tileNum1].nettles || gp.tileM.tile[tileNum2].nettles) {
+						collisionCount++;
+						if(collisionCount / damageOn == 0) {
+							entity.takeDamage = true;
+							collisionCount = 0;
+						}
 					}
 				}
 

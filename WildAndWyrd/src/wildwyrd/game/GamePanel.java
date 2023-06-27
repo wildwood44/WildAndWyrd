@@ -198,6 +198,8 @@ public class GamePanel extends JPanel implements Runnable {
 				ui.draw(g2);
 			} else if (gameState == GameState.combatState) {
 				ui.draw(g2);
+			} else if (gameState == GameState.gameOverState) {
+				ui.draw(g2);
 			} else if (gameState == GameState.playState) {
 				//rm[currentRoom].draw(g2);
 				tileM.draw(g2);

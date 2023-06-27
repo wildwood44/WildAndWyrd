@@ -47,12 +47,15 @@ public class Entity {
 	public int solidAreaDefaultY = 0;
 	public int attackValue;
 	public int defenceValue;
+	public int healthRcvd;
+	public int staminaRcvd;
 	public String description = "";
 	public String direction;
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
 	public boolean collision = false;
 	public boolean collisionOn = false;
+	public boolean takeDamage = false;
 	public EntityType type;
 	public final int type_player = 0;
 	public final int type_object = 1;

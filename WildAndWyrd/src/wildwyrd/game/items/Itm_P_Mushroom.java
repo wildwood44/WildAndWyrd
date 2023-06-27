@@ -12,9 +12,13 @@ public class Itm_P_Mushroom extends Entity {
 		this.gp = gp;
 		name = "Parasol Mushroom";
 		type = EntityType.Food;
+		staminaRcvd = 5;
 		description = "";
 
 		image = setup("/res/items/Parasol_Mushroom", gp.tileSize, gp.tileSize);
+	}
+	public void selectedItem() {
+		int itemIndex = gp.ui.getItemIndexOnSlot();
 	}
 
 	public void use() {

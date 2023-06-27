@@ -12,10 +12,14 @@ public class Itm_Bandage extends Entity {
 		this.gp = gp;
 		name = "Bandage";
 		type = EntityType.Health;
+		healthRcvd = 10;
 		description = "A cloth bandage to treat wounds.";
 
 		image = setup("/res/items/img_bandage", gp.tileSize, gp.tileSize);
 
+	}
+	public void selectedItem() {
+		int itemIndex = gp.ui.getItemIndexOnSlot();
 	}
 
 	public void use() {

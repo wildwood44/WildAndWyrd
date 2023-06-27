@@ -12,10 +12,14 @@ public class Itm_Hazelnut extends Entity {
 		this.gp = gp;
 		name = "Hazelnut";
 		type = EntityType.Food;
+		staminaRcvd = 5;
 		description = "Seed of a hazel tree.";
 
 		image = setup("/res/items/img_hazelnut", gp.tileSize, gp.tileSize);
 
+	}
+	public void selectedItem() {
+		int itemIndex = gp.ui.getItemIndexOnSlot();
 	}
 
 	public void use() {

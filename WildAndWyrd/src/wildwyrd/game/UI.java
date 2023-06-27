@@ -113,7 +113,10 @@ public class UI {
 		if (gp.gameState == GameState.combatState) {
 			drawCombatScreen();
 		}
-
+		
+		if (gp.gameState == GameState.gameOverState) {
+			drawGameOverScreen();
+		}
 	}
 
 	public void drawHeadingScreen(String text) {
@@ -796,7 +799,25 @@ public class UI {
 		}
 	}
 	
-	public void healthBar(Playable p, int x, int y) {
+	public void drawGameOverScreen() {
+		g2.setColor(new Color(0,0,0,150));
+		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+		int x;
+		int y;
+		String text = "Game Over";
+		//Shadow
+		g2.setColor(Color.black);
+		x = getXforCenteredText(text);
+		y = gp.tileSize*4;
+		//Main
+		g2.setColor(Color.white);
+		g2.drawString(text, x-4, y-4);
+		//Qut
+		g2.setFont(g2.getFont().deriveFont(50f));
+		text = "Quit";
+		x = getXforCenteredText(text);
+		y += gp.tileSize*4;
+		
 	}
 
 	public int getItemIndexOnSlot() {

@@ -1,5 +1,6 @@
 package wildwyrd.game.playable;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -25,6 +26,8 @@ public class Player extends Entity {
 	private int shillings;
 	public final int inventorySize = 20;
 	public Boolean approval;
+	private int collisionCount = 0;
+	private long start;
 
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
@@ -81,6 +84,7 @@ public class Player extends Entity {
 			}
 			
 			collisionOn = false;
+			takeDamage = false;
 			gp.cChecker.checkTile(this);
 			objIndex = gp.cChecker.checkObject(this, true);
 			pickUpObject(objIndex);
@@ -103,8 +107,11 @@ public class Player extends Entity {
 					case "right":
 						worldX += speed;
 				}
+			} else {
+				if(takeDamage) {
+					gp.playable.get(0).takeDamage(1);
+				}
 			}
-			
 			spriteCounter++;
 			if (spriteCounter > 10) {
 				if(spriteNum == 1) {
@@ -126,6 +133,15 @@ public class Player extends Entity {
 			objIndex = gp.cChecker.checkObject(this, true);
 			pickUpObject(objIndex);
 		}
+	}
+	
+	private void drawHealth(Graphics2D g2, int screenX, int screenY) {
+		double oneScale = (double)gp.tileSize/gp.playable.get(0).maxHealth;
+		double healthValue = oneScale * gp.playable.get(0).health;
+		g2.setColor(new Color(35,35,35));
+		g2.fillRect(screenX - 2, screenY - 16, gp.tileSize+2, 12);
+		g2.setColor(new Color(255,0,0));
+		g2.fillRect(screenX, screenY - 14, (int)healthValue, 10);
 	}
 	
 	public int pickUpShillings(int i) {
@@ -180,6 +196,15 @@ public class Player extends Entity {
 		if(i != 999 && gp.iTile[gp.currentMap.getId()][i].transformable == true) {
 			gp.iTile[gp.currentMap.getId()][i] = gp.iTile[gp.currentMap.getId()][i].uncoverIllusion();
 		}
+	}
+	
+	public boolean damageTaken() {
+		long current = System.currentTimeMillis();
+        if(takeDamage){
+            start = current;
+            takeDamage = false;
+        }
+        return start + 3000 < current;
 	}
 
 	public void draw(Graphics2D g2) {
@@ -249,6 +274,9 @@ public class Player extends Entity {
 		int bottomOffset = gp.screenHeight - screenY;
 		if (bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
 			y = gp.screenHeight - (gp.currentMap.getWorldHeight() - worldY);
+		}
+		if(!damageTaken()) {
+			drawHealth(g2, x, y);
 		}
 
 		g2.drawImage(image, x, y, (ImageObserver) null);

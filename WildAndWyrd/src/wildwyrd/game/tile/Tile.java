@@ -10,4 +10,5 @@ public class Tile {
 	public boolean collisionLeft = false;
 	public boolean collisionRight = false;
 	public boolean overlay = false;
+	public boolean nettles = false;
 }

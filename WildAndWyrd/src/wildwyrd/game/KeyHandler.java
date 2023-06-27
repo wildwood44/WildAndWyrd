@@ -310,8 +310,7 @@ public class KeyHandler implements KeyListener {
 				}
 				break;
 			}
-		}  else if (gp.gameState == GameState.combatState) {
-			System.out.println(gp.ui.commandNum);
+		} else if (gp.gameState == GameState.combatState) {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_ENTER :
 				enterPressed = true;
@@ -368,6 +367,12 @@ public class KeyHandler implements KeyListener {
 					gp.ui.slotRow = 0;
 					gp.ui.commandNum--;
 				}
+				break;
+			}
+		} else if (gp.gameState == GameState.gameOverState) {
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_ENTER :
+				gp.gameState = GameState.titleState;
 				break;
 			}
 		} else if (gp.gameState == GameState.playState) {

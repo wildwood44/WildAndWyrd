@@ -5,6 +5,5 @@ public enum GameState {
 	cutsceneState, dialogueState, messageState,
 	examineState, talkingState, movingState,
 	statusState, inventoryState, equipState, glossaryState,
-	readingState,
-	combatState
+	readingState, combatState, gameOverState
 }

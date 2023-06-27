@@ -4,29 +4,22 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Comparator;
 
 import javax.imageio.ImageIO;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.GameState;
 import wildwyrd.game.combat.CombatStatus;
 
 public class Playable extends Entity implements Comparable<Playable> {
 	private int level;
-	//private int health;
-	//private int maxHealth;
 	private int stamina;
 	private int maxStamina;
 	private int exp;
 	private int nextLevelExp;
 	private int strength;
 	private int dexterity;
-	//private int baseAttack;
-	//private int baseDefence;
-	//private int baseAccuracy;
-	//private int baseEvasion;
-	//private int baseSpeed;
 	public BufferedImage combatSpt;
 	private Entity head = new Entity(gp);
 	private Entity body = new Entity(gp);
@@ -95,6 +88,9 @@ public class Playable extends Entity implements Comparable<Playable> {
 	}
 	public void takeDamage(int impact) {
 		health -= impact;
+		if(health <= 0) {
+			gp.gameState = GameState.gameOverState;
+		}
 	}
 	public int getMaxStamina() {
 		return maxStamina;
@@ -150,22 +146,32 @@ public class Playable extends Entity implements Comparable<Playable> {
 		int screenY = gp.tileSize*2;
 
 		g2.drawImage(image, screenX, screenY, gp.tileSize*2, gp.tileSize*2, null);
-		
+
 		//Health Bar
+		drawHealth(g2, screenX, screenY);
+		//Stamina  Bar
+		drawStamina(g2, screenX, screenY);
+	}
+	
+	private void drawHealth(Graphics2D g2, int screenX, int screenY) {
 		double oneScale = (double)gp.tileSize/maxHealth;
 		double healthValue = oneScale * health;
 		g2.setColor(new Color(35,35,35));
 		g2.fillRect(screenX - 2, screenY - 16, gp.tileSize+2, 12);
 		g2.setColor(new Color(255,0,0));
 		g2.fillRect(screenX, screenY - 14, (int)healthValue, 10);
-		//Stamina  Bar
-		oneScale = (double)gp.tileSize/maxStamina;
+	}
+	
+	private void drawStamina(Graphics2D g2, int screenX, int screenY) {
+		double oneScale = (double)gp.tileSize/maxStamina;
 		double staminaValue = oneScale * stamina;
 		g2.setColor(new Color(35,35,35));
 		g2.fillRect(screenX - 2, screenY - 2, gp.tileSize+2, 12);
 		g2.setColor(new Color(255,255,0));
 		g2.fillRect(screenX, screenY, (int)staminaValue, 10);
+		
 	}
+	
 	@Override
 	public String toString() {
 		return name + " - " + level + 

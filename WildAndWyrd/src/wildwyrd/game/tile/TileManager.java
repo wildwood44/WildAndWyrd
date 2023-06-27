@@ -41,7 +41,7 @@ public class TileManager {
 			setup(1, "forestFloor_tile", false);
 			setup(2, "Rockwall_Tile", true);
 			setup(3, "bramble_tile", true);
-			setup(4, "nettle_tile", true);
+			setup(4, "nettle_tile", true, true);
 			setup(5, "img_tree1", true);
 			setup(6, "img_tree2", true);
 			setup(7, "img_tree3", true);
@@ -59,6 +59,19 @@ public class TileManager {
 			tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/"+imageName+".png"));
 			tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
 			tile[index].collision = collision;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setup(int index, String imageName, boolean collision, boolean nettles) {
+		UtilityTool uTool = new UtilityTool();
+		try {
+			tile[index] = new Tile();
+			tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/"+imageName+".png"));
+			tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+			tile[index].collision = collision;
+			tile[index].nettles = nettles;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
