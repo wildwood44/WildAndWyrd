@@ -339,9 +339,18 @@ public class UI {
 							g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 							g2.drawString(line, x + 20, y);
 							j++;
+							
 						}
 					}
+					
 					y += 40;
+				}
+				if(gp.ui.firstValue > 0) {
+					drawUpIcon((int)(width/1.65), 340, 20, 20);
+				}
+				System.out.println(selectedObject.options.length - 1);
+				if(gp.ui.firstValue < selectedObject.options.length - 3) {
+					drawDownIcon((int)(width/1.65), 470, 20, 20);
 				}
 			}
 		} else {
@@ -859,6 +868,30 @@ public class UI {
 			g2.drawImage(image, x, y, width, height, (ImageObserver) null);
 		}
 
+	}
+	
+	private void drawUpIcon(int x, int y, int width, int height) {
+		BufferedImage image;
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/res/icons/icons8-sort-up-30.png"));
+			if (image != null) {
+				g2.drawImage(image, x, y, width, height, null);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void drawDownIcon(int x, int y, int width, int height) {
+		BufferedImage image;
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/res/icons/icons8-sort-down-30.png"));
+			if (image != null) {
+				g2.drawImage(image, x, y, width, height, null);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void drawDialogueWindow(int x, int y, int width, int height) {
