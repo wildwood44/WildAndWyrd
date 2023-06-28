@@ -170,7 +170,6 @@ public class UI {
 		int y = gp.tileSize * 5;
 		int width = gp.screenWidth - gp.tileSize * 3;
 		int height = gp.tileSize * 3;
-		//Dialoge[][] dia = selectedObject.dialogues;
 		drawImageWindow(300, 0, 200, 400);
 		drawDialogueWindow(x, y, width, height);
 		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
@@ -185,11 +184,15 @@ public class UI {
 				combinedText = combinedText + s;
 				currentDialogue = combinedText;
 				charIndex++;
+				//Complete Text
 				if (gp.keyH.enterPressed) {
-					currentDialogue = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText();
+					combinedText = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().substring(0, 
+							selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().length() - 1);
+					charIndex = characters.length - 1;
+					gp.keyH.enterPressed = false;
 				}
 			}
-
+			//Next Dialogue
 			if (gp.keyH.enterPressed == true) {
 				charIndex = 0;
 				combinedText = "";
@@ -199,6 +202,7 @@ public class UI {
 					selectedObject.dialogueIndex++;
 					gp.keyH.enterPressed = false;
 				}
+			//Skip Dialogue
 			} else if (gp.keyH.skipPressed) {
 				charIndex = 0;
 				combinedText = "";
@@ -255,14 +259,16 @@ public class UI {
 				currentDialogue = combinedText;
 				charIndex++;
 				if (gp.keyH.enterPressed) {
-					currentDialogue = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
-							.getText();
+					combinedText = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().substring(0, 
+							selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().length() - 1);
+					charIndex = characters.length - 1;
+					gp.keyH.enterPressed = false;
 				}
 			}
 
 			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 1) {
-				if (this.gp.keyH.enterPressed) {
+				if (gp.keyH.enterPressed) {
 					if (currentDialogue
 							.length() == selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 									.getText().length()) {
@@ -321,7 +327,7 @@ public class UI {
 					}
 				}
 				//int startValue = 0;
-				System.out.println(choiceSlot + " " + firstValue);
+				//System.out.println(choiceSlot + " " + firstValue);
 				for(int i = firstValue; i < selectedObject.options.length; i++) {
 					if(y + 30 > 500) {
 					//	startValue++;
@@ -345,11 +351,12 @@ public class UI {
 					
 					y += 40;
 				}
-				if(gp.ui.firstValue > 0) {
+				//Display Up arrow
+				if(firstValue > 0) {
 					drawUpIcon((int)(width/1.65), 340, 20, 20);
 				}
-				System.out.println(selectedObject.options.length - 1);
-				if(gp.ui.firstValue < selectedObject.options.length - 3) {
+				//Display Down arrow
+				if(firstValue < selectedObject.options.length - 3) {
 					drawDownIcon((int)(width/1.65), 470, 20, 20);
 				}
 			}
@@ -366,128 +373,6 @@ public class UI {
 				y += 40;
 			}
 			for (String line : breakLines(currentDialogue,40)) {
-				g2.setFont(g2.getFont().deriveFont(0, 18.0F));
-				g2.drawString(line, x, y);
-				y += 30;
-			}
-		}
-	}public void drawTalkingScreen() {
-		int x = gp.tileSize * 3 / 2;
-		int y = gp.tileSize * 5;
-		int width = gp.screenWidth - gp.tileSize * 3;
-		int height = gp.tileSize * 3;
-		drawDialogueWindow(x, y, width, height);
-		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
-		g2.setColor(Color.white);
-		x += gp.tileSize;
-		y += gp.tileSize;
-		if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
-			char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
-					.getText().toCharArray();
-			if (charIndex < characters.length) {
-				String s = String.valueOf(characters[charIndex]);
-				combinedText = combinedText + s;
-				currentDialogue = combinedText;
-				++charIndex;
-				if (gp.keyH.enterPressed) {
-					currentDialogue = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
-							.getText();
-				}
-			}
-
-			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
-					.getType() == 1) {
-				if (gp.keyH.enterPressed) {
-					if (currentDialogue
-							.length() == selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
-									.getText().length()) {
-						charIndex = 0;
-						combinedText = "";
-						if (gp.gameState == GameState.examineState) {
-							selectedObject.dialogueIndex++;
-							gp.keyH.enterPressed = false;
-						}
-					}
-				} else if (gp.keyH.skipPressed) {
-					charIndex = 0;
-					combinedText = "";
-					if (gp.gameState == GameState.examineState) {
-						selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
-						gp.keyH.skipPressed = false;
-					}
-				}
-				if (selectedObject.dialogueIndex >= selectedObject.dialogues[selectedObject.dialogueSet].length) {
-					for (boolean checkConditions: selectedObject.contConditions) {
-						if(checkConditions = false) {
-							selectedObject.speak();
-						}
-					}
-				}
-				
-			} else if (selectedObject.dialogues[selectedObject.dialogueSet][this.selectedObject.dialogueIndex]
-					.getType() == 2) {
-				if (gp.keyH.enterPressed) {
-					charIndex++;
-					if (choiceSlot == 0) {
-						binaryRes = true;
-					} else {
-						binaryRes = false;
-					}
-
-					charIndex = 0;
-					combinedText = "";
-					if (gp.gameState == GameState.examineState) {
-						selectedObject.choiceResponce();
-						selectedObject.dialogueIndex++;
-						gp.keyH.enterPressed = false;
-					}
-				}
-
-				if (choiceSlot == 0) {
-					g2.drawString(">", x, y + 40);
-				} else {
-					g2.drawString(">", x, y + 80);
-				}
-
-				g2.drawString("Yes", x + 20, y + 40);
-				g2.drawString("No", x + 20, y + 80);
-			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
-					.getType() == 3) {
-				if (gp.keyH.enterPressed) {
-					charIndex = 0;
-					combinedText = "";
-					if (gp.gameState == GameState.examineState) {
-						//selectedObject.dialogueIndex++;
-						selectedObject.choiceResponce();
-						gp.keyH.enterPressed = false;
-					}
-				}
-				for(int i = firstValue; i < selectedObject.options.length; i++) {
-					int j = 1;
-					for (String line : breakLines(selectedObject.options[i],40)) {
-						if (j > 1) {
-							y += 30;
-						}
-						g2.setFont(g2.getFont().deriveFont(0, 18.0F));
-						g2.drawString(line, x + 20, y);
-						j++;
-					}
-					y += 40;
-				}
-			}
-		} else {
-			selectedObject.dialogueIndex = 0;
-			if (gp.gameState == GameState.examineState) {
-				gp.gameState = GameState.playState;
-			}
-		}
-		if(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
-			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker() != null) {
-				g2.setFont(g2.getFont().deriveFont(1, 24.0F));
-				g2.drawString(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker(), x, y);
-				y += 40;
-			}
-			for (String line : breakLines(currentDialogue, 60)) {
 				g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 				g2.drawString(line, x, y);
 				y += 30;
@@ -511,6 +396,7 @@ public class UI {
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
 		g2.setStroke(new BasicStroke());
+		//System.out.println(gp.tileSize);
 		g2.drawString("Save", 30, gp.tileSize);
 		g2.drawString("Stats", 30, (int) (gp.tileSize * 1.75D));
 		g2.drawString("Items", 30, (int) (gp.tileSize * 2.5D));
@@ -677,7 +563,6 @@ public class UI {
 		g2.drawString(gp.glossary.sections[section], 30, gp.tileSize);
 		int pos = (int) (gp.tileSize * 0.75D);
 		bottomValue = gp.glossary.getSize(section);
-		System.out.println(cursorX + " " + cursorY);
 		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
 		for (int i = 0; i < 6; ++i) {
@@ -689,6 +574,14 @@ public class UI {
 					System.out.println(e);
 				}
 			}
+		}
+		//Display Up arrow
+		if(topValue > 0) {
+			drawUpIcon(frameX + 110, 75, 20, 20);
+		}
+		//Display Down arrow
+		if(topValue < bottomValue - 6) {
+			drawDownIcon(frameX + 110, 440, 20, 20);
 		}
 
 		frameX = 300;
