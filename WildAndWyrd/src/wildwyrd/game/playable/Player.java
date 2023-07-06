@@ -178,7 +178,19 @@ public class Player extends Entity {
 		int itemIndex = gp.ui.getItemIndexOnSlot();
 		if(itemIndex < inventory.size()) {
 			Entity selectedItem = inventory.get(itemIndex);
-			if(selectedItem.type == EntityType.Primary) {
+			if(selectedItem.type == EntityType.Health) {
+				if(gp.playable.get(0).getHealth() < gp.playable.get(0).getMaxHealth()) {
+					gp.playable.get(0).heal(selectedItem.healthRcvd);
+					gp.player.inventory.remove(selectedItem);
+				}
+			}
+			else if(selectedItem.type == EntityType.Food) {
+				if(gp.playable.get(0).getStamina() < gp.playable.get(0).getMaxStamina()) {
+					gp.playable.get(0).eat(selectedItem.staminaRcvd);
+					gp.player.inventory.remove(selectedItem);
+				}
+			}
+			else if(selectedItem.type == EntityType.Primary) {
 				gp.playable.get(0).setWeapon_prime(selectedItem);
 				gp.player.inventory.remove(selectedItem);
 			}

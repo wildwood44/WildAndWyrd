@@ -86,14 +86,29 @@ public class Playable extends Entity implements Comparable<Playable> {
 	public int getMaxHealth() {
 		return maxHealth;
 	}
+	public void heal(int restore) {
+		health += restore;
+		if(health > maxHealth) {
+			health = maxHealth;
+		}
+	}
 	public void takeDamage(int impact) {
 		health -= impact;
 		if(health <= 0) {
 			gp.gameState = GameState.gameOverState;
 		}
 	}
+	public int getStamina() {
+		return stamina;
+	}
 	public int getMaxStamina() {
 		return maxStamina;
+	}
+	public void eat(int restore) {
+		stamina += restore;
+		if(stamina > maxStamina) {
+			stamina = maxStamina;
+		}
 	}
 	public void loseStamina(int cost) {
 		stamina -= cost;
