@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
-import wildwyrd.game.GameState;
 import wildwyrd.game.combat.En_Cricket;
 import wildwyrd.game.object.Dialoge;
 
@@ -46,6 +45,18 @@ public class NPC_Cricket extends Entity {
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
+		// STOP MOVING CAMERA
+		if (gp.player.worldY < gp.player.screenY) {
+			screenY = worldY;
+		}
+		int rightOffset = gp.screenWidth - gp.player.screenX;
+		if (rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX) {
+			screenX = gp.screenWidth - (gp.currentMap.getWorldWidth() - worldX);
+		}
+		int bottomOffset = gp.screenHeight - gp.player.screenY;
+		if (bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
+			screenY = gp.screenHeight - (gp.currentMap.getWorldHeight() - worldY);
+		}
 		if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
 			worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
 			worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
@@ -98,6 +109,11 @@ public class NPC_Cricket extends Entity {
 				break;
 			}
 			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+		}else if(gp.player.worldX < gp.player.screenX ||
+			    gp.player.worldY < gp.player.screenY ||
+			    rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX ||
+			    bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
+			image = getPlayerImage(1, 0);
 		}
 	}
 	

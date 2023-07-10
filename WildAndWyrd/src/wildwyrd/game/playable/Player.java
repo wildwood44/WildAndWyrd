@@ -26,7 +26,6 @@ public class Player extends Entity {
 	private int shillings;
 	public final int inventorySize = 20;
 	public Boolean approval;
-	private int collisionCount = 0;
 	private long start;
 
 	public Player(GamePanel gp, KeyHandler keyH) {
@@ -92,6 +91,7 @@ public class Player extends Entity {
 			interactNPC(npcIndex);
 			int iTileIndex = gp.cChecker.checkEntity(this,gp.iTile);
 			changeInteractiveTile(iTileIndex);
+			
 			gp.eHandler.checkEvent();
 			if (collisionOn == false && keyH.enterPressed == false) {
 				switch (direction) {
