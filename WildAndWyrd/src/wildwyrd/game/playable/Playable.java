@@ -13,6 +13,7 @@ import wildwyrd.game.GameState;
 import wildwyrd.game.combat.CombatStatus;
 
 public class Playable extends Entity implements Comparable<Playable> {
+	protected String imageUrl;
 	private int level;
 	private int stamina;
 	private int maxStamina;
@@ -20,7 +21,8 @@ public class Playable extends Entity implements Comparable<Playable> {
 	private int nextLevelExp;
 	private int strength;
 	private int dexterity;
-	public BufferedImage combatSpt;
+	protected boolean alive = true;
+	protected boolean dying = false;
 	private Entity head = new Entity(gp);
 	private Entity body = new Entity(gp);
 	private Entity legs = new Entity(gp);
@@ -41,11 +43,7 @@ public class Playable extends Entity implements Comparable<Playable> {
 		this.baseAccuracy = baseAccuracy;
 		this.baseEvasion = baseEvasion;
 		this.baseSpeed = baseSpeed;
-		try {
-			combatSpt = ImageIO.read(getClass().getResourceAsStream("/res/sprite/combat/Alder_Combat_Base.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		getImage();
 	}
 	public Entity getHead() {
 		return head;
@@ -138,25 +136,30 @@ public class Playable extends Entity implements Comparable<Playable> {
 		return baseSpeed;
 	}
 
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public boolean isDying() {
+		return dying;
+	}
+
+	public void killed() {
+		dying = true;
+	}
+
 	public CombatStatus getCombatStatus() {
 		return combatStatus;
 	}
 	public void setCombatStatus(CombatStatus combatStatus) {
 		this.combatStatus = combatStatus;
 	}
-	public BufferedImage getImage() {
-		BufferedImage sprite = null;
-
-		try {
-			sprite = ImageIO.read(getClass().getResourceAsStream("/res/sprite/combat/Alder_Combat_Base.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return sprite;
+	public void getImage() {
+		image = setup("/res/sprite/combat/Alder_Combat_Base",gp.tileSize*6,gp.tileSize*2);
 	}
 	
 	public void draw(Graphics2D g2) {
-		BufferedImage image = getImage();
+		//BufferedImage image = getImage();
 		int screenX = gp.tileSize*4;
 		int screenY = gp.tileSize*2;
 
@@ -184,7 +187,6 @@ public class Playable extends Entity implements Comparable<Playable> {
 		g2.fillRect(screenX - 2, screenY - 2, gp.tileSize+2, 12);
 		g2.setColor(new Color(255,255,0));
 		g2.fillRect(screenX, screenY, (int)staminaValue, 10);
-		
 	}
 	
 	@Override

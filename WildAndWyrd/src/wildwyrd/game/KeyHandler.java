@@ -313,17 +313,26 @@ public class KeyHandler implements KeyListener {
 		} else if (gp.gameState == GameState.combatState) {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_ENTER :
-				enterPressed = true;
-				if (gp.ui.commandNum == 0) {
-					gp.combat.dealDamage(gp.combat.getEnemies().get(0),gp.playable.get(0).getAttack());
+
+				if(gp.combat.getCombatant().isAlive()) {
+					if(gp.combat.getCombatant() == gp.playable.get(0)) {
+						enterPressed = true;
+						if (gp.ui.commandNum == 0) {
+							gp.combat.dealDamage(gp.playable.get(0),gp.combat.getEnemies().get(0),gp.playable.get(0).getAttack());
+						}
+						if (gp.ui.commandNum == 1) {
+							gp.combat.blockAttack();	
+						}
+						if (gp.ui.commandNum == 5) {
+							gp.gameState = GameState.playState;	
+						}
+						break;
+					}
+					if(gp.combat.getCombatant().isDying()) {
+						enterPressed = true;
+						break;
+					}
 				}
-				if (gp.ui.commandNum == 1) {
-					gp.combat.blockAttack();	
-				}
-				if (gp.ui.commandNum == 5) {
-					gp.gameState = GameState.playState;	
-				}
-				break;
 			case KeyEvent.VK_LEFT :
 			case KeyEvent.VK_A :
 				leftPressed = true;

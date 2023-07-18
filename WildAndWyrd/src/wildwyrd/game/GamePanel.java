@@ -156,6 +156,25 @@ public class GamePanel extends JPanel implements Runnable {
 				}
 			}
 		}
+		if (gameState == GameState.combatState) {
+			//System.out.println(playable.get(0));
+			/*playable.get(0).draw(g2);
+			for(int i = 0; i < combat.enemies.size(); i++) {
+				if(combat.enemies.get(i) != null) {
+					if(combat.enemies.get(i).isAlive() && combat.enemies.get(i).isDying()==false) {
+						combat.enemies.get(i).draw(g2);
+						//combat.enemies.get(i).update();
+						//playable.get(0).draw(g2);
+					} else if(!combat.enemies.get(i).isAlive()) {
+						combat.enemies.remove(combat.enemies.get(i));
+					}
+				}
+			}*/
+
+			rm[currentRoom].draw(g2);
+			ui.drawCombatants(g2);
+			
+		}
 
 	}
 
@@ -171,9 +190,13 @@ public class GamePanel extends JPanel implements Runnable {
 		} else if (gameState == GameState.combatState) {
 			//rm[currentRoom].draw(g2);
 			ui.draw(g2);
+			ui.drawCombatants(g2);
 		} else {
 			if (gameState == GameState.dialogueState) {
-				//rm[currentRoom].draw(g2);
+				rm[currentRoom].draw(g2);
+				if(combat.inCombat) {
+					ui.drawCombatants(g2);
+				}
 				ui.draw(g2);
 			} else if (gameState == GameState.cutsceneState) {
 				rm[currentRoom].draw(g2);
@@ -195,8 +218,6 @@ public class GamePanel extends JPanel implements Runnable {
 			} else if (gameState == GameState.glossaryState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.readingState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.combatState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.gameOverState) {
 				ui.draw(g2);

@@ -10,6 +10,7 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.combat.En_Cricket;
+import wildwyrd.game.combat.En_Wasp;
 import wildwyrd.game.object.Dialoge;
 
 public class NPC_Cricket extends Entity {
@@ -125,11 +126,17 @@ public class NPC_Cricket extends Entity {
 		dialogues[0][0] = new Dialoge("Some crickets were in the area." ,1);
 		dialogues[0][1] = new Dialoge("Fight Crickets?" ,2);
 	}
+	
+	public void combatResponce() {
+		//if (gp.combat.win) {
+		gp.combat.addEnemy(new En_Wasp(gp));
+		gp.combat.addEnemy(new En_Wasp(gp));
+		gp.combat.startCombat();
+	}
 
 	public void choiceResponce() {
 		if (gp.ui.choiceSlot == 0) {
 			gp.combat.addEnemy(new En_Cricket(gp));
-			System.out.println(gp.gameState);
 			gp.combat.startCombat();
 			//gp.gameState = GameState.combatState;
 		}

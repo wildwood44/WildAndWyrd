@@ -242,6 +242,10 @@ public class Entity {
 		}
 		return index;
 	}
+	
+	public void combatResponce() {
+		
+	}
 
 	public void choiceResponce() {
 	}
