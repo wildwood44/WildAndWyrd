@@ -129,8 +129,7 @@ public class NPC_Cricket extends Entity {
 	
 	public void combatResponce() {
 		//if (gp.combat.win) {
-		gp.combat.addEnemy(new En_Wasp(gp));
-		gp.combat.addEnemy(new En_Wasp(gp));
+		gp.combat.addEnemy(new En_Wasp(gp), new En_Wasp(gp));
 		gp.combat.startCombat();
 	}
 

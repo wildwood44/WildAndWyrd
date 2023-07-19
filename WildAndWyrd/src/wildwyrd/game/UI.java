@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.library.Book;
 import wildwyrd.game.object.Dialoge;
@@ -113,6 +114,10 @@ public class UI {
 		
 		if (gp.gameState == GameState.combatState) {
 			drawCombatScreen();
+		}
+		
+		if (gp.gameState == GameState.targetState) {
+			targetCombatant();
 		}
 		
 		if (gp.gameState == GameState.gameOverState) {
@@ -328,16 +333,12 @@ public class UI {
 					charIndex = 0;
 					combinedText = "";
 					if (gp.gameState == GameState.examineState) {
-						//selectedObject.dialogueIndex++;
 						selectedObject.choiceResponce();
 						gp.keyH.enterPressed = false;
 					}
 				}
-				//int startValue = 0;
-				//System.out.println(choiceSlot + " " + firstValue);
 				for(int i = firstValue; i < selectedObject.options.length; i++) {
 					if(y + 30 > 500) {
-					//	startValue++;
 						break;
 					}
 					if (choiceSlot == i) {
@@ -599,11 +600,8 @@ public class UI {
 		g2.setColor(Color.white);
 
 		try {
-			//htmlBuilder.append("<html>");
-			//htmlBuilder.append("<head><title>"+gp.glossary.page[section][slotCol + topValue].getTitle()+"</title></head></br>");
 			g2.drawString(gp.glossary.page[section][slotCol + topValue].getTitle(),
 					frameX + 40, frameY + 40);
-			//g2.setFont(g2.getFont().deriveFont(0, 16.0F));
 			int lineNum = 80;
 			for (String line : breakLines((gp.glossary.page[section][slotCol + topValue].getDesc()), 35)){
 				g2.setFont(g2.getFont().deriveFont(0, 16.0F));
@@ -611,9 +609,6 @@ public class UI {
 					frameY + lineNum);
 				lineNum += 20;
 			}
-			
-			//htmlBuilder.append("<body><p>"+gp.glossary.page[section][slotCol + topValue].getDesc()+"</p></body>");
-			//htmlBuilder.append("</html>");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -685,14 +680,18 @@ public class UI {
 		int slotYstart = y;
 		int cursorX = slotXstart + gp.tileSize * slotCol;
 		int cursorY = slotYstart + gp.tileSize * slotRow;
-		//int index = gp.combat.combatant.indexOf(gp.combat.getCombatant()) - 1;
-		//System.out.println(index + " " + gp.combat.getTurn());
 		drawCombatants(g2);
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
-		System.out.println(gp.combat.getCombatant());
-		if(gp.combat.getCombatant().isAlive()) {
+		//Check if enemies are alive
+		for(Enemy enemy: gp.combat.enemies) {
+			if(enemy.health <= 0 && enemy.isAlive()) {
+				gp.combat.enemyDeath(enemy);
+			}
+		} //Check if combatant is alive
+		if(gp.combat.getCombatant().isAlive() || gp.combat.getCombatant().getHealth() > 0) {
 			if(gp.combat.getCombatant() == gp.playable.get(0)) {
+				//Draw combat menu
 				g2.drawString(" Attack", x, y);
 				g2.drawString(" Block", x, y + (gp.tileSize));
 				g2.drawString(" Appraise", x + (gp.tileSize*3), y);
@@ -702,35 +701,43 @@ public class UI {
 		
 				g2.drawString(">", cursorX - 5, cursorY);
 			} else {
-				//System.out.println(gp.combat.getCombatant());
+				//Get enemy response
 				gp.combat.getCombatant().action();
 			}
+		} else {
+			//If opponent is not alive next turn
+			gp.combat.incrementTurn();
 		}
-		/*if(!gp.combat.enemiesActive()) {
-			drawCombatants(g2);
-			gp.combat.inCombat = false;
-			gp.combat.win = true;
-		}*/
-		/*gp.playable.get(0).draw(g2);
-		for (Entity enemy : gp.combat.getEnemies()) {
-			enemy.draw(g2);
-		}*/
 	}
 	
 	public void drawCombatants(Graphics2D g2) {
-		/*gp.playable.get(0).draw(g2);
-		for (Entity enemy : gp.combat.getEnemies()) {
-			enemy.draw(g2);
-		}*/
+		//Draw Playable Characters
 		gp.playable.get(0).draw(g2);
+		//Draw Opponents
 		for(int i = 0; i < gp.combat.enemies.size(); i++) {
 			if(gp.combat.enemies.get(i) != null) {
 				if(gp.combat.enemies.get(i).isAlive()) {
-					gp.combat.enemies.get(i).draw(g2);
-					//combat.enemies.get(i).update();
-					//playable.get(0).draw(g2);
-				} else if(!gp.combat.enemies.get(i).isAlive()) {
-					//gp.combat.enemies.remove(gp.combat.enemies.get(i));
+					g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+					gp.combat.enemies.get(i).draw(g2, i);
+				}
+			}
+		}
+	}
+	
+	public void targetCombatant() {
+		int x, y;
+		//drawCombatants(g2);
+		
+		for(int i = 0; i < gp.combat.enemies.size(); i++) {
+			if(gp.combat.enemies.get(i) != null) {
+				if(gp.combat.enemies.get(i).isAlive()) {
+					x = gp.tileSize*6;
+					y = gp.tileSize*2;
+					if (i == 1) {
+						x = gp.tileSize*6;
+						y = gp.tileSize*1;
+					}
+					g2.drawRoundRect(x, y, gp.tileSize*2, gp.tileSize*2, 10, 10);
 				}
 			}
 		}
@@ -872,24 +879,6 @@ public class UI {
 			g2.drawString(">", x - gp.tileSize, y);
 		}
 
-	}
-
-	public void drawBackground(String image) {
-		/*UtilityTool uTool = new UtilityTool();
-		BufferedImage background = null;
-		try {
-			background = ImageIO.read(getClass().getResourceAsStream(image));
-			background = uTool.scaleImage(background, gp.screenWidth, gp.screenHeight);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		g2.drawImage(background, 0, 0, gp.screenWidth, gp.screenHeight, (ImageObserver) null);*/
-		bgPanel[1] = new JPanel();
-		bgPanel[1].setBounds(0,0,gp.screenWidth,gp.screenHeight);
-		bgPanel[1].setBackground(Color.black);
-		bgPanel[1].setLayout(null);
-		//gp.window.add
-		ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource(image));
 	}
 
 	public int getXforCenteredText(String text) {

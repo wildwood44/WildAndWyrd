@@ -318,7 +318,7 @@ public class KeyHandler implements KeyListener {
 					if(gp.combat.getCombatant() == gp.playable.get(0)) {
 						enterPressed = true;
 						if (gp.ui.commandNum == 0) {
-							gp.combat.dealDamage(gp.playable.get(0),gp.combat.getEnemies().get(0),gp.playable.get(0).getAttack());
+							gp.combat.dealDamage(gp.playable.get(0),gp.combat.getTarget(),gp.playable.get(0).getAttack());
 						}
 						if (gp.ui.commandNum == 1) {
 							gp.combat.blockAttack();	

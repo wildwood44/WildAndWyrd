@@ -38,19 +38,16 @@ public class En_Cricket extends Enemy {
 			gp.ui.firstValue = 0;
 			gp.keyH.enterPressed = false;
 			startDialogue(this, 0);
-			//gp.combat.incrementTurn();
 		}
 	}
 	
 	public void defeated() {
-		System.out.println("Second combat start");
 		gp.keyH.enterPressed = false;
 		startDialogue(this, 1);
-		//if(dialogueIndex == dialogues[1].length - 1) {
-			gp.combat.addEnemy(new En_Wasp(gp));
-			gp.combat.addEnemy(new En_Wasp(gp));
-			gp.combat.startCombat();
-		//}
-		
+	}
+	
+	public void combatResult() {
+		gp.combat.addEnemy(new En_Wasp(gp), new En_Wasp(gp));
+		gp.combat.startCombat();
 	}
 }

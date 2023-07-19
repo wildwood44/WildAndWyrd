@@ -20,10 +20,15 @@ public class Enemy extends Playable {
 		getImage();
 	}
 	
-	public void draw(Graphics2D g2) {
+	public void draw(Graphics2D g2, int pos) {
 		//BufferedImage image = getImage();
 		int screenX = gp.tileSize*6;
 		int screenY = gp.tileSize*2;
+		if (pos == 1) {
+			screenX = gp.tileSize*6;
+			screenY = gp.tileSize*1;
+		}
+		
 		if(dying) {
 			dyingAnimation(g2);
 		}
@@ -107,6 +112,10 @@ public class Enemy extends Playable {
 	}
 	
 	public void defeated() {
+		
+	}
+	
+	public void combatResult() {
 		
 	}
 }

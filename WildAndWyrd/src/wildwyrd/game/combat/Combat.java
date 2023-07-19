@@ -71,7 +71,7 @@ public class Combat extends Entity {
 			}
 		}
 		for (Enemy e : enemies) {
-			System.out.println(e);
+			//System.out.println(e);
 			if(e != null) {
 				combatant.add(e);
 			}
@@ -82,17 +82,21 @@ public class Combat extends Entity {
 	public void endCombat() {
 		gp.gameState = GameState.playState;
 		gp.keyH.enterPressed = false;
+		for(int i = 0; i < gp.playable.size(); i++) {
+			combatant.remove(gp.playable.get(i));
+		}
+		Enemy represent = enemies.get(0);
 		for(int i = 0; i < enemies.size(); i++) {
 			Enemy enemy = enemies.remove(i);
 			combatant.remove(enemy);
 			enemy.defeated();
 		}
+		represent.combatResult();
 		//gp.ui.drawCombatants(g2);
 	}
 	
 	public boolean enemiesActive() {
 		for (Enemy enemy : enemies) {
-			System.out.println("Is Alive " + enemy.isAlive());
 			if(enemy.isAlive()) {
 				return true;
 			}
@@ -100,8 +104,12 @@ public class Combat extends Entity {
 		return false;
 	}
 	
-	public void addEnemy(Enemy enemy) {
-		enemies.add(enemy);
+	public void addEnemy(Enemy e1) {
+		enemies.add(e1);
+	}
+	
+	public void addEnemy(Enemy e1, Enemy e2) {
+		Collections.addAll(enemies,e1,e2);
 	}
 	
 	public List<Enemy> getEnemies() {
@@ -114,13 +122,20 @@ public class Combat extends Entity {
 		dialogues[0][0] = new Dialoge(enemy.name + " was defeated!",1);
 		dialogues[0][1] = null;
 		startDialogue(this, 0);
-		/*if(!enemiesActive()) {
-			inCombat = false;
-			win = true;
-		}*/
+	}
+	
+	public Enemy getTarget() {
+		gp.gameState = GameState.targetState;
+		for (Enemy e : enemies) {
+			if(e.isAlive()) {
+				return e;
+			}
+		}
+		return enemies.get(0);
 	}
 	
 	public void dealDamage(Playable user, Playable target, int damage) {
+		//System.out.println(combatant);
 		user.setCombatStatus(CombatStatus.Attacking);
 		user.loseStamina(5);
 		gp.keyH.enterPressed = false;
