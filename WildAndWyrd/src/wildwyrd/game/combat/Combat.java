@@ -21,6 +21,7 @@ public class Combat extends Entity {
 	public Boolean inCombat;
 	public boolean win;
 	private int turn = 0;
+	public int target;
 	
 	public Combat(GamePanel gp) {
 		super(gp);
@@ -124,18 +125,19 @@ public class Combat extends Entity {
 		startDialogue(this, 0);
 	}
 	
-	public Enemy getTarget() {
+	public void findTarget() {
+		System.out.println("Ping");
 		gp.gameState = GameState.targetState;
-		for (Enemy e : enemies) {
-			if(e.isAlive()) {
-				return e;
-			}
-		}
-		return enemies.get(0);
+		//target = gp.ui.slotCol;
+	}
+	
+	public Enemy getTarget() {
+		return enemies.get(target);
 	}
 	
 	public void dealDamage(Playable user, Playable target, int damage) {
 		//System.out.println(combatant);
+		//gp.combat.findTarget();
 		user.setCombatStatus(CombatStatus.Attacking);
 		user.loseStamina(5);
 		gp.keyH.enterPressed = false;

@@ -725,18 +725,25 @@ public class UI {
 	}
 	
 	public void targetCombatant() {
-		int x, y;
-		//drawCombatants(g2);
-		
+		int x = gp.tileSize*6, y = gp.tileSize*2;
+		gp.rm[gp.currentRoom].draw(g2);
+		drawCombatants(g2);
+		if(!gp.combat.enemies.get(slotCol2).isAlive()) {
+			//System.out.println(slotCol2 + " Not alive");
+			slotCol2 = gp.keyH.getNext(slotCol2, gp.combat.enemies.size() - 1);
+			//System.out.println(slotCol2);
+		}
 		for(int i = 0; i < gp.combat.enemies.size(); i++) {
 			if(gp.combat.enemies.get(i) != null) {
 				if(gp.combat.enemies.get(i).isAlive()) {
-					x = gp.tileSize*6;
-					y = gp.tileSize*2;
-					if (i == 1) {
+					if (slotCol2 == 0) {
+						x = gp.tileSize*6;
+						y = gp.tileSize*2;
+					} else if (slotCol2 == 1) {
 						x = gp.tileSize*6;
 						y = gp.tileSize*1;
 					}
+					g2.setColor(Color.white);
 					g2.drawRoundRect(x, y, gp.tileSize*2, gp.tileSize*2, 10, 10);
 				}
 			}

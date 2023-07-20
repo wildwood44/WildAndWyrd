@@ -156,19 +156,6 @@ public class GamePanel extends JPanel implements Runnable {
 			}
 		}
 		if (gameState == GameState.combatState) {
-			//System.out.println(playable.get(0));
-			/*playable.get(0).draw(g2);
-			for(int i = 0; i < combat.enemies.size(); i++) {
-				if(combat.enemies.get(i) != null) {
-					if(combat.enemies.get(i).isAlive() && combat.enemies.get(i).isDying()==false) {
-						combat.enemies.get(i).draw(g2);
-						//combat.enemies.get(i).update();
-						//playable.get(0).draw(g2);
-					} else if(!combat.enemies.get(i).isAlive()) {
-						combat.enemies.remove(combat.enemies.get(i));
-					}
-				}
-			}*/
 
 			rm[currentRoom].draw(g2);
 			ui.drawCombatants(g2);
