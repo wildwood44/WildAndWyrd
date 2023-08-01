@@ -42,7 +42,11 @@ public class Obj_Worktable extends Entity {
 	}
 
 	public void interact() {
-		startDialogue(this, 1);
+		if (!opened) {
+			startDialogue(this, 1);
+		} else {
+			startDialogue(this, 0);
+		}
 		gp.keyH.enterPressed = false;
 	}
 }

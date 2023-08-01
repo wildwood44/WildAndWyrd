@@ -150,16 +150,13 @@ public class GamePanel extends JPanel implements Runnable {
 			eHandler.checkCutscene();
 			for(int i = 0; i < iTile[currentMap.getId()].length; i++) {
 				if(iTile[currentMap.getId()][i] != null) {
-					//System.out.println("Ping");
 					iTile[currentMap.getId()][i].update();
 				}
 			}
 		}
 		if (gameState == GameState.combatState) {
-
 			rm[currentRoom].draw(g2);
 			ui.drawCombatants(g2);
-			
 		}
 
 	}
@@ -206,6 +203,8 @@ public class GamePanel extends JPanel implements Runnable {
 			} else if (gameState == GameState.readingState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.targetState) {
+				ui.draw(g2);
+			} else if (gameState == GameState.rewardState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.gameOverState) {
 				ui.draw(g2);

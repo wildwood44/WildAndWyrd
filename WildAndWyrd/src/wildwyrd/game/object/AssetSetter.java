@@ -151,6 +151,16 @@ public class AssetSetter {
 		gp.obj[2][13] = new Obj_Rock(gp, 1);
 		gp.obj[2][13].worldX = 22 * gp.tileSize;
 		gp.obj[2][13].worldY = 5 * gp.tileSize;
+		//System.out.println("Primary weapon: " + gp.playable.get(0).getWeapon_prime());
+		//if(gp.playable.get(0).getWeapon_prime() == null) {
+			/*gp.obj[2][14] = new Obj_Obsticle(gp);
+			gp.obj[2][14].worldX = 11 * gp.tileSize;
+			gp.obj[2][14].worldY = 11 * gp.tileSize;
+			gp.obj[2][15] = new Obj_Obsticle(gp);
+			gp.obj[2][15].worldX = 12 * gp.tileSize;
+			gp.obj[2][15].worldY = 11 * gp.tileSize;*/
+		//}
+		
 		/**/
 		gp.obj[3][0] = new Obj_SilverBirch(gp, 1);
 		gp.obj[3][0].worldX = 1 * gp.tileSize;
@@ -206,7 +216,6 @@ public class AssetSetter {
 	public void setInteractiveTile() {
 		gp.iTile[2][0] = new IT_StoneDoor(gp, 14, 3);
 		gp.iTile[2][1] = new IT_StoneDoor(gp, 20, 2);
-		
 	}
 	public int getRandomNumber(int min, int max) {
 	    return (int) ((Math.random() * (max - min)) + min);

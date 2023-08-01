@@ -47,7 +47,6 @@ public class Obj_P_Mushroom extends Entity {
 		} else {
 			startDialogue(this, 1);
 		}
-
 		gp.keyH.enterPressed = false;
 	}
 }

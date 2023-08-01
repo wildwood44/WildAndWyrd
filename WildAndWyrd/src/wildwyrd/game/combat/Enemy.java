@@ -3,6 +3,7 @@ package wildwyrd.game.combat;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.Random;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
@@ -14,6 +15,8 @@ public class Enemy extends Playable {
 	private int actionLockCounter = 0;
 	private int invincibleCounter = 0;
 	private int dyingCounter = 0;
+	protected Entity dropped;
+	
 	public Enemy(GamePanel gp, String name, int maxHealth, int maxStamina, int baseAttack, int baseDefence, int baseAccuracy, int baseSpeed, int baseEvasion) {
 		super(gp, name, maxHealth, maxStamina, baseAttack, baseDefence, baseAccuracy, baseSpeed, baseEvasion);
 		setDialogue();
@@ -96,19 +99,20 @@ public class Enemy extends Playable {
 		}
 	}
 	
-	public void checkDrop() {
-		
-	}
+	public void checkDrop() {}
 	
-	public void dropItem() {
-		for(int i = 0; i < gp.obj.length; i++) {
-			if(gp.obj[i] == null) {
-				//gp.obj[i] = droppedItem;
-				//gp.obj[i].worldX = worldX;
-				//gp.obj[i].worldY = worldY;
+	public void dropItem(Entity droppedItem) {
+		System.out.println(droppedItem);
+		gp.ui.droppedItems.add(droppedItem);
+		gp.player.pickUpObject(droppedItem);
+		/*for(int i = 0; i < gp.obj[gp.currentMap.getId()].length; i++) {
+			if(gp.obj[gp.currentMap.getId()][i] == null) {
+				gp.obj[gp.currentMap.getId()][i] = droppedItem;
+				gp.obj[gp.currentMap.getId()][i].worldX = worldX;
+				gp.obj[gp.currentMap.getId()][i].worldY = worldY;
 				break;
 			}
-		}
+		}*/
 	}
 	
 	public void defeated() {

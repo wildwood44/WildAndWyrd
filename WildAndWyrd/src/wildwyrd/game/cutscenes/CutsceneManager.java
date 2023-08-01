@@ -29,6 +29,15 @@ public class CutsceneManager {
 				break;
 			case 2 :
 				scene_c1S();
+				break;
+			case 3 :
+				scene_c1_1();
+				break;
+			case 4 :
+				scene_c1_2();
+				break;
+			case 5 :
+				scene_Wasp();
 		}
 
 	}
@@ -85,5 +94,11 @@ public class CutsceneManager {
 	
 	private void scene_c1_2() {
 		
+	}
+	
+	private void scene_Wasp() {
+		if (scenePhase == 0) {
+			
+		}
 	}
 }

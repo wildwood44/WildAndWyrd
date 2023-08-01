@@ -14,6 +14,7 @@ public class Itm_P_Mushroom extends Entity {
 		type = EntityType.Food;
 		staminaRcvd = 5;
 		description = "";
+		stackable = true;
 
 		image = setup("/res/items/Parasol_Mushroom", gp.tileSize, gp.tileSize);
 	}

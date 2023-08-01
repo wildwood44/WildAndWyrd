@@ -12,18 +12,16 @@ import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.library.Book;
-import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.playable.Playable;
-import wildwyrd.game.tile.UtilityTool;
 
 public class UI {
 	GamePanel gp;
@@ -57,6 +55,7 @@ public class UI {
 	public boolean openBook = false;
 	public Book[] selectedBookshelf;
 	public Book selectedBook;
+	public ArrayList<Entity> droppedItems = new ArrayList<Entity>();;
 	int charIndex = 0;
 	String combinedText = "";
 	public JPanel bgPanel[] = new JPanel[10];
@@ -118,6 +117,10 @@ public class UI {
 		
 		if (gp.gameState == GameState.targetState) {
 			targetCombatant();
+		}
+		
+		if (gp.gameState == GameState.rewardState) {
+			drawRewardsScreen();
 		}
 		
 		if (gp.gameState == GameState.gameOverState) {
@@ -230,6 +233,7 @@ public class UI {
 					gp.gameState = GameState.combatState;
 					gp.combat.incrementTurn();
 				} else {
+					//System.out.println(selectedObject);
 					gp.combat.endCombat();
 				}
 			}
@@ -367,6 +371,9 @@ public class UI {
 				if(firstValue < selectedObject.options.length - 3) {
 					drawDownIcon((int)(width/1.65), 470, 20, 20);
 				}
+			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+					.getType() == 4) {
+				gp.combat.startCombat();
 			}
 		} else {
 			selectedObject.dialogueIndex = 0;
@@ -468,6 +475,18 @@ public class UI {
 		int i;
 		for (i = 0; i < gp.player.inventory.size(); ++i) {
 			g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY, null);
+			if(gp.player.inventory.get(i).amount > 1) {
+				g2.setFont(g2.getFont().deriveFont(32f));
+				int amountX;
+				int amountY;
+				String s = "" + gp.player.inventory.get(i).amount;
+				amountX = getXforAlignToRightText(s , slotX + 44);
+				amountY = slotY + gp.tileSize;
+				
+				//Shadow
+				g2.setColor(new Color(60,60,60));
+				g2.drawString(s, amountX, amountY);
+			}
 			slotX += gp.tileSize;
 			if (i == 6 || i == 13 || i == 20) {
 				slotX = slotXstart;
@@ -506,6 +525,7 @@ public class UI {
 		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
+		//System.out.println(gp.player.getShillings() + " " + gp.tileSize);
 		g2.drawString("Shillings: " + gp.player.getShillings(), 30, gp.tileSize);
 
 	}
@@ -708,6 +728,7 @@ public class UI {
 			//If opponent is not alive next turn
 			gp.combat.incrementTurn();
 		}
+		
 	}
 	
 	public void drawCombatants(Graphics2D g2) {
@@ -729,9 +750,7 @@ public class UI {
 		gp.rm[gp.currentRoom].draw(g2);
 		drawCombatants(g2);
 		if(!gp.combat.enemies.get(slotCol2).isAlive()) {
-			//System.out.println(slotCol2 + " Not alive");
 			slotCol2 = gp.keyH.getNext(slotCol2, gp.combat.enemies.size() - 1);
-			//System.out.println(slotCol2);
 		}
 		for(int i = 0; i < gp.combat.enemies.size(); i++) {
 			if(gp.combat.enemies.get(i) != null) {
@@ -750,6 +769,32 @@ public class UI {
 		}
 	}
 	
+	public void drawRewardsScreen() {
+		gp.rm[gp.currentRoom].draw(g2);
+		int frameX = 100;
+		int frameY = 25;
+		int frameWidth = gp.tileSize * 9;
+		int frameHeight = gp.tileSize * 4;
+		int x = frameX  + gp.tileSize;
+		int y = frameY  + gp.tileSize;
+		
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+
+		g2.setColor(Color.white);
+		g2.setFont(g2.getFont().deriveFont(28f));
+		Map<String, Integer> hm = new HashMap<String, Integer>();
+        for (Entity i : droppedItems) {
+            Integer j = hm.get(i.name);
+            hm.put(i.name, (j == null) ? 1 : j + 1);
+        }
+        // displaying the occurrence of elements in the arraylist
+        for (Map.Entry<String, Integer> val : hm.entrySet()) {
+			g2.drawString(val.getKey(), x, y);
+			g2.drawString(": " + val.getValue(), (frameWidth - gp.tileSize), y);
+			y += gp.tileSize  / 2;
+        }
+	}
+	
 	public void drawGameOverScreen() {
 		g2.setColor(new Color(0,0,0,150));
 		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -763,7 +808,7 @@ public class UI {
 		//Main
 		g2.setColor(Color.white);
 		g2.drawString(text, x-4, y-4);
-		//Qut
+		//Quit
 		g2.setFont(g2.getFont().deriveFont(50f));
 		text = "Quit";
 		x = getXforCenteredText(text);
@@ -887,10 +932,35 @@ public class UI {
 		}
 
 	}
+	
+	public int countFrequencies(ArrayList<Entity> list)
+    {
+        // hashmap to store the frequency of element
+        Map<Entity, Integer> hm = new HashMap<Entity, Integer>();
+        int count = 0;
+        for (Entity i : list) {
+            Integer j = hm.get(i);
+            hm.put(i, (j == null) ? 1 : j + 1);
+            count = j;
+        }
+        // displaying the occurrence of elements in the arraylist
+        for (Map.Entry<Entity, Integer> val : hm.entrySet()) {
+            System.out.println("Element " + val.getKey() + " "
+                               + "occurs"
+                               + ": " + val.getValue() + " times");
+        }
+        return count;
+    }
 
 	public int getXforCenteredText(String text) {
 		int length = (int) g2.getFontMetrics().getStringBounds(text, this.g2).getWidth();
 		int x = gp.screenWidth / 2 - length / 2;
+		return x;
+	}
+	
+	public int getXforAlignToRightText(String text, int tailX) {
+		int length = (int) g2.getFontMetrics().getStringBounds(text, this.g2).getWidth();
+		int x = tailX - length;
 		return x;
 	}
 

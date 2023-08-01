@@ -12,7 +12,6 @@ import wildwyrd.game.playable.Playable;
 
 public class Combat extends Entity {
 	GamePanel gp;
-	//public Dialoge[][] dialogues = new Dialoge[10][20];
 	public int dialogueSet = 0;
 	public int dialogueIndex = 0;
 	public List<Enemy> enemies;
@@ -83,17 +82,23 @@ public class Combat extends Entity {
 	public void endCombat() {
 		gp.gameState = GameState.playState;
 		gp.keyH.enterPressed = false;
-		for(int i = 0; i < gp.playable.size(); i++) {
+		/*for(int i = 0; i < gp.playable.size(); i++) {
 			combatant.remove(gp.playable.get(i));
+		}*/
+		try {
+			Enemy represent = enemies.get(0);
+			for(Enemy enemy : enemies) {
+				enemy.checkDrop();
+			}
+			represent.defeated();
+		} catch (IndexOutOfBoundsException ex) {
+			System.out.println(ex);
 		}
-		Enemy represent = enemies.get(0);
-		for(int i = 0; i < enemies.size(); i++) {
-			Enemy enemy = enemies.remove(i);
-			combatant.remove(enemy);
-			enemy.defeated();
-		}
-		represent.combatResult();
-		//gp.ui.drawCombatants(g2);
+	}
+	
+	public void cleanup() {
+		enemies.clear();
+		combatant.clear();
 	}
 	
 	public boolean enemiesActive() {
@@ -125,12 +130,6 @@ public class Combat extends Entity {
 		startDialogue(this, 0);
 	}
 	
-	public void findTarget() {
-		System.out.println("Ping");
-		gp.gameState = GameState.targetState;
-		//target = gp.ui.slotCol;
-	}
-	
 	public Enemy getTarget() {
 		return enemies.get(target);
 	}
@@ -146,11 +145,6 @@ public class Combat extends Entity {
 		dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
 		target.health -= impact;
 		
-		//if(target.health <= 0) {
-		//	if(target instanceof Enemy) {
-		//		enemyDeath((Enemy) target);
-		//	}
-		//} else {
 		startDialogue(this, 0);
 		//}
 		//incrementTurn();

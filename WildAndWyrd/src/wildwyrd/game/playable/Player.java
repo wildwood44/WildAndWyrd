@@ -14,8 +14,6 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.KeyHandler;
-import wildwyrd.game.items.Itm_Bandage;
-import wildwyrd.game.items.Itm_Hazelnut;
 
 public class Player extends Entity {
 	GamePanel gp;
@@ -86,7 +84,7 @@ public class Player extends Entity {
 			takeDamage = false;
 			gp.cChecker.checkTile(this);
 			objIndex = gp.cChecker.checkObject(this, true);
-			pickUpObject(objIndex);
+			//pickUpObject(objIndex);
 			int npcIndex = gp.cChecker.checkEntity(this,gp.npc);
 			interactNPC(npcIndex);
 			int iTileIndex = gp.cChecker.checkEntity(this,gp.iTile);
@@ -162,7 +160,18 @@ public class Player extends Entity {
 		if (i != 999) {
 			if (gp.obj[gp.currentMap.getId()][i].type == EntityType.Object && keyH.enterPressed) {
 				gp.obj[gp.currentMap.getId()][i].interact();
+			} else {
+				if(canObtainItem(gp.obj[gp.currentMap.getId()][i]) == true) {
+				}
+				gp.obj[gp.currentMap.getId()][i] = null;
 			}
+		}
+	}
+
+	public void pickUpObject(Entity i) {
+		if(canObtainItem(i)) {
+			//inventory.add(i);
+			//text = ""
 		}
 	}
 	
@@ -198,8 +207,8 @@ public class Player extends Entity {
 	}
 
 	public void setItems() {
-		inventory.add(new Itm_Hazelnut(gp));
-		inventory.add(new Itm_Bandage(gp));
+		//inventory.add(new Itm_Hazelnut(gp));
+		//inventory.add(new Itm_Bandage(gp));
 	}
 	
 	public void changeInteractiveTile(int i) {
@@ -217,6 +226,40 @@ public class Player extends Entity {
             takeDamage = false;
         }
         return start + 3000 < current;
+	}
+	
+	public int searchItemInInventory(String itemName) {
+		int itemIndex = 999;
+		for(int i  = 0; i < inventory.size(); i++) {
+			if(inventory.get(i).name.equals(itemName)) {
+				itemIndex = i;
+				break;
+			}
+		}
+		return itemIndex;
+	}
+	
+	public boolean canObtainItem(Entity item) {
+		boolean canObtain = false;
+		//CHECK IF STACKABLE
+		if(item.stackable == true) {
+			int index = searchItemInInventory(item.name);
+			if(index != 999) {
+				inventory.get(index).amount++;
+				canObtain = true;
+			} else {
+				if(inventory.size() != inventorySize) {
+					inventory.add(item);
+					canObtain = true;
+				}
+			}
+		} else {
+			if(inventory.size() != inventorySize) {
+				inventory.add(item);
+				canObtain = true;
+			}
+		}
+		return canObtain;
 	}
 
 	public void draw(Graphics2D g2) {

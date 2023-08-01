@@ -14,7 +14,7 @@ public class Itm_Bandage extends Entity {
 		type = EntityType.Health;
 		healthRcvd = 10;
 		description = "A cloth bandage to treat wounds.";
-
+		stackable = true;
 		image = setup("/res/items/img_bandage", gp.tileSize, gp.tileSize);
 
 	}

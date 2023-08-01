@@ -1,12 +1,14 @@
 package wildwyrd.game;
 
 import wildwyrd.game.cutscenes.CutsceneManager;
+import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.TileManager;
 
 public class EventHandler {
 	GamePanel gp;
 	EventRect[][][] eventRect;
+	Entity eventMaster;
 	int previousEventX, previousEventY;
 	int eventRectDefaultX;
 	int eventRectDefaultY;
@@ -14,6 +16,7 @@ public class EventHandler {
 
 	public EventHandler(GamePanel gp) {
 		this.gp = gp;
+		eventMaster = new Entity(gp);
 		eventRect = new EventRect[gp.maxMap][gp.currentMap.getMaxWorldCol()][gp.currentMap.getMaxWorldRow()];//new Rectangle();
 		int map = 0;
 		int col = 0;
@@ -36,6 +39,14 @@ public class EventHandler {
 				}
 			}
 		}
+		setDialogue();
+	}
+	
+	public void setDialogue() {
+		eventMaster.dialogues[0][0] = new Dialoge("It's dangerous to leave the cottage grounds unarmed.", 1);
+		eventMaster.dialogues[1][0] = new Dialoge("Alder once got lost after he strayed too far from the cottage.", 1);
+		eventMaster.dialogues[1][1] = new Dialoge("He spent hours in the dark until Florence found him crying and scared.", 1);
+		eventMaster.dialogues[1][2] = new Dialoge("Kyla had been indifferent to the incident.", 1);
 	}
 
 	public void checkEvent() {
@@ -49,19 +60,20 @@ public class EventHandler {
 			if(gp.currentMap.getId() == 0) {
 				if(hit(0,13,8,"up")) {teleport(gp.maps[1],15,3);}
 				if(hit(0,10,10,"down")) {teleport(gp.maps[2],14,4);}
-				if(hit(0,17,10,"down")) {teleport(gp.maps[2],22,3);}
+				if(hit(0,16,9,"down")) {teleport(gp.maps[2],20,3);}
 			}
 			else if(gp.currentMap.getId() == 1) {
 				if(hit(1,15,4,"down")) {teleport(gp.maps[0],13,9);}
 			}
 			else if(gp.currentMap.getId() == 2) {
 				if(hit(2,14,3,"up")) {teleport(gp.maps[0],10,10);}
-				if(hit(2,22,2,"up")) {teleport(gp.maps[0],16,9);}
+				if(hit(2,20,2,"up")) {teleport(gp.maps[0],16,9);}
 				//if(gp.playable[0].getWeapon_prime() == null) {
 				if(hit(2,11,11,"down")) {
 					if(gp.playable.get(0).getWeapon_prime() != null) {
 						teleport(gp.maps[3],3,1);
 					} else {
+						obsticle(gp.maps[2]);
 						System.out.println("It's dangerous to leave the cottage grounds unarmed.");
 					}
 				}
@@ -69,6 +81,7 @@ public class EventHandler {
 					if(gp.playable.get(0).getWeapon_prime() != null) {
 						teleport(gp.maps[3],4,1);
 					} else {
+						obsticle(gp.maps[2]);
 						System.out.println("It's dangerous to leave the cottage grounds unarmed.");
 					}
 				}
@@ -76,20 +89,25 @@ public class EventHandler {
 			else if(gp.currentMap.getId() == 3) {
 				if(hit(3,3,0,"up")) {teleport(gp.maps[2],11,11);}
 				if(hit(3,4,0,"up")) {teleport(gp.maps[2],12,11);}
+				if(hit(3,14,19,"down")) {obsticle(gp.maps[3]);};
+				if(hit(3,15,19,"down")) {obsticle(gp.maps[3]);};
 			}
 		}
 		//System.out.println(gp.player.worldX + " " + gp.player.worldY);
 	}
 
 	public void checkCutscene() {
-		if (this.gp.s.chapter == 0 && this.gp.s.swh[0]) {
-			this.prologueCutscene(0);
+		if (gp.s.chapter == 0 && gp.s.swh[0]) {
+			prologueCutscene(0);
 		}
 
-		if (this.gp.s.chapter == 1 && this.gp.s.swh[0]) {
-			this.c1s_Cutscene(0);
+		if (gp.s.chapter == 1 && gp.s.swh[0]) {
+			c1s_Cutscene(0);
 		}
-
+		
+		if(gp.s.chapter == 1 && gp.s.swh[0]) {
+			c1s_Cutscene(0);
+		}
 	}
 
 	public boolean hit(int map, int col, int row, String reqDirection) {
@@ -116,22 +134,19 @@ public class EventHandler {
 	}
 
 	public void prologueCutscene(int read) {
-		GamePanel gp = this.gp;
 		gp.gameState = GameState.cutsceneState;
-		CutsceneManager var2 = this.gp.csManager;
-		var2.sceneNum = 1;
+		CutsceneManager cm = gp.csManager;
+		cm.sceneNum = 1;
 	}
 
 	public void c1s_Cutscene(int read) {
-		GamePanel gp = this.gp;
 		gp.gameState = GameState.cutsceneState;
 		//System.out.println("Get Chapter 1");
-		CutsceneManager var2 = gp.csManager;
-		var2.sceneNum = 2;
+		CutsceneManager cm = gp.csManager;
+		cm.sceneNum = 2;
 	}
 
 	public void message() {
-		GamePanel gp = this.gp;
 		gp.gameState = GameState.messageState;
 	}
 
@@ -147,5 +162,16 @@ public class EventHandler {
 		previousEventX = gp.player.worldX;
 		previousEventY = gp.player.worldY;
 		canTouchEvent = false;
+	}
+	
+	public void obsticle(Map map) {
+		gp.gameState = GameState.examineState;
+		if(map.getId() == 2) {
+			eventMaster.startDialogue(eventMaster, 0);
+		} else if(map.getId() == 3) {
+			eventMaster.startDialogue(eventMaster, 1);
+		}
+		gp.keyH.enterPressed = false;
+		//gp.iTile[map.getId()][objItem].interact();
 	}
 }

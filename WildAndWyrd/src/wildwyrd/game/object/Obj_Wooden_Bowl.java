@@ -33,7 +33,7 @@ public class Obj_Wooden_Bowl extends Entity {
 
 	public void choiceResponce() {
 		if (gp.ui.choiceSlot == 0) {
-			gp.player.inventory.add(loot);
+			gp.player.pickUpObject(loot);
 			opened = true;
 		}
 

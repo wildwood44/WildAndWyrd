@@ -4,19 +4,19 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
-public class Itm_Hazelnut extends Entity {
+public class Itm_Bug_Meat extends Entity {
 	GamePanel gp;
 
-	public Itm_Hazelnut(GamePanel gp) {
+	public Itm_Bug_Meat(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Hazelnut";
+		name = "Bug Meat";
 		type = EntityType.Food;
-		staminaRcvd = 5;
-		description = "Seed of a hazel tree.";
+		staminaRcvd = 10;
+		description = "";
 		stackable = true;
 
-		image = setup("/res/items/img_hazelnut", gp.tileSize, gp.tileSize);
+		image = setup("/res/items/img_bug_meat", gp.tileSize, gp.tileSize);
 
 	}
 	public void selectedItem() {

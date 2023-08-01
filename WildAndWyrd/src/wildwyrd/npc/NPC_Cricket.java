@@ -125,12 +125,28 @@ public class NPC_Cricket extends Entity {
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge("Some crickets were in the area." ,1);
 		dialogues[0][1] = new Dialoge("Fight Crickets?" ,2);
+		dialogues[1][0] = new Dialoge("Hunt succesful.",1);
+		dialogues[1][1] = new Dialoge("Bzz!",1);
+		dialogues[1][2] = new Dialoge("As Alder collected the slain cricket, a loud buzzing came at him from his side. Two hornets came at him.",1);
+		dialogues[1][3] = new Dialoge("Alder","Ahhh!",1);
+		dialogues[1][4] = new Dialoge("",4);
+		dialogues[2][0] = new Dialoge("Come back you!",1);
+		dialogues[2][1] = new Dialoge("Alder tried in vain to get the cricket, but it had already jumped out of reach.",1);
+		dialogues[2][2] = new Dialoge("Bzz!",1);
+		dialogues[2][3] = new Dialoge("The loud buzzing of insect wings came from Alder's side. Two hornets came at him.",1);
+		dialogues[2][4] = new Dialoge("Alder","Ahhh!",1);
+		dialogues[2][5] = new Dialoge("",4);
 	}
 	
 	public void combatResponce() {
-		//if (gp.combat.win) {
+		gp.keyH.enterPressed = false;
 		gp.combat.addEnemy(new En_Wasp(gp), new En_Wasp(gp));
-		gp.combat.startCombat();
+		if(gp.combat.win) {
+			startDialogue(this, 1);
+		} else {
+			startDialogue(this, 2);
+		}
+		//gp.combat.startCombat();
 	}
 
 	public void choiceResponce() {

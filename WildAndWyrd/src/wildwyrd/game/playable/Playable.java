@@ -64,6 +64,9 @@ public class Playable extends Entity implements Comparable<Playable> {
 		this.legs = legs;
 	}
 	public Entity getWeapon_prime() {
+		if (weapon_prime.name == null) {
+			return null;
+		}
 		return weapon_prime;
 	}
 	public void setWeapon_prime(Entity weapon_prime) {

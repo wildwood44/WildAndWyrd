@@ -117,35 +117,19 @@ public class KeyHandler implements KeyListener {
 					break;
 				case KeyEvent.VK_LEFT :
 				case KeyEvent.VK_A :
-					if (this.gp.ui.slotCol2 != 0) {
-						--this.gp.ui.slotCol2;
-					} else {
-						this.gp.ui.slotCol2 = 6;
-					}
+					gp.ui.slotCol2 = getNext(gp.ui.slotCol2, 6);
 					break;
 				case KeyEvent.VK_UP :
 				case KeyEvent.VK_W :
-					if (this.gp.ui.slotRow2 != 0) {
-						--this.gp.ui.slotRow2;
-					} else {
-						this.gp.ui.slotRow2 = 3;
-					}
+					gp.ui.slotRow2 = getNext(gp.ui.slotRow2, 3);
 					break;
 				case KeyEvent.VK_RIGHT :
 				case KeyEvent.VK_D :
-					if (this.gp.ui.slotCol2 != 6) {
-						++this.gp.ui.slotCol2;
-					} else {
-						this.gp.ui.slotCol2 = 0;
-					}
+					gp.ui.slotCol2 = getPrev(gp.ui.slotCol2, 6);
 					break;
 				case KeyEvent.VK_DOWN :
 				case KeyEvent.VK_S :
-					if (gp.ui.slotRow2 != 3) {
-						gp.ui.slotRow2++;
-					} else {
-						gp.ui.slotRow2 = 0;
-					}
+					gp.ui.slotRow2 = getPrev(gp.ui.slotRow2, 3);
 					break;
 				case KeyEvent.VK_ENTER :
 					gp.player.selectedItem();
@@ -279,21 +263,13 @@ public class KeyHandler implements KeyListener {
 			case KeyEvent.VK_UP :
 			case KeyEvent.VK_W :
 				if(!gp.ui.openBook) {
-					if (gp.ui.slotCol != 0) {
-						gp.ui.slotCol--;
-					} else {
-						gp.ui.slotCol = gp.ui.selectedBookshelf.length - 1;
-					}
+					gp.ui.slotCol = getNext(gp.ui.slotCol, gp.ui.selectedBookshelf.length - 1);
 				}
 				break;
 			case KeyEvent.VK_DOWN :
 			case KeyEvent.VK_S :
 				if(!gp.ui.openBook) {
-					if (gp.ui.slotCol != gp.ui.selectedBookshelf.length - 1) {
-						gp.ui.slotCol++;
-					} else {
-						gp.ui.slotCol = 0;
-					}
+					gp.ui.slotCol = getPrev(gp.ui.slotCol, gp.ui.selectedBookshelf.length - 1);
 				}
 				break;
 			default :
@@ -319,7 +295,7 @@ public class KeyHandler implements KeyListener {
 						enterPressed = true;
 						if (gp.ui.commandNum == 0) {
 							if(gp.combat.enemies.size() > 1) {
-								gp.combat.findTarget();
+								gp.gameState = GameState.targetState;
 							} else {
 								gp.combat.dealDamage(gp.playable.get(0),gp.combat.getTarget(),gp.playable.get(0).getAttack());
 							}
@@ -399,12 +375,14 @@ public class KeyHandler implements KeyListener {
 				}
 				break;
 			case KeyEvent.VK_ENTER :
-				//for(int i = 0; i < gp.combat.enemies.size(); i++) {
-				//gp.combat.target = gp.ui.slotCol;
-				//}
-				//gp.ui.resetSlots();
-				System.out.println(gp.ui.slotCol2);
 				gp.combat.dealDamage(gp.playable.get(0),gp.combat.enemies.get(gp.ui.slotCol2),gp.playable.get(0).getAttack());
+				break;
+			}
+		} else if (gp.gameState == GameState.rewardState) {
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_ENTER :
+				gp.combat.enemies.get(0).combatResult();
+				gp.combat.cleanup();
 				break;
 			}
 		} else if (gp.gameState == GameState.gameOverState) {
@@ -481,17 +459,11 @@ public class KeyHandler implements KeyListener {
 			if (gp.ui.selectedObject.dialogues[gp.ui.selectedObject.dialogueSet][gp.ui.selectedObject.dialogueIndex]
 					.getType() == 2) {
 				if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W) {
-					gp.ui.choiceSlot--;
-					if (gp.ui.choiceSlot < 0) {
-						gp.ui.choiceSlot = 1;
-					}
+					gp.ui.choiceSlot = getPrev(gp.ui.choiceSlot, 1);
 				}
 		
 				if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_S) {
-					gp.ui.choiceSlot++;
-					if (gp.ui.choiceSlot > 1) {
-						gp.ui.choiceSlot = 0;
-					}
+					gp.ui.choiceSlot = getNext(gp.ui.choiceSlot, 1);
 				}
 			} else if (gp.ui.selectedObject.dialogues[gp.ui.selectedObject.dialogueSet][gp.ui.selectedObject.dialogueIndex]
 					.getType() == 3) {

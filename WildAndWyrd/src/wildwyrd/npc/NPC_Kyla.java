@@ -11,11 +11,11 @@ import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
 
-public class NPC_Thay extends Entity {
-	public NPC_Thay(GamePanel gp) {
+public class NPC_Kyla extends Entity {
+	public NPC_Kyla(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
-		name = "Thay";
+		name = "Kyla";
 		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;
@@ -70,46 +70,46 @@ public class NPC_Thay extends Entity {
 			switch(direction) {
 			case "up":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 7);
+					image = getPlayerImage(10, 3);
 				} else if(spriteNum == 2) {
-					image = getPlayerImage(1, 7);
+					image = getPlayerImage(9, 3);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 7);
+					image = getPlayerImage(10, 3);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 7);
+					image = getPlayerImage(11, 3);
 				}
 				break;
 			case "down":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 4);
+					image = getPlayerImage(10, 0);
 				} else if(spriteNum == 2) {
-					image = getPlayerImage(1, 4);
+					image = getPlayerImage(9, 0);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 4);
+					image = getPlayerImage(10, 0);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 4);
+					image = getPlayerImage(11, 0);
 				}
 				break;
 			case "left":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 5);
+					image = getPlayerImage(10, 1);
 				} else if(spriteNum == 2) {
-					image = getPlayerImage(1, 5);
+					image = getPlayerImage(9, 1);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 5);
+					image = getPlayerImage(10, 1);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 5);
+					image = getPlayerImage(11, 1);
 				}
 				break;
 			case "right":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 6);
+					image = getPlayerImage(10, 2);
 				} else if(spriteNum == 2) {
-					image = getPlayerImage(1, 6);
+					image = getPlayerImage(9, 2);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 6);
+					image = getPlayerImage(10, 2);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 6);
+					image = getPlayerImage(11, 2);
 				}
 				break;
 			}
@@ -121,46 +121,46 @@ public class NPC_Thay extends Entity {
 			switch(direction) {
 			case "up":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 7);
+					image = getPlayerImage(10, 3);
 				} else if(spriteNum == 2) {
-					image = getPlayerImage(1, 7);
+					image = getPlayerImage(9, 3);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 7);
+					image = getPlayerImage(10, 3);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 7);
+					image = getPlayerImage(11, 3);
 				}
 				break;
 			case "down":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 4);
+					image = getPlayerImage(10, 0);
 				} else if(spriteNum == 2) {
-					image = getPlayerImage(1, 4);
+					image = getPlayerImage(9, 0);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 4);
+					image = getPlayerImage(10, 0);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 4);
+					image = getPlayerImage(11, 0);
 				}
 				break;
 			case "left":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 5);
+					image = getPlayerImage(10, 1);
 				} else if(spriteNum == 2) {
-					image = getPlayerImage(1, 5);
+					image = getPlayerImage(9, 1);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 5);
+					image = getPlayerImage(10, 1);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 5);
+					image = getPlayerImage(11, 1);
 				}
 				break;
 			case "right":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 6);
+					image = getPlayerImage(10, 2);
 				} else if(spriteNum == 2) {
-					image = getPlayerImage(1, 6);
+					image = getPlayerImage(9, 2);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 6);
+					image = getPlayerImage(10, 2);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 6);
+					image = getPlayerImage(11, 2);
 				}
 				break;
 			}

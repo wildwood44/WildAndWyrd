@@ -4,13 +4,11 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Comparator;
 
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import wildwyrd.game.object.Dialoge;
-import wildwyrd.game.playable.Playable;
 import wildwyrd.game.tile.UtilityTool;
 
 public class Entity {
@@ -56,6 +54,8 @@ public class Entity {
 	public boolean collision = false;
 	public boolean collisionOn = false;
 	public boolean takeDamage = false;
+	public boolean stackable = false;
+	public int amount = 1;
 	public EntityType type;
 	public final int type_player = 0;
 	public final int type_object = 1;
