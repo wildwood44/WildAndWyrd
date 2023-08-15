@@ -113,8 +113,8 @@ public class AssetSetter {
 		gp.obj[2][0].worldX = 10 * gp.tileSize;
 		gp.obj[2][0].worldY = 8 * gp.tileSize;
 		gp.obj[2][1] = new Plant_1(gp);
-		gp.obj[2][1].worldX = 15 * gp.tileSize;
-		gp.obj[2][1].worldY = 6 * gp.tileSize;
+		gp.obj[2][1].worldX = 14 * gp.tileSize;
+		gp.obj[2][1].worldY = 7 * gp.tileSize;
 		gp.obj[2][2] = new Obj_Tree(gp,1);
 		gp.obj[2][2].worldX = 1 * gp.tileSize;
 		gp.obj[2][2].worldY = 7 * gp.tileSize;
@@ -151,6 +151,9 @@ public class AssetSetter {
 		gp.obj[2][13] = new Obj_Rock(gp, 1);
 		gp.obj[2][13].worldX = 22 * gp.tileSize;
 		gp.obj[2][13].worldY = 5 * gp.tileSize;
+		gp.obj[2][14] = new Obj_Dummy(gp);
+		gp.obj[2][14].worldX = 8 * gp.tileSize;
+		gp.obj[2][14].worldY = 5 * gp.tileSize;
 		//System.out.println("Primary weapon: " + gp.playable.get(0).getWeapon_prime());
 		//if(gp.playable.get(0).getWeapon_prime() == null) {
 			/*gp.obj[2][14] = new Obj_Obsticle(gp);

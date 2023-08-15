@@ -16,6 +16,8 @@ public class Enemy extends Playable {
 	private int invincibleCounter = 0;
 	private int dyingCounter = 0;
 	protected Entity dropped;
+	int screenX = gp.tileSize*6;
+	int screenY = gp.tileSize*2;
 	
 	public Enemy(GamePanel gp, String name, int maxHealth, int maxStamina, int baseAttack, int baseDefence, int baseAccuracy, int baseSpeed, int baseEvasion) {
 		super(gp, name, maxHealth, maxStamina, baseAttack, baseDefence, baseAccuracy, baseSpeed, baseEvasion);
@@ -25,8 +27,8 @@ public class Enemy extends Playable {
 	
 	public void draw(Graphics2D g2, int pos) {
 		//BufferedImage image = getImage();
-		int screenX = gp.tileSize*6;
-		int screenY = gp.tileSize*2;
+		screenX = gp.tileSize*6;
+		screenY = gp.tileSize*2;
 		if (pos == 1) {
 			screenX = gp.tileSize*6;
 			screenY = gp.tileSize*1;
@@ -34,6 +36,8 @@ public class Enemy extends Playable {
 		
 		if(dying) {
 			dyingAnimation(g2);
+		} else if (getCombatStatus() == CombatStatus.Escaping) {
+			escapingAnimation(g2);
 		}
 		g2.drawImage(image, screenX, screenY, gp.tileSize*2, gp.tileSize*2, null);
 		
@@ -94,6 +98,21 @@ public class Enemy extends Playable {
 		if(dyingCounter > i*6 && dyingCounter <= i*7) {changeAlpha(g2,0f);}
 		if(dyingCounter > i*7 && dyingCounter <= i*8) {changeAlpha(g2,1f);}
 		if(dyingCounter > i*8) {
+			dying = false;
+			alive = false;
+		}
+	}
+	public void escapingAnimation(Graphics2D g2) {
+		dyingCounter++;
+		int i = 5;
+		if(dyingCounter <= i) {changeAlpha(g2,0f);}
+		if(dyingCounter > i && dyingCounter <= i*2) {screenX += 10;}
+		if(dyingCounter > i*2 && dyingCounter <= i*3) {screenX += 20;changeAlpha(g2,0.8f);}
+		if(dyingCounter > i*3 && dyingCounter <= i*4) {screenX += 30;changeAlpha(g2,0.6f);}
+		if(dyingCounter > i*4 && dyingCounter <= i*5) {screenX += 40;changeAlpha(g2,0.4f);}
+		if(dyingCounter > i*5 && dyingCounter <= i*6) {screenX += 50;changeAlpha(g2,0.2f);}
+		if(dyingCounter > i*6 && dyingCounter <= i*7) {screenX += 60;changeAlpha(g2,0f);}
+		if(dyingCounter > i*7) {
 			dying = false;
 			alive = false;
 		}

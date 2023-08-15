@@ -17,6 +17,7 @@ public class En_Cricket extends Enemy {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge(name + " stood wary." ,1);
+		dialogues[1][0] = new Dialoge(name + " fled." ,1);
 	}
 
 	public void getImage() {
@@ -30,11 +31,23 @@ public class En_Cricket extends Enemy {
 			gp.ui.choiceSlot = 0;
 			gp.ui.firstValue = 0;
 			gp.keyH.enterPressed = false;
-			startDialogue(this, 0);
+			if(gp.playable.get(0).getCombatStatus() == CombatStatus.Attacking) {
+				startDialogue(this, 1);
+				setCombatStatus(CombatStatus.Escaping);
+				gp.combat.win = false;
+				//gp.combat.endCombat();
+			} else {
+				startDialogue(this, 0);
+			}
 		}
 	}
 	
 	public void defeated() {
+		if(health <= 0) {
+			gp.combat.win = true;
+		} else {
+			gp.combat.win = false;
+		}
 		combatResult();
 	}
 	

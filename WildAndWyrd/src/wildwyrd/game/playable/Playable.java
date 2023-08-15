@@ -2,15 +2,13 @@ package wildwyrd.game.playable;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
 import wildwyrd.game.combat.CombatStatus;
+import wildwyrd.game.items.Weapon;
+import wildwyrd.game.items.WeaponType;
 
 public class Playable extends Entity implements Comparable<Playable> {
 	protected String imageUrl;
@@ -26,8 +24,9 @@ public class Playable extends Entity implements Comparable<Playable> {
 	private Entity head = new Entity(gp);
 	private Entity body = new Entity(gp);
 	private Entity legs = new Entity(gp);
-	private Entity weapon_prime = new Entity(gp);
-	private Entity weapon_second = new Entity(gp);
+	private Weapon weapon_prime = new Weapon(gp);
+	private Weapon weapon_second = new Weapon(gp);
+	private Weapon loadedProjectile = null;
 	private CombatStatus combatStatus = CombatStatus.Normal;
 	public Playable(GamePanel gp, String name, int health, int stamina,
 			int baseAttack, int baseDefence, int baseAccuracy, int baseEvasion, int baseSpeed) {
@@ -63,19 +62,19 @@ public class Playable extends Entity implements Comparable<Playable> {
 	public void setLegs(Entity legs) {
 		this.legs = legs;
 	}
-	public Entity getWeapon_prime() {
+	public Weapon getWeapon_prime() {
 		if (weapon_prime.name == null) {
 			return null;
 		}
 		return weapon_prime;
 	}
-	public void setWeapon_prime(Entity weapon_prime) {
+	public void setWeapon_prime(Weapon weapon_prime) {
 		this.weapon_prime = weapon_prime;
 	}
-	public Entity getWeapon_second() {
+	public Weapon getWeapon_second() {
 		return weapon_second;
 	}
-	public void setWeapon_second(Entity weapon_second) {
+	public void setWeapon_second(Weapon weapon_second) {
 		if(this.weapon_second != null) {
 			gp.player.inventory.add(this.weapon_second);
 		}
@@ -165,7 +164,11 @@ public class Playable extends Entity implements Comparable<Playable> {
 		//BufferedImage image = getImage();
 		int screenX = gp.tileSize*4;
 		int screenY = gp.tileSize*2;
-
+		if(projectileLoaded()) {
+			g2.drawImage(weapon_second.combat_image, screenX, screenY, gp.tileSize*2, gp.tileSize*2, null);
+		} else {
+			g2.drawImage(weapon_prime.combat_image, screenX, screenY, gp.tileSize*2, gp.tileSize*2, null);
+		}
 		g2.drawImage(image, screenX, screenY, gp.tileSize*2, gp.tileSize*2, null);
 
 		//Health Bar
@@ -190,6 +193,32 @@ public class Playable extends Entity implements Comparable<Playable> {
 		g2.fillRect(screenX - 2, screenY - 2, gp.tileSize+2, 12);
 		g2.setColor(new Color(255,255,0));
 		g2.fillRect(screenX, screenY, (int)staminaValue, 10);
+	}
+	
+	public void loadProjectile(Weapon projectile) {
+		if((weapon_second.getWpType() == WeaponType.Bow && projectile.getWpType() == WeaponType.Arrow)||
+			(weapon_second.getWpType() == WeaponType.Crossbow && projectile.getWpType() == WeaponType.Bolt)||
+			(weapon_second.getWpType() == WeaponType.Sling && projectile.getWpType() == WeaponType.Stone)) {
+			loadedProjectile = projectile;
+		} else {
+			
+		}
+	}
+	
+	public boolean projectileLoaded() {
+		if(loadedProjectile != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	public int fireProjectile() {
+		if(loadedProjectile != null) {
+			int totalDamage = getWeapon_second().attackValue + loadedProjectile.attackValue;
+			loadedProjectile = null;
+			return totalDamage;
+		}
+		return 0;
 	}
 	
 	@Override

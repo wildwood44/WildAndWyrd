@@ -3,6 +3,8 @@ package wildwyrd.game;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import wildwyrd.game.combat.CombatStatus;
+
 public class KeyHandler implements KeyListener {
 	GamePanel gp;
 	public boolean upPressed;
@@ -287,76 +289,148 @@ public class KeyHandler implements KeyListener {
 				break;
 			}
 		} else if (gp.gameState == GameState.combatState) {
-			switch (e.getKeyCode()) {
-			case KeyEvent.VK_ENTER :
-
-				if(gp.combat.getCombatant().isAlive()) {
-					if(gp.combat.getCombatant() == gp.playable.get(0)) {
-						enterPressed = true;
-						if (gp.ui.commandNum == 0) {
-							if(gp.combat.enemies.size() > 1) {
-								gp.gameState = GameState.targetState;
-							} else {
-								gp.combat.dealDamage(gp.playable.get(0),gp.combat.getTarget(),gp.playable.get(0).getAttack());
+			if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Using) {
+				switch (e.getKeyCode()) {
+				case KeyEvent.VK_ESCAPE :
+					gp.ui.resetSlots();
+					gp.combat.getCombatant().setCombatStatus(CombatStatus.Normal);
+					break;
+				case KeyEvent.VK_UP :
+				case KeyEvent.VK_W :
+					//gp.ui.slotCol2 = getNext(gp.ui.slotCol2, 1);
+					gp.ui.choiceSlot--;
+					if (gp.ui.choiceSlot < 0) {
+						gp.ui.choiceSlot = gp.player.combatItems(gp.ui.itemFilter).size() - 1;
+						if(gp.player.combatItems(gp.ui.itemFilter).size() > 1) {
+							gp.ui.firstValue = gp.ui.choiceSlot -1;
+						}
+					}
+					if (gp.ui.firstValue > gp.ui.choiceSlot) {
+						gp.ui.firstValue = gp.ui.choiceSlot;
+					}
+					break;
+				case KeyEvent.VK_DOWN :
+				case KeyEvent.VK_S :
+					if (gp.ui.choiceSlot > 0 && gp.ui.choiceSlot == gp.ui.firstValue + 1) {
+						gp.ui.firstValue++;
+					}
+					gp.ui.choiceSlot++;
+					if (gp.ui.choiceSlot > gp.player.combatItems(gp.ui.itemFilter).size() - 1) {
+						gp.ui.choiceSlot = 0;
+						gp.ui.firstValue = gp.ui.choiceSlot;
+					}
+					break;
+				case KeyEvent.VK_LEFT :
+				case KeyEvent.VK_A :
+					if (gp.ui.itemFilter == null) {
+						gp.ui.itemFilter = EntityType.Projectile;
+					} else if (gp.ui.itemFilter == EntityType.Projectile) {
+						gp.ui.itemFilter = EntityType.Health;
+					} else if (gp.ui.itemFilter == EntityType.Health) {
+						gp.ui.itemFilter = EntityType.Food;
+					} else {
+						gp.ui.itemFilter = null;
+					}
+					gp.ui.choiceSlot = 0;
+					gp.ui.firstValue = gp.ui.choiceSlot;
+					break;
+				case KeyEvent.VK_RIGHT :
+				case KeyEvent.VK_D :
+					if (gp.ui.itemFilter == null) {
+						gp.ui.itemFilter = EntityType.Food;
+					} else if (gp.ui.itemFilter == EntityType.Food) {
+						gp.ui.itemFilter = EntityType.Health;
+					} else if (gp.ui.itemFilter == EntityType.Health) {
+						gp.ui.itemFilter = EntityType.Projectile;
+					} else {
+						gp.ui.itemFilter = null;
+					}
+					gp.ui.choiceSlot = 0;
+					gp.ui.firstValue = gp.ui.choiceSlot;
+					break;
+				case KeyEvent.VK_ENTER :
+					gp.player.selectedItem();
+					break;
+				}} else {
+				switch (e.getKeyCode()) {
+				case KeyEvent.VK_ENTER :
+					if(gp.combat.getCombatant().isAlive()) {
+						if(gp.combat.getCombatant() == gp.playable.get(0)) {
+							enterPressed = true;
+							if (gp.ui.commandNum == 0) {
+								if(gp.combat.enemies.size() > 1) {
+									gp.gameState = GameState.targetState;
+								} else {
+									if(gp.playable.get(0).projectileLoaded()) {
+										gp.combat.dealDamage(gp.playable.get(0),gp.combat.getTarget(),gp.playable.get(0).fireProjectile());
+									} else {
+										gp.combat.dealDamage(gp.playable.get(0),gp.combat.getTarget(),gp.playable.get(0).getAttack());
+									}
+								}
 							}
+							if (gp.ui.commandNum == 1) {
+								gp.combat.blockAttack();	
+							}
+							if (gp.ui.commandNum == 4) {
+								gp.combat.openInventory();	
+							}
+							if (gp.ui.commandNum == 5) {
+								gp.combat.endCombat();
+								gp.combat.win = false;
+								gp.gameState = GameState.playState;	
+							}
+							break;
 						}
-						if (gp.ui.commandNum == 1) {
-							gp.combat.blockAttack();	
+						if(gp.combat.getCombatant().isDying()) {
+							enterPressed = true;
+							break;
 						}
-						if (gp.ui.commandNum == 5) {
-							gp.gameState = GameState.playState;	
-						}
-						break;
 					}
-					if(gp.combat.getCombatant().isDying()) {
-						enterPressed = true;
-						break;
+				case KeyEvent.VK_LEFT :
+				case KeyEvent.VK_A :
+					leftPressed = true;
+					if (gp.ui.slotCol != 0) {
+						gp.ui.slotCol = gp.ui.slotCol - 3;
+						gp.ui.commandNum = gp.ui.commandNum - 2;
+					} else {
+						gp.ui.slotCol = 6;
+						gp.ui.commandNum = gp.ui.commandNum + 4;
 					}
+					break;
+				case KeyEvent.VK_UP :
+				case KeyEvent.VK_W :
+					upPressed = true;
+					if (gp.ui.slotRow != 0) {
+						gp.ui.slotRow--;
+						gp.ui.commandNum--;
+					} else {
+						gp.ui.slotRow = 1;
+						gp.ui.commandNum++;
+					}
+					break;
+				case KeyEvent.VK_RIGHT :
+				case KeyEvent.VK_D :
+					rightPressed = true;
+					if (gp.ui.slotCol != 6) {
+						gp.ui.slotCol = gp.ui.slotCol + 3;
+						gp.ui.commandNum = gp.ui.commandNum + 2;
+					} else {
+						gp.ui.slotCol = 0;
+						gp.ui.commandNum = gp.ui.commandNum - 4;
+					}
+					break;
+				case KeyEvent.VK_DOWN :
+				case KeyEvent.VK_S :
+					downPressed = true;
+					if (gp.ui.slotRow != 1) {
+						gp.ui.slotRow++;
+						gp.ui.commandNum++;
+					} else {
+						gp.ui.slotRow = 0;
+						gp.ui.commandNum--;
+					}
+					break;
 				}
-			case KeyEvent.VK_LEFT :
-			case KeyEvent.VK_A :
-				leftPressed = true;
-				if (gp.ui.slotCol != 0) {
-					gp.ui.slotCol = gp.ui.slotCol - 3;
-					gp.ui.commandNum = gp.ui.commandNum - 2;
-				} else {
-					gp.ui.slotCol = 6;
-					gp.ui.commandNum = gp.ui.commandNum + 4;
-				}
-				break;
-			case KeyEvent.VK_UP :
-			case KeyEvent.VK_W :
-				upPressed = true;
-				if (gp.ui.slotRow != 0) {
-					gp.ui.slotRow--;
-					gp.ui.commandNum--;
-				} else {
-					gp.ui.slotRow = 1;
-					gp.ui.commandNum++;
-				}
-				break;
-			case KeyEvent.VK_RIGHT :
-			case KeyEvent.VK_D :
-				rightPressed = true;
-				if (gp.ui.slotCol != 6) {
-					gp.ui.slotCol = gp.ui.slotCol + 3;
-					gp.ui.commandNum = gp.ui.commandNum + 2;
-				} else {
-					gp.ui.slotCol = 0;
-					gp.ui.commandNum = gp.ui.commandNum - 4;
-				}
-				break;
-			case KeyEvent.VK_DOWN :
-			case KeyEvent.VK_S :
-				downPressed = true;
-				if (gp.ui.slotRow != 1) {
-					gp.ui.slotRow++;
-					gp.ui.commandNum++;
-				} else {
-					gp.ui.slotRow = 0;
-					gp.ui.commandNum--;
-				}
-				break;
 			}
 		} else if (gp.gameState == GameState.targetState) {
 			switch (e.getKeyCode()) {

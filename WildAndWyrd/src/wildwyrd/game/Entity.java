@@ -150,6 +150,10 @@ public class Entity {
 		return centreY;
 	}
 
+	public EntityType getType() {
+		return type;
+	}
+
 	public void draw(Graphics2D g2) {
 		//BufferedImage image = null;
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;

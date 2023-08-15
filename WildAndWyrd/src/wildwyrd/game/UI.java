@@ -18,6 +18,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import wildwyrd.game.combat.CombatStatus;
 import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.library.Book;
@@ -52,6 +53,7 @@ public class UI {
 	public boolean openEquipment = false;
 	public boolean openInventory = false;
 	public Entity selectedPlayable;
+	public EntityType itemFilter = null;
 	public boolean openBook = false;
 	public Book[] selectedBookshelf;
 	public Book selectedBook;
@@ -185,8 +187,9 @@ public class UI {
 		g2.setColor(Color.white);
 		x += gp.tileSize;
 		y += gp.tileSize;
-		//System.out.println(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] + " " + selectedObject.dialogueSet+" "+selectedObject.dialogueIndex);
+		//System.out.println(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].text + " " + selectedObject.dialogueSet+" "+selectedObject.dialogueIndex);
 		if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
+			//System.out.println(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].text);
 			char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().toCharArray();
 			if (charIndex < characters.length) {
 				String s = String.valueOf(characters[charIndex]);
@@ -284,6 +287,7 @@ public class UI {
 
 			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 1) {
+				//System.out.println(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].text + " " + selectedObject.dialogueSet + " " + selectedObject.dialogueIndex);
 				if (gp.keyH.enterPressed) {
 					if (currentDialogue
 							.length() == selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
@@ -404,8 +408,7 @@ public class UI {
 		int slotXstart = frameX + 0;
 		int slotYstart = frameY + 15;
 		int cursorX = slotXstart + gp.tileSize * slotRow;
-		double var10000 = slotYstart;
-		int cursorY = (int) (var10000 + gp.tileSize * 0.75D * this.slotCol);
+		int cursorY = (int) (slotYstart + gp.tileSize * 0.75D * slotCol);
 		int cursorWidth = gp.tileSize * 2;
 		int cursorHeight = 30;
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
@@ -711,15 +714,19 @@ public class UI {
 		} //Check if combatant is alive
 		if(gp.combat.getCombatant().isAlive() || gp.combat.getCombatant().getHealth() > 0) {
 			if(gp.combat.getCombatant() == gp.playable.get(0)) {
-				//Draw combat menu
-				g2.drawString(" Attack", x, y);
-				g2.drawString(" Block", x, y + (gp.tileSize));
-				g2.drawString(" Appraise", x + (gp.tileSize*3), y);
-				g2.drawString(" Special", x + (gp.tileSize*3), y + (gp.tileSize));
-				g2.drawString(" Items", x + (gp.tileSize*6), y);
-				g2.drawString(" Flee", x + (gp.tileSize*6), y + (gp.tileSize));
-		
-				g2.drawString(">", cursorX - 5, cursorY);
+				if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Using) {
+					drawCombatInventoryScreen(x,gp.tileSize * 5,width);
+				} else {
+					//Draw combat menu
+					g2.drawString(" Attack", x, y);
+					g2.drawString(" Block", x, y + (gp.tileSize));
+					g2.drawString(" Appraise", x + (gp.tileSize*3), y);
+					g2.drawString(" Special", x + (gp.tileSize*3), y + (gp.tileSize));
+					g2.drawString(" Items", x + (gp.tileSize*6), y);
+					g2.drawString(" Flee", x + (gp.tileSize*6), y + (gp.tileSize));
+			
+					g2.drawString(">", cursorX - 5, cursorY);
+				}	
 			} else {
 				//Get enemy response
 				gp.combat.getCombatant().action();
@@ -729,6 +736,66 @@ public class UI {
 			gp.combat.incrementTurn();
 		}
 		
+	}
+	
+	public void drawCombatInventoryScreen(int x, int y, int width) {
+		int slotYstart = y + gp.tileSize + 15;
+		int slotY = slotYstart;
+		ArrayList<Entity> items = gp.player.combatItems(itemFilter);
+		for(int i = firstValue; i < items.size(); i++) {
+			if(slotY + 30 > 500) {
+				break;
+			}
+			if(filter(i)) {
+				if (choiceSlot == i) {
+					slotCol2 = gp.player.inventory.indexOf(items.get(i));;
+					g2.drawString(">", x - 15, slotY);
+				}
+				if(itemFilter != null) {
+					g2.setFont(g2.getFont().deriveFont(32f));
+					g2.drawString(itemFilter.name(), x - 30, y + 35);
+				}
+				g2.setFont(g2.getFont().deriveFont(16f));
+				g2.setColor(Color.white);
+				g2.drawString(items.get(i).name, x, slotY);
+				g2.drawString("x " + items.get(i).amount, x + (int)(gp.tileSize * 4), slotY);
+				slotY += gp.tileSize;
+				int itemIndex = getItemIndexOnSlot();
+				//System.out.println(i + " " + itemIndex);
+				if (itemIndex < items.size()) {
+					//System.out.println(gp.player.inventory.get(itemIndex));
+				}
+			}
+		}
+		//Display Up arrow
+		if(firstValue > 0) {
+			drawUpIcon((int)(width/1.65), 340, 20, 20);
+		}
+		//Display Down arrow
+		if(firstValue < gp.player.combatItems(itemFilter).size() - 2) {
+			drawDownIcon((int)(width/1.65), 470, 20, 20);
+		}
+	}
+	
+	public boolean filter(int i) {
+		ArrayList<Entity> items = gp.player.combatItems(itemFilter);
+		if(itemFilter == null) {
+			if(items.get(i).type == EntityType.Food ||
+				items.get(i).type == EntityType.Health ||
+				items.get(i).type == EntityType.Projectile){
+					return true;
+			}
+		} else {
+			//System.out.println(items.get(i).type +" "+ itemFilter);
+			while(i < items.size()) {
+				if(items.get(i).type == itemFilter) {
+					//firstValue = i - 1;
+					return true;
+				}
+				i++;
+			}
+		}
+		return false;
 	}
 	
 	public void drawCombatants(Graphics2D g2) {
@@ -844,10 +911,6 @@ public class UI {
 		String[] lineBreaks = lines.toArray(new String[lines.size()]);
 		return lineBreaks;
 	}
-	
-	private void drawMenuWindow() {
-		
-	}
 
 	private void drawImageWindow(int x, int y, int width, int height) {
 		BufferedImage image = selectedObject.sprites[selectedObject.dialogueSet][selectedObject.dialogueIndex];
@@ -885,6 +948,7 @@ public class UI {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 		Color c = new Color(255, 255, 255);
 		g2.setColor(c);
+		//System.out.println(x + " " + y + " " + width + " " + height);
 		g2.fillRoundRect(x, y, width, height, 35, 35);
 		c = new Color(0, 0, 0, 210);
 		g2.setColor(c);

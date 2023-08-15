@@ -13,7 +13,10 @@ import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.GameState;
 import wildwyrd.game.KeyHandler;
+import wildwyrd.game.combat.CombatStatus;
+import wildwyrd.game.items.Weapon;
 
 public class Player extends Entity {
 	GamePanel gp;
@@ -168,11 +171,41 @@ public class Player extends Entity {
 		}
 	}
 
-	public void pickUpObject(Entity i) {
-		if(canObtainItem(i)) {
-			//inventory.add(i);
-			//text = ""
+	public void pickUpObject(Entity item) {
+		if(canObtainItem(item)) {}
+	}
+
+	public void pickUpObject(Entity item, int qnt) {
+		for(int i = 1; i <= qnt; i++) {
+			if(canObtainItem(item)) {}
 		}
+	}
+	
+	public void removeFromInventory(Entity selectedItem) {
+		if(selectedItem.amount > 1) {
+			selectedItem.amount--;
+		} else {
+			gp.player.inventory.remove(selectedItem);
+		}
+	}
+	
+	public ArrayList<Entity> combatItems(EntityType filter) {
+		ArrayList<Entity> item = new ArrayList<Entity>();
+		for(int i = 0; i < inventory.size(); i++) {
+			if(filter == null) {
+				if(gp.player.inventory.get(i).type == EntityType.Food ||
+				gp.player.inventory.get(i).type == EntityType.Health ||
+				gp.player.inventory.get(i).type == EntityType.Projectile) {
+					item.add(gp.player.inventory.get(i));
+				}
+			} else {
+				if(gp.player.inventory.get(i).type == filter) {
+					item.add(gp.player.inventory.get(i));
+				}
+			} 
+		}
+		//gp.ui.firstValue = count;
+		return item;
 	}
 	
 	public void interactNPC(int i) {
@@ -190,18 +223,34 @@ public class Player extends Entity {
 			if(selectedItem.type == EntityType.Health) {
 				if(gp.playable.get(0).getHealth() < gp.playable.get(0).getMaxHealth()) {
 					gp.playable.get(0).heal(selectedItem.healthRcvd);
-					gp.player.inventory.remove(selectedItem);
+					removeFromInventory(selectedItem);
 				}
 			}
 			else if(selectedItem.type == EntityType.Food) {
 				if(gp.playable.get(0).getStamina() < gp.playable.get(0).getMaxStamina()) {
 					gp.playable.get(0).eat(selectedItem.staminaRcvd);
-					gp.player.inventory.remove(selectedItem);
+					removeFromInventory(selectedItem);
 				}
 			}
 			else if(selectedItem.type == EntityType.Primary) {
-				gp.playable.get(0).setWeapon_prime(selectedItem);
-				gp.player.inventory.remove(selectedItem);
+				gp.playable.get(0).setWeapon_prime((Weapon) selectedItem);
+				removeFromInventory(selectedItem);
+			}
+			else if(selectedItem.type == EntityType.Secondary) {
+				gp.playable.get(0).setWeapon_second((Weapon) selectedItem);
+				removeFromInventory(selectedItem);
+			}
+			else if(selectedItem.type == EntityType.Projectile) {
+				if(gp.gameState == GameState.combatState) {
+					if(!gp.playable.get(0).projectileLoaded()) {
+						gp.playable.get(0).loadProjectile((Weapon) selectedItem);
+						removeFromInventory(selectedItem);
+					}
+				}
+			}
+			if(gp.gameState == GameState.combatState) {
+				gp.playable.get(0).setCombatStatus(CombatStatus.Normal);
+				gp.combat.incrementTurn();
 			}
 		}
 	}
@@ -231,9 +280,11 @@ public class Player extends Entity {
 	public int searchItemInInventory(String itemName) {
 		int itemIndex = 999;
 		for(int i  = 0; i < inventory.size(); i++) {
-			if(inventory.get(i).name.equals(itemName)) {
-				itemIndex = i;
-				break;
+			if(inventory.get(i).name != null) {
+				if(inventory.get(i).name.equals(itemName)) {
+					itemIndex = i;
+					break;
+				}
 			}
 		}
 		return itemIndex;

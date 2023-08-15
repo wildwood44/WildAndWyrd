@@ -103,6 +103,9 @@ public class Combat extends Entity {
 	
 	public boolean enemiesActive() {
 		for (Enemy enemy : enemies) {
+			if(enemy.getCombatStatus() == CombatStatus.Escaping) {
+				
+			}
 			if(enemy.isAlive()) {
 				return true;
 			}
@@ -153,6 +156,10 @@ public class Combat extends Entity {
 	public void blockAttack() {
 		gp.playable.get(0).setCombatStatus(CombatStatus.Blocking);
 		//incrementTurn();
+	}
+	
+	public void openInventory() {
+		gp.playable.get(0).setCombatStatus(CombatStatus.Using);
 	}
 	
 	public void advRet() {
