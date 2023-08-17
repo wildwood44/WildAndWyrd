@@ -720,7 +720,7 @@ public class UI {
 					//Draw combat menu
 					g2.drawString(" Attack", x, y);
 					g2.drawString(" Block", x, y + (gp.tileSize));
-					g2.drawString(" Appraise", x + (gp.tileSize*3), y);
+					g2.drawString(" Position", x + (gp.tileSize*3), y);
 					g2.drawString(" Special", x + (gp.tileSize*3), y + (gp.tileSize));
 					g2.drawString(" Items", x + (gp.tileSize*6), y);
 					g2.drawString(" Flee", x + (gp.tileSize*6), y + (gp.tileSize));

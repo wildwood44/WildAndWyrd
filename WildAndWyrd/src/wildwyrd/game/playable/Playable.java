@@ -21,6 +21,7 @@ public class Playable extends Entity implements Comparable<Playable> {
 	private int dexterity;
 	protected boolean alive = true;
 	protected boolean dying = false;
+	protected boolean inRear = false;
 	private Entity head = new Entity(gp);
 	private Entity body = new Entity(gp);
 	private Entity legs = new Entity(gp);
@@ -142,6 +143,21 @@ public class Playable extends Entity implements Comparable<Playable> {
 		return alive;
 	}
 
+	public boolean inRange() {
+		return !inRear;
+	}
+	public void changePos() {
+		if(!inRear) {
+			inRear = true;
+		} else {
+			inRear = false;
+		}
+	}
+	public void advance(Playable target) {
+		if(!target.inRange()) {
+			target.changePos();
+		}
+	}
 	public boolean isDying() {
 		return dying;
 	}
@@ -164,6 +180,9 @@ public class Playable extends Entity implements Comparable<Playable> {
 		//BufferedImage image = getImage();
 		int screenX = gp.tileSize*4;
 		int screenY = gp.tileSize*2;
+		if (inRear) {
+			screenX -= (gp.tileSize*2);
+		}
 		if(projectileLoaded()) {
 			g2.drawImage(weapon_second.combat_image, screenX, screenY, gp.tileSize*2, gp.tileSize*2, null);
 		} else {

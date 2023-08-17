@@ -86,11 +86,13 @@ public class Combat extends Entity {
 			combatant.remove(gp.playable.get(i));
 		}*/
 		try {
-			Enemy represent = enemies.get(0);
-			for(Enemy enemy : enemies) {
-				enemy.checkDrop();
+			if(!enemiesActive()) {
+				Enemy represent = enemies.get(0);
+				for(Enemy enemy : enemies) {
+					enemy.checkDrop();
+				}
+				represent.defeated();
 			}
-			represent.defeated();
 		} catch (IndexOutOfBoundsException ex) {
 			System.out.println(ex);
 		}
@@ -99,6 +101,18 @@ public class Combat extends Entity {
 	public void cleanup() {
 		enemies.clear();
 		combatant.clear();
+	}
+	
+	public boolean playableActive() {
+		for (Playable player : gp.playable) {
+			if(player.getCombatStatus() == CombatStatus.Escaping) {
+				return false;
+			}
+			if(player.isAlive()) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public boolean enemiesActive() {
@@ -138,19 +152,29 @@ public class Combat extends Entity {
 	}
 	
 	public void dealDamage(Playable user, Playable target, int damage) {
-		//System.out.println(combatant);
-		//gp.combat.findTarget();
-		user.setCombatStatus(CombatStatus.Attacking);
-		user.loseStamina(5);
+		if((user.inRange() && target.inRange()) || user.projectileLoaded()) {
+			if(user.projectileLoaded()) {
+				damage = gp.playable.get(0).fireProjectile();
+			}
+			user.setCombatStatus(CombatStatus.Attacking);
+			user.loseStamina(5);
+			gp.keyH.enterPressed = false;
+			impact = damage * 100/(100 + target.baseDefence);
+			dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
+			dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
+			target.health -= impact;
+			
+			startDialogue(this, 0);
+		}else {
+			gp.combat.outOfRange(target);
+		}
+	}
+	
+	public void outOfRange(Playable target) {
 		gp.keyH.enterPressed = false;
-		impact = damage * 100/(100 + target.baseDefence);
-		dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
-		dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
-		target.health -= impact;
-		
+		dialogues[0][0] = new Dialoge(target.name + " was out of range!",1);
+		dialogues[0][1] = null;
 		startDialogue(this, 0);
-		//}
-		//incrementTurn();
 	}
 	
 	public void blockAttack() {
@@ -160,10 +184,6 @@ public class Combat extends Entity {
 	
 	public void openInventory() {
 		gp.playable.get(0).setCombatStatus(CombatStatus.Using);
-	}
-	
-	public void advRet() {
-		
 	}
 	
 	public int getTurn() {

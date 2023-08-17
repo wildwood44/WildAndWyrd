@@ -361,15 +361,15 @@ public class KeyHandler implements KeyListener {
 								if(gp.combat.enemies.size() > 1) {
 									gp.gameState = GameState.targetState;
 								} else {
-									if(gp.playable.get(0).projectileLoaded()) {
-										gp.combat.dealDamage(gp.playable.get(0),gp.combat.getTarget(),gp.playable.get(0).fireProjectile());
-									} else {
-										gp.combat.dealDamage(gp.playable.get(0),gp.combat.getTarget(),gp.playable.get(0).getAttack());
-									}
+									gp.combat.dealDamage(gp.playable.get(0),gp.combat.getTarget(),gp.playable.get(0).getAttack());
 								}
 							}
 							if (gp.ui.commandNum == 1) {
 								gp.combat.blockAttack();	
+							}
+							if (gp.ui.commandNum == 2) {
+								gp.combat.getCombatant().changePos();
+								gp.combat.incrementTurn();
 							}
 							if (gp.ui.commandNum == 4) {
 								gp.combat.openInventory();	

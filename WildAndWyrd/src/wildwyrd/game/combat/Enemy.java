@@ -33,6 +33,9 @@ public class Enemy extends Playable {
 			screenX = gp.tileSize*6;
 			screenY = gp.tileSize*1;
 		}
+		if (inRear) {
+			screenX += (gp.tileSize*2);
+		}
 		
 		if(dying) {
 			dyingAnimation(g2);

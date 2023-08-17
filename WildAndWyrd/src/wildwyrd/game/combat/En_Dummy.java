@@ -11,6 +11,7 @@ public class En_Dummy extends Enemy {
 		super(gp,"Dummy",  19, 5, 0, 150, 0, 0, 0);
         String desc = "Durable but falling apart.";
 		type = EntityType.Sprite;
+		inRear = true;
 	}
 	
 	public void setAction() {
