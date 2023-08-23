@@ -40,6 +40,8 @@ public class KeyHandler implements KeyListener {
 
 			if (code == KeyEvent.VK_ENTER) {
 				if (this.gp.ui.commandNum == 0) {
+					//gp = new GamePanel();
+					gp.restart();
 					gp.gameState = GameState.playState;
 				}
 
@@ -67,6 +69,7 @@ public class KeyHandler implements KeyListener {
 						gp.ui.drawGlossaryScreen();
 					} else if (gp.ui.slotCol == 7) {
 						gp.currentRoom = 0;
+						gp.restart();
 						gp.gameState = GameState.titleState;
 					}
 					break;
@@ -462,6 +465,7 @@ public class KeyHandler implements KeyListener {
 		} else if (gp.gameState == GameState.gameOverState) {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_ENTER :
+				gp.restart();
 				gp.gameState = GameState.titleState;
 				break;
 			}

@@ -231,6 +231,10 @@ public class UI {
 					drawCombatants(g2);
 					gp.combat.inCombat = false;
 					gp.combat.win = true;
+				} else if (!gp.combat.playableActive()) {
+					drawCombatants(g2);
+					gp.combat.inCombat = false;
+					gp.combat.win = false;
 				}
 				if(gp.combat.inCombat) {
 					gp.gameState = GameState.combatState;
@@ -706,7 +710,12 @@ public class UI {
 		drawCombatants(g2);
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
-		//Check if enemies are alive
+		//Check if playable characters are alive
+		for(Playable p: gp.playable) {
+			if(p.health <= 0 && p.isAlive()) {
+				gp.combat.playerDeath(p);
+			}
+		} //Check if enemies are alive
 		for(Enemy enemy: gp.combat.enemies) {
 			if(enemy.health <= 0 && enemy.isAlive()) {
 				gp.combat.enemyDeath(enemy);
@@ -726,7 +735,7 @@ public class UI {
 					g2.drawString(" Flee", x + (gp.tileSize*6), y + (gp.tileSize));
 			
 					g2.drawString(">", cursorX - 5, cursorY);
-				}	
+				}
 			} else {
 				//Get enemy response
 				gp.combat.getCombatant().action();

@@ -45,10 +45,25 @@ public class Player extends Entity {
 	}
 
 	public void setDefaultValues() {
+		//worldX = gp.tileSize * 5;
+		//worldY = gp.tileSize * 7;
+		speed = 5;
+		inventory = new ArrayList<Entity>();
+		//direction = "down";
+	}
+
+	public void setDefaultPositions() {
+		gp.currentMap = gp.maps[0];
 		worldX = gp.tileSize * 5;
 		worldY = gp.tileSize * 7;
-		speed = 5;
 		direction = "down";
+	}
+
+	public void restoreHealthAndStamina() {
+		for(Playable p : gp.playable) {
+			p.heal(p.getMaxHealth());
+			p.eat(p.getMaxStamina());
+		}
 	}
 
 	public BufferedImage getSpriteSheet() {

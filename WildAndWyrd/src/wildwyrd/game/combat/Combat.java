@@ -59,6 +59,7 @@ public class Combat extends Entity {
 	}
 
 	public void startCombat() {
+		turn = 0;
 		if(enemies.get(0) != null) {
 			gp.playable.get(0).setCombatStatus(CombatStatus.Normal);
 			gp.gameState = GameState.combatState;
@@ -92,6 +93,9 @@ public class Combat extends Entity {
 					enemy.checkDrop();
 				}
 				represent.defeated();
+			} else if (!playableActive()) {
+				cleanup();
+				gp.gameState = GameState.gameOverState;
 			}
 		} catch (IndexOutOfBoundsException ex) {
 			System.out.println(ex);
@@ -137,6 +141,14 @@ public class Combat extends Entity {
 	
 	public List<Enemy> getEnemies() {
 		return enemies;
+	}
+	
+	public void playerDeath(Playable p) {
+		p.killed();
+		gp.keyH.enterPressed = false;
+		dialogues[0][0] = new Dialoge(p.name + " was defeated!",1);
+		dialogues[0][1] = null;
+		startDialogue(this, 0);
 	}
 	
 	public void enemyDeath(Enemy enemy) {

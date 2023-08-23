@@ -1,5 +1,6 @@
 package wildwyrd.game.playable;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -29,6 +30,10 @@ public class Playable extends Entity implements Comparable<Playable> {
 	private Weapon weapon_second = new Weapon(gp);
 	private Weapon loadedProjectile = null;
 	private CombatStatus combatStatus = CombatStatus.Normal;
+	protected int spriteCounter = 0;
+	protected int actionLockCounter = 0;
+	protected int invincibleCounter = 0;
+	protected int dyingCounter = 0;
 	public Playable(GamePanel gp, String name, int health, int stamina,
 			int baseAttack, int baseDefence, int baseAccuracy, int baseEvasion, int baseSpeed) {
 		super(gp);
@@ -190,6 +195,9 @@ public class Playable extends Entity implements Comparable<Playable> {
 		}
 		g2.drawImage(image, screenX, screenY, gp.tileSize*2, gp.tileSize*2, null);
 
+		if(dying) {
+			dyingAnimation(g2);
+		}
 		//Health Bar
 		drawHealth(g2, screenX, screenY);
 		//Stamina  Bar
@@ -212,6 +220,27 @@ public class Playable extends Entity implements Comparable<Playable> {
 		g2.fillRect(screenX - 2, screenY - 2, gp.tileSize+2, 12);
 		g2.setColor(new Color(255,255,0));
 		g2.fillRect(screenX, screenY, (int)staminaValue, 10);
+	}
+	
+	public void changeAlpha(Graphics2D g2, float alphaValue) {
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
+	}
+	
+	public void dyingAnimation(Graphics2D g2) {
+		dyingCounter++;
+		int i = 5;
+		if(dyingCounter <= i) {changeAlpha(g2,0f);}
+		if(dyingCounter > i && dyingCounter <= i*2) {changeAlpha(g2,1f);}
+		if(dyingCounter > i*2 && dyingCounter <= i*3) {changeAlpha(g2,0f);}
+		if(dyingCounter > i*3 && dyingCounter <= i*4) {changeAlpha(g2,1f);}
+		if(dyingCounter > i*4 && dyingCounter <= i*5) {changeAlpha(g2,0f);}
+		if(dyingCounter > i*5 && dyingCounter <= i*6) {changeAlpha(g2,1f);}
+		if(dyingCounter > i*6 && dyingCounter <= i*7) {changeAlpha(g2,0f);}
+		if(dyingCounter > i*7 && dyingCounter <= i*8) {changeAlpha(g2,1f);}
+		if(dyingCounter > i*8) {
+			dying = false;
+			alive = false;
+		}
 	}
 	
 	public void loadProjectile(Weapon projectile) {
@@ -238,6 +267,23 @@ public class Playable extends Entity implements Comparable<Playable> {
 			return totalDamage;
 		}
 		return 0;
+	}
+	
+	public void setDefaultValues() {
+		level = 0;
+		maxHealth = 60;
+		maxStamina = 60;
+		baseAttack = 10;
+		baseDefence = 10;
+		baseAccuracy = 5;
+		baseEvasion = 10;
+		baseSpeed = 5;
+		head = new Entity(gp);
+		body = new Entity(gp);
+		legs = new Entity(gp);
+		weapon_prime = new Weapon(gp);
+		weapon_second = new Weapon(gp);
+		loadedProjectile = null;
 	}
 	
 	@Override

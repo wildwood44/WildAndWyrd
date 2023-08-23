@@ -1,9 +1,7 @@
 package wildwyrd.game.combat;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.Random;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
@@ -11,10 +9,6 @@ import wildwyrd.game.GameState;
 import wildwyrd.game.playable.Playable;
 
 public class Enemy extends Playable {
-	private int spriteCounter = 0;
-	private int actionLockCounter = 0;
-	private int invincibleCounter = 0;
-	private int dyingCounter = 0;
 	protected Entity dropped;
 	int screenX = gp.tileSize*6;
 	int screenY = gp.tileSize*2;
@@ -83,27 +77,6 @@ public class Enemy extends Playable {
 		gp.ui.firstValue = 0;
 		startDialogue(this, 0);
 		gp.keyH.enterPressed = false;
-	}
-	
-	public void changeAlpha(Graphics2D g2, float alphaValue) {
-		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
-	}
-	
-	public void dyingAnimation(Graphics2D g2) {
-		dyingCounter++;
-		int i = 5;
-		if(dyingCounter <= i) {changeAlpha(g2,0f);}
-		if(dyingCounter > i && dyingCounter <= i*2) {changeAlpha(g2,1f);}
-		if(dyingCounter > i*2 && dyingCounter <= i*3) {changeAlpha(g2,0f);}
-		if(dyingCounter > i*3 && dyingCounter <= i*4) {changeAlpha(g2,1f);}
-		if(dyingCounter > i*4 && dyingCounter <= i*5) {changeAlpha(g2,0f);}
-		if(dyingCounter > i*5 && dyingCounter <= i*6) {changeAlpha(g2,1f);}
-		if(dyingCounter > i*6 && dyingCounter <= i*7) {changeAlpha(g2,0f);}
-		if(dyingCounter > i*7 && dyingCounter <= i*8) {changeAlpha(g2,1f);}
-		if(dyingCounter > i*8) {
-			dying = false;
-			alive = false;
-		}
 	}
 	public void escapingAnimation(Graphics2D g2) {
 		dyingCounter++;
