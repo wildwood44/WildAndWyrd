@@ -7,11 +7,13 @@ import wildwyrd.game.GameState;
 
 public class Obj_Kitchen_Window extends Entity {
 	GamePanel gp;
+	public static final int objId = 9;
+	public static final String objName = "Window";
 
 	public Obj_Kitchen_Window(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Window";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

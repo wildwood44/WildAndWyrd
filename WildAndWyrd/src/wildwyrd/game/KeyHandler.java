@@ -39,35 +39,43 @@ public class KeyHandler implements KeyListener {
 			}
 
 			if (code == KeyEvent.VK_ENTER) {
-				if (this.gp.ui.commandNum == 0) {
+				if (gp.ui.commandNum == 0) {
 					//gp = new GamePanel();
 					gp.restart();
 					gp.gameState = GameState.playState;
 				}
-
-				//gameState = this.gp.ui.commandNum;
-				if (this.gp.ui.commandNum == 2) {
+				if (gp.ui.commandNum == 1) {
+					gp.saveLoad.load();
+					gp.gameState = GameState.playState;
+				}
+				if (gp.ui.commandNum == 2) {
 					System.exit(0);
 				}
 			}
 		} else if (gp.gameState == GameState.menuState) {
 			switch (e.getKeyCode()) {
 				case KeyEvent.VK_ENTER :
-					if (gp.ui.slotCol == 1) {
+					if (gp.ui.slotCol == 0) { //Save game
+						gp.saveLoad.save();
+					} else if (gp.ui.slotCol == 1) { //Open status screen
 						gp.gameState = GameState.statusState;
 						gp.ui.drawStatusScreen();
-					} else if (gp.ui.slotCol == 2) {
+					} else if (gp.ui.slotCol == 2) { //Open inventory screen
 						gp.gameState = GameState.inventoryState;
 						gp.ui.drawInventoryScreen();
-					} else if (gp.ui.slotCol == 3) {
+					} else if (gp.ui.slotCol == 3) { //Open equip screen
 						gp.ui.resetSlots();
 						gp.gameState = GameState.equipState;
 						gp.ui.drawEquipScreen();
-					} else if (gp.ui.slotCol == 6) {
+					} else if (gp.ui.slotCol == 4) { //Open equip screen
+						
+					} else if (gp.ui.slotCol == 5) { //Open equip screen
+						
+					} else if (gp.ui.slotCol == 6) { //Open glossary screen
 						gp.ui.resetSlots();
 						gp.gameState = GameState.glossaryState;
 						gp.ui.drawGlossaryScreen();
-					} else if (gp.ui.slotCol == 7) {
+					} else if (gp.ui.slotCol == 7) { //Quit game
 						gp.currentRoom = 0;
 						gp.restart();
 						gp.gameState = GameState.titleState;

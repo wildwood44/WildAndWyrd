@@ -6,13 +6,13 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_SilverBirch extends Entity {
 	GamePanel gp;
-	Entity loot;
-	boolean opened = false;
+	public static final int objId = 23;
+	public static final String objName = "Tree";
 
 	public Obj_SilverBirch(GamePanel gp, int num) {
 		super(gp);
 		this.gp = gp;
-		name = "Tree";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 		image = setup("/res/objects/img_silver_birch" + num, gp.tileSize, gp.tileSize);
@@ -21,7 +21,7 @@ public class Obj_SilverBirch extends Entity {
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge("Various trees made up the woodland, the :majority were birch, rowen and holly.", 1);
+		dialogues[0][0] = new Dialoge("Various trees made up the woodland, the majority were birch, rowen and holly.", 1);
 	}
 
 	public void interact() {

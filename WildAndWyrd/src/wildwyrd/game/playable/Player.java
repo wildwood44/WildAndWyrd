@@ -17,6 +17,7 @@ import wildwyrd.game.GameState;
 import wildwyrd.game.KeyHandler;
 import wildwyrd.game.combat.CombatStatus;
 import wildwyrd.game.items.Weapon;
+import wildwyrd.game.tile.TileManager;
 
 public class Player extends Entity {
 	GamePanel gp;
@@ -41,6 +42,7 @@ public class Player extends Entity {
 		solidArea.width = 24;
 		solidArea.height = 40;
 		setDefaultValues();
+		getImage();
 		getPlayerImage(3, 3);
 	}
 
@@ -54,6 +56,7 @@ public class Player extends Entity {
 
 	public void setDefaultPositions() {
 		gp.currentMap = gp.maps[0];
+		gp.tileM = new TileManager(gp);
 		worldX = gp.tileSize * 5;
 		worldY = gp.tileSize * 7;
 		direction = "down";
@@ -327,6 +330,21 @@ public class Player extends Entity {
 		}
 		return canObtain;
 	}
+	
+	public void getImage() {
+		up1 = getPlayerImage(4, 3);
+		up2 = getPlayerImage(3, 3);
+		up3 = getPlayerImage(5, 3);
+		down1 = getPlayerImage(4, 0);
+		down2 = getPlayerImage(3, 0);
+		down3 = getPlayerImage(5, 0);
+		left1 = getPlayerImage(4, 1);
+		left2 = getPlayerImage(3, 1);
+		left3 = getPlayerImage(5, 1);
+		right1 = getPlayerImage(4, 2);
+		right2 = getPlayerImage(3, 2);
+		right3 = getPlayerImage(5, 2);
+	}
 
 	public void draw(Graphics2D g2) {
 		BufferedImage image = null;
@@ -343,46 +361,46 @@ public class Player extends Entity {
 		switch(direction) {
 		case "up":
 			if(spriteNum == 1) {
-				image = getPlayerImage(4, 3);
+				image = up1;
 			} else if(spriteNum == 2) {
-				image = getPlayerImage(3, 3);
+				image = up2;
 			} else if(spriteNum == 3) {
-				image = getPlayerImage(4, 3);
+				image = up1;
 			} else if(spriteNum == 4) {
-				image = getPlayerImage(5, 3);
+				image = up3;
 			}
 			break;
 		case "down":
 			if(spriteNum == 1) {
-				image = getPlayerImage(4, 0);
+				image = down1;
 			} else if(spriteNum == 2) {
-				image = getPlayerImage(3, 0);
+				image = down2;
 			} else if(spriteNum == 3) {
-				image = getPlayerImage(4, 0);
+				image = down1;
 			} else if(spriteNum == 4) {
-				image = getPlayerImage(5, 0);
+				image = down3;
 			}
 			break;
 		case "left":
 			if(spriteNum == 1) {
-				image = getPlayerImage(4, 1);
+				image = left1;
 			} else if(spriteNum == 2) {
-				image = getPlayerImage(3, 1);
+				image = left2;
 			} else if(spriteNum == 3) {
-				image = getPlayerImage(4, 1);
+				image = left1;
 			} else if(spriteNum == 4) {
-				image = getPlayerImage(5, 1);
+				image = left3;
 			}
 			break;
 		case "right":
 			if(spriteNum == 1) {
-				image = getPlayerImage(4, 2);
+				image = right1;
 			} else if(spriteNum == 2) {
-				image = getPlayerImage(3, 2);
+				image = right2;
 			} else if(spriteNum == 3) {
-				image = getPlayerImage(4, 2);
+				image = right1;
 			} else if(spriteNum == 4) {
-				image = getPlayerImage(5, 2);
+				image = right3;
 			}
 			break;
 		}

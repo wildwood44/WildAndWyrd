@@ -9,13 +9,14 @@ import wildwyrd.game.GamePanel;
 public class Obj_Alder_Bed extends Entity {
 	GamePanel gp;
 	int loot;
-	boolean opened = false;
+	public static final int objId = 19;
+	public static final String objName = "Alder's Bed";
 
 	public Obj_Alder_Bed(GamePanel gp, int loot) {
 		super(gp);
 		this.gp = gp;
 		this.loot = loot;
-		name = "Alder's bed";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

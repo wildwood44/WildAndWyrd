@@ -21,6 +21,7 @@ public class Entity {
 	public int y;
 	public int width;
 	public int height;
+	public int id;
 	public String name;
 	public int maxHealth;
 	public int health = maxHealth;
@@ -49,6 +50,7 @@ public class Entity {
 	public int staminaRcvd;
 	public String description = "";
 	public String direction;
+	public BufferedImage up1, up2, up3, left1, left2, left3, right1, right2, right3, down1, down2, down3;
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
 	public boolean collision = false;
@@ -63,6 +65,8 @@ public class Entity {
 	public final int type_obstacle = 3;
 	public Timer timer;
 	public long startTime = -1;
+	public Entity loot;
+	public boolean opened = false;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -94,6 +98,10 @@ public class Entity {
 			}
 			spriteCounter = 0;
 		}
+	}
+	
+	public void getImage(BufferedImage image) {
+		down1 = image;
 	}
 
 	public BufferedImage setup(String imagePath, int width, int height) {
@@ -198,6 +206,10 @@ public class Entity {
 		if(object.length == getSize) {
 			speak();
 		}
+	}
+	
+	public void setLoot(Entity loot) {
+		this.loot = loot;
 	}
 	
 	public void interact() {

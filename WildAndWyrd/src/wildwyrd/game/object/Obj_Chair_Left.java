@@ -8,11 +8,13 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Chair_Left extends Entity {
 	GamePanel gp;
+	public static final int objId = 12;
+	public static final String objName = "Chair";
 
 	public Obj_Chair_Left(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Chair";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

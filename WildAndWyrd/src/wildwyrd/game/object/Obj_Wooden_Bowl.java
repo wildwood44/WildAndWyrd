@@ -6,21 +6,25 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Wooden_Bowl extends Entity {
 	GamePanel gp;
-	Entity loot;
-	boolean opened = false;
+	public static final int objId = 0;
+	public static final String objName = "Wooden Bowl";
 
-	public Obj_Wooden_Bowl(GamePanel gp, Entity loot) {
+	public Obj_Wooden_Bowl(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.loot = loot;
-		name = "Wooden Bowl";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 		options = new String[2];
 
 		image = setup("/res/objects/Table_Tile_Bowl", gp.tileSize, gp.tileSize);
-
-		setDialogue();
+		getImage(image);
+		//setLoot();
+	}
+	
+	public void setLoot(Entity loot) {
+		this.loot = loot;
+		setDialogue();	
 	}
 
 	public void setDialogue() {

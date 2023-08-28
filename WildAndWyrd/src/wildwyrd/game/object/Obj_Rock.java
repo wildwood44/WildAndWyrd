@@ -6,8 +6,8 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Rock extends Entity {
 	GamePanel gp;
-	Entity loot;
-	boolean opened = false;
+	public static final int objId = 21;
+	public static final String objName = "Rock";
 
 	public Obj_Rock(GamePanel gp, int varient) {
 		super(gp);

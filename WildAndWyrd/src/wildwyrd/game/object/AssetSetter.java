@@ -1,5 +1,7 @@
 package wildwyrd.game.object;
 
+import java.io.Serializable;
+
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.items.Itm_Bandage;
@@ -16,7 +18,7 @@ import wildwyrd.npc.NPC_Dilecto;
 import wildwyrd.npc.NPC_Florence;
 import wildwyrd.npc.NPC_Thay;
 
-public class AssetSetter {
+public class AssetSetter implements Serializable {
 	GamePanel gp;
 
 	public AssetSetter(GamePanel gp) {
@@ -37,9 +39,10 @@ public class AssetSetter {
 	}
 
 	public void setObject() {
-		gp.obj[0][0] = new Obj_Wooden_Bowl(gp, new Itm_Hazelnut(gp));
+		gp.obj[0][0] = new Obj_Wooden_Bowl(gp);
 		gp.obj[0][0].worldX = 3 * gp.tileSize;
 		gp.obj[0][0].worldY = 6 * gp.tileSize;
+		gp.obj[0][0].loot = new Itm_Hazelnut(gp);
 		gp.obj[0][1] = new Obj_Table_Left(gp);
 		gp.obj[0][1].worldX = 2 * gp.tileSize;
 		gp.obj[0][1].worldY = 6 * gp.tileSize;
@@ -91,27 +94,30 @@ public class AssetSetter {
 		gp.obj[0][17] = new Obj_Window_Down(gp);
 		gp.obj[0][17].worldX = 12 * gp.tileSize;
 		gp.obj[0][17].worldY = 9 * gp.tileSize;
-		gp.obj[0][18] = new Obj_Pot(gp, null);
+		gp.obj[0][18] = new Obj_Pot(gp);
 		gp.obj[0][18].worldX = 15 * gp.tileSize;
 		gp.obj[0][18].worldY = 4 * gp.tileSize;
-		gp.obj[0][19] = new Obj_Pot(gp, new Itm_Bandage(gp));
+		gp.obj[0][19] = new Obj_Pot(gp);
 		gp.obj[0][19].worldX = 15 * gp.tileSize;
 		gp.obj[0][19].worldY = 5 * gp.tileSize;
+		gp.obj[0][19].setLoot(new Itm_Bandage(gp));
 		gp.obj[0][20] = new Obj_Crate(gp);
 		gp.obj[0][20].worldX = 17 * gp.tileSize;
 		gp.obj[0][20].worldY = 4 * gp.tileSize;
-		gp.obj[0][21] = new Obj_Worktable(gp, new Itm_Hunting_Knife(gp));
+		gp.obj[0][21] = new Obj_Worktable(gp);
 		gp.obj[0][21].worldX = 16 * gp.tileSize;
 		gp.obj[0][21].worldY = 4 * gp.tileSize;
+		gp.obj[0][21].setLoot(new Itm_Hunting_Knife(gp));
 		gp.obj[1][0] = new Obj_Alder_Bed(gp, getRandomNumber(2,3));
 		gp.obj[1][0].worldX = 5 * gp.tileSize;
 		gp.obj[1][0].worldY = 5 * gp.tileSize;
 		gp.obj[1][1] = new Obj_Alder_Window(gp);
 		gp.obj[1][1].worldX = 6 * gp.tileSize;
 		gp.obj[1][1].worldY = 3 * gp.tileSize;
-		gp.obj[2][0] = new Obj_P_Mushroom(gp, new Itm_P_Mushroom(gp));
+		gp.obj[2][0] = new Obj_P_Mushroom(gp);
 		gp.obj[2][0].worldX = 10 * gp.tileSize;
 		gp.obj[2][0].worldY = 8 * gp.tileSize;
+		gp.obj[2][0].setLoot(new Itm_P_Mushroom(gp));
 		gp.obj[2][1] = new Plant_1(gp);
 		gp.obj[2][1].worldX = 14 * gp.tileSize;
 		gp.obj[2][1].worldY = 7 * gp.tileSize;

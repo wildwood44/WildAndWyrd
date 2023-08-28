@@ -6,16 +6,19 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Alder_Window extends Entity {
 	GamePanel gp;
+	public static final int objId = 18;
+	public static final String objName = "Window";
 	public Obj_Alder_Window(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Window";
+		name = objName;
 		type = EntityType.Object;
 		collision = false;
 	
 		image = setup("/res/objects/img_window_2", gp.tileSize, gp.tileSize);
 
 		setDialogue();
+		getImage(image);
 		solidArea.y = 56;
 		solidAreaDefaultY = solidArea.y;
 	}

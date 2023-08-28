@@ -74,6 +74,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public InteractiveTile iTile[][] = new InteractiveTile[10][50];
 	public Room[] rm;
 	public Map[] maps;
+	public SaveLoad saveLoad = new SaveLoad(this);
+	public EntityGenerator eGenerator = new EntityGenerator(this);
 	public Player player = new Player(this, keyH);
 	ArrayList<Entity> entityList = new ArrayList<>();
 

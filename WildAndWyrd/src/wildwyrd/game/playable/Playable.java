@@ -13,7 +13,7 @@ import wildwyrd.game.items.WeaponType;
 
 public class Playable extends Entity implements Comparable<Playable> {
 	protected String imageUrl;
-	private int level;
+	private int level = 1;
 	private int stamina;
 	private int maxStamina;
 	private int exp;
@@ -37,7 +37,7 @@ public class Playable extends Entity implements Comparable<Playable> {
 	public Playable(GamePanel gp, String name, int health, int stamina,
 			int baseAttack, int baseDefence, int baseAccuracy, int baseEvasion, int baseSpeed) {
 		super(gp);
-		this.level = 1;
+		//this.level = 1;
 		this.name = name;
 		this.maxHealth = health;
 		this.health = this.maxHealth;
@@ -69,9 +69,9 @@ public class Playable extends Entity implements Comparable<Playable> {
 		this.legs = legs;
 	}
 	public Weapon getWeapon_prime() {
-		if (weapon_prime.name == null) {
-			return null;
-		}
+		//if (weapon_prime.name == null) {
+		//	return null;
+		//}
 		return weapon_prime;
 	}
 	public void setWeapon_prime(Weapon weapon_prime) {
@@ -107,8 +107,14 @@ public class Playable extends Entity implements Comparable<Playable> {
 	public int getStamina() {
 		return stamina;
 	}
+	public void setStamina(int stamina) {
+		this.stamina = stamina;
+	}
 	public int getMaxStamina() {
 		return maxStamina;
+	}
+	public void setMaxStamina(int maxStamina) {
+		this.maxStamina = maxStamina;
 	}
 	public void eat(int restore) {
 		stamina += restore;
@@ -118,6 +124,10 @@ public class Playable extends Entity implements Comparable<Playable> {
 	}
 	public void loseStamina(int cost) {
 		stamina -= cost;
+	}
+	public void setHealthAndStamina(int health, int stamina) {
+		this.health = health;
+		this.stamina = stamina;
 	}
 	public int getBaseAttack() {
 		return baseAttack;
@@ -134,11 +144,20 @@ public class Playable extends Entity implements Comparable<Playable> {
 	public int getDefence() {
 		return baseDefence;
 	}
+	public int getBaseAccuracy() {
+		return baseAccuracy;
+	}
 	public int getAccuracy() {
 		return baseAccuracy;
 	}
+	public int getBaseEvasion() {
+		return baseEvasion;
+	}
 	public int getEvasion() {
 		return baseEvasion;
+	}
+	public int getBaseSpeed() {
+		return baseSpeed;
 	}
 	public int getSpeed() {
 		return baseSpeed;

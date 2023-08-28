@@ -6,11 +6,13 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Basin extends Entity {
 	GamePanel gp;
+	public static final int objId = 10;
+	public static final String objName = "Basin";
 
 	public Obj_Basin(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Basin";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

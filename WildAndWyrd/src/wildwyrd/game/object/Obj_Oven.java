@@ -6,11 +6,13 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Oven extends Entity {
 	GamePanel gp;
+	public static final int objId = 3;
+	public static final String objName = "Oven";
 
 	public Obj_Oven(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Oven";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

@@ -6,14 +6,13 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Pot extends Entity {
 	GamePanel gp;
-	Entity loot;
-	boolean opened = false;
+	public static final int objId = 15;
+	public static final String objName = "Clay Pots";
 
-	public Obj_Pot(GamePanel gp, Entity loot) {
+	public Obj_Pot(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.loot = loot;
-		name = "Clay Pot";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

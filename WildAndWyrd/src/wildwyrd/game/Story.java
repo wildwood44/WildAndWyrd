@@ -1,6 +1,8 @@
 package wildwyrd.game;
 
-public class Story {
+import java.io.Serializable;
+
+public class Story implements Serializable {
 	public int chapter = 0;
 	public int part = 1;
 	public boolean[] swh = new boolean[]{true, false, false, false, false, false, false, false, false, false, false,

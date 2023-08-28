@@ -6,21 +6,24 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_P_Mushroom extends Entity {
 	GamePanel gp;
-	Entity loot;
-	boolean opened = false;
+	public static final int objId = 20;
+	public static final String objName = "Parasol Mushroom";
 
-	public Obj_P_Mushroom(GamePanel gp, Entity loot) {
+	public Obj_P_Mushroom(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.loot = loot;
-		name = "Parasol Mushroom";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 
 		image = setup("/res/items/Parasol_Mushroom", gp.tileSize, gp.tileSize);
 		solidArea.x = 20;
 		solidAreaDefaultX = solidArea.x;
-		setDialogue();
+	}
+	
+	public void setLoot(Entity loot) {
+		this.loot = loot;
+		setDialogue();	
 	}
 
 	public void setDialogue() {

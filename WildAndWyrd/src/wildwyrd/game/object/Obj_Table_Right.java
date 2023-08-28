@@ -6,11 +6,13 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Table_Right extends Entity {
 	GamePanel gp;
+	public static final int objId = 2;
+	public static final String objName = "Table";
 
 	public Obj_Table_Right(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Tables";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 
@@ -18,6 +20,7 @@ public class Obj_Table_Right extends Entity {
 		
 		solidArea.width = 40;
 		setDialogue();
+		getImage(image);
 	}
 
 	public void setDialogue() {

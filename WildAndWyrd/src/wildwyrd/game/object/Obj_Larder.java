@@ -6,11 +6,13 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Larder extends Entity {
 	GamePanel gp;
+	public static final int objId = 8;
+	public static final String objName = "Larder";
 
 	public Obj_Larder(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Cupboard";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

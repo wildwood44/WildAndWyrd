@@ -8,12 +8,13 @@ import wildwyrd.game.GamePanel;
 
 public class Plant_1 extends Entity {
 	GamePanel gp;
-	boolean opened = false;
+	public static final int objId = 22;
+	public static final String objName = "Greater Plaintain";
 
 	public Plant_1(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Greater Plantain";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

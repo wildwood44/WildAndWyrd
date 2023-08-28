@@ -6,13 +6,13 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Tree extends Entity {
 	GamePanel gp;
-	Entity loot;
-	boolean opened = false;
+	public static final int objId = 24;
+	public static final String objName = "Tree";
 
 	public Obj_Tree(GamePanel gp, int num) {
 		super(gp);
 		this.gp = gp;
-		name = "Tree";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

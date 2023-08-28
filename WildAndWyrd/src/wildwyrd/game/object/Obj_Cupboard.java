@@ -8,11 +8,13 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Cupboard extends Entity {
 	GamePanel gp;
+	public static final int objId = 7;
+	public static final String objName = "Cupboard";
 
 	public Obj_Cupboard(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Cupboard";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

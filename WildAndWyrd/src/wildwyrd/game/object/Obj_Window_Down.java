@@ -6,10 +6,12 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Window_Down extends Entity {
 	GamePanel gp;
+	public static final int objId = 16;
+	public static final String objName = "Window";
 	public Obj_Window_Down(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Window";
+		name = objName;
 		type = EntityType.Object;
 		collision = false;
 	

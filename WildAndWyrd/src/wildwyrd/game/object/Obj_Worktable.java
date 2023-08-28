@@ -6,14 +6,13 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Worktable extends Entity {
 	GamePanel gp;
-	Entity loot;
-	boolean opened = false;
+	public static final int objId = 17;
+	public static final String objName = "Worktable";
 
-	public Obj_Worktable(GamePanel gp, Entity loot) {
+	public Obj_Worktable(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.loot = loot;
-		name = "Worktable";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

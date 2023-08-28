@@ -8,11 +8,13 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Hearth extends Entity {
 	GamePanel gp;
+	public static final int objId = 6;
+	public static final String objName = "Hearth";
 
 	public Obj_Hearth(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Hearth";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

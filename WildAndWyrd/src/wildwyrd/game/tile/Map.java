@@ -1,10 +1,11 @@
 package wildwyrd.game.tile;
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 import wildwyrd.game.GamePanel;
 
-public class Map {
+public class Map implements Serializable {
 	GamePanel gp;
 	BufferedImage worldMap[];
 	private int id;

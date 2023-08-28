@@ -9,11 +9,13 @@ import wildwyrd.game.library.ReadType;
 
 public class Obj_Bookshelf extends Entity {
 	GamePanel gp;
+	public static final int objId = 11;
+	public static final String objName = "Bookshelf";
 	Book[] books = new Book[5]; 
 	public Obj_Bookshelf(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Bookshelf";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 

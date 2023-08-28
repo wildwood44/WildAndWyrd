@@ -11,12 +11,13 @@ import wildwyrd.game.items.Itm_Primative_Arrow;
 
 public class Obj_Dummy extends Entity {
 	GamePanel gp;
-	boolean opened = false;
+	public static final int objId = 25;
+	public static final String objName = "Dummy";
 
 	public Obj_Dummy(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Dummy";
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 
