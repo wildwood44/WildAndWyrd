@@ -12,6 +12,7 @@ public class Obj_Table extends Entity {
 	public Obj_Table(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
@@ -19,6 +20,7 @@ public class Obj_Table extends Entity {
 		image = setup("/res/objects/img_table2", gp.tileSize, gp.tileSize);
 
 		setDialogue();
+		getImage(image);
 		solidArea.width = 60;
 	}
 

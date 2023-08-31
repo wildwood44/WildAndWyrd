@@ -14,20 +14,17 @@ public class Obj_Hearth extends Entity {
 	public Obj_Hearth(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
-
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/res/objects/img_hearth_right.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		image = setup("/res/objects/img_hearth_right",gp.tileSize,gp.tileSize);
 
 		solidArea.height = 60;
 		solidArea.y = 5;
 		solidAreaDefaultY = solidArea.y;
 		setDialogue();
+		getImage(image);
 	}
 
 	public void setDialogue() {

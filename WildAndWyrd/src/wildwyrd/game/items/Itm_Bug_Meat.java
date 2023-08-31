@@ -6,11 +6,14 @@ import wildwyrd.game.GamePanel;
 
 public class Itm_Bug_Meat extends Entity {
 	GamePanel gp;
+	public static final int itemId = 103;
+	public static final String itemName = "Bug meat";
 
 	public Itm_Bug_Meat(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Bug Meat";
+		id = itemId;
+		name = itemName;
 		type = EntityType.Food;
 		staminaRcvd = 10;
 		description = "";

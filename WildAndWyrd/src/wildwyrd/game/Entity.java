@@ -66,6 +66,7 @@ public class Entity {
 	public Timer timer;
 	public long startTime = -1;
 	public Entity loot;
+	public int shill = 0;
 	public boolean opened = false;
 
 	public Entity(GamePanel gp) {
@@ -210,6 +211,10 @@ public class Entity {
 	
 	public void setLoot(Entity loot) {
 		this.loot = loot;
+	}
+	
+	public void setLoot(int loot) {
+		this.shill = loot;
 	}
 	
 	public void interact() {

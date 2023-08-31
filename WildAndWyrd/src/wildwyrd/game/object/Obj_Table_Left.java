@@ -13,6 +13,7 @@ public class Obj_Table_Left extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = objName;
+		id  = objId;
 		type = EntityType.Object;
 		collision = true;
 
@@ -23,7 +24,6 @@ public class Obj_Table_Left extends Entity {
 		solidAreaDefaultX = solidArea.x;
 		setDialogue();
 		getImage(image);
-		System.out.println(down1);
 	}
 
 	public void setDialogue() {

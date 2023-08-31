@@ -12,6 +12,7 @@ public class Obj_Worktable extends Entity {
 	public Obj_Worktable(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
@@ -19,6 +20,7 @@ public class Obj_Worktable extends Entity {
 		image = setup("/res/objects/img_worktable", gp.tileSize, gp.tileSize);
 
 		setDialogue();
+		getImage(image);
 		solidArea.width = 60;
 	}
 	

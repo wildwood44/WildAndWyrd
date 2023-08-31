@@ -12,7 +12,8 @@ public class Obj_Rock extends Entity {
 	public Obj_Rock(GamePanel gp, int varient) {
 		super(gp);
 		this.gp = gp;
-		name = "Rock";
+		id = objId;
+		name = objName;
 		type = EntityType.Object;
 		collision = true;
 		if (varient == 1) {
@@ -20,8 +21,7 @@ public class Obj_Rock extends Entity {
 		} else {
 			image = setup("/res/objects/img_rock", gp.tileSize, gp.tileSize);
 		}
-		
-
+		getImage(image);
 		setDialogue();
 	}
 

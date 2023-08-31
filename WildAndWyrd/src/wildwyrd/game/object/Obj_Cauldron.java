@@ -13,6 +13,7 @@ public class Obj_Cauldron extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = objName;
+		id  = objId;
 		type = EntityType.Object;
 		collision = true;
 
@@ -22,6 +23,7 @@ public class Obj_Cauldron extends Entity {
 		solidArea.y = 5;
 		solidAreaDefaultY = this.solidArea.y;
 		setDialogue();
+		getImage(image);
 	}
 
 	public void setDialogue() {

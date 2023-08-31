@@ -17,16 +17,14 @@ public class Obj_Dummy extends Entity {
 	public Obj_Dummy(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
 
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/res/objects/img_dummy.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		this.setDialogue();
+		image = setup("/res/objects/img_dummy",gp.tileSize,gp.tileSize);
+		setDialogue();
+		getImage(image);
 	}
 
 	public void setDialogue() {

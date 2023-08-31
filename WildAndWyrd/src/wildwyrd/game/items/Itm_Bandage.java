@@ -6,11 +6,14 @@ import wildwyrd.game.GamePanel;
 
 public class Itm_Bandage extends Entity {
 	GamePanel gp;
+	public static final int itemId = 201;
+	public static final String itemName = "Bandage";
 
 	public Itm_Bandage(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Bandage";
+		id = itemId;
+		name = itemName;
 		type = EntityType.Health;
 		healthRcvd = 10;
 		description = "A cloth bandage to treat wounds.";

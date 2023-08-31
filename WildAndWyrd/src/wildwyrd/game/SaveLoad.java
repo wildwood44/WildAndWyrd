@@ -7,17 +7,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import wildwyrd.data.DataStorage;
-import wildwyrd.game.object.Obj_Basin;
-import wildwyrd.game.object.Obj_Cupboard;
-import wildwyrd.game.object.Obj_Kitchen_Window;
-import wildwyrd.game.object.Obj_Larder;
-import wildwyrd.game.object.Obj_Oven;
-import wildwyrd.game.object.Obj_Pots;
-import wildwyrd.game.object.Obj_Table_Left;
-import wildwyrd.game.object.Obj_Table_Right;
-import wildwyrd.game.object.Obj_Wooden_Bowl;
+import wildwyrd.game.items.Armour;
+import wildwyrd.game.items.Weapon;
 import wildwyrd.game.playable.Playable;
-import wildwyrd.game.tile.TileManager; 
 
 public class SaveLoad {
 	GamePanel gp;
@@ -39,7 +31,13 @@ public class SaveLoad {
 			ds.baseAccuracy = new int[gp.playable.size()];
 			ds.baseEvasion = new int[gp.playable.size()];
 			ds.baseSpeed = new int[gp.playable.size()];
+			ds.currentHat = new int[gp.playable.size()];
+			ds.currentShirt = new int[gp.playable.size()];
+			ds.currentTrousers = new int[gp.playable.size()];
+			ds.currentPrimary = new int[gp.playable.size()];
+			ds.currentSecondary = new int[gp.playable.size()];
 			for(int i = 0; i < gp.playable.size(); i++) {
+				//Stats
 				ds.maxHealth[i] = gp.playable.get(i).maxHealth;
 				ds.health[i] = gp.playable.get(i).health;
 				ds.maxStamina[i] = gp.playable.get(i).getMaxStamina();
@@ -49,6 +47,28 @@ public class SaveLoad {
 				ds.baseAccuracy[i] = gp.playable.get(i).getBaseAccuracy();
 				ds.baseEvasion[i] = gp.playable.get(i).getBaseEvasion();
 				ds.baseSpeed[i] = gp.playable.get(i).getBaseSpeed();
+				//Equipment
+				if(gp.playable.get(i).getHead() == null) {
+					ds.currentHat[i] = -1;
+				} else {
+					ds.currentHat[i] = gp.playable.get(i).getHead().id;
+				} if(gp.playable.get(i).getBody() == null) {
+					ds.currentShirt[i] = -1;
+				} else {
+					ds.currentShirt[i] = gp.playable.get(i).getBody().id;
+				} if(gp.playable.get(i).getLegs() == null) {
+					ds.currentTrousers[i] = -1;
+				} else {
+					ds.currentTrousers[i] = gp.playable.get(i).getLegs().id;
+				} if(gp.playable.get(i).getWeapon_prime() == null) {
+					ds.currentPrimary[i] = -1;
+				} else {
+					ds.currentPrimary[i] = gp.playable.get(i).getWeapon_prime().id;
+				} if(gp.playable.get(i).getWeapon_second() == null) {
+					ds.currentSecondary[i] = -1;
+				} else {
+					ds.currentSecondary[i] = gp.playable.get(i).getWeapon_second().id;
+				}
 			}
 			ds.direction = gp.player.direction;
 			//Player Position
@@ -56,6 +76,11 @@ public class SaveLoad {
 			ds.currentMap = gp.currentMap.getId();
 			ds.worldX = gp.player.worldX;
 			ds.worldY = gp.player.worldY;
+			//Inventory
+			for(int i = 0; i < gp.player.inventory.size(); i++) {
+				ds.itemId.add(gp.player.inventory.get(i).id);
+				ds.itemAmount.add(gp.player.inventory.get(i).amount);
+			}
 			//Object on map
 			ds.mapObjectId = new int[gp.maxMap][gp.obj[1].length];
 			ds.mapObjectWorldX = new int[gp.maxMap][gp.obj[1].length];
@@ -81,7 +106,6 @@ public class SaveLoad {
 			}
 			oos.writeObject(ds);
 		} catch (Exception e) {
-			System.out.println(e);
 			System.out.println("Save Exception!");
 		}
 	}
@@ -95,6 +119,17 @@ public class SaveLoad {
 				gp.playable.set(i,new Playable(gp, "Alder", ds.maxHealth[i], ds.maxStamina[i],
 						ds.baseAttack[i], ds.baseDefence[i], ds.baseAccuracy[i], ds.baseEvasion[i], ds.baseSpeed[i]));
 				gp.playable.get(i).setHealthAndStamina(ds.health[i],ds.stamina[i]);
+				if(ds.currentHat[i] >= 0 && gp.eGenerator.getObject(ds.currentHat[i]) instanceof Armour) {
+					gp.playable.get(i).setHead(gp.eGenerator.getObject(ds.currentHat[i]));
+				} if(ds.currentShirt[i] >= 0 && gp.eGenerator.getObject(ds.currentShirt[i]) instanceof Armour) {
+					gp.playable.get(i).setBody(gp.eGenerator.getObject(ds.currentShirt[i]));
+				} if(ds.currentTrousers[i] >= 0 && gp.eGenerator.getObject(ds.currentTrousers[i]) instanceof Armour) {
+					gp.playable.get(i).setLegs(gp.eGenerator.getObject(ds.currentTrousers[i]));
+				} if(ds.currentPrimary[i] >= 0 && gp.eGenerator.getObject(ds.currentPrimary[i]) instanceof Weapon) {
+					gp.playable.get(i).setWeapon_prime((Weapon)gp.eGenerator.getObject(ds.currentPrimary[i]));
+				} if(ds.currentSecondary[i] >= 0 && gp.eGenerator.getObject(ds.currentSecondary[i]) instanceof Weapon) {
+					gp.playable.get(i).setWeapon_second((Weapon)gp.eGenerator.getObject(ds.currentSecondary[i]));
+				}
 			}
 		//	gp.player = ds.player;
 			gp.player.direction = ds.direction;
@@ -102,13 +137,17 @@ public class SaveLoad {
 			gp.currentMap = gp.maps[ds.currentMap];
 			gp.player.worldX = ds.worldX;
 			gp.player.worldY = ds.worldY;
+			gp.player.inventory.clear();
+			for(int i = 0; i < ds.itemId.size(); i++) {
+				gp.player.inventory.add(gp.eGenerator.getObject(ds.itemId.get(i)));
+				gp.player.inventory.get(i).amount = ds.itemAmount.get(i);
+			}
 			for(int mapNum = 0; mapNum < gp.maxMap; mapNum++) {
 				for(int i = 0; i < gp.obj[1].length; i++) {
-					System.out.println(gp.obj[1]);
 					if(ds.mapObjectId[mapNum][i] < 0) {
 						gp.obj[mapNum][i] = null;
 					} else {
-						System.out.println(gp.obj[mapNum][i]);
+						//System.out.println(gp.obj[mapNum][i]);
 						gp.obj[mapNum][i] = gp.eGenerator.getObject(ds.mapObjectId[mapNum][i]);
 						gp.obj[mapNum][i].worldX = ds.mapObjectWorldX[mapNum][i];
 						gp.obj[mapNum][i].worldY = ds.mapObjectWorldY[mapNum][i];
@@ -122,8 +161,8 @@ public class SaveLoad {
 					}
 				}
 			}
-			gp.tileM = new TileManager(gp);
 		} catch (Exception e) {
+			System.out.println(e);
 			System.out.println("Load Exception!");
 		}
 	}

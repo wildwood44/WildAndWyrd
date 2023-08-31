@@ -1,7 +1,5 @@
 package wildwyrd.game.object;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
@@ -14,16 +12,14 @@ public class Plant_1 extends Entity {
 	public Plant_1(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
 
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/res/objects/img_greater_plantain.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		this.setDialogue();
+		image = setup("/res/objects/img_greater_plantain",gp.tileSize,gp.tileSize);
+		setDialogue();
+		getImage(image);
 	}
 
 	public void setDialogue() {
@@ -34,7 +30,7 @@ public class Plant_1 extends Entity {
 
 	public void interact() {
 		startDialogue(this, 0);
-		this.gp.keyH.enterPressed = false;
+		gp.keyH.enterPressed = false;
 		
 	}
 }

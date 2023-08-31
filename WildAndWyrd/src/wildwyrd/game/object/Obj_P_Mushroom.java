@@ -12,6 +12,7 @@ public class Obj_P_Mushroom extends Entity {
 	public Obj_P_Mushroom(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
@@ -19,6 +20,7 @@ public class Obj_P_Mushroom extends Entity {
 		image = setup("/res/items/Parasol_Mushroom", gp.tileSize, gp.tileSize);
 		solidArea.x = 20;
 		solidAreaDefaultX = solidArea.x;
+		getImage(image);
 	}
 	
 	public void setLoot(Entity loot) {

@@ -12,6 +12,7 @@ public class Obj_Pots extends Entity {
 	public Obj_Pots(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
@@ -22,10 +23,11 @@ public class Obj_Pots extends Entity {
 		solidArea.y = 5;
 		solidAreaDefaultY = solidArea.y;
 		setDialogue();
+		getImage(image);
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge("Various pots and pans were hung on hooks :on the wall.", 1);
+		dialogues[0][0] = new Dialoge("Various pots and pans were hung on hooks on the wall.", 1);
 	}
 
 	public void interact() {

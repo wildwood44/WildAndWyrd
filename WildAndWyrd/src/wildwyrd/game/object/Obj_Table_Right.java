@@ -13,6 +13,7 @@ public class Obj_Table_Right extends Entity {
 		super(gp);
 		this.gp = gp;
 		name = objName;
+		id  = objId;
 		type = EntityType.Object;
 		collision = true;
 

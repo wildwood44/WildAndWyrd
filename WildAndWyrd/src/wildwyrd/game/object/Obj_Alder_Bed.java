@@ -8,23 +8,19 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Alder_Bed extends Entity {
 	GamePanel gp;
-	int loot;
 	public static final int objId = 19;
 	public static final String objName = "Alder's Bed";
 
-	public Obj_Alder_Bed(GamePanel gp, int loot) {
+	public Obj_Alder_Bed(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		this.loot = loot;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
 
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/res/objects/Img_Alder_Bed.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		image = setup("/res/objects/Img_Alder_Bed",gp.tileSize,gp.tileSize);
+		getImage(image);
 		setDialogue();
 	}
 
@@ -36,7 +32,7 @@ public class Obj_Alder_Bed extends Entity {
 
 	public void choiceResponce() {
 		if (gp.ui.choiceSlot == 0) {
-			gp.player.pickUpShillings(loot);
+			gp.player.pickUpShillings(shill);
 			opened = true;
 		}
 

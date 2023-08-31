@@ -15,6 +15,7 @@ public class Obj_Bookshelf extends Entity {
 	public Obj_Bookshelf(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
@@ -26,6 +27,7 @@ public class Obj_Bookshelf extends Entity {
 		solidAreaDefaultY = solidArea.y;
 		setDialogue();
 		setBooks();
+		getImage(image);
 	}
 
 	public void setDialogue() {

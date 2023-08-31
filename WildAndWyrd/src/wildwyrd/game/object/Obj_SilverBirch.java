@@ -12,12 +12,14 @@ public class Obj_SilverBirch extends Entity {
 	public Obj_SilverBirch(GamePanel gp, int num) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
 		image = setup("/res/objects/img_silver_birch" + num, gp.tileSize, gp.tileSize);
 
 		setDialogue();
+		getImage(image);
 	}
 
 	public void setDialogue() {

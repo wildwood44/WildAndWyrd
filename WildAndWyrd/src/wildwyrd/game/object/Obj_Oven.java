@@ -12,6 +12,7 @@ public class Obj_Oven extends Entity {
 	public Obj_Oven(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
@@ -22,6 +23,7 @@ public class Obj_Oven extends Entity {
 		solidArea.x = 10;
 		solidAreaDefaultX = solidArea.x;
 		setDialogue();
+		getImage(image);
 	}
 
 	public void setDialogue() {

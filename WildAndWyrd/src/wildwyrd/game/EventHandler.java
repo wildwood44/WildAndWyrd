@@ -113,7 +113,6 @@ public class EventHandler {
 	public boolean hit(int map, int col, int row, String reqDirection) {
 		boolean hit = false;
 		if(map == gp.currentMap.getId()) {
-			//System.out.println(gp.currentMap.getMaxWorldCol());
 			gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
 			gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
 			eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;

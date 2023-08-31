@@ -12,6 +12,7 @@ public class Obj_Basin extends Entity {
 	public Obj_Basin(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
@@ -19,6 +20,7 @@ public class Obj_Basin extends Entity {
 		image = setup("/res/objects/img_basin", gp.tileSize, gp.tileSize);
 
 		setDialogue();
+		getImage(image);
 		solidArea.x = 15;
 		solidArea.y = 40;
 		solidArea.height = 50;

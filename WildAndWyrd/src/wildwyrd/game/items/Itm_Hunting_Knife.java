@@ -6,11 +6,14 @@ import wildwyrd.game.GamePanel;
 
 public class Itm_Hunting_Knife extends Weapon {
 	GamePanel gp;
+	public static final int itemId = 301;
+	public static final String itemName = "Hunting Knife";
 
 	public Itm_Hunting_Knife(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Hunting Knife";
+		id = itemId;
+		name = itemName;
 		type = EntityType.Primary;
 		wpType = WeaponType.Dagger;
 		attackValue = 5;

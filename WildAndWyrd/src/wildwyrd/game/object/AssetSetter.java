@@ -42,7 +42,7 @@ public class AssetSetter implements Serializable {
 		gp.obj[0][0] = new Obj_Wooden_Bowl(gp);
 		gp.obj[0][0].worldX = 3 * gp.tileSize;
 		gp.obj[0][0].worldY = 6 * gp.tileSize;
-		gp.obj[0][0].loot = new Itm_Hazelnut(gp);
+		gp.obj[0][0].setLoot(new Itm_Hazelnut(gp));
 		gp.obj[0][1] = new Obj_Table_Left(gp);
 		gp.obj[0][1].worldX = 2 * gp.tileSize;
 		gp.obj[0][1].worldY = 6 * gp.tileSize;
@@ -108,9 +108,10 @@ public class AssetSetter implements Serializable {
 		gp.obj[0][21].worldX = 16 * gp.tileSize;
 		gp.obj[0][21].worldY = 4 * gp.tileSize;
 		gp.obj[0][21].setLoot(new Itm_Hunting_Knife(gp));
-		gp.obj[1][0] = new Obj_Alder_Bed(gp, getRandomNumber(2,3));
+		gp.obj[1][0] = new Obj_Alder_Bed(gp);
 		gp.obj[1][0].worldX = 5 * gp.tileSize;
 		gp.obj[1][0].worldY = 5 * gp.tileSize;
+		gp.obj[1][0].setLoot(getRandomNumber(2,3));
 		gp.obj[1][1] = new Obj_Alder_Window(gp);
 		gp.obj[1][1].worldX = 6 * gp.tileSize;
 		gp.obj[1][1].worldY = 3 * gp.tileSize;

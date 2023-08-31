@@ -11,6 +11,7 @@ public class Obj_Alder_Window extends Entity {
 	public Obj_Alder_Window(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = false;

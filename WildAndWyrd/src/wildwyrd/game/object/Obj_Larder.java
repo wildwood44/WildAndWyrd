@@ -12,6 +12,7 @@ public class Obj_Larder extends Entity {
 	public Obj_Larder(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
@@ -19,6 +20,7 @@ public class Obj_Larder extends Entity {
 		image = setup("/res/objects/img_cupboard", gp.tileSize, gp.tileSize);
 
 		setDialogue();
+		getImage(image);
 		solidArea.width = 20;
 	}
 

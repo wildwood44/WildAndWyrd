@@ -5,11 +5,14 @@ import wildwyrd.game.GamePanel;
 
 public class Itm_Bow extends Weapon {
 	GamePanel gp;
+	public static final int itemId = 302;
+	public static final String itemName = "Bow";
 
 	public Itm_Bow(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Bow";
+		id = itemId;
+		name = itemName;
 		type = EntityType.Secondary;
 		wpType = WeaponType.Bow;
 		attackValue = 5;

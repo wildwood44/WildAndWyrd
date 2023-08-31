@@ -13,6 +13,7 @@ public class Obj_Kitchen_Window extends Entity {
 	public Obj_Kitchen_Window(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
@@ -20,6 +21,7 @@ public class Obj_Kitchen_Window extends Entity {
 		image = setup("/res/objects/img_window_light", gp.tileSize, gp.tileSize);
 
 		setDialogue();
+		getImage(image);
 		solidArea.x = 15;
 		solidArea.y = 40;
 		solidArea.height = 50;

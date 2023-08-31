@@ -89,7 +89,9 @@ public class CutsceneManager {
 	}
 	
 	private void scene_c1_1() {
-		
+		if (scenePhase == 0) {
+			
+		}
 	}
 	
 	private void scene_c1_2() {

@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import wildwyrd.game.combat.CombatStatus;
+import wildwyrd.game.tile.TileManager;
 
 public class KeyHandler implements KeyListener {
 	GamePanel gp;
@@ -24,14 +25,14 @@ public class KeyHandler implements KeyListener {
 		int code = e.getKeyCode();
 		GameState gameState = gp.gameState;
 		if (gameState == GameState.titleState) {
-			if (code == KeyEvent.VK_W) {
+			if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
 				gp.ui.commandNum--;
 				if (gp.ui.commandNum < 0) {
 					gp.ui.commandNum = 2;
 				}
 			}
 
-			if (code == KeyEvent.VK_S) {
+			if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
 				gp.ui.commandNum++;
 				if (gp.ui.commandNum > 2) {
 					gp.ui.commandNum = 0;
@@ -46,6 +47,8 @@ public class KeyHandler implements KeyListener {
 				}
 				if (gp.ui.commandNum == 1) {
 					gp.saveLoad.load();
+					gp.tileM = new TileManager(gp);
+					gp.eHandler = new EventHandler(gp);
 					gp.gameState = GameState.playState;
 				}
 				if (gp.ui.commandNum == 2) {
@@ -67,9 +70,9 @@ public class KeyHandler implements KeyListener {
 						gp.ui.resetSlots();
 						gp.gameState = GameState.equipState;
 						gp.ui.drawEquipScreen();
-					} else if (gp.ui.slotCol == 4) { //Open equip screen
+					} else if (gp.ui.slotCol == 4) { //Open objectives screen
 						
-					} else if (gp.ui.slotCol == 5) { //Open equip screen
+					} else if (gp.ui.slotCol == 5) { //Open skills screen
 						
 					} else if (gp.ui.slotCol == 6) { //Open glossary screen
 						gp.ui.resetSlots();
@@ -86,18 +89,18 @@ public class KeyHandler implements KeyListener {
 					break;
 				case KeyEvent.VK_UP :
 				case KeyEvent.VK_W :
-					if (this.gp.ui.slotCol != 0) {
-						--this.gp.ui.slotCol;
+					if (gp.ui.slotCol != 0) {
+						--gp.ui.slotCol;
 					} else {
-						this.gp.ui.slotCol = 7;
+						gp.ui.slotCol = 7;
 					}
 					break;
 				case KeyEvent.VK_DOWN :
 				case KeyEvent.VK_S :
-					if (this.gp.ui.slotCol != 7) {
-						++this.gp.ui.slotCol;
+					if (gp.ui.slotCol != 7) {
+						++gp.ui.slotCol;
 					} else {
-						this.gp.ui.slotCol = 0;
+						gp.ui.slotCol = 0;
 					}
 			}
 		} else if (gp.gameState == GameState.statusState) {
@@ -108,18 +111,18 @@ public class KeyHandler implements KeyListener {
 					break;
 				case KeyEvent.VK_UP :
 				case KeyEvent.VK_W :
-					if (this.gp.ui.slotRow2 != 0) {
-						--this.gp.ui.slotRow2;
+					if (gp.ui.slotRow2 != 0) {
+						--gp.ui.slotRow2;
 					} else {
-						this.gp.ui.slotRow2 = 3;
+						gp.ui.slotRow2 = 3;
 					}
 					break;
 				case KeyEvent.VK_DOWN :
 				case KeyEvent.VK_S :
-					if (this.gp.ui.slotRow2 != 3) {
-						++this.gp.ui.slotRow2;
+					if (gp.ui.slotRow2 != 3) {
+						++gp.ui.slotRow2;
 					} else {
-						this.gp.ui.slotRow2 = 0;
+						gp.ui.slotRow2 = 0;
 					}
 			}
 		} else if (gameState == GameState.inventoryState) {

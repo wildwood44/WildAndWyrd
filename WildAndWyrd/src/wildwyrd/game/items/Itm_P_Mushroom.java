@@ -6,11 +6,14 @@ import wildwyrd.game.GamePanel;
 
 public class Itm_P_Mushroom extends Entity {
 	GamePanel gp;
+	public static final int itemId = 102;
+	public static final String itemName = "Parasol Mushroom";
 
 	public Itm_P_Mushroom(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Parasol Mushroom";
+		id = itemId;
+		name = itemName;
 		type = EntityType.Food;
 		staminaRcvd = 5;
 		description = "";

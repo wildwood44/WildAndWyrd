@@ -14,6 +14,7 @@ public class Obj_Cupboard extends Entity {
 	public Obj_Cupboard(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
@@ -25,6 +26,7 @@ public class Obj_Cupboard extends Entity {
 		}
 
 		setDialogue();
+		getImage(image);
 		solidArea.width = 20;
 	}
 

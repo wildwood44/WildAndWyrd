@@ -11,12 +11,14 @@ public class Obj_Window_Down extends Entity {
 	public Obj_Window_Down(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = false;
 	
 		image = setup("/res/objects/img_window_down", gp.tileSize, gp.tileSize);
 		setDialogue();
+		getImage(image);
 		solidArea.y = 56;
 		solidAreaDefaultY = solidArea.y;
 	}

@@ -12,6 +12,7 @@ public class Obj_Tree extends Entity {
 	public Obj_Tree(GamePanel gp, int num) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
@@ -19,6 +20,7 @@ public class Obj_Tree extends Entity {
 		image = setup("/res/objects/img_tree" + num, gp.tileSize, gp.tileSize);
 
 		setDialogue();
+		getImage(image);
 	}
 
 	public void setDialogue() {

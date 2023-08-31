@@ -1,6 +1,7 @@
 package wildwyrd.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import wildwyrd.game.Story;
 import wildwyrd.game.playable.Playable;
@@ -19,11 +20,19 @@ public class DataStorage implements Serializable {
 	public int baseEvasion[];
 	public int baseSpeed[];
 	//Player character details
-	//public Player player;
 	public String direction;
 	public Story story;
 	public int currentMap;
 	public int worldX, worldY;
+	//Player inventory
+	public ArrayList<Integer> itemId = new ArrayList<>();
+	public ArrayList<Integer> itemAmount = new ArrayList<>();
+	//Equipment
+	public int currentHat[];
+	public int currentShirt[];
+	public int currentTrousers[];
+	public int currentPrimary[];
+	public int currentSecondary[];
 	//Object on map
 	public int mapObjectId[][];
 	public int mapObjectName[][];

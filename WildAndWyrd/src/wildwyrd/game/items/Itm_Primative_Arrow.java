@@ -6,11 +6,14 @@ import wildwyrd.game.GamePanel;
 
 public class Itm_Primative_Arrow extends Weapon {
 	GamePanel gp;
+	public static final int itemId = 501;
+	public static final String itemName = "Primative Arrow";
 
 	public Itm_Primative_Arrow(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		name = "Primative Arrow";
+		id = itemId;
+		name = itemName;
 		type = EntityType.Projectile;
 		wpType = WeaponType.Arrow;
 		attackValue = 5;

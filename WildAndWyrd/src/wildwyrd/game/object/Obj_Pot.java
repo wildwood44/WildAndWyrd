@@ -12,6 +12,7 @@ public class Obj_Pot extends Entity {
 	public Obj_Pot(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
@@ -19,12 +20,13 @@ public class Obj_Pot extends Entity {
 		image = setup("/res/objects/img_clay_pot_four", gp.tileSize, gp.tileSize);
 
 		setDialogue();
+		getImage(image);
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge("The pots contained potion ingredients, left :in the shed to save space. One pot was :completely filled with eyeballs.", 1);
+		dialogues[0][0] = new Dialoge("The pots contained potion ingredients, left in the shed to save space. One pot was completely filled with eyeballs.", 1);
 		dialogues[0][1] = new Dialoge("There was something strange in one of them.", 2);
-		dialogues[1][0] = new Dialoge("The pots contained potion ingredients, left :in the shed to save space. One pot was :completely filled with eyeballs.", 1);
+		dialogues[1][0] = new Dialoge("The pots contained potion ingredients, left in the shed to save space. One pot was completely filled with eyeballs.", 1);
 	}
 
 	public void choiceResponce() {
