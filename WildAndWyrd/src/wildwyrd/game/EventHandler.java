@@ -13,6 +13,7 @@ public class EventHandler {
 	int eventRectDefaultX;
 	int eventRectDefaultY;
 	boolean canTouchEvent = true;
+	boolean cutsceneActive = false;
 
 	public EventHandler(GamePanel gp) {
 		this.gp = gp;
@@ -59,7 +60,10 @@ public class EventHandler {
 		if(canTouchEvent) {
 			if(gp.currentMap.getId() == 0) {
 				if(hit(0,13,8,"up")) {teleport(gp.maps[1],15,3);}
-				if(hit(0,10,10,"down")) {teleport(gp.maps[2],14,4);}
+				if(hit(0,10,10,"down")) {teleport(gp.maps[2],14,4);
+					System.out.println(gp.s.swh[1] + " " + gp.s.part);
+					if(gp.s.swh[1] == true) {gp.s.part = 2;}
+				}
 				if(hit(0,16,9,"down")) {teleport(gp.maps[2],20,3);}
 			}
 			else if(gp.currentMap.getId() == 1) {
@@ -68,13 +72,12 @@ public class EventHandler {
 			else if(gp.currentMap.getId() == 2) {
 				if(hit(2,14,3,"up")) {teleport(gp.maps[0],10,10);}
 				if(hit(2,20,2,"up")) {teleport(gp.maps[0],16,9);}
-				//if(gp.playable[0].getWeapon_prime() == null) {
+				if(hit(2,14,4,"down")) {}
 				if(hit(2,11,11,"down")) {
 					if(gp.playable.get(0).getWeapon_prime() != null) {
 						teleport(gp.maps[3],3,1);
 					} else {
 						obsticle(gp.maps[2]);
-						System.out.println("It's dangerous to leave the cottage grounds unarmed.");
 					}
 				}
 				if(hit(2,12,11,"down")) {
@@ -99,14 +102,14 @@ public class EventHandler {
 	public void checkCutscene() {
 		if (gp.s.chapter == 0 && gp.s.swh[0]) {
 			prologueCutscene(0);
-		}
-
-		if (gp.s.chapter == 1 && gp.s.swh[0]) {
-			c1s_Cutscene(0);
-		}
-		
-		if(gp.s.chapter == 1 && gp.s.swh[0]) {
-			c1s_Cutscene(0);
+		} else if (gp.s.chapter == 1) {
+			if (gp.s.swh[0]) {
+				c1s_Cutscene(2);
+			} else if (gp.s.swh[1] && gp.s.part == 2) {
+				c1s_Cutscene(3);
+			}else if (gp.s.swh[2] && gp.s.part == 2) {
+				c1s_Cutscene(4);
+			}
 		}
 	}
 
@@ -140,9 +143,8 @@ public class EventHandler {
 
 	public void c1s_Cutscene(int read) {
 		gp.gameState = GameState.cutsceneState;
-		//System.out.println("Get Chapter 1");
 		CutsceneManager cm = gp.csManager;
-		cm.sceneNum = 2;
+		cm.sceneNum = read;
 	}
 
 	public void message() {

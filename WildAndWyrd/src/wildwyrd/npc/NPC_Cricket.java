@@ -14,9 +14,10 @@ import wildwyrd.game.combat.En_Wasp;
 import wildwyrd.game.object.Dialoge;
 
 public class NPC_Cricket extends Entity {
+	public static final String npcName = "Cricket";
 	public NPC_Cricket(GamePanel gp) {
 		super(gp);
-		name = "Cricket";
+		name = npcName;
 		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;

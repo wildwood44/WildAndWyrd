@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
-import wildwyrd.game.GameState;
 import wildwyrd.game.Story;
 import wildwyrd.game.object.Dialoge;
 
@@ -34,26 +33,41 @@ public class Cutscene extends Entity {
 	public void setCutscene(int dialogueSet, int read) {
 		this.dialogueSet = dialogueSet;
 		int count = 0;
-
+		//System.out.println(dialogueSet + " " + read);
 		try {
 			InputStream f = getClass().getResourceAsStream("/res/dialogue/Cutscenes.txt");
 			BufferedReader b = new BufferedReader(new InputStreamReader(f));
 
 			for (String i = b.readLine(); i != null; i = b.readLine()) {
-				String[] line = i.split("\\$ ", 5);
-				if (line[0].equals(Integer.toString(this.s.chapter)) && line[1].equals(Integer.toString(read))
+				String[] line = i.split("\\$ ", 6);
+				if (line[0].equals(Integer.toString(s.chapter)) && line[1].equals(Integer.toString(read))
 						&& line[2].equals(Integer.toString(s.part))) {
+					//System.out.println(line[0] + " " + line[1]);
 					String[] newline = line[4].split("£");
 					String name = "";
 					String text = "";
+					//BufferedImage image = null;
+					//imageUrl = imageUrl.replaceAll("\\s+","");
+					
 					if (newline.length > 1) {
 						name = newline[0];
 						text = newline[1];
 					} else {
 						text = line[4].trim();
 					}
+					/*if(line.length > 5) {
+						String imageUrl = line[5];
+						if(imageUrl != null) {
+							System.out.println(imageUrl);
+							image = setup("/res/character/"+imageUrl,200,600);
+						}
+					}*/
 					if (name != "") {
+						//if(image != null) {
+							//dialogues[dialogueSet][count] = new Dialoge(name, text, 1,image);
+						//} else {
 						dialogues[dialogueSet][count] = new Dialoge(name, text, 1);
+						//}
 					} else {
 						dialogues[dialogueSet][count] = new Dialoge(text, 1);
 					}
@@ -99,7 +113,6 @@ public class Cutscene extends Entity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public void setSprites() {
@@ -167,5 +180,11 @@ public class Cutscene extends Entity {
 		sprites[1][6] = image_Thay;
 		sprites[1][7] = image_Thay;
 		sprites[1][9] = image_Thay;
+		sprites[2][1] = image_Thay;
+		sprites[2][3] = image_Thay;
+		sprites[2][4] = image_Thay;
+		sprites[2][7] = image_Thay;
+		sprites[2][8] = image_Thay;
+		sprites[2][9] = image_Thay;
 	}
 }

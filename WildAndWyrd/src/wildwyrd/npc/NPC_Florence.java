@@ -195,6 +195,9 @@ public class NPC_Florence extends Entity {
 					dialogueIndex = 0;
 					speak();
 				}
+			} if (dialogues[dialogueSet][dialogueIndex] == null) {
+				dialogueIndex = 0;
+				gp.s.swh[2] = true;
 			}
 		}
 	}

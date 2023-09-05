@@ -12,10 +12,11 @@ import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
 
 public class NPC_Thay extends Entity {
+	public static final String npcName = "Thay";
 	public NPC_Thay(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
-		name = "Thay";
+		name = npcName;
 		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;

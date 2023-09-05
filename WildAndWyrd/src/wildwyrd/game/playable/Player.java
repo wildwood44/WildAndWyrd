@@ -1,5 +1,6 @@
 package wildwyrd.game.playable;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -228,6 +229,7 @@ public class Player extends Entity {
 	
 	public void interactNPC(int i) {
 		if (i != 999) {
+			System.out.println(gp.npc[gp.currentMap.getId()][i].name);
 			if (keyH.enterPressed) {
 				gp.npc[gp.currentMap.getId()][i].speak();
 			}
@@ -417,7 +419,9 @@ public class Player extends Entity {
 		if(!damageTaken()) {
 			drawHealth(g2, x, y);
 		}
-
-		g2.drawImage(image, x, y, (ImageObserver) null);
+		if(drawing) {
+			g2.drawImage(image, x, y, (ImageObserver) null);
+		}
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 	}
 }

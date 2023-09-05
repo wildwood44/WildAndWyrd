@@ -11,6 +11,7 @@ import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class NPC_Dilecto extends Entity {
+	public static final String npcName = "Dilecto";
 	public NPC_Dilecto(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;

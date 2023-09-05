@@ -1,53 +1,24 @@
-package wildwyrd.game.object;
+package wildwyrd.game.cutscenes;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-enum character {
-	Dilecto, Thay, Dean, Raplh, Plumm
-}
+import wildwyrd.game.Entity;
+import wildwyrd.game.GamePanel;
 
-public class Dialoge {
-	public String speaker;
-	public String text;
-	public int type;
-	public BufferedImage image;
+public class Actor extends Entity {
+	GamePanel gp;
 	BufferedImage image_Dilecto;
 	BufferedImage image_Thay;
 	BufferedImage image_Dean;
 	BufferedImage image_Ralph;
 	BufferedImage image_Plumm;
 
-	public Dialoge(String text, int type) {
-		this.text = text;
-		this.type = type;
-	}
-	
-	public Dialoge(String speaker, String text, int type) {
-		this.speaker = speaker; 
-		this.text = text;
-		this.type = type;
-	}
-	
-	public Dialoge(String speaker, String text, int type, BufferedImage image) {
-		this.speaker = speaker; 
-		this.text = text;
-		this.type = type;
-		this.image = image;
-	}
-
-	public String getText() {
-		return this.text;
-	}
-
-	public int getType() {
-		return this.type;
-	}
-
-	public String getSpeaker() {
-		return speaker;
+	public Actor(GamePanel gp) {
+		super(gp);
+		this.gp = gp;
 	}
 
 	public void setImages() {
@@ -60,6 +31,9 @@ public class Dialoge {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
+	
+	//public BufferedImage getActor() {
+		
+	//}
 }

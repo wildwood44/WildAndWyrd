@@ -68,6 +68,8 @@ public class Entity {
 	public Entity loot;
 	public int shill = 0;
 	public boolean opened = false;
+	public boolean drawing = true;
+	
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
