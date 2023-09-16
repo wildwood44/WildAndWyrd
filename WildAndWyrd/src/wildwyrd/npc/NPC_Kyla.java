@@ -12,7 +12,7 @@ import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
 
 public class NPC_Kyla extends Entity {
-	public static final String npcName = "Florence";
+	public static final String npcName = "Kyla";
 	public NPC_Kyla(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;

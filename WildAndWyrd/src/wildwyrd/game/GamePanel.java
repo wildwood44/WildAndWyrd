@@ -173,6 +173,7 @@ public class GamePanel extends JPanel implements Runnable {
 			for(int i = 0; i < iTile[currentMap.getId()].length; i++) {
 				if(iTile[currentMap.getId()][i] != null) {
 					iTile[currentMap.getId()][i].update();
+					//iTile[currentMap.getId()][i].draw(g2);
 				}
 			}
 		}
@@ -230,8 +231,8 @@ public class GamePanel extends JPanel implements Runnable {
 			} else if (gameState == GameState.gameOverState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.playState) {
-				//rm[currentRoom].draw(g2);
 				tileM.draw(g2);
+				//INTERACTIVE TILES
 				for(int i = 0; i < iTile[currentMap.getId()].length; i++) {
 					if(iTile[currentMap.getId()][i] != null) {
 						iTile[currentMap.getId()][i].draw(g2);

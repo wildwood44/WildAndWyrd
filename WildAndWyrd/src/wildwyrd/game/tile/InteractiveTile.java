@@ -1,16 +1,22 @@
 package wildwyrd.game.tile;
 
+import java.awt.AlphaComposite;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
-public class InteractiveTile extends Entity implements ActionListener {
+public class InteractiveTile extends Entity {
 	GamePanel gp;
-	public float alpha = 1f;
+	//public float alpha = 1f;
 	//public Timer timer;
 	public boolean transformable = false;
+	public boolean illusion = false;
+	public int animationCounter;
+	public boolean animationComp = false;
+	public boolean eventActive = false;
 	
 	public InteractiveTile(GamePanel gp, int col, int row) {
 		super(gp);
@@ -26,22 +32,26 @@ public class InteractiveTile extends Entity implements ActionListener {
 		return isCorrectItem;
 	}
 	
-	public InteractiveTile uncoverIllusion() {
-		InteractiveTile tile = null;
+	public InteractiveTile transform() {
+		InteractiveTile tile = this;
 		return tile;
 	}
 	
 	public void update() {
 		
+	} 
+	
+	public void changeAlpha(float alphaValue) {
+		alpha = alphaValue;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		alpha += -0.01f;
-        if (alpha <= 0) {
-            alpha = 0;
-            timer.stop();
-        }
-        //repaint();
+	public void uncoverIllusion(InteractiveTile truth) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void coverIllusion(InteractiveTile truth) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -2,6 +2,8 @@ package wildwyrd.game;
 
 import wildwyrd.game.cutscenes.CutsceneManager;
 import wildwyrd.game.object.Dialoge;
+import wildwyrd.game.object.IT_StoneDoor;
+import wildwyrd.game.tile.InteractiveTile;
 import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.TileManager;
 
@@ -14,6 +16,7 @@ public class EventHandler {
 	int eventRectDefaultY;
 	boolean canTouchEvent = true;
 	boolean cutsceneActive = false;
+	private long start;
 
 	public EventHandler(GamePanel gp) {
 		this.gp = gp;
@@ -70,23 +73,20 @@ public class EventHandler {
 				if(hit(1,15,4,"down")) {teleport(gp.maps[0],13,9);}
 			}
 			else if(gp.currentMap.getId() == 2) {
+				if(hit(2,14,4,"up")) {illusion(gp.iTile[gp.currentMap.getId()][0]);}
 				if(hit(2,14,3,"up")) {teleport(gp.maps[0],10,10);}
+				if(hit(2,20,3,"up")) {illusion(gp.iTile[gp.currentMap.getId()][1]);}
 				if(hit(2,20,2,"up")) {teleport(gp.maps[0],16,9);}
 				if(hit(2,14,4,"down")) {}
 				if(hit(2,11,11,"down")) {
 					if(gp.playable.get(0).getWeapon_prime() != null) {
 						teleport(gp.maps[3],3,1);
-					} else {
-						obsticle(gp.maps[2]);
-					}
+					} else { obsticle(gp.maps[2]); }
 				}
 				if(hit(2,12,11,"down")) {
 					if(gp.playable.get(0).getWeapon_prime() != null) {
 						teleport(gp.maps[3],4,1);
-					} else {
-						obsticle(gp.maps[2]);
-						System.out.println("It's dangerous to leave the cottage grounds unarmed.");
-					}
+					} else { obsticle(gp.maps[2]); }
 				}
 			}
 			else if(gp.currentMap.getId() == 3) {
@@ -163,6 +163,16 @@ public class EventHandler {
 		previousEventX = gp.player.worldX;
 		previousEventY = gp.player.worldY;
 		canTouchEvent = false;
+	}
+	
+	public void illusion(InteractiveTile iTile) {
+		//long current = System.currentTimeMillis();
+		//System.out.println(start + 3000 +" "+ current);
+		if(iTile.id == IT_StoneDoor.intId) {
+            //start = current;
+			//((IT_StoneDoor) iTile).uncoverIllusion();
+		}
+		
 	}
 	
 	public void obsticle(Map map) {

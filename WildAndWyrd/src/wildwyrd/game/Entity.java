@@ -1,5 +1,6 @@
 package wildwyrd.game;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -21,6 +22,7 @@ public class Entity {
 	public int y;
 	public int width;
 	public int height;
+	public float alpha = 1f;
 	public int id;
 	public String name;
 	public int maxHealth;
@@ -49,7 +51,7 @@ public class Entity {
 	public int healthRcvd;
 	public int staminaRcvd;
 	public String description = "";
-	public String direction;
+	public String direction = "down";
 	public BufferedImage up1, up2, up3, left1, left2, left3, right1, right2, right3, down1, down2, down3;
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
@@ -188,13 +190,43 @@ public class Entity {
 			worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
 			worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
 			worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+			//g2.setComposite(AlphaComposite.SrcOver.derive(alpha));
+			switch(direction) {
+			case "up":
+				if(spriteNum == 1) {image = up1;}
+				if(spriteNum == 2) {image = up2;}
+				if(spriteNum == 3) {image = up3;}
+				break;
+			case "left":
+				if(spriteNum == 1) {image = left1;}
+				if(spriteNum == 2) {image = left2;}
+				if(spriteNum == 3) {image = left3;}
+				break;
+			case "right":
+				if(spriteNum == 1) {image = right1;}
+				if(spriteNum == 2) {image = right2;}
+				if(spriteNum == 3) {image = right3;}
+				break;
+			case "down":
+				if(spriteNum == 1) {image = down1;}
+				if(spriteNum == 2) {image = down2;}
+				if(spriteNum == 3) {image = down3;}
+				break;
+			}
+			g2.setComposite(AlphaComposite.SrcOver.derive(alpha));
 			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+			//if(image2 != null) {
+	        //    g2.setComposite(AlphaComposite.SrcOver.derive(1f - alpha));
+			//	g2.drawImage(image2, screenX, screenY, gp.tileSize, gp.tileSize, null);
+			//}
+            g2.setComposite(AlphaComposite.SrcOver.derive(1f));
 		}
 		else if(gp.player.worldX < gp.player.screenX ||
 			    gp.player.worldY < gp.player.screenY ||
 			    rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX ||
 			    bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
 			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null); 
+            g2.setComposite(AlphaComposite.SrcOver.derive(1f));
 		}
 	}
 

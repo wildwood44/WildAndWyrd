@@ -71,46 +71,46 @@ public class NPC_Thay extends Entity {
 			switch(direction) {
 			case "up":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 7);
-				} else if(spriteNum == 2) {
 					image = getPlayerImage(1, 7);
+				} else if(spriteNum == 2) {
+					image = getPlayerImage(0, 7);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 7);
+					image = getPlayerImage(1, 7);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 7);
+					image = getPlayerImage(2, 7);
 				}
 				break;
 			case "down":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 4);
-				} else if(spriteNum == 2) {
 					image = getPlayerImage(1, 4);
+				} else if(spriteNum == 2) {
+					image = getPlayerImage(0, 4);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 4);
+					image = getPlayerImage(1, 4);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 4);
+					image = getPlayerImage(2, 4);
 				}
 				break;
 			case "left":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 5);
-				} else if(spriteNum == 2) {
 					image = getPlayerImage(1, 5);
+				} else if(spriteNum == 2) {
+					image = getPlayerImage(0, 5);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 5);
+					image = getPlayerImage(1, 5);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 5);
+					image = getPlayerImage(2, 5);
 				}
 				break;
 			case "right":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 6);
-				} else if(spriteNum == 2) {
 					image = getPlayerImage(1, 6);
+				} else if(spriteNum == 2) {
+					image = getPlayerImage(0, 6);
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 6);
+					image = getPlayerImage(1, 6);
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 6);
+					image = getPlayerImage(2, 6);
 				}
 				break;
 			}

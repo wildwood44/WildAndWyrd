@@ -92,7 +92,9 @@ chapter$ switch$ part$ line$ dialog$ image
 1$ 2$ 2$ 1$ As Alder spoke with Florence, Thay exited the cottage.
 1$ 2$ 2$ 2$ Thay:£"Thank you, Madame Kyla."
 1$ 2$ 2$ 3$ Kyla:£"Yes yes. Come again."
-1$ 2$ 2$ 4$ The old witch closed the door behind Thay as he moved to speak to Alder and Florence. She was the owner of the cottage and the caretaker of Florence who in turn was the caretaker of Alder. The witch considered and treated Alder as a servant, they did not have much of a relationship, outside of the various household and gathering tasks he did for her.
+1$ 2$ 2$ 4$ The old witch closed the door behind Florence as she followed her in. 
+1$ 2$ 2$ 5$ She was the owner of the cottage and the caretaker of Florence who in turn was the caretaker of Alder. 
+1$ 2$ 2$ 6$ The witch considered and treated Alder as a servant, they did not have much of a relationship, outside of the various household and gathering tasks he did for her.
 1$ 3$ 3$ 1$ Florence:£"Alder!"
 1$ 3$ 3$ 2$ Florence:£"I need you!"
 1$ 3$ 3$ 3$ Alder looked back at Thay, disappointed that their conversation had to be cut short.

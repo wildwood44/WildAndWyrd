@@ -42,12 +42,7 @@ public class TileManager {
 			setup(2, "Rockwall_Tile", true);
 			setup(3, "bramble_tile", true);
 			setup(4, "nettle_tile", true, true);
-			setup(5, "img_tree1", true);
-			setup(6, "img_tree2", true);
-			setup(7, "img_tree3", true);
-			setup(8, "img_tree4", true);
-			setup(9, "img_tree5", true);
-			setup(10, "img_tree6", true);
+			setup(5, "Rockwall_Door4", false);
 		}
 		
 	}
@@ -148,30 +143,24 @@ public class TileManager {
 				screenY = gp.screenHeight - (gp.currentMap.getWorldHeight() - worldY);
 			}
 
-			label60 : {
-				if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX && 
-					worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-					worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-					worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-					g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-				}
-
-				if (gp.player.screenX <= gp.player.worldX
-						&& gp.player.screenY <= gp.player.worldY) {
-					if (rightOffset <= gp.currentMap.getWorldWidth() - gp.player.worldX) {
-						if (bottomOffset <= gp.currentMap.getWorldHeight() - gp.player.worldY) {
-							break label60;
-						}
-					}
-				}
+			if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX && 
+				worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+				worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
+				worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+				g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+			} 
+			else if (gp.player.screenX > gp.player.worldX ||
+				gp.player.screenY > gp.player.worldY ||
+				rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX ||
+				bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
 				g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 			}
-
 			worldCol++;
 			if (worldCol == gp.currentMap.getMaxWorldCol()) {
 				worldCol = 0;
 				worldRow++;
 			}
+			
 		}
 
 	}

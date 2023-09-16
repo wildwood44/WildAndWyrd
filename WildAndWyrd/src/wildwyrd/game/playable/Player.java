@@ -153,6 +153,8 @@ public class Player extends Entity {
 			objIndex = gp.cChecker.checkObject(this, true);
 			pickUpObject(objIndex);
 		}
+		int iTileIndex = gp.cChecker.checkEntity(this,gp.iTile);
+		interactiveTileEvent(iTileIndex);
 	}
 	
 	private void drawHealth(Graphics2D g2, int screenX, int screenY) {
@@ -221,7 +223,7 @@ public class Player extends Entity {
 				if(gp.player.inventory.get(i).type == filter) {
 					item.add(gp.player.inventory.get(i));
 				}
-			} 
+			}
 		}
 		//gp.ui.firstValue = count;
 		return item;
@@ -284,7 +286,25 @@ public class Player extends Entity {
 		//System.out.println(gp.iTile[gp.currentMap.getId()][i] + " " + gp.currentMap.getId() + " " + i);
 		
 		if(i != 999 && gp.iTile[gp.currentMap.getId()][i].transformable == true) {
-			gp.iTile[gp.currentMap.getId()][i] = gp.iTile[gp.currentMap.getId()][i].uncoverIllusion();
+			//if(!gp.iTile[gp.currentMap.getId()][i].animationComp) {
+			//	gp.iTile[gp.currentMap.getId()][i].uncoverIllusion();
+			//}
+			if(!gp.iTile[gp.currentMap.getId()][i].illusion) {
+				gp.iTile[gp.currentMap.getId()][i] = gp.iTile[gp.currentMap.getId()][i].transform();
+				System.out.println(gp.iTile[gp.currentMap.getId()][i]);
+			}
+			
+		}
+	}
+	
+	public void interactiveTileEvent(int i) {
+		//System.out.println(gp.iTile[gp.currentMap.getId()][i] + " " + gp.currentMap.getId() + " " + i);
+		
+		if(i != 999 && gp.iTile[gp.currentMap.getId()][i].illusion == true) {
+			if(!gp.iTile[gp.currentMap.getId()][i].animationComp && gp.iTile[gp.currentMap.getId()][i].illusion) {
+				gp.iTile[gp.currentMap.getId()][i].uncoverIllusion(gp.iTile[gp.currentMap.getId()][i]);
+			}
+			//gp.iTile[gp.currentMap.getId()][i] = gp.iTile[gp.currentMap.getId()][i].transform();
 		}
 	}
 	
