@@ -231,7 +231,6 @@ public class Player extends Entity {
 	
 	public void interactNPC(int i) {
 		if (i != 999) {
-			System.out.println(gp.npc[gp.currentMap.getId()][i].name);
 			if (keyH.enterPressed) {
 				gp.npc[gp.currentMap.getId()][i].speak();
 			}
@@ -291,7 +290,6 @@ public class Player extends Entity {
 			//}
 			if(!gp.iTile[gp.currentMap.getId()][i].illusion) {
 				gp.iTile[gp.currentMap.getId()][i] = gp.iTile[gp.currentMap.getId()][i].transform();
-				System.out.println(gp.iTile[gp.currentMap.getId()][i]);
 			}
 			
 		}

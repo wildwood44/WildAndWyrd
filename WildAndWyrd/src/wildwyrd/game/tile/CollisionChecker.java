@@ -66,7 +66,6 @@ public class CollisionChecker {
 						collisionCount++;
 						if(collisionCount == damageOn) {
 							entity.takeDamage = true;
-							System.out.println(collisionCount);
 							collisionCount = 0;
 						}
 					}

@@ -12,9 +12,12 @@ import wildwyrd.game.GamePanel;
 
 public class NPC_Dilecto extends Entity {
 	public static final String npcName = "Dilecto";
+	public static final int npcId = 0;
 	public NPC_Dilecto(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
+		id = npcId;
+		name = npcName;
 		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;

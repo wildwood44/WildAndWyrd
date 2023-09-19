@@ -128,6 +128,26 @@ public class Entity {
 		}
 		return name;
 	}
+	
+	public int getCenterX() {
+		int centerX = worldX + left1.getWidth()/2; 
+		return centerX;
+	}
+	
+	public int getCenterY() {
+		int centerY = worldY + left1.getWidth()/2; 
+		return centerY;
+	}
+	
+	public int getXDistance(Entity target) {
+		int xDistance = Math.abs(worldX - target.worldX); 
+		return xDistance;
+	}
+	
+	public int getYDistance(Entity target) {
+		int yDistance = Math.abs(worldY - target.worldX); 
+		return yDistance;
+	}
 
 	public int getLeftX() {
 		return worldX + solidArea.x;
@@ -190,7 +210,8 @@ public class Entity {
 			worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
 			worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
 			worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-			//g2.setComposite(AlphaComposite.SrcOver.derive(alpha));
+			int tempScreenX = screenX;
+			int tempScreenY = screenY;
 			switch(direction) {
 			case "up":
 				if(spriteNum == 1) {image = up1;}
@@ -214,7 +235,7 @@ public class Entity {
 				break;
 			}
 			g2.setComposite(AlphaComposite.SrcOver.derive(alpha));
-			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+			g2.drawImage(image, tempScreenX, tempScreenY, null);
 			//if(image2 != null) {
 	        //    g2.setComposite(AlphaComposite.SrcOver.derive(1f - alpha));
 			//	g2.drawImage(image2, screenX, screenY, gp.tileSize, gp.tileSize, null);
@@ -225,7 +246,9 @@ public class Entity {
 			    gp.player.worldY < gp.player.screenY ||
 			    rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX ||
 			    bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
-			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null); 
+			int tempScreenX = screenX;
+			int tempScreenY = screenY;
+			g2.drawImage(image, tempScreenX, tempScreenY, null); 
             g2.setComposite(AlphaComposite.SrcOver.derive(1f));
 		}
 	}

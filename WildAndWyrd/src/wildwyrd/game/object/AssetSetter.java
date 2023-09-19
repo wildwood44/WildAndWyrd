@@ -122,10 +122,10 @@ public class AssetSetter implements Serializable {
 		gp.obj[2][1] = new Plant_1(gp);
 		gp.obj[2][1].worldX = 14 * gp.tileSize;
 		gp.obj[2][1].worldY = 7 * gp.tileSize;
-		gp.obj[2][2] = new Obj_Tree(gp,1);
+		gp.obj[2][2] = new Obj_Tree(gp);
 		gp.obj[2][2].worldX = 1 * gp.tileSize;
 		gp.obj[2][2].worldY = 7 * gp.tileSize;
-		gp.obj[2][3] = new Obj_Tree(gp,7);
+		/*gp.obj[2][3] = new Obj_Tree(gp,7);
 		gp.obj[2][3].worldX = 1 * gp.tileSize;
 		gp.obj[2][3].worldY = 8 * gp.tileSize;
 		gp.obj[2][4] = new Obj_Tree(gp,3);
@@ -139,28 +139,19 @@ public class AssetSetter implements Serializable {
 		gp.obj[2][6].worldY = 7 * gp.tileSize;
 		gp.obj[2][7] = new Obj_Tree(gp,9);
 		gp.obj[2][7].worldX = 3 * gp.tileSize;
-		gp.obj[2][7].worldY = 8 * gp.tileSize;
-		gp.obj[2][8] = new Obj_SilverBirch(gp, 1);
+		gp.obj[2][7].worldY = 8 * gp.tileSize;*/
+		gp.obj[2][8] = new Obj_SilverBirch(gp);
 		gp.obj[2][8].worldX = 16 * gp.tileSize;
 		gp.obj[2][8].worldY = 5 * gp.tileSize;
-		gp.obj[2][9] = new Obj_SilverBirch(gp, 2);
-		gp.obj[2][9].worldX = 16 * gp.tileSize;
-		gp.obj[2][9].worldY = 6 * gp.tileSize;
-		gp.obj[2][10] = new Obj_SilverBirch(gp, 3);
-		gp.obj[2][10].worldX = 17 * gp.tileSize;
+		gp.obj[2][9] = new Obj_Rock(gp, 0);
+		gp.obj[2][9].worldX = 14 * gp.tileSize;
+		gp.obj[2][9].worldY = 9 * gp.tileSize;
+		gp.obj[2][10] = new Obj_Rock(gp, 1);
+		gp.obj[2][10].worldX = 22 * gp.tileSize;
 		gp.obj[2][10].worldY = 5 * gp.tileSize;
-		gp.obj[2][11] = new Obj_SilverBirch(gp, 4);
-		gp.obj[2][11].worldX = 17 * gp.tileSize;
-		gp.obj[2][11].worldY = 6 * gp.tileSize;
-		gp.obj[2][12] = new Obj_Rock(gp, 0);
-		gp.obj[2][12].worldX = 14 * gp.tileSize;
-		gp.obj[2][12].worldY = 9 * gp.tileSize;
-		gp.obj[2][13] = new Obj_Rock(gp, 1);
-		gp.obj[2][13].worldX = 22 * gp.tileSize;
-		gp.obj[2][13].worldY = 5 * gp.tileSize;
-		gp.obj[2][14] = new Obj_Dummy(gp);
-		gp.obj[2][14].worldX = 8 * gp.tileSize;
-		gp.obj[2][14].worldY = 5 * gp.tileSize;
+		gp.obj[2][11] = new Obj_Dummy(gp);
+		gp.obj[2][11].worldX = 8 * gp.tileSize;
+		gp.obj[2][11].worldY = 5 * gp.tileSize;
 		//System.out.println("Primary weapon: " + gp.playable.get(0).getWeapon_prime());
 		//if(gp.playable.get(0).getWeapon_prime() == null) {
 			/*gp.obj[2][14] = new Obj_Obsticle(gp);
@@ -172,42 +163,15 @@ public class AssetSetter implements Serializable {
 		//}
 		
 		/**/
-		gp.obj[3][0] = new Obj_SilverBirch(gp, 1);
+		gp.obj[3][0] = new Obj_SilverBirch(gp);
 		gp.obj[3][0].worldX = 1 * gp.tileSize;
 		gp.obj[3][0].worldY = 4 * gp.tileSize;
-		gp.obj[3][1] = new Obj_SilverBirch(gp, 2);
-		gp.obj[3][1].worldX = 1 * gp.tileSize;
-		gp.obj[3][1].worldY = 5 * gp.tileSize;
-		gp.obj[3][2] = new Obj_SilverBirch(gp, 3);
-		gp.obj[3][2].worldX = 2 * gp.tileSize;
-		gp.obj[3][2].worldY = 4 * gp.tileSize;
-		gp.obj[3][3] = new Obj_SilverBirch(gp, 4);
-		gp.obj[3][3].worldX = 2 * gp.tileSize;
-		gp.obj[3][3].worldY = 5 * gp.tileSize;
-		gp.obj[3][4] = new Obj_SilverBirch(gp, 1);
-		gp.obj[3][4].worldX = 5 * gp.tileSize;
-		gp.obj[3][4].worldY = 8 * gp.tileSize;
-		gp.obj[3][5] = new Obj_SilverBirch(gp, 2);
-		gp.obj[3][5].worldX = 5 * gp.tileSize;
-		gp.obj[3][5].worldY = 9 * gp.tileSize;
-		gp.obj[3][6] = new Obj_SilverBirch(gp, 3);
-		gp.obj[3][6].worldX = 6 * gp.tileSize;
-		gp.obj[3][6].worldY = 8 * gp.tileSize;
-		gp.obj[3][7] = new Obj_SilverBirch(gp, 4);
-		gp.obj[3][7].worldX = 6 * gp.tileSize;
-		gp.obj[3][7].worldY = 9 * gp.tileSize;
-		gp.obj[3][8] = new Obj_SilverBirch(gp, 1);
-		gp.obj[3][8].worldX = 9 * gp.tileSize;
-		gp.obj[3][8].worldY = 3 * gp.tileSize;
-		gp.obj[3][9] = new Obj_SilverBirch(gp, 2);
-		gp.obj[3][9].worldX = 9 * gp.tileSize;
-		gp.obj[3][9].worldY = 4 * gp.tileSize;
-		gp.obj[3][10] = new Obj_SilverBirch(gp, 3);
-		gp.obj[3][10].worldX = 10 * gp.tileSize;
-		gp.obj[3][10].worldY = 3 * gp.tileSize;
-		gp.obj[3][11] = new Obj_SilverBirch(gp, 4);
-		gp.obj[3][11].worldX = 10 * gp.tileSize;
-		gp.obj[3][11].worldY = 4 * gp.tileSize;
+		gp.obj[3][1] = new Obj_SilverBirch(gp);
+		gp.obj[3][1].worldX = 5 * gp.tileSize;
+		gp.obj[3][1].worldY = 8 * gp.tileSize;
+		gp.obj[3][2] = new Obj_SilverBirch(gp);
+		gp.obj[3][2].worldX = 9 * gp.tileSize;
+		gp.obj[3][2].worldY = 3 * gp.tileSize;
 	}
 	public void setNPC() {
 		gp.npc[2][0] = new NPC_Florence(gp);

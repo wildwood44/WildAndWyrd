@@ -9,15 +9,21 @@ public class Obj_SilverBirch extends Entity {
 	public static final int objId = 23;
 	public static final String objName = "Tree";
 
-	public Obj_SilverBirch(GamePanel gp, int num) {
+	public Obj_SilverBirch(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
 		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
-		image = setup("/res/objects/img_silver_birch" + num, gp.tileSize, gp.tileSize);
+		image = setup("/res/objects/img_silver_birch", gp.tileSize*2, gp.tileSize*2);
 
+		int size = gp.tileSize * 2;
+		solidArea.x = 30;
+		solidArea.width = size - 60;
+		solidArea.height = size;
+		solidAreaDefaultX = solidArea.x;
+		//solidAreaDefaultY = solidArea.y;
 		setDialogue();
 		getImage(image);
 	}

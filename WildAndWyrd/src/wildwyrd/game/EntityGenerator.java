@@ -33,6 +33,11 @@ import wildwyrd.game.object.Obj_Window_Down;
 import wildwyrd.game.object.Obj_Wooden_Bowl;
 import wildwyrd.game.object.Obj_Worktable;
 import wildwyrd.game.object.Plant_1;
+import wildwyrd.npc.NPC_Cricket;
+import wildwyrd.npc.NPC_Dilecto;
+import wildwyrd.npc.NPC_Florence;
+import wildwyrd.npc.NPC_Kyla;
+import wildwyrd.npc.NPC_Thay;
 
 public class EntityGenerator {
 
@@ -67,8 +72,8 @@ public class EntityGenerator {
 		case Obj_P_Mushroom.objId: obj = new Obj_P_Mushroom(gp);break;//20
 		case Obj_Rock.objId: obj = new Obj_Rock(gp,0);break;//21
 		case Plant_1.objId: obj = new Plant_1(gp);break;//22
-		case Obj_SilverBirch.objId: obj = new Obj_SilverBirch(gp,0);break;//23
-		case Obj_Tree.objId: obj = new Obj_Tree(gp,0);break;//24
+		case Obj_SilverBirch.objId: obj = new Obj_SilverBirch(gp);break;//23
+		case Obj_Tree.objId: obj = new Obj_Tree(gp);break;//24
 		case Obj_Dummy.objId: obj = new Obj_Dummy(gp);break;//25
 		case Itm_Hazelnut.itemId:obj = new Itm_Hazelnut(gp);break;//101
 		case Itm_P_Mushroom.itemId:obj = new Itm_P_Mushroom(gp);break;//102
@@ -80,5 +85,17 @@ public class EntityGenerator {
 		//default
 		}
 		return obj;
+	}
+	
+	public Entity getNpc(int npcId) {
+		Entity npc = null;
+		switch(npcId) {
+		case NPC_Dilecto.npcId: npc = new NPC_Dilecto(gp);break;//0
+		case NPC_Florence.npcId: npc = new NPC_Florence(gp);break;//1
+		case NPC_Thay.npcId: npc = new NPC_Thay(gp);break;//2
+		case NPC_Kyla.npcId: npc = new NPC_Kyla(gp);break;//3
+		case NPC_Cricket.npcId: npc = new NPC_Cricket(gp);break;//4
+		}
+		return npc;
 	}
 }

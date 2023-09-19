@@ -41,7 +41,6 @@ public class IT_StoneDoor extends InteractiveTile {
 		if(animationCounter > i*4 && animationCounter <= i*5) {changeAlpha(0.2f);}
 		if(animationCounter > i*5 && animationCounter <= i*6) {changeAlpha(0f);}
 		if(animationCounter > i*6) {truth = transform();}
-		System.out.println(truth);
 	}
 	
 	public InteractiveTile transform() {

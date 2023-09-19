@@ -41,4 +41,10 @@ public class DataStorage implements Serializable {
 	public int mapObjectLootIds[][];
 	public int mapObjectLootNames[][];
 	public boolean mapObjectOpened[][];
+	//NPCs on map
+	public int mapNpcId[][];
+	public int mapNpcName[][];
+	public int mapNpcWorldX[][];
+	public int mapNpcWorldY[][];
+	public String mapNpcDirection[][];
 }

@@ -9,15 +9,19 @@ public class Obj_Tree extends Entity {
 	public static final int objId = 24;
 	public static final String objName = "Tree";
 
-	public Obj_Tree(GamePanel gp, int num) {
+	public Obj_Tree(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
 		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
-
-		image = setup("/res/objects/img_tree" + num, gp.tileSize, gp.tileSize);
+		//int size = gp.tileSize * 3;
+		//solidArea.x = size - 40;
+		//solidArea.y = size - 40*2;
+		//solidAreaDefaultX = solidArea.x;
+		//solidAreaDefaultY = solidArea.y;
+		image = setup("/res/objects/img_tree", gp.tileSize*3, gp.tileSize*2);
 
 		setDialogue();
 		getImage(image);

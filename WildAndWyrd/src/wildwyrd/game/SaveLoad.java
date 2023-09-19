@@ -87,14 +87,16 @@ public class SaveLoad {
 			ds.mapObjectWorldY = new int[gp.maxMap][gp.obj[1].length];
 			ds.mapObjectLootIds = new int[gp.maxMap][gp.obj[1].length];
 			ds.mapObjectOpened = new boolean[gp.maxMap][gp.obj[1].length];
+			ds.mapNpcId = new int[gp.maxMap][gp.npc[1].length];
+			ds.mapNpcWorldX = new int[gp.maxMap][gp.npc[1].length];
+			ds.mapNpcWorldY = new int[gp.maxMap][gp.npc[1].length];
+			ds.mapNpcDirection = new String[gp.maxMap][gp.npc[1].length];
 			for(int mapNum = 0; mapNum < gp.maxMap; mapNum++) {
-				System.out.println(gp.obj[1].length);
 				for(int i = 0; i < gp.obj[1].length; i++) {
 					if(gp.obj[mapNum][i] == null) {
 						ds.mapObjectId[mapNum][i] = -1;
 					} else {
 						ds.mapObjectId[mapNum][i] = gp.obj[mapNum][i].id;
-						System.out.println(gp.obj[mapNum][i] + " " + gp.obj[mapNum][i].id);
 						ds.mapObjectWorldX[mapNum][i] = gp.obj[mapNum][i].worldX;
 						ds.mapObjectWorldY[mapNum][i] = gp.obj[mapNum][i].worldY;
 						if(gp.obj[mapNum][i].loot != null) {
@@ -103,9 +105,22 @@ public class SaveLoad {
 						ds.mapObjectOpened[mapNum][i] = gp.obj[mapNum][i].opened;
 					}
 				}
+				//NPCs on map
+				for(int i = 0; i < gp.npc[1].length; i++) {
+					if(gp.npc[mapNum][i] == null) {
+						ds.mapNpcId[mapNum][i] = -1;
+					} else {
+						ds.mapNpcId[mapNum][i] = gp.npc[mapNum][i].id;
+						System.out.println(gp.npc[mapNum][i] + " " + gp.npc[mapNum][i].id);
+						ds.mapNpcWorldX[mapNum][i] = gp.npc[mapNum][i].worldX;
+						ds.mapNpcWorldY[mapNum][i] = gp.npc[mapNum][i].worldY;
+						ds.mapNpcDirection[mapNum][i] = gp.npc[mapNum][i].direction;
+					}
+				}
 			}
 			oos.writeObject(ds);
 		} catch (Exception e) {
+			System.out.println(e);
 			System.out.println("Save Exception!");
 		}
 	}
@@ -115,6 +130,7 @@ public class SaveLoad {
 			//System.out.println("Loaded");
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
 			DataStorage ds = (DataStorage)ois.readObject();
+			System.out.println("Ping");
 			for(int i = 0; i < gp.playable.size(); i++) {
 				gp.playable.set(i,new Playable(gp, "Alder", ds.maxHealth[i], ds.maxStamina[i],
 						ds.baseAttack[i], ds.baseDefence[i], ds.baseAccuracy[i], ds.baseEvasion[i], ds.baseSpeed[i]));
@@ -147,7 +163,7 @@ public class SaveLoad {
 					if(ds.mapObjectId[mapNum][i] < 0) {
 						gp.obj[mapNum][i] = null;
 					} else {
-						//System.out.println(gp.obj[mapNum][i]);
+						System.out.println(gp.obj[mapNum][i]);
 						gp.obj[mapNum][i] = gp.eGenerator.getObject(ds.mapObjectId[mapNum][i]);
 						gp.obj[mapNum][i].worldX = ds.mapObjectWorldX[mapNum][i];
 						gp.obj[mapNum][i].worldY = ds.mapObjectWorldY[mapNum][i];
@@ -156,11 +172,23 @@ public class SaveLoad {
 						}
 						gp.obj[mapNum][i].opened = ds.mapObjectOpened[mapNum][i];
 						if(gp.obj[mapNum][i].opened == true) {
-							gp.obj[mapNum][i].down1 = gp.obj[mapNum][i].image2;
+							//gp.obj[mapNum][i].down1 = gp.obj[mapNum][i].image2;
 						}
 					}
 				}
+				//NPCs on map
+				for(int i = 0; i < gp.npc[1].length; i++) {
+					if(ds.mapNpcId[mapNum][i] < 0) {
+						gp.npc[mapNum][i] = null;
+					} else {
+						gp.npc[mapNum][i] = gp.eGenerator.getNpc(ds.mapNpcId[mapNum][i]);
+						gp.npc[mapNum][i].worldX = ds.mapNpcWorldX[mapNum][i];
+						gp.npc[mapNum][i].worldY = ds.mapNpcWorldY[mapNum][i];
+						gp.npc[mapNum][i].direction = ds.mapNpcDirection[mapNum][i];
+					}
+				}
 			}
+			System.out.println(gp.currentMap + " " + gp.player.worldX + " " + gp.player.worldY);
 		} catch (Exception e) {
 			System.out.println(e);
 			System.out.println("Load Exception!");

@@ -12,12 +12,14 @@ import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
 
 public class NPC_Florence extends Entity {
+	public static final int npcId = 1;
 	public static final String npcName = "Florence";
 	public NPC_Florence(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
 		options = new String[2];
 		contConditions = new boolean[2];
+		id = npcId;
 		name = npcName;
 		type = EntityType.Sprite;
 		direction = "down";
