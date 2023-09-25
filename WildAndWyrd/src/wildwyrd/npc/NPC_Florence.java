@@ -11,7 +11,7 @@ import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
 
-public class NPC_Florence extends Entity {
+public class NPC_Florence extends NPC {
 	public static final int npcId = 1;
 	public static final String npcName = "Florence";
 	public NPC_Florence(GamePanel gp) {
@@ -28,6 +28,7 @@ public class NPC_Florence extends Entity {
 		contConditions[1] = false;
 		setDialogue();
 		setDialogueOptions();
+		getImage();
 	}
 
 	public BufferedImage getSpriteSheet() {
@@ -48,7 +49,7 @@ public class NPC_Florence extends Entity {
 		return image.getSubimage(xGrid * 48, yGrid * 48, 48, 48);
 	}
 	
-	public void draw(Graphics2D g2) {
+	/*public void draw(Graphics2D g2) {
 		BufferedImage image = null;
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
@@ -169,6 +170,21 @@ public class NPC_Florence extends Entity {
 			}
 			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 		}
+	}*/
+	
+	public void getImage() {
+		up1 = getPlayerImage(7, 3);
+		up2 = getPlayerImage(6, 3);
+		up3 = getPlayerImage(8, 3);
+		down1 = getPlayerImage(7, 0);
+		down2 = getPlayerImage(6, 0);
+		down3 = getPlayerImage(8, 0);
+		left1 = getPlayerImage(7, 1);
+		left2 = getPlayerImage(6, 1);
+		left3 = getPlayerImage(8, 1);
+		right1 = getPlayerImage(7, 2);
+		right2 = getPlayerImage(6, 2);
+		right3 = getPlayerImage(8, 2);
 	}
 	
 	public void setAction() {

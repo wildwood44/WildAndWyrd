@@ -15,7 +15,6 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import wildwyrd.game.combat.Combat;
-import wildwyrd.game.cutscenes.Actor;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.cutscenes.CutsceneManager;
 import wildwyrd.game.glossary.Glossary;
@@ -55,7 +54,6 @@ public class GamePanel extends JPanel implements Runnable {
 	public Room room = new Room(this);
 	public AssetSetter aSetter = new AssetSetter(this);
 	public CutsceneManager csManager = new CutsceneManager(this);
-	public Actor actor = new Actor(this);
 	public Glossary glossary = new Glossary();
 	Thread gameThread;
 	int playerY = 100;
@@ -82,7 +80,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public ArrayList<Entity> entityList = new ArrayList<>();
 
 	public GamePanel() {
-		c = new Cutscene(this,s);
+		//s = new Story();
+		c = new Cutscene(this);
 		obj = new Entity[maxMap][25];
 		rm = new Room[maxRoom];
 		maps = new Map[maxMap];
@@ -120,6 +119,7 @@ public class GamePanel extends JPanel implements Runnable {
 		for(Playable p : playable) {
 			p.setDefaultValues();
 		}
+		s = new Story();
 		player.setDefaultValues();
 		player.setDefaultPositions();
 		player.restoreHealthAndStamina();

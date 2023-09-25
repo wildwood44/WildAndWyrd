@@ -65,7 +65,11 @@ public class UI {
 	public UI(GamePanel gp) {
 		this.gp = gp;
 		arial_40 = new Font("Monospaced", 0, 40);
-		c = new Cutscene(gp, new Story());
+		/*Story s = gp.s;
+		if(gp.s == null) {
+			s = new Story();
+		}	
+		c = new Cutscene(gp, new Story());*/
 	}
 
 	public void draw(Graphics2D g2) {

@@ -11,12 +11,14 @@ import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
 
-public class NPC_Thay extends Entity {
+public class NPC_Thay extends NPC {
 	public static final int npcId = 2;
 	public static final String npcName = "Thay";
 	public NPC_Thay(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
+		options = new String[3];
+		contConditions = new boolean[4];
 		id = npcId;
 		name = npcName;
 		type = EntityType.Sprite;
@@ -28,6 +30,7 @@ public class NPC_Thay extends Entity {
 		contConditions[3] = false;
 		setDialogue();
 		setDialogueOptions();
+		getImage();
 	}
 
 	public BufferedImage getSpriteSheet() {
@@ -48,7 +51,7 @@ public class NPC_Thay extends Entity {
 		return image.getSubimage(xGrid * 48, yGrid * 48, 48, 48);
 	}
 	
-	public void draw(Graphics2D g2) {
+	/*public void draw(Graphics2D g2) {
 		BufferedImage image = null;
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
@@ -124,13 +127,13 @@ public class NPC_Thay extends Entity {
 			switch(direction) {
 			case "up":
 				if(spriteNum == 1) {
-					image = getPlayerImage(2, 7);
+					image = up1;
 				} else if(spriteNum == 2) {
-					image = getPlayerImage(1, 7);
+					image = up2;
 				} else if(spriteNum == 3) {
-					image = getPlayerImage(2, 7);
+					image = up1;
 				} else if(spriteNum == 4) {
-					image = getPlayerImage(3, 7);
+					image = up3;
 				}
 				break;
 			case "down":
@@ -169,6 +172,21 @@ public class NPC_Thay extends Entity {
 			}
 			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 		}
+	}*/
+	
+	public void getImage() {
+		up1 = getPlayerImage(1, 7);
+		up2 = getPlayerImage(0, 7);
+		up3 = getPlayerImage(2, 7);
+		down1 = getPlayerImage(1, 4);
+		down2 = getPlayerImage(0, 4);
+		down3 = getPlayerImage(2, 4);
+		left1 = getPlayerImage(1, 5);
+		left2 = getPlayerImage(0, 5);
+		left3 = getPlayerImage(2, 5);
+		right1 = getPlayerImage(1, 6);
+		right2 = getPlayerImage(0, 6);
+		right3 = getPlayerImage(2, 6);
 	}
 	
 	public void setAction() {
@@ -241,11 +259,29 @@ public class NPC_Thay extends Entity {
 		options[0] = "How was your journey?";
 		options[1] = "How did it go with Madame Kyla?";
 		options[2] = "What's it like beyond the burrow?";
-		options[3] = "About the woods?";
-		options[4] = "About the the mouse village?";
-		options[5] = "About the river?";
-		options[6] = "About the hill?";
-		options[7] = "Why are humans so hated?";
+		if(contConditions[2] == true) {
+			options[3] = "About the woods?";
+			options[4] = "About the the mouse village?";
+			options[5] = "About the river?";
+			options[6] = "About the hill?";
+			options[7] = "Why are humans so hated?";
+		}
+	}
+	
+	public void checkConditions() {
+
+		if (dialogues[dialogueSet][dialogueIndex] == null) {
+			for (boolean checkCondition: contConditions) {
+				if(checkCondition == false) {
+					dialogueIndex = 0;
+					speak();
+				}
+			} if (dialogues[dialogueSet][dialogueIndex] == null) {
+				//dialogueIndex = 0;
+				gp.s.swh[3] = true;
+				gp.s.part = 3;
+			}
+		}
 	}
 	public void choiceResponce() {
 		if (gp.ui.choiceSlot == 0) {
@@ -258,7 +294,9 @@ public class NPC_Thay extends Entity {
 		}
 		else if (gp.ui.choiceSlot == 2) {
 			startDialogue(this, 3);
+			options = new String[8];
 			contConditions[2] = true;
+			setDialogueOptions();
 		}
 		else if (gp.ui.choiceSlot == 3) {
 			startDialogue(this, 4);

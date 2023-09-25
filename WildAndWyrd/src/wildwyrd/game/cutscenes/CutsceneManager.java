@@ -26,6 +26,7 @@ public class CutsceneManager {
 	}
 
 	public void draw(Graphics2D g2) {
+		System.out.println(gp.s.chapter + " " + gp.s.part + " " + read);
 		this.g2 = g2;
 		switch (sceneNum) {
 			case 1 :
@@ -47,6 +48,7 @@ public class CutsceneManager {
 	}
 
 	private void scene_prologue() {
+		System.out.println(gp.s.chapter + " " + gp.s.part + " " + read);
 		if (scenePhase == 0) {
 			gp.rm[gp.currentRoom].draw(g2);
 			gp.cutsceneOn = true;
@@ -126,7 +128,6 @@ public class CutsceneManager {
 				if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == PlayerDummy.npcName) {
 					gp.npc[gp.currentMap.getId()][i].update();
 					gp.npc[gp.currentMap.getId()][i].worldY += 1;
-					System.out.println(gp.npc[gp.currentMap.getId()][i].worldY);
 					if(gp.npc[gp.currentMap.getId()][i].worldY > gp.tileSize * 5){
 						scenePhase++;
 					}
@@ -141,7 +142,6 @@ public class CutsceneManager {
 					gp.npc[gp.currentMap.getId()][i].direction = "left";
 					gp.npc[gp.currentMap.getId()][i].update();
 					gp.npc[gp.currentMap.getId()][i].worldX -= 1;
-					System.out.println(gp.npc[gp.currentMap.getId()][i].worldX);
 					if(gp.npc[gp.currentMap.getId()][i].worldX < gp.tileSize * 14){
 						scenePhase++;
 					}
@@ -155,7 +155,6 @@ public class CutsceneManager {
 					gp.npc[gp.currentMap.getId()][i].direction = "up";
 					gp.npc[gp.currentMap.getId()][i].update();
 					gp.npc[gp.currentMap.getId()][i].worldY -= 1;
-					System.out.println(gp.npc[gp.currentMap.getId()][i].worldY);
 					if(gp.npc[gp.currentMap.getId()][i].worldY < gp.tileSize * 3){
 						scenePhase++;
 					}
@@ -172,7 +171,6 @@ public class CutsceneManager {
 				}
 			}
 			gp.player.worldY += 2;
-			System.out.println(gp.player.worldY);
 			if(gp.player.worldY > gp.tileSize * 5){
 				scenePhase++;
 			}
@@ -183,7 +181,6 @@ public class CutsceneManager {
 			for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
 				//System.out.println(i +" "+ gp.npc[gp.currentMap.getId()][i].name);
 				if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == PlayerDummy.npcName) {
-					System.out.println(i);
 					gp.player.worldX = gp.npc[gp.currentMap.getId()][i].worldX;
 					gp.player.worldY = gp.npc[gp.currentMap.getId()][i].worldY;
 					gp.npc[gp.currentMap.getId()][i] = null;
@@ -232,7 +229,6 @@ public class CutsceneManager {
 			for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
 				//System.out.println(i +" "+ gp.npc[gp.currentMap.getId()][i].name);
 				if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == PlayerDummy.npcName) {
-					System.out.println(gp.npc[gp.currentMap.getId()][i].worldX);
 					if((gp.npc[gp.currentMap.getId()][i].worldX >= gp.tileSize * 13 &&
 						gp.npc[gp.currentMap.getId()][i].worldX <= gp.tileSize * 16) &&
 						gp.npc[gp.currentMap.getId()][i].worldY < gp.tileSize * 6) {
@@ -244,8 +240,6 @@ public class CutsceneManager {
 					} else {
 						scenePhase++;
 					}
-					
-					
 				}
 			}
 		} else if (scenePhase == 2) {
@@ -276,7 +270,6 @@ public class CutsceneManager {
 			drawRoom();
 			for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
 				if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == NPC_Thay.npcName) {
-					System.out.println(i +" "+ gp.npc[gp.currentMap.getId()][i].name);
 					gp.npc[gp.currentMap.getId()][i].direction = "up";
 					drawRoom();
 					gp.npc[gp.currentMap.getId()][i].update();
@@ -361,7 +354,138 @@ public class CutsceneManager {
 	
 	private void scene_c1_3() {
 		if (scenePhase == 0) {
-			
+			gp.cutsceneOn = true;
+			read = 3;
+			gp.c.setCutscene(4, read);
+			gp.c.dialogueSet = 4;
+			for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
+				if(gp.npc[gp.currentMap.getId()][i] == null) {
+					gp.npc[gp.currentMap.getId()][i] = new PlayerDummy(gp);
+					gp.npc[gp.currentMap.getId()][i].worldX = gp.player.worldX;
+					gp.npc[gp.currentMap.getId()][i].worldY = gp.player.worldY;
+					gp.npc[gp.currentMap.getId()][i].direction = gp.player.direction;
+					break;
+				}
+			}
+			gp.player.drawing = false;
+			drawRoom();
+			scenePhase++;
+		} else if (scenePhase == 1) {
+			for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
+				if(gp.npc[gp.currentMap.getId()][i] == null) {
+					gp.npc[gp.currentMap.getId()][i] = new NPC_Florence(gp);
+					gp.npc[gp.currentMap.getId()][i].worldX = gp.tileSize * 14;
+					gp.npc[gp.currentMap.getId()][i].worldY = gp.tileSize * 3;
+					gp.npc[gp.currentMap.getId()][i].direction = "down";
+					break;
+				}
+			}
+			scenePhase++;
+		} else if (scenePhase == 2) {
+			drawRoom();
+			for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
+				//System.out.println(i +" "+ gp.npc[gp.currentMap.getId()][i].name);
+				if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == NPC_Florence.npcName) {
+					gp.npc[gp.currentMap.getId()][i].worldY += 1;
+					gp.npc[gp.currentMap.getId()][i].update();
+					if(gp.npc[gp.currentMap.getId()][i].worldY > gp.tileSize * 4){
+						scenePhase++;
+					}
+				}
+			}
+		} else if (scenePhase == 3) {
+			for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
+				if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == NPC_Florence.npcName) {
+					gp.npc[gp.currentMap.getId()][i].direction = "right";
+					gp.npc[gp.currentMap.getId()][i].update();
+					break;
+				}
+			}
+			for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
+				if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == PlayerDummy.npcName) {
+					gp.npc[gp.currentMap.getId()][i].direction = "left";
+					gp.npc[gp.currentMap.getId()][i].update();
+					break;
+				}
+			}
+			for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
+				if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == NPC_Thay.npcName) {
+					gp.npc[gp.currentMap.getId()][i].direction = "left";
+					gp.npc[gp.currentMap.getId()][i].update();
+					scenePhase++;
+					break;
+				}
+			}
+			drawRoom();
+		} else if (scenePhase == 4) {
+			gp.ui.selectedObject = gp.c;
+			if(gp.c.dialogueIndex < 2) {
+				gp.ui.drawDialogueScreen();
+			} else {
+				scenePhase++;
+			}
+		} else if (scenePhase == 5) {
+			for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
+				if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == PlayerDummy.npcName) {
+
+					for (int j = 0; j < gp.npc[gp.currentMap.getId()].length; j++) {
+						if(gp.npc[gp.currentMap.getId()][j] != null && gp.npc[gp.currentMap.getId()][j].name == NPC_Thay.npcName) {
+							if(gp.npc[gp.currentMap.getId()][i].worldX > gp.npc[gp.currentMap.getId()][j].worldX) {
+								gp.npc[gp.currentMap.getId()][i].direction = "left";
+								gp.npc[gp.currentMap.getId()][j].direction = "right";
+							} else if(gp.npc[gp.currentMap.getId()][i].worldX < gp.npc[gp.currentMap.getId()][j].worldX) {
+								gp.npc[gp.currentMap.getId()][i].direction = "right";
+								gp.npc[gp.currentMap.getId()][j].direction = "left";
+							} else if(gp.npc[gp.currentMap.getId()][i].worldY > gp.npc[gp.currentMap.getId()][j].worldY) {
+								gp.npc[gp.currentMap.getId()][i].direction = "up";
+								gp.npc[gp.currentMap.getId()][j].direction = "down";
+							} else if(gp.npc[gp.currentMap.getId()][i].worldY < gp.npc[gp.currentMap.getId()][j].worldY) {
+								gp.npc[gp.currentMap.getId()][i].direction = "down";
+								gp.npc[gp.currentMap.getId()][j].direction = "up";
+							}
+							scenePhase++;
+						}
+					}
+					
+					gp.npc[gp.currentMap.getId()][i].update();
+					break;
+				}
+			}
+			drawRoom();
+		} else if (scenePhase == 6) {
+			System.out.println(gp.c.dialogueIndex);
+			if(gp.c.dialogueIndex < 6) {
+				gp.ui.drawDialogueScreen();
+			} else {
+				scenePhase++;
+			}
+		} else if (scenePhase == 7) {
+			for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
+				if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == PlayerDummy.npcName) {
+					gp.npc[gp.currentMap.getId()][i].direction = "left";
+					gp.npc[gp.currentMap.getId()][i].update();
+					break;
+				}
+			}
+			scenePhase++;
+		} else if (scenePhase == 8) {
+			gp.ui.drawDialogueScreen();
+		} else if (scenePhase == 9) {
+			gp.s.swh[read] = false;
+			for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
+				if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == PlayerDummy.npcName) {
+					gp.player.worldX = gp.npc[gp.currentMap.getId()][i].worldX;
+					gp.player.worldY = gp.npc[gp.currentMap.getId()][i].worldY;
+					gp.npc[gp.currentMap.getId()][i] = null;
+					break;
+				}
+			}
+			gp.player.drawing = true;
+			gp.cutsceneOn = false;
+			gp.c.dialogueIndex = 0;
+			sceneNum = 0;
+			scenePhase = 0;
+			gp.gameState = GameState.playState;
 		}
 	}
 	

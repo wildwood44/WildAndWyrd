@@ -13,7 +13,7 @@ import wildwyrd.game.combat.En_Cricket;
 import wildwyrd.game.combat.En_Wasp;
 import wildwyrd.game.object.Dialoge;
 
-public class NPC_Cricket extends Entity {
+public class NPC_Cricket extends NPC {
 	public static final int npcId = 4;
 	public static final String npcName = "Cricket";
 	public NPC_Cricket(GamePanel gp) {

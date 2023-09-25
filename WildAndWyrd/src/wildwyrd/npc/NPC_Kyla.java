@@ -11,7 +11,7 @@ import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
 
-public class NPC_Kyla extends Entity {
+public class NPC_Kyla extends NPC {
 	public static final int npcId = 3;
 	public static final String npcName = "Kyla";
 	public NPC_Kyla(GamePanel gp) {
@@ -28,6 +28,7 @@ public class NPC_Kyla extends Entity {
 		contConditions[3] = false;
 		setDialogue();
 		setDialogueOptions();
+		getImage();
 	}
 
 	public BufferedImage getSpriteSheet() {
@@ -48,127 +49,19 @@ public class NPC_Kyla extends Entity {
 		return image.getSubimage(xGrid * 48, yGrid * 48, 48, 48);
 	}
 	
-	public void draw(Graphics2D g2) {
-		BufferedImage image = null;
-		int screenX = worldX - gp.player.worldX + gp.player.screenX;
-		int screenY = worldY - gp.player.worldY + gp.player.screenY;
-
-		// STOP MOVING CAMERA
-		if (gp.player.worldY < gp.player.screenY) {
-			screenY = worldY;
-		}
-		int rightOffset = gp.screenWidth - gp.player.screenX;
-		if (rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX) {
-			screenX = gp.screenWidth - (gp.currentMap.getWorldWidth() - worldX);
-		}
-		int bottomOffset = gp.screenHeight - gp.player.screenY;
-		if (bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
-			screenY = gp.screenHeight - (gp.currentMap.getWorldHeight() - worldY);
-		}
-		if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
-			worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-			worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-			worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-			
-			switch(direction) {
-			case "up":
-				if(spriteNum == 1) {
-					image = getPlayerImage(10, 3);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(9, 3);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(10, 3);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(11, 3);
-				}
-				break;
-			case "down":
-				if(spriteNum == 1) {
-					image = getPlayerImage(10, 0);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(9, 0);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(10, 0);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(11, 0);
-				}
-				break;
-			case "left":
-				if(spriteNum == 1) {
-					image = getPlayerImage(10, 1);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(9, 1);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(10, 1);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(11, 1);
-				}
-				break;
-			case "right":
-				if(spriteNum == 1) {
-					image = getPlayerImage(10, 2);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(9, 2);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(10, 2);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(11, 2);
-				}
-				break;
-			}
-			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-		}else if(gp.player.worldX < gp.player.screenX ||
-			    gp.player.worldY < gp.player.screenY ||
-			    rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX ||
-			    bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
-			switch(direction) {
-			case "up":
-				if(spriteNum == 1) {
-					image = getPlayerImage(10, 3);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(9, 3);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(10, 3);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(11, 3);
-				}
-				break;
-			case "down":
-				if(spriteNum == 1) {
-					image = getPlayerImage(10, 0);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(9, 0);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(10, 0);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(11, 0);
-				}
-				break;
-			case "left":
-				if(spriteNum == 1) {
-					image = getPlayerImage(10, 1);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(9, 1);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(10, 1);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(11, 1);
-				}
-				break;
-			case "right":
-				if(spriteNum == 1) {
-					image = getPlayerImage(10, 2);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(9, 2);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(10, 2);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(11, 2);
-				}
-				break;
-			}
-			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-		}
+	public void getImage() {
+		up1 = getPlayerImage(10, 3);
+		up2 = getPlayerImage(9, 3);
+		up3 = getPlayerImage(11, 3);
+		down1 = getPlayerImage(10, 0);
+		down2 = getPlayerImage(9, 0);
+		down3 = getPlayerImage(11, 0);
+		left1 = getPlayerImage(10, 1);
+		left2 = getPlayerImage(9, 1);
+		left3 = getPlayerImage(11, 1);
+		right1 = getPlayerImage(10, 2);
+		right2 = getPlayerImage(9, 2);
+		right3 = getPlayerImage(11, 2);
 	}
 	
 	public void setAction() {

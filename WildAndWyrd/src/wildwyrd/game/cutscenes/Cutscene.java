@@ -9,45 +9,37 @@ import javax.imageio.ImageIO;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
-import wildwyrd.game.Story;
 import wildwyrd.game.object.Dialoge;
 
 public class Cutscene extends Entity {
 	GamePanel gp;
-	Story s;
-	//public Dialoge[][] dialogues = new Dialoge[100][100];
-	//public BufferedImage[][] sprites = new BufferedImage[100][100];
-	//public int dialogueIndex = 0;
-	//public int dialogueSet = 0;
 	BufferedImage image_Dilecto;
 	BufferedImage image_Thay;
 	BufferedImage image_Dean;
 	BufferedImage image_Ralph;
 	BufferedImage image_Plumm;
 
-	public Cutscene(GamePanel gp, Story s) {
+	public Cutscene(GamePanel gp) {
 		super(gp);
-		this.s = s;
+		this.gp = gp;
 	}
 
 	public void setCutscene(int dialogueSet, int read) {
 		this.dialogueSet = dialogueSet;
 		int count = 0;
-		//System.out.println(dialogueSet + " " + read);
 		try {
 			InputStream f = getClass().getResourceAsStream("/res/dialogue/Cutscenes.txt");
 			BufferedReader b = new BufferedReader(new InputStreamReader(f));
 
 			for (String i = b.readLine(); i != null; i = b.readLine()) {
 				String[] line = i.split("\\$ ", 6);
-				if (line[0].equals(Integer.toString(s.chapter)) && line[1].equals(Integer.toString(read))
-						&& line[2].equals(Integer.toString(s.part))) {
-					//System.out.println(line[0] + " " + line[1]);
+				//Check chapter, switch and part
+				if (line[0].equals(Integer.toString(gp.s.chapter)) && line[1].equals(Integer.toString(read))
+						&& line[2].equals(Integer.toString(gp.s.part))) {
+					//Split dialogue
 					String[] newline = line[4].split("£");
 					String name = "";
 					String text = "";
-					//BufferedImage image = null;
-					//imageUrl = imageUrl.replaceAll("\\s+","");
 					
 					if (newline.length > 1) {
 						name = newline[0];
@@ -55,23 +47,11 @@ public class Cutscene extends Entity {
 					} else {
 						text = line[4].trim();
 					}
-					/*if(line.length > 5) {
-						String imageUrl = line[5];
-						if(imageUrl != null) {
-							System.out.println(imageUrl);
-							image = setup("/res/character/"+imageUrl,200,600);
-						}
-					}*/
 					if (name != "") {
-						//if(image != null) {
-							//dialogues[dialogueSet][count] = new Dialoge(name, text, 1,image);
-						//} else {
 						dialogues[dialogueSet][count] = new Dialoge(name, text, 1);
-						//}
 					} else {
 						dialogues[dialogueSet][count] = new Dialoge(text, 1);
 					}
-					
 					count++;
 				}
 			}
@@ -89,11 +69,6 @@ public class Cutscene extends Entity {
 
 		dialogueIndex++;
 	}
-
-	//public void startDialogue(Cutscene cut, int setNum) {
-	//	GamePanel gp = this.gp;
-	//	gp.gameState = GameState.dialogueState;
-	//}
 
 	public void cutsceneDialog(String text) {
 		if (gp.keyH.enterPressed) {

@@ -1,9 +1,5 @@
 package wildwyrd.game.object;
 
-import java.awt.AlphaComposite;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.tile.InteractiveTile;

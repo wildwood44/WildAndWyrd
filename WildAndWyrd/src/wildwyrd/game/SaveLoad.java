@@ -111,7 +111,6 @@ public class SaveLoad {
 						ds.mapNpcId[mapNum][i] = -1;
 					} else {
 						ds.mapNpcId[mapNum][i] = gp.npc[mapNum][i].id;
-						System.out.println(gp.npc[mapNum][i] + " " + gp.npc[mapNum][i].id);
 						ds.mapNpcWorldX[mapNum][i] = gp.npc[mapNum][i].worldX;
 						ds.mapNpcWorldY[mapNum][i] = gp.npc[mapNum][i].worldY;
 						ds.mapNpcDirection[mapNum][i] = gp.npc[mapNum][i].direction;
@@ -130,7 +129,6 @@ public class SaveLoad {
 			//System.out.println("Loaded");
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
 			DataStorage ds = (DataStorage)ois.readObject();
-			System.out.println("Ping");
 			for(int i = 0; i < gp.playable.size(); i++) {
 				gp.playable.set(i,new Playable(gp, "Alder", ds.maxHealth[i], ds.maxStamina[i],
 						ds.baseAttack[i], ds.baseDefence[i], ds.baseAccuracy[i], ds.baseEvasion[i], ds.baseSpeed[i]));
@@ -150,6 +148,12 @@ public class SaveLoad {
 		//	gp.player = ds.player;
 			gp.player.direction = ds.direction;
 			gp.s = ds.story;
+			System.out.println(gp.s.chapter);
+			System.out.println(gp.s.part);
+			System.out.println(gp.s.getChapterSwitch());
+			//for(int i = 0; i < gp.s.c1Switch.length; i++) {
+			//	System.out.println(gp.s.c1Switch[i]);
+			//}
 			gp.currentMap = gp.maps[ds.currentMap];
 			gp.player.worldX = ds.worldX;
 			gp.player.worldY = ds.worldY;
@@ -163,7 +167,6 @@ public class SaveLoad {
 					if(ds.mapObjectId[mapNum][i] < 0) {
 						gp.obj[mapNum][i] = null;
 					} else {
-						System.out.println(gp.obj[mapNum][i]);
 						gp.obj[mapNum][i] = gp.eGenerator.getObject(ds.mapObjectId[mapNum][i]);
 						gp.obj[mapNum][i].worldX = ds.mapObjectWorldX[mapNum][i];
 						gp.obj[mapNum][i].worldY = ds.mapObjectWorldY[mapNum][i];
@@ -188,7 +191,6 @@ public class SaveLoad {
 					}
 				}
 			}
-			System.out.println(gp.currentMap + " " + gp.player.worldX + " " + gp.player.worldY);
 		} catch (Exception e) {
 			System.out.println(e);
 			System.out.println("Load Exception!");

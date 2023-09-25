@@ -1,8 +1,5 @@
 package wildwyrd.game.object;
 
-import java.io.Serializable;
-
-import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.items.Itm_Bandage;
 import wildwyrd.game.items.Itm_Hazelnut;
@@ -18,7 +15,7 @@ import wildwyrd.npc.NPC_Dilecto;
 import wildwyrd.npc.NPC_Florence;
 import wildwyrd.npc.NPC_Thay;
 
-public class AssetSetter implements Serializable {
+public class AssetSetter {
 	GamePanel gp;
 
 	public AssetSetter(GamePanel gp) {
@@ -29,7 +26,7 @@ public class AssetSetter implements Serializable {
 		gp.maps[0] = new Map(gp, MapType.INTERIOR, 0, 19, 11);
 		gp.maps[1] = new Map(gp, MapType.INTERIOR, 1, 17, 11);
 		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 23, 12);
-		gp.maps[3] = new Map(gp, MapType.OUTSIDE, 3, 19, 20);
+		gp.maps[3] = new Map(gp, MapType.OUTSIDE, 3, 17, 11);
 	}
 
 	public void setRooms() {
@@ -125,44 +122,19 @@ public class AssetSetter implements Serializable {
 		gp.obj[2][2] = new Obj_Tree(gp);
 		gp.obj[2][2].worldX = 1 * gp.tileSize;
 		gp.obj[2][2].worldY = 7 * gp.tileSize;
-		/*gp.obj[2][3] = new Obj_Tree(gp,7);
-		gp.obj[2][3].worldX = 1 * gp.tileSize;
-		gp.obj[2][3].worldY = 8 * gp.tileSize;
-		gp.obj[2][4] = new Obj_Tree(gp,3);
-		gp.obj[2][4].worldX = 2 * gp.tileSize;
-		gp.obj[2][4].worldY = 7 * gp.tileSize;
-		gp.obj[2][5] = new Obj_Tree(gp,8);
-		gp.obj[2][5].worldX = 2 * gp.tileSize;
-		gp.obj[2][5].worldY = 8 * gp.tileSize;
-		gp.obj[2][6] = new Obj_Tree(gp,5);
-		gp.obj[2][6].worldX = 3 * gp.tileSize;
-		gp.obj[2][6].worldY = 7 * gp.tileSize;
-		gp.obj[2][7] = new Obj_Tree(gp,9);
-		gp.obj[2][7].worldX = 3 * gp.tileSize;
-		gp.obj[2][7].worldY = 8 * gp.tileSize;*/
-		gp.obj[2][8] = new Obj_SilverBirch(gp);
-		gp.obj[2][8].worldX = 16 * gp.tileSize;
-		gp.obj[2][8].worldY = 5 * gp.tileSize;
-		gp.obj[2][9] = new Obj_Rock(gp, 0);
-		gp.obj[2][9].worldX = 14 * gp.tileSize;
-		gp.obj[2][9].worldY = 9 * gp.tileSize;
-		gp.obj[2][10] = new Obj_Rock(gp, 1);
-		gp.obj[2][10].worldX = 22 * gp.tileSize;
-		gp.obj[2][10].worldY = 5 * gp.tileSize;
-		gp.obj[2][11] = new Obj_Dummy(gp);
-		gp.obj[2][11].worldX = 8 * gp.tileSize;
-		gp.obj[2][11].worldY = 5 * gp.tileSize;
-		//System.out.println("Primary weapon: " + gp.playable.get(0).getWeapon_prime());
-		//if(gp.playable.get(0).getWeapon_prime() == null) {
-			/*gp.obj[2][14] = new Obj_Obsticle(gp);
-			gp.obj[2][14].worldX = 11 * gp.tileSize;
-			gp.obj[2][14].worldY = 11 * gp.tileSize;
-			gp.obj[2][15] = new Obj_Obsticle(gp);
-			gp.obj[2][15].worldX = 12 * gp.tileSize;
-			gp.obj[2][15].worldY = 11 * gp.tileSize;*/
-		//}
+		gp.obj[2][3] = new Obj_SilverBirch(gp);
+		gp.obj[2][3].worldX = 16 * gp.tileSize;
+		gp.obj[2][3].worldY = 5 * gp.tileSize;
+		gp.obj[2][4] = new Obj_Rock(gp, 0);
+		gp.obj[2][4].worldX = 14 * gp.tileSize;
+		gp.obj[2][4].worldY = 9 * gp.tileSize;
+		gp.obj[2][5] = new Obj_Rock(gp, 1);
+		gp.obj[2][5].worldX = 22 * gp.tileSize;
+		gp.obj[2][5].worldY = 5 * gp.tileSize;
+		gp.obj[2][6] = new Obj_Dummy(gp);
+		gp.obj[2][6].worldX = 8 * gp.tileSize;
+		gp.obj[2][6].worldY = 5 * gp.tileSize;
 		
-		/**/
 		gp.obj[3][0] = new Obj_SilverBirch(gp);
 		gp.obj[3][0].worldX = 1 * gp.tileSize;
 		gp.obj[3][0].worldY = 4 * gp.tileSize;
@@ -193,27 +165,5 @@ public class AssetSetter implements Serializable {
 	}
 	public int getRandomNumber(int min, int max) {
 	    return (int) ((Math.random() * (max - min)) + min);
-	}
-	public void Object1x2(Entity en) {
-		
-	}
-	public void Object3x2(Entity en) {
-		for(int i = 1; i <= 6; i++) {
-			int xAxis = 0;
-			int yAxis = 0;
-			if(i > 2) {
-				xAxis++;
-			}
-			if(i > 4) {
-				xAxis++;
-			}
-			if(i % 2 == 0) {
-				yAxis++;
-			}
-			System.out.println(i + " " + 1 * xAxis + " " + 12 * yAxis);
-			//gp.obj[2][i + 1] = new en(gp,i);
-			gp.obj[2][i + 1].worldX = (1 + xAxis) * gp.tileSize;
-			gp.obj[2][i + 1].worldY = (12 + yAxis) * gp.tileSize;
-		}
 	}
 }

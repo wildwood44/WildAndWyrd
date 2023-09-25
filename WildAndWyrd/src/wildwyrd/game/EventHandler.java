@@ -16,7 +16,6 @@ public class EventHandler {
 	int eventRectDefaultY;
 	boolean canTouchEvent = true;
 	boolean cutsceneActive = false;
-	private long start;
 
 	public EventHandler(GamePanel gp) {
 		this.gp = gp;
@@ -64,7 +63,6 @@ public class EventHandler {
 			if(gp.currentMap.getId() == 0) {
 				if(hit(0,13,8,"up")) {teleport(gp.maps[1],15,3);}
 				if(hit(0,10,10,"down")) {teleport(gp.maps[2],14,4);
-					System.out.println(gp.s.swh[1] + " " + gp.s.part);
 					if(gp.s.swh[1] == true) {gp.s.part = 2;}
 				}
 				if(hit(0,16,9,"down")) {teleport(gp.maps[2],20,3);}
@@ -79,12 +77,12 @@ public class EventHandler {
 				if(hit(2,20,2,"up")) {teleport(gp.maps[0],16,9);}
 				if(hit(2,14,4,"down")) {}
 				if(hit(2,11,11,"down")) {
-					if(gp.playable.get(0).getWeapon_prime() != null) {
+					if(gp.playable.get(0).getWeapon_prime().name != null) {
 						teleport(gp.maps[3],3,1);
 					} else { obsticle(gp.maps[2]); }
 				}
 				if(hit(2,12,11,"down")) {
-					if(gp.playable.get(0).getWeapon_prime() != null) {
+					if(gp.playable.get(0).getWeapon_prime().name != null) {
 						teleport(gp.maps[3],4,1);
 					} else { obsticle(gp.maps[2]); }
 				}
@@ -92,11 +90,10 @@ public class EventHandler {
 			else if(gp.currentMap.getId() == 3) {
 				if(hit(3,3,0,"up")) {teleport(gp.maps[2],11,11);}
 				if(hit(3,4,0,"up")) {teleport(gp.maps[2],12,11);}
-				if(hit(3,14,19,"down")) {obsticle(gp.maps[3]);};
-				if(hit(3,15,19,"down")) {obsticle(gp.maps[3]);};
+				if(hit(3,12,10,"down")) {obsticle(gp.maps[3]);};
+				if(hit(3,13,10,"down")) {obsticle(gp.maps[3]);};
 			}
 		}
-		//System.out.println(gp.player.worldX + " " + gp.player.worldY);
 	}
 
 	public void checkCutscene() {
@@ -109,6 +106,8 @@ public class EventHandler {
 				c1s_Cutscene(3);
 			}else if (gp.s.swh[2] && gp.s.part == 2) {
 				c1s_Cutscene(4);
+			}else if (gp.s.swh[3] && gp.s.part == 3) {
+				c1s_Cutscene(5);
 			}
 		}
 	}
@@ -155,24 +154,15 @@ public class EventHandler {
 		gp.currentMap = map;
 		gp.tileM = new TileManager(gp);
 		gp.eHandler = new EventHandler(gp);
-		//System.out.println(gp.player.worldX + " " + gp.player.worldY);
 		gp.player.worldX = gp.tileSize * col;
 		gp.player.worldY = gp.tileSize * row;
-		//System.out.println(col + " " + row);
-		//System.out.println(gp.player.worldX + " " + gp.player.worldY);
 		previousEventX = gp.player.worldX;
 		previousEventY = gp.player.worldY;
 		canTouchEvent = false;
 	}
 	
 	public void illusion(InteractiveTile iTile) {
-		//long current = System.currentTimeMillis();
-		//System.out.println(start + 3000 +" "+ current);
-		if(iTile.id == IT_StoneDoor.intId) {
-            //start = current;
-			//((IT_StoneDoor) iTile).uncoverIllusion();
-		}
-		
+		if(iTile.id == IT_StoneDoor.intId) {}
 	}
 	
 	public void obsticle(Map map) {
