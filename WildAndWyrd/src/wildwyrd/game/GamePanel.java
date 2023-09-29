@@ -19,6 +19,7 @@ import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.cutscenes.CutsceneManager;
 import wildwyrd.game.glossary.Glossary;
 import wildwyrd.game.object.AssetSetter;
+import wildwyrd.game.objective.Objective;
 import wildwyrd.game.playable.Playable;
 import wildwyrd.game.playable.Player;
 import wildwyrd.game.rooms.Room;
@@ -54,6 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Room room = new Room(this);
 	public AssetSetter aSetter = new AssetSetter(this);
 	public CutsceneManager csManager = new CutsceneManager(this);
+	public Objective objective = new Objective(this);
 	public Glossary glossary = new Glossary();
 	Thread gameThread;
 	int playerY = 100;

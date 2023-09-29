@@ -46,6 +46,7 @@ public class En_Wasp extends Enemy {
 	
 	public void combatResult() {
 		gp.gameState = GameState.playState;
+		gp.s.c1Switch[3] = false;
 		startDialogue(this,1);
 	}
 }

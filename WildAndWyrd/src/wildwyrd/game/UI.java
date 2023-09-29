@@ -109,6 +109,14 @@ public class UI {
 			drawEquipScreen();
 		}
 
+		if (gp.gameState == GameState.objectiveState) {
+			drawObjectiveScreen();
+		}
+
+		if (gp.gameState == GameState.skillState) {
+			//drawEquipScreen();
+		}
+
 		if (gp.gameState == GameState.glossaryState) {
 			drawGlossaryScreen();
 		}
@@ -485,6 +493,7 @@ public class UI {
 
 		int i;
 		for (i = 0; i < gp.player.inventory.size(); ++i) {
+			try {
 			g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY, null);
 			if(gp.player.inventory.get(i).amount > 1) {
 				g2.setFont(g2.getFont().deriveFont(32f));
@@ -502,6 +511,9 @@ public class UI {
 			if (i == 6 || i == 13 || i == 20) {
 				slotX = slotXstart;
 				slotY += gp.tileSize;
+			}
+			} catch (NullPointerException e) {
+				System.out.println(e);
 			}
 		}
 
@@ -579,6 +591,73 @@ public class UI {
 				g2.drawString("Primary WP: " + p.getWeapon_prime().getName(), frameX + 15, (int) (gp.tileSize * 4));
 				g2.drawString("Secondary WP: " +p.getWeapon_second().getName(), frameX + 15, (int) (gp.tileSize * 4.75D));
 				//g2.drawImage(p.combatSpt, frameX + (frameWidth / 3), frameY + (frameHeight / 4), frameWidth / 2 , frameHeight/2, null);
+			}
+		}
+	}
+	
+	public void drawObjectiveScreen() {
+		int frameX = 20;
+		int frameY = 25;
+		int frameWidth = gp.tileSize * 4;
+		int frameHeight = gp.tileSize * 7;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		int slotXstart = frameX + 0;
+		int slotYstart = frameY + 15;
+		int cursorX = slotXstart + gp.tileSize * slotRow;
+		int cursorY = (int) (slotYstart * 2.25D + gp.tileSize * slotCol);
+		int cursorWidth = gp.tileSize * 2;
+		int cursorHeight = 30;
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke());
+		g2.drawString("Quests ", 30, gp.tileSize);
+		int pos = (int) (gp.tileSize * 0.75D);
+		bottomValue = gp.objective.quests.length;
+		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+		for (int i = 0; i < 6; ++i) {
+			if (gp.objective.quests[i] != null) {
+				pos += gp.tileSize;
+				try {
+					if(i + topValue != 0) {
+						g2.drawString("Quest: " + gp.objective.quests[i + topValue].id, 30, pos);
+					} else {
+						g2.drawString(gp.objective.quests[i + topValue].name, 30, pos);
+					}
+				} catch (Exception e) {
+					System.out.println(e);
+				}
+			}
+		}
+		//Display Up arrow
+		if(topValue > 0) {
+			drawUpIcon(frameX + 110, 75, 20, 20);
+		}
+		//Display Down arrow
+		if(topValue < bottomValue - 6) {
+			drawDownIcon(frameX + 110, 440, 20, 20);
+		}
+
+		frameX = 300;
+		frameY = 25;
+		frameWidth = gp.tileSize * 7;
+		//frameHeight = gp.tileSize * 4;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+
+		if(topValue != 0) {
+			g2.drawString("Quest: " + gp.objective.quests[slotCol + topValue].id, frameX + 40, frameY + 40);
+		} else {
+			g2.drawString(gp.objective.quests[slotCol + topValue].name, frameX + 40, frameY + 40);
+		}
+		int lineNum = 80;
+
+		for (String line : breakLines((gp.objective.quests[slotCol + topValue].printQuest()), 35)){
+			for (String list : line.split("£")) {
+				g2.setFont(g2.getFont().deriveFont(0, 16.0F));
+				g2.drawString(list, frameX + 40,
+					frameY + lineNum);
+				lineNum += 20;
 			}
 		}
 	}
@@ -694,7 +773,6 @@ public class UI {
 				g2.drawString(list, 35, y);
 				y += 30;
 			}
-			
 		}
 	}
 	
@@ -912,14 +990,22 @@ public class UI {
 				if (pos == -1) {
 					pos = text.lastIndexOf(" ", size);
 				}
+				//text = text.replaceFirst("£", "");
+				//pos -= 1;
 			}
 			if (size > text.length()) {
 				pos = text.length() - 1;
 			}
-			String found = text.substring(0, pos + 1);
+			try {
+				String found = text.substring(0, pos + 1);
+				text = text.substring(pos + 1);
+				lines.add(found);
+			} catch (StringIndexOutOfBoundsException e) {
+				String found = text.substring(0, pos + 1);
+				text = text.substring(pos + 1);
+				lines.add(found);
+			}
 			//System.out.println(found);
-			text = text.substring(pos + 1);
-			lines.add(found);
 		}
 		String[] lineBreaks = lines.toArray(new String[lines.size()]);
 		return lineBreaks;

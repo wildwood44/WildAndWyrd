@@ -101,6 +101,7 @@ public class SaveLoad {
 						ds.mapObjectWorldY[mapNum][i] = gp.obj[mapNum][i].worldY;
 						if(gp.obj[mapNum][i].loot != null) {
 							ds.mapObjectLootIds[mapNum][i] = gp.obj[mapNum][i].loot.id;
+							System.out.println(ds.mapObjectId[mapNum][i] + " " + ds.mapObjectLootIds[mapNum][i]);
 						}
 						ds.mapObjectOpened[mapNum][i] = gp.obj[mapNum][i].opened;
 					}
@@ -148,9 +149,6 @@ public class SaveLoad {
 		//	gp.player = ds.player;
 			gp.player.direction = ds.direction;
 			gp.s = ds.story;
-			System.out.println(gp.s.chapter);
-			System.out.println(gp.s.part);
-			System.out.println(gp.s.getChapterSwitch());
 			//for(int i = 0; i < gp.s.c1Switch.length; i++) {
 			//	System.out.println(gp.s.c1Switch[i]);
 			//}
@@ -170,7 +168,7 @@ public class SaveLoad {
 						gp.obj[mapNum][i] = gp.eGenerator.getObject(ds.mapObjectId[mapNum][i]);
 						gp.obj[mapNum][i].worldX = ds.mapObjectWorldX[mapNum][i];
 						gp.obj[mapNum][i].worldY = ds.mapObjectWorldY[mapNum][i];
-						if(gp.obj[mapNum][i].loot != null) {
+						if(ds.mapObjectLootIds[mapNum][i] > 0) {
 							gp.obj[mapNum][i].loot = gp.eGenerator.getObject(ds.mapObjectLootIds[mapNum][i]);
 						}
 						gp.obj[mapNum][i].opened = ds.mapObjectOpened[mapNum][i];

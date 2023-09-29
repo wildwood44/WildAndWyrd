@@ -22,10 +22,6 @@ public class NPC_Kyla extends NPC {
 		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;
-		contConditions[0] = false;
-		contConditions[1] = false;
-		contConditions[2] = false;
-		contConditions[3] = false;
 		setDialogue();
 		setDialogueOptions();
 		getImage();
@@ -141,34 +137,7 @@ public class NPC_Kyla extends NPC {
 		options[7] = "Why are humans so hated?";
 	}
 	public void choiceResponce() {
-		if (gp.ui.choiceSlot == 0) {
-			startDialogue(this, 1);
-			contConditions[0] = true;
-		}
-		else if (gp.ui.choiceSlot == 1) {
-			startDialogue(this, 2);
-			contConditions[1] = true;
-		}
-		else if (gp.ui.choiceSlot == 2) {
-			startDialogue(this, 3);
-			contConditions[2] = true;
-		}
-		else if (gp.ui.choiceSlot == 3) {
-			startDialogue(this, 4);
-		}
-		else if (gp.ui.choiceSlot == 4) {
-			startDialogue(this, 5);
-		}
-		else if (gp.ui.choiceSlot == 5) {
-			startDialogue(this, 6);
-		}
-		else if (gp.ui.choiceSlot == 6) {
-			startDialogue(this, 7);
-		}
-		else if (gp.ui.choiceSlot == 7) {
-			startDialogue(this, 8);
-			contConditions[3] = true;
-		}
+		
 	}
 	
 	public void speak() {

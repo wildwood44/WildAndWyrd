@@ -71,7 +71,9 @@ public class KeyHandler implements KeyListener {
 						gp.gameState = GameState.equipState;
 						gp.ui.drawEquipScreen();
 					} else if (gp.ui.slotCol == 4) { //Open objectives screen
-						
+						gp.ui.resetSlots();
+						gp.gameState = GameState.objectiveState;
+						gp.ui.drawObjectiveScreen();
 					} else if (gp.ui.slotCol == 5) { //Open skills screen
 						
 					} else if (gp.ui.slotCol == 6) { //Open glossary screen
@@ -187,6 +189,39 @@ public class KeyHandler implements KeyListener {
 					gp.ui.slotCol++;
 				} else {
 					gp.ui.slotCol = 0;
+				}
+			}
+		} else if (gp.gameState == GameState.objectiveState) {
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_ESCAPE :
+				gp.ui.resetSlots();
+				gp.gameState = GameState.menuState;
+				break;
+			case KeyEvent.VK_UP :
+			case KeyEvent.VK_W :
+				//System.out.println(this.gp.ui.topValue + " " + this.gp.ui.slotCol);
+				if (gp.ui.slotCol != 0) {
+					gp.ui.slotCol--;
+				} else if (gp.ui.topValue != 0) {
+					gp.ui.topValue--;
+				} else {
+					gp.ui.topValue = gp.ui.bottomValue - 6;
+					gp.ui.slotCol = 5;
+				}
+				break;
+			case KeyEvent.VK_DOWN :
+			case KeyEvent.VK_S :
+				if (gp.ui.slotCol != 5) {
+					gp.ui.slotCol++;
+				} else {
+					//System.out.println(
+					//		this.gp.ui.slotCol + this.gp.ui.topValue + " " + this.gp.ui.bottomValue);
+					if (gp.ui.slotCol + gp.ui.topValue != gp.ui.bottomValue - 1) {
+						gp.ui.topValue++;
+					} else {
+						gp.ui.slotCol = 0;
+						gp.ui.topValue = 0;
+					}
 				}
 			}
 		} else if (gp.gameState == GameState.glossaryState) {

@@ -49,129 +49,6 @@ public class NPC_Florence extends NPC {
 		return image.getSubimage(xGrid * 48, yGrid * 48, 48, 48);
 	}
 	
-	/*public void draw(Graphics2D g2) {
-		BufferedImage image = null;
-		int screenX = worldX - gp.player.worldX + gp.player.screenX;
-		int screenY = worldY - gp.player.worldY + gp.player.screenY;
-
-		// STOP MOVING CAMERA
-		if (gp.player.worldY < gp.player.screenY) {
-			screenY = worldY;
-		}
-		int rightOffset = gp.screenWidth - gp.player.screenX;
-		if (rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX) {
-			screenX = gp.screenWidth - (gp.currentMap.getWorldWidth() - worldX);
-		}
-		int bottomOffset = gp.screenHeight - gp.player.screenY;
-		if (bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
-			screenY = gp.screenHeight - (gp.currentMap.getWorldHeight() - worldY);
-		}
-		if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
-			worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-			worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-			worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-			
-			switch(direction) {
-			case "up":
-				if(spriteNum == 1) {
-					image = getPlayerImage(7, 3);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(6, 3);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(7, 3);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(8, 3);
-				}
-				break;
-			case "down":
-				if(spriteNum == 1) {
-					image = getPlayerImage(7, 0);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(6, 0);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(7, 0);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(8, 0);
-				}
-				break;
-			case "left":
-				if(spriteNum == 1) {
-					image = getPlayerImage(7, 1);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(6, 1);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(7, 1);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(8, 1);
-				}
-				break;
-			case "right":
-				if(spriteNum == 1) {
-					image = getPlayerImage(7, 2);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(6, 2);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(7, 2);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(8, 2);
-				}
-				break;
-			}
-			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-		}else if(gp.player.worldX < gp.player.screenX ||
-			    gp.player.worldY < gp.player.screenY ||
-			    rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX ||
-			    bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
-			switch(direction) {
-			case "up":
-				if(spriteNum == 1) {
-					image = getPlayerImage(7, 3);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(6, 3);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(7, 3);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(8, 3);
-				}
-				break;
-			case "down":
-				if(spriteNum == 1) {
-					image = getPlayerImage(7, 0);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(6, 0);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(7, 0);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(8, 0);
-				}
-				break;
-			case "left":
-				if(spriteNum == 1) {
-					image = getPlayerImage(7, 1);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(6, 1);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(7, 1);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(8, 1);
-				}
-				break;
-			case "right":
-				if(spriteNum == 1) {
-					image = getPlayerImage(7, 2);
-				} else if(spriteNum == 2) {
-					image = getPlayerImage(6, 2);
-				} else if(spriteNum == 3) {
-					image = getPlayerImage(7, 2);
-				} else if(spriteNum == 4) {
-					image = getPlayerImage(8, 2);
-				}
-				break;
-			}
-			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-		}
-	}*/
-	
 	public void getImage() {
 		up1 = getPlayerImage(7, 3);
 		up2 = getPlayerImage(6, 3);
@@ -186,10 +63,6 @@ public class NPC_Florence extends NPC {
 		right2 = getPlayerImage(6, 2);
 		right3 = getPlayerImage(8, 2);
 	}
-	
-	public void setAction() {
-		
-	}
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge(" " ,3);
@@ -199,6 +72,9 @@ public class NPC_Florence extends NPC {
 		dialogues[2][1] = new Dialoge("Florence", "Kyla’s cast several illusions on the cottage, one of which makes it looks like a boulder from the outside.", 1);
 		dialogues[2][2] = new Dialoge("Florence", "She's also muted the rooms and made our scents smell somewhat grassy.", 1);
 		dialogues[2][3] = new Dialoge("Florence", "This place cannot be seen from the outside world, so we tend to call it the burrow.", 1);
+		dialogues[3][0] = new Dialoge("Florence", "The knife should be in the shed. You can go once you've got it." ,1);
+		dialogues[4][0] = new Dialoge("Florence", "Fantastic!" ,1);
+		dialogues[4][0] = new Dialoge("Florence", "Just please don't go too far." ,1);
 	}
 	
 	public void setDialogueOptions() {
@@ -236,7 +112,13 @@ public class NPC_Florence extends NPC {
 		facePlayer();
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
-		startDialogue(this, 0);
+		if(gp.s.c1Switch[1] == true) {
+			startDialogue(this, 0);
+		} else if(gp.s.c1Switch[3] == true) {
+			System.out.println("ping: " + dialogueIndex);
+			startDialogue(this, 3);
+		}
+		
 		gp.keyH.enterPressed = false;
 	}
 }
