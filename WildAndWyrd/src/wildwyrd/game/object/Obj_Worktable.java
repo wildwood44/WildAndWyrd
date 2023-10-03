@@ -44,7 +44,6 @@ public class Obj_Worktable extends Entity {
 
 	public void interact() {
 		gp.ui.choiceSlot = 0;
-		System.out.println(loot);
 		if (!opened && !gp.s.c1Switch[2]) {
 			startDialogue(this, 1);
 		} else {

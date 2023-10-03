@@ -6,10 +6,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
+import wildwyrd.npc.NPC;
 
-public class PlayerDummy extends Entity {
+public class PlayerDummy extends NPC {
 	public static final String npcName = "Dummy";
 
 	public PlayerDummy(GamePanel gp) {

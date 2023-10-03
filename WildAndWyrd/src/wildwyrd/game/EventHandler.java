@@ -108,6 +108,8 @@ public class EventHandler {
 				c1s_Cutscene(4);
 			}else if (gp.s.swh[3] && gp.s.part == 3) {
 				c1s_Cutscene(5);
+			}else if (gp.s.swh[4] && gp.s.part == 4) {
+				c1s_Cutscene(6);
 			}
 		}
 	}

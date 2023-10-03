@@ -644,21 +644,24 @@ public class UI {
 		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
-
-		if(topValue != 0) {
-			g2.drawString("Quest: " + gp.objective.quests[slotCol + topValue].id, frameX + 40, frameY + 40);
-		} else {
-			g2.drawString(gp.objective.quests[slotCol + topValue].name, frameX + 40, frameY + 40);
-		}
-		int lineNum = 80;
-
-		for (String line : breakLines((gp.objective.quests[slotCol + topValue].printQuest()), 35)){
-			for (String list : line.split("£")) {
-				g2.setFont(g2.getFont().deriveFont(0, 16.0F));
-				g2.drawString(list, frameX + 40,
-					frameY + lineNum);
-				lineNum += 20;
+		try {
+			if(topValue != 0) {
+				g2.drawString("Quest: " + gp.objective.quests[slotCol + topValue].id, frameX + 40, frameY + 40);
+			} else {
+				g2.drawString(gp.objective.quests[slotCol + topValue].name, frameX + 40, frameY + 40);
 			}
+			int lineNum = 80;
+	
+			for (String line : breakLines((gp.objective.quests[slotCol + topValue].printQuest()), 35)){
+				for (String list : line.split("£")) {
+					g2.setFont(g2.getFont().deriveFont(0, 16.0F));
+					g2.drawString(list, frameX + 40,
+						frameY + lineNum);
+					lineNum += 20;
+				}
+			}
+		} catch (NullPointerException e) {
+			System.out.println(e);
 		}
 	}
 

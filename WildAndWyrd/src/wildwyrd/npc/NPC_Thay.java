@@ -1,15 +1,14 @@
 package wildwyrd.npc;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
+import wildwyrd.game.playable.Playable;
 
 public class NPC_Thay extends NPC {
 	public static final int npcId = 2;
@@ -130,6 +129,10 @@ public class NPC_Thay extends NPC {
 		dialogues[8][10] = new Dialoge("Thay", "If you are seen.",1);
 		dialogues[8][11] = new Dialoge("Thay", "You will be assumed aligned with the kings: ideals and killed.",1);
 		dialogues[8][12] = new Dialoge("Alder gave a sad longing look to the deep wood. He’d like to see more than the tiny patch he called home. But alas as Thay said, the danger was too great.",1);
+		dialogues[9][0] = new Dialoge("Thay", "You alright, Alder.",1);
+		dialogues[9][1] = new Dialoge("Alder", "I was attack by wasps while I was out.",1);
+		dialogues[9][2] = new Dialoge("Thay", "Wasps huh, horrible things.",1);
+		dialogues[9][3] = new Dialoge("Thay", "Then todays lesson will be on plantain, it might ease your discomfort.",1);
 	}
 	
 	public void setDialogueOptions() {
@@ -146,17 +149,19 @@ public class NPC_Thay extends NPC {
 	}
 	
 	public void checkConditions() {
-
-		if (dialogues[dialogueSet][dialogueIndex] == null) {
-			for (boolean checkCondition: contConditions) {
-				if(checkCondition == false) {
-					dialogueIndex = 0;
-					speak();
+		if(dialogueSet == 1 || dialogueSet == 2 ||
+				dialogueSet == 3 || dialogueSet == 8) {
+			if (dialogues[dialogueSet][dialogueIndex] == null) {
+				for (boolean checkCondition: contConditions) {
+					if(checkCondition == false) {
+						dialogueIndex = 0;
+						speak();
+					}
+				} if (dialogues[dialogueSet][dialogueIndex] == null) {
+					//dialogueIndex = 0;
+					gp.s.swh[3] = true;
+					gp.s.part = 3;
 				}
-			} if (dialogues[dialogueSet][dialogueIndex] == null) {
-				//dialogueIndex = 0;
-				gp.s.swh[3] = true;
-				gp.s.part = 3;
 			}
 		}
 	}
@@ -197,7 +202,14 @@ public class NPC_Thay extends NPC {
 		facePlayer();
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
-		startDialogue(this, 0);
+		if(gp.s.c1Switch[2] == true) {
+			startDialogue(this, 0);
+		} else if(gp.s.c1Switch[3] == true) {
+			//startDialogue(this, 9);
+		} else if(gp.s.c1Switch[4] == true) {
+			startDialogue(this, 9);
+			gp.playable.get(0).heal(5);
+		}
 		gp.keyH.enterPressed = false;
 	}
 }

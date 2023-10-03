@@ -5,6 +5,8 @@ import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
 import wildwyrd.game.items.Itm_Bug_Meat;
 import wildwyrd.game.object.Dialoge;
+import wildwyrd.npc.NPC_Florence;
+import wildwyrd.npc.NPC_Thay;
 
 public class En_Wasp extends Enemy {
 	public En_Wasp(GamePanel gp) {
@@ -47,6 +49,19 @@ public class En_Wasp extends Enemy {
 	public void combatResult() {
 		gp.gameState = GameState.playState;
 		gp.s.c1Switch[3] = false;
+		for (int i = 0; i < gp.npc[2].length; i++) {
+			if(gp.npc[2][i] != null && gp.npc[2][i].name == NPC_Thay.npcName) {
+				gp.npc[2][i].worldX = gp.tileSize * 14;
+				gp.npc[2][i].direction = "left";
+				break;
+			}
+		}
+		for (int i = 0; i < gp.npc[2].length; i++) {
+			if(gp.npc[2][i] != null && gp.npc[2][i].name == NPC_Florence.npcName) {
+				gp.npc[2][i].direction = "right";
+				break;
+			}
+		}
 		startDialogue(this,1);
 	}
 }

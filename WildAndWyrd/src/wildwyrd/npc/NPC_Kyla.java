@@ -1,12 +1,10 @@
 package wildwyrd.npc;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
@@ -65,7 +63,7 @@ public class NPC_Kyla extends NPC {
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge(" " ,3);
+		dialogues[0][0] = new Dialoge(" " ,1);
 		dialogues[1][0] = new Dialoge("Thay", "It was quite lovely.", 1);
 		dialogues[1][1] = new Dialoge("Thay", "This summer has been good to us all.", 1);
 		dialogues[2][0] = new Dialoge("Thay", "The usual, gave her the herbs she wanted in exchange for the potions I need.", 1);
@@ -127,14 +125,7 @@ public class NPC_Kyla extends NPC {
 	}
 	
 	public void setDialogueOptions() {
-		options[0] = "How was your journey?";
-		options[1] = "How did it go with Madame Kyla?";
-		options[2] = "What's it like beyond the burrow?";
-		options[3] = "About the woods?";
-		options[4] = "About the the mouse village?";
-		options[5] = "About the river?";
-		options[6] = "About the hill?";
-		options[7] = "Why are humans so hated?";
+		
 	}
 	public void choiceResponce() {
 		
