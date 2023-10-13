@@ -3,6 +3,7 @@ package wildwyrd.game.object;
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.items.Itm_Bramble_Leaf;
 
 public class Obj_Worktable extends Entity {
 	GamePanel gp;
@@ -40,12 +41,18 @@ public class Obj_Worktable extends Entity {
 		dialogues[1][0] = new Dialoge(
 				"In the draw of the worktable was a hunting knife.",1);
 		dialogues[1][1] = new Dialoge("Take it?",2);
+		dialogues[2][0] = new Dialoge("Alder ground the leaves with the pestle until they were powder. He then put them in a nearby pot containing remnants of the same powder.",1);
 	}
 
 	public void interact() {
 		gp.ui.choiceSlot = 0;
 		if (!opened && !gp.s.c1Switch[2]) {
 			startDialogue(this, 1);
+		} else if (gp.player.itemIsInInventory(Itm_Bramble_Leaf.itemId)) {
+			Entity selectedItem = gp.player.inventory.get(gp.player.searchItemInInventory(Itm_Bramble_Leaf.itemId));
+			gp.player.removeFromInventory(selectedItem);
+			gp.objective.quests[1].progress(2);
+			startDialogue(this, 2);
 		} else {
 			startDialogue(this, 0);
 		}

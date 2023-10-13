@@ -21,7 +21,9 @@ public class Obj_Table_Left extends Entity {
 		
 		solidArea.x = 20;
 		solidArea.width = 40;
+		solidArea.y = 30;
 		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
 		setDialogue();
 		getImage(image);
 	}

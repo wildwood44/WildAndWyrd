@@ -2,6 +2,7 @@ package wildwyrd.game;
 
 import wildwyrd.game.items.Itm_Bandage;
 import wildwyrd.game.items.Itm_Bow;
+import wildwyrd.game.items.Itm_Bramble_Leaf;
 import wildwyrd.game.items.Itm_Bug_Meat;
 import wildwyrd.game.items.Itm_Hazelnut;
 import wildwyrd.game.items.Itm_Hunting_Knife;
@@ -10,9 +11,10 @@ import wildwyrd.game.items.Itm_Primative_Arrow;
 import wildwyrd.game.object.Obj_Alder_Bed;
 import wildwyrd.game.object.Obj_Alder_Window;
 import wildwyrd.game.object.Obj_Basin;
+import wildwyrd.game.object.Obj_Blackberry;
 import wildwyrd.game.object.Obj_Bookshelf;
 import wildwyrd.game.object.Obj_Cauldron;
-import wildwyrd.game.object.Obj_Chair_Left;
+import wildwyrd.game.object.Obj_Chair;
 import wildwyrd.game.object.Obj_Crate;
 import wildwyrd.game.object.Obj_Cupboard;
 import wildwyrd.game.object.Obj_Dummy;
@@ -33,6 +35,7 @@ import wildwyrd.game.object.Obj_Window_Down;
 import wildwyrd.game.object.Obj_Wooden_Bowl;
 import wildwyrd.game.object.Obj_Worktable;
 import wildwyrd.game.object.Plant_1;
+import wildwyrd.npc.NPC;
 import wildwyrd.npc.NPC_Cricket;
 import wildwyrd.npc.NPC_Dilecto;
 import wildwyrd.npc.NPC_Florence;
@@ -61,7 +64,7 @@ public class EntityGenerator {
 		case Obj_Kitchen_Window.objId: obj = new Obj_Kitchen_Window(gp);break;//9
 		case Obj_Basin.objId: obj = new Obj_Basin(gp);break;//10
 		case Obj_Bookshelf.objId: obj = new Obj_Bookshelf(gp);break;//11
-		case Obj_Chair_Left.objId: obj = new Obj_Chair_Left(gp);break;//12
+		case Obj_Chair.objId: obj = new Obj_Chair(gp);break;//12
 		case Obj_Table.objId: obj = new Obj_Table(gp);break;//13
 		case Obj_Crate.objId: obj = new Obj_Crate(gp);break;//14
 		case Obj_Pot.objId: obj = new Obj_Pot(gp);break;//15
@@ -75,6 +78,7 @@ public class EntityGenerator {
 		case Obj_SilverBirch.objId: obj = new Obj_SilverBirch(gp);break;//23
 		case Obj_Tree.objId: obj = new Obj_Tree(gp);break;//24
 		case Obj_Dummy.objId: obj = new Obj_Dummy(gp);break;//25
+		case Obj_Blackberry.objId: obj = new Obj_Blackberry(gp);break;//26
 		case Itm_Hazelnut.itemId:obj = new Itm_Hazelnut(gp);break;//101
 		case Itm_P_Mushroom.itemId:obj = new Itm_P_Mushroom(gp);break;//102
 		case Itm_Bug_Meat.itemId:obj = new Itm_Bug_Meat(gp);break;//103
@@ -82,13 +86,14 @@ public class EntityGenerator {
 		case Itm_Hunting_Knife.itemId:obj = new Itm_Hunting_Knife(gp);break;//301
 		case Itm_Bow.itemId:obj = new Itm_Bow(gp);break;//302
 		case Itm_Primative_Arrow.itemId:obj = new Itm_Primative_Arrow(gp);break;//501
+		case Itm_Bramble_Leaf.itemId:obj = new Itm_Bramble_Leaf(gp);break;//601
 		//default
 		}
 		return obj;
 	}
 	
-	public Entity getNpc(int npcId) {
-		Entity npc = null;
+	public NPC getNpc(int npcId) {
+		NPC npc = null;
 		switch(npcId) {
 		case NPC_Dilecto.npcId: npc = new NPC_Dilecto(gp);break;//0
 		case NPC_Florence.npcId: npc = new NPC_Florence(gp);break;//1

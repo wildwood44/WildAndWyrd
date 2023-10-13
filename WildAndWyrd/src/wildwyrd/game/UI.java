@@ -619,9 +619,14 @@ public class UI {
 				pos += gp.tileSize;
 				try {
 					if(i + topValue != 0) {
-						g2.drawString("Quest: " + gp.objective.quests[i + topValue].id, 30, pos);
+						if(!gp.objective.quests[i + topValue].isAccepted()) {
+							g2.drawString("???", 30, pos);
+						} else {
+							g2.drawString("Quest: " + gp.objective.quests[i + topValue].id, 30, pos);
+						}
 					} else {
 						g2.drawString(gp.objective.quests[i + topValue].name, 30, pos);
+						
 					}
 				} catch (Exception e) {
 					System.out.println(e);
@@ -648,17 +653,24 @@ public class UI {
 			if(topValue != 0) {
 				g2.drawString("Quest: " + gp.objective.quests[slotCol + topValue].id, frameX + 40, frameY + 40);
 			} else {
-				g2.drawString(gp.objective.quests[slotCol + topValue].name, frameX + 40, frameY + 40);
+				if(!gp.objective.quests[slotCol + topValue].isAccepted()) {
+					g2.drawString("???", 30, pos);
+				} else {
+					g2.drawString(gp.objective.quests[slotCol + topValue].name, frameX + 40, frameY + 40);
+				}
 			}
 			int lineNum = 80;
-	
-			for (String line : breakLines((gp.objective.quests[slotCol + topValue].printQuest()), 35)){
-				for (String list : line.split("£")) {
-					g2.setFont(g2.getFont().deriveFont(0, 16.0F));
-					g2.drawString(list, frameX + 40,
-						frameY + lineNum);
-					lineNum += 20;
+			System.out.println(slotCol + topValue);
+			if(gp.objective.quests[slotCol + topValue].isAccepted()) {
+				for (String line : breakLines((gp.objective.quests[slotCol + topValue].printQuest()), 35)){
+					for (String list : line.split("£")) {
+						g2.setFont(g2.getFont().deriveFont(0, 16.0F));
+						g2.drawString(list, frameX + 40,
+							frameY + lineNum);
+						lineNum += 20;
+					}
 				}
+				g2.drawString(gp.objective.quests[slotCol + topValue].printQuestStatus(), frameX + 40, frameY + lineNum + 20);
 			}
 		} catch (NullPointerException e) {
 			System.out.println(e);
@@ -1099,8 +1111,7 @@ public class UI {
 
 	}
 	
-	public int countFrequencies(ArrayList<Entity> list)
-    {
+	public int countFrequencies(ArrayList<Entity> list) {
         // hashmap to store the frequency of element
         Map<Entity, Integer> hm = new HashMap<Entity, Integer>();
         int count = 0;

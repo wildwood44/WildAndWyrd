@@ -17,6 +17,8 @@ public class Obj_Wooden_Bowl extends Entity {
 		type = EntityType.Object;
 		collision = true;
 		options = new String[2];
+		solidArea.y = 30;
+		solidAreaDefaultY = solidArea.y;
 
 		image = setup("/res/objects/Table_Tile_Bowl", gp.tileSize, gp.tileSize);
 		getImage(image);

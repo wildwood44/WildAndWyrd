@@ -15,7 +15,7 @@ public class TileManager {
 
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
-		tile = new Tile[11];
+		tile = new Tile[50];
 		mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 		getTileImage();
 		loadMap("/res/maps/map01",0);
@@ -26,23 +26,32 @@ public class TileManager {
 
 	public void getTileImage() {
 		if(gp.currentMap.getType() == MapType.INTERIOR) {
-			setup(0, "kitchen_tiles", false);
-			setup(1, "blank_tiles", true);
-			setup(2, "Cottage_Wall_Tile", true);
-			setup(3, "Cottage_Ceiling1_Tile", true);
-			setup(4, "Cottage_Ceiling2_Tile", true);
-			setup(5, "Cottage_Window_Tile", true);
-			setup(6, "stair_tile_horizontal", false);
-			setup(7, "Balcony_Wood", true);
-			setup(8, "Balcony_Wooden_Left", false);
+			setup(10, "kitchen_tiles", false);
+			setup(11, "blank_tiles", true);
+			setup(12, "Cottage_Wall_Tile", true);
+			setup(13, "Cottage_Ceiling1_Tile", true);
+			setup(14, "Cottage_Ceiling2_Tile", true);
+			setup(15, "dirt_tile", false);
+			setup(16, "stair_tile_horizontal", false);
+			setup(17, "Balcony_Wood", true);
+			setup(18, "Balcony_Wooden_Left", false);
 		}
 		else if(gp.currentMap.getType() == MapType.OUTSIDE) {
-			setup(0, "dirt_grass_tile", false);
-			setup(1, "forestFloor_tile", false);
-			setup(2, "Rockwall_Tile", true);
-			setup(3, "bramble_tile", true);
-			setup(4, "nettle_tile", true, true);
-			setup(5, "Rockwall_Door4", false);
+			setup(10, "dirt_grass_tile", false);
+			setup(11, "forestFloor_tile", false);
+			setup(12, "Rockwall_Tile", true);
+			setup(13, "bramble_tile", true);
+			setup(15, "Rockwall_Door4", false);
+			setup(40, "nettle_tile", true, true);
+			setup(41, "nettle_tile-top_left", true, true);
+			setup(42, "nettle_tile-left", true, true);
+			setup(43, "nettle_tile-bottom_left", true, true);
+			setup(44, "nettle_tile-top", true, true);
+			setup(45, "nettle_tile", true, true);
+			setup(46, "nettle_tile-bottom", true, true);
+			setup(47, "nettle_tile-top_right", true, true);
+			setup(48, "nettle_tile-right", true, true);
+			setup(49, "nettle_tile-bottom_right", true, true);
 		}
 		
 	}

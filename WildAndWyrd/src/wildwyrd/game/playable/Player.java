@@ -315,11 +315,22 @@ public class Player extends Entity {
         return start + 3000 < current;
 	}
 	
-	public int searchItemInInventory(String itemName) {
+	public boolean itemIsInInventory(int itemId) {
+		for(int i  = 0; i < inventory.size(); i++) {
+			if(inventory.get(i) != null) {
+				if(inventory.get(i).id == itemId) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public int searchItemInInventory(int itemId) {
 		int itemIndex = 999;
 		for(int i  = 0; i < inventory.size(); i++) {
 			if(inventory.get(i).name != null) {
-				if(inventory.get(i).name.equals(itemName)) {
+				if(inventory.get(i).id == itemId) {
 					itemIndex = i;
 					break;
 				}
@@ -332,7 +343,7 @@ public class Player extends Entity {
 		boolean canObtain = false;
 		//CHECK IF STACKABLE
 		if(item.stackable == true) {
-			int index = searchItemInInventory(item.name);
+			int index = searchItemInInventory(item.id);
 			if(index != 999) {
 				inventory.get(index).amount++;
 				canObtain = true;

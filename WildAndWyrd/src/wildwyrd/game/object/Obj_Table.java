@@ -16,6 +16,8 @@ public class Obj_Table extends Entity {
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
+		solidArea.y = 40;
+		solidAreaDefaultY = solidArea.y;
 
 		image = setup("/res/objects/img_table2", gp.tileSize, gp.tileSize);
 

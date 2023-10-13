@@ -27,6 +27,7 @@ import wildwyrd.game.tile.CollisionChecker;
 import wildwyrd.game.tile.InteractiveTile;
 import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.TileManager;
+import wildwyrd.npc.NPC;
 
 public class GamePanel extends JPanel implements Runnable {
 	final int originalTileSize = 16;
@@ -72,7 +73,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Combat combat = new Combat(this);
 	public List<Playable> playable = new ArrayList<Playable>(5);
 	public Entity[][] obj = new Entity[10][25];
-	public Entity[][] npc = new Entity[10][5];
+	public NPC[][] npc = new NPC[10][5];
 	public InteractiveTile iTile[][] = new InteractiveTile[10][50];
 	public Room[] rm;
 	public Map[] maps;
@@ -268,8 +269,6 @@ public class GamePanel extends JPanel implements Runnable {
 					element.draw(g2);
 				}
 				entityList.clear();
-
-				//this.player.draw(this.g2);
 				ui.draw(g2);
 			}
 			ui.draw(g2);
@@ -303,7 +302,24 @@ public class GamePanel extends JPanel implements Runnable {
 		g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, (ImageObserver) null);
 		g.dispose();
 	}
-
-	public void removeTempEntity() {
+	
+	public boolean objectExists(int objectId, int mapId) {
+		for(int i = 0; i < obj[mapId].length; i++) {
+			if(obj[mapId][i] != null &&
+					obj[mapId][i].id == objectId) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean NpcExists(int npcId, int mapId) {
+		for(int i = 0; i < npc[mapId].length; i++) {
+			if(npc[mapId][i] != null &&
+					npc[mapId][i].id == npcId) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

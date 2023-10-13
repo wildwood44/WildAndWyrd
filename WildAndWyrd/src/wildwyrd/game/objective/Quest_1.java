@@ -1,8 +1,6 @@
 package wildwyrd.game.objective;
 
 import wildwyrd.game.GamePanel;
-import wildwyrd.game.items.Itm_Bug_Meat;
-import wildwyrd.game.Entity;
 
 public class Quest_1 extends Quest {
 
@@ -13,13 +11,19 @@ public class Quest_1 extends Quest {
 		super(gp);
 		id = qId;
 		name = qName;
-		rqmt = new boolean[3];
+		require = new boolean[3];
+		//desc = 
 		this.gp = gp;
 	}
 	
+	public void progress(int i) {
+		require[i] = true;
+		completeQuest();
+	}
+	
 	public String printQuest() {
-		return "Clean fireplace: " + rqmt[0] + 
-				"£Scrub cauldron: " + rqmt[1] +
-				"£Grind bramble leaves in mortar: " + rqmt[2];
+		return "Clean fireplace: " + require[0] + 
+				"£Scrub pots: " + require[1] +
+				"£Grind bramble leaves in mortar: " + require[2];
 	}
 }

@@ -8,10 +8,13 @@ import javax.imageio.ImageIO;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
+import wildwyrd.game.object.Obj_Blackberry;
+import wildwyrd.game.objective.Quest;
 
 public class NPC_Kyla extends NPC {
 	public static final int npcId = 3;
 	public static final String npcName = "Kyla";
+	Quest sidequest = gp.objective.quests[1];
 	public NPC_Kyla(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
@@ -56,6 +59,7 @@ public class NPC_Kyla extends NPC {
 		right1 = getPlayerImage(10, 2);
 		right2 = getPlayerImage(9, 2);
 		right3 = getPlayerImage(11, 2);
+		unique = getSpecialImage(0, 2);
 	}
 	
 	public void setAction() {
@@ -63,79 +67,76 @@ public class NPC_Kyla extends NPC {
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge(" " ,1);
-		dialogues[1][0] = new Dialoge("Thay", "It was quite lovely.", 1);
-		dialogues[1][1] = new Dialoge("Thay", "This summer has been good to us all.", 1);
-		dialogues[2][0] = new Dialoge("Thay", "The usual, gave her the herbs she wanted in exchange for the potions I need.", 1);
-		dialogues[2][1] = new Dialoge("Thay reached into his bag and pulled out a vial of black liquid. It was one of the many potions that brought patrons to the cottage. Alder never asked what they needed them for.", 1);
-		dialogues[3][0] = new Dialoge("Thay", "Well, to the north, there are more woodlands.", 1);
-		dialogues[3][1] = new Dialoge("Thay", "But to the south is the settlement in the valley where mice and other small beasts live.", 1);
-		dialogues[3][2] = new Dialoge("Thay", "West you’ll run into the river and if you climb to the treetops you can see Hare Hill east from here.",1);
-		dialogues[3][3] = new Dialoge("Thay", "Wait!?",1);
-		dialogues[3][4] = new Dialoge("Seeing growing interest and curiosity on Alder's face, Thay abruptly began to show concern.",1);
-		dialogues[3][5] = new Dialoge("Thay", "Alder, you aren't thinking of going to these places are you!?",1);
-		dialogues[3][6] = new Dialoge("Alder","I...",1);
-		dialogues[3][7] = new Dialoge("Alder","think, it would be nice to see new places.",1);
-		dialogues[3][8] = new Dialoge("Thay", "No!",1);
-		dialogues[3][9] = new Dialoge("Thay", "No, Alder!",1);
-		dialogues[3][10] = new Dialoge("Thay", "It’s too dangerous!",1);
-		dialogues[3][11] = new Dialoge("Thay", "If anyone sees you, the Gowl's will come after you!!",1);
-		dialogues[3][12] = new Dialoge("Thay", "I cannot even express how much humans are hated these days!!",1);
-		dialogues[3][13] = new Dialoge("Alder","Ok! Ok!",1);
-		dialogues[3][14] = new Dialoge("Alder","I won’t go wandering!!",1);
-		dialogues[3][15] = new Dialoge("Alder","I'm sorry!",1);
-		dialogues[3][16] = new Dialoge("Thay", "I hope not!",1);
-		dialogues[3][17] = new Dialoge("Thay", "I’d never forgive myself if anything were to happen to you.",1);
-		dialogues[3][18] = new Dialoge("Alder realised that the hedgehog was getting agitated and so decided to move on.",1);
-		dialogues[4][0] = new Dialoge("Thay", "Fuller woods is where we are right now.",1);
-		dialogues[4][1] = new Dialoge("Thay", "This ancient woodland goes on for miles.",1);
-		dialogues[4][2] = new Dialoge("Thay", "There are many birds in these woods and unfortunately that includes birds of prey, :but most go after small creatures so you'll be alright.",1);
-		dialogues[5][0] = new Dialoge("Alder","It’s not that I want to go there, I’d just like to know.",1);
-		dialogues[5][1] = new Dialoge("Thay", "It’s called Forton.",1);
-		dialogues[5][2] = new Dialoge("Thay", "It’s known for its great library, taking in orphans within the region and being the resting place of the hero, Agrimus.",1);
-		dialogues[5][3] = new Dialoge("Thay", "It is also one of the few mouse settlements that is not controlled by the church.",1);
-		dialogues[6][0] = new Dialoge("Alder","Florence and I sometimes go there to get water.",1);
-		dialogues[6][1] = new Dialoge("Alder","With caution of course.",1);
-		dialogues[6][2] = new Dialoge("Alder","We caught a fish in our bucket once.",1);
-		dialogues[6][3] = new Dialoge("Thay", "Hmm. You sure that’s safe?",1);
-		dialogues[6][4] = new Dialoge("Thay", "There are many creatures drifting on the river.",1);
-		dialogues[6][5] = new Dialoge("Thay", "Swimming in it too.",1);
-		dialogues[6][6] = new Dialoge("Alder","It's alright.",1);
-		dialogues[6][7] = new Dialoge("Alder","Florence has always kept us hidden.",1);
-		dialogues[6][8] = new Dialoge("Thay", "Err, ok then.",1);
-		dialogues[7][0] = new Dialoge("Alder","It’s not that I want to go there, I’d just like to know.",1);
-		dialogues[7][1] = new Dialoge("Thay", "Hare Hill is the largest hill in this region.",1);
-		dialogues[7][2] = new Dialoge("Thay", "It is home to many hare and rabbit villages.",1);
-		dialogues[7][3] = new Dialoge("Thay", "At the top is the capital, Breabuck.",1);
-		dialogues[7][4] = new Dialoge("Thay", "But it is a difficult and exhausting hike. Some routes lead to rock walls travelers need to scramble up.",1);
-		dialogues[7][5] = new Dialoge("Thay", "Unless they go through the rabbits tunnels of course.",1);
-		dialogues[8][0] = new Dialoge("Thay", "Well. There was a certain king who did very, very bad things.",1);
-		dialogues[8][1] = new Dialoge("Alder","What kinds of things?",1);
-		dialogues[8][2] = new Dialoge("Thay", "You're too young to know.",1);
-		dialogues[8][3] = new Dialoge("Thay", "But all you need to know is that he was cruel and unforgivable.",1);
-		dialogues[8][4] = new Dialoge("Thay", "So unforgivable in fact that along with his followers, woodland folk even took vengeance on the humans who were against him.",1);
-		dialogues[8][5] = new Dialoge("Alder","But why?",1);
-		dialogues[8][6] = new Dialoge("Alder","What did they do?",1);
-		dialogues[8][7] = new Dialoge("Thay", "Nothing.",1);
-		dialogues[8][8] = new Dialoge("Thay", "But that didn’t matter to those who had lost friends and family in the conflict.",1);
-		dialogues[8][9] = new Dialoge("Thay", "Best for you to stay within the burrows borders.",1);
-		dialogues[8][10] = new Dialoge("Thay", "If you are seen.",1);
-		dialogues[8][11] = new Dialoge("Thay", "You will be assumed aligned with the kings: ideals and killed.",1);
-		dialogues[8][12] = new Dialoge("Alder gave a sad longing look to the deep wood. He’d like to see more than the tiny patch he called home. But alas as Thay said, the danger was too great.",1);
+		dialogues[0][0] = new Dialoge("Madam Kyla was relaxed in her chair with her nose in a red book titled \"A sorcerers guide to Dragons and Wyverns\". She peered from the book to Alder." ,1);
+		dialogues[0][1] = new Dialoge("Kyla", "I take it Mr Prickle has gone?", 1);
+		dialogues[0][2] = new Dialoge("Alder", "Yes, Madam.", 1);
+		dialogues[0][3] = new Dialoge("Kyla", "Making you free boy?", 1);
+		dialogues[0][4] = new Dialoge("Alder", "Yes, Madam.", 1);
+		dialogues[0][5] = new Dialoge("Kyla", "Then clean the fireplace, wash the pots in the kitchen until they shine and...", 1);
+		dialogues[0][6] = new Dialoge("Kyla", "Ah!", 1);
+		dialogues[0][7] = new Dialoge("Kyla", "I need you to grind some bramble leaves.", 1);
+		dialogues[0][8] = new Dialoge("Kyla", "Use the mortar in the shed to grind them into dust.", 1);
+		dialogues[0][9] = new Dialoge("Kyla", "Leave the dust in the pot on the far end next to the shed table.", 1);
+		dialogues[0][10] = new Dialoge("Kyla", "That should keep you busy!", 1);
+		dialogues[0][10] = new Dialoge("Accept quest", 2);
+		dialogues[1][0] = new Dialoge("Alder", "Yes, Madam.", 1);
+		dialogues[1][1] = new Dialoge("Kyla", "Excellent!", 1);
+		dialogues[1][2] = new Dialoge("Alder accepted " + sidequest.name, 1);
+		dialogues[2][0] = new Dialoge("Alder", "...", 1);
+		dialogues[2][1] = new Dialoge("Kyla", "Don't you glare at me!", 1);
+		dialogues[2][2] = new Dialoge("Kyla", "I'm not permitting you here out of charity!", 1);
+		dialogues[2][3] = new Dialoge("Kyla", "Work for your sanctuary!", 1);
+		dialogues[2][4] = new Dialoge("Alder", "U-Um.", 1);
+		dialogues[2][5] = new Dialoge("Alder", "Y-Yes!", 1);
+		dialogues[2][6] = new Dialoge("Alder", "Sorry madam.", 1);
+		dialogues[2][7] = new Dialoge("Alder knew better than to argue back. Alder accepted " + sidequest.name, 1);
+		dialogues[3][0] = new Dialoge("Kyla", "Clean the fireplace, scrub the pots and grind the leaves.", 1);
+		dialogues[4][0] = new Dialoge("Kyla", "Have you finished then?",1);
+		dialogues[4][1] = new Dialoge("Alder", "Yes madam.",1);
+		dialogues[4][2] = new Dialoge("Kyla", "Good.",1);
+		dialogues[4][3] = new Dialoge("Kyla","I have no futher need for you.",1);
+		dialogues[4][4] = new Dialoge("Kyla","Do as you please.",1);
+		dialogues[5][0] = new Dialoge("Kyla","I have no futher need for you.",1);
+		dialogues[5][1] = new Dialoge("Kyla","Do as you please.",1);
 	}
 	
-	public void setDialogueOptions() {
-		
-	}
+	public void setDialogueOptions() {}
+
 	public void choiceResponce() {
-		
+		dialogueIndex = 0;
+		if (gp.ui.choiceSlot == 0) {
+			startDialogue(this, 1);
+			sidequest.acceptQuest();
+		}
+		if (gp.ui.choiceSlot == 1) {
+			startDialogue(this, 2);
+			sidequest.acceptQuest();
+		}
+		if (!gp.objectExists(Obj_Blackberry.objId, 2)) {
+			for(int i = 0; i < gp.obj[2].length; i++) {
+				if(gp.obj[2][i] == null) {
+					gp.obj[2][i] = new Obj_Blackberry(gp);
+					gp.obj[2][i].worldX = gp.tileSize * 3;
+					gp.obj[2][i].worldY = gp.tileSize * 4;
+				}
+			}
+		}
 	}
 	
 	public void speak() {
 		facePlayer();
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
-		startDialogue(this, 0);
+		if(!gp.objective.quests[1].isAccepted()) {
+			startDialogue(this, 0);
+		} else if (!gp.objective.quests[1].isCompleted()) {
+			startDialogue(this, 3);
+		} else if (!gp.objective.quests[1].isSubmitted()) {
+			startDialogue(this, 4);
+			gp.objective.quests[1].submitQuest();
+		} else {
+			startDialogue(this, 5);
+		}
 		gp.keyH.enterPressed = false;
 	}
 }

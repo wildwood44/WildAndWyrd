@@ -2,18 +2,17 @@ package wildwyrd.game.objective;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
-import wildwyrd.game.items.Itm_Bug_Meat;
 
 public class Quest extends Entity {
 	GamePanel gp;
 	public int id;
 	public String name;
 	protected String client;
-	private String desc;
-	private boolean accepted;
-	private boolean completed;
-	private boolean submitted;
-	public boolean[] rqmt;
+	protected String desc;
+	protected boolean accepted;
+	protected boolean completed;
+	protected boolean submitted;
+	public boolean[] require;
 	public Entity reward;
 	public int qnt;
 
@@ -29,6 +28,26 @@ public class Quest extends Entity {
 		accepted = true;
 	}
 	
+	public boolean checkRequirements() {
+		for (boolean r : require) {
+			if(!r) {
+				return false;
+			}
+		}
+		return true;
+		
+	}
+	
+	public void completeQuest() {
+		completed = checkRequirements();
+	}
+	
+	public void submitQuest() {
+		if(completed) {
+			submitted = true;
+		}
+	}
+	
 	public int findItemInInventory(Entity item) {
 		for(int i = 0; i < gp.player.inventory.size(); i++) {
 			if(gp.player.inventory.get(i).id == item.id) {
@@ -37,13 +56,15 @@ public class Quest extends Entity {
 		return 0;
 	}
 	
-	public String printQuest() {
+	public String printQuest() {return "";}
+	
+	public String printQuestStatus() {
 		if (submitted) {
-			return desc + ": Complete";
+			return "Complete";
 		} else if (completed) {
-			return desc + ": Turn in";
+			return "Turn in";
 		} else if (accepted) {
-			return desc + ": Accepted";
+			return "Accepted";
 		}
 		return "";
 	}
@@ -56,5 +77,23 @@ public class Quest extends Entity {
 		} else {
 			gp.player.pickUpShillings(amount);
 		}
+	}
+	
+	public void progress(int i) {
+		require[i] = true;
+		System.out.println(require[i]);
+		completeQuest();
+	}
+
+	public boolean isAccepted() {
+		return accepted;
+	}
+
+	public boolean isCompleted() {
+		return completed;
+	}
+
+	public boolean isSubmitted() {
+		return submitted;
 	}
 }

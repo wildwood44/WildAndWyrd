@@ -18,7 +18,9 @@ public class Obj_Table_Right extends Entity {
 		collision = true;
 
 		image = setup("/res/objects/Table_Tile_Right", gp.tileSize, gp.tileSize);
-		
+
+		solidArea.y = 30;
+		solidAreaDefaultY = solidArea.y;
 		solidArea.width = 40;
 		setDialogue();
 		getImage(image);

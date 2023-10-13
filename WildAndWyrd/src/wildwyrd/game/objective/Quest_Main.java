@@ -13,7 +13,7 @@ public class Quest_Main extends Quest {
 		super(gp);
 		id = qId;
 		name = qName;
-		rqmt = new boolean[1];
+		require = new boolean[1];
 		this.gp = gp;
 	}
 	

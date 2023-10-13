@@ -52,13 +52,14 @@ public class Entity {
 	public int staminaRcvd;
 	public String description = "";
 	public String direction = "down";
-	public BufferedImage up1, up2, up3, left1, left2, left3, right1, right2, right3, down1, down2, down3;
+	public BufferedImage up1, up2, up3, left1, left2, left3, right1, right2, right3, down1, down2, down3, unique;
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
 	public boolean collision = false;
 	public boolean collisionOn = false;
 	public boolean takeDamage = false;
 	public boolean stackable = false;
+	public boolean destroy = false;
 	public int amount = 1;
 	public EntityType type;
 	public final int type_player = 0;
@@ -232,6 +233,9 @@ public class Entity {
 				if(spriteNum == 1) {image = down1;}
 				if(spriteNum == 2) {image = down2;}
 				if(spriteNum == 3) {image = down3;}
+				break;
+			case "unique":
+				image = unique;
 				break;
 			}
 			g2.setComposite(AlphaComposite.SrcOver.derive(alpha));
