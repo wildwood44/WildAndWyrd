@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import wildwyrd.data.DataStorage;
 import wildwyrd.game.items.Armour;
 import wildwyrd.game.items.Weapon;
-import wildwyrd.game.playable.Playable;
+import wildwyrd.game.playable.Combatant;
 
 public class SaveLoad {
 	GamePanel gp;
@@ -131,7 +131,7 @@ public class SaveLoad {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
 			DataStorage ds = (DataStorage)ois.readObject();
 			for(int i = 0; i < gp.playable.size(); i++) {
-				gp.playable.set(i,new Playable(gp, "Alder", ds.maxHealth[i], ds.maxStamina[i],
+				gp.playable.set(i,new Combatant(gp, "Alder", ds.maxHealth[i], ds.maxStamina[i],
 						ds.baseAttack[i], ds.baseDefence[i], ds.baseAccuracy[i], ds.baseEvasion[i], ds.baseSpeed[i]));
 				gp.playable.get(i).setHealthAndStamina(ds.health[i],ds.stamina[i]);
 				if(ds.currentHat[i] >= 0 && gp.eGenerator.getObject(ds.currentHat[i]) instanceof Armour) {

@@ -8,11 +8,13 @@ import javax.imageio.ImageIO;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
-import wildwyrd.game.playable.Playable;
+import wildwyrd.game.playable.Combatant;
 
 public class NPC_Thay extends NPC {
 	public static final int npcId = 2;
 	public static final String npcName = "Thay";
+	BufferedImage image_Thay;
+	BufferedImage image_Alder;
 	public NPC_Thay(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
@@ -211,5 +213,77 @@ public class NPC_Thay extends NPC {
 			gp.playable.get(0).heal(5);
 		}
 		gp.keyH.enterPressed = false;
+	}
+
+	public void setImages() {
+		try {
+			image_Thay = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Thay.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void setSprites() {
+		setImages();
+		sprites[0][0] = image_Thay;
+		sprites[1][0] = image_Thay;
+		sprites[1][1] = image_Thay;
+		sprites[2][0] = image_Thay;
+		sprites[3][0] = image_Thay;
+		sprites[3][1] = image_Thay;
+		sprites[3][2] = image_Thay;
+		sprites[3][3] = image_Thay;
+		sprites[3][5] = image_Thay;
+		sprites[3][6] = image_Alder;
+		sprites[3][7] = image_Alder;
+		sprites[3][8] = image_Thay;
+		sprites[3][9] = image_Thay;
+		sprites[3][10] = image_Thay;
+		sprites[3][11] = image_Thay;
+		sprites[3][12] = image_Thay;
+		sprites[3][13] = image_Alder;
+		sprites[3][14] = image_Alder;
+		sprites[3][15] = image_Alder;
+		sprites[3][16] = image_Thay;
+		sprites[3][17] = image_Thay;
+		sprites[4][0] = image_Thay;
+		sprites[4][1] = image_Thay;
+		sprites[4][2] = image_Thay;
+		sprites[5][0] = image_Alder;
+		sprites[5][1] = image_Thay;
+		sprites[5][2] = image_Thay;
+		sprites[5][3] = image_Thay;
+		sprites[6][0] = image_Alder;
+		sprites[6][1] = image_Alder;
+		sprites[6][2] = image_Alder;
+		sprites[6][3] = image_Thay;
+		sprites[6][4] = image_Thay;
+		sprites[6][5] = image_Thay;
+		sprites[6][6] = image_Alder;
+		sprites[6][7] = image_Alder;
+		sprites[6][8] = image_Thay;
+		sprites[7][0] = image_Alder;
+		sprites[7][1] = image_Thay;
+		sprites[7][2] = image_Thay;
+		sprites[7][3] = image_Thay;
+		sprites[7][4] = image_Thay;
+		sprites[7][5] = image_Thay;
+		sprites[8][0] = image_Thay;
+		sprites[8][1] = image_Alder;
+		sprites[8][2] = image_Thay;
+		sprites[8][3] = image_Thay;
+		sprites[8][4] = image_Thay;
+		sprites[8][5] = image_Alder;
+		sprites[8][6] = image_Alder;
+		sprites[8][7] = image_Thay;
+		sprites[8][8] = image_Thay;
+		sprites[8][9] = image_Thay;
+		sprites[8][10] = image_Thay;
+		sprites[8][11] = image_Thay;
+		sprites[8][12] = image_Alder;
+		sprites[9][0] = image_Thay;
+		sprites[9][1] = image_Alder;
+		sprites[9][2] = image_Thay;
+		sprites[9][3] = image_Thay;
 	}
 }

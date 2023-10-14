@@ -8,14 +8,14 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
 import wildwyrd.game.object.Dialoge;
-import wildwyrd.game.playable.Playable;
+import wildwyrd.game.playable.Combatant;
 
 public class Combat extends Entity {
 	GamePanel gp;
 	public int dialogueSet = 0;
 	public int dialogueIndex = 0;
 	public List<Enemy> enemies;
-	public ArrayList<Playable> combatant;
+	public ArrayList<Combatant> combatant;
 	private int impact;
 	public Boolean inCombat;
 	public boolean win;
@@ -26,15 +26,15 @@ public class Combat extends Entity {
 		super(gp);
 		this.gp = gp;
 		enemies = new ArrayList<Enemy>(5);
-		combatant = new ArrayList<Playable>(10);
+		combatant = new ArrayList<Combatant>(10);
 		//combatant.sort(combatant.compareTo(combatant.get(1)));
 	}
 	
-	public Playable getCombatant() {
+	public Combatant getCombatant() {
 		return combatant.get(turn);
 	}
 	
-	public Playable getNextCombatant() {
+	public Combatant getNextCombatant() {
 		int index = turn + 1;
 		if(index >= combatant.size()) {
 			return combatant.get(0);
@@ -65,7 +65,7 @@ public class Combat extends Entity {
 			gp.gameState = GameState.combatState;
 			inCombat = true;
 		}
-		for (Playable p : gp.playable) {
+		for (Combatant p : gp.playable) {
 			//System.out.println(p);
 			if(p != null) {
 				combatant.add(p);
@@ -108,7 +108,7 @@ public class Combat extends Entity {
 	}
 	
 	public boolean playableActive() {
-		for (Playable player : gp.playable) {
+		for (Combatant player : gp.playable) {
 			if(player.getCombatStatus() == CombatStatus.Escaping) {
 				return false;
 			}
@@ -143,7 +143,7 @@ public class Combat extends Entity {
 		return enemies;
 	}
 	
-	public void playerDeath(Playable p) {
+	public void playerDeath(Combatant p) {
 		p.killed();
 		gp.keyH.enterPressed = false;
 		dialogues[0][0] = new Dialoge(p.name + " was defeated!",1);
@@ -163,7 +163,7 @@ public class Combat extends Entity {
 		return enemies.get(target);
 	}
 	
-	public void dealDamage(Playable user, Playable target, int damage) {
+	public void dealDamage(Combatant user, Combatant target, int damage) {
 		if((user.inRange() && target.inRange()) || user.projectileLoaded()) {
 			if(user.projectileLoaded()) {
 				damage = gp.playable.get(0).fireProjectile();
@@ -182,7 +182,7 @@ public class Combat extends Entity {
 		}
 	}
 	
-	public void outOfRange(Playable target) {
+	public void outOfRange(Combatant target) {
 		gp.keyH.enterPressed = false;
 		dialogues[0][0] = new Dialoge(target.name + " was out of range!",1);
 		dialogues[0][1] = null;

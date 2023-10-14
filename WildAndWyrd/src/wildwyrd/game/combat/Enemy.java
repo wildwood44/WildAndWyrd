@@ -6,9 +6,9 @@ import java.awt.Graphics2D;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
-import wildwyrd.game.playable.Playable;
+import wildwyrd.game.playable.Combatant;
 
-public class Enemy extends Playable {
+public class Enemy extends Combatant {
 	protected Entity dropped;
 	int screenX = gp.tileSize*6;
 	int screenY = gp.tileSize*2;

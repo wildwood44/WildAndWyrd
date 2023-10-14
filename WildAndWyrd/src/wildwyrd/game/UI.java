@@ -22,7 +22,7 @@ import wildwyrd.game.combat.CombatStatus;
 import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.library.Book;
-import wildwyrd.game.playable.Playable;
+import wildwyrd.game.playable.Combatant;
 
 public class UI {
 	GamePanel gp;
@@ -114,7 +114,7 @@ public class UI {
 		}
 
 		if (gp.gameState == GameState.skillState) {
-			//drawEquipScreen();
+			drawSkillScreen();
 		}
 
 		if (gp.gameState == GameState.glossaryState) {
@@ -434,11 +434,9 @@ public class UI {
 		g2.drawString("Save", 30, gp.tileSize);
 		g2.drawString("Stats", 30, (int) (gp.tileSize * 1.75D));
 		g2.drawString("Items", 30, (int) (gp.tileSize * 2.5D));
-		g2.drawString("Equipment", 30, (int) (gp.tileSize * 3.25D));
-		g2.drawString("Objecties", 30, gp.tileSize * 4);
-		g2.drawString("Skill", 30, (int) (gp.tileSize * 4.75D));
-		g2.drawString("Glossary", 30, (int) (gp.tileSize * 5.5D));
-		g2.drawString("Quit", 30, (int) (gp.tileSize * 6.25D));
+		g2.drawString("Objecties", 30, (int) (gp.tileSize * 3.25D));
+		g2.drawString("Glossary", 30, (int) (gp.tileSize * 4));
+		g2.drawString("Quit", 30, (int) (gp.tileSize * 4.75D));
 		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 	}
 	
@@ -452,13 +450,14 @@ public class UI {
 		int slotYstart = frameY + 15;
 		int cursorX = slotXstart + gp.tileSize * slotRow;
 		int cursorY = (int) (slotYstart + gp.tileSize * 0.75D * slotCol);
-		int cursorWidth = gp.tileSize * 2;
+		int cursorWidth = gp.tileSize * 3;
 		int cursorHeight = 30;
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
 		g2.setStroke(new BasicStroke());
 		double characterSlot = 1.75;
-		for(Playable p : gp.playable) {
+		g2.drawString("Stats", 30, (int) (gp.tileSize));
+		for(Combatant p : gp.playable) {
 			if(p != null) {
 				g2.drawString(p.name, 30, (int) (gp.tileSize * characterSlot));
 				characterSlot += 0.75;
@@ -466,6 +465,7 @@ public class UI {
 		}
 		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 		frameX = (int) (4.7 * gp.tileSize);
+		frameWidth = gp.tileSize * 7;
 		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		g2.setColor(Color.white);
 		for(int i = 0; i < gp.playable.size(); i++) {
@@ -560,7 +560,7 @@ public class UI {
 		int frameHeight = gp.tileSize * 7;
 		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		int slotXstart = frameX + 0;
-		int slotYstart = (int)((frameY + 15) + (gp.tileSize * 0.75D));
+		int slotYstart = frameY + 15;
 		int cursorX = slotXstart + gp.tileSize * slotRow;
 		int cursorY = (int) (slotYstart + gp.tileSize * 0.75D * slotCol);
 		int cursorWidth = gp.tileSize * 3;
@@ -578,19 +578,75 @@ public class UI {
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
 		g2.setStroke(new BasicStroke());
+		double characterSlot = 1.75;
+		g2.drawString("Equipment", 30, (int) (gp.tileSize));
+		for(Combatant p : gp.playable) {
+			if(p != null) {
+				g2.drawString(p.name, 30, (int) (gp.tileSize * characterSlot));
+				characterSlot += 0.75;
+			}
+		}
 		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
 		g2.setColor(Color.white);
 		g2.setStroke(new BasicStroke());
-		for(Playable p : gp.playable) {
+		for(Combatant p : gp.playable) {
 			if(p != null) {
-				g2.drawString(p.name, 30, (int) (gp.tileSize * 1.75D));
+				//g2.drawString(p.name, 30, (int) (gp.tileSize * 1.75D));
 				g2.drawString("Head: " + p.getHead().getName(), frameX + 15, (int) (gp.tileSize * 1.75D));
 				g2.drawString("Body: " + p.getBody().getName(), frameX + 15, (int) (gp.tileSize * 2.5D));
 				g2.drawString("Legs: " + p.getLegs().getName(), frameX + 15, (int) (gp.tileSize * 3.25D));
 				g2.drawString("Primary WP: " + p.getWeapon_prime().getName(), frameX + 15, (int) (gp.tileSize * 4));
 				g2.drawString("Secondary WP: " +p.getWeapon_second().getName(), frameX + 15, (int) (gp.tileSize * 4.75D));
 				//g2.drawImage(p.combatSpt, frameX + (frameWidth / 3), frameY + (frameHeight / 4), frameWidth / 2 , frameHeight/2, null);
+			}
+		}
+	}
+	
+	public void drawSkillScreen() {
+		int frameX = 20;
+		int frameY = 25;
+		int frameWidth = gp.tileSize * 4;
+		int frameHeight = gp.tileSize * 7;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		int slotXstart = frameX + 0;
+		int slotYstart = frameY + 15;
+		int cursorX = slotXstart + gp.tileSize * slotRow;
+		int cursorY = (int) (slotYstart + gp.tileSize * 0.75D * slotCol);
+		int cursorWidth = gp.tileSize * 3;
+		int cursorHeight = 30;
+
+		frameX = 300;
+		frameY = 25;
+		frameWidth = gp.tileSize * 7;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+
+		if(openEquipment) {
+			cursorX = frameX;
+		}
+
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke());
+		double characterSlot = 1.75;
+		g2.drawString("Skills", 30, (int) (gp.tileSize));
+		for(Combatant p : gp.playable) {
+			if(p != null) {
+				g2.drawString(p.name, 30, (int) (gp.tileSize * characterSlot));
+				characterSlot += 0.75;
+			}
+		}
+		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke());
+		for(Combatant p : gp.playable) {
+			if(p != null) {
+				//g2.drawString(p.name, 30, (int) (gp.tileSize * 1.75D));
+				g2.drawString("Auto:    " + p.getAutomatic().getName(), frameX + 15, (int) (gp.tileSize * 1.75D));
+				g2.drawString("Offence: " + p.getOffencive().getName(), frameX + 15, (int) (gp.tileSize * 2.5D));
+				g2.drawString("Support: " + p.getSupportive().getName(), frameX + 15, (int) (gp.tileSize * 3.25D));
+				g2.drawString("Self:    " + p.getSelfie().getName(), frameX + 15, (int) (gp.tileSize * 4));
 			}
 		}
 	}
@@ -808,7 +864,7 @@ public class UI {
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
 		//Check if playable characters are alive
-		for(Playable p: gp.playable) {
+		for(Combatant p: gp.playable) {
 			if(p.health <= 0 && p.isAlive()) {
 				gp.combat.playerDeath(p);
 			}

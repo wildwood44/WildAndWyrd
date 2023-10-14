@@ -66,21 +66,15 @@ public class KeyHandler implements KeyListener {
 					} else if (gp.ui.slotCol == 2) { //Open inventory screen
 						gp.gameState = GameState.inventoryState;
 						gp.ui.drawInventoryScreen();
-					} else if (gp.ui.slotCol == 3) { //Open equip screen
-						gp.ui.resetSlots();
-						gp.gameState = GameState.equipState;
-						gp.ui.drawEquipScreen();
-					} else if (gp.ui.slotCol == 4) { //Open objectives screen
+					} else if (gp.ui.slotCol == 3) { //Open objectives screen
 						gp.ui.resetSlots();
 						gp.gameState = GameState.objectiveState;
 						gp.ui.drawObjectiveScreen();
-					} else if (gp.ui.slotCol == 5) { //Open skills screen
-						
-					} else if (gp.ui.slotCol == 6) { //Open glossary screen
+					} else if (gp.ui.slotCol == 4) { //Open glossary screen
 						gp.ui.resetSlots();
 						gp.gameState = GameState.glossaryState;
 						gp.ui.drawGlossaryScreen();
-					} else if (gp.ui.slotCol == 7) { //Quit game
+					} else if (gp.ui.slotCol == 5) { //Quit game
 						gp.currentRoom = 0;
 						gp.restart();
 						gp.gameState = GameState.titleState;
@@ -94,12 +88,12 @@ public class KeyHandler implements KeyListener {
 					if (gp.ui.slotCol != 0) {
 						--gp.ui.slotCol;
 					} else {
-						gp.ui.slotCol = 7;
+						gp.ui.slotCol = 5;
 					}
 					break;
 				case KeyEvent.VK_DOWN :
 				case KeyEvent.VK_S :
-					if (gp.ui.slotCol != 7) {
+					if (gp.ui.slotCol != 5) {
 						++gp.ui.slotCol;
 					} else {
 						gp.ui.slotCol = 0;
@@ -126,6 +120,15 @@ public class KeyHandler implements KeyListener {
 					} else {
 						gp.ui.slotRow2 = 0;
 					}
+					break;
+				case KeyEvent.VK_RIGHT :
+				case KeyEvent.VK_D :
+					gp.gameState = GameState.equipState;
+					break;
+				case KeyEvent.VK_LEFT :
+				case KeyEvent.VK_A :
+					gp.gameState = GameState.skillState;
+					break;
 			}
 		} else if (gameState == GameState.inventoryState) {
 			switch (e.getKeyCode()) {
@@ -177,21 +180,61 @@ public class KeyHandler implements KeyListener {
 				break;
 			case KeyEvent.VK_UP :
 			case KeyEvent.VK_W :
-				if (gp.ui.slotCol != 0) {
-					gp.ui.slotCol--;
+				if (gp.ui.slotRow2 != 0) {
+					--gp.ui.slotRow2;
 				} else {
-					gp.ui.slotCol = 4;
+					gp.ui.slotRow2 = 3;
 				}
 				break;
 			case KeyEvent.VK_DOWN :
 			case KeyEvent.VK_S :
-				if (gp.ui.slotCol != 4) {
-					gp.ui.slotCol++;
+				if (gp.ui.slotRow2 != 3) {
+					++gp.ui.slotRow2;
 				} else {
-					gp.ui.slotCol = 0;
+					gp.ui.slotRow2 = 0;
 				}
+				break;
+			case KeyEvent.VK_RIGHT :
+			case KeyEvent.VK_D :
+				gp.gameState = GameState.skillState;
+				break;
+			case KeyEvent.VK_LEFT :
+			case KeyEvent.VK_A :
+				gp.gameState = GameState.statusState;
+				break;
 			}
-		} else if (gp.gameState == GameState.objectiveState) {
+		}  else if (gp.gameState == GameState.skillState) {
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_ESCAPE :
+				gp.ui.resetSlots();
+				gp.gameState = GameState.menuState;
+				break;
+			case KeyEvent.VK_UP :
+			case KeyEvent.VK_W :
+				if (gp.ui.slotRow2 != 0) {
+					--gp.ui.slotRow2;
+				} else {
+					gp.ui.slotRow2 = 3;
+				}
+				break;
+			case KeyEvent.VK_DOWN :
+			case KeyEvent.VK_S :
+				if (gp.ui.slotRow2 != 3) {
+					++gp.ui.slotRow2;
+				} else {
+					gp.ui.slotRow2 = 0;
+				}
+				break;
+			case KeyEvent.VK_RIGHT :
+			case KeyEvent.VK_D :
+				gp.gameState = GameState.statusState;
+				break;
+			case KeyEvent.VK_LEFT :
+			case KeyEvent.VK_A :
+				gp.gameState = GameState.equipState;
+				break;
+		}
+	} else if (gp.gameState == GameState.objectiveState) {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_ESCAPE :
 				gp.ui.resetSlots();

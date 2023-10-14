@@ -18,6 +18,7 @@ public class Cutscene extends Entity {
 	BufferedImage image_Dean;
 	BufferedImage image_Ralph;
 	BufferedImage image_Plumm;
+	BufferedImage image_Kyla;
 
 	public Cutscene(GamePanel gp) {
 		super(gp);
@@ -85,6 +86,7 @@ public class Cutscene extends Entity {
 			image_Dean = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Dean.png"));
 			image_Ralph = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Ralph.png"));
 			image_Plumm = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Plumm.png"));
+			image_Kyla = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Kyla.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -161,5 +163,12 @@ public class Cutscene extends Entity {
 		sprites[2][7] = image_Thay;
 		sprites[2][8] = image_Thay;
 		sprites[2][9] = image_Thay;
+		sprites[3][1] = image_Thay;
+		sprites[3][2] = image_Kyla;
+		sprites[4][3] = image_Thay;
+		sprites[4][4] = image_Thay;
+		sprites[5][0] = image_Thay;
+		sprites[5][3] = image_Thay;
+		sprites[5][4] = image_Thay;
 	}
 }

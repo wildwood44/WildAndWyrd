@@ -64,7 +64,7 @@ public class Player extends Entity {
 	}
 
 	public void restoreHealthAndStamina() {
-		for(Playable p : gp.playable) {
+		for(Combatant p : gp.playable) {
 			p.heal(p.getMaxHealth());
 			p.eat(p.getMaxStamina());
 		}
