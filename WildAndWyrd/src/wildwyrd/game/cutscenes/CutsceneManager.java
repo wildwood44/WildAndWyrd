@@ -63,14 +63,13 @@ public class CutsceneManager {
 	}
 
 	private void scene_prologue() {
-		System.out.println(gp.s.chapter + " " + gp.s.part + " " + read);
 		if (scenePhase == 0) {
 			gp.rm[gp.currentRoom].draw(g2);
 			gp.cutsceneOn = true;
 			gp.ui.drawHeadingScreen("Prologue");
 			gp.ui.drawMessageScreen(
 					"The game will now begin. Press ENTER to continue. You may skip the dialogue by pressing S.");
-			gp.c.setSprites();
+			gp.c.setSprites(0);
 		} else if (scenePhase == 1) {
 			//gp.ui.drawBackground("/res/backgrounds/Forton_Backgound.png");
 			//gp.currentRoom = new Rm_Forton(gp);
@@ -97,19 +96,22 @@ public class CutsceneManager {
 			gp.cutsceneOn = true;
 			gp.ui.drawHeadingScreen("Chapter " + gp.s.chapter);
 			gp.ui.drawMessageScreen("");
+			gp.c.setSprites(1);
 		} else if (scenePhase == 1) {
 			gp.cutsceneOn = true;
 			gp.c.setCutscene(1, read);
 			gp.c.dialogueSet = 1;
 			gp.ui.drawDialogueScreen();
 		} else if (scenePhase == 2) {
+			gp.glossary.unlock("mammal", "wood mouse");
+			gp.glossary.unlock("mammal", "field vole");
+			gp.glossary.unlock("mammal", "european hedgehog");
 			gp.s.swh[read] = false;
 			gp.s.swh[1] = true;
 			gp.cutsceneOn = false;
 			gp.c.dialogueIndex = 0;
 			sceneNum = 0;
 			scenePhase = 0;
-			//gp.s.part = 2;
 			gp.gameState = GameState.playState;
 		}
 
@@ -124,6 +126,7 @@ public class CutsceneManager {
 			createActor(new PlayerDummy(gp), gp.player.worldX, gp.player.worldY, gp.player.direction);
 			gp.player.drawing = false;
 			drawRoom();
+			gp.c.setSprites(gp.c.dialogueSet);
 			scenePhase++;
 		} else if (scenePhase == 1) {
 			gp.ui.selectedObject = gp.c;
@@ -187,6 +190,7 @@ public class CutsceneManager {
 			createActor(new PlayerDummy(gp), gp.player.worldX, gp.player.worldY, gp.player.direction);
 			gp.player.drawing = false;
 			drawRoom();
+			gp.c.setSprites(gp.c.dialogueSet);
 			scenePhase++;
 		} else if (scenePhase == 1) {
 			drawRoom();
@@ -239,6 +243,7 @@ public class CutsceneManager {
 				scenePhase++;
 			}
 		} else if (scenePhase == 9) {
+			gp.glossary.unlock("folklore", "witch");
 			gp.s.swh[read] = false;
 			gp.player.drawing = false;
 			gp.cutsceneOn = false;
@@ -263,6 +268,7 @@ public class CutsceneManager {
 			createActor(new PlayerDummy(gp), gp.player.worldX, gp.player.worldY, gp.player.direction);
 			gp.player.drawing = false;
 			drawRoom();
+			gp.c.setSprites(gp.c.dialogueSet);
 			scenePhase++;
 		} else if (scenePhase == 1) {
 			createActor(new NPC_Florence(gp), gp.tileSize * 14, gp.tileSize * 3, "down");
@@ -355,6 +361,7 @@ public class CutsceneManager {
 			createActor(new PlayerDummy(gp), gp.player.worldX, gp.player.worldY, gp.player.direction);
 			gp.player.drawing = false;
 			drawRoom();
+			gp.c.setSprites(gp.c.dialogueSet);
 			scenePhase++;
 		} else if (scenePhase == 1) {
 			alpha += 0.005f;

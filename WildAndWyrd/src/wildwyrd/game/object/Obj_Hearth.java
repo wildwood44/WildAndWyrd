@@ -33,7 +33,8 @@ public class Obj_Hearth extends Entity {
 	}
 
 	public void interact() {
-		if(!gp.objective.quests[1].require[0]) {
+		gp.glossary.unlock("constructs", "hearth");
+		if(gp.objective.quests[1].isAccepted() && !gp.objective.quests[1].require[0]) {
 			startDialogue(this, 1);
 			gp.objective.quests[1].progress(0);
 		} else {

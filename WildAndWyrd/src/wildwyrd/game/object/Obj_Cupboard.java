@@ -31,7 +31,7 @@ public class Obj_Cupboard extends Entity {
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge("The cupboard was full of plates, bowls and :other kitchen and dining ware.",
+		dialogues[0][0] = new Dialoge("The cupboard was full of plates, bowls and other kitchen and dining ware.",
 				1);
 	}
 

@@ -37,11 +37,20 @@ public class TileManager {
 			setup(18, "Balcony_Wooden_Left", false);
 		}
 		else if(gp.currentMap.getType() == MapType.OUTSIDE) {
-			setup(10, "dirt_grass_tile", false);
 			setup(11, "forestFloor_tile", false);
 			setup(12, "Rockwall_Tile", true);
 			setup(13, "bramble_tile", true);
 			setup(15, "Rockwall_Door4", false);
+			setup(20, "dirt_grass_tile", false);
+			setup(21, "dirt_grass_tile-top_left", false);
+			setup(22, "dirt_grass_tile-left", false);
+			setup(23, "dirt_grass_tile-bottom_left", false);
+			setup(24, "dirt_grass_tile-top", false);
+			setup(25, "dirt_grass_tile", false);
+			setup(26, "dirt_grass_tile-bottom", false);
+			setup(27, "dirt_grass_tile-top_right", false);
+			setup(28, "dirt_grass_tile-right", false);
+			setup(29, "dirt_grass_tile-bottom_right", false);
 			setup(40, "nettle_tile", true, true);
 			setup(41, "nettle_tile-top_left", true, true);
 			setup(42, "nettle_tile-left", true, true);

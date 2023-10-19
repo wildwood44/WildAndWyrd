@@ -145,6 +145,8 @@ public class NPC_Cricket extends NPC {
 		gp.combat.addEnemy(new En_Wasp(gp), new En_Wasp(gp));
 		dialogueIndex = 0;
 		if(gp.combat.win) {
+			gp.glossary.unlock("invertebrates", "cricket");
+			gp.glossary.unlock("invertebrates", "wasp");
 			startDialogue(this, 1);
 		} else {
 			startDialogue(this, 2);

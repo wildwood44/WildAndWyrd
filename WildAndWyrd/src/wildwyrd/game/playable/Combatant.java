@@ -14,26 +14,28 @@ import wildwyrd.game.skill.Skill;
 
 public class Combatant extends Entity implements Comparable<Combatant> {
 	protected String imageUrl;
-	private int level = 1;
-	private int stamina;
-	private int maxStamina;
-	private int exp;
-	private int nextLevelExp;
-	private int strength;
-	private int dexterity;
+	public int maxHealth;
+	public int health = maxHealth;
+	protected int stamina;
+	protected int maxStamina;
+	public int baseAttack;
+	public int baseDefence;
+	public int baseAccuracy;
+	public int baseSpeed;
+	public int baseEvasion;
 	protected boolean alive = true;
 	protected boolean dying = false;
 	protected boolean inRear = false;
-	private Entity head = new Entity(gp);
-	private Entity body = new Entity(gp);
-	private Entity legs = new Entity(gp);
-	private Weapon weapon_prime = new Weapon(gp);
-	private Weapon weapon_second = new Weapon(gp);
+	protected Entity head = new Entity(gp);
+	protected Entity body = new Entity(gp);
+	protected Entity legs = new Entity(gp);
+	protected Weapon weapon_prime = new Weapon(gp);
+	protected Weapon weapon_second = new Weapon(gp);
 	private Skill automatic = new Skill(gp);
 	private Skill offencive = new Skill(gp);
 	private Skill supportive = new Skill(gp);
 	private Skill selfie = new Skill(gp);
-	private Weapon loadedProjectile = null;
+	protected Weapon loadedProjectile = null;
 	private CombatStatus combatStatus = CombatStatus.Normal;
 	protected int spriteCounter = 0;
 	protected int actionLockCounter = 0;
@@ -74,9 +76,6 @@ public class Combatant extends Entity implements Comparable<Combatant> {
 		this.legs = legs;
 	}
 	public Weapon getWeapon_prime() {
-		//if (weapon_prime.name == null) {
-		//	return null;
-		//}
 		return weapon_prime;
 	}
 	public void setWeapon_prime(Weapon weapon_prime) {
@@ -315,35 +314,6 @@ public class Combatant extends Entity implements Comparable<Combatant> {
 			return totalDamage;
 		}
 		return 0;
-	}
-	
-	public void setDefaultValues() {
-		level = 0;
-		maxHealth = 60;
-		maxStamina = 60;
-		baseAttack = 10;
-		baseDefence = 10;
-		baseAccuracy = 5;
-		baseEvasion = 10;
-		baseSpeed = 5;
-		head = new Entity(gp);
-		body = new Entity(gp);
-		legs = new Entity(gp);
-		weapon_prime = new Weapon(gp);
-		weapon_second = new Weapon(gp);
-		loadedProjectile = null;
-	}
-	
-	@Override
-	public String toString() {
-		return name + " - " + level + 
-				"£ £Health:  " + health + "\\" + maxHealth +
-				"£Stamina: " + stamina + "\\" + maxStamina +
-				"£Attack: " + getAttack() +
-				"£Defence: " + getDefence() +
-				"£Accuracy: " + getAccuracy() +
-				"£Evasion: " + getEvasion() +
-				"£Speed: " + getSpeed();
 	}
 	
 	public int compareTo(Combatant that) {

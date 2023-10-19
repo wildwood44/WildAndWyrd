@@ -25,15 +25,8 @@ public class Entity {
 	public float alpha = 1f;
 	public int id;
 	public String name;
-	public int maxHealth;
-	public int health = maxHealth;
 	public int expDrop;
 	//private itemDrop = [{'item' : items.food[4], 'quantity':2}],
-	public int baseAttack;
-	public int baseDefence;
-	public int baseAccuracy;
-	public int baseSpeed;
-	public int baseEvasion;
 	public int worldX;
 	public int worldY;
 	public Boolean selected;

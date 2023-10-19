@@ -32,6 +32,7 @@ public class Obj_Cauldron extends Entity {
 	}
 
 	public void interact() {
+		gp.glossary.unlock("constructs", "cauldron");
 		startDialogue(this, 0);
 		gp.keyH.enterPressed = false;
 	}

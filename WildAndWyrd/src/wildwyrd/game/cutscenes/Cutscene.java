@@ -92,83 +92,91 @@ public class Cutscene extends Entity {
 		}
 	}
 
-	public void setSprites() {
+	public void setSprites(int spriteSet) {
 		setImages();
-		sprites[0][5] = image_Dean;
-		sprites[0][6] = image_Dean;
-		sprites[0][7] = image_Dean;
-		sprites[0][8] = image_Dilecto;
-		sprites[0][9] = image_Dilecto;
-		sprites[0][10] = image_Dean;
-		sprites[0][11] = image_Ralph;
-		sprites[0][12] = image_Ralph;
-		sprites[0][13] = image_Dean;
-		sprites[0][14] = image_Ralph;
-		sprites[0][15] = image_Ralph;
-		sprites[0][16] = image_Dilecto;
-		sprites[0][17] = image_Dilecto;
-		sprites[0][18] = image_Ralph;
-		sprites[0][19] = image_Ralph;
-		sprites[0][20] = image_Ralph;
-		sprites[0][21] = image_Dilecto;
-		sprites[0][22] = image_Dilecto;
-		sprites[0][23] = image_Dilecto;
-		sprites[0][24] = image_Dean;
-		sprites[0][25] = image_Ralph;
-		sprites[0][26] = image_Dean;
-		sprites[0][27] = image_Dean;
-		sprites[0][28] = image_Dilecto;
-		sprites[0][29] = image_Dilecto;
-		sprites[0][30] = image_Dilecto;
-		sprites[0][31] = image_Ralph;
-		sprites[0][32] = image_Dean;
-		sprites[0][33] = image_Dean;
-		sprites[0][34] = image_Ralph;
-		sprites[0][35] = image_Ralph;
-		sprites[0][36] = image_Dilecto;
-		sprites[0][37] = image_Ralph;
-		sprites[0][38] = image_Dilecto;
-		sprites[0][39] = image_Dilecto;
-		sprites[0][40] = image_Ralph;
-		sprites[0][41] = image_Dilecto;
-		sprites[0][42] = image_Dilecto;
-		sprites[0][43] = image_Dilecto;
-		sprites[0][44] = image_Plumm;
-		sprites[0][45] = image_Dilecto;
-		sprites[0][46] = image_Plumm;
-		sprites[0][47] = image_Dilecto;
-		sprites[0][48] = image_Dilecto;
-		sprites[0][49] = image_Plumm;
-		sprites[0][50] = image_Plumm;
-		sprites[0][51] = image_Ralph;
-		sprites[0][52] = image_Plumm;
-		sprites[0][53] = image_Plumm;
-		sprites[0][54] = image_Ralph;
-		sprites[0][55] = image_Ralph;
-		sprites[0][56] = image_Dean;
-		sprites[0][57] = image_Dilecto;
-		sprites[0][58] = image_Dilecto;
-		sprites[0][59] = image_Dilecto;
-		sprites[0][60] = image_Dilecto;
-		sprites[0][61] = image_Dilecto;
-		sprites[1][0] = image_Thay;
-		sprites[1][1] = image_Thay;
-		sprites[1][2] = image_Thay;
-		sprites[1][6] = image_Thay;
-		sprites[1][7] = image_Thay;
-		sprites[1][9] = image_Thay;
-		sprites[2][1] = image_Thay;
-		sprites[2][3] = image_Thay;
-		sprites[2][4] = image_Thay;
-		sprites[2][7] = image_Thay;
-		sprites[2][8] = image_Thay;
-		sprites[2][9] = image_Thay;
-		sprites[3][1] = image_Thay;
-		sprites[3][2] = image_Kyla;
-		sprites[4][3] = image_Thay;
-		sprites[4][4] = image_Thay;
-		sprites[5][0] = image_Thay;
-		sprites[5][3] = image_Thay;
-		sprites[5][4] = image_Thay;
+		switch(spriteSet) {
+		case 0:
+			sprites[0][5] = image_Dean;
+			sprites[0][6] = image_Dean;
+			sprites[0][7] = image_Dean;
+			sprites[0][8] = image_Dilecto;
+			sprites[0][9] = image_Dilecto;
+			sprites[0][10] = image_Dean;
+			sprites[0][11] = image_Ralph;
+			sprites[0][12] = image_Ralph;
+			sprites[0][13] = image_Dean;
+			sprites[0][14] = image_Ralph;
+			sprites[0][15] = image_Ralph;
+			sprites[0][16] = image_Dilecto;
+			sprites[0][17] = image_Dilecto;
+			sprites[0][18] = image_Ralph;
+			sprites[0][19] = image_Ralph;
+			sprites[0][20] = image_Ralph;
+			sprites[0][21] = image_Dilecto;
+			sprites[0][22] = image_Dilecto;
+			sprites[0][23] = image_Dilecto;
+			sprites[0][24] = image_Dean;
+			sprites[0][25] = image_Ralph;
+			sprites[0][26] = image_Dean;
+			sprites[0][27] = image_Dean;
+			sprites[0][28] = image_Dilecto;
+			sprites[0][29] = image_Dilecto;
+			sprites[0][30] = image_Dilecto;
+			sprites[0][31] = image_Ralph;
+			sprites[0][32] = image_Dean;
+			sprites[0][33] = image_Dean;
+			sprites[0][34] = image_Ralph;
+			sprites[0][35] = image_Ralph;
+			sprites[0][36] = image_Dilecto;
+			sprites[0][37] = image_Ralph;
+			sprites[0][38] = image_Dilecto;
+			sprites[0][39] = image_Dilecto;
+			sprites[0][40] = image_Ralph;
+			sprites[0][41] = image_Dilecto;
+			sprites[0][42] = image_Dilecto;
+			sprites[0][43] = image_Dilecto;
+			sprites[0][44] = image_Plumm;
+			sprites[0][45] = image_Dilecto;
+			sprites[0][46] = image_Plumm;
+			sprites[0][47] = image_Dilecto;
+			sprites[0][48] = image_Dilecto;
+			sprites[0][49] = image_Plumm;
+			sprites[0][50] = image_Plumm;
+			sprites[0][51] = image_Ralph;
+			sprites[0][52] = image_Plumm;
+			sprites[0][53] = image_Plumm;
+			sprites[0][54] = image_Ralph;
+			sprites[0][55] = image_Ralph;
+			sprites[0][56] = image_Dean;
+			sprites[0][57] = image_Dilecto;
+			sprites[0][58] = image_Dilecto;
+			sprites[0][59] = image_Dilecto;
+			sprites[0][60] = image_Dilecto;
+			sprites[0][61] = image_Dilecto;
+		case 1:
+			sprites[1][0] = image_Thay;
+			sprites[1][1] = image_Thay;
+			sprites[1][2] = image_Thay;
+			sprites[1][6] = image_Thay;
+			sprites[1][7] = image_Thay;
+			sprites[1][9] = image_Thay;
+		case 2:
+			sprites[2][1] = image_Thay;
+			sprites[2][3] = image_Thay;
+			sprites[2][4] = image_Thay;
+			sprites[2][7] = image_Thay;
+			sprites[2][8] = image_Thay;
+			sprites[2][9] = image_Thay;
+		case 3:
+			sprites[3][1] = image_Thay;
+			sprites[3][2] = image_Kyla;
+		case 4:
+			sprites[4][3] = image_Thay;
+			sprites[4][4] = image_Thay;
+		case 5:
+			sprites[5][0] = image_Thay;
+			sprites[5][3] = image_Thay;
+			sprites[5][4] = image_Thay;
+		}
 	}
 }

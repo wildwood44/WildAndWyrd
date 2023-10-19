@@ -49,6 +49,7 @@ public class Obj_Worktable extends Entity {
 		if (!opened && !gp.s.c1Switch[2]) {
 			startDialogue(this, 1);
 		} else if (gp.player.itemIsInInventory(Itm_Bramble_Leaf.itemId)) {
+			gp.glossary.unlock("constructs", "mortar and pestle");
 			Entity selectedItem = gp.player.inventory.get(gp.player.searchItemInInventory(Itm_Bramble_Leaf.itemId));
 			gp.player.removeFromInventory(selectedItem);
 			gp.objective.quests[1].progress(2);

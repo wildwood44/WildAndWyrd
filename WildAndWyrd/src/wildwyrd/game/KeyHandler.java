@@ -47,6 +47,7 @@ public class KeyHandler implements KeyListener {
 				}
 				if (gp.ui.commandNum == 1) {
 					gp.saveLoad.load();
+					gp.ui.resetSlots();
 					gp.tileM = new TileManager(gp);
 					gp.eHandler = new EventHandler(gp);
 					gp.gameState = GameState.playState;
@@ -242,7 +243,6 @@ public class KeyHandler implements KeyListener {
 				break;
 			case KeyEvent.VK_UP :
 			case KeyEvent.VK_W :
-				//System.out.println(this.gp.ui.topValue + " " + this.gp.ui.slotCol);
 				if (gp.ui.slotCol != 0) {
 					gp.ui.slotCol--;
 				} else if (gp.ui.topValue != 0) {
@@ -257,8 +257,6 @@ public class KeyHandler implements KeyListener {
 				if (gp.ui.slotCol != 5) {
 					gp.ui.slotCol++;
 				} else {
-					//System.out.println(
-					//		this.gp.ui.slotCol + this.gp.ui.topValue + " " + this.gp.ui.bottomValue);
 					if (gp.ui.slotCol + gp.ui.topValue != gp.ui.bottomValue - 1) {
 						gp.ui.topValue++;
 					} else {
@@ -276,8 +274,6 @@ public class KeyHandler implements KeyListener {
 				case KeyEvent.VK_LEFT :
 				case KeyEvent.VK_A :
 					if (gp.ui.section != 0) {
-						//System.out.println(this.gp.glossary.getSize(this.gp.ui.section) + " "
-						//		+ this.gp.glossary.getSize(this.gp.ui.section - 1));
 						if (gp.glossary.getSize(gp.ui.section) > gp.glossary
 								.getSize(gp.ui.section - 1)) {
 							gp.ui.slotCol = 0;
@@ -297,7 +293,6 @@ public class KeyHandler implements KeyListener {
 					break;
 				case KeyEvent.VK_UP :
 				case KeyEvent.VK_W :
-					//System.out.println(this.gp.ui.topValue + " " + this.gp.ui.slotCol);
 					if (gp.ui.slotCol != 0) {
 						gp.ui.slotCol--;
 					} else if (gp.ui.topValue != 0) {
@@ -329,8 +324,6 @@ public class KeyHandler implements KeyListener {
 					if (gp.ui.slotCol != 5) {
 						gp.ui.slotCol++;
 					} else {
-						//System.out.println(
-						//		this.gp.ui.slotCol + this.gp.ui.topValue + " " + this.gp.ui.bottomValue);
 						if (gp.ui.slotCol + gp.ui.topValue != gp.ui.bottomValue - 1) {
 							gp.ui.topValue++;
 						} else {
@@ -381,6 +374,7 @@ public class KeyHandler implements KeyListener {
 				break;
 			}
 		} else if (gp.gameState == GameState.combatState) {
+			//Use items in combat menu
 			if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Using) {
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_ESCAPE :
@@ -443,7 +437,59 @@ public class KeyHandler implements KeyListener {
 				case KeyEvent.VK_ENTER :
 					gp.player.selectedItem();
 					break;
+				}} else if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Specializing) {
+					//Special State
+					switch (e.getKeyCode()) {
+					case KeyEvent.VK_ESCAPE:
+						gp.ui.resetSlots();
+						gp.combat.getCombatant().setCombatStatus(CombatStatus.Normal);
+						break;
+					case KeyEvent.VK_UP :
+					case KeyEvent.VK_W :
+						if (gp.ui.slotRow2 != 0 && gp.ui.slotCol2 != 1) {
+							gp.ui.slotRow2--;
+						} else if(gp.ui.slotCol2 != 1) {
+							gp.ui.slotRow2 = 1;
+						}
+						break;
+					case KeyEvent.VK_DOWN :
+					case KeyEvent.VK_S :
+						if (gp.ui.slotRow2 != 1 && gp.ui.slotCol2 != 1) {
+							gp.ui.slotRow2++;
+						} else if(gp.ui.slotCol2 != 1) {
+							gp.ui.slotRow2 = 0;
+						}
+						break;
+					case KeyEvent.VK_LEFT :
+					case KeyEvent.VK_A :
+						if (gp.ui.slotCol2 != 0 && gp.ui.slotRow2 != 1) {
+							gp.ui.slotCol2--;
+						} else if(gp.ui.slotRow2 != 1) {
+							gp.ui.slotCol2 = 1;
+						}
+						break;
+					case KeyEvent.VK_RIGHT :
+					case KeyEvent.VK_D :
+						if (gp.ui.slotCol2 != 1 && gp.ui.slotRow2 != 1) {
+							gp.ui.slotCol2++;
+						}  else if(gp.ui.slotRow2 != 1) {
+							gp.ui.slotCol2 = 0;
+						}
+						break;
+					case KeyEvent.VK_ENTER :
+						if(gp.ui.slotCol2 == 0 && gp.ui.slotRow2 == 0) {
+							System.out.println("O");
+							gp.playable.get(0).getOffencive().activate();
+						} else if(gp.ui.slotCol2 == 1 && gp.ui.slotRow2 == 0) {
+							System.out.println("S");
+							gp.playable.get(0).getSupportive().activate();
+						} else if(gp.ui.slotCol2 == 0 && gp.ui.slotRow2 == 1) {
+							System.out.println("Self");
+							gp.playable.get(0).getSelfie().activate();
+						}
+						break;
 				}} else {
+					//Base combat menu
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_ENTER :
 					if(gp.combat.getCombatant().isAlive()) {
@@ -455,18 +501,16 @@ public class KeyHandler implements KeyListener {
 								} else {
 									gp.combat.dealDamage(gp.playable.get(0),gp.combat.getTarget(),gp.playable.get(0).getAttack());
 								}
-							}
-							if (gp.ui.commandNum == 1) {
+							} else if (gp.ui.commandNum == 1) {
 								gp.combat.blockAttack();	
-							}
-							if (gp.ui.commandNum == 2) {
+							} else if (gp.ui.commandNum == 2) {
 								gp.combat.getCombatant().changePos();
 								gp.combat.incrementTurn();
-							}
-							if (gp.ui.commandNum == 4) {
+							} else if (gp.ui.commandNum == 3) {
+								gp.combat.openSpecial();	
+							} else if (gp.ui.commandNum == 4) {
 								gp.combat.openInventory();	
-							}
-							if (gp.ui.commandNum == 5) {
+							} else if (gp.ui.commandNum == 5) {
 								gp.combat.endCombat();
 								gp.combat.win = false;
 								gp.gameState = GameState.playState;	

@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import wildwyrd.data.DataStorage;
 import wildwyrd.game.items.Armour;
 import wildwyrd.game.items.Weapon;
-import wildwyrd.game.playable.Combatant;
+import wildwyrd.game.playable.Playable;
 
 public class SaveLoad {
 	GamePanel gp;
@@ -36,6 +36,7 @@ public class SaveLoad {
 			ds.currentTrousers = new int[gp.playable.size()];
 			ds.currentPrimary = new int[gp.playable.size()];
 			ds.currentSecondary = new int[gp.playable.size()];
+			ds.found = new boolean[7][50];
 			for(int i = 0; i < gp.playable.size(); i++) {
 				//Stats
 				ds.maxHealth[i] = gp.playable.get(i).maxHealth;
@@ -117,6 +118,15 @@ public class SaveLoad {
 						ds.mapNpcDirection[mapNum][i] = gp.npc[mapNum][i].direction;
 					}
 				}
+				//Glossary
+				for (int i = 0; i < gp.glossary.sections.length; i++) {
+					for (int j = 0; j < gp.glossary.getSize(i); j++) {
+						if (gp.glossary.page[i][j] != null && gp.glossary.page[i][j].isFound()) {
+							System.out.println(gp.glossary.page[i][j].getName());
+							ds.found[i][j] = gp.glossary.page[i][j].isFound();
+						}
+					}
+				}
 			}
 			oos.writeObject(ds);
 		} catch (Exception e) {
@@ -131,7 +141,7 @@ public class SaveLoad {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
 			DataStorage ds = (DataStorage)ois.readObject();
 			for(int i = 0; i < gp.playable.size(); i++) {
-				gp.playable.set(i,new Combatant(gp, "Alder", ds.maxHealth[i], ds.maxStamina[i],
+				gp.playable.set(i,new Playable(gp, "Alder", ds.maxHealth[i], ds.maxStamina[i],
 						ds.baseAttack[i], ds.baseDefence[i], ds.baseAccuracy[i], ds.baseEvasion[i], ds.baseSpeed[i]));
 				gp.playable.get(i).setHealthAndStamina(ds.health[i],ds.stamina[i]);
 				if(ds.currentHat[i] >= 0 && gp.eGenerator.getObject(ds.currentHat[i]) instanceof Armour) {
@@ -147,12 +157,12 @@ public class SaveLoad {
 				}
 			}
 		//	gp.player = ds.player;
-			gp.player.direction = ds.direction;
 			gp.s = ds.story;
 			//for(int i = 0; i < gp.s.c1Switch.length; i++) {
 			//	System.out.println(gp.s.c1Switch[i]);
 			//}
 			gp.currentMap = gp.maps[ds.currentMap];
+			gp.player.direction = ds.direction;
 			gp.player.worldX = ds.worldX;
 			gp.player.worldY = ds.worldY;
 			gp.player.inventory.clear();
@@ -186,6 +196,16 @@ public class SaveLoad {
 						gp.npc[mapNum][i].worldX = ds.mapNpcWorldX[mapNum][i];
 						gp.npc[mapNum][i].worldY = ds.mapNpcWorldY[mapNum][i];
 						gp.npc[mapNum][i].direction = ds.mapNpcDirection[mapNum][i];
+					}
+				}
+				//Glossary
+				System.out.println("ping");
+				for (int i = 0; i < ds.found.length; i++) {
+					for (int j = 0; j < ds.found[i].length; j++) {
+						if (gp.glossary.page[i][j] != null && ds.found[i][j]) {
+							System.out.println(gp.glossary.page[i][j].getName());
+							gp.glossary.page[i][j].findGlossaryItem();
+						}
 					}
 				}
 			}

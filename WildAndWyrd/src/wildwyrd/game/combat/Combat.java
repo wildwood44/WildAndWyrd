@@ -96,6 +96,8 @@ public class Combat extends Entity {
 			} else if (!playableActive()) {
 				cleanup();
 				gp.gameState = GameState.gameOverState;
+			} else {
+				cleanup();
 			}
 		} catch (IndexOutOfBoundsException ex) {
 			System.out.println(ex);
@@ -172,6 +174,12 @@ public class Combat extends Entity {
 			user.loseStamina(5);
 			gp.keyH.enterPressed = false;
 			impact = damage * 100/(100 + target.baseDefence);
+			if(target.getCombatStatus() == CombatStatus.Blocking) {
+				impact = impact / 10;
+				if(impact == 0) {
+					impact = 1;
+				}
+			}
 			dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
 			dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
 			target.health -= impact;
@@ -191,7 +199,11 @@ public class Combat extends Entity {
 	
 	public void blockAttack() {
 		gp.playable.get(0).setCombatStatus(CombatStatus.Blocking);
-		//incrementTurn();
+		incrementTurn();
+	}
+	
+	public void openSpecial() {
+		gp.playable.get(0).setCombatStatus(CombatStatus.Specializing);
 	}
 	
 	public void openInventory() {

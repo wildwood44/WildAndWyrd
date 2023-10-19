@@ -11,7 +11,6 @@ import wildwyrd.game.rooms.Rm_Kitchen;
 import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.MapType;
 import wildwyrd.npc.NPC_Cricket;
-import wildwyrd.npc.NPC_Dilecto;
 import wildwyrd.npc.NPC_Florence;
 import wildwyrd.npc.NPC_Thay;
 
@@ -142,9 +141,9 @@ public class AssetSetter {
 		gp.obj[2][7] = new Obj_Blackberry(gp);
 		gp.obj[2][7].worldX = 4 * gp.tileSize;
 		gp.obj[2][7].worldY = 3 * gp.tileSize;
-		//gp.obj[2][6] = new Obj_Dummy(gp);
-		//gp.obj[2][6].worldX = 8 * gp.tileSize;
-		//gp.obj[2][6].worldY = 5 * gp.tileSize;
+		//gp.obj[2][8] = new Obj_Dummy(gp);
+		//gp.obj[2][8].worldX = 8 * gp.tileSize;
+		//gp.obj[2][8].worldY = 5 * gp.tileSize;
 		
 		gp.obj[3][0] = new Obj_SilverBirch(gp);
 		gp.obj[3][0].worldX = 1 * gp.tileSize;
@@ -163,9 +162,9 @@ public class AssetSetter {
 		gp.npc[2][1] = new NPC_Thay(gp);
 		gp.npc[2][1].worldX = gp.tileSize * 15;
 		gp.npc[2][1].worldY = gp.tileSize * 4;
-		gp.npc[2][2] = new NPC_Dilecto(gp);
-		gp.npc[2][2].worldX = gp.tileSize * 12;
-		gp.npc[2][2].worldY = gp.tileSize * 4;
+		//gp.npc[2][2] = new NPC_Dilecto(gp);
+		//gp.npc[2][2].worldX = gp.tileSize * 12;
+		//gp.npc[2][2].worldY = gp.tileSize * 4;
 		gp.npc[3][0] = new NPC_Cricket(gp);
 		gp.npc[3][0].worldX = gp.tileSize * 13;
 		gp.npc[3][0].worldY = gp.tileSize * 5;

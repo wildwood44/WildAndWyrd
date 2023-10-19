@@ -47,4 +47,6 @@ public class DataStorage implements Serializable {
 	public int mapNpcWorldX[][];
 	public int mapNpcWorldY[][];
 	public String mapNpcDirection[][];
+	//Glossary
+	public boolean found[][];
 }

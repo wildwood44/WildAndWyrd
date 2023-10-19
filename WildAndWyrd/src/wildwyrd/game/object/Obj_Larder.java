@@ -36,6 +36,8 @@ public class Obj_Larder extends Entity {
 	}
 
 	public void interact() {
+		gp.glossary.unlock("constructs", "larder");
 		startDialogue(this, 0);
+		gp.keyH.enterPressed = false;
 	}
 }

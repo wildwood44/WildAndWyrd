@@ -38,6 +38,7 @@ public class Obj_Blackberry extends Entity {
 	}
 	
 	public void interact() {
+		gp.glossary.unlock("plant", "bramble");
 		if(gp.objective.quests[1].isAccepted() && !opened) {
 			startDialogue(this, 1);
 			gp.player.pickUpObject(new Itm_Bramble_Leaf(gp));

@@ -21,6 +21,7 @@ import wildwyrd.game.glossary.Glossary;
 import wildwyrd.game.object.AssetSetter;
 import wildwyrd.game.objective.Objective;
 import wildwyrd.game.playable.Combatant;
+import wildwyrd.game.playable.Playable;
 import wildwyrd.game.playable.Player;
 import wildwyrd.game.rooms.Room;
 import wildwyrd.game.tile.CollisionChecker;
@@ -71,7 +72,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Story s = new Story();
 	public Cutscene c;
 	public Combat combat = new Combat(this);
-	public List<Combatant> playable = new ArrayList<Combatant>(5);
+	public List<Playable> playable = new ArrayList<Playable>(5);
 	public Entity[][] obj = new Entity[10][25];
 	public NPC[][] npc = new NPC[10][5];
 	public InteractiveTile iTile[][] = new InteractiveTile[10][50];
@@ -89,7 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
 		rm = new Room[maxRoom];
 		maps = new Map[maxMap];
 		player = new Player(this, keyH);
-		playable.add(0,new Combatant(this, "Alder", 60, 60,
+		playable.add(0,new Playable(this, "Alder", 60, 60,
 				10, 10, 5, 10, 5));
 		entityList = new ArrayList<>();
 		setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -119,9 +120,11 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void restart() {
-		for(Combatant p : playable) {
+		for(Playable p : playable) {
 			p.setDefaultValues();
 		}
+		obj = new Entity[10][25];
+		npc = new NPC[10][5];
 		s = new Story();
 		player.setDefaultValues();
 		player.setDefaultPositions();

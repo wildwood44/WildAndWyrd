@@ -23,6 +23,7 @@ import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.library.Book;
 import wildwyrd.game.playable.Combatant;
+import wildwyrd.game.skill.Skill;
 
 public class UI {
 	GamePanel gp;
@@ -878,8 +879,11 @@ public class UI {
 			if(gp.combat.getCombatant() == gp.playable.get(0)) {
 				if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Using) {
 					drawCombatInventoryScreen(x,gp.tileSize * 5,width);
+				} else if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Specializing) {
+					drawCombatSpecialScreen(x,gp.tileSize * 5,width);
 				} else {
 					//Draw combat menu
+					System.out.println(commandNum); 
 					g2.drawString(" Attack", x, y);
 					g2.drawString(" Block", x, y + (gp.tileSize));
 					g2.drawString(" Position", x + (gp.tileSize*3), y);
@@ -923,7 +927,6 @@ public class UI {
 				g2.drawString("x " + items.get(i).amount, x + (int)(gp.tileSize * 4), slotY);
 				slotY += gp.tileSize;
 				int itemIndex = getItemIndexOnSlot();
-				//System.out.println(i + " " + itemIndex);
 				if (itemIndex < items.size()) {
 					//System.out.println(gp.player.inventory.get(itemIndex));
 				}
@@ -937,6 +940,20 @@ public class UI {
 		if(firstValue < gp.player.combatItems(itemFilter).size() - 2) {
 			drawDownIcon((int)(width/1.65), 470, 20, 20);
 		}
+	}
+	
+	public void drawCombatSpecialScreen(int x, int y, int width) {
+		int slotXstart = x;
+		int slotYstart = y + gp.tileSize + 15;
+		int cursorX = slotXstart + gp.tileSize * (slotCol2 * 4);
+		int cursorY = slotYstart + gp.tileSize * slotRow2;
+		//ArrayList<Skill> skills = gp.playable.get(0)
+		g2.setFont(g2.getFont().deriveFont(16f));
+		g2.setColor(Color.white);
+		g2.drawString(" " + gp.playable.get(0).getOffencive().getName(), x, slotYstart);
+		g2.drawString(" " + gp.playable.get(0).getSupportive().getName(), x + (gp.tileSize*4), slotYstart);
+		g2.drawString(" " + gp.playable.get(0).getSelfie().getName(), x, slotYstart + (gp.tileSize));
+		g2.drawString(">", cursorX - 5, cursorY);
 	}
 	
 	public boolean filter(int i) {
@@ -1118,7 +1135,6 @@ public class UI {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 		Color c = new Color(255, 255, 255);
 		g2.setColor(c);
-		//System.out.println(x + " " + y + " " + width + " " + height);
 		g2.fillRoundRect(x, y, width, height, 35, 35);
 		c = new Color(0, 0, 0, 210);
 		g2.setColor(c);
@@ -1198,8 +1214,10 @@ public class UI {
 	}
 
 	public void resetSlots() {
-		this.slotRow = 0;
-		this.slotCol = 0;
-		gp.ui.commandNum = 0;
+		slotRow = 0;
+		slotCol = 0;
+		slotRow2 = 0;
+		slotCol2 = 0;
+		commandNum = 0;
 	}
 }
