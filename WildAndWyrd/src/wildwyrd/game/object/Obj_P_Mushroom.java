@@ -43,7 +43,7 @@ public class Obj_P_Mushroom extends Entity {
 			gp.player.pickUpObject(loot);
 			opened = true;
 			for (int i = 0; i < gp.obj[gp.currentMap.getId()].length; ++i) {
-				if(gp.obj[gp.currentMap.getId()][i].name == name) {
+				if(gp.obj[gp.currentMap.getId()][i].id == objId) {
 					gp.obj[gp.currentMap.getId()][i] = null;
 					break;
 				}

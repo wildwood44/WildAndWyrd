@@ -69,19 +69,18 @@ chapter$ switch$ part$ line$ dialog$
 1$ 0$ 1$ 5$ Woman:£"Thay! It's good to see you!"
 1$ 0$ 1$ 6$ Thay:£"And you Florence."
 1$ 0$ 1$ 7$ Thay:£"I'm here to see your mistress."
-1$ 0$ 1$ 8$ Florence:£"She’s upstairs, should be down soon though."
+1$ 0$ 1$ 8$ Florence:£"She's upstairs, should be down soon though."
 1$ 0$ 1$ 7$ Thay:£"And where’s young Alder?"
-1$ 0$ 1$ 8$ Florence:£"He’s inside."
+1$ 0$ 1$ 8$ Florence:£"He's inside."
 1$ 0$ 1$ 9$ Florence:£"He's still cleaning the dishes."
 1$ 0$ 1$ 10$ Florence:£"Alder!!"
 1$ 0$ 1$ 11$ Florence:£"Thay's here!"
 1$ 0$ 1$ 12$ Inside the cottage kitchen a boy stood on a stool cleaning plates. He had chestnut hair, clothed in a worn, torn and noticeably small tunic. 
-1$ 0$ 1$ 12$ He knew the hedgehog and enjoyed his company, so hurried to finish his task making sure each plate was spotless. After drying the last wooden spoon he rushed to meet him.
-1$ 0$ 1$ 1$ This boy is Alder and this is his story.
+1$ 0$ 1$ 13$ This boy is Alder and this is his story.
 1$ 1$ 2$ 1$ Thay and Florence were waiting for Alder in the clearing.
 1$ 1$ 2$ 2$ Thay:£"Haha! How’ve you been Alder?"
-1$ 1$ 2$ 3$ Alder:£"I’ve been great!"
-1$ 1$ 2$ 4$ Thay:£"You’ve gotten bigger too."
+1$ 1$ 2$ 3$ Alder:£"I've been great!"
+1$ 1$ 2$ 4$ Thay:£"You've gotten bigger too."
 1$ 1$ 2$ 5$ Thay:£"I remember when we were the same size."
 1$ 1$ 2$ 6$ Alder:£"I'm not a toddler anymore."
 1$ 1$ 2$ 7$ Thay smiled warmly at Alder, then turned to look at an elderly woman in the cottage door. She was a short and very wrinkled human with a curved, beak-like nose.

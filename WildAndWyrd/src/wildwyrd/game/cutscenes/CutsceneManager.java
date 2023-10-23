@@ -7,12 +7,12 @@ import java.awt.image.BufferedImage;
 
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
+import wildwyrd.game.npc.NPC;
+import wildwyrd.game.npc.NPC_Florence;
+import wildwyrd.game.npc.NPC_Kyla;
+import wildwyrd.game.npc.NPC_Thay;
 import wildwyrd.game.object.Obj_Alder_Bed;
 import wildwyrd.game.playable.PlayerDummy;
-import wildwyrd.npc.NPC;
-import wildwyrd.npc.NPC_Florence;
-import wildwyrd.npc.NPC_Kyla;
-import wildwyrd.npc.NPC_Thay;
 
 public class CutsceneManager {
 	GamePanel gp;

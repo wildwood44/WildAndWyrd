@@ -3,7 +3,7 @@ package wildwyrd.game.object;
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
-import wildwyrd.npc.NPC_Florence;
+import wildwyrd.game.npc.NPC_Florence;
 
 public class Obj_Pots extends Entity {
 	GamePanel gp;

@@ -1,4 +1,4 @@
-package wildwyrd.npc;
+package wildwyrd.game.npc;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -150,6 +150,12 @@ public class NPC_Cricket extends NPC {
 			startDialogue(this, 1);
 		} else {
 			startDialogue(this, 2);
+		}
+		for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; ++i) {
+			if(gp.npc[gp.currentMap.getId()][i].id == npcId) {
+				gp.npc[gp.currentMap.getId()][i] = null;
+				break;
+			}
 		}
 		gp.keyH.enterPressed = false;
 		//gp.combat.startCombat();

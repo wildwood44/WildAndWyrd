@@ -4,9 +4,9 @@ import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
 import wildwyrd.game.items.Itm_Bug_Meat;
+import wildwyrd.game.npc.NPC_Florence;
+import wildwyrd.game.npc.NPC_Thay;
 import wildwyrd.game.object.Dialoge;
-import wildwyrd.npc.NPC_Florence;
-import wildwyrd.npc.NPC_Thay;
 
 public class En_Wasp extends Enemy {
 	public En_Wasp(GamePanel gp) {

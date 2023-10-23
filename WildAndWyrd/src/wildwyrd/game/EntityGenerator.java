@@ -8,6 +8,12 @@ import wildwyrd.game.items.Itm_Hazelnut;
 import wildwyrd.game.items.Itm_Hunting_Knife;
 import wildwyrd.game.items.Itm_P_Mushroom;
 import wildwyrd.game.items.Itm_Primative_Arrow;
+import wildwyrd.game.npc.NPC;
+import wildwyrd.game.npc.NPC_Cricket;
+import wildwyrd.game.npc.NPC_Dilecto;
+import wildwyrd.game.npc.NPC_Florence;
+import wildwyrd.game.npc.NPC_Kyla;
+import wildwyrd.game.npc.NPC_Thay;
 import wildwyrd.game.object.Obj_Alder_Bed;
 import wildwyrd.game.object.Obj_Alder_Window;
 import wildwyrd.game.object.Obj_Basin;
@@ -35,12 +41,6 @@ import wildwyrd.game.object.Obj_Window_Down;
 import wildwyrd.game.object.Obj_Wooden_Bowl;
 import wildwyrd.game.object.Obj_Worktable;
 import wildwyrd.game.object.Plant_1;
-import wildwyrd.npc.NPC;
-import wildwyrd.npc.NPC_Cricket;
-import wildwyrd.npc.NPC_Dilecto;
-import wildwyrd.npc.NPC_Florence;
-import wildwyrd.npc.NPC_Kyla;
-import wildwyrd.npc.NPC_Thay;
 
 public class EntityGenerator {
 

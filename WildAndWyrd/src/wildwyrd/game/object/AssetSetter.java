@@ -5,14 +5,14 @@ import wildwyrd.game.items.Itm_Bandage;
 import wildwyrd.game.items.Itm_Hazelnut;
 import wildwyrd.game.items.Itm_Hunting_Knife;
 import wildwyrd.game.items.Itm_P_Mushroom;
+import wildwyrd.game.npc.NPC_Cricket;
+import wildwyrd.game.npc.NPC_Florence;
+import wildwyrd.game.npc.NPC_Thay;
 import wildwyrd.game.rooms.Rm_Blank;
 import wildwyrd.game.rooms.Rm_Forton;
 import wildwyrd.game.rooms.Rm_Kitchen;
 import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.MapType;
-import wildwyrd.npc.NPC_Cricket;
-import wildwyrd.npc.NPC_Florence;
-import wildwyrd.npc.NPC_Thay;
 
 public class AssetSetter {
 	GamePanel gp;

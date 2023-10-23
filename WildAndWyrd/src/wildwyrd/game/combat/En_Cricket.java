@@ -25,7 +25,7 @@ public class En_Cricket extends Enemy {
 	}
 	
 	public void action() {
-		if(health <= 0) {
+		if(health <= 0 || !isAlive()) {
 			gp.combat.enemyDeath(this);
 		} else {
 			gp.ui.choiceSlot = 0;
@@ -35,7 +35,6 @@ public class En_Cricket extends Enemy {
 				startDialogue(this, 1);
 				setCombatStatus(CombatStatus.Escaping);
 				gp.combat.win = false;
-				//gp.combat.endCombat();
 			} else {
 				startDialogue(this, 0);
 			}

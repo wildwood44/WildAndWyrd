@@ -200,9 +200,7 @@ public class UI {
 		g2.setColor(Color.white);
 		x += gp.tileSize;
 		y += gp.tileSize;
-		//System.out.println(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].text + " " + selectedObject.dialogueSet+" "+selectedObject.dialogueIndex);
 		if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
-			//System.out.println(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].text);
 			char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().toCharArray();
 			if (charIndex < characters.length) {
 				String s = String.valueOf(characters[charIndex]);
@@ -239,13 +237,12 @@ public class UI {
 		} else {
 			selectedObject.dialogueIndex = 0;
 			if (gp.gameState == GameState.dialogueState) {
-				//System.out.println("Enemies Active: " + gp.combat.enemiesActive());
 				if(!gp.combat.enemiesActive()) {
-					drawCombatants(g2);
+					//drawCombatants(g2);
 					gp.combat.inCombat = false;
 					gp.combat.win = true;
 				} else if (!gp.combat.playableActive()) {
-					drawCombatants(g2);
+					//drawCombatants(g2);
 					gp.combat.inCombat = false;
 					gp.combat.win = false;
 				}
@@ -253,7 +250,6 @@ public class UI {
 					gp.gameState = GameState.combatState;
 					gp.combat.incrementTurn();
 				} else {
-					//System.out.println(selectedObject);
 					gp.combat.endCombat();
 				}
 			}
@@ -304,7 +300,6 @@ public class UI {
 
 			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 1) {
-				//System.out.println(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].text + " " + selectedObject.dialogueSet + " " + selectedObject.dialogueIndex);
 				if (gp.keyH.enterPressed) {
 					if (currentDialogue
 							.length() == selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
@@ -431,7 +426,6 @@ public class UI {
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
 		g2.setStroke(new BasicStroke());
-		//System.out.println(gp.tileSize);
 		g2.drawString("Save", 30, gp.tileSize);
 		g2.drawString("Stats", 30, (int) (gp.tileSize * 1.75D));
 		g2.drawString("Items", 30, (int) (gp.tileSize * 2.5D));
@@ -549,7 +543,6 @@ public class UI {
 		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
-		//System.out.println(gp.player.getShillings() + " " + gp.tileSize);
 		g2.drawString("Shillings: " + gp.player.getShillings(), 30, gp.tileSize);
 
 	}
@@ -717,7 +710,6 @@ public class UI {
 				}
 			}
 			int lineNum = 80;
-			System.out.println(slotCol + topValue);
 			if(gp.objective.quests[slotCol + topValue].isAccepted()) {
 				for (String line : breakLines((gp.objective.quests[slotCol + topValue].printQuest()), 35)){
 					for (String list : line.split("£")) {
@@ -871,7 +863,7 @@ public class UI {
 			}
 		} //Check if enemies are alive
 		for(Enemy enemy: gp.combat.enemies) {
-			if(enemy.health <= 0 && enemy.isAlive()) {
+			if(!gp.combat.enemiesActive()) {
 				gp.combat.enemyDeath(enemy);
 			}
 		} //Check if combatant is alive
@@ -883,7 +875,6 @@ public class UI {
 					drawCombatSpecialScreen(x,gp.tileSize * 5,width);
 				} else {
 					//Draw combat menu
-					System.out.println(commandNum); 
 					g2.drawString(" Attack", x, y);
 					g2.drawString(" Block", x, y + (gp.tileSize));
 					g2.drawString(" Position", x + (gp.tileSize*3), y);
@@ -965,7 +956,6 @@ public class UI {
 					return true;
 			}
 		} else {
-			//System.out.println(items.get(i).type +" "+ itemFilter);
 			while(i < items.size()) {
 				if(items.get(i).type == itemFilter) {
 					//firstValue = i - 1;
@@ -1074,7 +1064,6 @@ public class UI {
 			int pos = text.lastIndexOf(" ", size);
 			if(text.contains("£")) {
 				pos = text.lastIndexOf("£", size);
-				//System.out.println(pos);
 				if (pos == -1) {
 					pos = text.lastIndexOf(" ", size);
 				}
@@ -1093,7 +1082,6 @@ public class UI {
 				text = text.substring(pos + 1);
 				lines.add(found);
 			}
-			//System.out.println(found);
 		}
 		String[] lineBreaks = lines.toArray(new String[lines.size()]);
 		return lineBreaks;

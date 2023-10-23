@@ -1,4 +1,4 @@
-package wildwyrd.npc;
+package wildwyrd.game.npc;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

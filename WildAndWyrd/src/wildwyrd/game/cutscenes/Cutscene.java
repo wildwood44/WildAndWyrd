@@ -13,6 +13,8 @@ import wildwyrd.game.object.Dialoge;
 
 public class Cutscene extends Entity {
 	GamePanel gp;
+	BufferedImage image_Alder;
+	BufferedImage image_Florence;
 	BufferedImage image_Dilecto;
 	BufferedImage image_Thay;
 	BufferedImage image_Dean;
@@ -81,6 +83,8 @@ public class Cutscene extends Entity {
 
 	public void setImages() {
 		try {
+			image_Alder = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Alder.png"));
+			image_Florence = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Florence.png"));
 			image_Dilecto = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Dilecto.png"));
 			image_Thay = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Thay.png"));
 			image_Dean = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Dean.png"));
@@ -157,13 +161,23 @@ public class Cutscene extends Entity {
 			sprites[1][0] = image_Thay;
 			sprites[1][1] = image_Thay;
 			sprites[1][2] = image_Thay;
+			sprites[1][5] = image_Florence;
 			sprites[1][6] = image_Thay;
 			sprites[1][7] = image_Thay;
+			sprites[1][8] = image_Florence;
 			sprites[1][9] = image_Thay;
+			sprites[1][10] = image_Florence;
+			sprites[1][11] = image_Florence;
+			sprites[1][12] = image_Florence;
+			sprites[1][13] = image_Florence;
+			sprites[1][14] = image_Alder;
+			sprites[1][15] = image_Alder;
 		case 2:
 			sprites[2][1] = image_Thay;
+			sprites[2][2] = image_Alder;
 			sprites[2][3] = image_Thay;
 			sprites[2][4] = image_Thay;
+			sprites[2][5] = image_Alder;
 			sprites[2][7] = image_Thay;
 			sprites[2][8] = image_Thay;
 			sprites[2][9] = image_Thay;
@@ -171,10 +185,23 @@ public class Cutscene extends Entity {
 			sprites[3][1] = image_Thay;
 			sprites[3][2] = image_Kyla;
 		case 4:
+			sprites[4][0] = image_Florence;
+			sprites[4][1] = image_Florence;
 			sprites[4][3] = image_Thay;
 			sprites[4][4] = image_Thay;
+			sprites[4][5] = image_Alder;
+			sprites[4][6] = image_Alder;
+			sprites[4][7] = image_Florence;
+			sprites[4][8] = image_Florence;
+			sprites[4][9] = image_Alder;
+			sprites[4][10] = image_Alder;
+			sprites[4][11] = image_Florence;
+			sprites[4][12] = image_Florence;
+			sprites[4][13] = image_Alder;
 		case 5:
 			sprites[5][0] = image_Thay;
+			sprites[5][1] = image_Alder;
+			sprites[5][2] = image_Alder;
 			sprites[5][3] = image_Thay;
 			sprites[5][4] = image_Thay;
 		}

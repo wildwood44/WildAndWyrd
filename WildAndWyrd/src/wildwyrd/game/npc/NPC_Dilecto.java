@@ -1,4 +1,4 @@
-package wildwyrd.npc;
+package wildwyrd.game.npc;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

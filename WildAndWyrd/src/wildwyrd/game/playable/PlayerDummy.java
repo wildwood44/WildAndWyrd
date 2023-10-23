@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import wildwyrd.game.GamePanel;
-import wildwyrd.npc.NPC;
+import wildwyrd.game.npc.NPC;
 
 public class PlayerDummy extends NPC {
 	public static final String npcName = "Dummy";

@@ -18,6 +18,7 @@ import wildwyrd.game.combat.Combat;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.cutscenes.CutsceneManager;
 import wildwyrd.game.glossary.Glossary;
+import wildwyrd.game.npc.NPC;
 import wildwyrd.game.object.AssetSetter;
 import wildwyrd.game.objective.Objective;
 import wildwyrd.game.playable.Combatant;
@@ -28,7 +29,6 @@ import wildwyrd.game.tile.CollisionChecker;
 import wildwyrd.game.tile.InteractiveTile;
 import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.TileManager;
-import wildwyrd.npc.NPC;
 
 public class GamePanel extends JPanel implements Runnable {
 	final int originalTileSize = 16;

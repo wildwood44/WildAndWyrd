@@ -124,7 +124,7 @@ public class Combat extends Entity {
 	public boolean enemiesActive() {
 		for (Enemy enemy : enemies) {
 			if(enemy.getCombatStatus() == CombatStatus.Escaping) {
-				
+				continue;
 			}
 			if(enemy.isAlive()) {
 				return true;
