@@ -5,14 +5,17 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import wildwyrd.game.EventHandler;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
 import wildwyrd.game.npc.NPC;
 import wildwyrd.game.npc.NPC_Florence;
 import wildwyrd.game.npc.NPC_Kyla;
 import wildwyrd.game.npc.NPC_Thay;
+import wildwyrd.game.npc.NPC_Trissie;
 import wildwyrd.game.object.Obj_Alder_Bed;
 import wildwyrd.game.playable.PlayerDummy;
+import wildwyrd.game.tile.TileManager;
 
 public class CutsceneManager {
 	GamePanel gp;
@@ -56,6 +59,9 @@ public class CutsceneManager {
 				scene_c1_4();
 				break;
 			case 7 :
+				scene_c2_1();
+				break;
+			case 8 :
 				scene_ending();
 				break;
 		}
@@ -474,6 +480,114 @@ public class CutsceneManager {
 		}
 	}
 	
+	private void scene_c2_1() {
+		if (scenePhase == 0) {
+			gp.cutsceneOn = true;
+			read = 5;
+			gp.c.setCutscene(6, read);
+			gp.c.dialogueSet = 6;
+			createActor(new PlayerDummy(gp), gp.player.worldX, gp.player.worldY, gp.player.direction);
+			gp.player.drawing = false;
+			drawRoom();
+			gp.c.setSprites(gp.c.dialogueSet);
+			scenePhase++;
+		} else if (scenePhase == 1) {
+			gp.ui.selectedObject = new Obj_Alder_Bed(gp);
+			scenePhase++;
+		} else if (scenePhase == 2) {
+			gp.ui.selectedObject.dialogueSet = 2;
+			gp.ui.drawDialogueScreen();
+		} else if (scenePhase == 3) {
+			alpha += 0.005f;
+			if(alpha > 1f) {
+				alpha = 1f;
+			}
+			drawBlackBackground(alpha);
+			if(alpha == 1f) {
+				destroyPlayerDummy();
+				scenePhase++;
+			}
+		} else if (scenePhase == 4) {
+			gp.currentMap = gp.maps[2];
+			gp.player.worldX = gp.tileSize * 16;
+			gp.player.worldY = gp.tileSize * 7;
+			gp.tileM = new TileManager(gp);
+			gp.eHandler = new EventHandler(gp);
+			createActor(new PlayerDummy(gp), gp.player.worldX, gp.player.worldY, gp.player.direction);
+			scenePhase++;
+		} else if (scenePhase == 5) {
+			drawRoom();
+			if(alpha == 0f) {
+				scenePhase++;
+			}
+			alpha -= 0.05f;
+			if(alpha < 0f) {
+				alpha = 0f;
+			}
+			drawBlackBackground(alpha);
+			gp.ui.drawHeadingScreen("Chapter " + gp.s.chapter);
+		} else if (scenePhase == 6) {
+			gp.ui.selectedObject = gp.c;
+			if(gp.c.dialogueIndex < 5) {
+				gp.ui.drawDialogueScreen();
+			} else {
+				createActor(new NPC_Trissie(gp), (int) (gp.tileSize * 16.1), gp.tileSize * 5, "down");
+				actor = getActor(NPC_Trissie.npcName);
+				actor.climbing(true);
+				actor.getImage();
+				scenePhase++;
+			}
+		} else if (scenePhase == 7) {
+			if(moveActor(actor.name, "down", 6)) {
+				actor.climbing(false);
+				actor.getImage();
+				actor = getActor(PlayerDummy.npcName);
+				changeActorDirection(actor.name, "up");
+				scenePhase++;
+				drawRoom();
+			}
+		} else if (scenePhase == 8) {
+			if(gp.c.dialogueIndex < 20) {
+				gp.ui.drawDialogueScreen();
+			} else {
+				scenePhase++;
+			}
+		} else if (scenePhase == 9) {
+			actor = getActor(NPC_Trissie.npcName);
+			if(moveActor(actor.name, "left", 14)) {
+				scenePhase++;
+			}
+		} else if (scenePhase == 10) {
+			if(moveActor(actor.name, "up", 5));
+			gp.player.worldY -= 2;
+			if(gp.player.worldY < gp.tileSize * 5) {
+				createActor(new NPC_Florence(gp), gp.tileSize * 14, gp.tileSize * 3, "down");
+				drawRoom();
+				scenePhase++;
+			}
+		} else if (scenePhase == 11) {
+			gp.ui.drawDialogueScreen();
+			destroyActor(NPC_Florence.npcName);
+		} else if (scenePhase == 12) {
+			if(moveActor(actor.name, "up", 4)) {
+				destroyActor(actor.name);
+				scenePhase++;
+			}
+		} else if (scenePhase == 13) {
+			gp.s.swh[read] = false;
+			gp.ui.resetSlots();
+			destroyPlayerDummy();
+			gp.player.drawing = true;
+			gp.cutsceneOn = false;
+			gp.c.dialogueIndex = 0;
+			sceneNum = 0;
+			scenePhase = 0;
+			gp.s.part = 2;
+			gp.s.c2Switch[0] = false;
+			gp.gameState = GameState.playState;
+		}
+	}
+	
 	private void scene_ending() {
 		if (scenePhase == 0) {
 			gp.ui.selectedObject = new Obj_Alder_Bed(gp);
@@ -638,6 +752,7 @@ public class CutsceneManager {
 			if (gp.obj[gp.currentMap.getId()][i] != null) {
 				gp.entityList.add(gp.obj[gp.currentMap.getId()][i]);
 				//this.obj[1][i].draw(g2, this);
+				gp.obj[gp.currentMap.getId()][i].draw(g2);
 			}
 		}
 		//NPC

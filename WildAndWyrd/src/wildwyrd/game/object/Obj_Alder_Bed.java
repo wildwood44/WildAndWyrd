@@ -42,8 +42,10 @@ public class Obj_Alder_Bed extends Entity {
 	}
 
 	public void interact() {
+		System.out.println(gp.s.c1Switch[4]);
 		if(!gp.s.c1Switch[4] && gp.s.chapter == 1) {
 			startDialogue(this, 2);
+			gp.s.swh[5] = true;
 			gp.s.chapter = 2;
 			gp.s.part = 1;
 		} else {
