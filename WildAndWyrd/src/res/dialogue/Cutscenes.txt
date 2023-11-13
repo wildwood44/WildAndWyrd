@@ -116,21 +116,21 @@ chapter$ switch$ part$ line$ dialog$
 1$ 4$ 4$ 6$ And with that, the hedgehog left. Leaving the burrow for lands unknown to Alder.
 1$ 4$ 4$ 7$ Alder would back to the cottage. Back to his daily chores of cleaning, gathering and grinding until his hands were sore. 
 1$ 4$ 4$ 8$ As the day came to an end the residents of the cottage were unaware of the shadows that came ever closer.
-2$ 5$ 1$ 1$ Chapter 2
-2$ 5$ 1$ 2$ Dawn came, sunlight striking Alder’s face through the curtainless window. He began his day as always, going downstairs to eat his breakfast of scavenged nuts and berries before cleaning the plates and cups. The day was set to be a very mundane one, Alder could only hope that a guest would come just as Thay had the day before. Otherwise, today he would be sweeping floors, chopping wood and foraging mushrooms letting time tick by until the next chore.
-2$ 5$ 1$ 3$ Alder£*Yawn*
-2$ 5$ 1$ 4$ The dull boredom was broken when a familiar squirrel missing half her tail came running down from the trees and into the cottage clearing. She wore male clothing and strapped to her back was a bow and quiver. She spoke to Alder in a loud whisper.
-2$ 5$ 1$ 5$ Squirrel£"Hi Alder!"
-2$ 5$ 1$ 6$ Alder£"Trissie!"
-2$ 5$ 1$ 7$ Trissie£"Shh. Not so loud!"
-2$ 5$ 1$ 8$ Trissie sprang up onto Alder shoulders to cover his mouth. She quickly surveyed their surroundings.
-2$ 5$ 1$ 9$ Trissie£"I need to see Kyla as soon as possible."
-2$ 5$ 1$ 10$ Trissie£"I have something you all should hear."
-2$ 5$ 1$ 11$ Alder found Trissie fun to be around but it sounded like she was in a hurry. He couldn't help but feel dejected by her haste.
-2$ 5$ 1$ 12$ Alder£"Ok..."
-2$ 5$ 1$ 13$ Alder£"...The rabbit seeks his burrow!"
-2$ 5$ 1$ 14$ *Click*
-2$ 5$ 1$ 15$ The door to the cottage was unlocked.
+2$ 5$ 1$ 1$ Dawn came, sunlight striking Alder’s face through the curtainless window. 
+2$ 5$ 1$ 2$ He began his day as always, going downstairs to eat his breakfast of scavenged nuts and berries before cleaning the plates and cups. 
+2$ 5$ 1$ 3$ The day was set to be a very mundane one, Alder could only hope that a guest would come just as Thay had the day before. 
+2$ 5$ 1$ 4$ Otherwise, today he would be sweeping floors, chopping wood and foraging mushrooms letting time tick by until the next chore.
+2$ 5$ 1$ 5$ Alder£*Yawn*
+2$ 5$ 1$ 6$ The dull boredom was broken when a familiar squirrel missing half her tail came running down from the trees and into the cottage clearing. 
+2$ 5$ 1$ 7$ Strapped to her back was a bow and quiver. She spoke to Alder in a loud whisper.
+2$ 5$ 1$ 8$ Squirrel£"Hi Alder!"
+2$ 5$ 1$ 9$ Alder£"Trissie!"
+2$ 5$ 1$ 10$ Trissie£"Shh. Not so loud!"
+2$ 5$ 1$ 11$ Trissie sprang up onto Alder shoulders to cover his mouth. She quickly surveyed their surroundings.
+2$ 5$ 1$ 12$ Trissie£"I need to see Kyla as soon as possible."
+2$ 5$ 1$ 13$ Trissie£"I have something you all should hear."
+2$ 5$ 1$ 14$ Alder found Trissie fun to be around but it sounded like she was in a hurry. He couldn't help but feel dejected by her haste.
+2$ 5$ 1$ 15$ Alder£"Ok..."
 2$ 5$ 1$ 16$ Trissie£"Aw. Don’t make that face."
 2$ 5$ 1$ 17$ Trissie£"Say."
 2$ 5$ 1$ 18$ Trissie£"Why don't I give you some archery lessons before I leave?"
