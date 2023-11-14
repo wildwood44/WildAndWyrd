@@ -588,6 +588,12 @@ public class CutsceneManager {
 		}
 	}
 	
+	private void scene_c2_2() {
+		if (scenePhase == 0) {
+			
+		}
+	}
+	
 	private void scene_ending() {
 		if (scenePhase == 0) {
 			gp.ui.selectedObject = new Obj_Alder_Bed(gp);
