@@ -76,20 +76,14 @@ public class EventHandler {
 				if(hit(2,20,3,"up")) {illusion(gp.iTile[gp.currentMap.getId()][1]);}
 				if(hit(2,20,2,"up")) {teleport(gp.maps[0],16,9);}
 				if(hit(2,14,4,"down")) {}
-				if(hit(2,11,11,"down")) {
-					if(gp.playable.get(0).getWeapon_prime().name != null) {
-						teleport(gp.maps[3],3,1);
-					} else { obsticle(gp.maps[2]); }
-				}
-				if(hit(2,12,11,"down")) {
+				if(hitRow(2,11,"down")) {
 					if(gp.playable.get(0).getWeapon_prime().name != null) {
 						teleport(gp.maps[3],4,1);
 					} else { obsticle(gp.maps[2]); }
 				}
 			}
 			else if(gp.currentMap.getId() == 3) {
-				if(hit(3,3,0,"up")) {teleport(gp.maps[2],11,11);}
-				if(hit(3,4,0,"up")) {teleport(gp.maps[2],12,11);}
+				if(hitRow(3,0,"up")) {teleport(gp.maps[2],12,11);}
 				if(hit(3,12,10,"down")) {obsticle(gp.maps[3]);};
 				if(hit(3,13,10,"down")) {obsticle(gp.maps[3]);};
 			}
@@ -124,6 +118,31 @@ public class EventHandler {
 			eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
 			eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
 			if(gp.player.solidArea.intersects(eventRect[map][col][row]) && !eventRect[map][col][row].eventDone) {
+				if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
+					hit = true;
+					previousEventX = gp.player.worldX;
+					previousEventY = gp.player.worldY;
+				}
+			}
+			gp.player.solidArea.x = gp.player.solidAreaDefaultX;
+			gp.player.solidArea.y = gp.player.solidAreaDefaultY;
+			eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
+			eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+		}
+		return hit;
+	}
+	
+	public boolean hitRow(int map, int row, String reqDirection) {
+		boolean hit = false;
+		if(map == gp.currentMap.getId()) {
+			gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
+			gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
+			int col = gp.player.solidArea.y/gp.tileSize;
+			System.out.println(gp.player.solidArea.x + " " + row);
+			eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
+			eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
+			System.out.println(gp.player.solidArea.y/gp.tileSize + " " + eventRect[map][col][row].y/gp.tileSize);
+			if(gp.player.solidArea.y/gp.tileSize == eventRect[map][col][row].y/gp.tileSize && !eventRect[map][col][row].eventDone) {
 				if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
 					hit = true;
 					previousEventX = gp.player.worldX;

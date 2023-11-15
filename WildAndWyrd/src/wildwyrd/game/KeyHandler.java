@@ -663,7 +663,7 @@ public class KeyHandler implements KeyListener {
 			enterPressed = true;
 		}
 
-		if (code == KeyEvent.VK_S) {
+		if (code == KeyEvent.VK_Q) {
 			skipPressed = true;
 		}
 		if(gp.ui.selectedObject != null) {
@@ -736,6 +736,7 @@ public class KeyHandler implements KeyListener {
 			case KeyEvent.VK_DOWN :
 			case KeyEvent.VK_S :
 				downPressed = false;
+			case KeyEvent.VK_Q :
 				skipPressed = false;
 		}
 
