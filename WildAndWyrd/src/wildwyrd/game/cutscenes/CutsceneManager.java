@@ -68,7 +68,7 @@ public class CutsceneManager {
 			gp.cutsceneOn = true;
 			gp.ui.drawHeadingScreen("Prologue");
 			gp.ui.drawMessageScreen(
-					"The game will now begin. Press ENTER to continue. You may skip the dialogue by pressing S.");
+					"The game will now begin. Press ENTER to continue. You may skip dialogue by pressing Q.");
 			gp.c.setSprites(0);
 		} else if (scenePhase == 1) {
 			//gp.ui.drawBackground("/res/backgrounds/Forton_Backgound.png");

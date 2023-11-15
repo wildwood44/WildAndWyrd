@@ -98,7 +98,8 @@ public class NPC_Thay extends NPC {
 		dialogues[3][18] = new Dialoge("Alder realised that the hedgehog was getting agitated and so decided to move on.",1);
 		dialogues[4][0] = new Dialoge("Thay", "Fuller woods is where we are right now.",1);
 		dialogues[4][1] = new Dialoge("Thay", "This ancient woodland goes on for miles.",1);
-		dialogues[4][2] = new Dialoge("Thay", "There are many birds in these woods and unfortunately that includes birds of prey, :but most go after small creatures so you'll be alright.",1);
+		dialogues[4][2] = new Dialoge("Thay", "There are many birds in these woods and unfortunately that includes birds of prey.",1);
+		dialogues[4][3] = new Dialoge("Thay", "Most go after small creatures so you'll be alright.",1);
 		dialogues[5][0] = new Dialoge("Alder","It’s not that I want to go there, I’d just like to know.",1);
 		dialogues[5][1] = new Dialoge("Thay", "It’s called Forton.",1);
 		dialogues[5][2] = new Dialoge("Thay", "It’s known for its great library, taking in orphans within the region and being the resting place of the hero, Agrimus.",1);
