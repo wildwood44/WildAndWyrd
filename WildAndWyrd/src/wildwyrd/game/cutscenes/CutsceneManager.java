@@ -531,6 +531,7 @@ public class CutsceneManager {
 		}
 	}
 	
+	//Create npc
 	private void createActor(NPC npc, int x, int y, String direction) {
 		for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
 			if(gp.npc[gp.currentMap.getId()][i] == null) {
@@ -543,6 +544,7 @@ public class CutsceneManager {
 		}
 	}
 	
+	//Create npc on another map
 	private void createActor(NPC npc, int map, int x, int y, String direction) {
 		for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
 			if(gp.npc[map][i] == null) {
@@ -555,6 +557,7 @@ public class CutsceneManager {
 		}
 	}
 	
+	//Select npc
 	private NPC getActor(String npcName) {
 		for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
 			if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == npcName) {
@@ -564,6 +567,7 @@ public class CutsceneManager {
 		return null;
 	}
 	
+	//Destroy npc
 	private void destroyActor(String npcName) {
 		for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
 			if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == npcName) {
@@ -573,6 +577,7 @@ public class CutsceneManager {
 		}
 	}
 	
+	//Destroy dummy player
 	private void destroyPlayerDummy() {
 		for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
 			if(gp.npc[gp.currentMap.getId()][i] != null && gp.npc[gp.currentMap.getId()][i].name == PlayerDummy.npcName) {
@@ -585,12 +590,14 @@ public class CutsceneManager {
 		}
 	}
 	
+	//Change direction npc faces
 	private void changeActorDirection(String npcName, String direction) {
 		NPC actor = getActor(npcName);
 		actor.direction = direction;
 		actor.update();
 	}
 	
+	//Move a npc in a direction to tile * tileSize
 	private boolean moveActor(String npcName, String direction, int move) {
 		boolean moveComplete = false;
 		actor = getActor(npcName);
