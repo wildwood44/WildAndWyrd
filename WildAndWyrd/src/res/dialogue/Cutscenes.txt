@@ -138,40 +138,42 @@ chapter$ switch$ part$ line$ dialog$
 2$ 5$ 1$ 20$ Trissie£You might need them.
 2$ 5$ 1$ 21$ Florence£Triss!
 2$ 5$ 1$ 22$ Florence was looking towards them from the cottage door. Trissie went to join her inside.
-2$ 6$ 2$ 1$ Trissie was sat by the table while her bow and quiver rested against the wall. Kyla sat opposite in her rocking chair while everyone else stood around the table as spectators. Alder walked over to take position next to Florence and with everyone gathered, Trissie began.
-2$ 6$ 2$ 2$ Trissie£I’ll make this quick!
-2$ 6$ 2$ 3$ Trissie£There are Gowl knights patrolling the woods!
-2$ 6$ 2$ 4$ Kyla and Florence began muttering to each other.
-2$ 6$ 2$ 5$ Florence£Do you think they know of the cottage?
-2$ 6$ 2$ 6$ Kyla£Not unless one of our clients has sold us out.
-2$ 6$ 2$ 7$ Kyla£Even so their search shall come up empty.
-2$ 6$ 2$ 8$ Trissie£I don’t know.
-2$ 6$ 2$ 9$ Trissie£There's quite a few of them and they're setting up camps.
-2$ 6$ 2$ 10$ Trissie£They seemed certain that they would find something.
-2$ 6$ 2$ 11$ Kyla£My magic is strong.
-2$ 6$ 2$ 12$ Kyla£They’ll never find this place.
-2$ 6$ 2$ 13$ Trissie£I hope so.
-2$ 6$ 2$ 14$ Trissie£The woods are full of soldiers, most of whom appear to be new recruits.
-2$ 6$ 2$ 15$ Kyla£That proves my point!
-2$ 6$ 2$ 16$ Kyla£Whatever they know, they're sending saplings. They can't be very sure about it!
-2$ 6$ 2$ 17$ Trissie£Being overseen by several captains apparently ordered by Darrunt himself!
-2$ 6$ 2$ 18$ The mood dimmed but Kyla remained confident. Alder had rarely been involved in conversations about the dangers of the outside world and was unsure how to feel. He whispered to Florence as Kyla dismissed Trissie’s warning.
-2$ 6$ 2$ 19$ Alder£Who’s Darrunt?
-2$ 6$ 2$ 20$ Florence£He's the leader of the Gowls.
-2$ 6$ 2$ 21$ Florence£Known for hating humans more than anything.
-2$ 6$ 2$ 22$ Florence£He wouldn't think to look this far north in the woods though.
-2$ 6$ 2$ 23$ Florence£Too barren of humans these days.
-2$ 6$ 2$ 24$ While Alder and Florence whispered to each other Kyla had relaxed back into her chair at the end of her rebuttal.
-2$ 6$ 2$ 25$ Kyla£We’ll lay low for the next few days, food is plentiful and we have enough water to last us a few days.
-2$ 6$ 2$ 26$ Kyla£Thank you for the warning, Trissie dear.
-2$ 6$ 2$ 27$ Kyla£But I think we will be fine.
-2$ 6$ 2$ 28$ Trissie£If you say so.
-2$ 6$ 2$ 29$ Trissie£I think I’ll scarper out of these woods for the time being until things quiet down.
-2$ 6$ 2$ 30$ Trissie£Alder?
-2$ 6$ 2$ 31$ Trissie£I promised you archery lessons?
-2$ 6$ 2$ 32$ Alder£Yes!
-2$ 6$ 2$ 33$ Trissie£Then meet me outside.
-2$ 6$ 2$ 34$ Trissie left through the front door. From inside the cottage, Alder could see her picking up a large stick and forcing it into the ground.
+2$ 6$ 2$ 1$ Trissie was sat by the table while her bow and quiver rested against the wall. Kyla sat opposite in her rocking chair while everyone else stood around the table as spectators. 
+2$ 6$ 2$ 2$ Alder walked over to take position next to Florence and with everyone gathered, Trissie began.
+2$ 6$ 2$ 3$ Trissie£I’ll make this quick!
+2$ 6$ 2$ 4$ Trissie£There are Gowl knights patrolling the woods!
+2$ 6$ 2$ 5$ Kyla and Florence began muttering to each other.
+2$ 6$ 2$ 6$ Florence£Do you think they know of the cottage?
+2$ 6$ 2$ 7$ Kyla£Not unless one of our clients has sold us out.
+2$ 6$ 2$ 8$ Kyla£Even so their search shall come up empty.
+2$ 6$ 2$ 9$ Trissie£I don’t know.
+2$ 6$ 2$ 10$ Trissie£There's quite a few of them and they're setting up camps.
+2$ 6$ 2$ 11$ Trissie£They seemed certain that they would find something.
+2$ 6$ 2$ 12$ Kyla£My magic is strong.
+2$ 6$ 2$ 13$ Kyla£They’ll never find this place.
+2$ 6$ 2$ 14$ Trissie£I hope so.
+2$ 6$ 2$ 15$ Trissie£The woods are full of soldiers, most of whom appear to be new recruits.
+2$ 6$ 2$ 16$ Kyla£That proves my point!
+2$ 6$ 2$ 17$ Kyla£Whatever they know, they're sending saplings. They can't be very sure about it!
+2$ 6$ 2$ 18$ Trissie£Being overseen by several captains apparently ordered by Darrunt himself!
+2$ 6$ 2$ 19$ The mood dimmed but Kyla remained confident. 
+2$ 6$ 2$ 20$ Alder had rarely been involved in conversations about the dangers of the outside world and was unsure how to feel. He whispered to Florence as Kyla dismissed Trissie’s warning.
+2$ 6$ 2$ 21$ Alder£Who’s Darrunt?
+2$ 6$ 2$ 22$ Florence£He's the leader of the Gowls.
+2$ 6$ 2$ 23$ Florence£Known for hating humans more than anything.
+2$ 6$ 2$ 24$ Florence£He wouldn't think to look this far north in the woods though.
+2$ 6$ 2$ 25$ Florence£Too barren of humans these days.
+2$ 6$ 2$ 26$ While Alder and Florence whispered to each other Kyla had relaxed back into her chair at the end of her rebuttal.
+2$ 6$ 2$ 27$ Kyla£We’ll lay low for the next few days, food is plentiful and we have enough water to last us a few days.
+2$ 6$ 2$ 28$ Kyla£Thank you for the warning, Trissie dear.
+2$ 6$ 2$ 29$ Kyla£But I think we will be fine.
+2$ 6$ 2$ 30$ Trissie£If you say so.
+2$ 6$ 2$ 31$ Trissie£I think I’ll scarper out of these woods for the time being until things quiet down.
+2$ 6$ 2$ 32$ Trissie£Alder?
+2$ 6$ 2$ 33$ Trissie£I promised you archery lessons?
+2$ 6$ 2$ 34$ Alder£Yes!
+2$ 6$ 2$ 35$ Trissie£Then meet me outside.
+2$ 6$ 2$ 36$ Trissie left through the front door. From inside the cottage, Alder could see her picking up a large stick and forcing it into the ground.
 2$ 7$ 3$ 1$ After a while, the sky turned orange signifying the day was coming to an end. Alder wondered if Thay and Trissie got away all right.
 2$ 7$ 3$ 2$ After a supper of roasted hornets, Alder returned to his bed unaware that this would be his last time in it and that his life would be forever changed.
 2$ 7$ 3$ 3$ Alder£.........

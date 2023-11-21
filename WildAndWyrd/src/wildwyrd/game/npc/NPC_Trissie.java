@@ -7,9 +7,9 @@ import javax.imageio.ImageIO;
 
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.items.Itm_Bow;
+import wildwyrd.game.items.Itm_Primative_Arrow;
 import wildwyrd.game.object.Dialoge;
-import wildwyrd.game.object.Obj_Blackberry;
-import wildwyrd.game.object.Obj_Dummy;
 import wildwyrd.game.objective.Quest;
 
 public class NPC_Trissie extends NPC {
@@ -20,6 +20,7 @@ public class NPC_Trissie extends NPC {
 	public NPC_Trissie(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
+		options = new String[2];
 		id = npcId;
 		name = npcName;
 		type = EntityType.Sprite;
@@ -49,7 +50,6 @@ public class NPC_Trissie extends NPC {
 	}
 	
 	public void getImage() {
-		System.out.println("Climbing: " + climbing);
 		if(climbing) {
 			up1 = getSpecialImage(0, 1);
 			up2 = getSpecialImage(1, 1);
@@ -79,60 +79,45 @@ public class NPC_Trissie extends NPC {
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge("Madam Kyla was relaxed in her chair with her nose in a red book titled \"A sorcerers guide to Dragons and Wyverns\". She peered from the book to Alder." ,1);
-		dialogues[0][1] = new Dialoge("Kyla", "I take it Mr Prickle has gone?", 1);
-		dialogues[0][2] = new Dialoge("Alder", "Yes, Madam.", 1);
-		dialogues[0][3] = new Dialoge("Kyla", "Making you free boy?", 1);
-		dialogues[0][4] = new Dialoge("Alder", "Yes, Madam.", 1);
-		dialogues[0][5] = new Dialoge("Kyla", "Then clean the fireplace, wash the pots in the kitchen until they shine and...", 1);
-		dialogues[0][6] = new Dialoge("Kyla", "Ah!", 1);
-		dialogues[0][7] = new Dialoge("Kyla", "I need you to grind some bramble leaves.", 1);
-		dialogues[0][8] = new Dialoge("Kyla", "Use the mortar in the shed to grind them into dust.", 1);
-		dialogues[0][9] = new Dialoge("Kyla", "Leave the dust in the pot on the far end next to the shed table.", 1);
-		dialogues[0][10] = new Dialoge("Kyla", "That should keep you busy!", 1);
-		dialogues[0][10] = new Dialoge("Accept quest", 2);
-		dialogues[1][0] = new Dialoge("Alder", "Yes, Madam.", 1);
-		dialogues[1][1] = new Dialoge("Kyla", "Excellent!", 1);
-		dialogues[1][2] = new Dialoge("Alder accepted " + sidequest.name, 1);
-		dialogues[2][0] = new Dialoge("Alder", "...", 1);
-		dialogues[2][1] = new Dialoge("Kyla", "Don't you glare at me!", 1);
-		dialogues[2][2] = new Dialoge("Kyla", "I'm not permitting you here out of charity!", 1);
-		dialogues[2][3] = new Dialoge("Kyla", "Work for your sanctuary!", 1);
-		dialogues[2][4] = new Dialoge("Alder", "U-Um.", 1);
-		dialogues[2][5] = new Dialoge("Alder", "Y-Yes!", 1);
-		dialogues[2][6] = new Dialoge("Alder", "Sorry madam.", 1);
-		dialogues[2][7] = new Dialoge("Alder knew better than to argue back. Alder accepted " + sidequest.name, 1);
-		dialogues[3][0] = new Dialoge("Kyla", "Clean the fireplace, scrub the pots and grind the leaves.", 1);
-		dialogues[4][0] = new Dialoge("Kyla", "Have you finished then?",1);
-		dialogues[4][1] = new Dialoge("Alder", "Yes madam.",1);
-		dialogues[4][2] = new Dialoge("Kyla", "Good.",1);
-		dialogues[4][3] = new Dialoge("Kyla","I have no futher need for you.",1);
-		dialogues[4][4] = new Dialoge("Kyla","Do as you please.",1);
-		dialogues[5][0] = new Dialoge("Kyla","I have no futher need for you.",1);
-		dialogues[5][1] = new Dialoge("Kyla","Do as you please.",1);
+		dialogues[0][0] = new Dialoge("Trissie quickly set up a makeshift dummy out of leaves, sticks and a cheaply made old burlap sack that was intended for foraging before planting it in the ground so it would stand upright." ,1);
+		dialogues[0][1] = new Dialoge("The finished product was crude and clearly rushed, but would make a good target.", 1);
+		dialogues[0][2] = new Dialoge("Trissie", "That'll do.", 1);
+		dialogues[0][3] = new Dialoge("Trissie", "Alder, wait there.", 1);
+		dialogues[0][4] = new Dialoge("Trissie brought a bow and some arrows set aside for hunting from the shed. Alder thought she looked a little comical dragging the bow which was big even for him.", 1);
+		dialogues[0][5] = new Dialoge("The bow was originally meant for Florence, but finding herself unskilled she never used it. Trissie handed them to Alder.", 1);
+		dialogues[0][6] = new Dialoge("Trissie", "Now set the arrow in the bow, take aim and fire.", 1);
+		dialogues[0][7] = new Dialoge("Trissie", "Let's begin.", 1);
+		dialogues[1][0] = new Dialoge("Trissie", "It will be hard for me to leave these woods if I stay any longer!", 1);
+		dialogues[1][1] = new Dialoge("Alder", "There’s one more thing I’d like to know Triss.", 1);
+		dialogues[1][2] = new Dialoge("Trissie", "Yes?", 1);
+		dialogues[1][3] = new Dialoge("", 3);
+		dialogues[2][0] = new Dialoge("Trissie", "Well, if I’d have to give an example?", 1);
+		dialogues[2][1] = new Dialoge("Trissie", "I have a brother in the Gowls.", 1);
+		dialogues[2][2] = new Dialoge("Trissie pointed her thumb at her tail stump.", 1);
+		dialogues[2][3] = new Dialoge("Trissie", "And because I helped a human, he did this to me.", 1);
+		dialogues[2][4] = new Dialoge("Trissie moved swiftly towards the nearest tree and in an instant had climbed up and disappeared among the branches. It was as if she'd vanished. Leaving not even a rustle of leaves.", 1);
+		dialogues[2][5] = new Dialoge("Alder returned to the cottage a little disappointed with Trissie gone so soon. But he had work to do and he set about his remaining chores for the day.", 1);
+		dialogues[3][0] = new Dialoge("Trissie", "I’m not easy to catch but you must be careful and stay safe.", 1);
+		dialogues[3][1] = new Dialoge("Trissie", "If you do, I'm sure we'll meet before long.", 1);
+		dialogues[3][2] = new Dialoge("Trissie moved swiftly towards the nearest tree and in an instant had climbed up and disappeared among the branches. It was as if she'd vanished. Leaving not even a rustle of leaves.", 1);
+		dialogues[3][3] = new Dialoge("Alder returned to the cottage a little disappointed with Trissie gone so soon. But he had work to do and he set about his remaining chores for the day.", 1);
 	}
 	
-	public void setDialogueOptions() {}
+	public void setDialogueOptions() {
+		options[0] = "What are the Gowls like?";
+		options[1] = "Will we see each other again soon?";
+	}
 
 	public void choiceResponce() {
 		dialogueIndex = 0;
 		if(gp.s.chapter == 2) {
 			if (gp.ui.choiceSlot == 0) {
-				startDialogue(this, 1);
-				sidequest.acceptQuest();
+				startDialogue(this, 2);
+				gp.s.branchSwitch[0] = 0;
 			}
 			if (gp.ui.choiceSlot == 1) {
-				startDialogue(this, 2);
-				sidequest.acceptQuest();
-			}
-			if (!gp.objectExists(Obj_Dummy.objId, 2)) {
-				for(int i = 0; i < gp.obj[2].length; i++) {
-					if(gp.obj[2][i] == null) {
-						gp.obj[2][i] = new Obj_Dummy(gp);
-						gp.obj[2][i].worldX = gp.tileSize * 3;
-						gp.obj[2][i].worldY = gp.tileSize * 4;
-					}
-				}
+				startDialogue(this, 3);
+				gp.s.branchSwitch[0] = 1;
 			}
 		}
 	}
@@ -145,15 +130,14 @@ public class NPC_Trissie extends NPC {
 		facePlayer();
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
-		if(!gp.objective.quests[1].isAccepted()) {
-			startDialogue(this, 0);
-		} else if (!gp.objective.quests[1].isCompleted()) {
-			startDialogue(this, 3);
-		} else if (!gp.objective.quests[1].isSubmitted()) {
-			startDialogue(this, 4);
-			gp.objective.quests[1].submitQuest();
-		} else {
-			startDialogue(this, 5);
+		if(gp.s.chapter == 2) {
+			if(gp.playable.get(0).getWeapon_second().name == null && gp.s.c2Switch[2]) {
+				startDialogue(this, 0);
+				gp.playable.get(0).setWeapon_second(new Itm_Bow(gp));
+				gp.player.pickUpObject(new Itm_Primative_Arrow(gp), 5);
+			} else if (!gp.s.c2Switch[2]) {
+				startDialogue(this, 1);
+			}
 		}
 		gp.keyH.enterPressed = false;
 	}

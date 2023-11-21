@@ -4,6 +4,7 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.combat.En_Dummy;
+import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.items.Itm_Bow;
 import wildwyrd.game.items.Itm_Primative_Arrow;
 
@@ -19,7 +20,7 @@ public class Obj_Dummy extends Entity {
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
-
+		//enemy = new En_Dummy(gp);
 		image = setup("/res/objects/img_dummy",gp.tileSize,gp.tileSize);
 		setDialogue();
 		getImage(image);
@@ -29,13 +30,9 @@ public class Obj_Dummy extends Entity {
 	}
 
 	public void interact() {
-		gp.player.pickUpObject(new Itm_Primative_Arrow(gp), 5);
-		//gp.player.pickUpObject(new Itm_Primative_Arrow(gp));
-		//gp.player.pickUpObject(new Itm_Primative_Arrow(gp));
-		//gp.player.pickUpObject(new Itm_Primative_Arrow(gp));
-		//gp.player.pickUpObject(new Itm_Primative_Arrow(gp));
-		gp.playable.get(0).setWeapon_second(new Itm_Bow(gp));
-		gp.combat.addEnemy(new En_Dummy(gp));
-		gp.combat.startCombat();
+		if(!destroy && gp.playable.get(0).getWeapon_second().name != null) {
+			gp.combat.addEnemy(new En_Dummy(gp));
+			gp.combat.startCombat();
+		}
 	}
 }

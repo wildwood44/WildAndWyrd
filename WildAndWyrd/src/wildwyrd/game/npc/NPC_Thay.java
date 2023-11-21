@@ -152,19 +152,16 @@ public class NPC_Thay extends NPC {
 	}
 	
 	public void checkConditions() {
-		if(dialogueSet == 1 || dialogueSet == 2 ||
-				dialogueSet == 3 || dialogueSet == 8) {
-			if (dialogues[dialogueSet][dialogueIndex] == null) {
-				for (boolean checkCondition: contConditions) {
-					if(checkCondition == false) {
-						dialogueIndex = 0;
-						speak();
-					}
-				} if (dialogues[dialogueSet][dialogueIndex] == null) {
-					//dialogueIndex = 0;
-					gp.s.swh[3] = true;
-					gp.s.part = 3;
+		if (dialogues[dialogueSet][dialogueIndex] == null) {
+			for (boolean checkCondition: contConditions) {
+				if(checkCondition == false) {
+					dialogueIndex = 0;
+					speak();
 				}
+			} if (dialogues[dialogueSet][dialogueIndex] == null) {
+				//dialogueIndex = 0;
+				gp.s.swh[3] = true;
+				gp.s.part = 3;
 			}
 		}
 	}

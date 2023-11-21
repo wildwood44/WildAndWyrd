@@ -14,6 +14,7 @@ import wildwyrd.game.npc.NPC_Kyla;
 import wildwyrd.game.npc.NPC_Thay;
 import wildwyrd.game.npc.NPC_Trissie;
 import wildwyrd.game.object.Obj_Alder_Bed;
+import wildwyrd.game.object.Obj_Dummy;
 import wildwyrd.game.playable.PlayerDummy;
 import wildwyrd.game.tile.TileManager;
 
@@ -25,7 +26,7 @@ public class CutsceneManager {
 	public int counter = 0;
 	public float alpha = 0f; 
 	int y;
-	public String endCredit = "Written and developed by James Stockwell";
+	public String endCredit = "Written and developed by wildwood44";
 	public int read = 0;
 	public final int NA = 0;
 	public final int prologue = 1;
@@ -62,6 +63,9 @@ public class CutsceneManager {
 				scene_c2_1();
 				break;
 			case 8 :
+				scene_c2_2();
+				break;
+			case 9 :
 				scene_ending();
 				break;
 		}
@@ -486,8 +490,8 @@ public class CutsceneManager {
 			read = 5;
 			gp.c.setCutscene(6, read);
 			gp.c.dialogueSet = 6;
-			createActor(new PlayerDummy(gp), gp.player.worldX, gp.player.worldY, gp.player.direction);
 			gp.player.drawing = false;
+			createActor(new PlayerDummy(gp), gp.player.worldX, gp.player.worldY, gp.player.direction);
 			drawRoom();
 			gp.c.setSprites(gp.c.dialogueSet);
 			scenePhase++;
@@ -569,11 +573,88 @@ public class CutsceneManager {
 			gp.ui.drawDialogueScreen();
 			destroyActor(NPC_Florence.npcName);
 		} else if (scenePhase == 12) {
-			if(moveActor(actor.name, "up", 4)) {
+			if(moveActor(actor.name, "up", 3)) {
 				destroyActor(actor.name);
 				scenePhase++;
 			}
 		} else if (scenePhase == 13) {
+			gp.glossary.unlock("mammal", "red squirrel");
+			gp.s.swh[read] = false;
+			gp.s.swh[6] = true;
+			gp.ui.resetSlots();
+			destroyPlayerDummy();
+			gp.player.drawing = true;
+			gp.cutsceneOn = false;
+			gp.c.dialogueIndex = 0;
+			sceneNum = 0;
+			scenePhase = 0;
+			//gp.s.part = 2;
+			gp.s.c2Switch[0] = false;
+			gp.gameState = GameState.playState;
+		}
+	}
+	
+	private void scene_c2_2() {
+		if (scenePhase == 0) {
+			gp.cutsceneOn = true;
+			read = 6;
+			gp.c.setCutscene(7, read);
+			gp.c.dialogueSet = 7;
+			gp.player.worldX =  gp.tileSize*10;
+			gp.player.worldY =  gp.tileSize*3;
+			gp.player.direction = "down";
+			createActor(new PlayerDummy(gp), gp.player.worldX, gp.player.worldY, gp.player.direction);
+			createActor(new NPC_Trissie(gp), gp.tileSize * 9, gp.tileSize * 5, "right");
+			changeActorDirection(NPC_Kyla.npcName, "left");
+			destroyActor(NPC_Florence.npcName);
+			createActor(new NPC_Florence(gp), gp.tileSize * 9, gp.tileSize * 3, "down");
+			gp.player.drawing = false;
+			drawRoom();
+			gp.c.setSprites(gp.c.dialogueSet);
+			scenePhase++;
+		} else if (scenePhase == 1) {
+			drawRoom();
+			gp.player.worldY += 2;
+			if(gp.player.worldY > gp.tileSize * 5) {
+				//createActor(new NPC_Florence(gp), gp.tileSize * 14, gp.tileSize * 3, "down");
+				drawRoom();
+				scenePhase++;
+			}
+		} else if (scenePhase == 2) {
+			if(gp.c.dialogueIndex < 20) {
+				gp.ui.drawDialogueScreen();
+			} else {
+				scenePhase++;
+			}
+		} else if (scenePhase == 3) {
+			changeActorDirection(PlayerDummy.npcName, "left");
+			changeActorDirection(NPC_Florence.npcName, "right");
+			drawRoom();
+			scenePhase++;
+		} else if (scenePhase == 4) {
+			if(gp.c.dialogueIndex < 26) {
+				gp.ui.drawDialogueScreen();
+			} else {
+				scenePhase++;
+			}
+		} else if (scenePhase == 5) {
+			changeActorDirection(PlayerDummy.npcName, "down");
+			changeActorDirection(NPC_Florence.npcName, "down");
+			drawRoom();
+			scenePhase++;
+		} else if (scenePhase == 6) {
+			gp.ui.drawDialogueScreen();
+		} else if (scenePhase == 7) {
+			if(moveActor(NPC_Trissie.npcName, "down", 9)) {
+				destroyActor(NPC_Trissie.npcName);
+				//createActor(NPC_Trissie.npcName, 3, NA, y, endCredit);
+				scenePhase++;
+			}
+		} else if (scenePhase == 8) {
+			createActor(new NPC_Trissie(gp), 2, gp.tileSize * 9, gp.tileSize * 5, "left");
+			gp.obj[2][8] = new Obj_Dummy(gp);
+			gp.obj[2][8].worldX = 8 * gp.tileSize;
+			gp.obj[2][8].worldY = 5 * gp.tileSize;
 			gp.s.swh[read] = false;
 			gp.ui.resetSlots();
 			destroyPlayerDummy();
@@ -582,15 +663,9 @@ public class CutsceneManager {
 			gp.c.dialogueIndex = 0;
 			sceneNum = 0;
 			scenePhase = 0;
-			gp.s.part = 2;
-			gp.s.c2Switch[0] = false;
+			gp.s.part = 3;
+			gp.s.c2Switch[1] = false;
 			gp.gameState = GameState.playState;
-		}
-	}
-	
-	private void scene_c2_2() {
-		if (scenePhase == 0) {
-			
 		}
 	}
 	

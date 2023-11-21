@@ -98,6 +98,8 @@ public class NPC_Kyla extends NPC {
 		dialogues[4][4] = new Dialoge("Kyla","Do as you please.",1);
 		dialogues[5][0] = new Dialoge("Kyla","I have no futher need for you.",1);
 		dialogues[5][1] = new Dialoge("Kyla","Do as you please.",1);
+		dialogues[6][0] = new Dialoge("Kyla","I like the girl.",1);
+		dialogues[6][1] = new Dialoge("Kyla","Shame she never stays.",1);
 	}
 	
 	public void setDialogueOptions() {}
@@ -127,15 +129,19 @@ public class NPC_Kyla extends NPC {
 		facePlayer();
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
-		if(!gp.objective.quests[1].isAccepted()) {
-			startDialogue(this, 0);
-		} else if (!gp.objective.quests[1].isCompleted()) {
-			startDialogue(this, 3);
-		} else if (!gp.objective.quests[1].isSubmitted()) {
-			startDialogue(this, 4);
-			gp.objective.quests[1].submitQuest();
-		} else {
-			startDialogue(this, 5);
+		if(gp.s.chapter == 1) {
+			if(!gp.objective.quests[1].isAccepted()) {
+				startDialogue(this, 0);
+			} else if (!gp.objective.quests[1].isCompleted()) {
+				startDialogue(this, 3);
+			} else if (!gp.objective.quests[1].isSubmitted()) {
+				startDialogue(this, 4);
+				gp.objective.quests[1].submitQuest();
+			} else {
+				startDialogue(this, 5);
+			}
+		} else if(gp.s.chapter == 2) {
+			startDialogue(this, 6);
 		}
 		gp.keyH.enterPressed = false;
 	}

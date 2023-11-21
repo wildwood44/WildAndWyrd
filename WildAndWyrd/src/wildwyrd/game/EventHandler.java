@@ -72,7 +72,7 @@ public class EventHandler {
 			}
 			else if(gp.currentMap.getId() == 2) {
 				if(hit(2,14,4,"up")) {illusion(gp.iTile[gp.currentMap.getId()][0]);}
-				if(hit(2,14,3,"up")) {teleport(gp.maps[0],10,10);}
+				if(hit(2,14,3,"up")) {teleport(gp.maps[0],10,10); if(gp.s.chapter == 2 && gp.s.swh[6]) {gp.s.part = 2;}}
 				if(hit(2,20,3,"up")) {illusion(gp.iTile[gp.currentMap.getId()][1]);}
 				if(hit(2,20,2,"up")) {teleport(gp.maps[0],16,9);}
 				if(hit(2,14,4,"down")) {}
@@ -108,6 +108,8 @@ public class EventHandler {
 		} else if (gp.s.chapter == 2) {
 			if (gp.s.swh[5] && gp.s.part == 1) {
 				c1s_Cutscene(7);
+			} else if (gp.s.swh[6] && gp.s.part == 2) {
+				c1s_Cutscene(8);
 			}
 		}
 	}
