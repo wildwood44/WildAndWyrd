@@ -173,25 +173,27 @@ chapter$ switch$ part$ line$ dialog$
 2$ 6$ 2$ 33$ Trissie£I promised you archery lessons?
 2$ 6$ 2$ 34$ Alder£Yes!
 2$ 6$ 2$ 35$ Trissie£Then meet me outside.
-2$ 6$ 2$ 36$ Trissie left through the front door. From inside the cottage, Alder could see her picking up a large stick and forcing it into the ground.
-2$ 7$ 3$ 1$ After a while, the sky turned orange signifying the day was coming to an end. Alder wondered if Thay and Trissie got away all right.
-2$ 7$ 3$ 2$ After a supper of roasted hornets, Alder returned to his bed unaware that this would be his last time in it and that his life would be forever changed.
-2$ 7$ 3$ 3$ Alder£.........
-2$ 7$ 3$ 4$ Alder£................hm?
-2$ 7$ 3$ 5$ Alder£Wha...?
-2$ 7$ 3$ 6$ Alder wakes in an dark empty clearing.
-2$ 8$ 4$ 1$ Countless ghostly figures gradually appeared from the darkness between the trees. All of them were creatures of the woodlands from mice to wolves, but there were notably no humans among them.
-2$ 8$ 4$ 2$ One of these figures stepped out from the mass towards Alder. It was a mouse wearing a metal chest plate and a belt attached to a red cloth covering his waist, he held a sword by his right side. Despite being nearly half the size of Alder's leg, Alder was still intimidated. He had the demeanor of a young but experienced warrior, with an agile yet strong figure by mouse standards at least.
-2$ 8$ 4$ 3$ The mouse walked up to Alder until he was standing right in front of him. 
-2$ 8$ 4$ 4$ The mouse walked up to Alder, stopping a short distance in front of him, before digging a rapidly growing hole between them. To Alder's confusion he floated down to the ground and he realised he was in a corparial form. His body cortorted and shrunk until he was small enough to fit in the hole the mouse has dug.
-2$ 8$ 4$ 5$ Suddenly, the mouse stood and looked towards Alder, who at that moment felt himself being lifted towards the hole. Panicking, he cried out.
-2$ 8$ 4$ 6$ Alder£Wait!
-2$ 8$ 4$ 7$ Alder£What’s happening!?
-2$ 8$ 4$ 8$ Alder£What are you doing!?
-2$ 8$ 4$ 9$ Alder was gently set in the pit, before it began rapidly refilling with soil, stopping when Alder was submerged below his chest.
-2$ 8$ 4$ 10$ Leaning over the pit the mouse grabbed the handle of his sword with his right paw and pulled it out. The sharp blade shone like a star and for a moment Alder thought that the mouse would stab him.
-2$ 8$ 4$ 11$ Alder£Ahh!
-2$ 8$ 4$ 12$ The mouse expressed surprise and apologetically scratched his head to convey that he meant no harm. He pulled out the scabbard, sheathed the sword and placed the hilt in Alder’s hand.
+2$ 6$ 2$ 36$ Trissie left through the front door. From inside the cottage, Alder could see her picking up a large stick and forcing it into the ground.2$ 7$ 3$ 1$ After a while, the sky turned orange signifying the day was coming to an end. Alder wondered if Thay and Trissie got away all right.
+2$ 7$ 3$ 1$ Trissie moved swiftly towards the nearest tree and in an instant had climbed up and disappeared among the branches. It was as if she'd vanished. Leaving not even a rustle of leaves.
+2$ 7$ 3$ 2$ Alder returned to the cottage a little disappointed with Trissie gone so soon. But he had work to do and he set about his remaining chores for the day.
+2$ 7$ 3$ 3$ After a while, the sky turned orange signifying the day was coming to an end. Alder wondered if Thay and Trissie got away all right.
+2$ 7$ 3$ 4$ After a supper of roasted hornets, Alder returned to his bed unaware that this would be his last time in it and that his life would be forever changed.
+2$ 8$ 4$ 1$ Alder£.........
+2$ 8$ 4$ 2$ Alder£................hm?
+2$ 8$ 4$ 3$ Alder£Wha...?
+2$ 8$ 4$ 4$ Alder woke in an dark empty clearing.
+2$ 8$ 4$ 5$ Countless ghostly figures gradually appeared from the darkness between the trees. All of them were creatures of the woodlands from mice to wolves, but there were notably no humans among them.
+2$ 8$ 4$ 6$ One of these figures stepped out from the mass towards Alder. It was a mouse wearing a metal chest plate and a belt attached to a red cloth covering his waist, he held a sword by his right side. Despite being nearly half the size of Alder's leg, Alder was still intimidated. He had the demeanor of a young but experienced warrior, with an agile yet strong figure by mouse standards at least.
+2$ 8$ 4$ 7$ The mouse walked up to Alder until he was standing right in front of him. 
+2$ 8$ 4$ 8$ The mouse walked up to Alder, stopping a short distance in front of him, before digging a rapidly growing hole between them. To Alder's confusion he floated down to the ground and he realised he was in a corparial form. His body cortorted and shrunk until he was small enough to fit in the hole the mouse has dug.
+2$ 8$ 4$ 9$ Suddenly, the mouse stood and looked towards Alder, who at that moment felt himself being lifted towards the hole. Panicking, he cried out.
+2$ 8$ 4$ 10$ Alder£Wait!
+2$ 8$ 4$ 11$ Alder£What’s happening!?
+2$ 8$ 4$ 12$ Alder£What are you doing!?
+2$ 8$ 4$ 13$ Alder was gently set in the pit, before it began rapidly refilling with soil, stopping when Alder was submerged below his chest.
+2$ 8$ 4$ 14$ Leaning over the pit the mouse grabbed the handle of his sword with his right paw and pulled it out. The sharp blade shone like a star and for a moment Alder thought that the mouse would stab him.
+2$ 8$ 4$ 15$ Alder£Ahh!
+2$ 8$ 4$ 16$ The mouse expressed surprise and apologetically scratched his head to convey that he meant no harm. He pulled out the scabbard, sheathed the sword and placed the hilt in Alder’s hand.
 2$ 9$ 5$ 1$ Alder took the sword by the grip and to his surprise, it grew in size to fit in his hand perfecly, feeling like an extention of his arm. Lifting the sword he found it surprisingly light.
 2$ 9$ 5$ 2$ Turning the sword over Alder found another slot identical to the other side.
 2$ 9$ 5$ 3$ ???£...

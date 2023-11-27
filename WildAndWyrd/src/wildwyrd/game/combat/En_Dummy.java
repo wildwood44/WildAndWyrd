@@ -32,6 +32,7 @@ public class En_Dummy extends Enemy {
 		if(health <= 0) {
 			gp.combat.enemyDeath(this);
 		} else {
+			System.out.println(gp.combat.getTurn());
 			if(gp.combat.getTurn() > 5) {
 				startDialogue(this, 0);
 			}
@@ -51,7 +52,8 @@ public class En_Dummy extends Enemy {
 	public void combatResult() {
 		gp.gameState = GameState.playState;
 		for (int i = 0; i < gp.obj[gp.currentMap.getId()].length; ++i) {
-			if(gp.obj[gp.currentMap.getId()][i].id == Obj_Dummy.objId) {
+			if(gp.obj[gp.currentMap.getId()][i] != null && gp.obj[gp.currentMap.getId()][i].id == Obj_Dummy.objId) {
+				System.out.println("Destroyed");
 				gp.obj[gp.currentMap.getId()][i].destroy = true;
 				gp.s.c2Switch[2] = false;
 				gp.obj[gp.currentMap.getId()][i] = null;

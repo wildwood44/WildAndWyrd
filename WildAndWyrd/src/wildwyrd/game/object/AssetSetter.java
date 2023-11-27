@@ -10,7 +10,7 @@ import wildwyrd.game.npc.NPC_Florence;
 import wildwyrd.game.npc.NPC_Thay;
 import wildwyrd.game.rooms.Rm_Blank;
 import wildwyrd.game.rooms.Rm_Forton;
-import wildwyrd.game.rooms.Rm_Kitchen;
+import wildwyrd.game.rooms.Rm_Hall_Of_Scion;
 import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.MapType;
 
@@ -31,7 +31,7 @@ public class AssetSetter {
 	public void setRooms() {
 		gp.rm[0] = new Rm_Blank(gp);
 		gp.rm[1] = new Rm_Forton(gp);
-		gp.rm[2] = new Rm_Kitchen(gp);
+		gp.rm[2] = new Rm_Hall_Of_Scion(gp);
 	}
 
 	public void setObject() {

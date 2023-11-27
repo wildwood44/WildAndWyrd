@@ -14,6 +14,7 @@ import wildwyrd.game.npc.NPC_Dilecto;
 import wildwyrd.game.npc.NPC_Florence;
 import wildwyrd.game.npc.NPC_Kyla;
 import wildwyrd.game.npc.NPC_Thay;
+import wildwyrd.game.npc.NPC_Trissie;
 import wildwyrd.game.object.Obj_Alder_Bed;
 import wildwyrd.game.object.Obj_Alder_Window;
 import wildwyrd.game.object.Obj_Basin;
@@ -100,6 +101,7 @@ public class EntityGenerator {
 		case NPC_Thay.npcId: npc = new NPC_Thay(gp);break;//2
 		case NPC_Kyla.npcId: npc = new NPC_Kyla(gp);break;//3
 		case NPC_Cricket.npcId: npc = new NPC_Cricket(gp);break;//4
+		case NPC_Trissie.npcId: npc = new NPC_Trissie(gp);break;//5
 		}
 		return npc;
 	}

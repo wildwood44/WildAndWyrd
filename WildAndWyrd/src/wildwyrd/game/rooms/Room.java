@@ -3,9 +3,11 @@ package wildwyrd.game.rooms;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
+import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
-public class Room {
+public class Room extends Entity {
 	public BufferedImage image;
 	public Color color;
 	public int roomId;
@@ -21,6 +23,7 @@ public class Room {
 	Graphics2D g2;
 
 	public Room(GamePanel gp) {
+		super(gp);
 		this.color = Color.yellow;
 		this.roomX = 0;
 		this.roomY = 0;

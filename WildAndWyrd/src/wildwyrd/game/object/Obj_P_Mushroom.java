@@ -52,6 +52,7 @@ public class Obj_P_Mushroom extends Entity {
 	}
 
 	public void interact() {
+		gp.ui.choiceSlot = 0;
 		if (!opened) {
 			startDialogue(this, 0);
 		} else {

@@ -110,7 +110,13 @@ public class EventHandler {
 				c1s_Cutscene(7);
 			} else if (gp.s.swh[6] && gp.s.part == 2) {
 				c1s_Cutscene(8);
+			} else if (gp.s.swh[7] && gp.s.part == 3) {
+				c1s_Cutscene(9);
+			} else if (gp.s.swh[8] && gp.s.part == 4) {
+				c1s_Cutscene(10);
 			}
+		} else if (gp.s.chapter == 3) {
+			c1s_Cutscene(11);
 		}
 	}
 
@@ -142,10 +148,8 @@ public class EventHandler {
 			gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
 			gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
 			int col = gp.player.solidArea.y/gp.tileSize;
-			System.out.println(gp.player.solidArea.x + " " + row);
 			eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
 			eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
-			System.out.println(gp.player.solidArea.y/gp.tileSize + " " + eventRect[map][col][row].y/gp.tileSize);
 			if(gp.player.solidArea.y/gp.tileSize == eventRect[map][col][row].y/gp.tileSize && !eventRect[map][col][row].eventDone) {
 				if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
 					hit = true;

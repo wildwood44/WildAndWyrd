@@ -373,10 +373,8 @@ public class UI {
 							g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 							g2.drawString(line, x + 20, y);
 							j++;
-							
 						}
 					}
-					
 					y += 40;
 				}
 				//Display Up arrow

@@ -15,7 +15,6 @@ import wildwyrd.game.objective.Quest;
 public class NPC_Trissie extends NPC {
 	public static final int npcId = 5;
 	public static final String npcName = "Trissie";
-	Quest sidequest = gp.objective.quests[1];
 	private boolean climbing = false;
 	public NPC_Trissie(GamePanel gp) {
 		super(gp);
@@ -90,17 +89,13 @@ public class NPC_Trissie extends NPC {
 		dialogues[1][0] = new Dialoge("Trissie", "It will be hard for me to leave these woods if I stay any longer!", 1);
 		dialogues[1][1] = new Dialoge("Alder", "There’s one more thing I’d like to know Triss.", 1);
 		dialogues[1][2] = new Dialoge("Trissie", "Yes?", 1);
-		dialogues[1][3] = new Dialoge("", 3);
+		dialogues[1][3] = new Dialoge(" ", 3);
 		dialogues[2][0] = new Dialoge("Trissie", "Well, if I’d have to give an example?", 1);
 		dialogues[2][1] = new Dialoge("Trissie", "I have a brother in the Gowls.", 1);
 		dialogues[2][2] = new Dialoge("Trissie pointed her thumb at her tail stump.", 1);
 		dialogues[2][3] = new Dialoge("Trissie", "And because I helped a human, he did this to me.", 1);
-		dialogues[2][4] = new Dialoge("Trissie moved swiftly towards the nearest tree and in an instant had climbed up and disappeared among the branches. It was as if she'd vanished. Leaving not even a rustle of leaves.", 1);
-		dialogues[2][5] = new Dialoge("Alder returned to the cottage a little disappointed with Trissie gone so soon. But he had work to do and he set about his remaining chores for the day.", 1);
 		dialogues[3][0] = new Dialoge("Trissie", "I’m not easy to catch but you must be careful and stay safe.", 1);
 		dialogues[3][1] = new Dialoge("Trissie", "If you do, I'm sure we'll meet before long.", 1);
-		dialogues[3][2] = new Dialoge("Trissie moved swiftly towards the nearest tree and in an instant had climbed up and disappeared among the branches. It was as if she'd vanished. Leaving not even a rustle of leaves.", 1);
-		dialogues[3][3] = new Dialoge("Alder returned to the cottage a little disappointed with Trissie gone so soon. But he had work to do and he set about his remaining chores for the day.", 1);
 	}
 	
 	public void setDialogueOptions() {
@@ -119,6 +114,8 @@ public class NPC_Trissie extends NPC {
 				startDialogue(this, 3);
 				gp.s.branchSwitch[0] = 1;
 			}
+			gp.s.c2Switch[3] = false;
+			gp.s.swh[7] = true;
 		}
 	}
 	
