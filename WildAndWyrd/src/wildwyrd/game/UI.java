@@ -23,8 +23,6 @@ import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.library.Book;
 import wildwyrd.game.playable.Combatant;
-import wildwyrd.game.skill.Skill;
-
 public class UI {
 	GamePanel gp;
 	Cutscene c;

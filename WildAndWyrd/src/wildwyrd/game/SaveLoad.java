@@ -102,7 +102,6 @@ public class SaveLoad {
 						ds.mapObjectWorldY[mapNum][i] = gp.obj[mapNum][i].worldY;
 						if(gp.obj[mapNum][i].loot != null) {
 							ds.mapObjectLootIds[mapNum][i] = gp.obj[mapNum][i].loot.id;
-							System.out.println(ds.mapObjectId[mapNum][i] + " " + ds.mapObjectLootIds[mapNum][i]);
 						}
 						ds.mapObjectOpened[mapNum][i] = gp.obj[mapNum][i].opened;
 					}
@@ -122,7 +121,6 @@ public class SaveLoad {
 				for (int i = 0; i < gp.glossary.sections.length; i++) {
 					for (int j = 0; j < gp.glossary.getSize(i); j++) {
 						if (gp.glossary.page[i][j] != null && gp.glossary.page[i][j].isFound()) {
-							System.out.println(gp.glossary.page[i][j].getName());
 							ds.found[i][j] = gp.glossary.page[i][j].isFound();
 						}
 					}
@@ -199,11 +197,9 @@ public class SaveLoad {
 					}
 				}
 				//Glossary
-				System.out.println("ping");
 				for (int i = 0; i < ds.found.length; i++) {
 					for (int j = 0; j < ds.found[i].length; j++) {
 						if (gp.glossary.page[i][j] != null && ds.found[i][j]) {
-							System.out.println(gp.glossary.page[i][j].getName());
 							gp.glossary.page[i][j].findGlossaryItem();
 						}
 					}
