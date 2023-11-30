@@ -29,9 +29,25 @@ public class Room extends Entity {
 		this.roomY = 0;
 		this.gp = gp;
 	}
+	public void drawObjects() {}
 	
 	public void getBackgroundImage() {
 		
+	}
+	
+	public BufferedImage printScroll(int x, int y, int width, int height) {
+		//System.out.println(x + " " + y + " " + width + " " + height);
+		return image.getSubimage(x, y, image.getWidth() -1, image.getHeight() - (image.getHeight()/3));
+	}
+	
+	public void scrollImage() {
+		if(y < 170) {
+			printScroll(x, y, 400, 400);
+			y++;
+		} else {
+			gp.csManager.scenePhase++;
+		}
+		drawObjects();
 	}
 
 

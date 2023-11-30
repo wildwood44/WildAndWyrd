@@ -10,7 +10,6 @@ import wildwyrd.game.GamePanel;
 import wildwyrd.game.items.Itm_Bow;
 import wildwyrd.game.items.Itm_Primative_Arrow;
 import wildwyrd.game.object.Dialoge;
-import wildwyrd.game.objective.Quest;
 
 public class NPC_Trissie extends NPC {
 	public static final int npcId = 5;
@@ -128,10 +127,11 @@ public class NPC_Trissie extends NPC {
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
 		if(gp.s.chapter == 2) {
-			if(gp.playable.get(0).getWeapon_second().name == null && gp.s.c2Switch[2]) {
+			if(gp.playable.get(0).getWeapon_second().name == null && gp.s.c2Switch[1]) {
 				startDialogue(this, 0);
 				gp.playable.get(0).setWeapon_second(new Itm_Bow(gp));
 				gp.player.pickUpObject(new Itm_Primative_Arrow(gp), 5);
+				gp.s.c2Switch[1] = false;
 			} else if (!gp.s.c2Switch[2]) {
 				startDialogue(this, 1);
 			}

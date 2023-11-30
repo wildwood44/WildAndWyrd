@@ -8,6 +8,9 @@ import java.awt.image.BufferedImage;
 import wildwyrd.game.EventHandler;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
+import wildwyrd.game.items.Item;
+import wildwyrd.game.items.Itm_Bug_Meat;
+import wildwyrd.game.items.Weapon;
 import wildwyrd.game.npc.NPC;
 import wildwyrd.game.npc.NPC_Florence;
 import wildwyrd.game.npc.NPC_Kyla;
@@ -93,8 +96,19 @@ public class CutsceneManager {
 			gp.rm[gp.currentRoom].draw(g2);
 			gp.c.setCutscene(0, read);
 			gp.ui.selectedObject = gp.c;
-			gp.ui.drawDialogueScreen();
+			scenePhase++;
 		} else if (scenePhase == 2) {
+			gp.rm[gp.currentRoom].draw(g2);
+			if(gp.c.dialogueIndex < 59) {
+				gp.ui.drawDialogueScreen();
+			} else {
+				scenePhase++;
+			}
+		} else if (scenePhase == 3) {
+			gp.rm[gp.currentRoom].scrollImage();
+		} else if (scenePhase == 4) {
+			gp.ui.drawDialogueScreen();
+		} else if (scenePhase == 5) {
 			gp.currentRoom = 0;
 			gp.s.chapter = 1;
 			gp.cutsceneOn = false;
@@ -380,13 +394,7 @@ public class CutsceneManager {
 			gp.c.setSprites(gp.c.dialogueSet);
 			scenePhase++;
 		} else if (scenePhase == 1) {
-			alpha += 0.005f;
-			if(alpha > 1f) {
-				alpha = 1f;
-			}
-			drawBlackBackground(alpha);
-			if(alpha == 1f) {
-				//alpha = 0;
+			if(fadeOut(0.005f)) {
 				scenePhase++;
 			}
 		} else if (scenePhase == 2) {
@@ -396,12 +404,8 @@ public class CutsceneManager {
 			scenePhase++;
 		} else if (scenePhase == 3) {
 			drawRoom();
-			alpha -= 0.05f;
-			if(alpha < 0f) {
-				alpha = 0f;
-			}
 			drawBlackBackground(alpha);
-			if(alpha == 0f) {
+			if(fadeIn(0.05f)) {
 				scenePhase++;
 			}
 		} else if (scenePhase == 4) {
@@ -414,14 +418,9 @@ public class CutsceneManager {
 		} else if (scenePhase == 5) {
 			drawRoom();
 			NPC actor = getActor(NPC_Thay.npcName);
-			if(gp.c.dialogueIndex >= 7 &&
-				moveActor(actor.name, "down", 7)){
-				alpha += 0.005f;
-				if(alpha > 1f) {
-					alpha = 1f;
-				}
-				drawBlackBackground(alpha);
-				if(alpha == 1f) {
+			if(gp.c.dialogueIndex >= 7){
+				moveActor(actor.name, "down", 7);
+				if(fadeOut(0.005f)) {
 					destroyActor(NPC_Florence.npcName);
 					scenePhase++;
 				}
@@ -436,15 +435,11 @@ public class CutsceneManager {
 			gp.player.worldX = gp.tileSize * 12;
 			gp.player.worldY = gp.tileSize * 7;
 			drawRoom();
-			alpha -= 0.05f;
-			if(alpha < 0f) {
-				alpha = 0f;
-			}
-			drawBlackBackground(alpha);
-			if(alpha == 0f) {
+			if(fadeIn(0.05f)) {
 				scenePhase++;
 			}
 		} else if (scenePhase == 7) {
+			drawRoom();
 			actor = getActor(NPC_Thay.npcName);
 			if(moveActor(actor.name, "down", 7)) {
 				scenePhase++;
@@ -453,12 +448,7 @@ public class CutsceneManager {
 			gp.ui.drawDialogueScreen();
 		} else if (scenePhase == 9) {
 			drawRoom();
-			alpha += 0.005f;
-			if(alpha > 1f) {
-				alpha = 1f;
-			}
-			drawBlackBackground(alpha);
-			if(alpha == 1f) {
+			if(fadeOut(0.005f)) {
 				gp.currentMap = gp.maps[2];
 				actor = getActor(PlayerDummy.npcName);
 				gp.player.worldX = actor.worldX;
@@ -466,17 +456,16 @@ public class CutsceneManager {
 				scenePhase++;
 			}
 		} else if (scenePhase == 10) {
-			alpha -= 0.05f;
-			if(alpha < 0f) {
-				alpha = 0f;
-			}
-			drawBlackBackground(alpha);
-			if(alpha == 0f) {
+			if(fadeIn(0.05f)) {
 				scenePhase++;
 			}
 		} else if (scenePhase == 11) {
 			createActor(new NPC_Kyla(gp), 0, gp.tileSize * 11, gp.tileSize * 5, "down");
 			createActor(new NPC_Florence(gp), 0, gp.tileSize * 3, gp.tileSize * 5, "down");
+			gp.playable.get(0).setWeapon_prime(new Weapon(gp));
+			Item selectedItem = gp.player.inventory.get(gp.player.searchItemInInventory(Itm_Bug_Meat.itemId));
+			gp.player.removeFromInventory(selectedItem);
+			gp.player.removeFromInventory(selectedItem);
 			gp.s.swh[read] = false;
 			gp.ui.resetSlots();
 			destroyPlayerDummy();
@@ -595,7 +584,6 @@ public class CutsceneManager {
 			sceneNum = 0;
 			scenePhase = 0;
 			//gp.s.part = 2;
-			gp.s.c2Switch[0] = false;
 			gp.gameState = GameState.playState;
 		}
 	}
@@ -689,7 +677,7 @@ public class CutsceneManager {
 			sceneNum = 0;
 			scenePhase = 0;
 			gp.s.part = 3;
-			gp.s.c2Switch[1] = false;
+			gp.s.c2Switch[0] = false;
 			gp.gameState = GameState.playState;
 		}
 	}

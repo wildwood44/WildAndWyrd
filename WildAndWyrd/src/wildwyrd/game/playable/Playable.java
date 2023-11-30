@@ -8,8 +8,8 @@ public class Playable extends Combatant {
 	private int level = 1;
 	private int exp;
 	private int nextLevelExp;
-	private int strength;
-	private int dexterity;
+	//private int strength;
+	//private int dexterity;
 
 	public Playable(GamePanel gp, String name, int health, int stamina, int baseAttack, int baseDefence,
 			int baseAccuracy, int baseEvasion, int baseSpeed) {

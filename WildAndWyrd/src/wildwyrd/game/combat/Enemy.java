@@ -6,12 +6,14 @@ import java.awt.Graphics2D;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
+import wildwyrd.game.items.Item;
 import wildwyrd.game.playable.Combatant;
 
 public class Enemy extends Combatant {
 	protected Entity dropped;
 	int screenX = gp.tileSize*6;
 	int screenY = gp.tileSize*2;
+	String desc;
 	
 	public Enemy(GamePanel gp, String name, int maxHealth, int maxStamina, int baseAttack, int baseDefence, int baseAccuracy, int baseSpeed, int baseEvasion) {
 		super(gp, name, maxHealth, maxStamina, baseAttack, baseDefence, baseAccuracy, baseSpeed, baseEvasion);
@@ -96,7 +98,7 @@ public class Enemy extends Combatant {
 	
 	public void checkDrop() {}
 	
-	public void dropItem(Entity droppedItem) {
+	public void dropItem(Item droppedItem) {
 		System.out.println(droppedItem);
 		gp.ui.droppedItems.add(droppedItem);
 		gp.player.pickUpObject(droppedItem);

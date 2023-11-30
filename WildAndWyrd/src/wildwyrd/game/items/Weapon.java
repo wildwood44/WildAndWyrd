@@ -1,11 +1,9 @@
 package wildwyrd.game.items;
 
 import java.awt.image.BufferedImage;
-
-import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
-public class Weapon extends Entity {
+public class Weapon extends Item {
 	public WeaponType wpType;
 	public BufferedImage combat_image;
 

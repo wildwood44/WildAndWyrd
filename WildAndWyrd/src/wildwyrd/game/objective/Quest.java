@@ -2,6 +2,7 @@ package wildwyrd.game.objective;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.items.Item;
 
 public class Quest extends Entity {
 	GamePanel gp;
@@ -13,7 +14,7 @@ public class Quest extends Entity {
 	protected boolean completed;
 	protected boolean submitted;
 	public boolean[] require;
-	public Entity reward;
+	public Item reward;
 	public int qnt;
 
 	public Quest(GamePanel gp) {

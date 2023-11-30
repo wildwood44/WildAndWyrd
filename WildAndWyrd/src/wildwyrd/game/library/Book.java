@@ -25,7 +25,6 @@ public class Book extends Entity {
 			InputStream f = getClass().getResourceAsStream("/res/dialogue/book/"+url+".txt");
 			BufferedReader b = new BufferedReader(new InputStreamReader(f));
 			for (String i = b.readLine(); i != null; i = b.readLine()) {
-				System.out.println(count);
 				String[] line = i.split("\\$ ", 3);
 				content[count] = line[2];
 				count++;

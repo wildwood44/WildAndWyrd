@@ -1,5 +1,6 @@
 package wildwyrd.game;
 
+import wildwyrd.game.items.Item;
 import wildwyrd.game.items.Itm_Bandage;
 import wildwyrd.game.items.Itm_Bow;
 import wildwyrd.game.items.Itm_Bramble_Leaf;
@@ -80,6 +81,22 @@ public class EntityGenerator {
 		case Obj_Tree.objId: obj = new Obj_Tree(gp);break;//24
 		case Obj_Dummy.objId: obj = new Obj_Dummy(gp);break;//25
 		case Obj_Blackberry.objId: obj = new Obj_Blackberry(gp);break;//26
+		case Itm_Hazelnut.itemId:obj = new Itm_Hazelnut(gp);break;//101
+		case Itm_P_Mushroom.itemId:obj = new Itm_P_Mushroom(gp);break;//102
+		case Itm_Bug_Meat.itemId:obj = new Itm_Bug_Meat(gp);break;//103
+		case Itm_Bandage.itemId:obj = new Itm_Bandage(gp);break;//201
+		case Itm_Hunting_Knife.itemId:obj = new Itm_Hunting_Knife(gp);break;//301
+		case Itm_Bow.itemId:obj = new Itm_Bow(gp);break;//302
+		case Itm_Primative_Arrow.itemId:obj = new Itm_Primative_Arrow(gp);break;//501
+		case Itm_Bramble_Leaf.itemId:obj = new Itm_Bramble_Leaf(gp);break;//601
+		//default
+		}
+		return obj;
+	}
+	
+	public Item getItem(int itemId) {
+		Item obj = null;
+		switch(itemId) {
 		case Itm_Hazelnut.itemId:obj = new Itm_Hazelnut(gp);break;//101
 		case Itm_P_Mushroom.itemId:obj = new Itm_P_Mushroom(gp);break;//102
 		case Itm_Bug_Meat.itemId:obj = new Itm_Bug_Meat(gp);break;//103

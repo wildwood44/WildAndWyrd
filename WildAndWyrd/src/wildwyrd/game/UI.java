@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import wildwyrd.game.combat.CombatStatus;
 import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.cutscenes.Cutscene;
+import wildwyrd.game.items.Item;
 import wildwyrd.game.library.Book;
 import wildwyrd.game.playable.Combatant;
 public class UI {
@@ -715,7 +716,9 @@ public class UI {
 						lineNum += 20;
 					}
 				}
-				g2.drawString(gp.objective.quests[slotCol + topValue].printQuestStatus(), frameX + 40, frameY + lineNum + 20);
+				if(gp.objective.quests[slotCol + topValue].id != 0) {
+					g2.drawString(gp.objective.quests[slotCol + topValue].printQuestStatus(), frameX + 40, frameY + lineNum + 20);
+				}
 			}
 		} catch (NullPointerException e) {
 			System.out.println(e);
@@ -894,7 +897,7 @@ public class UI {
 	public void drawCombatInventoryScreen(int x, int y, int width) {
 		int slotYstart = y + gp.tileSize + 15;
 		int slotY = slotYstart;
-		ArrayList<Entity> items = gp.player.combatItems(itemFilter);
+		ArrayList<Item> items = gp.player.combatItems(itemFilter);
 		for(int i = firstValue; i < items.size(); i++) {
 			if(slotY + 30 > 500) {
 				break;
@@ -944,7 +947,7 @@ public class UI {
 	}
 	
 	public boolean filter(int i) {
-		ArrayList<Entity> items = gp.player.combatItems(itemFilter);
+		ArrayList<Item> items = gp.player.combatItems(itemFilter);
 		if(itemFilter == null) {
 			if(items.get(i).type == EntityType.Food ||
 				items.get(i).type == EntityType.Health ||

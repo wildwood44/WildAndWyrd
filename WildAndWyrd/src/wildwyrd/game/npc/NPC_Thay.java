@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.object.Dialoge;
-import wildwyrd.game.playable.Combatant;
 
 public class NPC_Thay extends NPC {
 	public static final int npcId = 2;

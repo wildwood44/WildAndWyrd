@@ -1,12 +1,10 @@
 package wildwyrd.game.items;
 
 import java.awt.image.BufferedImage;
-
-import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
-public class Armour extends Entity {
-	public WeaponType wpType;
+public class Armour extends Item {
+	public ArmourType armType;
 	public BufferedImage combat_image;
 
 	public Armour(GamePanel gp) {
@@ -14,8 +12,8 @@ public class Armour extends Entity {
 		this.gp = gp;
 	}
 
-	public WeaponType getWpType() {
-		return wpType;
+	public ArmourType getArmType() {
+		return armType;
 	}
 
 }

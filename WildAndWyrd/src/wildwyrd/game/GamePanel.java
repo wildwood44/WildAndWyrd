@@ -21,7 +21,6 @@ import wildwyrd.game.glossary.Glossary;
 import wildwyrd.game.npc.NPC;
 import wildwyrd.game.object.AssetSetter;
 import wildwyrd.game.objective.Objective;
-import wildwyrd.game.playable.Combatant;
 import wildwyrd.game.playable.Playable;
 import wildwyrd.game.playable.Player;
 import wildwyrd.game.rooms.Room;

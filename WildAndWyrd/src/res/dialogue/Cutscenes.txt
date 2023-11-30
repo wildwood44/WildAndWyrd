@@ -1,66 +1,66 @@
 chapter$ switch$ part$ line$ dialog$
 0$ 0$ 1$ 1$ In the corridors of a Fort, two of its dwellers were discussing plans for the days to come. 
-0$ 0$ 1$ 1$ They were the lord, an old greyish field mouse with a golden buckle and a pudgy vole, both in brown surcoats.  
-0$ 0$ 1$ 1$ They had taken their talks to a corridor overseeing the great hall, it's walls filled with tapestries of their history.  
-0$ 0$ 1$ 2$ It was long into their conversation about an upcoming feast when a young shrew came running up the stairs that lead to the ground floor.  
-0$ 0$ 1$ 2$ He was calling for the mouse lord and panted as he spoke.
-0$ 0$ 1$ 3$ Shrew£My Lord!
-0$ 0$ 1$ 4$ Shrew£*Pant* Excuse me!
-0$ 0$ 1$ 5$ Shrew£*Pant* *Pant* Lord Dilecto!
-0$ 0$ 1$ 6$ Dilecto£Hm?
-0$ 0$ 1$ 7$ Dilecto£Yes, child?
-0$ 0$ 1$ 8$ Shrew£*Ahem* Hazel is requesting a meeting.
-0$ 0$ 1$ 9$ Vole£He has no authority to call a meeting involving the lord.
-0$ 0$ 1$ 10$ Vole£What is it for?
-0$ 0$ 1$ 11$ Shrew£The Gowls… they are… conducting patrols in Fuller Woods.
-0$ 0$ 1$ 12$ Vole£That is unusual, but hardly of our concern.
-0$ 0$ 1$ 13$ Vole£We are not their target.
-0$ 0$ 1$ 14$ Dilecto£So who is?
-0$ 0$ 1$ 15$ Dilecto£I approve and will be attending.
-0$ 0$ 1$ 16$ Vole£But my lord, the Gowls are no doubt looking for slavers, traitors and humans.
-0$ 0$ 1$ 17$ Vole£Heinous enemies of our people!
-0$ 0$ 1$ 18$ Vole£Surely they are justified.
-0$ 0$ 1$ 19$ Dilecto£I would prefer there to be no acts of violence near our borders.
-0$ 0$ 1$ 20$ Dilecto£Moreover, humans aren't all evil, we had human friends during the war.
-0$ 0$ 1$ 21$ Dilecto£Times would have been far grimmer without them.
-0$ 0$ 1$ 22$ Shrew£Were they friends with Agrimus too?
-0$ 0$ 1$ 23$ Vole£Why does every conversation we have with you end up involving the Scion Dean?
-0$ 0$ 1$ 24$ Dean£I, um.
-0$ 0$ 1$ 25$ Dean was embarrassed. He had always loved stories of the late Agrimus and often sought new stories from the veterans. 
-0$ 0$ 1$ 26$ Dilecto£Hahaha.
-0$ 0$ 1$ 27$ Dilecto£It's alright Dean.
-0$ 0$ 1$ 28$ Dilecto£It has been so long since his time.
-0$ 0$ 1$ 29$ Vole£*Sighs* About thirty years now.$ chr_Ralph
-0$ 0$ 1$ 30$ Dean£Um?
-0$ 0$ 1$ 31$ Dean£Do you think the next one will appear soon? 
-0$ 0$ 1$ 32$ Vole£As momentous as that would be, Albion is at peace.
-0$ 0$ 1$ 33$ Vole£There is no need for a new Scion.
-0$ 0$ 1$ 34$ Dilecto£Despite the human cullings that is.
-0$ 0$ 1$ 35$ Vole£Likely due to! Sir Darrunt and his Gowls Knights have every right to deal with those vermin.
-0$ 0$ 1$ 36$ Dilecto£Ralph!
-0$ 0$ 1$ 37$ Dilecto£That is too far, no one has any right over another creatures life!
-0$ 0$ 1$ 38$ Ralph£But my lord!
-0$ 0$ 1$ 39$ Dilecto£Enough!
-0$ 0$ 1$ 40$ Dilecto£We shall discuss this later.
-0$ 0$ 1$ 41$ Dilecto£Hm?
-0$ 0$ 1$ 42$ Dilecto notices an elderly mole emerging from a nearby room.
-0$ 0$ 1$ 43$ Dilecto£Plumm, could you spare a moment?
-0$ 0$ 1$ 44$ Plumm£Yes, M’lord?
-0$ 0$ 1$ 45$ Dilecto£I need you to let the other officials know that there is to be a meeting tomorrow at noon.
-0$ 0$ 1$ 46$ Dilecto£Dean, be sure to invite Hazel. We will need to have a word with the Gowls.
-0$ 0$ 1$ 47$ Plumm£The Gowls!?
-0$ 0$ 1$ 48$ Plumm£Why?
-0$ 0$ 1$ 49$ Ralph£They're sending patrols around our town and into Fuller Woods.
-0$ 0$ 1$ 50$ Plumm£Good heavens!
-0$ 0$ 1$ 51$ Plumm£Well, I’d best make haste!
-0$ 0$ 1$ 52$ Ralph£I’ll help spread the word.
-0$ 0$ 1$ 53$ Ralph£Off with you Dean.
-0$ 0$ 1$ 54$ Dean£Yes sir!
-0$ 0$ 1$ 55$ Plumm and Ralph head to the gardens, while Dean ran to the keep, leaving Dilecto alone in the corridor. 
-0$ 0$ 1$ 55$ Sombrely, he moved to face a tapestry depicting an armoured mouse with a sword fighting a demonic black human-shaped figure with blood-red eyes clad in a tawny furred cloak.
-0$ 0$ 1$ 56$ Dilecto£Agrimus.
-0$ 0$ 1$ 57$ Dilecto£I wonder, what creature do you have in mind to successed you as Scion?
-0$ 0$ 1$ 59$ Dilecto£Whoever you pick I shall always trust your judgement.
+0$ 0$ 1$ 2$ They were the lord, an old greyish field mouse with a golden buckle and a pudgy vole, both in brown surcoats.  
+0$ 0$ 1$ 3$ They had taken their talks to a corridor overseeing the great hall, it's walls filled with tapestries of their history.  
+0$ 0$ 1$ 4$ It was long into their conversation about an upcoming feast when a young shrew came running up the stairs that lead to the ground floor.  
+0$ 0$ 1$ 5$ He was calling for the mouse lord and panted as he spoke.
+0$ 0$ 1$ 6$ Shrew£My Lord!
+0$ 0$ 1$ 7$ Shrew£*Pant* Excuse me!
+0$ 0$ 1$ 8$ Shrew£*Pant* *Pant* Lord Dilecto!
+0$ 0$ 1$ 9$ Dilecto£Hm?
+0$ 0$ 1$ 10$ Dilecto£Yes, child?
+0$ 0$ 1$ 11$ Shrew£*Ahem* Hazel is requesting a meeting.
+0$ 0$ 1$ 12$ Vole£He has no authority to call a meeting involving the lord.
+0$ 0$ 1$ 13$ Vole£What is it for?
+0$ 0$ 1$ 14$ Shrew£The Gowls… they are… conducting patrols in Fuller Woods.
+0$ 0$ 1$ 15$ Vole£That is unusual, but hardly of our concern.
+0$ 0$ 1$ 16$ Vole£We are not their target.
+0$ 0$ 1$ 17$ Dilecto£So who is?
+0$ 0$ 1$ 18$ Dilecto£I approve and will be attending.
+0$ 0$ 1$ 19$ Vole£But my lord, the Gowls are no doubt looking for slavers, traitors and humans.
+0$ 0$ 1$ 20$ Vole£Heinous enemies of our people!
+0$ 0$ 1$ 21$ Vole£Surely they are justified.
+0$ 0$ 1$ 22$ Dilecto£I would prefer there to be no acts of violence near our borders.
+0$ 0$ 1$ 23$ Dilecto£Moreover, humans aren't all evil, we had human friends during the war.
+0$ 0$ 1$ 24$ Dilecto£Times would have been far grimmer without them.
+0$ 0$ 1$ 25$ Shrew£Were they friends with Agrimus too?
+0$ 0$ 1$ 26$ Vole£Why does every conversation we have with you end up involving the Scion Dean?
+0$ 0$ 1$ 27$ Dean£I, um.
+0$ 0$ 1$ 28$ Dean was embarrassed. He had always loved stories of the late Agrimus and often sought new stories from the veterans. 
+0$ 0$ 1$ 29$ Dilecto£Hahaha.
+0$ 0$ 1$ 30$ Dilecto£It's alright Dean.
+0$ 0$ 1$ 31$ Dilecto£It has been so long since his time.
+0$ 0$ 1$ 32$ Vole£*Sighs* About thirty years now.$ chr_Ralph
+0$ 0$ 1$ 33$ Dean£Um?
+0$ 0$ 1$ 34$ Dean£Do you think the next one will appear soon? 
+0$ 0$ 1$ 35$ Vole£As momentous as that would be, Albion is at peace.
+0$ 0$ 1$ 36$ Vole£There is no need for a new Scion.
+0$ 0$ 1$ 37$ Dilecto£Despite the human cullings that is.
+0$ 0$ 1$ 38$ Vole£Likely due to! Sir Darrunt and his Gowls Knights have every right to deal with those vermin.
+0$ 0$ 1$ 39$ Dilecto£Ralph!
+0$ 0$ 1$ 40$ Dilecto£That is too far, no one has any right over another creatures life!
+0$ 0$ 1$ 41$ Ralph£But my lord!
+0$ 0$ 1$ 42$ Dilecto£Enough!
+0$ 0$ 1$ 43$ Dilecto£We shall discuss this later.
+0$ 0$ 1$ 44$ Dilecto£Hm?
+0$ 0$ 1$ 45$ Dilecto notices an elderly mole emerging from a nearby room.
+0$ 0$ 1$ 46$ Dilecto£Plumm, could you spare a moment?
+0$ 0$ 1$ 47$ Plumm£Yes, M’lord?
+0$ 0$ 1$ 48$ Dilecto£I need you to let the other officials know that there is to be a meeting tomorrow at noon.
+0$ 0$ 1$ 49$ Dilecto£Dean, be sure to invite Hazel. We will need to have a word with the Gowls.
+0$ 0$ 1$ 50$ Plumm£The Gowls!?
+0$ 0$ 1$ 51$ Plumm£Why?
+0$ 0$ 1$ 52$ Ralph£They're sending patrols around our town and into Fuller Woods.
+0$ 0$ 1$ 53$ Plumm£Good heavens!
+0$ 0$ 1$ 54$ Plumm£Well, I’d best make haste!
+0$ 0$ 1$ 55$ Ralph£I’ll help spread the word.
+0$ 0$ 1$ 56$ Ralph£Off with you Dean.
+0$ 0$ 1$ 57$ Dean£Yes sir!
+0$ 0$ 1$ 58$ Plumm and Ralph head to the gardens, while Dean ran to the keep, leaving Dilecto alone in the corridor. 
+0$ 0$ 1$ 59$ Sombrely, he moved to face a tapestry depicting an armoured mouse with a sword fighting a demonic black human-shaped figure with blood-red eyes clad in a tawny furred cloak.
+0$ 0$ 1$ 60$ Dilecto£Agrimus.
+0$ 0$ 1$ 61$ Dilecto£I wonder, what creature do you have in mind to successed you as Scion?
+0$ 0$ 1$ 62$ Dilecto£Whoever you pick I shall always trust your judgement.
 1$ 0$ 1$ 2$ Deep in the Fuller Woods north of the Fort a lone creature wandered through the underbrush. 
 1$ 0$ 1$ 2$ It was a hedgehog, shouldering a travelling bag with various herbs and seeds. His quills poked through his jacket, hood and blue scarf. He whispered into the air.
 1$ 0$ 1$ 3$ Hedgehog£The rabbit seeks his burrow.

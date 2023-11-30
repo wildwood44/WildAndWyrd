@@ -22,27 +22,4 @@ public class Story implements Serializable {
 		c3Switch = new boolean[]{true, true, true, true, true, true, true};
 		branchSwitch = new int[1];
 	}
-	
-	public int getSwitch() {
-		for(int i = 0; i < swh.length; i++) {
-			return i;
-		}
-		return -1;
-	}
-
-	public boolean[] getChapterSwitch() {
-		return swh;
-	}
-	
-	public void setSwitch(boolean swh2[]) {
-		for(int i = 0; i < swh.length; i++) {
-			swh[i] = swh2[i];
-		}
-	}
-	
-	public void setC1Switch(boolean swh2[]) {
-		for(int i = 0; i < swh.length; i++) {
-			c1Switch[i] = swh2[i];
-		}
-	}
 }

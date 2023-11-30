@@ -40,7 +40,6 @@ public class Obj_Kitchen_Window extends Entity {
 		gp.gameState = GameState.examineState;
 		if (gp.s.c1Switch[0]) {
 			startDialogue(this, 1);
-			gp.s.c1Switch[0] = false;
 		} else {
 			startDialogue(this, 0);
 		}

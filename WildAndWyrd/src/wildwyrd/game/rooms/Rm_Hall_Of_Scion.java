@@ -3,8 +3,8 @@ package wildwyrd.game.rooms;
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 
-import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.items.Item;
 import wildwyrd.game.object.Dialoge;
 
 public class Rm_Hall_Of_Scion extends Room {
@@ -14,14 +14,14 @@ public class Rm_Hall_Of_Scion extends Room {
 	public Rm_Hall_Of_Scion(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		roomId = 1;
+		roomId = 2;
 		room_width = gp.screenWidth;
 		room_height = gp.screenHeight;
 		alpha = 0;
 		setDialogue();
 	}
 	
-	public void setLoot(Entity loot) {
+	public void setLoot(Item loot) {
 		this.loot = loot;
 		setDialogue();	
 	}
