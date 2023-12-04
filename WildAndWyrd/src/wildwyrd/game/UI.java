@@ -65,11 +65,6 @@ public class UI {
 	public UI(GamePanel gp) {
 		this.gp = gp;
 		arial_40 = new Font("Monospaced", 0, 40);
-		/*Story s = gp.s;
-		if(gp.s == null) {
-			s = new Story();
-		}	
-		c = new Cutscene(gp, new Story());*/
 	}
 
 	public void draw(Graphics2D g2) {
@@ -95,6 +90,10 @@ public class UI {
 
 		if (gp.gameState == GameState.menuState) {
 			drawMenuBarScreen();
+		}
+
+		if (gp.gameState == GameState.saveState) {
+			drawSaveScreen();
 		}
 
 		if (gp.gameState == GameState.statusState) {
@@ -430,6 +429,18 @@ public class UI {
 		g2.drawString("Glossary", 30, (int) (gp.tileSize * 4));
 		g2.drawString("Quit", 30, (int) (gp.tileSize * 4.75D));
 		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+	}
+	
+	public void drawSaveScreen() {
+		int frameX = gp.tileSize * 4;
+		int frameY = gp.tileSize * 3;
+		int frameWidth = gp.tileSize * 4;
+		int frameHeight = gp.tileSize;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke());
+		g2.drawString("Game Saved!", frameX + 40, frameY + 40);
 	}
 	
 	public void drawStatusScreen() {
