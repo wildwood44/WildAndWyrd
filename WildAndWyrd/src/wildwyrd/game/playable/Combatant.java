@@ -85,8 +85,8 @@ public class Combatant extends Entity implements Comparable<Combatant> {
 		return weapon_second;
 	}
 	public void setWeapon_second(Weapon weapon_second) {
-		if(this.weapon_second != null) {
-			gp.player.inventory.add(this.weapon_second);
+		if(this.weapon_second.name != null) {
+			gp.player.inventory.add(weapon_second);
 		}
 		this.weapon_second = weapon_second;
 	}

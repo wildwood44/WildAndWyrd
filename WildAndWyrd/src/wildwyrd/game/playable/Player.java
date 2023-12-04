@@ -188,7 +188,7 @@ public class Player extends Entity {
 			} else {
 				if(canObtainItem((Item) gp.obj[gp.currentMap.getId()][i]) == true) {
 				}
-				gp.obj[gp.currentMap.getId()][i] = null;
+				//gp.obj[gp.currentMap.getId()][i] = null;
 			}
 		}
 	}

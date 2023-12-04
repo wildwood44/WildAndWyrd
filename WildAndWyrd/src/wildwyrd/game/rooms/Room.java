@@ -40,7 +40,7 @@ public class Room extends Entity {
 		return image.getSubimage(x, y, image.getWidth() -1, image.getHeight() - (image.getHeight()/3));
 	}
 	
-	public void scrollImage() {
+	public void scrollDown() {
 		if(y < 170) {
 			printScroll(x, y, 400, 400);
 			y++;

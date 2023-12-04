@@ -43,7 +43,6 @@ public class Rm_Hall_Of_Scion extends Room {
 		if (gp.ui.choiceSlot == 0) {
 			gp.csManager.scenePhase++;
 		} else if (gp.ui.choiceSlot == 1) {
-			System.out.println("ping");
 			startDialogue(this, 1);
 		}
 

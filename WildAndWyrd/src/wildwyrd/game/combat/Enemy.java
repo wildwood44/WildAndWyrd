@@ -99,17 +99,8 @@ public class Enemy extends Combatant {
 	public void checkDrop() {}
 	
 	public void dropItem(Item droppedItem) {
-		System.out.println(droppedItem);
 		gp.ui.droppedItems.add(droppedItem);
 		gp.player.pickUpObject(droppedItem);
-		/*for(int i = 0; i < gp.obj[gp.currentMap.getId()].length; i++) {
-			if(gp.obj[gp.currentMap.getId()][i] == null) {
-				gp.obj[gp.currentMap.getId()][i] = droppedItem;
-				gp.obj[gp.currentMap.getId()][i].worldX = worldX;
-				gp.obj[gp.currentMap.getId()][i].worldY = worldY;
-				break;
-			}
-		}*/
 	}
 	
 	public void defeated() {

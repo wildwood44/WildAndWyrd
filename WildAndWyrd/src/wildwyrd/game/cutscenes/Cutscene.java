@@ -21,6 +21,8 @@ public class Cutscene extends Entity {
 	BufferedImage image_Ralph;
 	BufferedImage image_Plumm;
 	BufferedImage image_Kyla;
+	BufferedImage image_Trissie;
+	BufferedImage image_Agrimus;
 
 	public Cutscene(GamePanel gp) {
 		super(gp);
@@ -91,6 +93,8 @@ public class Cutscene extends Entity {
 			image_Ralph = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Ralph.png"));
 			image_Plumm = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Plumm.png"));
 			image_Kyla = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Kyla.png"));
+			image_Trissie = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Trissie.png"));
+			image_Agrimus = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Agrimus.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -157,6 +161,7 @@ public class Cutscene extends Entity {
 			sprites[0][59] = image_Dilecto;
 			sprites[0][60] = image_Dilecto;
 			sprites[0][61] = image_Dilecto;
+			break;
 		case 1:
 			sprites[1][0] = image_Thay;
 			sprites[1][1] = image_Thay;
@@ -172,6 +177,7 @@ public class Cutscene extends Entity {
 			sprites[1][13] = image_Florence;
 			sprites[1][14] = image_Alder;
 			sprites[1][15] = image_Alder;
+			break;
 		case 2:
 			sprites[2][1] = image_Thay;
 			sprites[2][2] = image_Alder;
@@ -181,9 +187,11 @@ public class Cutscene extends Entity {
 			sprites[2][7] = image_Thay;
 			sprites[2][8] = image_Thay;
 			sprites[2][9] = image_Thay;
+			break;
 		case 3:
 			sprites[3][1] = image_Thay;
 			sprites[3][2] = image_Kyla;
+			break;
 		case 4:
 			sprites[4][0] = image_Florence;
 			sprites[4][1] = image_Florence;
@@ -198,12 +206,80 @@ public class Cutscene extends Entity {
 			sprites[4][11] = image_Florence;
 			sprites[4][12] = image_Florence;
 			sprites[4][13] = image_Alder;
+			break;
 		case 5:
 			sprites[5][0] = image_Thay;
 			sprites[5][1] = image_Alder;
 			sprites[5][2] = image_Alder;
 			sprites[5][3] = image_Thay;
 			sprites[5][4] = image_Thay;
+			break;
+		case 6:
+			sprites[6][4] = image_Alder;
+			sprites[6][7] = image_Trissie;
+			sprites[6][8] = image_Alder;
+			sprites[6][9] = image_Trissie;
+			sprites[6][11] = image_Trissie;
+			sprites[6][12] = image_Trissie;
+			sprites[6][14] = image_Alder;
+			sprites[6][15] = image_Trissie;
+			sprites[6][16] = image_Trissie;
+			sprites[6][17] = image_Trissie;
+			sprites[6][19] = image_Trissie;
+			sprites[6][20] = image_Florence;
+			break;
+		case 7:
+			sprites[7][2] = image_Trissie;
+			sprites[7][3] = image_Trissie;
+			sprites[7][5] = image_Florence;
+			sprites[7][6] = image_Kyla;
+			sprites[7][7] = image_Kyla;
+			sprites[7][8] = image_Trissie;
+			sprites[7][9] = image_Trissie;
+			sprites[7][10] = image_Trissie;
+			sprites[7][11] = image_Kyla;
+			sprites[7][12] = image_Kyla;
+			sprites[7][13] = image_Trissie;
+			sprites[7][14] = image_Trissie;
+			sprites[7][15] = image_Kyla;
+			sprites[7][16] = image_Kyla;
+			sprites[7][17] = image_Trissie;
+			sprites[7][20] = image_Alder;
+			sprites[7][21] = image_Florence;
+			sprites[7][22] = image_Florence;
+			sprites[7][23] = image_Florence;
+			sprites[7][24] = image_Florence;
+			sprites[7][26] = image_Kyla;
+			sprites[7][27] = image_Kyla;
+			sprites[7][28] = image_Kyla;
+			sprites[7][29] = image_Trissie;
+			sprites[7][30] = image_Trissie;
+			sprites[7][31] = image_Trissie;
+			sprites[7][32] = image_Trissie;
+			sprites[7][33] = image_Alder;
+			sprites[7][34] = image_Trissie;
+			break;
+		case 8:
+			break;
+		case 9:
+			sprites[9][0] = image_Alder;
+			sprites[9][1] = image_Alder;
+			sprites[9][2] = image_Alder;
+			sprites[9][5] = image_Agrimus;
+			sprites[9][6] = image_Agrimus;
+			sprites[9][7] = image_Agrimus;
+			sprites[9][9] = image_Agrimus;
+			sprites[9][10] = image_Alder;
+			sprites[9][11] = image_Alder;
+			sprites[9][12] = image_Alder;
+			sprites[9][13] = image_Agrimus;
+			sprites[9][14] = image_Agrimus;
+			sprites[9][15] = image_Alder;
+			break;
+		case 10:
+			sprites[10][2] = image_Agrimus;
+			sprites[10][5] = image_Agrimus;
+			break;
 		}
 	}
 }

@@ -8,6 +8,8 @@ import java.io.ObjectOutputStream;
 
 import wildwyrd.data.DataStorage;
 import wildwyrd.game.items.Armour;
+import wildwyrd.game.items.Primary;
+import wildwyrd.game.items.Secondary;
 import wildwyrd.game.items.Weapon;
 import wildwyrd.game.playable.Playable;
 
@@ -142,16 +144,16 @@ public class SaveLoad {
 				gp.playable.set(i,new Playable(gp, "Alder", ds.maxHealth[i], ds.maxStamina[i],
 						ds.baseAttack[i], ds.baseDefence[i], ds.baseAccuracy[i], ds.baseEvasion[i], ds.baseSpeed[i]));
 				gp.playable.get(i).setHealthAndStamina(ds.health[i],ds.stamina[i]);
-				if(ds.currentHat[i] >= 0 && gp.eGenerator.getObject(ds.currentHat[i]) instanceof Armour) {
-					gp.playable.get(i).setHead(gp.eGenerator.getObject(ds.currentHat[i]));
-				} if(ds.currentShirt[i] >= 0 && gp.eGenerator.getObject(ds.currentShirt[i]) instanceof Armour) {
-					gp.playable.get(i).setBody(gp.eGenerator.getObject(ds.currentShirt[i]));
-				} if(ds.currentTrousers[i] >= 0 && gp.eGenerator.getObject(ds.currentTrousers[i]) instanceof Armour) {
-					gp.playable.get(i).setLegs(gp.eGenerator.getObject(ds.currentTrousers[i]));
-				} if(ds.currentPrimary[i] >= 0 && gp.eGenerator.getObject(ds.currentPrimary[i]) instanceof Weapon) {
-					gp.playable.get(i).setWeapon_prime((Weapon)gp.eGenerator.getObject(ds.currentPrimary[i]));
-				} if(ds.currentSecondary[i] >= 0 && gp.eGenerator.getObject(ds.currentSecondary[i]) instanceof Weapon) {
-					gp.playable.get(i).setWeapon_second((Weapon)gp.eGenerator.getObject(ds.currentSecondary[i]));
+				if(ds.currentHat[i] >= 0 && gp.eGenerator.getItem(ds.currentHat[i]) instanceof Armour) {
+					gp.playable.get(i).setHead(gp.eGenerator.getItem(ds.currentHat[i]));
+				} if(ds.currentShirt[i] >= 0 && gp.eGenerator.getItem(ds.currentShirt[i]) instanceof Armour) {
+					gp.playable.get(i).setBody(gp.eGenerator.getItem(ds.currentShirt[i]));
+				} if(ds.currentTrousers[i] >= 0 && gp.eGenerator.getItem(ds.currentTrousers[i]) instanceof Armour) {
+					gp.playable.get(i).setLegs(gp.eGenerator.getItem(ds.currentTrousers[i]));
+				} if(ds.currentPrimary[i] >= 0 && gp.eGenerator.getItem(ds.currentPrimary[i]) instanceof Primary) {
+					gp.playable.get(i).setWeapon_prime((Weapon)gp.eGenerator.getItem(ds.currentPrimary[i]));
+				} if(ds.currentSecondary[i] >= 0 && gp.eGenerator.getItem(ds.currentSecondary[i]) instanceof Secondary) {
+					gp.playable.get(i).setWeapon_second((Weapon)gp.eGenerator.getItem(ds.currentSecondary[i]));
 				}
 			}
 		//	gp.player = ds.player;
@@ -166,6 +168,7 @@ public class SaveLoad {
 			gp.player.inventory.clear();
 			for(int i = 0; i < ds.itemId.size(); i++) {
 				gp.player.inventory.add(gp.eGenerator.getItem(ds.itemId.get(i)));
+				System.out.println(gp.player.inventory.get(i));
 				gp.player.inventory.get(i).amount = ds.itemAmount.get(i);
 			}
 			for(int mapNum = 0; mapNum < gp.maxMap; mapNum++) {
