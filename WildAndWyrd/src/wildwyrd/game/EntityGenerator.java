@@ -1,5 +1,6 @@
 package wildwyrd.game;
 
+import wildwyrd.game.items.Item;
 import wildwyrd.game.items.Itm_Bandage;
 import wildwyrd.game.items.Itm_Bow;
 import wildwyrd.game.items.Itm_Bramble_Leaf;
@@ -14,6 +15,7 @@ import wildwyrd.game.npc.NPC_Dilecto;
 import wildwyrd.game.npc.NPC_Florence;
 import wildwyrd.game.npc.NPC_Kyla;
 import wildwyrd.game.npc.NPC_Thay;
+import wildwyrd.game.npc.NPC_Trissie;
 import wildwyrd.game.object.Obj_Alder_Bed;
 import wildwyrd.game.object.Obj_Alder_Window;
 import wildwyrd.game.object.Obj_Basin;
@@ -79,6 +81,14 @@ public class EntityGenerator {
 		case Obj_Tree.objId: obj = new Obj_Tree(gp);break;//24
 		case Obj_Dummy.objId: obj = new Obj_Dummy(gp);break;//25
 		case Obj_Blackberry.objId: obj = new Obj_Blackberry(gp);break;//26
+		//default
+		}
+		return obj;
+	}
+	
+	public Item getItem(int itemId) {
+		Item obj = null;
+		switch(itemId) {
 		case Itm_Hazelnut.itemId:obj = new Itm_Hazelnut(gp);break;//101
 		case Itm_P_Mushroom.itemId:obj = new Itm_P_Mushroom(gp);break;//102
 		case Itm_Bug_Meat.itemId:obj = new Itm_Bug_Meat(gp);break;//103
@@ -100,6 +110,7 @@ public class EntityGenerator {
 		case NPC_Thay.npcId: npc = new NPC_Thay(gp);break;//2
 		case NPC_Kyla.npcId: npc = new NPC_Kyla(gp);break;//3
 		case NPC_Cricket.npcId: npc = new NPC_Cricket(gp);break;//4
+		case NPC_Trissie.npcId: npc = new NPC_Trissie(gp);break;//5
 		}
 		return npc;
 	}

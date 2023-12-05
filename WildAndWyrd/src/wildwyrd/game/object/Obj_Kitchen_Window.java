@@ -18,7 +18,7 @@ public class Obj_Kitchen_Window extends Entity {
 		type = EntityType.Object;
 		collision = true;
 
-		image = setup("/res/objects/img_window_light", gp.tileSize, gp.tileSize);
+		image = setup("/res/objects/Table_Tile_Window", gp.tileSize, gp.tileSize);
 
 		setDialogue();
 		getImage(image);
@@ -40,7 +40,6 @@ public class Obj_Kitchen_Window extends Entity {
 		gp.gameState = GameState.examineState;
 		if (gp.s.c1Switch[0]) {
 			startDialogue(this, 1);
-			gp.s.c1Switch[0] = false;
 		} else {
 			startDialogue(this, 0);
 		}

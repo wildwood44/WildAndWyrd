@@ -11,7 +11,7 @@ import wildwyrd.game.object.Dialoge;
 public class En_Wasp extends Enemy {
 	public En_Wasp(GamePanel gp) {
 		super(gp,"Wasp",  19, 10, 5, 5, 90, 40, 45);
-        String desc = "More hostile than usual this year.";
+        desc = "More hostile than usual this year.";
 		type = EntityType.Sprite;
 	}
 	

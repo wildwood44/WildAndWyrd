@@ -17,7 +17,7 @@ public class Obj_Basin extends Entity {
 		type = EntityType.Object;
 		collision = true;
 
-		image = setup("/res/objects/img_basin", gp.tileSize, gp.tileSize);
+		image = setup("/res/objects/Table_Tile_Basin", gp.tileSize, gp.tileSize);
 
 		setDialogue();
 		getImage(image);

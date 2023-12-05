@@ -3,9 +3,11 @@ package wildwyrd.game.rooms;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
+import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
-public class Room {
+public class Room extends Entity {
 	public BufferedImage image;
 	public Color color;
 	public int roomId;
@@ -21,14 +23,31 @@ public class Room {
 	Graphics2D g2;
 
 	public Room(GamePanel gp) {
+		super(gp);
 		this.color = Color.yellow;
 		this.roomX = 0;
 		this.roomY = 0;
 		this.gp = gp;
 	}
+	public void drawObjects() {}
 	
 	public void getBackgroundImage() {
 		
+	}
+	
+	public BufferedImage printScroll(int x, int y, int width, int height) {
+		//System.out.println(x + " " + y + " " + width + " " + height);
+		return image.getSubimage(x, y, image.getWidth() -1, image.getHeight() - (image.getHeight()/3));
+	}
+	
+	public void scrollDown() {
+		if(y < 170) {
+			printScroll(x, y, 400, 400);
+			y++;
+		} else {
+			gp.csManager.scenePhase++;
+		}
+		drawObjects();
 	}
 
 

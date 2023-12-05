@@ -3,6 +3,7 @@ package wildwyrd.game.object;
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.items.Item;
 
 public class Obj_Wooden_Bowl extends Entity {
 	GamePanel gp;
@@ -26,7 +27,7 @@ public class Obj_Wooden_Bowl extends Entity {
 		//setLoot();
 	}
 	
-	public void setLoot(Entity loot) {
+	public void setLoot(Item loot) {
 		this.loot = loot;
 		setDialogue();	
 	}

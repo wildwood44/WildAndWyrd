@@ -1,7 +1,5 @@
 package wildwyrd.game.npc;
 
-import java.awt.AlphaComposite;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -31,9 +29,13 @@ public class NPC extends Entity {
 	}
 
 	public BufferedImage getSpecialImage(int xGrid, int yGrid) {
-		if (image == null) {
+		if (image != getSpecialSpriteSheet()) {
 			image = getSpecialSpriteSheet();
 		}
 		return image.getSubimage(xGrid * 48, yGrid * 48, 48, 48);
 	}
+	
+	public void getImage() {}
+	
+	public void climbing(boolean isClimbing) {}
 }

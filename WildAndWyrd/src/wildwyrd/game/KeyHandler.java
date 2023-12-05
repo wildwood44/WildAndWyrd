@@ -60,6 +60,7 @@ public class KeyHandler implements KeyListener {
 			switch (e.getKeyCode()) {
 				case KeyEvent.VK_ENTER :
 					if (gp.ui.slotCol == 0) { //Save game
+						gp.gameState = GameState.saveState;
 						gp.saveLoad.save();
 					} else if (gp.ui.slotCol == 1) { //Open status screen
 						gp.gameState = GameState.statusState;
@@ -99,6 +100,12 @@ public class KeyHandler implements KeyListener {
 					} else {
 						gp.ui.slotCol = 0;
 					}
+			}
+		} else if (gp.gameState == GameState.saveState) {
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_ENTER :
+				gp.gameState = GameState.playState;
+				break;
 			}
 		} else if (gp.gameState == GameState.statusState) {
 			switch (e.getKeyCode()) {

@@ -9,47 +9,37 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
 public class Book extends Entity {
-	private int bookId;
-	private String title;
-	private ReadType readType;
-	private String[] content = new String[5];
+	public int id;
+	public String title;
+	public ReadType readType;
+	protected String[] content;
 	
-	public Book(GamePanel gp, int bookId, ReadType readType) {
+	public Book(GamePanel gp) {
 		super(gp);
-		this.bookId = bookId;
-		this.readType = readType;
-		setPages();
 	}
 	
-	public void setPages() {
+	public void setPages(String url) {
 		int count = 0;
 
 		try {
-			InputStream f = getClass().getResourceAsStream("/res/dialogue/books.txt");
+			InputStream f = getClass().getResourceAsStream("/res/dialogue/book/"+url+".txt");
 			BufferedReader b = new BufferedReader(new InputStreamReader(f));
 			for (String i = b.readLine(); i != null; i = b.readLine()) {
-				String[] line = i.split("\\$ ", 6);
-				if (line[0].equals(Integer.toString(bookId))) {
-					title = line[1];
-					content[count] = line[5];
-					count++;
-				}
+				String[] line = i.split("\\$ ", 3);
+				content[count] = line[2];
+				count++;
 			}
 		} catch (IOException e) {
 			System.out.println(e);
 		}
 	}
 
-	public String readBook(int read) {
-		return content[read];
-	}
-
-	public int getBookId() {
-		return bookId;
-	}
-
 	public String getTitle() {
 		return title;
+	}
+
+	public String readBook(int read) {
+		return content[read];
 	}
 
 	public String[] getContent() {

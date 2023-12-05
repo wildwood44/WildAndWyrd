@@ -72,7 +72,7 @@ public class EventHandler {
 			}
 			else if(gp.currentMap.getId() == 2) {
 				if(hit(2,14,4,"up")) {illusion(gp.iTile[gp.currentMap.getId()][0]);}
-				if(hit(2,14,3,"up")) {teleport(gp.maps[0],10,10);}
+				if(hit(2,14,3,"up")) {teleport(gp.maps[0],10,10); if(gp.s.chapter == 2 && gp.s.swh[6]) {gp.s.part = 2;}}
 				if(hit(2,20,3,"up")) {illusion(gp.iTile[gp.currentMap.getId()][1]);}
 				if(hit(2,20,2,"up")) {teleport(gp.maps[0],16,9);}
 				if(hit(2,14,4,"down")) {}
@@ -106,7 +106,17 @@ public class EventHandler {
 				c1s_Cutscene(6);
 			}
 		} else if (gp.s.chapter == 2) {
-			c1s_Cutscene(7);
+			if (gp.s.swh[5] && gp.s.part == 1) {
+				c1s_Cutscene(7);
+			} else if (gp.s.swh[6] && gp.s.part == 2) {
+				c1s_Cutscene(8);
+			} else if (gp.s.swh[7] && gp.s.part == 3) {
+				c1s_Cutscene(9);
+			} else if (gp.s.swh[8] && gp.s.part == 4) {
+				c1s_Cutscene(10);
+			}
+		} else if (gp.s.chapter == 3) {
+			c1s_Cutscene(11);
 		}
 	}
 
@@ -138,10 +148,8 @@ public class EventHandler {
 			gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
 			gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
 			int col = gp.player.solidArea.y/gp.tileSize;
-			System.out.println(gp.player.solidArea.x + " " + row);
 			eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
 			eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
-			System.out.println(gp.player.solidArea.y/gp.tileSize + " " + eventRect[map][col][row].y/gp.tileSize);
 			if(gp.player.solidArea.y/gp.tileSize == eventRect[map][col][row].y/gp.tileSize && !eventRect[map][col][row].eventDone) {
 				if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
 					hit = true;

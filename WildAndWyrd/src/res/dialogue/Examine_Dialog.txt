@@ -127,7 +127,7 @@ cricket$ 4$ 1$ The other crickets had fled.
 scion$ default$ 1$ Large 'trees' surrounded him in a neat circle like pillars; the 'branches' formed a mosaic ceiling. There was a 'light' from an unknown source that shone in the center in front of Alder.
 scion$ 1$ 1$ The mouse was holding the 'sword's' hilt to Alder's hand while ghostly 'spectors' watched.
 scion_trees$ default$ 1$ Giant trees formed a perfect circle around the clearing like pillars.
-scion_ceiling$ default$ 1$ The ceiling was covered in various different leaves such as oak, cider, alder and many others which Alder did not recognise, their branches were curved so the whole was a spiralling mosaic.
+scion_ceiling$ default$ 1$ The ceiling was covered in oak leaves, their branches were curved so the whole was a spiralling mosaic.
 scion_light$ default$ 1$ From the centre of the clearing a misty light hung from unknown source, illuminating the area as far as the trees.
 scion_sword$ default$ 1$ The double edged sword was a dark green with silver embellishments along the hilt and scabbard. It was a size suited for a mouse but would still be heavy for one. Now that it was closer Alder could see detail in its design. What looked like a thorny stem engraved around the grip, the rain-guard was shaped to resemble leaves and the pommel was tear-shaped. A rounded slot was carved into the scabbard.
 scion_ghost$ default$ 1$ The ghostly specters lingered within the darkness between the trees. Every creature of Albion imaginable was there.

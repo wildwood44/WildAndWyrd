@@ -9,7 +9,7 @@ public class En_Cricket extends Enemy {
 	Entity cricket = gp.npc[3][0];
 	public En_Cricket(GamePanel gp) {
 		super(gp,"Cricket",  20, 10, 0, 8, 90, 10, 23);
-        String desc = "Big grasshoppers with long antenna. Can jump a fair distance.";
+        desc = "Big grasshoppers with long antenna. Can jump a fair distance.";
 		type = EntityType.Sprite;
 		//speed = 1;
 		//setDialogue();

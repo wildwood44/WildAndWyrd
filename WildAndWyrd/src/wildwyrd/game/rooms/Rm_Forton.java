@@ -1,10 +1,9 @@
 package wildwyrd.game.rooms;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
-import java.io.IOException;
-import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import wildwyrd.game.GamePanel;
-import wildwyrd.game.tile.UtilityTool;
 
 public class Rm_Forton extends Room {
 	GamePanel gp;
@@ -14,39 +13,26 @@ public class Rm_Forton extends Room {
 		super(gp);
 		this.gp = gp;
 		roomId = 1;
-		room_width = 1600;
-		room_height = 600;
+		room_width = gp.screenWidth;
+		room_height = gp.screenHeight;	
+		x = 0;
 	}
 
-	public void getBackgroundImage() {		
-		UtilityTool uTool = new UtilityTool();
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/res/backgrounds/Forton_Backgound.png"));
-			image = uTool.scaleImage(image, gp.screenWidth, gp.screenHeight);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		while(true) {
-			g2.drawImage(image, 0, 0, gp);
-		}
+	public void drawObjects() {
+		image = setup("/res/backgrounds/animated/tapestry-1", 400, 800);
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+		image2 = printScroll(x, y, 400,600);
+		g2.drawImage(image2, (room_width / 4), 0, gp);
+	}
+
+	public void getBackgroundImage() {
+		image = setup("/res/backgrounds/Forton_Backgound", room_width, room_height);
+		g2.drawImage(image, screenX, screenY, gp);	
 	}
 	public void draw(Graphics2D g2) {
 		this.g2 = g2;
-		//if (image != null) {
-		//getBackgroundImage();
-		//}
-		UtilityTool uTool = new UtilityTool();
-
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/res/backgrounds/Forton_Backgound.png"));
-			image = uTool.scaleImage(image, gp.screenWidth, gp.screenHeight);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		//while(true) {
-			g2.drawImage(image, 0, 0, gp);
-		//}
-		//g2.dispose();
+		getBackgroundImage();
+		//scrollImage();
+		//drawObjects();
 	}
 }

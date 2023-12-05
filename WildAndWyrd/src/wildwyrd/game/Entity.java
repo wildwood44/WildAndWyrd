@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
+import wildwyrd.game.items.Item;
 import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.tile.UtilityTool;
 
@@ -61,7 +62,7 @@ public class Entity {
 	public final int type_obstacle = 3;
 	public Timer timer;
 	public long startTime = -1;
-	public Entity loot;
+	public Item loot;
 	public int shill = 0;
 	public boolean opened = false;
 	public boolean drawing = true;
@@ -288,7 +289,7 @@ public class Entity {
 		}
 	}
 	
-	public void setLoot(Entity loot) {
+	public void setLoot(Item loot) {
 		this.loot = loot;
 	}
 	

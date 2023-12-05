@@ -14,6 +14,7 @@ public class Quest_Main extends Quest {
 		id = qId;
 		name = qName;
 		require = new boolean[1];
+		accepted = true;
 		this.gp = gp;
 	}
 	
@@ -32,6 +33,16 @@ public class Quest_Main extends Quest {
 				return "Speak to Florence";
 			} else {
 				return "Go to bed";
+			}
+		} else if (gp.s.chapter == 2) {
+			if(gp.s.c2Switch[0] == true) {
+				return "Enter cottage";
+			} else if (gp.s.c2Switch[1] == true) {
+				return "Speak to Trissie";
+			} else if (gp.s.c2Switch[2] == true) {
+				return "Fight dummy";
+			} else {
+				return "Speak to Trissie";
 			}
 		}
 		return "";

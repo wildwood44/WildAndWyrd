@@ -2,7 +2,6 @@ package wildwyrd.game.skill;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
-import wildwyrd.game.GameState;
 import wildwyrd.game.object.Dialoge;
 
 public class Skill extends Entity {

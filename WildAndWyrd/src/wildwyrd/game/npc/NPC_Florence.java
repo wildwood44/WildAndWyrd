@@ -82,6 +82,8 @@ public class NPC_Florence extends NPC {
 		dialogues[5][5] = new Dialoge("Alder","I got stung by wasps a few times but I'm alright!" ,1);
 		dialogues[5][6] = new Dialoge("Florence","*Sigh*" ,1);
 		dialogues[5][7] = new Dialoge("Florence","Give the bugs and the knife to me and go relax yourself." ,1);
+		dialogues[6][0] = new Dialoge("Florence", "Triss is very brave." ,1);
+		dialogues[6][1] = new Dialoge("Florence", "She risks everything to help people get around the Gowls." ,1);
 	}
 	
 	public void setDialogueOptions() {
@@ -123,18 +125,21 @@ public class NPC_Florence extends NPC {
 		facePlayer();
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
-		if(gp.s.c1Switch[1] == true) {
-			startDialogue(this, 0);
-		} else if(gp.s.c1Switch[3] == true) {
-			if(gp.playable.get(0).getWeapon_prime().name == null) {
-				startDialogue(this, 3);
-			} else {
-				startDialogue(this, 4);
+		if(gp.s.chapter == 1) {
+			if(gp.s.c1Switch[1] == true) {
+				startDialogue(this, 0);
+			} else if(gp.s.c1Switch[3] == true) {
+				if(gp.playable.get(0).getWeapon_prime().name == null) {
+					startDialogue(this, 3);
+				} else {
+					startDialogue(this, 4);
+				}
+			} else if(gp.s.c1Switch[4] == true) {
+				startDialogue(this, 5);
 			}
-		} else if(gp.s.c1Switch[4] == true) {
-			startDialogue(this, 5);
+		} else if(gp.s.chapter == 2) {
+			startDialogue(this, 6);
 		}
-		
 		gp.keyH.enterPressed = false;
 	}
 }

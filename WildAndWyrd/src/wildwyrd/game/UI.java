@@ -21,10 +21,9 @@ import javax.swing.JPanel;
 import wildwyrd.game.combat.CombatStatus;
 import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.cutscenes.Cutscene;
+import wildwyrd.game.items.Item;
 import wildwyrd.game.library.Book;
 import wildwyrd.game.playable.Combatant;
-import wildwyrd.game.skill.Skill;
-
 public class UI {
 	GamePanel gp;
 	Cutscene c;
@@ -66,11 +65,6 @@ public class UI {
 	public UI(GamePanel gp) {
 		this.gp = gp;
 		arial_40 = new Font("Monospaced", 0, 40);
-		/*Story s = gp.s;
-		if(gp.s == null) {
-			s = new Story();
-		}	
-		c = new Cutscene(gp, new Story());*/
 	}
 
 	public void draw(Graphics2D g2) {
@@ -96,6 +90,10 @@ public class UI {
 
 		if (gp.gameState == GameState.menuState) {
 			drawMenuBarScreen();
+		}
+
+		if (gp.gameState == GameState.saveState) {
+			drawSaveScreen();
 		}
 
 		if (gp.gameState == GameState.statusState) {
@@ -373,10 +371,8 @@ public class UI {
 							g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 							g2.drawString(line, x + 20, y);
 							j++;
-							
 						}
 					}
-					
 					y += 40;
 				}
 				//Display Up arrow
@@ -435,6 +431,18 @@ public class UI {
 		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 	}
 	
+	public void drawSaveScreen() {
+		int frameX = gp.tileSize * 4;
+		int frameY = gp.tileSize * 3;
+		int frameWidth = gp.tileSize * 4;
+		int frameHeight = gp.tileSize;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke());
+		g2.drawString("Game Saved!", frameX + 40, frameY + 40);
+	}
+	
 	public void drawStatusScreen() {
 		int frameX = 20;
 		int frameY = 25;
@@ -489,25 +497,30 @@ public class UI {
 		int i;
 		for (i = 0; i < gp.player.inventory.size(); ++i) {
 			try {
-			g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY, null);
-			if(gp.player.inventory.get(i).amount > 1) {
-				g2.setFont(g2.getFont().deriveFont(32f));
-				int amountX;
-				int amountY;
-				String s = "" + gp.player.inventory.get(i).amount;
-				amountX = getXforAlignToRightText(s , slotX + 44);
-				amountY = slotY + gp.tileSize;
-				
-				//Shadow
-				g2.setColor(new Color(60,60,60));
-				g2.drawString(s, amountX, amountY);
-			}
-			slotX += gp.tileSize;
-			if (i == 6 || i == 13 || i == 20) {
-				slotX = slotXstart;
-				slotY += gp.tileSize;
-			}
+				g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY, null);
+				if(gp.player.inventory.get(i).amount > 1) {
+					g2.setFont(g2.getFont().deriveFont(32f));
+					int amountX;
+					int amountY;
+					String s = "" + gp.player.inventory.get(i).amount;
+					amountX = getXforAlignToRightText(s , slotX + 44);
+					amountY = slotY + gp.tileSize;
+					
+					//Shadow
+					g2.setColor(new Color(60,60,60));
+					g2.drawString(s, amountX, amountY);
+				}
+				slotX += gp.tileSize;
+				if (i == 6 || i == 13 || i == 20) {
+					slotX = slotXstart;
+					slotY += gp.tileSize;
+				}
 			} catch (NullPointerException e) {
+				for (i = 0; i < gp.player.inventory.size(); ++i) {
+					if(gp.player.inventory.get(i) == null) {
+						gp.player.removeFromInventory(gp.player.inventory.get(i));
+					}
+				}
 				System.out.println(e);
 			}
 		}
@@ -719,7 +732,9 @@ public class UI {
 						lineNum += 20;
 					}
 				}
-				g2.drawString(gp.objective.quests[slotCol + topValue].printQuestStatus(), frameX + 40, frameY + lineNum + 20);
+				if(gp.objective.quests[slotCol + topValue].id != 0) {
+					g2.drawString(gp.objective.quests[slotCol + topValue].printQuestStatus(), frameX + 40, frameY + lineNum + 20);
+				}
 			}
 		} catch (NullPointerException e) {
 			System.out.println(e);
@@ -898,7 +913,7 @@ public class UI {
 	public void drawCombatInventoryScreen(int x, int y, int width) {
 		int slotYstart = y + gp.tileSize + 15;
 		int slotY = slotYstart;
-		ArrayList<Entity> items = gp.player.combatItems(itemFilter);
+		ArrayList<Item> items = gp.player.combatItems(itemFilter);
 		for(int i = firstValue; i < items.size(); i++) {
 			if(slotY + 30 > 500) {
 				break;
@@ -948,7 +963,7 @@ public class UI {
 	}
 	
 	public boolean filter(int i) {
-		ArrayList<Entity> items = gp.player.combatItems(itemFilter);
+		ArrayList<Item> items = gp.player.combatItems(itemFilter);
 		if(itemFilter == null) {
 			if(items.get(i).type == EntityType.Food ||
 				items.get(i).type == EntityType.Health ||

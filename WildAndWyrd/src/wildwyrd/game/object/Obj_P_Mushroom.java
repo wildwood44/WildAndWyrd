@@ -3,6 +3,7 @@ package wildwyrd.game.object;
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.items.Item;
 
 public class Obj_P_Mushroom extends Entity {
 	GamePanel gp;
@@ -23,7 +24,7 @@ public class Obj_P_Mushroom extends Entity {
 		getImage(image);
 	}
 	
-	public void setLoot(Entity loot) {
+	public void setLoot(Item loot) {
 		this.loot = loot;
 		setDialogue();	
 	}
@@ -52,6 +53,7 @@ public class Obj_P_Mushroom extends Entity {
 	}
 
 	public void interact() {
+		gp.ui.choiceSlot = 0;
 		if (!opened) {
 			startDialogue(this, 0);
 		} else {

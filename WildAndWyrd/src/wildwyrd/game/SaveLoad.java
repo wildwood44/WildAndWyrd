@@ -8,6 +8,8 @@ import java.io.ObjectOutputStream;
 
 import wildwyrd.data.DataStorage;
 import wildwyrd.game.items.Armour;
+import wildwyrd.game.items.Primary;
+import wildwyrd.game.items.Secondary;
 import wildwyrd.game.items.Weapon;
 import wildwyrd.game.playable.Playable;
 
@@ -102,7 +104,6 @@ public class SaveLoad {
 						ds.mapObjectWorldY[mapNum][i] = gp.obj[mapNum][i].worldY;
 						if(gp.obj[mapNum][i].loot != null) {
 							ds.mapObjectLootIds[mapNum][i] = gp.obj[mapNum][i].loot.id;
-							System.out.println(ds.mapObjectId[mapNum][i] + " " + ds.mapObjectLootIds[mapNum][i]);
 						}
 						ds.mapObjectOpened[mapNum][i] = gp.obj[mapNum][i].opened;
 					}
@@ -122,7 +123,6 @@ public class SaveLoad {
 				for (int i = 0; i < gp.glossary.sections.length; i++) {
 					for (int j = 0; j < gp.glossary.getSize(i); j++) {
 						if (gp.glossary.page[i][j] != null && gp.glossary.page[i][j].isFound()) {
-							System.out.println(gp.glossary.page[i][j].getName());
 							ds.found[i][j] = gp.glossary.page[i][j].isFound();
 						}
 					}
@@ -144,16 +144,16 @@ public class SaveLoad {
 				gp.playable.set(i,new Playable(gp, "Alder", ds.maxHealth[i], ds.maxStamina[i],
 						ds.baseAttack[i], ds.baseDefence[i], ds.baseAccuracy[i], ds.baseEvasion[i], ds.baseSpeed[i]));
 				gp.playable.get(i).setHealthAndStamina(ds.health[i],ds.stamina[i]);
-				if(ds.currentHat[i] >= 0 && gp.eGenerator.getObject(ds.currentHat[i]) instanceof Armour) {
-					gp.playable.get(i).setHead(gp.eGenerator.getObject(ds.currentHat[i]));
-				} if(ds.currentShirt[i] >= 0 && gp.eGenerator.getObject(ds.currentShirt[i]) instanceof Armour) {
-					gp.playable.get(i).setBody(gp.eGenerator.getObject(ds.currentShirt[i]));
-				} if(ds.currentTrousers[i] >= 0 && gp.eGenerator.getObject(ds.currentTrousers[i]) instanceof Armour) {
-					gp.playable.get(i).setLegs(gp.eGenerator.getObject(ds.currentTrousers[i]));
-				} if(ds.currentPrimary[i] >= 0 && gp.eGenerator.getObject(ds.currentPrimary[i]) instanceof Weapon) {
-					gp.playable.get(i).setWeapon_prime((Weapon)gp.eGenerator.getObject(ds.currentPrimary[i]));
-				} if(ds.currentSecondary[i] >= 0 && gp.eGenerator.getObject(ds.currentSecondary[i]) instanceof Weapon) {
-					gp.playable.get(i).setWeapon_second((Weapon)gp.eGenerator.getObject(ds.currentSecondary[i]));
+				if(ds.currentHat[i] >= 0 && gp.eGenerator.getItem(ds.currentHat[i]) instanceof Armour) {
+					gp.playable.get(i).setHead(gp.eGenerator.getItem(ds.currentHat[i]));
+				} if(ds.currentShirt[i] >= 0 && gp.eGenerator.getItem(ds.currentShirt[i]) instanceof Armour) {
+					gp.playable.get(i).setBody(gp.eGenerator.getItem(ds.currentShirt[i]));
+				} if(ds.currentTrousers[i] >= 0 && gp.eGenerator.getItem(ds.currentTrousers[i]) instanceof Armour) {
+					gp.playable.get(i).setLegs(gp.eGenerator.getItem(ds.currentTrousers[i]));
+				} if(ds.currentPrimary[i] >= 0 && gp.eGenerator.getItem(ds.currentPrimary[i]) instanceof Primary) {
+					gp.playable.get(i).setWeapon_prime((Weapon)gp.eGenerator.getItem(ds.currentPrimary[i]));
+				} if(ds.currentSecondary[i] >= 0 && gp.eGenerator.getItem(ds.currentSecondary[i]) instanceof Secondary) {
+					gp.playable.get(i).setWeapon_second((Weapon)gp.eGenerator.getItem(ds.currentSecondary[i]));
 				}
 			}
 		//	gp.player = ds.player;
@@ -167,7 +167,7 @@ public class SaveLoad {
 			gp.player.worldY = ds.worldY;
 			gp.player.inventory.clear();
 			for(int i = 0; i < ds.itemId.size(); i++) {
-				gp.player.inventory.add(gp.eGenerator.getObject(ds.itemId.get(i)));
+				gp.player.inventory.add(gp.eGenerator.getItem(ds.itemId.get(i)));
 				gp.player.inventory.get(i).amount = ds.itemAmount.get(i);
 			}
 			for(int mapNum = 0; mapNum < gp.maxMap; mapNum++) {
@@ -179,7 +179,7 @@ public class SaveLoad {
 						gp.obj[mapNum][i].worldX = ds.mapObjectWorldX[mapNum][i];
 						gp.obj[mapNum][i].worldY = ds.mapObjectWorldY[mapNum][i];
 						if(ds.mapObjectLootIds[mapNum][i] > 0) {
-							gp.obj[mapNum][i].loot = gp.eGenerator.getObject(ds.mapObjectLootIds[mapNum][i]);
+							gp.obj[mapNum][i].loot = gp.eGenerator.getItem(ds.mapObjectLootIds[mapNum][i]);
 						}
 						gp.obj[mapNum][i].opened = ds.mapObjectOpened[mapNum][i];
 						if(gp.obj[mapNum][i].opened == true) {
@@ -199,11 +199,9 @@ public class SaveLoad {
 					}
 				}
 				//Glossary
-				System.out.println("ping");
 				for (int i = 0; i < ds.found.length; i++) {
 					for (int j = 0; j < ds.found[i].length; j++) {
 						if (gp.glossary.page[i][j] != null && ds.found[i][j]) {
-							System.out.println(gp.glossary.page[i][j].getName());
 							gp.glossary.page[i][j].findGlossaryItem();
 						}
 					}
