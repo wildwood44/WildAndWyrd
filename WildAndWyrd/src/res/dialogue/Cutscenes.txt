@@ -61,7 +61,7 @@ chapter$ switch$ part$ line$ dialog$
 0$ 0$ 1$ 60$ Dilecto£Agrimus.
 0$ 0$ 1$ 61$ Dilecto£I wonder, what creature do you have in mind to successed you as Scion?
 0$ 0$ 1$ 62$ Dilecto£Whoever you pick I shall always trust your judgement.
-1$ 0$ 1$ 2$ Deep in the Fuller Woods north of the Fort a lone creature wandered through the underbrush. 
+1$ 0$ 1$ 1$ Deep in the Fuller Woods north of the Fort a lone creature wandered through the underbrush. 
 1$ 0$ 1$ 2$ It was a hedgehog, shouldering a travelling bag with various herbs and seeds. His quills poked through his jacket, hood and blue scarf. He whispered into the air.
 1$ 0$ 1$ 3$ Hedgehog£The rabbit seeks his burrow.
 1$ 0$ 1$ 4$ There was silence excluding the song of birds and insects in the setting summer air. Suddenly, a door opened up in the face of a nearby boulder, through which the homely living room of a cottage could be seen. 
