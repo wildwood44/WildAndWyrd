@@ -70,7 +70,11 @@ chapter$ switch$ part$ line$ dialog$
 1$ 0$ 1$ 6$ Thay£And you Florence.
 1$ 0$ 1$ 7$ Thay£I'm here to see your mistress.
 1$ 0$ 1$ 8$ Florence£She's upstairs, should be down soon though.
+<<<<<<< HEAD
 1$ 0$ 1$ 7$ Thay£And where's young Alder?
+=======
+1$ 0$ 1$ 7$ Thay£And where’s young Alder?
+>>>>>>> 7aa046cc32240cbcff4ede2621a84c04e246b3db
 1$ 0$ 1$ 8$ Florence£He's inside.
 1$ 0$ 1$ 9$ Florence£He's still cleaning the dishes.
 1$ 0$ 1$ 10$ Florence£Alder!!
