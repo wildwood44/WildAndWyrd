@@ -92,11 +92,11 @@ public class GamePanel extends JPanel implements Runnable {
 		playable.add(0,new Playable(this, "Alder", 60, 60,
 				10, 10, 5, 10, 5));
 		entityList = new ArrayList<>();
-		setPreferredSize(new Dimension(screenWidth, screenHeight));
-		setBackground(Color.black);
-		setDoubleBuffered(true);
-		addKeyListener(keyH);
-		setFocusable(true);
+		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+		this.setBackground(Color.black);
+		this.setDoubleBuffered(true);
+		this.addKeyListener(keyH);
+		this.setFocusable(true);
 	}
 
 	public void setupGame() {
@@ -143,9 +143,9 @@ public class GamePanel extends JPanel implements Runnable {
 	@Override
 	public void run() {
 		double drawInterval = 1000000000 / FPS;
-		double delta = 0.0D;
+		double delta = 0;
 		long lastTime = System.nanoTime();
-		long timer = 0L;
+		long timer = 0;
 		int drawCount = 0;
 
 		while (gameThread != null) {
@@ -153,16 +153,15 @@ public class GamePanel extends JPanel implements Runnable {
 			delta += (currentTime - lastTime) / drawInterval;
 			timer += currentTime - lastTime;
 			lastTime = currentTime;
-			if (delta >= 1.0D) {
+			if (delta >= 1) {
 				update();
 				drawToTempScreen();
 				drawToScreen();
-				--delta;
-				++drawCount;
+				delta--;
+				drawCount++;
 			}
 
 			if (timer >= 1000000000L) {
-				//System.out.println(gameState);
 				System.out.println("FPS:" + drawCount);
 				drawCount = 0;
 				timer = 0L;

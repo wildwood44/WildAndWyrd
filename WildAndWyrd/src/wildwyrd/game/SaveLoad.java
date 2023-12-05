@@ -168,7 +168,6 @@ public class SaveLoad {
 			gp.player.inventory.clear();
 			for(int i = 0; i < ds.itemId.size(); i++) {
 				gp.player.inventory.add(gp.eGenerator.getItem(ds.itemId.get(i)));
-				System.out.println(gp.player.inventory.get(i));
 				gp.player.inventory.get(i).amount = ds.itemAmount.get(i);
 			}
 			for(int mapNum = 0; mapNum < gp.maxMap; mapNum++) {
