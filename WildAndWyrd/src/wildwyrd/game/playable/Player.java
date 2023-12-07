@@ -87,7 +87,7 @@ public class Player extends Entity {
 		if (image == null) {
 			image = getSpriteSheet();
 		}
-		return image.getSubimage(xGrid * 48, yGrid * 48, 48, 48);
+		return image.getSubimage(xGrid * 64, yGrid * 64, 64, 64);
 	}
 
 	public void update() {

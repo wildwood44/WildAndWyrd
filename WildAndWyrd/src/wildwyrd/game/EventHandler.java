@@ -62,19 +62,19 @@ public class EventHandler {
 		if(canTouchEvent) {
 			if(gp.currentMap.getId() == 0) {
 				if(hit(0,13,8,"up")) {teleport(gp.maps[1],15,3);}
-				if(hit(0,10,10,"down")) {teleport(gp.maps[2],14,4);
+				if(hit(0,10,10,"down")) {gp.playSE(1);teleport(gp.maps[2],14,4);
 					if(gp.s.swh[1] == true) {gp.s.part = 2;}
 				}
-				if(hit(0,16,9,"down")) {teleport(gp.maps[2],20,3);}
+				if(hit(0,16,9,"down")) {gp.playSE(1);teleport(gp.maps[2],20,3);}
 			}
 			else if(gp.currentMap.getId() == 1) {
 				if(hit(1,15,4,"down")) {teleport(gp.maps[0],13,9);}
 			}
 			else if(gp.currentMap.getId() == 2) {
 				if(hit(2,14,4,"up")) {illusion(gp.iTile[gp.currentMap.getId()][0]);}
-				if(hit(2,14,3,"up")) {teleport(gp.maps[0],10,10); if(gp.s.chapter == 2 && gp.s.swh[6]) {gp.s.part = 2;}}
+				if(hit(2,14,3,"up")) {gp.playSE(1);teleport(gp.maps[0],10,10); if(gp.s.chapter == 2 && gp.s.swh[6]) {gp.s.part = 2;}}
 				if(hit(2,20,3,"up")) {illusion(gp.iTile[gp.currentMap.getId()][1]);}
-				if(hit(2,20,2,"up")) {teleport(gp.maps[0],16,9);}
+				if(hit(2,20,2,"up")) {gp.playSE(1);teleport(gp.maps[0],16,9);}
 				if(hit(2,14,4,"down")) {}
 				if(hitRow(2,11,"down")) {
 					if(gp.playable.get(0).getWeapon_prime().name != null) {

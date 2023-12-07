@@ -43,7 +43,7 @@ public class NPC_Kyla extends NPC {
 		if (image == null) {
 			image = getSpriteSheet();
 		}
-		return image.getSubimage(xGrid * 48, yGrid * 48, 48, 48);
+		return image.getSubimage(xGrid * gp.tileSize, yGrid * gp.tileSize, gp.tileSize, gp.tileSize);
 	}
 	
 	public void getImage() {

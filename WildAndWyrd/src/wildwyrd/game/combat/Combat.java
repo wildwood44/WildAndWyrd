@@ -21,6 +21,7 @@ public class Combat extends Entity {
 	public boolean win;
 	private int turn = 0;
 	public int target;
+	public StringBuilder sb;
 	
 	public Combat(GamePanel gp) {
 		super(gp);

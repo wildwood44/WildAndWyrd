@@ -14,6 +14,7 @@ import wildwyrd.game.items.Weapon;
 import wildwyrd.game.npc.NPC;
 import wildwyrd.game.npc.NPC_Florence;
 import wildwyrd.game.npc.NPC_Kyla;
+import wildwyrd.game.npc.NPC_Rat_Siluette;
 import wildwyrd.game.npc.NPC_Thay;
 import wildwyrd.game.npc.NPC_Trissie;
 import wildwyrd.game.object.Obj_Alder_Bed;
@@ -437,6 +438,7 @@ public class CutsceneManager {
 			gp.player.worldY = gp.tileSize * 7;
 			drawRoom();
 			if(fadeIn(0.05f)) {
+				createActor(new NPC_Rat_Siluette(gp), gp.tileSize * 12, gp.tileSize * 9, "up");
 				scenePhase++;
 			}
 		} else if (scenePhase == 7) {
@@ -450,6 +452,8 @@ public class CutsceneManager {
 		} else if (scenePhase == 9) {
 			drawRoom();
 			if(fadeOut(0.005f)) {
+				destroyActor(actor.name);
+				destroyActor(NPC_Rat_Siluette.npcName);
 				gp.currentMap = gp.maps[2];
 				actor = getActor(PlayerDummy.npcName);
 				gp.player.worldX = actor.worldX;
