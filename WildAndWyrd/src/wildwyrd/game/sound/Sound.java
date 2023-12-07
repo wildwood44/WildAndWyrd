@@ -24,7 +24,7 @@ public class Sound {
 			clip = AudioSystem.getClip();
 			clip.open(ais);
 		} catch(Exception e){
-			
+			System.out.println(e);
 		}
 	}
 	

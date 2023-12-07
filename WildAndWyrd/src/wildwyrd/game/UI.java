@@ -80,6 +80,10 @@ public class UI {
 			Integer var2 = gp.selectedObj;
 		}
 
+		if (gp.gameState == GameState.pauseState) {
+			drawPauseScreen();
+		}
+
 		if (gp.gameState == GameState.examineState && selectedObject != null) {
 			drawExamineScreen();
 		}
@@ -405,6 +409,13 @@ public class UI {
 				y += 30;
 			}
 		}
+	}
+	
+	public void drawPauseScreen() {
+		String text = "PAUSED";
+		int x = getXforCenteredText(text);
+		int y = gp.screenHeight/2;
+		g2.drawString(text, x, y);
 	}
 
 	public void drawMenuBarScreen() {

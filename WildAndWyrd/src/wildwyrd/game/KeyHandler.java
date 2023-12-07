@@ -613,6 +613,11 @@ public class KeyHandler implements KeyListener {
 				gp.gameState = GameState.titleState;
 				break;
 			}
+		} else if (gp.gameState == GameState.pauseState) {
+			switch (e.getKeyCode()) {
+			default :
+				gp.gameState = GameState.playState;
+			}
 		} else if (gp.gameState == GameState.playState) {
 			switch (e.getKeyCode()) {
 				case KeyEvent.VK_ENTER :
@@ -641,6 +646,8 @@ public class KeyHandler implements KeyListener {
 				case KeyEvent.VK_S :
 					downPressed = true;
 					break;
+				case KeyEvent.VK_SPACE:
+					gp.gameState = GameState.pauseState;
 				case 82 :
 					switch(gp.currentMap.getId())
 					{

@@ -32,7 +32,24 @@ public class NPC extends Entity {
 		if (image != getSpecialSpriteSheet()) {
 			image = getSpecialSpriteSheet();
 		}
-		return image.getSubimage(xGrid * 48, yGrid * 48, 48, 48);
+		return image.getSubimage(xGrid * gp.tileSize, yGrid * gp.tileSize, gp.tileSize, gp.tileSize);
+	}
+
+	public BufferedImage getSpriteSheet() {
+		BufferedImage sprite = null;
+		try {
+			sprite = ImageIO.read(getClass().getResourceAsStream("/res/sprite/WildWyrdSprites.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sprite;
+	}
+
+	public BufferedImage getPlayerImage(int xGrid, int yGrid) {
+		if (image == null) {
+			image = getSpriteSheet();
+		}
+		return image.getSubimage(xGrid * gp.tileSize, yGrid * gp.tileSize, gp.tileSize, gp.tileSize);
 	}
 	
 	public void getImage() {}
