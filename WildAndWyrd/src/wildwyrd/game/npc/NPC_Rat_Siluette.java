@@ -7,9 +7,6 @@ import javax.imageio.ImageIO;
 
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
-import wildwyrd.game.items.Itm_Bow;
-import wildwyrd.game.items.Itm_Primative_Arrow;
-import wildwyrd.game.object.Dialoge;
 
 public class NPC_Rat_Siluette extends NPC {
 	public static final int npcId = 6;
