@@ -61,6 +61,7 @@ public class KeyHandler implements KeyListener {
 				case KeyEvent.VK_ENTER :
 					if (gp.ui.slotCol == 0) { //Save game
 						gp.gameState = GameState.saveState;
+						gp.playSE(0);
 						gp.saveLoad.save();
 					} else if (gp.ui.slotCol == 1) { //Open status screen
 						gp.gameState = GameState.statusState;
@@ -351,6 +352,7 @@ public class KeyHandler implements KeyListener {
 				break;
 			case KeyEvent.VK_ENTER:
 				if(!gp.ui.openBook) {
+					gp.playSE(10);
 					gp.ui.openBook = true;
 				}
 				break;
@@ -369,11 +371,13 @@ public class KeyHandler implements KeyListener {
 			default :
 				if(gp.ui.openBook) {
 					if (gp.ui.slotRow != gp.ui.selectedBookshelf.length - 1) {
+						gp.playSE(11);
 						gp.ui.slotRow++;
 					} else {
 						gp.ui.slotRow = 0;
 					}
 					if(gp.ui.selectedBook.getContent()[gp.ui.slotRow] == null) {
+						gp.playSE(12);
 						gp.ui.openBook = false;
 						gp.ui.slotRow = 0;
 					}
@@ -609,6 +613,11 @@ public class KeyHandler implements KeyListener {
 				gp.gameState = GameState.titleState;
 				break;
 			}
+		} else if (gp.gameState == GameState.pauseState) {
+			switch (e.getKeyCode()) {
+			default :
+				gp.gameState = GameState.playState;
+			}
 		} else if (gp.gameState == GameState.playState) {
 			switch (e.getKeyCode()) {
 				case KeyEvent.VK_ENTER :
@@ -637,6 +646,8 @@ public class KeyHandler implements KeyListener {
 				case KeyEvent.VK_S :
 					downPressed = true;
 					break;
+				case KeyEvent.VK_SPACE:
+					gp.gameState = GameState.pauseState;
 				case 82 :
 					switch(gp.currentMap.getId())
 					{

@@ -24,19 +24,22 @@ import wildwyrd.game.objective.Objective;
 import wildwyrd.game.playable.Playable;
 import wildwyrd.game.playable.Player;
 import wildwyrd.game.rooms.Room;
+import wildwyrd.game.sound.Sound;
 import wildwyrd.game.tile.CollisionChecker;
 import wildwyrd.game.tile.InteractiveTile;
 import wildwyrd.game.tile.Map;
 import wildwyrd.game.tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
-	final int originalTileSize = 16;
+	//SCREEN SETTINGS
+	final int originalTileSize = 16; // 16x16 tile
 	final int scale = 4;
-	public final int tileSize = 64;
+	public final int tileSize = originalTileSize * scale;  // 64x64 tile
 	public final int maxScreenCol = 12;
 	public final int maxScreenRow = 8;
 	public final int screenWidth = 768;
 	public final int screenHeight = 512;
+	//WORLD SETTINGS
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
 	//public final int worldWidth = maxWorldCol * tileSize;
@@ -48,17 +51,20 @@ public class GamePanel extends JPanel implements Runnable {
 	BufferedImage tempScreen;
 	Graphics2D g2;
 	public EventHandler eHandler;
+	//FPS
 	int FPS = 60;
+	//SYSTEM
 	public TileManager tileM;
 	public KeyHandler keyH = new KeyHandler(this);
+	public Sound sound = new Sound();
 	public CollisionChecker cChecker;
+	public AssetSetter aSetter = new AssetSetter(this);
+	Thread gameThread;
 	public UI ui = new UI(this);
 	public Room room = new Room(this);
-	public AssetSetter aSetter = new AssetSetter(this);
 	public CutsceneManager csManager = new CutsceneManager(this);
 	public Objective objective = new Objective(this);
 	public Glossary glossary = new Glossary();
-	Thread gameThread;
 	int playerY = 100;
 	int playerX = 100;
 	int playerSpeed = 4;
@@ -306,6 +312,21 @@ public class GamePanel extends JPanel implements Runnable {
 		Graphics g = getGraphics();
 		g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, (ImageObserver) null);
 		g.dispose();
+	}
+	
+	public void playMusic(int i) {
+		sound.setFile(i);
+		sound.play();
+		sound.loop();
+	}
+	
+	public void stopMusic() {
+		sound.stop();
+	}
+	
+	public void playSE(int i) {
+		sound.setFile(i);
+		sound.play();
 	}
 	
 	public boolean objectExists(int objectId, int mapId) {

@@ -80,6 +80,10 @@ public class UI {
 			Integer var2 = gp.selectedObj;
 		}
 
+		if (gp.gameState == GameState.pauseState) {
+			drawPauseScreen();
+		}
+
 		if (gp.gameState == GameState.examineState && selectedObject != null) {
 			drawExamineScreen();
 		}
@@ -405,6 +409,13 @@ public class UI {
 				y += 30;
 			}
 		}
+	}
+	
+	public void drawPauseScreen() {
+		String text = "PAUSED";
+		int x = getXforCenteredText(text);
+		int y = gp.screenHeight/2;
+		g2.drawString(text, x, y);
 	}
 
 	public void drawMenuBarScreen() {
@@ -1075,28 +1086,32 @@ public class UI {
 	//Automatic line breaks
 	public String[] breakLines(String text, int size) {
 		ArrayList<String> lines = new ArrayList<String>();
-		while(text.length() > 0){
-			int pos = text.lastIndexOf(" ", size);
-			if(text.contains("£")) {
-				pos = text.lastIndexOf("£", size);
-				if (pos == -1) {
-					pos = text.lastIndexOf(" ", size);
+		try {
+			while(text.length() > 0){
+				int pos = text.lastIndexOf(" ", size);
+				if(text.contains("£")) {
+					pos = text.lastIndexOf("£", size);
+					if (pos == -1) {
+						pos = text.lastIndexOf(" ", size);
+					}
+					//text = text.replaceFirst("£", "");
+					//pos -= 1;
 				}
-				//text = text.replaceFirst("£", "");
-				//pos -= 1;
+				if (size > text.length()) {
+					pos = text.length() - 1;
+				}
+				try {
+					String found = text.substring(0, pos + 1);
+					text = text.substring(pos + 1);
+					lines.add(found);
+				} catch (StringIndexOutOfBoundsException e) {
+					String found = text.substring(0, pos + 1);
+					text = text.substring(pos + 1);
+					lines.add(found);
+				}
 			}
-			if (size > text.length()) {
-				pos = text.length() - 1;
-			}
-			try {
-				String found = text.substring(0, pos + 1);
-				text = text.substring(pos + 1);
-				lines.add(found);
-			} catch (StringIndexOutOfBoundsException e) {
-				String found = text.substring(0, pos + 1);
-				text = text.substring(pos + 1);
-				lines.add(found);
-			}
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 		String[] lineBreaks = lines.toArray(new String[lines.size()]);
 		return lineBreaks;
