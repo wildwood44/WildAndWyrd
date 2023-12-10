@@ -147,19 +147,19 @@ public class KeyHandler implements KeyListener {
 					break;
 				case KeyEvent.VK_LEFT :
 				case KeyEvent.VK_A :
-					gp.ui.slotCol2 = getNext(gp.ui.slotCol2, 6);
+					gp.ui.slotCol2 = getNext(gp.ui.slotCol2, 5);
 					break;
 				case KeyEvent.VK_UP :
 				case KeyEvent.VK_W :
-					gp.ui.slotRow2 = getNext(gp.ui.slotRow2, 3);
+					gp.ui.slotRow2 = getNext(gp.ui.slotRow2, 2);
 					break;
 				case KeyEvent.VK_RIGHT :
 				case KeyEvent.VK_D :
-					gp.ui.slotCol2 = getPrev(gp.ui.slotCol2, 6);
+					gp.ui.slotCol2 = getPrev(gp.ui.slotCol2, 5);
 					break;
 				case KeyEvent.VK_DOWN :
 				case KeyEvent.VK_S :
-					gp.ui.slotRow2 = getPrev(gp.ui.slotRow2, 3);
+					gp.ui.slotRow2 = getPrev(gp.ui.slotRow2, 2);
 					break;
 				case KeyEvent.VK_ENTER :
 					gp.player.selectedItem();

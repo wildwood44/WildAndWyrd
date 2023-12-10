@@ -18,11 +18,13 @@ public class Obj_Chair extends Entity {
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
-		//solidArea.x = 20;
+		solidArea.x = 20;
 		solidArea.y = 40;
-		//solidAreaDefaultX = solidArea.x;
+		solidArea.width = 24;
+		solidArea.height = 24;
+		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
-
+		direction = getDirection();
 		image = setup("/res/objects/img_chair",gp.tileSize,gp.tileSize);
 		setDialogue();
 		getImage(image);
@@ -44,5 +46,9 @@ public class Obj_Chair extends Entity {
 	public void interact() {
 		startDialogue(this, 0);
 		gp.keyH.enterPressed = false;
+	}
+	
+	public String getDirection() {
+		return direction;
 	}
 }
