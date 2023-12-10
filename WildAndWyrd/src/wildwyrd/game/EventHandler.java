@@ -62,7 +62,9 @@ public class EventHandler {
 		if(canTouchEvent) {
 			if(gp.currentMap.getId() == 0) {
 				if(hit(0,13,8,"up")) {teleport(gp.maps[1],15,3);}
-				if(hit(0,10,10,"down")) {gp.playSE(1);teleport(gp.maps[2],14,4);
+				if(hitRow(0,10,"down")) {
+					teleport(gp.maps[2],14,4);
+					gp.playSE(1);
 					if(gp.s.swh[1] == true) {gp.s.part = 2;}
 				}
 				if(hit(0,16,9,"down")) {gp.playSE(1);teleport(gp.maps[2],20,3);}

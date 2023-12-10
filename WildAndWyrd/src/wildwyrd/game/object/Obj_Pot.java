@@ -3,6 +3,7 @@ package wildwyrd.game.object;
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.items.Item;
 
 public class Obj_Pot extends Entity {
 	GamePanel gp;
@@ -16,11 +17,13 @@ public class Obj_Pot extends Entity {
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
-
 		image = setup("/res/objects/img_clay_pot_four", gp.tileSize, gp.tileSize);
-
-		setDialogue();
 		getImage(image);
+	}
+	
+	public void setLoot(Item loot) {
+		this.loot = loot;
+		setDialogue();	
 	}
 
 	public void setDialogue() {

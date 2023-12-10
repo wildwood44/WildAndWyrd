@@ -168,7 +168,6 @@ public class SaveLoad {
 			gp.player.inventory.clear();
 			for(int i = 0; i < ds.itemId.size(); i++) {
 				gp.player.inventory.add(gp.eGenerator.getItem(ds.itemId.get(i)));
-				System.out.println(gp.player.inventory.get(i));
 				gp.player.inventory.get(i).amount = ds.itemAmount.get(i);
 			}
 			for(int mapNum = 0; mapNum < gp.maxMap; mapNum++) {
@@ -180,7 +179,7 @@ public class SaveLoad {
 						gp.obj[mapNum][i].worldX = ds.mapObjectWorldX[mapNum][i];
 						gp.obj[mapNum][i].worldY = ds.mapObjectWorldY[mapNum][i];
 						if(ds.mapObjectLootIds[mapNum][i] > 0) {
-							gp.obj[mapNum][i].loot = gp.eGenerator.getItem(ds.mapObjectLootIds[mapNum][i]);
+							gp.obj[mapNum][i].setLoot(gp.eGenerator.getItem(ds.mapObjectLootIds[mapNum][i]));
 						}
 						gp.obj[mapNum][i].opened = ds.mapObjectOpened[mapNum][i];
 						if(gp.obj[mapNum][i].opened == true) {

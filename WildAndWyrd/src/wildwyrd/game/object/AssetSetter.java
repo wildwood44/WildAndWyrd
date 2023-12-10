@@ -36,9 +36,9 @@ public class AssetSetter {
 
 	public void setObject() {
 		gp.obj[0][0] = new Obj_Wooden_Bowl(gp);
+		gp.obj[0][0].setLoot(new Itm_Hazelnut(gp));
 		gp.obj[0][0].worldX = 3 * gp.tileSize;
 		gp.obj[0][0].worldY = 6 * gp.tileSize;
-		gp.obj[0][0].setLoot(new Itm_Hazelnut(gp));
 		gp.obj[0][1] = new Obj_Table_Left(gp);
 		gp.obj[0][1].worldX = 2 * gp.tileSize;
 		gp.obj[0][1].worldY = 6 * gp.tileSize;
