@@ -3,7 +3,6 @@ package wildwyrd.game.object;
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
-import wildwyrd.game.GameState;
 import wildwyrd.game.items.Item;
 
 public class Obj_Wooden_Bowl extends Entity {
