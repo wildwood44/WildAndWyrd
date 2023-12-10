@@ -18,7 +18,6 @@ import wildwyrd.game.GameState;
 import wildwyrd.game.KeyHandler;
 import wildwyrd.game.combat.CombatStatus;
 import wildwyrd.game.items.Item;
-import wildwyrd.game.items.Weapon;
 import wildwyrd.game.tile.TileManager;
 
 public class Player extends Entity {
@@ -38,7 +37,7 @@ public class Player extends Entity {
 		this.keyH = keyH;
 		screenX = gp.screenWidth / 2;
 		screenY = gp.screenHeight / 2;
-		solidArea = new Rectangle(12, 12, gp.tileSize, gp.tileSize);
+		solidArea = new Rectangle(20, 12, gp.tileSize, gp.tileSize);
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 		solidArea.width = 24;
