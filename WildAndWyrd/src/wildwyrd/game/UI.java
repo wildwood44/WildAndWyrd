@@ -522,7 +522,7 @@ public class UI {
 					g2.drawString(s, amountX, amountY);
 				}
 				slotX += gp.tileSize;
-				if (i == 6 || i == 13 || i == 20) {
+				if (i == 5 || i == 11 || i == 17) {
 					slotX = slotXstart;
 					slotY += gp.tileSize;
 				}
@@ -538,8 +538,8 @@ public class UI {
 
 		i = slotXstart + gp.tileSize * slotCol2;
 		int cursorY = slotYstart + gp.tileSize * slotRow2;
-		int cursorWidth = (int) (gp.tileSize / 1.65D);
-		int cursorHeight = (int) (gp.tileSize / 1.65D);
+		int cursorWidth = (int) (gp.tileSize);
+		int cursorHeight = (int) (gp.tileSize);
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
 		g2.setStroke(new BasicStroke());

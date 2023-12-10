@@ -19,9 +19,10 @@ public class Obj_Table_Right extends Entity {
 
 		image = setup("/res/objects/Table_Tile_Right", gp.tileSize, gp.tileSize);
 
-		solidArea.y = 30;
+		solidArea.y = 20;
 		solidAreaDefaultY = solidArea.y;
 		solidArea.width = 40;
+		solidArea.height = 30;
 		setDialogue();
 		getImage(image);
 	}

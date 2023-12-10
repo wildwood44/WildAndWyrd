@@ -22,11 +22,12 @@ public class Obj_P_Mushroom extends Entity {
 		solidArea.x = 20;
 		solidAreaDefaultX = solidArea.x;
 		getImage(image);
+		//setDialogue();
 	}
 	
 	public void setLoot(Item loot) {
 		this.loot = loot;
-		setDialogue();	
+		setDialogue();
 	}
 
 	public void setDialogue() {
