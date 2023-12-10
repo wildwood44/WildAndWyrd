@@ -2,7 +2,6 @@ package wildwyrd.game.rooms;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import wildwyrd.game.GamePanel;
 
 public class Rm_Forton extends Room {

@@ -77,7 +77,7 @@ public class UI {
 		}
 
 		if (gp.gameState == GameState.playState) {
-			Integer var2 = gp.selectedObj;
+			//Integer var2 = gp.selectedObj;
 		}
 
 		if (gp.gameState == GameState.pauseState) {

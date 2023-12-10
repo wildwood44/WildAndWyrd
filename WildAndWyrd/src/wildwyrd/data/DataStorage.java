@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import wildwyrd.game.Story;
-import wildwyrd.game.playable.Combatant;
-import wildwyrd.game.playable.Player;
-import wildwyrd.game.tile.Map;
 
 public class DataStorage implements Serializable {
 	//Character stats;
