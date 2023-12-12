@@ -120,9 +120,9 @@ public class AssetSetter {
 		gp.obj[2][0].worldX = 10 * gp.tileSize;
 		gp.obj[2][0].worldY = 8 * gp.tileSize;
 		gp.obj[2][0].setLoot(new Itm_P_Mushroom(gp));
-		gp.obj[2][1] = new Plant_1(gp);
-		gp.obj[2][1].worldX = 14 * gp.tileSize;
-		gp.obj[2][1].worldY = 7 * gp.tileSize;
+		//gp.obj[2][1] = new Plant_1(gp);
+		//gp.obj[2][1].worldX = 14 * gp.tileSize;
+		//gp.obj[2][1].worldY = 7 * gp.tileSize;
 		gp.obj[2][2] = new Obj_Tree(gp);
 		gp.obj[2][2].worldX = 1 * gp.tileSize;
 		gp.obj[2][2].worldY = 7 * gp.tileSize;

@@ -187,7 +187,7 @@ public class CutsceneManager {
 			actor.update();
 			actor.worldY -= 1;
 			if(actor.worldY < gp.tileSize * 3){
-				gp.playSE(1);
+				gp.playSE(2);
 				scenePhase++;
 			}
 		} else if (scenePhase == 5) {
@@ -224,7 +224,7 @@ public class CutsceneManager {
 			gp.player.drawing = false;
 			drawRoom();
 			gp.c.setSprites(gp.c.dialogueSet);
-			gp.playSE(1);
+			gp.playSE(2);
 			scenePhase++;
 		} else if (scenePhase == 1) {
 			drawRoom();
@@ -246,7 +246,7 @@ public class CutsceneManager {
 			}
 		} else if (scenePhase == 3) {
 			createActor(new NPC_Kyla(gp), gp.tileSize * 14, gp.tileSize * 3, "down");
-			gp.playSE(1);
+			gp.playSE(2);
 			scenePhase++;
 		} else if (scenePhase == 4) {
 			drawRoom();
@@ -275,7 +275,7 @@ public class CutsceneManager {
 			drawRoom();
 			actor = getActor(NPC_Florence.npcName);
 			if(moveActor(actor.name, "up", 3)){
-				gp.playSE(1);
+				gp.playSE(2);
 				scenePhase++;
 			}
 		} else if (scenePhase == 9) {
@@ -308,7 +308,7 @@ public class CutsceneManager {
 			scenePhase++;
 		} else if (scenePhase == 1) {
 			createActor(new NPC_Florence(gp), gp.tileSize * 14, gp.tileSize * 3, "down");
-			gp.playSE(1);
+			gp.playSE(2);
 			scenePhase++;
 		} else if (scenePhase == 2) {
 			drawRoom();
@@ -564,20 +564,20 @@ public class CutsceneManager {
 			if(moveActor(actor.name, "up", 5));
 			gp.player.worldY -= 2;
 			if(gp.player.worldY < gp.tileSize * 5) {
-				gp.playSE(1);
+				gp.playSE(2);
 				createActor(new NPC_Florence(gp), gp.tileSize * 14, gp.tileSize * 3, "down");
 				drawRoom();
 				scenePhase++;
 			}
 		} else if (scenePhase == 11) {
 			gp.ui.drawDialogueScreen();
-			//gp.playSE(1);
+			//gp.playSE(2);
 			destroyActor(NPC_Florence.npcName);
 		} else if (scenePhase == 12) {
 			drawRoom();
 			if(moveActor(actor.name, "up", 3)) {
 				destroyActor(actor.name);
-				gp.playSE(1);
+				gp.playSE(2);
 				scenePhase++;
 			}
 		} else if (scenePhase == 13) {
@@ -655,7 +655,7 @@ public class CutsceneManager {
 			drawRoom();
 			if(moveActor(NPC_Trissie.npcName, "down", 9)) {
 				destroyActor(NPC_Trissie.npcName);
-				gp.playSE(1);
+				gp.playSE(2);
 				scenePhase++;
 			}
 		} else if (scenePhase == 9) {
