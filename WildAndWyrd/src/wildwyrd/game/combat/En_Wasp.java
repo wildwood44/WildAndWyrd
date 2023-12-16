@@ -51,7 +51,7 @@ public class En_Wasp extends Enemy {
 		gp.s.c1Switch[3] = false;
 		for (int i = 0; i < gp.npc[2].length; i++) {
 			if(gp.npc[2][i] != null && gp.npc[2][i].name == NPC_Thay.npcName) {
-				gp.npc[2][i].worldX = gp.tileSize * 14;
+				gp.npc[2][i].worldX = gp.tileSize * 13;
 				gp.npc[2][i].direction = "left";
 				break;
 			}

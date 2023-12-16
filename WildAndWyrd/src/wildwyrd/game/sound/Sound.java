@@ -15,12 +15,13 @@ public class Sound {
 	float volume;
 	
 	public Sound() {
-		soundURL[0] = getClass().getResource("/res/sound/Menu.wav");
-		soundURL[1] = getClass().getResource("/res/sound/Green_Woodpecker.wav");
-		soundURL[2] = getClass().getResource("/res/sound/Door.wav");
-		soundURL[10] = getClass().getResource("/res/sound/Book_Open.wav");
-		soundURL[11] = getClass().getResource("/res/sound/page-flip-01a.wav");
-		soundURL[12] = getClass().getResource("/res/sound/Book_Close.wav");
+		soundURL[0] = getClass().getResource("/res/sound/Menu.wav"); // Up/Down
+		soundURL[1] = getClass().getResource("/res/sound/Green_Woodpecker.wav"); // Save
+		soundURL[2] = getClass().getResource("/res/sound/Door.wav"); // Door used
+		soundURL[5] = getClass().getResource("/res/sound/running-1.wav"); // Run
+		soundURL[10] = getClass().getResource("/res/sound/Book_Open.wav"); // Open book
+		soundURL[11] = getClass().getResource("/res/sound/page-flip-01a.wav"); // Turn page
+		soundURL[12] = getClass().getResource("/res/sound/Book_Close.wav"); // Close book
 	}
 	
 	public void setFile(int i) {

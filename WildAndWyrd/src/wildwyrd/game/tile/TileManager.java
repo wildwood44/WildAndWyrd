@@ -39,7 +39,7 @@ public class TileManager {
 		else if(gp.currentMap.getType() == MapType.OUTSIDE) {
 			setup(11, "forestFloor_tile", false);
 			setup(12, "Rockwall_Tile", true);
-			setup(13, "bramble_tile", true);
+			setup(13, "bramble_tileset", true);
 			setup(15, "Rockwall_Door4", false);
 			setup(20, "dirt_grass_tile", false);
 			setup(21, "dirt_grass_tile-top_left", false);

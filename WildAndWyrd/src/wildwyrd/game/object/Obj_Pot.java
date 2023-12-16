@@ -28,7 +28,7 @@ public class Obj_Pot extends Entity {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge("The pots contained potion ingredients, left in the shed to save space. One pot was completely filled with eyeballs.", 1);
-		dialogues[0][1] = new Dialoge("There was something strange in one of them.", 2);
+		dialogues[0][1] = new Dialoge("There was something odd in one of them.", 2);
 		dialogues[1][0] = new Dialoge("The pots contained potion ingredients, left in the shed to save space. One pot was completely filled with eyeballs.", 1);
 	}
 

@@ -77,14 +77,13 @@ public class NPC_Trissie extends NPC {
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge("Trissie quickly set up a makeshift dummy out of leaves, sticks and a cheaply made old burlap sack that was intended for foraging before planting it in the ground so it would stand upright." ,1);
+		dialogues[0][0] = new Dialoge("Trissie quickly set up a dummy out of leaves, sticks and an old burlap sack." ,1);
 		dialogues[0][1] = new Dialoge("The finished product was crude and clearly rushed, but would make a good target.", 1);
 		dialogues[0][2] = new Dialoge("Trissie", "That'll do.", 1);
-		dialogues[0][3] = new Dialoge("Trissie", "Alder, wait there.", 1);
-		dialogues[0][4] = new Dialoge("Trissie brought a bow and some arrows set aside for hunting from the shed. Alder thought she looked a little comical dragging the bow which was big even for him.", 1);
-		dialogues[0][5] = new Dialoge("The bow was originally meant for Florence, but finding herself unskilled she never used it. Trissie handed them to Alder.", 1);
-		dialogues[0][6] = new Dialoge("Trissie", "Now set the arrow in the bow, take aim and fire.", 1);
-		dialogues[0][7] = new Dialoge("Trissie", "Let's begin.", 1);
+		dialogues[0][3] = new Dialoge("Trissie", "Alder, take this.", 1);
+		dialogues[0][4] = new Dialoge("Trissie handed some sticks crafted into a bow and arrows to Alder.", 1);
+		dialogues[0][5] = new Dialoge("Trissie", "Now set the arrow in the bow, take aim and fire.", 1);
+		dialogues[0][6] = new Dialoge("Trissie", "Let's begin.", 1);
 		dialogues[1][0] = new Dialoge("Trissie", "It will be hard for me to leave these woods if I stay any longer!", 1);
 		dialogues[1][1] = new Dialoge("Alder", "There’s one more thing I’d like to know Triss.", 1);
 		dialogues[1][2] = new Dialoge("Trissie", "Yes?", 1);

@@ -22,10 +22,8 @@ public class Obj_Kitchen_Window extends Entity {
 
 		setDialogue();
 		getImage(image);
-		//solidArea.x = 15;
-		//solidArea.y = 40;
-		solidArea.height = 50;
-		solidAreaDefaultX = solidArea.x;
+		solidArea.y = 20;
+		solidArea.height = 30;
 		solidAreaDefaultY = solidArea.y;
 	}
 

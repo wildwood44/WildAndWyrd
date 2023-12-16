@@ -16,9 +16,10 @@ public class Obj_Hearth extends Entity {
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
-		image = setup("/res/objects/img_hearth_right",gp.tileSize,gp.tileSize);
+		image = setup("/res/objects/img_hearth",gp.tileSize*3,gp.tileSize);
 
 		solidArea.height = 60;
+		solidArea.width = 192;
 		solidArea.y = 5;
 		solidAreaDefaultY = solidArea.y;
 		setDialogue();
@@ -30,6 +31,7 @@ public class Obj_Hearth extends Entity {
 		dialogues[1][0] = new Dialoge("Alder got to work cleaning the hearth using a brush and cloth. By the end his arms were completely blackened by soot.", 1);
 		dialogues[1][2] = new Dialoge("Throw that ash outside.", 1);
 		dialogues[1][3] = new Dialoge("If it gets on the floor, you're cleaning it up.", 1);
+		dialogues[2][0] = new Dialoge("A small metal cauldron was suspended above the hearth by a chain. It was empty.", 1);
 	}
 
 	public void interact() {
@@ -38,6 +40,7 @@ public class Obj_Hearth extends Entity {
 			startDialogue(this, 1);
 			gp.objective.quests[1].progress(0);
 		} else {
+			//if(gp.player.worldX)
 			startDialogue(this, 0);
 		}
 		gp.keyH.enterPressed = false;

@@ -75,26 +75,24 @@ public class NPC_Thay extends NPC {
 		dialogues[1][0] = new Dialoge("Thay", "It was quite lovely.", 1);
 		dialogues[1][1] = new Dialoge("Thay", "This summer has been good to us all.", 1);
 		dialogues[2][0] = new Dialoge("Thay", "The usual, gave her the herbs she wanted in exchange for the potions I need.", 1);
-		dialogues[2][1] = new Dialoge("Thay reached into his bag and pulled out a vial of black liquid. It was one of the many potions that brought patrons to the cottage. Alder never asked what they needed them for.", 1);
+		dialogues[2][1] = new Dialoge("Thay reached into his bag and pulled out a vial of dark-purple potion.", 1);
 		dialogues[3][0] = new Dialoge("Thay", "Well, to the north, there are more woodlands.", 1);
 		dialogues[3][1] = new Dialoge("Thay", "But to the south is the settlement in the valley where mice and other small beasts live.", 1);
 		dialogues[3][2] = new Dialoge("Thay", "West you'll run into the river and if you climb to the treetops you can see Hare Hill east from here.",1);
 		dialogues[3][3] = new Dialoge("Thay", "Wait!?",1);
-		dialogues[3][4] = new Dialoge("Seeing growing interest and curiosity on Alder's face, Thay abruptly began to show concern.",1);
-		dialogues[3][5] = new Dialoge("Thay", "Alder, you aren't thinking of going to these places are you!?",1);
-		dialogues[3][6] = new Dialoge("Alder","I...",1);
-		dialogues[3][7] = new Dialoge("Alder","think, it would be nice to see new places.",1);
-		dialogues[3][8] = new Dialoge("Thay", "No!",1);
-		dialogues[3][9] = new Dialoge("Thay", "No, Alder!",1);
-		dialogues[3][10] = new Dialoge("Thay", "It's too dangerous!",1);
-		dialogues[3][11] = new Dialoge("Thay", "If anyone sees you, the Gowl's will come after you!!",1);
-		dialogues[3][12] = new Dialoge("Thay", "I cannot even express how much humans are hated these days!!",1);
-		dialogues[3][13] = new Dialoge("Alder","Ok! Ok!",1);
-		dialogues[3][14] = new Dialoge("Alder","I won't go wandering!!",1);
-		dialogues[3][15] = new Dialoge("Alder","I'm sorry!",1);
-		dialogues[3][16] = new Dialoge("Thay", "I hope not!",1);
-		dialogues[3][17] = new Dialoge("Thay", "I'd never forgive myself if anything were to happen to you.",1);
-		dialogues[3][18] = new Dialoge("Alder realised that the hedgehog was getting agitated and so decided to move on.",1);
+		dialogues[3][4] = new Dialoge("Thay", "Alder, you aren't thinking of going to these places are you!?",1);
+		dialogues[3][5] = new Dialoge("Alder","I...",1);
+		dialogues[3][6] = new Dialoge("Alder","think, it would be nice to see new places.",1);
+		dialogues[3][7] = new Dialoge("Thay", "No!",1);
+		dialogues[3][8] = new Dialoge("Thay", "No, Alder!",1);
+		dialogues[3][9] = new Dialoge("Thay", "It's too dangerous!",1);
+		dialogues[3][10] = new Dialoge("Thay", "If anyone sees you, the Gowl's will come after you!!",1);
+		dialogues[3][11] = new Dialoge("Thay", "I cannot even express how much humans are hated these days!!",1);
+		dialogues[3][12] = new Dialoge("Alder","Ok! Ok!",1);
+		dialogues[3][13] = new Dialoge("Alder","I won't go wandering!!",1);
+		dialogues[3][14] = new Dialoge("Alder","I'm sorry!",1);
+		dialogues[3][15] = new Dialoge("Thay", "I hope not!",1);
+		dialogues[3][16] = new Dialoge("Thay", "I'd never forgive myself if anything were to happen to you.",1);
 		dialogues[4][0] = new Dialoge("Thay", "Fuller woods is where we are right now.",1);
 		dialogues[4][1] = new Dialoge("Thay", "This ancient woodland goes on for miles.",1);
 		dialogues[4][2] = new Dialoge("Thay", "There are many birds in these woods and unfortunately that includes birds of prey.",1);
@@ -131,9 +129,8 @@ public class NPC_Thay extends NPC {
 		dialogues[8][10] = new Dialoge("Thay", "Best for you to stay within the burrows borders.",1);
 		dialogues[8][11] = new Dialoge("Thay", "If you are seen.",1);
 		dialogues[8][12] = new Dialoge("Thay", "You will be assumed aligned with the kings ideals and killed.",1);
-		dialogues[8][13] = new Dialoge("Alder gave a sad longing look to the deep wood. He'd like to see more than the tiny patch he called home. But alas as Thay said, the danger was too great.",1);
 		dialogues[9][0] = new Dialoge("Thay", "You alright, Alder.",1);
-		dialogues[9][1] = new Dialoge("Alder", "I was attack by wasps while I was out.",1);
+		dialogues[9][1] = new Dialoge("Alder", "I was attacked by wasps while I was out.",1);
 		dialogues[9][2] = new Dialoge("Thay", "Wasps huh, horrible things.",1);
 		dialogues[9][3] = new Dialoge("Thay", "Then todays lesson will be on plantain, it might ease your discomfort.",1);
 	}
@@ -152,16 +149,18 @@ public class NPC_Thay extends NPC {
 	}
 	
 	public void checkConditions() {
-		if (dialogues[dialogueSet][dialogueIndex] == null) {
-			for (boolean checkCondition: contConditions) {
-				if(checkCondition == false) {
-					dialogueIndex = 0;
-					speak();
+		if(gp.s.c1Switch[2] == true) {
+			if (dialogues[dialogueSet][dialogueIndex] == null) {
+				for (boolean checkCondition: contConditions) {
+					if(checkCondition == false) {
+						dialogueIndex = 0;
+						speak();
+					}
+				} if (dialogues[dialogueSet][dialogueIndex] == null) {
+					//dialogueIndex = 0;
+					gp.s.swh[3] = true;
+					gp.s.part = 3;
 				}
-			} if (dialogues[dialogueSet][dialogueIndex] == null) {
-				//dialogueIndex = 0;
-				gp.s.swh[3] = true;
-				gp.s.part = 3;
 			}
 		}
 	}

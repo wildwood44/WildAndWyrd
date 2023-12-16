@@ -75,13 +75,11 @@ public class NPC_Florence extends NPC {
 		dialogues[4][1] = new Dialoge("Florence", "Fantastic!" ,1);
 		dialogues[4][2] = new Dialoge("Florence", "Just don't go too far." ,1);
 		dialogues[5][0] = new Dialoge("Alder", "Florence! I'm done!" ,1);
-		dialogues[5][1] = new Dialoge("Florence was finishing a conversation with Thay when they looked at Alder they immediately noticed the swollen red marks where the hornets had stung his exposed skin." ,1);
-		dialogues[5][2] = new Dialoge("Florence","Alder what happened? Are you ok!?" ,1);
-		dialogues[5][3] = new Dialoge("Alder","Um..." ,1);
-		dialogues[5][4] = new Dialoge("Alder was briefly put off by Florence's concern, but he knew she could get paranoid when it can to his safety." ,1);
-		dialogues[5][5] = new Dialoge("Alder","I got stung by wasps a few times but I'm alright!" ,1);
-		dialogues[5][6] = new Dialoge("Florence","*Sigh*" ,1);
-		dialogues[5][7] = new Dialoge("Florence","Give the bugs and the knife to me and go relax yourself." ,1);
+		dialogues[5][1] = new Dialoge("Florence","Alder what happened? Are you ok!?" ,1);
+		dialogues[5][2] = new Dialoge("Alder","Um..." ,1);
+		dialogues[5][3] = new Dialoge("Alder","I got stung by wasps a few times but I'm alright!" ,1);
+		dialogues[5][4] = new Dialoge("Florence","*Sigh*" ,1);
+		dialogues[5][5] = new Dialoge("Florence","Give the bugs and the knife to me and go relax yourself." ,1);
 		dialogues[6][0] = new Dialoge("Florence", "Triss is very brave." ,1);
 		dialogues[6][1] = new Dialoge("Florence", "She risks everything to help people get around the Gowls." ,1);
 	}

@@ -19,7 +19,7 @@ public class Obj_Window_Down extends Entity {
 		image = setup("/res/objects/img_window_down", gp.tileSize, gp.tileSize);
 		setDialogue();
 		getImage(image);
-		solidArea.y = 56;
+		solidArea.y = 64;
 		solidAreaDefaultY = solidArea.y;
 	}
 
