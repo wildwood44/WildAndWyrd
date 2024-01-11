@@ -201,8 +201,8 @@ public class UI {
 		int y = gp.tileSize * 5;
 		int width = gp.screenWidth - gp.tileSize * 3;
 		int height = gp.tileSize * 3;
-		drawImageWindow(300, 0, 200, 400);
 		drawDialogueWindow(x, y, width, height);
+		drawImageWindow(550, y + 5, gp.tileSize, gp.tileSize);
 		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 		g2.setColor(Color.white);
 		x += gp.tileSize;
@@ -285,6 +285,7 @@ public class UI {
 		int width = gp.screenWidth - gp.tileSize * 3;
 		int height = gp.tileSize * 3;
 		drawDialogueWindow(x, y, width, height);
+		drawImageWindow(550, y + 5, gp.tileSize, gp.tileSize);
 		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 		g2.setColor(Color.white);
 		x += gp.tileSize;
@@ -1238,6 +1239,7 @@ public class UI {
 		try {
 			while(text.length() > 0){
 				int pos = text.lastIndexOf(" ", size);
+				//Manual line break
 				if(text.contains("£")) {
 					pos = text.lastIndexOf("£", size);
 					if (pos == -1) {
@@ -1267,9 +1269,13 @@ public class UI {
 	}
 
 	private void drawImageWindow(int x, int y, int width, int height) {
-		BufferedImage image = selectedObject.sprites[selectedObject.dialogueSet][selectedObject.dialogueIndex];
-		if (image != null) {
-			g2.drawImage(image, x, y, width, height, (ImageObserver) null);
+		try {
+			BufferedImage image = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].image;
+			if (image != null) {
+				g2.drawImage(image, x, y, width, height, (ImageObserver) null);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}

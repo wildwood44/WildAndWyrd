@@ -79,21 +79,21 @@ public class NPC_Trissie extends NPC {
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge("Trissie quickly set up a dummy out of leaves, sticks and an old burlap sack." ,1);
 		dialogues[0][1] = new Dialoge("The finished product was crude and clearly rushed, but would make a good target.", 1);
-		dialogues[0][2] = new Dialoge("Trissie", "That'll do.", 1);
-		dialogues[0][3] = new Dialoge("Trissie", "Alder, take this.", 1);
+		dialogues[0][2] = new Dialoge("Trissie", "That'll do.", port.image_Trissie);
+		dialogues[0][3] = new Dialoge("Trissie", "Alder, take this.", port.image_Trissie);
 		dialogues[0][4] = new Dialoge("Trissie handed some sticks crafted into a bow and arrows to Alder.", 1);
-		dialogues[0][5] = new Dialoge("Trissie", "Now set the arrow in the bow, take aim and fire.", 1);
-		dialogues[0][6] = new Dialoge("Trissie", "Let's begin.", 1);
-		dialogues[1][0] = new Dialoge("Trissie", "It will be hard for me to leave these woods if I stay any longer!", 1);
+		dialogues[0][5] = new Dialoge("Trissie", "Now set the arrow in the bow, take aim and fire.", port.image_Trissie);
+		dialogues[0][6] = new Dialoge("Trissie", "Let's begin.", port.image_Trissie);
+		dialogues[1][0] = new Dialoge("Trissie", "It will be hard for me to leave these woods if I stay any longer!", port.image_Trissie);
 		dialogues[1][1] = new Dialoge("Alder", "There’s one more thing I’d like to know Triss.", 1);
-		dialogues[1][2] = new Dialoge("Trissie", "Yes?", 1);
+		dialogues[1][2] = new Dialoge("Trissie", "Yes?", port.image_Trissie);
 		dialogues[1][3] = new Dialoge(" ", 3);
-		dialogues[2][0] = new Dialoge("Trissie", "Well, if I’d have to give an example?", 1);
-		dialogues[2][1] = new Dialoge("Trissie", "I have a brother in the Gowls.", 1);
+		dialogues[2][0] = new Dialoge("Trissie", "Well, if I’d have to give an example?", port.image_Trissie);
+		dialogues[2][1] = new Dialoge("Trissie", "I have a brother in the Gowls.", port.image_Trissie);
 		dialogues[2][2] = new Dialoge("Trissie pointed her thumb at her tail stump.", 1);
-		dialogues[2][3] = new Dialoge("Trissie", "And because I helped a human, he did this to me.", 1);
-		dialogues[3][0] = new Dialoge("Trissie", "I’m not easy to catch but you must be careful and stay safe.", 1);
-		dialogues[3][1] = new Dialoge("Trissie", "If you do, I'm sure we'll meet before long.", 1);
+		dialogues[2][3] = new Dialoge("Trissie", "And because I helped a human, he did this to me.", port.image_Trissie);
+		dialogues[3][0] = new Dialoge("Trissie", "I’m not easy to catch but you must be careful and stay safe.", port.image_Trissie);
+		dialogues[3][1] = new Dialoge("Trissie", "If you do, I'm sure we'll meet before long.", port.image_Trissie);
 	}
 	
 	public void setDialogueOptions() {

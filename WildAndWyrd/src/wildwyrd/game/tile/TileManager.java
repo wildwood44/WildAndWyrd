@@ -27,14 +27,35 @@ public class TileManager {
 	public void getTileImage() {
 		if(gp.currentMap.getType() == MapType.INTERIOR) {
 			setup(10, "kitchen_tiles", false);
-			setup(11, "blank_tiles", true);
+			setup(11, "blank_tile", true);
 			setup(12, "Cottage_Wall_Tile", true);
 			setup(13, "Cottage_Ceiling1_Tile", true);
 			setup(14, "Cottage_Ceiling2_Tile", true);
 			setup(15, "dirt_tile", false);
-			setup(16, "stair_tile_horizontal", false);
+			setup(16, "stair_tile_horizontal", true);
 			setup(17, "Balcony_Wood", true);
 			setup(18, "Balcony_Wooden_Left", false);
+			setup(20, "wall", true);
+			setup(21, "wall_top", true);
+			setup(22, "wall_bottom", true);
+			setup(23, "wall_top-left", true);
+			setup(24, "wall_top-right", true);
+			setup(25, "wall_beam", true);
+			setup(26, "wall_beam_top", true);
+			setup(27, "wall_beam_bottom", true);
+			setup(28, "med_wall_top", true);
+			setup(29, "med_wall_bottom", true);
+			setup(30, "med_wall_top-left", true);
+			setup(31, "med_wall-left", true);
+			setup(32, "med_wall_bottom-left", true);
+			setup(33, "med_wall_top-right", true);
+			setup(34, "med_wall-right", true);
+			setup(35, "med_wall_bottom-right", true);
+			setup(36, "med_wall_corner-top_left", true);
+			setup(37, "med_wall_corner-bottom_left", true);
+			setup(38, "med_wall_corner-top_right", true);
+			setup(39, "med_wall_corner-bottom_right", true);
+			setup(40, "med_wall", true);
 		}
 		else if(gp.currentMap.getType() == MapType.OUTSIDE) {
 			setup(11, "forestFloor_tile", false);

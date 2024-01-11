@@ -56,10 +56,10 @@ public class Player extends Entity {
 	}
 
 	public void setDefaultPositions() {
-		gp.currentMap = gp.maps[0];
+		gp.currentMap = gp.maps[2];
 		gp.tileM = new TileManager(gp);
-		worldX = gp.tileSize * 4;
-		worldY = gp.tileSize * 6;
+		worldX = gp.tileSize * 12;
+		worldY = gp.tileSize * 8;
 		direction = "down";
 	}
 
@@ -364,48 +364,28 @@ public class Player extends Entity {
 		}
 		switch(direction) {
 		case "up":
-			if(spriteNum == 1) {
-				image = up1;
-			} else if(spriteNum == 2) {
-				image = up2;
-			} else if(spriteNum == 3) {
-				image = up1;
-			} else if(spriteNum == 4) {
-				image = up3;
-			}
+			if(spriteNum == 1) {image = up1;} 
+			else if(spriteNum == 2) {image = up2;} 
+			else if(spriteNum == 3) {image = up1;}
+			else if(spriteNum == 4) {image = up3;}
 			break;
 		case "down":
-			if(spriteNum == 1) {
-				image = down1;
-			} else if(spriteNum == 2) {
-				image = down2;
-			} else if(spriteNum == 3) {
-				image = down1;
-			} else if(spriteNum == 4) {
-				image = down3;
-			}
+			if(spriteNum == 1) {image = down1;} 
+			else if(spriteNum == 2) {image = down2;} 
+			else if(spriteNum == 3) {image = down1;} 
+			else if(spriteNum == 4) {image = down3;}
 			break;
 		case "left":
-			if(spriteNum == 1) {
-				image = left1;
-			} else if(spriteNum == 2) {
-				image = left2;
-			} else if(spriteNum == 3) {
-				image = left1;
-			} else if(spriteNum == 4) {
-				image = left3;
-			}
+			if(spriteNum == 1) {image = left1;} 
+			else if(spriteNum == 2) {image = left2;}
+			else if(spriteNum == 3) {image = left1;} 
+			else if(spriteNum == 4) {image = left3;}
 			break;
 		case "right":
-			if(spriteNum == 1) {
-				image = right1;
-			} else if(spriteNum == 2) {
-				image = right2;
-			} else if(spriteNum == 3) {
-				image = right1;
-			} else if(spriteNum == 4) {
-				image = right3;
-			}
+			if(spriteNum == 1) {image = right1;} 
+			else if(spriteNum == 2) {image = right2;}
+			else if(spriteNum == 3) {image = right1;}
+			else if(spriteNum == 4) {image = right3;}
 			break;
 		}
 

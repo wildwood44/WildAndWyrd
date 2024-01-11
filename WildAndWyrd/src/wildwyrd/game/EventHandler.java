@@ -61,26 +61,25 @@ public class EventHandler {
 		}
 		if(canTouchEvent) {
 			if(gp.currentMap.getId() == 0) {
-				if(hit(0,13,8,"up")) {teleport(gp.maps[1],15,3);}
+				//if(hit(0,13,8,"up")) {teleport(gp.maps[1],15,3);}
 				if(hit(0,8,7,"down")) {
-					teleport(gp.maps[2],13,3);
-					System.out.println(gp.player.worldX + " " + gp.player.worldY);
+					teleport(gp.maps[2],12,3);
 					gp.playSE(2);
 					if(gp.s.swh[1]) {gp.s.part = 2;}
 				}
-				if(hit(0,12,7,"down")) {gp.playSE(2);teleport(gp.maps[2],17,3);}
+				if(hit(0,12,7,"down")) {gp.playSE(2);teleport(gp.maps[2],16,3);}
 			}
-			else if(gp.currentMap.getId() == 1) {
-				if(hit(1,15,4,"down")) {teleport(gp.maps[0],13,9);}
-			}
+			//else if(gp.currentMap.getId() == 1) {
+			//	if(hit(1,15,4,"down")) {teleport(gp.maps[0],13,9);}
+			//}
 			else if(gp.currentMap.getId() == 2) {
-				if(hit(2,13,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][0]);}
-				if(hit(2,13,2,"up")) {
+				if(hit(2,12,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][0]);}
+				if(hit(2,12,2,"up")) {
 					gp.playSE(2);
 					teleport(gp.maps[0],8,6); 
 					if(gp.s.chapter == 2 && gp.s.swh[6]) {gp.s.part = 2;}}
-				if(hit(2,17,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][1]);}
-				if(hit(2,17,2,"up")) {gp.playSE(2);teleport(gp.maps[0],12,6);}
+				if(hit(2,16,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][1]);}
+				if(hit(2,16,2,"up")) {gp.playSE(2);teleport(gp.maps[0],12,6);}
 				if(hit(2,14,4,"down")) {}
 				if(hitRow(2,11,"down")) {
 					if(gp.playable.get(0).getWeapon_prime().name != null) {
@@ -89,7 +88,7 @@ public class EventHandler {
 				}
 			}
 			else if(gp.currentMap.getId() == 3) {
-				if(hitRow(3,0,"up")) {teleport(gp.maps[2],11,11);}
+				if(hitRow(3,0,"up")) {teleport(gp.maps[2],10,11);}
 				if(hitRow(3,10,"down")) {obsticle(gp.maps[3]);};
 				//if(hit(3,13,10,"down")) {obsticle(gp.maps[3]);};
 			}
@@ -210,6 +209,5 @@ public class EventHandler {
 			eventMaster.startDialogue(eventMaster, 1);
 		}
 		gp.keyH.enterPressed = false;
-		//gp.iTile[map.getId()][objItem].interact();
 	}
 }

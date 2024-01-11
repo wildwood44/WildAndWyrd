@@ -24,7 +24,7 @@ public class AssetSetter {
 	public void setMaps() {
 		gp.maps[0] = new Map(gp, MapType.INTERIOR, 0, 15, 9);
 		gp.maps[1] = new Map(gp, MapType.INTERIOR, 1, 17, 11);
-		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 21, 12);
+		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 19, 12);
 		gp.maps[3] = new Map(gp, MapType.OUTSIDE, 3, 17, 11);
 	}
 
@@ -175,12 +175,12 @@ public class AssetSetter {
 		gp.obj[3][2].worldY = 3 * gp.tileSize;
 	}
 	public void setNPC() {
-		gp.npc[2][0] = new NPC_Florence(gp);
+		//gp.npc[2][0] = new NPC_Florence(gp);
+		//gp.npc[2][0].worldX = gp.tileSize * 11;
+		//gp.npc[2][0].worldY = gp.tileSize * 3;
+		gp.npc[2][0] = new NPC_Thay(gp);
 		gp.npc[2][0].worldX = gp.tileSize * 12;
-		gp.npc[2][0].worldY = gp.tileSize * 3;
-		gp.npc[2][1] = new NPC_Thay(gp);
-		gp.npc[2][1].worldX = gp.tileSize * 14;
-		gp.npc[2][1].worldY = gp.tileSize * 3;
+		gp.npc[2][0].worldY = gp.tileSize * 8;
 		//gp.npc[2][2] = new NPC_Dilecto(gp);
 		//gp.npc[2][2].worldX = gp.tileSize * 12;
 		//gp.npc[2][2].worldY = gp.tileSize * 4;
@@ -190,9 +190,9 @@ public class AssetSetter {
 	}
 	public void setInteractiveTile() {
 		int i = 0;
-		gp.iTile[2][i] = new IT_StoneDoor(gp, 13, 2);
+		gp.iTile[2][i] = new IT_StoneDoor(gp, 12, 2);
 		i++;
-		gp.iTile[2][i] = new IT_StoneDoor(gp, 17, 2);
+		gp.iTile[2][i] = new IT_StoneDoor(gp, 16, 2);
 	}
 	public int getRandomNumber(int min, int max) {
 	    return (int) ((Math.random() * (max - min)) + min);

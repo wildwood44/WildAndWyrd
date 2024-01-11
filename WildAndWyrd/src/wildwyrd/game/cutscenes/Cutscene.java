@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import javax.imageio.ImageIO;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
@@ -13,20 +12,195 @@ import wildwyrd.game.object.Dialoge;
 
 public class Cutscene extends Entity {
 	GamePanel gp;
-	BufferedImage image_Alder;
-	BufferedImage image_Florence;
-	BufferedImage image_Dilecto;
-	BufferedImage image_Thay;
-	BufferedImage image_Dean;
-	BufferedImage image_Ralph;
-	BufferedImage image_Plumm;
-	BufferedImage image_Kyla;
-	BufferedImage image_Trissie;
-	BufferedImage image_Agrimus;
+	public Portrate port = new Portrate();
 
 	public Cutscene(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+	}
+	
+	public void setDialogue() {
+		switch(dialogueSet) {
+		case 0:
+			dialogues[dialogueSet][0] = new Dialoge("Shrew", "My Lord", port.image_Dean);
+			dialogues[dialogueSet][1] = new Dialoge("Shrew","*Pant* Excuse me!", port.image_Dean);
+			dialogues[dialogueSet][2] = new Dialoge("Shrew","*Pant* *Pant* Lord Dilecto!",port.image_Dean);
+			dialogues[dialogueSet][3] = new Dialoge("Dilecto","Hm?",port.image_Dilecto);
+			dialogues[dialogueSet][4] = new Dialoge("Dilecto", "Yes, child?",port.image_Dilecto);
+			dialogues[dialogueSet][5] = new Dialoge("Shrew", "*Ahem* Hazel is requesting a meeting.", port.image_Dean);
+			dialogues[dialogueSet][6] = new Dialoge("Vole", "He has no authority to call a meeting involving the lord.", port.image_Ralph);
+			dialogues[dialogueSet][7] = new Dialoge("Vole", "What is it for?", port.image_Ralph);
+			dialogues[dialogueSet][8] = new Dialoge("Shrew", "The Gowls... they are... conducting patrols in Fuller Woods.", port.image_Dean);
+			dialogues[dialogueSet][9] = new Dialoge("Vole", "That is unusual, but hardly of our concern.", port.image_Ralph);
+			dialogues[dialogueSet][10] = new Dialoge("Vole", "We are not their target.", port.image_Ralph);
+			dialogues[dialogueSet][11] = new Dialoge("Dilecto", "So who is?",port.image_Dilecto);
+			dialogues[dialogueSet][12] = new Dialoge("Dilecto", "I approve and will be attending.",port.image_Dilecto);
+			dialogues[dialogueSet][13] = new Dialoge("Vole", "But M'lord, surely they have their reasons.", port.image_Ralph);
+			dialogues[dialogueSet][14] = new Dialoge("Dilecto", "Hunting some random human near our borders.", port.image_Ralph);
+			dialogues[dialogueSet][15] = new Dialoge("Vole", "Can't blame them considering tensions with the kingdom of Gloria.", port.image_Ralph);
+			dialogues[dialogueSet][16] = new Dialoge("Dilecto", "Not all humans are bloody kings fanatics, we had many as allies during the war.",port.image_Dilecto);
+			dialogues[dialogueSet][17] = new Dialoge("Dilecto", "Times would have been far grimmer without them.",port.image_Dilecto);
+			dialogues[dialogueSet][18] = new Dialoge("Shrew", "They fought along side Agrimus too?", port.image_Dean);
+			dialogues[dialogueSet][19] = new Dialoge("Vole", "Why does every conversation we have with you end up involving the Scion, Dean?", port.image_Ralph);
+			dialogues[dialogueSet][20] = new Dialoge("Dean", "I, um.", port.image_Dean);
+			dialogues[dialogueSet][21] = new Dialoge("Dilecto", "Hahaha.",port.image_Dilecto);
+			dialogues[dialogueSet][22] = new Dialoge("Dilecto", "It's alright Dean.",port.image_Dilecto);
+			dialogues[dialogueSet][23] = new Dialoge("Dilecto", "It has been so long since his time.",port.image_Dilecto);
+			dialogues[dialogueSet][24] = new Dialoge("Vole", "*Sighs* About thirty years now.", port.image_Ralph);
+			dialogues[dialogueSet][25] = new Dialoge("Dean", "Um?", port.image_Dean);
+			dialogues[dialogueSet][26] = new Dialoge("Dean", "Do you think the next one will appear soon?", port.image_Dean);
+			dialogues[dialogueSet][27] = new Dialoge("Vole", "As momentous as that would be, Albion is at peace.", port.image_Ralph);
+			dialogues[dialogueSet][28] = new Dialoge("Vole", "There is no need for a new Scion.", port.image_Ralph);
+			dialogues[dialogueSet][29] = new Dialoge("Dilecto", "Despite the human cullings that is. ",port.image_Dilecto);
+			dialogues[dialogueSet][30] = new Dialoge("Vole", "Sir Darrunt and his Gowls Knights do have every right to use any means necessary deal with those vermin.", port.image_Ralph);
+			dialogues[dialogueSet][31] = new Dialoge("Dilecto", "Ralph!",port.image_Dilecto);
+			dialogues[dialogueSet][32] = new Dialoge("Dilecto", "You go too far, no one has any right over another creatures life!",port.image_Dilecto);
+			dialogues[dialogueSet][33] = new Dialoge("Ralph", "My lord, I meant-!", port.image_Ralph);
+			dialogues[dialogueSet][34] = new Dialoge("Dilecto", "Enough!",port.image_Dilecto);
+			dialogues[dialogueSet][35] = new Dialoge("Dilecto", "We shall discuss this later.",port.image_Dilecto);
+			dialogues[dialogueSet][36] = new Dialoge("Dilecto", "Hm?",port.image_Dilecto);
+			dialogues[dialogueSet][37] = new Dialoge("Dilecto", "Plumm, could you spare a moment?",port.image_Dilecto);
+			dialogues[dialogueSet][38] = new Dialoge("Plumm", "Yes, M'lord?",port.image_Plumm);
+			dialogues[dialogueSet][39] = new Dialoge("Dilecto", "I need you to let the other officials know that there is to be a meeting tomorrow at noon.",port.image_Dilecto);
+			dialogues[dialogueSet][40] = new Dialoge("Dilecto", "Dean, be sure to invite Hazel. We will need to have a word with the Gowls.",port.image_Dilecto);
+			dialogues[dialogueSet][41] = new Dialoge("Plumm", "The Gowls!?",port.image_Plumm);
+			dialogues[dialogueSet][42] = new Dialoge("Plumm", "Why?",port.image_Plumm);
+			dialogues[dialogueSet][43] = new Dialoge("Ralph", "They're sending patrols into Fuller Woods.", port.image_Ralph);
+			dialogues[dialogueSet][44] = new Dialoge("Plumm", "Good heavens!",port.image_Plumm);
+			dialogues[dialogueSet][45] = new Dialoge("Plumm", "Well, I'd best make haste!",port.image_Plumm);
+			dialogues[dialogueSet][46] = new Dialoge("Ralph", "I'll help spread the word.", port.image_Ralph);
+			dialogues[dialogueSet][47] = new Dialoge("Ralph", "Off with you Dean.", port.image_Ralph);
+			dialogues[dialogueSet][48] = new Dialoge("Dean", "Yes sir!", port.image_Dean);
+			dialogues[dialogueSet][49] = new Dialoge("As the others left Dilecto sombrely moved to face a tapestry.",1);
+			dialogues[dialogueSet][50] = new Dialoge("Dilecto", "Agrimus.",port.image_Dilecto);
+			dialogues[dialogueSet][51] = new Dialoge("Dilecto", "I wonder, what creature do you have in mind to successed you as Scion?",port.image_Dilecto);
+			dialogues[dialogueSet][52] = new Dialoge("Dilecto", "Whoever you pick I shall always trust your judgement.",port.image_Dilecto);
+			break;
+		case 1:
+			dialogues[dialogueSet][0] = new Dialoge("Hedgehog","The rabbit seeks his burrow.", port.image_Thay);
+			dialogues[dialogueSet][1] = new Dialoge("Woman","Thay! It's good to see you!", port.image_Florence);
+			dialogues[dialogueSet][2] = new Dialoge("Thay","And you Florence.", port.image_Thay);
+			dialogues[dialogueSet][3] = new Dialoge("Thay","I'm here to see your mistress.", port.image_Thay);
+			dialogues[dialogueSet][4] = new Dialoge("Florence","She's upstairs, should be down soon though.", port.image_Florence);
+			dialogues[dialogueSet][5] = new Dialoge("Thay","And where's Alder?", port.image_Thay);
+			dialogues[dialogueSet][6] = new Dialoge("Florence","He's inside, still cleaning the dishes.", port.image_Florence);
+			dialogues[dialogueSet][7] = new Dialoge("Florence","Alder!!", port.image_Florence);
+			dialogues[dialogueSet][8] = new Dialoge("Florence","Thay's here!", port.image_Florence);
+			break;
+		case 2:
+			dialogues[dialogueSet][0] = new Dialoge("Thay","How've you been Alder?", port.image_Thay);
+			dialogues[dialogueSet][1] = new Dialoge("Alder","I've been great!", port.image_Alder);
+			dialogues[dialogueSet][2] = new Dialoge("Thay","You've gotten bigger too.", port.image_Thay);
+			dialogues[dialogueSet][3] = new Dialoge("Thay","I remember when we were the same size.", port.image_Thay);
+			dialogues[dialogueSet][4] = new Dialoge("Alder","I'm not a toddler anymore.", port.image_Alder);
+			dialogues[dialogueSet][5] = new Dialoge("Thay","Well.", port.image_Thay);
+			dialogues[dialogueSet][6] = new Dialoge("Thay","Better I'll be meeting with the witch.", port.image_Thay);
+			dialogues[dialogueSet][7] = new Dialoge("Thay","I'll chat with you both soon.", port.image_Thay);
+			break;
+		case 3:
+			dialogues[dialogueSet][0] = new Dialoge("Thay","Thank you, Madame Kyla.", port.image_Thay);
+			dialogues[dialogueSet][1] = new Dialoge("Kyla","Yes yes. Come again.", port.image_Kyla);
+			break;
+		case 4:
+			dialogues[dialogueSet][0] = new Dialoge("Florence","Alder!", port.image_Florence);
+			dialogues[dialogueSet][1] = new Dialoge("Florence","I need you!", port.image_Florence);
+			dialogues[dialogueSet][2] = new Dialoge("Thay","Don't worry about it lad.", port.image_Thay);
+			dialogues[dialogueSet][3] = new Dialoge("Thay","I'll make sure you see me off.", port.image_Thay);
+			dialogues[dialogueSet][4] = new Dialoge("Alder","*Sigh*", port.image_Alder);
+			dialogues[dialogueSet][5] = new Dialoge("Alder","Yes Florence?", port.image_Alder);
+			dialogues[dialogueSet][6] = new Dialoge("Florence","We're out of meat.", port.image_Florence);
+			dialogues[dialogueSet][7] = new Dialoge("Florence","I need you to go hunt an insect or two.", port.image_Florence);
+			dialogues[dialogueSet][8] = new Dialoge("Alder","Ok.", port.image_Alder);
+			dialogues[dialogueSet][9] = new Dialoge("Alder","Where do you want me to look?", port.image_Alder);
+			dialogues[dialogueSet][10] = new Dialoge("Florence","In the woods just outside the burrow.", port.image_Florence);
+			dialogues[dialogueSet][11] = new Dialoge("Florence","There should be a hunting knife on the table inside the shed.", port.image_Florence);
+			dialogues[dialogueSet][12] = new Dialoge("Alder","Thank you.", port.image_Alder);
+			break;
+		case 5:
+			dialogues[dialogueSet][0] = new Dialoge("Thay","I'm heading off now lad.", port.image_Thay);
+			dialogues[dialogueSet][1] = new Dialoge("Alder","Aw, already?!", port.image_Alder);
+			dialogues[dialogueSet][2] = new Dialoge("Alder","Well, take care then.", port.image_Alder);
+			dialogues[dialogueSet][3] = new Dialoge("Thay","I will.", port.image_Thay);
+			dialogues[dialogueSet][4] = new Dialoge("Thay","Goodbye lad.", port.image_Thay);
+			dialogues[dialogueSet][5] = new Dialoge("As the day came to an end the residents of the cottage were unaware of the shadows that came ever closer.",1);
+			break;
+		case 6:
+			dialogues[dialogueSet][0] = new Dialoge("Alder","*Yawn*", port.image_Alder);
+			dialogues[dialogueSet][1] = new Dialoge("Squirrel","Hi Alder!", port.image_Trissie);
+			dialogues[dialogueSet][2] = new Dialoge("Alder","Trissie!", port.image_Alder);
+			dialogues[dialogueSet][3] = new Dialoge("Trissie","Shh. Not so loud!", port.image_Trissie);
+			dialogues[dialogueSet][4] = new Dialoge("Trissie","I need to see Kyla as soon as possible.", port.image_Trissie);
+			dialogues[dialogueSet][5] = new Dialoge("Trissie","I have something you all should hear.", port.image_Trissie);
+			dialogues[dialogueSet][6] = new Dialoge("Alder","Ok...", port.image_Alder);
+			dialogues[dialogueSet][7] = new Dialoge("Trissie","Aw. Don't make that face.", port.image_Trissie);
+			dialogues[dialogueSet][8] = new Dialoge("Trissie","Say.", port.image_Trissie);
+			dialogues[dialogueSet][9] = new Dialoge("Trissie","Why don't I give you some archery lessons before I leave?", port.image_Trissie);
+			dialogues[dialogueSet][10] = new Dialoge("Alder","Yes, please!", port.image_Alder);
+			dialogues[dialogueSet][11] = new Dialoge("Trissie","You might need them.", port.image_Trissie);
+			dialogues[dialogueSet][12] = new Dialoge("Alder","Huh?", port.image_Alder);
+			dialogues[dialogueSet][13] = new Dialoge("Florence","Triss!", port.image_Florence);
+			break;
+		case 7:
+			dialogues[dialogueSet][0] = new Dialoge("Trissie","I'll make this quick!", port.image_Trissie);
+			dialogues[dialogueSet][1] = new Dialoge("Trissie","There are Gowl knights patrolling the woods!", port.image_Trissie);
+			dialogues[dialogueSet][2] = new Dialoge("Florence","Do they know of the cottage?", port.image_Florence);
+			dialogues[dialogueSet][3] = new Dialoge("Kyla","Not unless one of our clients has sold us out.", port.image_Kyla);
+			dialogues[dialogueSet][4] = new Dialoge("Kyla","Even so, their search shall come up empty.", port.image_Kyla);
+			dialogues[dialogueSet][5] = new Dialoge("Trissie","I don't know.", port.image_Trissie);
+			dialogues[dialogueSet][6] = new Dialoge("Trissie","There's quite a few of them and they're setting up camps.", port.image_Trissie);
+			dialogues[dialogueSet][7] = new Dialoge("Trissie","They seemed certain that they would find something.", port.image_Trissie);
+			dialogues[dialogueSet][8] = new Dialoge("Kyla","My magic is strong.", port.image_Kyla);
+			dialogues[dialogueSet][9] = new Dialoge("Kyla","They'll never find this place.", port.image_Kyla);
+			dialogues[dialogueSet][10] = new Dialoge("Trissie","I hope so.", port.image_Trissie);
+			dialogues[dialogueSet][11] = new Dialoge("Trissie","The woods are full of soldiers, most of whom appear to be new recruits.", port.image_Trissie);
+			dialogues[dialogueSet][12] = new Dialoge("Kyla","That proves my point!", port.image_Kyla);
+			dialogues[dialogueSet][13] = new Dialoge("Kyla","Whatever they know, they're sending saplings. They can't be very sure about it!", port.image_Kyla);
+			dialogues[dialogueSet][14] = new Dialoge("Trissie","Being overseen by several captains apparently ordered by Darrunt himself!", port.image_Trissie);
+			dialogues[dialogueSet][15] = new Dialoge("Alder","Who's Darrunt?", port.image_Alder);
+			dialogues[dialogueSet][16] = new Dialoge("Florence","He's the Grand Marshal of the Gowls.", port.image_Florence);
+			dialogues[dialogueSet][17] = new Dialoge("Florence","He wouldn't think to look this far north in the woods though.", port.image_Florence);
+			dialogues[dialogueSet][18] = new Dialoge("Florence","Too barren of humans these days.", port.image_Florence);
+			dialogues[dialogueSet][19] = new Dialoge("Kyla","We'll lay low for the next few days, food is plentiful and we have enough water to last us a few days.", port.image_Kyla);
+			dialogues[dialogueSet][20] = new Dialoge("Kyla","Thank you for the warning, Trissie dear.", port.image_Kyla);
+			dialogues[dialogueSet][21] = new Dialoge("Kyla","But I think we will be fine.", port.image_Kyla);
+			dialogues[dialogueSet][22] = new Dialoge("Trissie","If you say so.", port.image_Trissie);
+			dialogues[dialogueSet][23] = new Dialoge("Trissie","I think I'll scarper out of these woods for the time being until things quiet down.", port.image_Trissie);
+			dialogues[dialogueSet][24] = new Dialoge("Trissie","Alder?", port.image_Trissie);
+			dialogues[dialogueSet][25] = new Dialoge("Trissie","I promised you archery lessons?", port.image_Trissie);
+			dialogues[dialogueSet][26] = new Dialoge("Alder","Yes!", port.image_Alder);
+			dialogues[dialogueSet][27] = new Dialoge("Trissie","Then come meet me outside.", port.image_Trissie);
+			break;
+		case 8:
+			dialogues[dialogueSet][0] = new Dialoge("Alder",".........", port.image_Alder);
+			dialogues[dialogueSet][1] = new Dialoge("Alder","................hm?", port.image_Alder);
+			dialogues[dialogueSet][2] = new Dialoge("Alder","Where...?", port.image_Alder);
+			dialogues[dialogueSet][3] = new Dialoge("Alder","Who's there?", port.image_Alder);
+			dialogues[dialogueSet][4] = new Dialoge("Alder","What is this place?", port.image_Alder);
+			dialogues[dialogueSet][5] = new Dialoge("One the figures stepped out from the darkness towards Alder.",1);
+			dialogues[dialogueSet][6] = new Dialoge("Alder","Uh, h-hello. Nice sword...", port.image_Alder);
+			dialogues[dialogueSet][7] = new Dialoge("The mouse walked up to Alder, stopping a short distance in front of him, before digging a hole between them.",1);
+			dialogues[dialogueSet][8] = new Dialoge("Alder","What are you digging for- Wha?", port.image_Alder);
+			dialogues[dialogueSet][9] = new Dialoge("Alder","Why can't I move!?", port.image_Alder);
+			dialogues[dialogueSet][10] = new Dialoge("To Alder's confusion he floated down to the ground and he realised he was in a corparial form.",1); 
+			dialogues[dialogueSet][11] = new Dialoge("His body contorted and shrunk until he was small enough to fit in the hole.",1);
+			dialogues[dialogueSet][12] = new Dialoge("The mouse looked over Alder.",1);
+			dialogues[dialogueSet][13] = new Dialoge("Alder","Wait!", port.image_Alder);
+			dialogues[dialogueSet][14] = new Dialoge("Alder","What's happening!?", port.image_Alder);
+			dialogues[dialogueSet][15] = new Dialoge("Alder","What are you doing!?", port.image_Alder);
+			dialogues[dialogueSet][16] = new Dialoge("Alder was gently set in the pit and before it began refilling with soil.",1);
+			dialogues[dialogueSet][17] = new Dialoge("Leaning over the pit the mouse grabbed the handle for a moment Alder thought that the mouse would strike him.",1);
+			dialogues[dialogueSet][18] = new Dialoge("Alder","Ahh!", port.image_Alder);
+			dialogues[dialogueSet][19] = new Dialoge("The mouse expressed surprise and apologetically conveyed to Alder that he meant no harm.",1);
+			dialogues[dialogueSet][20] = new Dialoge("He pulled out the scabbard, sheathed the sword and placed the hilt in with Alder.",1);
+			break;
+		case 9:
+			dialogues[dialogueSet][0] = new Dialoge("Alder took the sword by the grip and to his surprise, it changed size to fit in his hands.",1);
+			dialogues[dialogueSet][1] = new Dialoge("???","...",port.image_Agrimus);
+			dialogues[dialogueSet][2] = new Dialoge("Alder could see the mouse gently smile before he was submerged in darkness.",1);
+			dialogues[dialogueSet][3] = new Dialoge("Dispite not speaking Alder experienced the strange sensation of a voice speaking inside his head.",1);
+			dialogues[dialogueSet][4] = new Dialoge("???","Good luck. My Scion.",port.image_Agrimus);
+			break;
+		}
 	}
 
 	public void setCutscene(int dialogueSet, int read) {
@@ -53,7 +227,8 @@ public class Cutscene extends Entity {
 						text = line[4].trim();
 					}
 					if (name != "") {
-						dialogues[dialogueSet][count] = new Dialoge(name, text, 1);
+						dialogues[dialogueSet][count] = new Dialoge(name, text, port.getImage(name));
+						//System.out.println(getImage(name));
 					} else {
 						dialogues[dialogueSet][count] = new Dialoge(text, 1);
 					}
@@ -82,204 +257,51 @@ public class Cutscene extends Entity {
 
 		gp.keyH.enterPressed = false;
 	}
-
-	public void setImages() {
-		try {
-			image_Alder = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Alder.png"));
-			image_Florence = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Florence.png"));
-			image_Dilecto = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Dilecto.png"));
-			image_Thay = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Thay.png"));
-			image_Dean = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Dean.png"));
-			image_Ralph = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Ralph.png"));
-			image_Plumm = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Plumm.png"));
-			image_Kyla = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Kyla.png"));
-			image_Trissie = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Trissie.png"));
-			image_Agrimus = ImageIO.read(getClass().getResourceAsStream("/res/character/chr_Agrimus.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
+	
+	public BufferedImage getImage(String name) {
+		switch(name) {
+		case "Alder": return port.image_Alder;
+		case "Florence": return port.image_Florence;
+		case "Dilecto": return port.image_Dilecto;
+		case "Thay": return port.image_Thay;
+		case "Dean": return port.image_Dean;
+		case "Ralph": return port.image_Ralph;
+		case "Plumm": return port.image_Plumm;
+		case "Kyla": return port.image_Kyla;
+		case "Trissie": return port.image_Trissie;
+		case "Agrimus": return port.image_Agrimus;
+		default : return null;
 		}
 	}
 
 	public void setSprites(int spriteSet) {
-		setImages();
+		//setImages();
 		switch(spriteSet) {
-		case 0:
-			sprites[0][0] = image_Dean;
-			sprites[0][1] = image_Dean;
-			sprites[0][2] = image_Dean;
-			sprites[0][3] = image_Dilecto;
-			sprites[0][4] = image_Dilecto;
-			sprites[0][5] = image_Dean;
-			sprites[0][6] = image_Ralph;
-			sprites[0][7] = image_Ralph;
-			sprites[0][8] = image_Dean;
-			sprites[0][9] = image_Ralph;
-			sprites[0][10] = image_Ralph;
-			sprites[0][11] = image_Dilecto;
-			sprites[0][12] = image_Dilecto;
-			sprites[0][13] = image_Ralph;
-			sprites[0][14] = image_Dilecto;
-			sprites[0][15] = image_Ralph;
-			sprites[0][16] = image_Dilecto;
-			sprites[0][17] = image_Dilecto;
-			sprites[0][18] = image_Dean;
-			sprites[0][19] = image_Ralph;
-			sprites[0][20] = image_Dean;
-			sprites[0][21] = image_Dilecto;
-			sprites[0][22] = image_Dilecto;
-			sprites[0][23] = image_Dilecto;
-			sprites[0][24] = image_Ralph;
-			sprites[0][25] = image_Dean;
-			sprites[0][26] = image_Dean;
-			sprites[0][27] = image_Ralph;
-			sprites[0][28] = image_Ralph;
-			sprites[0][29] = image_Dilecto;
-			sprites[0][30] = image_Ralph;
-			sprites[0][31] = image_Dilecto;
-			sprites[0][32] = image_Dilecto;
-			sprites[0][33] = image_Ralph;
-			sprites[0][34] = image_Dilecto;
-			sprites[0][35] = image_Dilecto;
-			sprites[0][36] = image_Dilecto;
-			sprites[0][37] = image_Dilecto;
-			sprites[0][38] = image_Plumm;
-			sprites[0][39] = image_Dilecto;
-			sprites[0][40] = image_Dilecto;
-			sprites[0][41] = image_Plumm;
-			sprites[0][42] = image_Plumm;
-			sprites[0][43] = image_Ralph;
-			sprites[0][44] = image_Plumm;
-			sprites[0][45] = image_Plumm;
-			sprites[0][46] = image_Ralph;
-			sprites[0][47] = image_Ralph;
-			sprites[0][48] = image_Dean;
-			sprites[0][49] = image_Dilecto;
-			sprites[0][50] = image_Dilecto;
-			sprites[0][51] = image_Dilecto;
-			sprites[0][52] = image_Dilecto;
-			sprites[0][53] = image_Dilecto;
-			break;
-		case 1:
-			sprites[1][0] = image_Thay;
-			sprites[1][1] = image_Florence;
-			sprites[1][2] = image_Thay;
-			sprites[1][3] = image_Thay;
-			sprites[1][4] = image_Florence;
-			sprites[1][5] = image_Thay;
-			sprites[1][6] = image_Florence;
-			sprites[1][7] = image_Florence;
-			sprites[1][8] = image_Florence;
-			break;
-		case 2:
-			sprites[2][0] = image_Thay;
-			sprites[2][1] = image_Alder;
-			sprites[2][2] = image_Thay;
-			sprites[2][3] = image_Thay;
-			sprites[2][4] = image_Alder;
-			sprites[2][5] = image_Thay;
-			sprites[2][6] = image_Thay;
-			sprites[2][7] = image_Thay;
-			break;
-		case 3:
-			sprites[3][0] = image_Thay;
-			sprites[3][1] = image_Kyla;
-			break;
-		case 4:
-			sprites[4][0] = image_Florence;
-			sprites[4][1] = image_Florence;
-			sprites[4][2] = image_Thay;
-			sprites[4][3] = image_Thay;
-			sprites[4][4] = image_Alder;
-			sprites[4][5] = image_Alder;
-			sprites[4][6] = image_Florence;
-			sprites[4][7] = image_Florence;
-			sprites[4][8] = image_Alder;
-			sprites[4][9] = image_Alder;
-			sprites[4][10] = image_Florence;
-			sprites[4][11] = image_Florence;
-			sprites[4][12] = image_Alder;
-			break;
-		case 5:
-			sprites[5][0] = image_Thay;
-			sprites[5][1] = image_Alder;
-			sprites[5][2] = image_Alder;
-			sprites[5][3] = image_Thay;
-			sprites[5][4] = image_Thay;
-			break;
-		case 6:
-			sprites[6][0] = image_Alder;
-			sprites[6][1] = image_Trissie;
-			sprites[6][2] = image_Alder;
-			sprites[6][3] = image_Trissie;
-			sprites[6][4] = image_Trissie;
-			sprites[6][5] = image_Trissie;
-			sprites[6][6] = image_Alder;
-			sprites[6][7] = image_Trissie;
-			sprites[6][8] = image_Trissie;
-			sprites[6][9] = image_Trissie;
-			sprites[6][10] = image_Alder;
-			sprites[6][11] = image_Trissie;
-			sprites[6][12] = image_Alder;
-			sprites[6][13] = image_Florence;
-			break;
-		case 7:
-			sprites[7][0] = image_Trissie;
-			sprites[7][1] = image_Trissie;
-			sprites[7][2] = image_Florence;
-			sprites[7][3] = image_Kyla;
-			sprites[7][4] = image_Kyla;
-			sprites[7][5] = image_Trissie;
-			sprites[7][6] = image_Trissie;
-			sprites[7][7] = image_Trissie;
-			sprites[7][8] = image_Kyla;
-			sprites[7][9] = image_Kyla;
-			sprites[7][10] = image_Trissie;
-			sprites[7][11] = image_Trissie;
-			sprites[7][12] = image_Kyla;
-			sprites[7][13] = image_Kyla;
-			sprites[7][14] = image_Trissie;
-			sprites[7][15] = image_Alder;
-			sprites[7][16] = image_Florence;
-			sprites[7][17] = image_Florence;
-			sprites[7][18] = image_Florence;
-			sprites[7][19] = image_Florence;
-			sprites[7][20] = image_Kyla;
-			sprites[7][21] = image_Kyla;
-			sprites[7][22] = image_Kyla;
-			sprites[7][23] = image_Trissie;
-			sprites[7][24] = image_Trissie;
-			sprites[7][25] = image_Trissie;
-			sprites[7][26] = image_Trissie;
-			sprites[7][27] = image_Alder;
-			sprites[7][28] = image_Trissie;
-			break;
-		case 8:
-			break;
 		case 9:
-			sprites[9][0] = image_Alder;
-			sprites[9][1] = image_Alder;
-			sprites[9][2] = image_Alder;
-			sprites[9][3] = image_Alder;
-			sprites[9][4] = image_Alder;
-			sprites[9][5] = image_Agrimus;
-			sprites[9][6] = image_Alder;
-			sprites[9][7] = image_Agrimus;
-			sprites[9][8] = image_Alder;
-			sprites[9][9] = image_Alder;
-			sprites[9][10] = image_Alder;
-			sprites[9][11] = image_Alder;
-			sprites[9][12] = image_Agrimus;
-			sprites[9][13] = image_Alder;
-			sprites[9][14] = image_Alder;
-			sprites[9][15] = image_Alder;
-			sprites[9][17] = image_Agrimus;
-			sprites[9][18] = image_Alder;
-			sprites[9][19] = image_Agrimus;
-			sprites[9][20] = image_Agrimus;
+			sprites[9][0] = port.image_Alder;
+			sprites[9][1] = port.image_Alder;
+			sprites[9][2] = port.image_Alder;
+			sprites[9][3] = port.image_Alder;
+			sprites[9][4] = port.image_Alder;
+			sprites[9][5] = port.image_Agrimus;
+			sprites[9][6] = port.image_Alder;
+			sprites[9][7] = port.image_Agrimus;
+			sprites[9][8] = port.image_Alder;
+			sprites[9][9] = port.image_Alder;
+			sprites[9][10] = port.image_Alder;
+			sprites[9][11] = port.image_Alder;
+			sprites[9][12] = port.image_Agrimus;
+			sprites[9][13] = port.image_Alder;
+			sprites[9][14] = port.image_Alder;
+			sprites[9][15] = port.image_Alder;
+			sprites[9][17] = port.image_Agrimus;
+			sprites[9][18] = port.image_Alder;
+			sprites[9][19] = port.image_Agrimus;
+			sprites[9][20] = port.image_Agrimus;
 			break;
 		case 10:
-			sprites[10][2] = image_Agrimus;
-			sprites[10][5] = image_Agrimus;
+			sprites[10][2] = port.image_Agrimus;
+			sprites[10][5] = port.image_Agrimus;
 			break;
 		}
 	}

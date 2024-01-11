@@ -27,7 +27,6 @@ public class Entity {
 	public int id;
 	public String name;
 	public int expDrop;
-	//private itemDrop = [{'item' : items.food[4], 'quantity':2}],
 	public int worldX;
 	public int worldY;
 	public Boolean selected;
@@ -49,6 +48,7 @@ public class Entity {
 	public BufferedImage up1, up2, up3, left1, left2, left3, right1, right2, right3, down1, down2, down3, unique;
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
+	public boolean moving = false;
 	public boolean collision = false;
 	public boolean collisionOn = false;
 	public boolean takeDamage = false;
@@ -56,10 +56,6 @@ public class Entity {
 	public boolean destroy = false;
 	public int amount = 1;
 	public EntityType type;
-	public final int type_player = 0;
-	public final int type_object = 1;
-	public final int type_npc = 2;
-	public final int type_obstacle = 3;
 	public Timer timer;
 	public long startTime = -1;
 	public Item loot;
@@ -77,26 +73,31 @@ public class Entity {
 		gp.cChecker.checkTile(this);
 		gp.cChecker.checkObject(this, false);
 		gp.cChecker.checkPlayer(this);
-		if(!collisionOn) {
-			switch(direction) {
-			case "up": worldY -= speed; break;
-			case "down": worldY += speed; break;
-			case "left": worldX -= speed; break;
-			case "right": worldX += speed; break;
+		if(moving) {
+			if(!collisionOn) {
+				switch(direction) {
+				case "up": worldY -= speed; break;
+				case "down": worldY += speed; break;
+				case "left": worldX -= speed; break;
+				case "right": worldX += speed; break;
+				}
 			}
-		}
-		spriteCounter++;
-		if (spriteCounter > 10) {
-			if(spriteNum == 1) {
-				spriteNum = 2;
-			} else if (spriteNum == 2) {
-				spriteNum = 3;
-			} else if (spriteNum == 3) {
-				spriteNum = 4;
-			} else if (spriteNum == 4) {
-				spriteNum = 1;
+			spriteCounter++;
+			if (spriteCounter > 10) {
+				if(spriteNum == 1) {
+					spriteNum = 2;
+				} else if (spriteNum == 2) {
+					spriteNum = 3;
+				} else if (spriteNum == 3) {
+					spriteNum = 4;
+				} else if (spriteNum == 4) {
+					spriteNum = 1;
+				}
+				spriteCounter = 0;
 			}
-			spriteCounter = 0;
+			moving = false;
+		} else {
+			spriteNum = 1;
 		}
 	}
 	
@@ -117,7 +118,6 @@ public class Entity {
 	}
 
 	public String getName() {
-		//System.out.println(name);
 		if (name == null) {
 			return "None";
 		}
@@ -297,12 +297,8 @@ public class Entity {
 		this.shill = loot;
 	}
 	
-	public void interact() {
-	}
-	
-	public void speak() {
-		
-	}
+	public void interact() {}
+	public void speak() {}
 	
 	public void facePlayer() {
 		switch(gp.player.direction) {
@@ -344,27 +340,9 @@ public class Entity {
 		return index;
 	}
 	
-	public void combatResponce() {
-		
-	}
-
-	public void choiceResponce() {
-	}
-	public void checkConditions() {
-		
-	}
-	
-	public void takeDamage() {
-		
-	}
-	
-	public void action() {
-		
-	}
-
-	/*@Override
-	public int compare(Entity arg0, Entity arg1) {
-		// TODO Auto-generated method stub
-		return 0;
-	}*/
+	public void combatResponce() {}
+	public void choiceResponce() {}
+	public void checkConditions() {}
+	public void takeDamage() {}
+	public void action() {}
 }

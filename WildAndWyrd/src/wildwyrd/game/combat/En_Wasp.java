@@ -10,7 +10,7 @@ import wildwyrd.game.object.Dialoge;
 
 public class En_Wasp extends Enemy {
 	public En_Wasp(GamePanel gp) {
-		super(gp,"Wasp",  19, 10, 5, 5, 90, 40, 45);
+		super(gp,"Wasp", 19, 10, 5, 5, 90, 40, 45);
         desc = "More hostile than usual this year.";
 		type = EntityType.Sprite;
 	}
@@ -21,7 +21,7 @@ public class En_Wasp extends Enemy {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge("" ,1);
-		dialogues[1][0] = new Dialoge("Did I anger them?",1);
+		dialogues[1][0] = new Dialoge("Alder","Did I anger them?",port.image_Alder);
 		dialogues[1][1] = new Dialoge("Alder was puzzled by the attack but regardless it was time to return to Florence.",1);
 	}
 
@@ -51,7 +51,7 @@ public class En_Wasp extends Enemy {
 		gp.s.c1Switch[3] = false;
 		for (int i = 0; i < gp.npc[2].length; i++) {
 			if(gp.npc[2][i] != null && gp.npc[2][i].name == NPC_Thay.npcName) {
-				gp.npc[2][i].worldX = gp.tileSize * 13;
+				gp.npc[2][i].worldX = gp.tileSize * 12;
 				gp.npc[2][i].direction = "left";
 				break;
 			}
