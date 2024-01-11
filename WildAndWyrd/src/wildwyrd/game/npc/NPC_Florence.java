@@ -64,26 +64,24 @@ public class NPC_Florence extends NPC {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge(" " ,3);
-		dialogues[1][0] = new Dialoge("Florence", "Potions probably.", 1);
-		dialogues[1][1] = new Dialoge("Florence", "He usually comes here for sanctuary or potions.", 1);
-		dialogues[2][0] = new Dialoge("Florence", "Well.", 1);
-		dialogues[2][1] = new Dialoge("Florence", "Kyla’s cast several illusions on the cottage, one of which makes it looks like a boulder from the outside.", 1);
-		dialogues[2][2] = new Dialoge("Florence", "She's also muted the rooms and made our scents smell somewhat grassy.", 1);
-		dialogues[2][3] = new Dialoge("Florence", "This place cannot be seen from the outside world, so we tend to call it the burrow.", 1);
-		dialogues[3][0] = new Dialoge("Florence", "The knife should be in the shed. You can go once you've got it." ,1);
-		dialogues[4][0] = new Dialoge("Alder", "I found the knife!" ,1);
-		dialogues[4][1] = new Dialoge("Florence", "Fantastic!" ,1);
-		dialogues[4][2] = new Dialoge("Florence", "Just don't go too far." ,1);
-		dialogues[5][0] = new Dialoge("Alder", "Florence! I'm done!" ,1);
-		dialogues[5][1] = new Dialoge("Florence was finishing a conversation with Thay when they looked at Alder they immediately noticed the swollen red marks where the hornets had stung his exposed skin." ,1);
-		dialogues[5][2] = new Dialoge("Florence","Alder what happened? Are you ok!?" ,1);
-		dialogues[5][3] = new Dialoge("Alder","Um..." ,1);
-		dialogues[5][4] = new Dialoge("Alder was briefly put off by Florence's concern, but he knew she could get paranoid when it can to his safety." ,1);
-		dialogues[5][5] = new Dialoge("Alder","I got stung by wasps a few times but I'm alright!" ,1);
-		dialogues[5][6] = new Dialoge("Florence","*Sigh*" ,1);
-		dialogues[5][7] = new Dialoge("Florence","Give the bugs and the knife to me and go relax yourself." ,1);
-		dialogues[6][0] = new Dialoge("Florence", "Triss is very brave." ,1);
-		dialogues[6][1] = new Dialoge("Florence", "She risks everything to help people get around the Gowls." ,1);
+		dialogues[1][0] = new Dialoge("Florence", "Potions probably.", port.image_Florence);
+		dialogues[1][1] = new Dialoge("Florence", "He usually comes here for sanctuary or potions.", port.image_Florence);
+		dialogues[2][0] = new Dialoge("Florence", "Well.", port.image_Florence);
+		dialogues[2][1] = new Dialoge("Florence", "Kyla’s cast several illusions on the cottage, one of which makes it looks like a boulder from the outside.", port.image_Florence);
+		dialogues[2][2] = new Dialoge("Florence", "She's also muted the rooms and made our scents smell somewhat grassy.", port.image_Florence);
+		dialogues[2][3] = new Dialoge("Florence", "This place cannot be seen from the outside world, so we tend to call it the burrow.", port.image_Florence);
+		dialogues[3][0] = new Dialoge("Florence", "The knife should be in the shed. You can go once you've got it." ,port.image_Florence);
+		dialogues[4][0] = new Dialoge("Alder", "I found the knife!" ,port.image_Alder);
+		dialogues[4][1] = new Dialoge("Florence", "Fantastic!" ,port.image_Florence);
+		dialogues[4][2] = new Dialoge("Florence", "Just don't go too far." ,port.image_Florence);
+		dialogues[5][0] = new Dialoge("Alder", "Florence! I'm done!" ,port.image_Alder);
+		dialogues[5][1] = new Dialoge("Florence","Alder what happened? Are you ok!?" ,port.image_Florence);
+		dialogues[5][2] = new Dialoge("Alder","Um..." ,port.image_Alder);
+		dialogues[5][3] = new Dialoge("Alder","I got stung by wasps a few times but I'm alright!" ,port.image_Alder);
+		dialogues[5][4] = new Dialoge("Florence","*Sigh*" ,port.image_Florence);
+		dialogues[5][5] = new Dialoge("Florence","Give the bugs and the knife to me and go relax yourself." ,port.image_Florence);
+		dialogues[6][0] = new Dialoge("Florence", "Triss is very brave." ,port.image_Florence);
+		dialogues[6][1] = new Dialoge("Florence", "She risks everything to help people get around the Gowls." ,port.image_Florence);
 	}
 	
 	public void setDialogueOptions() {

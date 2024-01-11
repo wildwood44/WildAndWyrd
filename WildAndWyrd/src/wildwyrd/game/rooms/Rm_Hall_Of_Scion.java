@@ -17,6 +17,12 @@ public class Rm_Hall_Of_Scion extends Room {
 		roomId = 2;
 		room_width = gp.screenWidth;
 		room_height = gp.screenHeight;
+		props = new Prop[1];
+		actors = new Prop[1];
+		props[0] = new Prop(this.gp, screenX, screenY, room_width, room_height);
+		props[0].setImage("/res/backgrounds/animated/Hall_of_the_Scion_eyes");
+		actors[0] = new Prop(this.gp, 300, 0, 200, 400);
+		actors[0].setImage("/res/character/chr_Agrimus");
 		alpha = 0;
 		setDialogue();
 	}
@@ -37,6 +43,12 @@ public class Rm_Hall_Of_Scion extends Room {
 		image = setup("/res/backgrounds/animated/Hall_of_the_Scion_eyes", room_width, room_height);
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 		g2.drawImage(image, screenX, screenY, gp);
+	}
+	
+	public void drawActor(String file, int x, int y, float alpha) {
+		image = setup("/res/character/chr_Agrimus", 200, 400);
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+		g2.drawImage(image, x, y, gp);
 	}
 
 	public void choiceResponce() {
@@ -67,6 +79,7 @@ public class Rm_Hall_Of_Scion extends Room {
 	public void draw(Graphics2D g2) {
 		this.g2 = g2;
 		getBackgroundImage();
-		drawObjects();
+		props[0].draw(g2);
+		actors[0].draw(g2);
 	}
 }

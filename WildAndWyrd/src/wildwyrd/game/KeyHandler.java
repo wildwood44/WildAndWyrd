@@ -61,7 +61,7 @@ public class KeyHandler implements KeyListener {
 				case KeyEvent.VK_ENTER :
 					if (gp.ui.slotCol == 0) { //Save game
 						gp.gameState = GameState.saveState;
-						gp.playSE(0);
+						gp.playSE(1);
 						gp.saveLoad.save();
 					} else if (gp.ui.slotCol == 1) { //Open status screen
 						gp.gameState = GameState.statusState;
@@ -77,7 +77,10 @@ public class KeyHandler implements KeyListener {
 						gp.ui.resetSlots();
 						gp.gameState = GameState.glossaryState;
 						gp.ui.drawGlossaryScreen();
-					} else if (gp.ui.slotCol == 5) { //Quit game
+					} else if (gp.ui.slotCol == 5) { //Open options
+						gp.ui.resetSlots();
+						gp.gameState = GameState.optionsState;
+					} else if (gp.ui.slotCol == 6) { //Quit game
 						gp.currentRoom = 0;
 						gp.restart();
 						gp.gameState = GameState.titleState;
@@ -88,15 +91,17 @@ public class KeyHandler implements KeyListener {
 					break;
 				case KeyEvent.VK_UP :
 				case KeyEvent.VK_W :
+					gp.playSE(0);
 					if (gp.ui.slotCol != 0) {
 						--gp.ui.slotCol;
 					} else {
-						gp.ui.slotCol = 5;
+						gp.ui.slotCol = 6;
 					}
 					break;
 				case KeyEvent.VK_DOWN :
 				case KeyEvent.VK_S :
-					if (gp.ui.slotCol != 5) {
+					gp.playSE(0);
+					if (gp.ui.slotCol != 6) {
 						++gp.ui.slotCol;
 					} else {
 						gp.ui.slotCol = 0;
@@ -340,6 +345,8 @@ public class KeyHandler implements KeyListener {
 						}
 					}
 				}
+		} else if (gp.gameState == GameState.optionsState) {
+			optionsState(e.getKeyCode());
 		} else if (gp.gameState == GameState.readingState) {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_ESCAPE :
@@ -660,7 +667,7 @@ public class KeyHandler implements KeyListener {
 					}
 
 					break;
-				case 84 :
+				case KeyEvent.VK_T :
 					if (!showDebugText) {
 						showDebugText = true;
 					} else if (showDebugText) {
@@ -731,6 +738,56 @@ public class KeyHandler implements KeyListener {
 			}
 		}
 
+	}
+
+	public void optionsState(int code) {
+		int maxCommandNum = 0;
+		switch (gp.ui.subState) {
+		case 0: maxCommandNum =  4;
+		}
+		switch(code) {
+		case KeyEvent.VK_ESCAPE: gp.gameState = GameState.menuState; break;
+		case KeyEvent.VK_ENTER: enterPressed = true; break; 
+		case KeyEvent.VK_UP :
+		case KeyEvent.VK_W :
+			gp.ui.commandNum--;
+			if(gp.ui.commandNum < 0) {
+				gp.ui.commandNum = maxCommandNum;
+			}
+			break;
+		case KeyEvent.VK_DOWN :
+		case KeyEvent.VK_S :
+			gp.ui.commandNum++;
+			if(gp.ui.commandNum > maxCommandNum) {
+				gp.ui.commandNum = 0;
+			}
+			break;
+		case KeyEvent.VK_A :
+			if(gp.ui.subState == 0) {
+				if(gp.ui.commandNum == 1 && gp.music.volumeScale > 0) {
+					gp.music.volumeScale--;
+					gp.music.checkVolume();
+					gp.playSE(1);
+				}
+				if(gp.ui.commandNum == 2 && gp.se.volumeScale > 0) {
+					gp.se.volumeScale--;
+					gp.playSE(1);
+				}
+			}
+			break;
+		case KeyEvent.VK_D :
+			if(gp.ui.subState == 0) {
+				if(gp.ui.commandNum == 1 && gp.music.volumeScale < 5) {
+					gp.music.volumeScale++;
+					gp.music.checkVolume();
+					gp.playSE(1);
+				}
+				if(gp.ui.commandNum == 2 && gp.se.volumeScale < 5) {
+					gp.se.volumeScale++;
+					gp.playSE(1);
+				}
+			}
+		}
 	}
 
 	@Override

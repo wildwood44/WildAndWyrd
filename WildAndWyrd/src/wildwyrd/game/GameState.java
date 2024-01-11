@@ -4,7 +4,8 @@ public enum GameState {
 	titleState, playState, pauseState, menuState,
 	cutsceneState, dialogueState, messageState,
 	examineState, talkingState, movingState,
-	saveState, statusState, inventoryState, equipState, glossaryState, objectiveState, skillState,
+	saveState, statusState, inventoryState, equipState, 
+	glossaryState, objectiveState, skillState, optionsState,
 	readingState, combatState, gameOverState,
 	targetState, specialState, useItemState, rewardState
 }

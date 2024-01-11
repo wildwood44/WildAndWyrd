@@ -22,7 +22,7 @@ public class Obj_Table_Right extends Entity {
 		solidArea.y = 20;
 		solidAreaDefaultY = solidArea.y;
 		solidArea.width = 40;
-		solidArea.height = 30;
+		solidArea.height = 20;
 		setDialogue();
 		getImage(image);
 	}

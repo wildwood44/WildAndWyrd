@@ -34,7 +34,7 @@ public class CollisionChecker {
 
 					if (gp.tileM.tile[tileNum1].nettles || gp.tileM.tile[tileNum2].nettles) {
 						collisionCount++;
-						if(collisionCount / damageOn == 0) {
+						if(collisionCount == damageOn) {
 							entity.takeDamage = true;
 							collisionCount = 0;
 						}
@@ -49,7 +49,7 @@ public class CollisionChecker {
 					}
 					if (gp.tileM.tile[tileNum1].nettles || gp.tileM.tile[tileNum2].nettles) {
 						collisionCount++;
-						if(collisionCount / damageOn == 0) {
+						if(collisionCount == damageOn) {
 							entity.takeDamage = true;
 							collisionCount = 0;
 						}
@@ -79,7 +79,7 @@ public class CollisionChecker {
 					}
 					if (gp.tileM.tile[tileNum1].nettles || gp.tileM.tile[tileNum2].nettles) {
 						collisionCount++;
-						if(collisionCount / damageOn == 0) {
+						if(collisionCount == damageOn) {
 							entity.takeDamage = true;
 							collisionCount = 0;
 						}

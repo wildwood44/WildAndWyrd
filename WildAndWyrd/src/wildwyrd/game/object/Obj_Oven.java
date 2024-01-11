@@ -17,11 +17,13 @@ public class Obj_Oven extends Entity {
 		type = EntityType.Object;
 		collision = true;
 
-		image = setup("/res/objects/img_Oven", gp.tileSize, gp.tileSize);
-
+		image = setup("/res/objects/img_Oven", gp.tileSize, gp.tileSize * 2);
 		solidArea.width = 42;
+		solidArea.height = 60;
 		solidArea.x = 10;
+		solidArea.y = 5;
 		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
 		setDialogue();
 		getImage(image);
 	}
