@@ -10,27 +10,25 @@ public class Obj_Alder_Bed extends Entity {
 	public static final String objName = "Alder's Bed";
 
 	public Obj_Alder_Bed(GamePanel gp) {
+		//Change to a box bed
 		super(gp);
 		this.gp = gp;
 		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
-
-		solidArea.x = 10;
-		solidAreaDefaultX = solidArea.x;
 		solidArea.y = 40;
 		solidAreaDefaultY = solidArea.y;
-		image = setup("/res/objects/Img_Alder_Bed",gp.tileSize,gp.tileSize);
+		image = setup("/res/objects/Img_Box_Bed-1",gp.tileSize,gp.tileSize*2);
 		getImage(image);
 		setDialogue();
 	}
 
 	public void setDialogue() {
-		dialogues[0][0] = new Dialoge("It was cheaply made from dry wood and partridge feathers. It was powdered with herbs to stop it smelling. Thay helped Alder make it.", 1);
+		dialogues[0][0] = new Dialoge("The box bed contained partridge feathers. It was powdered with herbs to stop it smelling. Thay and another guest helped Alder make it.", 1);
 		dialogues[1][0] = new Dialoge("Among the feathers were Alder's savings.",1);
 		dialogues[1][1] = new Dialoge("Take them? ", 2);
-		dialogues[2][0] = new Dialoge("Alder got into his makeshift bed and drifted to sleep for the night.",1);
+		dialogues[2][0] = new Dialoge("Alder got into his crampt bed and drifted to sleep for the night.",1);
 	}
 
 	public void choiceResponce() {
@@ -42,6 +40,8 @@ public class Obj_Alder_Bed extends Entity {
 	}
 
 	public void interact() {
+		image = setup("/res/objects/Img_Box_Bed-2",gp.tileSize,gp.tileSize*2);
+		getImage(image);
 		if(!gp.s.c1Switch[4] && gp.s.chapter == 1) {
 			gp.player.restoreHealthAndStamina();
 			startDialogue(this, 2);

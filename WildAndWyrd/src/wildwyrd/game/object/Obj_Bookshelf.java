@@ -23,10 +23,10 @@ public class Obj_Bookshelf extends Entity {
 		type = EntityType.Object;
 		collision = true;
 
-		image = setup("/res/objects/img_bookshelf", gp.tileSize, gp.tileSize);
+		image = setup("/res/objects/img_bookshelf", gp.tileSize, gp.tileSize*2);
 
 		solidArea.width = 64;
-		solidArea.y = 5;
+		solidArea.y = 40;
 		solidAreaDefaultY = solidArea.y;
 		setDialogue();
 		setBooks();

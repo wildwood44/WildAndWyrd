@@ -7,9 +7,11 @@ import javax.imageio.ImageIO;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.cutscenes.Portrate;
 
 public class NPC extends Entity {
-
+	public Portrate port = new Portrate();
+	
 	public NPC(GamePanel gp) {
 		super(gp);
 		// TODO Auto-generated constructor stub

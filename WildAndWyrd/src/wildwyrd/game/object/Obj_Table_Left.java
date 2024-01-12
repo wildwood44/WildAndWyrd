@@ -21,7 +21,7 @@ public class Obj_Table_Left extends Entity {
 		
 		solidArea.x = 20;
 		solidArea.width = 40;
-		solidArea.height = 30;
+		solidArea.height = 20;
 		solidArea.y = 20;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;

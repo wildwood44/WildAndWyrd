@@ -4,11 +4,13 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
+import wildwyrd.game.cutscenes.Portrate;
 
 public class Obj_Kitchen_Window extends Entity {
 	GamePanel gp;
 	public static final int objId = 9;
 	public static final String objName = "Window";
+	public Portrate port = new Portrate();
 
 	public Obj_Kitchen_Window(GamePanel gp) {
 		super(gp);
@@ -22,10 +24,8 @@ public class Obj_Kitchen_Window extends Entity {
 
 		setDialogue();
 		getImage(image);
-		//solidArea.x = 15;
-		//solidArea.y = 40;
-		solidArea.height = 50;
-		solidAreaDefaultX = solidArea.x;
+		solidArea.y = 20;
+		solidArea.height = 30;
 		solidAreaDefaultY = solidArea.y;
 	}
 
@@ -33,7 +33,7 @@ public class Obj_Kitchen_Window extends Entity {
 		dialogues[0][0] = new Dialoge(
 				"The clearing at the front of of the cottage could be seen through the window.", 1);
 		dialogues[1][0] = new Dialoge("Florence and Thay were talking outside the window.", 1);
-		dialogues[1][1] = new Dialoge("Alder","I'm coming out", 1);
+		dialogues[1][1] = new Dialoge("Alder","I'm coming out", port.image_Alder);
 	}
 
 	public void interact() {

@@ -43,6 +43,7 @@ public class UI {
 	public int slotRow = 0;
 	public int slotCol2 = 0;
 	public int slotRow2 = 0;
+	public int subState;
 	public int section = 0;
 	public int glossPage = 0;
 	public static Boolean binaryRes = false;
@@ -123,6 +124,10 @@ public class UI {
 		if (gp.gameState == GameState.glossaryState) {
 			drawGlossaryScreen();
 		}
+
+		if (gp.gameState == GameState.optionsState) {
+			drawOptionsScreen();
+		}
 		
 		if (gp.gameState == GameState.readingState) {
 			drawBookshelfScreen();
@@ -196,8 +201,8 @@ public class UI {
 		int y = gp.tileSize * 5;
 		int width = gp.screenWidth - gp.tileSize * 3;
 		int height = gp.tileSize * 3;
-		drawImageWindow(300, 0, 200, 400);
 		drawDialogueWindow(x, y, width, height);
+		drawImageWindow(550, y + 5, gp.tileSize, gp.tileSize);
 		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 		g2.setColor(Color.white);
 		x += gp.tileSize;
@@ -280,6 +285,7 @@ public class UI {
 		int width = gp.screenWidth - gp.tileSize * 3;
 		int height = gp.tileSize * 3;
 		drawDialogueWindow(x, y, width, height);
+		drawImageWindow(550, y + 5, gp.tileSize, gp.tileSize);
 		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 		g2.setColor(Color.white);
 		x += gp.tileSize;
@@ -438,7 +444,8 @@ public class UI {
 		g2.drawString("Items", 30, (int) (gp.tileSize * 2.5D));
 		g2.drawString("Objecties", 30, (int) (gp.tileSize * 3.25D));
 		g2.drawString("Glossary", 30, (int) (gp.tileSize * 4));
-		g2.drawString("Quit", 30, (int) (gp.tileSize * 4.75D));
+		g2.drawString("Options", 30, (int) (gp.tileSize * 4.75D));
+		g2.drawString("Quit", 30, (int) (gp.tileSize * 5.5D));
 		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 	}
 	
@@ -815,6 +822,149 @@ public class UI {
 
 	}
 	
+	public void drawOptionsScreen() {
+		g2.setColor(Color.white);
+		g2.setFont(g2.getFont().deriveFont(22F));
+		// SUB WINDOW
+		int frameX = gp.tileSize * 2;
+		int frameY = gp.tileSize;
+		int frameWidth = gp.tileSize * 8;
+		int frameHeight = gp.tileSize * 6;
+		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
+		switch(subState) {
+		case 0: options_top(frameX, frameY); break;
+		case 1: options_fullScreenNotification(frameX, frameY); break;
+		case 2: options_control(frameX, frameY); break;
+		}
+		gp.keyH.enterPressed = false;
+	}
+	
+	public void options_top(int frameX, int frameY) {
+		g2.setColor(Color.white);
+		int textX;
+		int textY;
+		//Title
+		String text = "Options";
+		textX = getXforCenteredText(text);
+		textY = frameY + gp.tileSize;
+		g2.drawString(text, textX, textY);
+		// FULL SCREEN ON/OFF
+		textX  = frameX + gp.tileSize;
+		textY += gp.tileSize + 2;
+		g2.drawString("Full Screen", textX, textY);
+		if(commandNum == 0) {
+			g2.drawString(">", textX-25, textY);
+			if(gp.keyH.enterPressed) {
+				if(!gp.fullScreenOn) {
+					gp.fullScreenOn = true;
+				} else {
+					gp.fullScreenOn = false;
+				}
+				subState = 1;
+			}
+		}
+		// MUSIC
+		textY += gp.tileSize/2;
+		g2.drawString("Music", textX, textY);
+		if(commandNum == 1) {
+			g2.drawString(">", textX-25, textY);
+		}
+		// SOUND EFFECTS
+		textY += gp.tileSize/2;
+		g2.drawString("SE", textX, textY);
+		if(commandNum == 2) {
+			g2.drawString(">", textX-25, textY);
+		}
+		// CONTROL
+		textY += gp.tileSize/2;
+		g2.drawString("Control", textX, textY);
+		if(commandNum == 3) {
+			g2.drawString(">", textX-25, textY);
+			if(gp.keyH.enterPressed) {
+				subState = 2;
+				commandNum = 0;
+			}
+		}
+		// BACK
+		textY += gp.tileSize * 2;
+		g2.drawString("Back", textX, textY);
+		if(commandNum == 4) {
+			g2.drawString(">", textX-25, textY);
+			if(gp.keyH.enterPressed) {
+				gp.gameState = GameState.menuState;
+			}
+		}
+		// FULL SCREEN CHECK BOX
+		textX = frameX + gp.tileSize * 5;
+		textY = frameY + gp.tileSize + 46;
+		g2.setStroke(new BasicStroke());
+		g2.drawRect(textX, textY, 24, 24);
+		if(gp.fullScreenOn) {
+			g2.fillRect(textX, textY, 24, 24);
+		}
+		// MUSIC VOLUME
+		textY += gp.tileSize/2;
+		g2.drawRect(textX, textY, 120, 24);
+		int volumeWidth = 24 * gp.music.volumeScale;
+		g2.fillRect(textX, textY, volumeWidth, 24);
+		// SOUND EFFECTS VOLUME
+		textY += gp.tileSize/2;
+		g2.drawRect(textX, textY, 120, 24);
+		volumeWidth = 24 * gp.se.volumeScale;
+		g2.fillRect(textX, textY, volumeWidth, 24);
+		gp.config.saveConfig();
+	}
+	
+	public void options_fullScreenNotification(int frameX, int frameY) {
+		g2.setColor(Color.white);
+		int textX = frameX + gp.tileSize;
+		int textY = frameY + gp.tileSize*2;
+		currentDialogue = "The change will take effect after restarting the game";
+		for (String line : breakLines(currentDialogue,30)) {
+			g2.drawString(line, textX, textY);
+			textY += 40;
+		}
+		textY  = frameY + gp.tileSize * 5;
+		g2.drawString("Back", textX, textY);
+		if(commandNum == 0) {
+			g2.drawString(">", textX-25, textY);
+			if(gp.keyH.enterPressed) {
+				subState = 0;
+			}
+		}
+	}
+	
+	public void options_control(int frameX, int frameY) {
+		g2.setColor(Color.white);
+		// TITLE
+		String title = "Control";
+		int textX = getXforCenteredText(title);
+		int textY = frameY + gp.tileSize;
+		g2.drawString(title, textX, textY);
+		textX = frameX + gp.tileSize;
+		textY += gp.tileSize;
+		g2.drawString("Move", textX, textY);textY+=gp.tileSize/2;
+		g2.drawString("Confirm", textX, textY);textY+=gp.tileSize/2;
+		g2.drawString("Menu", textX, textY);textY+=gp.tileSize/2;
+		g2.drawString("Pause", textX, textY);textY+=gp.tileSize/2;
+		textX = frameX + gp.tileSize * 6;
+		textY = frameY + gp.tileSize * 2;
+		g2.drawString("WASD", textX, textY);textY+=gp.tileSize/2;
+		g2.drawString("ENTER", textX, textY);textY+=gp.tileSize/2;
+		g2.drawString("ESC", textX, textY);textY+=gp.tileSize/2;
+		g2.drawString("Space", textX, textY);textY+=gp.tileSize/2;
+		// BACK
+		textX = frameX + gp.tileSize;
+		textY = frameY + gp.tileSize * 5;
+		g2.drawString("Back", textX, textY);
+		if(commandNum == 0) {
+			g2.drawString(">", textX-25, textY);
+			if(gp.keyH.enterPressed) {
+				subState = 0;
+			}
+		}
+	}
+	
 	public void drawBookshelfScreen() {
 		int frameX = 20;
 		int frameY = 25;
@@ -1089,6 +1239,7 @@ public class UI {
 		try {
 			while(text.length() > 0){
 				int pos = text.lastIndexOf(" ", size);
+				//Manual line break
 				if(text.contains("£")) {
 					pos = text.lastIndexOf("£", size);
 					if (pos == -1) {
@@ -1118,9 +1269,13 @@ public class UI {
 	}
 
 	private void drawImageWindow(int x, int y, int width, int height) {
-		BufferedImage image = selectedObject.sprites[selectedObject.dialogueSet][selectedObject.dialogueIndex];
-		if (image != null) {
-			g2.drawImage(image, x, y, width, height, (ImageObserver) null);
+		try {
+			BufferedImage image = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].image;
+			if (image != null) {
+				g2.drawImage(image, x, y, width, height, (ImageObserver) null);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}

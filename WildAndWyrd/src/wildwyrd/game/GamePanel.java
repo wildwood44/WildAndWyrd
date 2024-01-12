@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
@@ -37,8 +39,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int tileSize = originalTileSize * scale;  // 64x64 tile
 	public final int maxScreenCol = 12;
 	public final int maxScreenRow = 8;
-	public final int screenWidth = 768;
-	public final int screenHeight = 512;
+	public final int screenWidth = tileSize * maxScreenCol; //768 pixels
+	public final int screenHeight = tileSize * maxScreenRow; //576 pixels
 	//WORLD SETTINGS
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
@@ -46,25 +48,29 @@ public class GamePanel extends JPanel implements Runnable {
 	//public final int worldHeight = maxWorldRow * tileSize;
 	public final int maxMap = 5;
 	public final int maxRoom = 5;
+	// FOR FULL SCREEN
 	int screenWidth2 = screenWidth;
 	int screenHeight2 = screenHeight;
 	BufferedImage tempScreen;
 	Graphics2D g2;
-	public EventHandler eHandler;
+	public boolean fullScreenOn = false;
 	//FPS
 	int FPS = 60;
 	//SYSTEM
 	public TileManager tileM;
 	public KeyHandler keyH = new KeyHandler(this);
-	public Sound sound = new Sound();
+	public Sound music = new Sound();
+	public Sound se = new Sound();
 	public CollisionChecker cChecker;
 	public AssetSetter aSetter = new AssetSetter(this);
-	Thread gameThread;
 	public UI ui = new UI(this);
+	public EventHandler eHandler;
 	public Room room = new Room(this);
 	public CutsceneManager csManager = new CutsceneManager(this);
 	public Objective objective = new Objective(this);
 	public Glossary glossary = new Glossary();
+	Config config = new Config(this);
+	Thread gameThread;
 	int playerY = 100;
 	int playerX = 100;
 	int playerSpeed = 4;
@@ -118,6 +124,19 @@ public class GamePanel extends JPanel implements Runnable {
 		cChecker = new CollisionChecker(this);
 		tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
 		g2 = (Graphics2D) tempScreen.getGraphics();
+		if(fullScreenOn) {
+			setFullScreen();
+		}
+	}
+	
+	public void setFullScreen() {
+		// GET LOCAL SCREEN SERVICE
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice gd = ge.getDefaultScreenDevice();
+		gd.setFullScreenWindow(Main.window);
+		// GET FULL SCREEN WIDTH AND HEIGHT
+		screenWidth2 = Main.window.getWidth();
+		screenHeight2 = Main.window.getHeight();
 	}
 	
 	public void retry() {
@@ -236,6 +255,8 @@ public class GamePanel extends JPanel implements Runnable {
 				ui.draw(g2);
 			} else if (gameState == GameState.glossaryState) {
 				ui.draw(g2);
+			} else if (gameState == GameState.optionsState) {
+				ui.draw(g2);
 			} else if (gameState == GameState.readingState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.targetState) {
@@ -315,18 +336,18 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void playMusic(int i) {
-		sound.setFile(i);
-		sound.play();
-		sound.loop();
+		music.setFile(i);
+		music.play();
+		music.loop();
 	}
 	
 	public void stopMusic() {
-		sound.stop();
+		music.stop();
 	}
 	
 	public void playSE(int i) {
-		sound.setFile(i);
-		sound.play();
+		se.setFile(i);
+		se.play();
 	}
 	
 	public boolean objectExists(int objectId, int mapId) {

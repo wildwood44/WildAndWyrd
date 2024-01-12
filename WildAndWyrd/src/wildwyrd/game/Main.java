@@ -1,20 +1,23 @@
 package wildwyrd.game;
 
-import java.awt.Component;
-
 import javax.swing.JFrame;
 
 public class Main {
+	public static JFrame window;
 	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(3);
-		frame.setResizable(false);
-		frame.setTitle("Wild and Wyrd");
+		window = new JFrame();
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setResizable(false);
+		window.setTitle("Wild and Wyrd");
 		GamePanel gamePanel = new GamePanel();
-		frame.add(gamePanel);
-		frame.pack();
-		frame.setLocationRelativeTo((Component) null);
-		frame.setVisible(true);
+		window.add(gamePanel);
+		gamePanel.config.loadConfig();
+		if(gamePanel.fullScreenOn) {
+			window.setUndecorated(true);
+		}
+		window.pack();
+		window.setLocationRelativeTo(null);
+		window.setVisible(true);
 		gamePanel.setupGame();
 		gamePanel.startGameThread();
 	}

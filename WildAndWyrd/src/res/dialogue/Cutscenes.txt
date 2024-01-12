@@ -1,32 +1,25 @@
 chapter$ switch$ part$ line$ dialog$
-0$ 0$ 1$ 1$ In the corridors of a Fort, two of its dwellers were discussing plans for the days to come. 
-0$ 0$ 1$ 2$ They were the lord, an old greyish field mouse with a golden buckle and a pudgy vole, both in brown surcoats.  
-0$ 0$ 1$ 3$ They had taken their talks to a corridor overseeing the great hall, it's walls filled with tapestries of their history.  
-0$ 0$ 1$ 4$ It was long into their conversation about an upcoming feast when a young shrew came running up the stairs that lead to the ground floor.  
-0$ 0$ 1$ 5$ He was calling for the mouse lord and panted as he spoke.
-0$ 0$ 1$ 6$ Shrew£My Lord!
-0$ 0$ 1$ 7$ Shrew£*Pant* Excuse me!
-0$ 0$ 1$ 8$ Shrew£*Pant* *Pant* Lord Dilecto!
-0$ 0$ 1$ 9$ Dilecto£Hm?
-0$ 0$ 1$ 10$ Dilecto£Yes, child?
-0$ 0$ 1$ 11$ Shrew£*Ahem* Hazel is requesting a meeting.
-0$ 0$ 1$ 12$ Vole£He has no authority to call a meeting involving the lord.
-0$ 0$ 1$ 13$ Vole£What is it for?
-0$ 0$ 1$ 14$ Shrew£The Gowls… they are… conducting patrols in Fuller Woods.
-0$ 0$ 1$ 15$ Vole£That is unusual, but hardly of our concern.
-0$ 0$ 1$ 16$ Vole£We are not their target.
-0$ 0$ 1$ 17$ Dilecto£So who is?
-0$ 0$ 1$ 18$ Dilecto£I approve and will be attending.
-0$ 0$ 1$ 19$ Vole£But my lord, the Gowls are no doubt looking for slavers, traitors and humans.
-0$ 0$ 1$ 20$ Vole£Heinous enemies of our people!
-0$ 0$ 1$ 21$ Vole£Surely they are justified.
-0$ 0$ 1$ 22$ Dilecto£I would prefer there to be no acts of violence near our borders.
-0$ 0$ 1$ 23$ Dilecto£Moreover, humans aren't all evil, we had human allies during the war.
+0$ 0$ 1$ 0$ Shrew£My Lord!
+0$ 0$ 1$ 1$ Shrew£*Pant* Excuse me!
+0$ 0$ 1$ 2$ Shrew£*Pant* *Pant* Lord Dilecto!
+0$ 0$ 1$ 3$ Dilecto£Hm?
+0$ 0$ 1$ 4$ Dilecto£Yes, child?
+0$ 0$ 1$ 5$ Shrew£*Ahem* Hazel is requesting a meeting.
+0$ 0$ 1$ 6$ Vole£He has no authority to call a meeting involving the lord.
+0$ 0$ 1$ 7$ Vole£What is it for?
+0$ 0$ 1$ 8$ Shrew£The Gowls... they are... conducting patrols in Fuller Woods.
+0$ 0$ 1$ 9$ Vole£That is unusual, but hardly of our concern.
+0$ 0$ 1$ 10$ Vole£We are not their target.
+0$ 0$ 1$ 11$ Dilecto£So who is?
+0$ 0$ 1$ 12$ Dilecto£I approve and will be attending.
+0$ 0$ 1$ 13$ Vole£But M'lord, surely they have their reasons.
+0$ 0$ 1$ 14$ Dilecto£Hunting some random human near our borders.
+0$ 0$ 1$ 15$ Vole£Can't blame them considering tensions with the kingdom Gloria.
+0$ 0$ 1$ 23$ Dilecto£Not all humans are bloody kings fanatics, we had many as allies during the war.
 0$ 0$ 1$ 24$ Dilecto£Times would have been far grimmer without them.
 0$ 0$ 1$ 25$ Shrew£They fought along side Agrimus too?
 0$ 0$ 1$ 26$ Vole£Why does every conversation we have with you end up involving the Scion Dean?
 0$ 0$ 1$ 27$ Dean£I, um.
-0$ 0$ 1$ 28$ Dean was embarrassed. He had always loved stories of the late Agrimus and often sought new stories from the veterans. 
 0$ 0$ 1$ 29$ Dilecto£Hahaha.
 0$ 0$ 1$ 30$ Dilecto£It's alright Dean.
 0$ 0$ 1$ 31$ Dilecto£It has been so long since his time.
@@ -43,7 +36,6 @@ chapter$ switch$ part$ line$ dialog$
 0$ 0$ 1$ 42$ Dilecto£Enough!
 0$ 0$ 1$ 43$ Dilecto£We shall discuss this later.
 0$ 0$ 1$ 44$ Dilecto£Hm?
-0$ 0$ 1$ 45$ Dilecto notices an elderly mole emerging from a nearby room.
 0$ 0$ 1$ 46$ Dilecto£Plumm, could you spare a moment?
 0$ 0$ 1$ 47$ Plumm£Yes, M'lord?
 0$ 0$ 1$ 48$ Dilecto£I need you to let the other officials know that there is to be a meeting tomorrow at noon.
@@ -56,8 +48,7 @@ chapter$ switch$ part$ line$ dialog$
 0$ 0$ 1$ 55$ Ralph£I'll help spread the word.
 0$ 0$ 1$ 56$ Ralph£Off with you Dean.
 0$ 0$ 1$ 57$ Dean£Yes sir!
-0$ 0$ 1$ 58$ Plumm and Ralph head to the gardens, while Dean ran to the keep, leaving Dilecto alone in the corridor. 
-0$ 0$ 1$ 59$ Sombrely, he moved to face a tapestry.
+0$ 0$ 1$ 59$ As the others left Dilecto sombrely moved to face a tapestry.
 0$ 0$ 1$ 60$ Dilecto£Agrimus.
 0$ 0$ 1$ 61$ Dilecto£I wonder, what creature do you have in mind to successed you as Scion?
 0$ 0$ 1$ 62$ Dilecto£Whoever you pick I shall always trust your judgement.
@@ -223,6 +214,218 @@ chapter$ switch$ part$ line$ dialog$
 2$ 9$ 5$ 4$ Smiling, The mouse continued burying Alder, before patting the soil flat around him, nodding his head and closing his eyes. 
 2$ 9$ 5$ 5$ Dispite not speaking Alder experienced the strange sensation of a voice speaking inside his head.
 2$ 9$ 5$ 6$ Good luck. My Scion.
+1$ 0$ 1$ 0$ Hedgehog£The rabbit seeks his burrow.
+1$ 0$ 1$ 1$ Woman£Thay! It's good to see you!
+1$ 0$ 1$ 2$ Thay£And you Florence.
+1$ 0$ 1$ 3$ Thay£I'm here to see your mistress.
+1$ 0$ 1$ 4$ Florence£She's upstairs, should be down soon though.
+1$ 0$ 1$ 5$ Thay£And where's young Alder?
+1$ 0$ 1$ 6$ Florence£He's inside, still cleaning the dishes.
+1$ 0$ 1$ 7$ Florence£Alder!!
+1$ 0$ 1$ 8$ Florence£Thay's here!
+1$ 1$ 2$ 0$ Thay£Haha! How've you been Alder?
+1$ 1$ 2$ 1$ Alder£I've been great!
+1$ 1$ 2$ 2$ Thay£You've gotten bigger too.
+1$ 1$ 2$ 3$ Thay£I remember when we were the same size.
+1$ 1$ 2$ 4$ Alder£I'm not a toddler anymore.
+1$ 1$ 2$ 5$ Thay£Well.
+1$ 1$ 2$ 6$ Thay£Better I'll be meeting with the witch.
+1$ 1$ 2$ 7$ Thay£I'll chat with you both soon.
+1$ 2$ 2$ 0$ Thay£Thank you, Madame Kyla.
+1$ 2$ 2$ 1$ Kyla£Yes yes. Come again.
+1$ 3$ 3$ 0$ Florence£Alder!
+1$ 3$ 3$ 1$ Florence£I need you!
+1$ 3$ 3$ 2$ Thay£Don't worry about it lad.
+1$ 3$ 3$ 3$ Thay£I'll make sure you see me off.
+1$ 3$ 3$ 4$ Alder£*Sigh*
+1$ 3$ 3$ 5$ Alder£Yes Florence?
+1$ 3$ 3$ 6$ Florence£We're out of meat.
+1$ 3$ 3$ 7$ Florence£I need you to go hunt an insect or two.
+1$ 3$ 3$ 8$ Alder£Ok.
+1$ 3$ 3$ 9$ Alder£Where do you want me to look?
+1$ 3$ 3$ 10$ Florence£In the woods just outside the burrow.
+1$ 3$ 3$ 11$ Florence£There should be a hunting knife on the table inside the shed.
+1$ 3$ 3$ 12$ Alder£Thank you.
+1$ 4$ 4$ 0$ Thay£I'm heading off now lad.
+1$ 4$ 4$ 1$ Alder£Aw, already?!
+1$ 4$ 4$ 2$ Alder£Well, take care then.
+1$ 4$ 4$ 3$ Thay£I will.
+1$ 4$ 4$ 4$ Thay£Goodbye lad.
+1$ 4$ 4$ 5$ As the day came to an end the residents of the cottage were unaware of the shadows that came ever closer.
+2$ 5$ 1$ 0$ Alder£*Yawn*
+2$ 5$ 1$ 1$ Squirrel£Hi Alder!
+2$ 5$ 1$ 2$ Alder£Trissie!
+2$ 5$ 1$ 3$ Trissie£Shh. Not so loud!
+2$ 5$ 1$ 4$ Trissie£I need to see Kyla as soon as possible.
+2$ 5$ 1$ 5$ Trissie£I have something you all should hear.
+2$ 5$ 1$ 6$ Alder£Ok...
+2$ 5$ 1$ 7$ Trissie£Aw. Don't make that face.
+2$ 5$ 1$ 8$ Trissie£Say.
+2$ 5$ 1$ 9$ Trissie£Why don't I give you some archery lessons before I leave?
+2$ 5$ 1$ 10$ Alder£Yes, please!
+2$ 5$ 1$ 11$ Trissie£You might need them.
+2$ 5$ 1$ 12$ Alder£Huh?
+2$ 5$ 1$ 13$ Florence£Triss!
+2$ 6$ 2$ 0$ Trissie£I'll make this quick!
+2$ 6$ 2$ 1$ Trissie£There are Gowl knights patrolling the woods!
+2$ 6$ 2$ 2$ Florence£Do they know of the cottage?
+2$ 6$ 2$ 3$ Kyla£Not unless one of our clients has sold us out.
+2$ 6$ 2$ 4$ Kyla£Even so, their search shall come up empty.
+2$ 6$ 2$ 5$ Trissie£I don't know.
+2$ 6$ 2$ 6$ Trissie£There's quite a few of them and they're setting up camps.
+2$ 6$ 2$ 7$ Trissie£They seemed certain that they would find something.
+2$ 6$ 2$ 8$ Kyla£My magic is strong.
+2$ 6$ 2$ 9$ Kyla£They'll never find this place.
+2$ 6$ 2$ 10$ Trissie£I hope so.
+2$ 6$ 2$ 11$ Trissie£The woods are full of soldiers, most of whom appear to be new recruits.
+2$ 6$ 2$ 12$ Kyla£That proves my point!
+2$ 6$ 2$ 13$ Kyla£Whatever they know, they're sending saplings. They can't be very sure about it!
+2$ 6$ 2$ 14$ Trissie£Being overseen by several captains apparently ordered by Darrunt himself!
+2$ 6$ 2$ 15$ Alder£Who's Darrunt?
+2$ 6$ 2$ 16$ Florence£He's the Grand Marshal of the Gowls.
+2$ 6$ 2$ 17$ Florence£He wouldn't think to look this far north in the woods though.
+2$ 6$ 2$ 18$ Florence£Too barren of humans these days.
+2$ 6$ 2$ 19$ Kyla£We'll lay low for the next few days, food is plentiful and we have enough water to last us a few days.
+2$ 6$ 2$ 20$ Kyla£Thank you for the warning, Trissie dear.
+2$ 6$ 2$ 21$ Kyla£But I think we will be fine.
+2$ 6$ 2$ 22$ Trissie£If you say so.
+2$ 6$ 2$ 23$ Trissie£I think I'll scarper out of these woods for the time being until things quiet down.
+2$ 6$ 2$ 24$ Trissie£Alder?
+2$ 6$ 2$ 25$ Trissie£I promised you archery lessons?
+2$ 6$ 2$ 26$ Alder£Yes!
+2$ 6$ 2$ 27$ Trissie£Then come meet me outside.
+2$ 8$ 4$ 0$ Alder£.........
+2$ 8$ 4$ 1$ Alder£................hm?
+2$ 8$ 4$ 2$ Alder£Where...?
+2$ 8$ 4$ 3$ Alder£Who's there? 
+2$ 8$ 4$ 4$ Alder£What is this place?
+2$ 8$ 4$ 5$ One the figures stepped out from the darkness towards Alder.
+2$ 8$ 4$ 6$ Alder£Uh, h-hello. Nice sword...
+2$ 8$ 4$ 7$ The mouse walked up to Alder, stopping a short distance in front of him, before digging a hole between them. 
+2$ 8$ 4$ 8$ Alder£What are you digging for- Wha? 
+2$ 8$ 4$ 9$ Alder£Why can't I move!?
+2$ 8$ 4$ 10$ To Alder's confusion he floated down to the ground and he realised he was in a corparial form. 
+2$ 8$ 4$ 11$ His body contorted and shrunk until he was small enough to fit in the hole.
+2$ 8$ 4$ 12$ The mouse looked over Alder.
+2$ 8$ 4$ 13$ Alder£Wait!
+2$ 8$ 4$ 14$ Alder£What's happening!?
+2$ 8$ 4$ 15$ Alder£What are you doing!?
+2$ 8$ 4$ 16$ Alder was gently set in the pit and before it began refilling with soil.
+2$ 8$ 4$ 17$ Leaning over the pit the mouse grabbed the handle for a moment Alder thought that the mouse would strike him.
+2$ 8$ 4$ 18$ Alder£Ahh!
+2$ 8$ 4$ 19$ The mouse expressed surprise and apologetically conveyed to Alder that he meant no harm. 
+2$ 8$ 4$ 20$ He pulled out the scabbard, sheathed the sword and placed the hilt in with Alder.
+2$ 9$ 5$ 0$ Alder took the sword by the grip and to his surprise, it changed size to fit in his hands.
+2$ 9$ 5$ 1$ ???£...
+2$ 9$ 5$ 2$ Alder could see the mouse gently smile before he was submerged in darkness. 
+2$ 9$ 5$ 3$ Dispite not speaking Alder experienced the strange sensation of a voice speaking inside his head.
+2$ 9$ 5$ 4$ ???£Good luck. My Scion.
+1$ 0$ 1$ 0$ Hedgehog£The rabbit seeks his burrow.
+1$ 0$ 1$ 1$ Woman£Thay! It's good to see you!
+1$ 0$ 1$ 2$ Thay£And you Florence.
+1$ 0$ 1$ 3$ Thay£I'm here to see your mistress.
+1$ 0$ 1$ 4$ Florence£She's upstairs, should be down soon though.
+1$ 0$ 1$ 5$ Thay£And where's young Alder?
+1$ 0$ 1$ 6$ Florence£He's inside, still cleaning the dishes.
+1$ 0$ 1$ 7$ Florence£Alder!!
+1$ 0$ 1$ 8$ Florence£Thay's here!
+1$ 1$ 2$ 0$ Thay£Haha! How've you been Alder?
+1$ 1$ 2$ 1$ Alder£I've been great!
+1$ 1$ 2$ 2$ Thay£You've gotten bigger too.
+1$ 1$ 2$ 3$ Thay£I remember when we were the same size.
+1$ 1$ 2$ 4$ Alder£I'm not a toddler anymore.
+1$ 1$ 2$ 5$ Thay£Well.
+1$ 1$ 2$ 6$ Thay£Better I'll be meeting with the witch.
+1$ 1$ 2$ 7$ Thay£I'll chat with you both soon.
+1$ 2$ 2$ 0$ Thay£Thank you, Madame Kyla.
+1$ 2$ 2$ 1$ Kyla£Yes yes. Come again.
+1$ 3$ 3$ 0$ Florence£Alder!
+1$ 3$ 3$ 1$ Florence£I need you!
+1$ 3$ 3$ 2$ Thay£Don't worry about it lad.
+1$ 3$ 3$ 3$ Thay£I'll make sure you see me off.
+1$ 3$ 3$ 4$ Alder£*Sigh*
+1$ 3$ 3$ 5$ Alder£Yes Florence?
+1$ 3$ 3$ 6$ Florence£We're out of meat.
+1$ 3$ 3$ 7$ Florence£I need you to go hunt an insect or two.
+1$ 3$ 3$ 8$ Alder£Ok.
+1$ 3$ 3$ 9$ Alder£Where do you want me to look?
+1$ 3$ 3$ 10$ Florence£In the woods just outside the burrow.
+1$ 3$ 3$ 11$ Florence£There should be a hunting knife on the table inside the shed.
+1$ 3$ 3$ 12$ Alder£Thank you.
+1$ 4$ 4$ 0$ Thay£I'm heading off now lad.
+1$ 4$ 4$ 1$ Alder£Aw, already?!
+1$ 4$ 4$ 2$ Alder£Well, take care then.
+1$ 4$ 4$ 3$ Thay£I will.
+1$ 4$ 4$ 4$ Thay£Goodbye lad.
+1$ 4$ 4$ 5$ As the day came to an end the residents of the cottage were unaware of the shadows that came ever closer.
+2$ 5$ 1$ 0$ Alder£*Yawn*
+2$ 5$ 1$ 1$ Squirrel£Hi Alder!
+2$ 5$ 1$ 2$ Alder£Trissie!
+2$ 5$ 1$ 3$ Trissie£Shh. Not so loud!
+2$ 5$ 1$ 4$ Trissie£I need to see Kyla as soon as possible.
+2$ 5$ 1$ 5$ Trissie£I have something you all should hear.
+2$ 5$ 1$ 6$ Alder£Ok...
+2$ 5$ 1$ 7$ Trissie£Aw. Don't make that face.
+2$ 5$ 1$ 8$ Trissie£Say.
+2$ 5$ 1$ 9$ Trissie£Why don't I give you some archery lessons before I leave?
+2$ 5$ 1$ 10$ Alder£Yes, please!
+2$ 5$ 1$ 11$ Trissie£You might need them.
+2$ 5$ 1$ 12$ Alder£Huh?
+2$ 5$ 1$ 13$ Florence£Triss!
+2$ 6$ 2$ 0$ Trissie£I'll make this quick!
+2$ 6$ 2$ 1$ Trissie£There are Gowl knights patrolling the woods!
+2$ 6$ 2$ 2$ Florence£Do they know of the cottage?
+2$ 6$ 2$ 3$ Kyla£Not unless one of our clients has sold us out.
+2$ 6$ 2$ 4$ Kyla£Even so, their search shall come up empty.
+2$ 6$ 2$ 5$ Trissie£I don't know.
+2$ 6$ 2$ 6$ Trissie£There's quite a few of them and they're setting up camps.
+2$ 6$ 2$ 7$ Trissie£They seemed certain that they would find something.
+2$ 6$ 2$ 8$ Kyla£My magic is strong.
+2$ 6$ 2$ 9$ Kyla£They'll never find this place.
+2$ 6$ 2$ 10$ Trissie£I hope so.
+2$ 6$ 2$ 11$ Trissie£The woods are full of soldiers, most of whom appear to be new recruits.
+2$ 6$ 2$ 12$ Kyla£That proves my point!
+2$ 6$ 2$ 13$ Kyla£Whatever they know, they're sending saplings. They can't be very sure about it!
+2$ 6$ 2$ 14$ Trissie£Being overseen by several captains apparently ordered by Darrunt himself!
+2$ 6$ 2$ 15$ Alder£Who's Darrunt?
+2$ 6$ 2$ 16$ Florence£He's the Grand Marshal of the Gowls.
+2$ 6$ 2$ 17$ Florence£He wouldn't think to look this far north in the woods though.
+2$ 6$ 2$ 18$ Florence£Too barren of humans these days.
+2$ 6$ 2$ 19$ Kyla£We'll lay low for the next few days, food is plentiful and we have enough water to last us a few days.
+2$ 6$ 2$ 20$ Kyla£Thank you for the warning, Trissie dear.
+2$ 6$ 2$ 21$ Kyla£But I think we will be fine.
+2$ 6$ 2$ 22$ Trissie£If you say so.
+2$ 6$ 2$ 23$ Trissie£I think I'll scarper out of these woods for the time being until things quiet down.
+2$ 6$ 2$ 24$ Trissie£Alder?
+2$ 6$ 2$ 25$ Trissie£I promised you archery lessons?
+2$ 6$ 2$ 26$ Alder£Yes!
+2$ 6$ 2$ 27$ Trissie£Then come meet me outside.
+2$ 8$ 4$ 0$ Alder£.........
+2$ 8$ 4$ 1$ Alder£................hm?
+2$ 8$ 4$ 2$ Alder£Where...?
+2$ 8$ 4$ 3$ Alder£Who's there? 
+2$ 8$ 4$ 4$ Alder£What is this place?
+2$ 8$ 4$ 5$ One the figures stepped out from the darkness towards Alder.
+2$ 8$ 4$ 6$ Alder£Uh, h-hello. Nice sword...
+2$ 8$ 4$ 7$ The mouse walked up to Alder, stopping a short distance in front of him, before digging a hole between them. 
+2$ 8$ 4$ 8$ Alder£What are you digging for- Wha? 
+2$ 8$ 4$ 9$ Alder£Why can't I move!?
+2$ 8$ 4$ 10$ To Alder's confusion he floated down to the ground and he realised he was in a corparial form. 
+2$ 8$ 4$ 11$ His body contorted and shrunk until he was small enough to fit in the hole.
+2$ 8$ 4$ 12$ The mouse looked over Alder.
+2$ 8$ 4$ 13$ Alder£Wait!
+2$ 8$ 4$ 14$ Alder£What's happening!?
+2$ 8$ 4$ 15$ Alder£What are you doing!?
+2$ 8$ 4$ 16$ Alder was gently set in the pit and before it began refilling with soil.
+2$ 8$ 4$ 17$ Leaning over the pit the mouse grabbed the handle for a moment Alder thought that the mouse would strike him.
+2$ 8$ 4$ 18$ Alder£Ahh!
+2$ 8$ 4$ 19$ The mouse expressed surprise and apologetically conveyed to Alder that he meant no harm. 
+2$ 8$ 4$ 20$ He pulled out the scabbard, sheathed the sword and placed the hilt in with Alder.
+2$ 9$ 5$ 0$ Alder took the sword by the grip and to his surprise, it changed size to fit in his hands.
+2$ 9$ 5$ 1$ ???£...
+2$ 9$ 5$ 2$ Alder could see the mouse gently smile before he was submerged in darkness. 
+2$ 9$ 5$ 3$ Dispite not speaking Alder experienced the strange sensation of a voice speaking inside his head.
+2$ 9$ 5$ 4$ ???£Good luck. My Scion.
 3$ 10$ 1$ 1$ Chapter 3
 3$ 10$ 1$ 2$ Alder woke up with the memory of his dream still fresh and as clear as glass.
 3$ 10$ 1$ 3$ Alder£hmmm.

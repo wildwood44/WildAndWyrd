@@ -6,10 +6,12 @@ import java.awt.Graphics2D;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
+import wildwyrd.game.cutscenes.Portrate;
 import wildwyrd.game.items.Item;
 import wildwyrd.game.playable.Combatant;
 
 public class Enemy extends Combatant {
+	public Portrate port = new Portrate();
 	protected Entity dropped;
 	int screenX = gp.tileSize*6;
 	int screenY = gp.tileSize*2;
