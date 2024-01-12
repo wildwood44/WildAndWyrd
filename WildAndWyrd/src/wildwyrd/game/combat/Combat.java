@@ -82,18 +82,23 @@ public class Combat extends Entity {
 	}
 	
 	public void endCombat() {
+		gp.ui.droppedItems.clear();
 		gp.gameState = GameState.playState;
 		gp.keyH.enterPressed = false;
 		/*for(int i = 0; i < gp.playable.size(); i++) {
 			combatant.remove(gp.playable.get(i));
 		}*/
 		try {
+			//If enemies are all defeated
 			if(!enemiesActive()) {
 				Enemy represent = enemies.get(0);
+				//Set enemy drops
 				for(Enemy enemy : enemies) {
 					enemy.checkDrop();
 				}
+				//
 				represent.defeated();
+			//If all playable characters are defeated
 			} else if (!playableActive()) {
 				cleanup();
 				gp.gameState = GameState.gameOverState;
@@ -104,7 +109,7 @@ public class Combat extends Entity {
 			System.out.println(ex);
 		}
 	}
-	
+	//Reset stage for next combat
 	public void cleanup() {
 		enemies.clear();
 		combatant.clear();

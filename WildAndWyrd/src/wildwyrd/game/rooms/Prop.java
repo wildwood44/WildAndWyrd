@@ -27,7 +27,6 @@ public class Prop extends Entity {
 
 	public void draw(Graphics2D g2) {
 		this.g2 = g2;
-		System.out.println(alpha);
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 		g2.drawImage(image, x, y, gp);
 	}
