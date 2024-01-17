@@ -121,7 +121,13 @@ public class EventHandler {
 				c1s_Cutscene(10);
 			}
 		} else if (gp.s.chapter == 3) {
-			c1s_Cutscene(11);
+			if (gp.s.swh[9] && gp.s.part == 1) {
+				c1s_Cutscene(11);
+			} else if (gp.s.swh[10] && gp.s.part == 1) {
+				c1s_Cutscene(12);
+			} else if (gp.s.swh[11] && gp.s.part == 2) {
+				c1s_Cutscene(13);
+			}
 		}
 	}
 

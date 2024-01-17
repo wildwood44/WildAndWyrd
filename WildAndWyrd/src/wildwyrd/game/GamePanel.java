@@ -21,6 +21,7 @@ import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.cutscenes.CutsceneManager;
 import wildwyrd.game.glossary.Glossary;
 import wildwyrd.game.npc.NPC;
+import wildwyrd.game.object.AssetManager;
 import wildwyrd.game.object.AssetSetter;
 import wildwyrd.game.objective.Objective;
 import wildwyrd.game.playable.Playable;
@@ -63,6 +64,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Sound se = new Sound();
 	public CollisionChecker cChecker;
 	public AssetSetter aSetter = new AssetSetter(this);
+	public AssetManager am = new AssetManager(this);
 	public UI ui = new UI(this);
 	public EventHandler eHandler;
 	public Room room = new Room(this);

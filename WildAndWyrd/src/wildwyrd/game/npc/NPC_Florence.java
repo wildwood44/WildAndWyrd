@@ -82,6 +82,16 @@ public class NPC_Florence extends NPC {
 		dialogues[5][5] = new Dialoge("Florence","Give the bugs and the knife to me and go relax yourself." ,port.image_Florence);
 		dialogues[6][0] = new Dialoge("Florence", "Triss is very brave." ,port.image_Florence);
 		dialogues[6][1] = new Dialoge("Florence", "She risks everything to help people get around the Gowls." ,port.image_Florence);
+		dialogues[7][0] = new Dialoge("Florence:","*Groan*", port.image_Florence);
+		dialogues[7][1] = new Dialoge("Florence","Alder, it's really early, please don't yell.",port.image_Florence);
+		dialogues[7][2] = new Dialoge("Florence gave Alder an annoyed look before she noticed the sword in his hands.",1);
+		dialogues[7][3] = new Dialoge("Florence","Alder, what is that!!",port.image_Florence);
+		dialogues[7][4] = new Dialoge("Alder","It’s a sword!",port.image_Alder);
+		dialogues[7][5] = new Dialoge("Florence","Why do you have a sword and where did it come from!",port.image_Florence);
+		dialogues[7][6] = new Dialoge("Alder","A mouse in my dreams gave it to me.",port.image_Alder);
+		dialogues[7][7] = new Dialoge("Florence","What!?",port.image_Florence);
+		dialogues[7][8] = new Dialoge("Kyla","Heh Heh.",port.image_Kyla);
+		dialogues[7][9] = new Dialoge("Kyla","What's this about a sword?",port.image_Kyla);
 	}
 	
 	public void setDialogueOptions() {
@@ -105,6 +115,8 @@ public class NPC_Florence extends NPC {
 		} else if (dialogueSet == 5) {
 			gp.s.swh[4] = true;
 			gp.s.part = 4;
+		} else if (dialogueSet == 7) {
+			gp.s.swh[10] = true;
 		}
 	}
 	
@@ -137,6 +149,8 @@ public class NPC_Florence extends NPC {
 			}
 		} else if(gp.s.chapter == 2) {
 			startDialogue(this, 6);
+		} else if(gp.s.chapter == 3) {
+			startDialogue(this, 7);
 		}
 		gp.keyH.enterPressed = false;
 	}

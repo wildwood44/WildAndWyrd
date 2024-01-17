@@ -1,5 +1,7 @@
 package wildwyrd.game.items;
 
+import java.awt.image.BufferedImage;
+
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
@@ -15,4 +17,10 @@ public class Item extends Entity {
 	}
 	
 	public void use() {}
+	
+	public BufferedImage getImage() {
+		return image;
+	}
+	
+	public BufferedImage transform() {return null;}
 }

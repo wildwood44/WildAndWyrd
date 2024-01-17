@@ -200,6 +200,27 @@ public class Cutscene extends Entity {
 			dialogues[dialogueSet][3] = new Dialoge("Dispite not speaking Alder experienced the strange sensation of a voice speaking inside his head.",1);
 			dialogues[dialogueSet][4] = new Dialoge("???","Good luck. My Scion.",port.image_Agrimus);
 			break;
+		case 10:
+			dialogues[dialogueSet][0] = new Dialoge("Alder","Mmmm.", port.image_Alder);
+			dialogues[dialogueSet][1] = new Dialoge("Alder","Oh!", port.image_Alder);
+			dialogues[dialogueSet][2] = new Dialoge("Alder","It was a dream.", port.image_Alder);
+			dialogues[dialogueSet][3] = new Dialoge("Alder","...", port.image_Alder);
+			dialogues[dialogueSet][4] = new Dialoge("Alder","Huh!?", port.image_Alder);
+			dialogues[dialogueSet][5] = new Dialoge("Alder","What is…!?", port.image_Alder);
+			dialogues[dialogueSet][6] = new Dialoge("Alder","What!?", port.image_Alder);
+			dialogues[dialogueSet][7] = new Dialoge("Alder","How!?", port.image_Alder);
+			dialogues[dialogueSet][8] = new Dialoge("Alder","Florence!!", port.image_Alder);
+		case 11:
+			dialogues[dialogueSet][0] = new Dialoge("Alder","It's called \"Lief\", \"The sword of the seasons\".", port.image_Alder);
+			dialogues[dialogueSet][1] = new Dialoge("Kyla","As I thought.", port.image_Kyla);
+			dialogues[dialogueSet][2] = new Dialoge("Kyla","But there is only one way to confirm this.", port.image_Kyla);
+			dialogues[dialogueSet][3] = new Dialoge("Kyla unsheathed that sword and held it in her hand. The blade darkened and bent and it was not long before it dropped off leaving only the handle.",1);
+			dialogues[dialogueSet][4] = new Dialoge("Kyla","Boy you can have the sword back now, make sure you hold it by the grip.", port.image_Kyla);
+			dialogues[dialogueSet][5] = new Dialoge("Alder said nothing as he picked up the sword. As he did, a new blade started to grow from the rain-guard until it was back to its original glory.",1);
+			dialogues[dialogueSet][6] = new Dialoge("Florence","What did you do?", port.image_Florence);
+			dialogues[dialogueSet][7] = new Dialoge("Kyla","The sword only sprouts for the Scion.", port.image_Kyla);
+			dialogues[dialogueSet][8] = new Dialoge("Kyla","In order words...", port.image_Kyla);
+			dialogues[dialogueSet][9] = new Dialoge("Kyla","You.", port.image_Kyla);
 		}
 	}
 

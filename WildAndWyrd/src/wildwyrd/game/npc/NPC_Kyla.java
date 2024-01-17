@@ -23,6 +23,7 @@ public class NPC_Kyla extends NPC {
 		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;
+		options = new String[3];
 		setDialogue();
 		setDialogueOptions();
 		getImage();
@@ -100,28 +101,70 @@ public class NPC_Kyla extends NPC {
 		dialogues[5][1] = new Dialoge("Kyla","Do as you please.",port.image_Kyla);
 		dialogues[6][0] = new Dialoge("Kyla","I like the girl.",port.image_Kyla);
 		dialogues[6][1] = new Dialoge("Kyla","Shame she never stays.",port.image_Kyla);
+		dialogues[7][0] = new Dialoge("Kyla","Boy, let me see that sword!",port.image_Kyla);
+		dialogues[7][1] = new Dialoge("Alder","Um?",port.image_Alder);
+		dialogues[7][2] = new Dialoge("Alder","O-ok.",port.image_Alder);
+		dialogues[7][3] = new Dialoge("Alder handed the sword over to Kyla",1);
+		dialogues[7][4] = new Dialoge("Kyla","It can't be?",port.image_Kyla);
+		dialogues[7][5] = new Dialoge("Kyla","Boy, in the bookshelf, there should be a blue book on magical artefacts, bring it here.",port.image_Kyla);
+		dialogues[7][6] = new Dialoge("Alder","Right.",port.image_Alder);
+		dialogues[8][0] = new Dialoge(" " ,3);
+		dialogues[9][0] = new Dialoge("Kyla","What is…!?",port.image_Kyla);
+		dialogues[9][0] = new Dialoge("Kyla","How do you not know what the Scion is!?",port.image_Kyla);
+		dialogues[9][0] = new Dialoge("Florence","I thought it was more important that he knew herbs and how to read and write than history.",port.image_Florence);
+		dialogues[9][0] = new Dialoge("Kyla","*Sigh*",port.image_Kyla);
+		dialogues[9][0] = new Dialoge("Kyla","The Scion is the great hero of Avalon.",port.image_Kyla);
+		dialogues[9][0] = new Dialoge("Kyla","They are able to pass on their knowledge and natural abilites after death.",port.image_Kyla);
+		dialogues[9][0] = new Dialoge("Kyla","One previous Scion killed a dragon, while another saved countless innocents from slavers.",port.image_Kyla);
+		dialogues[9][0] = new Dialoge("Kyla","And I knew one who put kings themselves in their rightful place.",port.image_Kyla);
+		dialogues[9][0] = new Dialoge("Kyla","But I digress.",port.image_Kyla);
+		dialogues[10][0] = new Dialoge("Kyla","That mouse was no doubt Agrimus; the Scion before you.",port.image_Kyla);
+		dialogues[10][0] = new Dialoge("Kyla","He appeared to you to pass on his title and sword.",port.image_Kyla);
+		dialogues[10][0] = new Dialoge("Kyla","I am shocked he chose you though.",port.image_Kyla);
+		dialogues[10][0] = new Dialoge("Kyla","He was the hero of the war against the humans of Glorion.",port.image_Kyla);
+		dialogues[10][0] = new Dialoge("Kyla","And out of countless potentials he goes for my servant.",port.image_Kyla);
+		dialogues[11][0] = new Dialoge("Kyla","It’s in the book.",port.image_Kyla);
+		dialogues[11][0] = new Dialoge("Kyla","The sword blade is like a plant and the grip its roots.",port.image_Kyla);
+		dialogues[11][0] = new Dialoge("Kyla","When held by the Scion it grows and strengthens, when held by any other it weakens and dies.",port.image_Kyla);
+		dialogues[12][0] = new Dialoge("???","The rabbit seeks his burrow!",1);
+		dialogues[12][0] = new Dialoge("*Click*",1);
+		dialogues[12][0] = new Dialoge("*Ring*!",1);
+		dialogues[12][0] = new Dialoge("The door unlocked and the bell chimed in responce to the words of the voice outside. The ringing resounded throught the cottage but was prevelant in the already alerted living room.",1);
+		dialogues[12][0] = new Dialoge("Alder, Florence and Kyla","...!?",port.image_Alder);
+		dialogues[12][0] = new Dialoge("Florence","Who is that!?",port.image_Florence);
 	}
 	
-	public void setDialogueOptions() {}
+	public void setDialogueOptions() {
+		options[0] = "What is a Scion?";
+		options[1] = "Does this have anything to do with the mouse I saw in my dream?";
+		options[2] = "What's with the sword blade?";
+	}
 
 	public void choiceResponce() {
-		dialogueIndex = 0;
-		if (gp.ui.choiceSlot == 0) {
-			startDialogue(this, 1);
-			sidequest.acceptQuest();
-		}
-		if (gp.ui.choiceSlot == 1) {
-			startDialogue(this, 2);
-			sidequest.acceptQuest();
-		}
-		if (!gp.objectExists(Obj_Blackberry.objId, 2)) {
-			for(int i = 0; i < gp.obj[2].length; i++) {
-				if(gp.obj[2][i] == null) {
-					gp.obj[2][i] = new Obj_Blackberry(gp);
-					gp.obj[2][i].worldX = gp.tileSize * 3;
-					gp.obj[2][i].worldY = gp.tileSize * 4;
+		if(gp.s.chapter == 1 || gp.s.chapter == 2) {
+			dialogueIndex = 0;
+			if (gp.ui.choiceSlot == 0) {
+				startDialogue(this, 1);
+				sidequest.acceptQuest();
+			}
+			if (gp.ui.choiceSlot == 1) {
+				startDialogue(this, 2);
+				sidequest.acceptQuest();
+			}
+			if (!gp.objectExists(Obj_Blackberry.objId, 2)) {
+				for(int i = 0; i < gp.obj[2].length; i++) {
+					if(gp.obj[2][i] == null) {
+						gp.obj[2][i] = new Obj_Blackberry(gp);
+						gp.obj[2][i].worldX = gp.tileSize * 3;
+						gp.obj[2][i].worldY = gp.tileSize * 4;
+					}
 				}
 			}
+		} else if (gp.s.chapter == 3) {
+			dialogueIndex = 0;
+			if (gp.ui.choiceSlot == 0) {startDialogue(this, 9);}
+			if (gp.ui.choiceSlot == 1) {startDialogue(this, 10);}
+			if (gp.ui.choiceSlot == 2) {startDialogue(this, 11);}
 		}
 	}
 	
@@ -142,6 +185,16 @@ public class NPC_Kyla extends NPC {
 			}
 		} else if(gp.s.chapter == 2) {
 			startDialogue(this, 6);
+		} else if(gp.s.chapter == 3) {
+			System.out.println(gp.s.c3Switch[1]);
+			if(gp.s.c3Switch[1]) {
+				startDialogue(this, 7);
+				gp.s.c3Switch[1] = false;
+			} else if (gp.s.c3Switch[2]) {
+				gp.s.swh[11] = true;
+			} else if (gp.s.c3Switch[3]) {
+				startDialogue(this, 8);
+			}
 		}
 		gp.keyH.enterPressed = false;
 	}

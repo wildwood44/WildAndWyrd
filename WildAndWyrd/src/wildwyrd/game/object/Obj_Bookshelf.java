@@ -4,6 +4,7 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
+import wildwyrd.game.cutscenes.Portrate;
 import wildwyrd.game.library.Book;
 import wildwyrd.game.library.Book_Magic_1;
 import wildwyrd.game.library.Dev_1;
@@ -15,6 +16,7 @@ public class Obj_Bookshelf extends Entity {
 	public static final int objId = 11;
 	public static final String objName = "Bookshelf";
 	Book[] books = new Book[4]; 
+	Portrate port = new Portrate();
 	public Obj_Bookshelf(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
@@ -24,7 +26,7 @@ public class Obj_Bookshelf extends Entity {
 		collision = true;
 
 		image = setup("/res/objects/img_bookshelf", gp.tileSize, gp.tileSize*2);
-
+		
 		solidArea.width = 64;
 		solidArea.y = 40;
 		solidAreaDefaultY = solidArea.y;
@@ -34,7 +36,10 @@ public class Obj_Bookshelf extends Entity {
 	}
 
 	public void setDialogue() {
-		
+		dialogues[0][0] = new Dialoge("Alder","A \"Cohuleen Druith\" hat.",port.image_Alder);
+		dialogues[0][1] = new Dialoge("Alder","The \"Ring of Eluned\".",port.image_Alder);
+		dialogues[0][2] = new Dialoge("Alder","The \"Gae Bulg\" spear.",port.image_Alder);
+		dialogues[0][3] = new Dialoge("Alder","Found it!",port.image_Alder);
 	}
 	
 	public void setBooks() {
@@ -49,9 +54,16 @@ public class Obj_Bookshelf extends Entity {
 	}
 
 	public void interact() {
-		gp.gameState = GameState.readingState;
-		gp.keyH.enterPressed = false;
-		gp.ui.selectedBookshelf = books;
+		System.out.println(gp.s.c3Switch[1] +" "+ gp.s.part);
+		if((!gp.s.c3Switch[1]) && gp.s.part == 1) {
+			startDialogue(this, 0);
+			gp.s.c3Switch[2] = true;
+			gp.s.part = 2;
+		}  else {
+			gp.gameState = GameState.readingState;
+			gp.keyH.enterPressed = false;
+			gp.ui.selectedBookshelf = books;
+		}
 	}
 
 	

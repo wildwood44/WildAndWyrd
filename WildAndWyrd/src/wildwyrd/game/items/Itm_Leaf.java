@@ -1,11 +1,15 @@
 package wildwyrd.game.items;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 import wildwyrd.game.GamePanel;
 
 public class Itm_Leaf extends Primary {
 	GamePanel gp;
 	public static final int itemId = 302;
 	public static final String itemName = "Leif";
+	public boolean withered = false;
 
 	public Itm_Leaf(GamePanel gp) {
 		super(gp);
