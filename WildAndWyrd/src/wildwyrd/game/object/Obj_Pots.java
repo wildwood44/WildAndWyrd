@@ -29,23 +29,10 @@ public class Obj_Pots extends Entity {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge("Various pots and pans were hung on hooks on the wall.", 1);
-		dialogues[1][0] = new Dialoge("Alder got a wet cloth and started scrubbing the pots. Florence peeked into the living room at Kyla and started on the others", 1);
-		dialogues[1][1] = new Dialoge("Florence","Shh.", 1);
 	}
 
 	public void interact() {
-		if(gp.objective.quests[1].isAccepted()) {
-			startDialogue(this, 1);
-			for(int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
-				if(gp.npc[gp.currentMap.getId()][i] != null &&
-						gp.npc[gp.currentMap.getId()][i].id == NPC_Florence.npcId) {
-					gp.npc[gp.currentMap.getId()][i].direction = "up";
-				}
-			}
-			gp.objective.quests[1].progress(1);
-		} else {
-			startDialogue(this, 0);
-		}
+		startDialogue(this, 0);
 		gp.keyH.enterPressed = false;
 	}
 }

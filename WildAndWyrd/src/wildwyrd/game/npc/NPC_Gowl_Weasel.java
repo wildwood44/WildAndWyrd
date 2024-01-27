@@ -8,16 +8,16 @@ import javax.imageio.ImageIO;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
-public class NPC_Rat_Siluette extends NPC {
-	public static final int npcId = 6;
-	public static final String npcName = "Gowl_Rat";
-	public NPC_Rat_Siluette(GamePanel gp) {
+public class NPC_Gowl_Weasel extends NPC {
+	public static final int npcId = 7;
+	public static final String npcName = "Gowl Rat";
+	public NPC_Gowl_Weasel(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
 		id = npcId;
 		name = npcName;
 		type = EntityType.Sprite;
-		direction = "up";
+		direction = "down";
 		speed = 1;
 		setDialogue();
 		getImage();
@@ -42,18 +42,18 @@ public class NPC_Rat_Siluette extends NPC {
 	}
 	
 	public void getImage() {
-		up1 = getPlayerImage(4, 3);
-		up2 = getPlayerImage(3, 3);
-		up3 = getPlayerImage(5, 3);
-		down1 = getPlayerImage(4, 0);
-		down2 = getPlayerImage(3, 0);
-		down3 = getPlayerImage(5, 0);
-		left1 = getPlayerImage(4, 1);
-		left2 = getPlayerImage(3, 1);
-		left3 = getPlayerImage(5, 1);
-		right1 = getPlayerImage(4, 2);
-		right2 = getPlayerImage(3, 2);
-		right3 = getPlayerImage(5, 2);
+		up1 = getPlayerImage(1, 3);
+		up2 = getPlayerImage(0, 3);
+		up3 = getPlayerImage(2, 3);
+		down1 = getPlayerImage(1, 0);
+		down2 = getPlayerImage(0, 0);
+		down3 = getPlayerImage(2, 0);
+		left1 = getPlayerImage(1, 1);
+		left2 = getPlayerImage(0, 1);
+		left3 = getPlayerImage(2, 1);
+		right1 = getPlayerImage(1, 2);
+		right2 = getPlayerImage(0, 2);
+		right3 = getPlayerImage(2, 2);
 	}
 	
 	public void setAction() {

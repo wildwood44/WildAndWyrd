@@ -1,6 +1,9 @@
 package wildwyrd.game;
 
 import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -10,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import wildwyrd.game.items.Item;
+import wildwyrd.game.npc.NPC_Kyla;
 import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.tile.UtilityTool;
 
@@ -54,6 +58,7 @@ public class Entity {
 	public boolean takeDamage = false;
 	public boolean stackable = false;
 	public boolean destroy = false;
+	public boolean hasQuest = false;
 	public int amount = 1;
 	public EntityType type;
 	public Timer timer;
@@ -183,6 +188,7 @@ public class Entity {
 	}
 
 	public void draw(Graphics2D g2) {
+		getQuest();
 		//BufferedImage image = null;
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
@@ -234,10 +240,10 @@ public class Entity {
 			}
 			g2.setComposite(AlphaComposite.SrcOver.derive(alpha));
 			g2.drawImage(image, tempScreenX, tempScreenY, null);
-			//if(image2 != null) {
-	        //    g2.setComposite(AlphaComposite.SrcOver.derive(1f - alpha));
-			//	g2.drawImage(image2, screenX, screenY, gp.tileSize, gp.tileSize, null);
-			//}
+			if(hasQuest) {
+				BufferedImage q_icon = setup("/res/icons/quest_icon",gp.originalTileSize,gp.originalTileSize);
+				g2.drawImage(q_icon, tempScreenX + 10, tempScreenY, null);
+			}
             g2.setComposite(AlphaComposite.SrcOver.derive(1f));
 		}
 		else if(gp.player.worldX < gp.player.screenX ||
@@ -271,7 +277,11 @@ public class Entity {
 				image = unique;
 				break;
 			}
-			g2.drawImage(image, tempScreenX, tempScreenY, null); 
+			g2.drawImage(image, tempScreenX, tempScreenY, null);
+			if(hasQuest) {
+				BufferedImage q_icon = setup("/res/icons/quest_icon",gp.originalTileSize,gp.originalTileSize);
+				g2.drawImage(q_icon, tempScreenX + 10, tempScreenY, null);
+			}
             g2.setComposite(AlphaComposite.SrcOver.derive(1f));
 		}
 	}
@@ -281,6 +291,10 @@ public class Entity {
 		gp.gameState = GameState.examineState;
 		gp.ui.selectedObject = object;
 		dialogueSet = setNum;
+	}
+	
+	public boolean getQuest() {
+		return hasQuest;
 	}
 
 	public void restartDialogue(Dialoge[] object, int getSize) {
@@ -302,18 +316,10 @@ public class Entity {
 	
 	public void facePlayer() {
 		switch(gp.player.direction) {
-		case "up":
-			direction = "down";
-			break;
-		case "down":
-			direction = "up";
-			break;
-		case "left":
-			direction = "right";
-			break;
-		case "right":
-			direction = "left";
-			break;
+		case "up": direction = "down"; break;
+		case "down": direction = "up"; break;
+		case "left": direction = "right"; break;
+		case "right": direction = "left"; break;
 		}
 	}
 

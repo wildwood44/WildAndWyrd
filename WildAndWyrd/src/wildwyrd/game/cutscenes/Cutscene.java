@@ -210,6 +210,7 @@ public class Cutscene extends Entity {
 			dialogues[dialogueSet][6] = new Dialoge("Alder","What!?", port.image_Alder);
 			dialogues[dialogueSet][7] = new Dialoge("Alder","How!?", port.image_Alder);
 			dialogues[dialogueSet][8] = new Dialoge("Alder","Florence!!", port.image_Alder);
+			break;
 		case 11:
 			dialogues[dialogueSet][0] = new Dialoge("Alder","It's called \"Lief\", \"The sword of the seasons\".", port.image_Alder);
 			dialogues[dialogueSet][1] = new Dialoge("Kyla","As I thought.", port.image_Kyla);
@@ -221,6 +222,58 @@ public class Cutscene extends Entity {
 			dialogues[dialogueSet][7] = new Dialoge("Kyla","The sword only sprouts for the Scion.", port.image_Kyla);
 			dialogues[dialogueSet][8] = new Dialoge("Kyla","In order words...", port.image_Kyla);
 			dialogues[dialogueSet][9] = new Dialoge("Kyla","You.", port.image_Kyla);
+			break;
+		case 12:
+			dialogues[dialogueSet][0] = new Dialoge("???","The rabbit seeks his burrow!",1);
+			dialogues[dialogueSet][1] = new Dialoge("*Click*",1);
+			dialogues[dialogueSet][2] = new Dialoge("*Ring*!",1);
+			dialogues[dialogueSet][3] = new Dialoge("The door unlocked and the bell chimed in responce to the words of the voice outside. The ringing resounded throught the cottage but was prevelant in the already alerted living room.",1);
+			dialogues[dialogueSet][4] = new Dialoge("Alder, Florence and Kyla","...!?",port.image_Alder);
+			dialogues[dialogueSet][5] = new Dialoge("Florence","Who is that!?",port.image_Florence);
+			dialogues[dialogueSet][6] = new Dialoge("Alder","Look!",port.image_Alder);
+			dialogues[dialogueSet][7] = new Dialoge("Alder","There's someone outside!",port.image_Alder);
+			dialogues[dialogueSet][8] = new Dialoge("Kyla","Hm?!", port.image_Kyla);
+			dialogues[dialogueSet][9] = new Dialoge("Kyla","That armour!", port.image_Kyla);
+			dialogues[dialogueSet][10] = new Dialoge("Kyla","Gowls!", port.image_Kyla);
+			dialogues[dialogueSet][11] = new Dialoge("Florence","Two- No. Four creatures.", port.image_Florence);
+			dialogues[dialogueSet][12] = new Dialoge("Florence","I'm certain at least one of them is a stoat or a weasel.", port.image_Florence);
+			dialogues[dialogueSet][13] = new Dialoge("Rat","I heard a bell!", 1);
+			dialogues[dialogueSet][14] = new Dialoge("Weasel","You certain?",1);
+			dialogues[dialogueSet][15] = new Dialoge("Weasel","I don't see anything different about this rock.",1);
+			dialogues[dialogueSet][16] = new Dialoge("Rat","There are human tracks all over, both old and new.",1);
+			dialogues[dialogueSet][17] = new Dialoge("Rat","There here!",1);
+			dialogues[dialogueSet][18] = new Dialoge("Weasel","Wait here, the rest of you form a perimeter.",1);
+			dialogues[dialogueSet][19] = new Dialoge("Weasel","I'll fetch the a wizard.",1);
+			dialogues[dialogueSet][20] = new Dialoge("Kyla","They know we're here we have to move.", port.image_Kyla);
+			dialogues[dialogueSet][21] = new Dialoge("Florence","I agree. But where?", port.image_Florence);
+			dialogues[dialogueSet][22] = new Dialoge("Kyla","Hmm.", port.image_Kyla);
+			dialogues[dialogueSet][23] = new Dialoge("Kyla","The boy can go to Forton. With that sword they're sure to take him in.", port.image_Kyla);
+			dialogues[dialogueSet][24] = new Dialoge("Kyla","It will benefit us all if the Scion can represent the plight of Marchland humans.", port.image_Kyla);
+			dialogues[dialogueSet][25] = new Dialoge("Florence","By himself?", port.image_Florence);
+			dialogues[dialogueSet][26] = new Dialoge("Florence","Shouldn't we go with him?", port.image_Florence);
+			dialogues[dialogueSet][27] = new Dialoge("Kyla","I'm not stepping a foot in another town.", port.image_Kyla);
+			dialogues[dialogueSet][28] = new Dialoge("Kyla","The boy can go by himself.", port.image_Kyla);
+			dialogues[dialogueSet][29] = new Dialoge("Florence","Absolutely not!", port.image_Florence);
+			dialogues[dialogueSet][30] = new Dialoge("Florence","He'll be killed!", port.image_Florence);
+			dialogues[dialogueSet][31] = new Dialoge("Kyla","They are not going to kill him.", port.image_Kyla);
+			dialogues[dialogueSet][32] = new Dialoge("Kyla","He's the Scion.", port.image_Kyla);
+			dialogues[dialogueSet][33] = new Dialoge("Florence","What about the Gowls?!", port.image_Florence);
+			dialogues[dialogueSet][34] = new Dialoge("Kyla","Again. Scion!", port.image_Kyla);
+			dialogues[dialogueSet][35] = new Dialoge("Florence","Again! Gowls!", port.image_Florence);
+			dialogues[dialogueSet][36] = new Dialoge("Kyla","Well we can't go with him!", port.image_Kyla);
+			dialogues[dialogueSet][37] = new Dialoge("Florence","I will!", port.image_Florence);
+			dialogues[dialogueSet][38] = new Dialoge("Kyla","...What?", port.image_Kyla);
+			dialogues[dialogueSet][39] = new Dialoge("Florence","I'll go with him as his guardian!", port.image_Florence);
+			//dialogues[dialogueSet][43] = new Dialoge("Alder","Florence... Thank you...", port.image_Alder);
+			dialogues[dialogueSet][40] = new Dialoge("Kyla","Absolutely not!", port.image_Kyla);
+			dialogues[dialogueSet][41] = new Dialoge("Kyla","You will come with me!", port.image_Kyla);
+			dialogues[dialogueSet][42] = new Dialoge("Florence","I am not leaving Alder alone.", port.image_Florence);
+			dialogues[dialogueSet][43] = new Dialoge("Kyla","So you would choose our servant over the women who raised, taught and loved you over these long years?", port.image_Kyla);
+			dialogues[dialogueSet][44] = new Dialoge("Florence","...", port.image_Florence);
+			dialogues[dialogueSet][45] = new Dialoge("Kyla","*Groan*", port.image_Kyla);
+			dialogues[dialogueSet][46] = new Dialoge("Kyla","We'll discuss this later, we need to get moving.", port.image_Kyla);
+			dialogues[dialogueSet][47] = new Dialoge("Kyla","Tawie will have to make her own way.", port.image_Kyla);
+			break;
 		}
 	}
 

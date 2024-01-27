@@ -4,9 +4,11 @@ import wildwyrd.game.items.Item;
 import wildwyrd.game.items.Itm_Bandage;
 import wildwyrd.game.items.Itm_Bow;
 import wildwyrd.game.items.Itm_Bramble_Leaf;
+import wildwyrd.game.items.Itm_Bread;
 import wildwyrd.game.items.Itm_Bug_Meat;
 import wildwyrd.game.items.Itm_Hazelnut;
 import wildwyrd.game.items.Itm_Hunting_Knife;
+import wildwyrd.game.items.Itm_Leif;
 import wildwyrd.game.items.Itm_P_Mushroom;
 import wildwyrd.game.items.Itm_Primative_Arrow;
 import wildwyrd.game.npc.NPC;
@@ -23,6 +25,7 @@ import wildwyrd.game.object.Obj_Blackberry;
 import wildwyrd.game.object.Obj_Bookshelf;
 import wildwyrd.game.object.Obj_Cauldron;
 import wildwyrd.game.object.Obj_Chair;
+import wildwyrd.game.object.Obj_Cracked_Wall;
 import wildwyrd.game.object.Obj_Crate;
 import wildwyrd.game.object.Obj_Cupboard;
 import wildwyrd.game.object.Obj_Dummy;
@@ -81,6 +84,7 @@ public class EntityGenerator {
 		case Obj_Tree.objId: obj = new Obj_Tree(gp);break;//24
 		case Obj_Dummy.objId: obj = new Obj_Dummy(gp);break;//25
 		case Obj_Blackberry.objId: obj = new Obj_Blackberry(gp);break;//26
+		case Obj_Cracked_Wall.objId: obj = new Obj_Cracked_Wall(gp);break;//27
 		//default
 		}
 		return obj;
@@ -92,9 +96,11 @@ public class EntityGenerator {
 		case Itm_Hazelnut.itemId:obj = new Itm_Hazelnut(gp);break;//101
 		case Itm_P_Mushroom.itemId:obj = new Itm_P_Mushroom(gp);break;//102
 		case Itm_Bug_Meat.itemId:obj = new Itm_Bug_Meat(gp);break;//103
+		case Itm_Bread.itemId:obj = new Itm_Bread(gp);break;//104
 		case Itm_Bandage.itemId:obj = new Itm_Bandage(gp);break;//201
 		case Itm_Hunting_Knife.itemId:obj = new Itm_Hunting_Knife(gp);break;//301
 		case Itm_Bow.itemId:obj = new Itm_Bow(gp);break;//302
+		case Itm_Leif.itemId:obj = new Itm_Leif(gp);break;//303
 		case Itm_Primative_Arrow.itemId:obj = new Itm_Primative_Arrow(gp);break;//501
 		case Itm_Bramble_Leaf.itemId:obj = new Itm_Bramble_Leaf(gp);break;//601
 		//default

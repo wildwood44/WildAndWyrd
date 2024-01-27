@@ -173,6 +173,7 @@ public class Combat extends Entity {
 	
 	public void dealDamage(Combatant user, Combatant target, int damage) {
 		if((user.inRange() && target.inRange()) || user.projectileLoaded()) {
+			gp.playSE(13);
 			if(user.projectileLoaded()) {
 				damage = gp.playable.get(0).fireProjectile();
 			}

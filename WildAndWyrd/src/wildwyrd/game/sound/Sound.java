@@ -9,19 +9,38 @@ import javax.sound.sampled.FloatControl;
 
 public class Sound {
 	Clip clip;
-	URL soundURL[] = new URL[30];
+	URL soundURL[] = new URL[40];
 	FloatControl fc;
 	public int volumeScale = 3;
 	float volume;
 	
 	public Sound() {
-		soundURL[0] = getClass().getResource("/res/sound/Menu.wav"); // Up/Down
+		//Title Menu Up/Down
+		//Title Menu Select
+		soundURL[0] = getClass().getResource("/res/sound/Treecreeper.wav"); // Up/Down
 		soundURL[1] = getClass().getResource("/res/sound/Green_Woodpecker.wav"); // Save
-		soundURL[2] = getClass().getResource("/res/sound/Door.wav"); // Door used
-		soundURL[5] = getClass().getResource("/res/sound/running-1.wav"); // Run
+		//Stats
+		//Item
+		//Objectives
+		//Glossary
+		//Options
+		//Quit
+		soundURL[8] = getClass().getResource("/res/sound/Door.wav"); // Door used
 		soundURL[10] = getClass().getResource("/res/sound/Book_Open.wav"); // Open book
 		soundURL[11] = getClass().getResource("/res/sound/page-flip-01a.wav"); // Turn page
 		soundURL[12] = getClass().getResource("/res/sound/Book_Close.wav"); // Close book
+		soundURL[13] = getClass().getResource("/res/sound/attack.wav"); //Attack
+		//Block
+		//Move
+		//Special
+		//Items
+		//Flee
+		soundURL[20] = getClass().getResource("/res/sound/run.wav"); // Run
+		//Menu song
+		//Woodland song
+		//Cottage song
+		soundURL[33] = getClass().getResource("/res/music/HallOfTheScion.wav"); // Hall of the Scion
+		
 	}
 	
 	public void setFile(int i) {

@@ -50,6 +50,8 @@ public class EventHandler {
 		eventMaster.dialogues[1][0] = new Dialoge("Alder once got lost after he strayed too far from the cottage.", 1);
 		eventMaster.dialogues[1][1] = new Dialoge("He spent hours in the dark until Florence found him crying and scared.", 1);
 		eventMaster.dialogues[1][2] = new Dialoge("Kyla had been indifferent to the incident.", 1);
+		eventMaster.dialogues[2][0] = new Dialoge("The Gowls are right outside.", 1);
+		eventMaster.dialogues[2][1] = new Dialoge("Going out would be a death sentence.", 1);
 	}
 
 	public void checkEvent() {
@@ -63,11 +65,15 @@ public class EventHandler {
 			if(gp.currentMap.getId() == 0) {
 				//if(hit(0,13,8,"up")) {teleport(gp.maps[1],15,3);}
 				if(hit(0,8,7,"down")) {
-					teleport(gp.maps[2],12,3);
-					gp.playSE(2);
-					if(gp.s.swh[1]) {gp.s.part = 2;}
+					if(!gp.s.c3Switch[3]) {obsticle(gp.maps[0]);} else {
+						teleport(gp.maps[2],12,3);
+						gp.playSE(8);
+						if(gp.s.swh[1]) {gp.s.part = 2;}
+					}
 				}
-				if(hit(0,12,7,"down")) {gp.playSE(2);teleport(gp.maps[2],16,3);}
+				if(hit(0,12,7,"down")) {
+					if(!gp.s.c3Switch[3]) {obsticle(gp.maps[0]);} else {gp.playSE(8);teleport(gp.maps[2],16,3);}
+				}
 			}
 			//else if(gp.currentMap.getId() == 1) {
 			//	if(hit(1,15,4,"down")) {teleport(gp.maps[0],13,9);}
@@ -75,11 +81,11 @@ public class EventHandler {
 			else if(gp.currentMap.getId() == 2) {
 				if(hit(2,12,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][0]);}
 				if(hit(2,12,2,"up")) {
-					gp.playSE(2);
+					gp.playSE(8);
 					teleport(gp.maps[0],8,6); 
 					if(gp.s.chapter == 2 && gp.s.swh[6]) {gp.s.part = 2;}}
 				if(hit(2,16,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][1]);}
-				if(hit(2,16,2,"up")) {gp.playSE(2);teleport(gp.maps[0],12,6);}
+				if(hit(2,16,2,"up")) {gp.playSE(8);teleport(gp.maps[0],12,6);}
 				if(hit(2,14,4,"down")) {}
 				if(hitRow(2,11,"down")) {
 					if(gp.playable.get(0).getWeapon_prime().name != null) {
@@ -127,6 +133,8 @@ public class EventHandler {
 				c1s_Cutscene(12);
 			} else if (gp.s.swh[11] && gp.s.part == 2) {
 				c1s_Cutscene(13);
+			} else if (gp.s.swh[12] && gp.s.part == 2) {
+				c1s_Cutscene(14);
 			}
 		}
 	}
@@ -209,7 +217,9 @@ public class EventHandler {
 	
 	public void obsticle(Map map) {
 		gp.gameState = GameState.examineState;
-		if(map.getId() == 2) {
+		if(map.getId() == 0) {
+			eventMaster.startDialogue(eventMaster, 2);
+		} else if(map.getId() == 2) {
 			eventMaster.startDialogue(eventMaster, 0);
 		} else if(map.getId() == 3) {
 			eventMaster.startDialogue(eventMaster, 1);

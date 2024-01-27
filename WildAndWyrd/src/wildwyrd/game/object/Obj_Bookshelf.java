@@ -40,6 +40,8 @@ public class Obj_Bookshelf extends Entity {
 		dialogues[0][1] = new Dialoge("Alder","The \"Ring of Eluned\".",port.image_Alder);
 		dialogues[0][2] = new Dialoge("Alder","The \"Gae Bulg\" spear.",port.image_Alder);
 		dialogues[0][3] = new Dialoge("Alder","Found it!",port.image_Alder);
+		dialogues[1][0] = new Dialoge("Alder carefully put each book the bag which swallowed up each one, barely getting any heavier.",1);
+		dialogues[2][0] = new Dialoge("The bookshelf was empty.",1);
 	}
 	
 	public void setBooks() {
@@ -57,9 +59,19 @@ public class Obj_Bookshelf extends Entity {
 		System.out.println(gp.s.c3Switch[1] +" "+ gp.s.part);
 		if((!gp.s.c3Switch[1]) && gp.s.part == 1) {
 			startDialogue(this, 0);
-			gp.s.c3Switch[2] = true;
 			gp.s.part = 2;
-		}  else {
+		} else if(gp.objective.quests[2].isAccepted()) {
+			startDialogue(this, 1);
+			destroy = true;
+			for(int i = 0; i < gp.obj[gp.currentMap.getId()].length; i++) {
+				if(gp.obj[gp.currentMap.getId()][i] != null &&
+						gp.obj[gp.currentMap.getId()][i].name == name && destroy) {
+					gp.obj[gp.currentMap.getId()][i] = null;
+					break;
+				}
+			}
+			gp.objective.quests[2].progress(0);
+		} else {
 			gp.gameState = GameState.readingState;
 			gp.keyH.enterPressed = false;
 			gp.ui.selectedBookshelf = books;

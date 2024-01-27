@@ -16,6 +16,8 @@ public class Objective extends Entity {
 	private void setQuests() {
 		quests[0] = new Quest_Main(gp);
 		quests[1] = new Quest_1(gp);
+		quests[2] = new Quest_2(gp);
+		quests[3] = new Quest_3(gp);
 	}
 
 	public String getMainObjective() {

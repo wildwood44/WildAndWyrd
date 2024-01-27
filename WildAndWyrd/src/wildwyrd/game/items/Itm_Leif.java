@@ -5,13 +5,13 @@ import java.awt.image.BufferedImage;
 
 import wildwyrd.game.GamePanel;
 
-public class Itm_Leaf extends Primary {
+public class Itm_Leif extends Primary {
 	GamePanel gp;
-	public static final int itemId = 302;
+	public static final int itemId = 303;
 	public static final String itemName = "Leif";
 	public boolean withered = false;
 
-	public Itm_Leaf(GamePanel gp) {
+	public Itm_Leif(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
 		id = itemId;

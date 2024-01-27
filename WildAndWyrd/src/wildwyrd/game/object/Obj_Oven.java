@@ -3,6 +3,7 @@ package wildwyrd.game.object;
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.npc.NPC_Florence;
 
 public class Obj_Oven extends Entity {
 	GamePanel gp;
@@ -30,10 +31,23 @@ public class Obj_Oven extends Entity {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge("The oven was unlit.", 1);
+		dialogues[1][0] = new Dialoge("Alder got a brush and started swepping the oven. Florence noticed him and started helping.", 1);
+		dialogues[1][1] = new Dialoge("Florence","Shh.", 1);
 	}
 
 	public void interact() {
-		startDialogue(this, 0);
+		if(gp.objective.quests[1].isAccepted()) {
+			startDialogue(this, 1);
+			for(int i = 0; i < gp.npc[gp.currentMap.getId()].length; i++) {
+				if(gp.npc[gp.currentMap.getId()][i] != null &&
+						gp.npc[gp.currentMap.getId()][i].id == NPC_Florence.npcId) {
+					gp.npc[gp.currentMap.getId()][i].direction = "up";
+				}
+			}
+			gp.objective.quests[1].progress(1);
+		} else {
+			startDialogue(this, 0);
+		}
 		gp.keyH.enterPressed = false;
 	}
 }

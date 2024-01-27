@@ -8,16 +8,16 @@ import javax.imageio.ImageIO;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
-public class NPC_Rat_Siluette extends NPC {
-	public static final int npcId = 6;
-	public static final String npcName = "Gowl_Rat";
-	public NPC_Rat_Siluette(GamePanel gp) {
+public class NPC_Gowl_Rat extends NPC {
+	public static final int npcId = 8;
+	public static final String npcName = "Gowl Rat";
+	public NPC_Gowl_Rat(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
 		id = npcId;
 		name = npcName;
 		type = EntityType.Sprite;
-		direction = "up";
+		direction = "down";
 		speed = 1;
 		setDialogue();
 		getImage();

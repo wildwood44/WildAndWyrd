@@ -8,9 +8,11 @@ import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.cutscenes.Portrate;
+import wildwyrd.game.objective.Quest;
 
 public class NPC extends Entity {
 	public Portrate port = new Portrate();
+	public Quest[] sidequest = new Quest[5];
 	
 	public NPC(GamePanel gp) {
 		super(gp);

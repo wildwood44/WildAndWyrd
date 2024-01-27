@@ -24,6 +24,7 @@ public class NPC_Florence extends NPC {
 		speed = 1;
 		contConditions[0] = false;
 		contConditions[1] = false;
+		sidequest[0] = gp.objective.quests[3];
 		setDialogue();
 		setDialogueOptions();
 		getImage();
@@ -92,6 +93,23 @@ public class NPC_Florence extends NPC {
 		dialogues[7][7] = new Dialoge("Florence","What!?",port.image_Florence);
 		dialogues[7][8] = new Dialoge("Kyla","Heh Heh.",port.image_Kyla);
 		dialogues[7][9] = new Dialoge("Kyla","What's this about a sword?",port.image_Kyla);
+		dialogues[8][0] = new Dialoge("Florence","I think we will need to have a long discussion about that sword Alder.", port.image_Florence);
+		dialogues[9][0] = new Dialoge("Florence","Are you doing alright Alder?",port.image_Florence);
+		dialogues[9][1] = new Dialoge("Alder","I'm fine.",port.image_Alder);
+		dialogues[9][2] = new Dialoge("Alder","But are you sure you want to give up your apprenticeship?",port.image_Alder);
+		dialogues[9][3] = new Dialoge("Florence","I'm not leaving you Alder!",port.image_Florence);
+		dialogues[9][4] = new Dialoge("Florence","I'll protect you no matter what!",port.image_Florence);
+		dialogues[10][0] = new Dialoge("Florence","What the matter Florence?", port.image_Alder);
+		dialogues[10][1] = new Dialoge("Florence","We need provisions to get to Forton!", port.image_Florence);
+		dialogues[10][2] = new Dialoge("Florence","Like what?", port.image_Alder);
+		dialogues[10][3] = new Dialoge("Florence","Travelling Food.", port.image_Florence);
+		dialogues[10][4] = new Dialoge("Florence","Something that won't get squished into mulch while we walk or run.", port.image_Florence);
+		dialogues[10][5] = new Dialoge("Florence","Take what you can from the larder.", port.image_Florence);
+		dialogues[11][0] = new Dialoge("Florence","I wish more time, but it is what it is",port.image_Florence);
+		dialogues[12][0] = new Dialoge("Alder","This was all there was.",port.image_Alder);
+		dialogues[12][1] = new Dialoge("Alder","Will it be enough?",port.image_Alder);
+		dialogues[12][2] = new Dialoge("Florence","I hope so.",port.image_Florence);
+		dialogues[12][3] = new Dialoge("Florence","Thank you, Alder.",port.image_Florence);
 	}
 	
 	public void setDialogueOptions() {
@@ -121,13 +139,26 @@ public class NPC_Florence extends NPC {
 	}
 	
 	public void choiceResponce() {
-		if (gp.ui.choiceSlot == 0) {
-			startDialogue(this, 1);
-			contConditions[0] = true;
-		}
-		if (gp.ui.choiceSlot == 1) {
-			startDialogue(this, 2);
-			contConditions[1] = true;
+		if(gp.s.chapter == 1) {
+			if (gp.ui.choiceSlot == 0) {
+				startDialogue(this, 1);
+				contConditions[0] = true;
+			}
+			if (gp.ui.choiceSlot == 1) {
+				startDialogue(this, 2);
+				contConditions[1] = true;
+			}
+		} else if (gp.s.chapter == 3) {
+			if (gp.ui.choiceSlot == 0) {
+				startDialogue(this, 1);
+				gp.objective.quests[3].acceptQuest();
+				hasQuest = false;
+			}
+			if (gp.ui.choiceSlot == 1) {
+				startDialogue(this, 2);
+				gp.objective.quests[3].acceptQuest();
+				hasQuest = false;
+			}
 		}
 	}
 	
@@ -136,22 +167,49 @@ public class NPC_Florence extends NPC {
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
 		if(gp.s.chapter == 1) {
-			if(gp.s.c1Switch[1] == true) {
+			if(gp.s.c1Switch[1]) {
 				startDialogue(this, 0);
-			} else if(gp.s.c1Switch[3] == true) {
+			} else if(gp.s.c1Switch[3]) {
 				if(gp.playable.get(0).getWeapon_prime().name == null) {
 					startDialogue(this, 3);
 				} else {
 					startDialogue(this, 4);
 				}
-			} else if(gp.s.c1Switch[4] == true) {
+			} else if(gp.s.c1Switch[4]) {
 				startDialogue(this, 5);
 			}
 		} else if(gp.s.chapter == 2) {
 			startDialogue(this, 6);
 		} else if(gp.s.chapter == 3) {
-			startDialogue(this, 7);
+			if(gp.s.c3Switch[0]) {
+				startDialogue(this, 7);
+			} else if(gp.s.c3Switch[3]) {
+				startDialogue(this, 8);
+			} else if(gp.s.c3Switch[4]) {
+				System.out.println(hasQuest);
+				if(hasQuest) {
+					startDialogue(this, 10);
+					gp.objective.quests[3].acceptQuest();
+					hasQuest = false;
+				} else if(!gp.objective.quests[3].isCompleted()) {
+					startDialogue(this, 11);
+				} else if(!gp.objective.quests[3].isSubmitted()) {
+					startDialogue(this, 12);
+					gp.objective.quests[3].submitQuest();
+				} else {
+					startDialogue(this, 9);
+				}
+			}
 		}
 		gp.keyH.enterPressed = false;
+	}
+	
+	public boolean getQuest() {
+		if(gp.s.chapter == 3 && !gp.objective.quests[3].isAccepted()) {
+			if(!gp.s.c3Switch[3]) {
+				hasQuest = true;
+			}
+		}
+		return hasQuest;
 	}
 }
