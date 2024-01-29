@@ -22,6 +22,7 @@ public class NPC_Cricket extends NPC {
 		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;
+		skippable = false;
 		setDialogue();
 	}
 

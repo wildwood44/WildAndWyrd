@@ -67,6 +67,7 @@ public class Entity {
 	public int shill = 0;
 	public boolean opened = false;
 	public boolean drawing = true;
+	public boolean skippable = true;
 	
 
 	public Entity(GamePanel gp) {

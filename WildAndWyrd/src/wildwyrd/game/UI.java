@@ -233,15 +233,18 @@ public class UI {
 				}
 			//Skip Dialogue
 			} else if (gp.keyH.skipPressed) {
-				charIndex = 0;
-				combinedText = "";
-				if (gp.gameState == GameState.dialogueState ||
-					gp.gameState == GameState.cutsceneState) {
-					selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
-						gp.keyH.skipPressed = false;
-					}
+				if(selectedObject.skippable) {
+					charIndex = 0;
+					combinedText = "";
+					if (gp.gameState == GameState.dialogueState ||
+						gp.gameState == GameState.cutsceneState) {
+						selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
+							gp.keyH.skipPressed = false;
+						}
 				}
+			}
 		} else {
+			//post dialogue
 			selectedObject.dialogueIndex = 0;
 			if (gp.gameState == GameState.dialogueState) {
 				if(!gp.combat.enemiesActive()) {
@@ -320,11 +323,13 @@ public class UI {
 						}
 					}
 				} else if (gp.keyH.skipPressed) {
-					charIndex = 0;
-					combinedText = "";
-					if (gp.gameState == GameState.examineState) {
-						selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
-						gp.keyH.skipPressed = false;
+					if(selectedObject.skippable) {
+						charIndex = 0;
+						combinedText = "";
+						if (gp.gameState == GameState.examineState) {
+							selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
+							gp.keyH.skipPressed = false;
+						}
 					}
 				} 
 				selectedObject.checkConditions();
@@ -558,15 +563,21 @@ public class UI {
 		int textY = dFrameY + gp.tileSize;
 		int itemIndex = getItemIndexOnSlot();
 		g2.setColor(Color.white);
+		//Print item description
 		if (itemIndex < gp.player.inventory.size()) {
-			for (String line : breakLines(gp.player.inventory.get(itemIndex).description,40)) {
-				g2.drawString(line, textX, textY);
-				textY += 40;
-			}
-			if(gp.player.inventory.get(itemIndex).type == EntityType.Primary) {
-				g2.drawString("" + gp.playable.get(0).getAttack() + " - " + (gp.playable.get(0).getBaseAttack() + gp.player.inventory.get(itemIndex).attackValue), textX, textY);
+			try {
+				for (String line : breakLines(gp.player.inventory.get(itemIndex).description,40)) {
+					g2.drawString(line, textX, textY);
+					textY += 40;
+				}
+				if(gp.player.inventory.get(itemIndex).type == EntityType.Primary) {
+					g2.drawString("" + gp.playable.get(0).getAttack() + " - " + (gp.playable.get(0).getBaseAttack() + gp.player.inventory.get(itemIndex).attackValue), textX, textY);
+				}
+			} catch (NullPointerException e) {
+				e.printStackTrace();
 			}
 		}
+		//Print dialogue window
 		frameX = 20;
 		frameY = 25;
 		frameWidth = gp.tileSize * 4;

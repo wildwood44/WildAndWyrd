@@ -939,6 +939,7 @@ public class CutsceneManager {
 		} else if (scenePhase == 5) {
 			drawStage();
 			if(counterReached(100)) {
+				gp.playSE(20);
 				createActor(new NPC_Florence(gp), gp.tileSize * 10, gp.tileSize * 5, "down");
 				scenePhase++;
 			}
@@ -1025,8 +1026,17 @@ public class CutsceneManager {
 			}
 		} else if (scenePhase == 3) {
 			drawLeifGrowing();
-			gp.ui.drawDialogueScreen();
+			if(gp.c.dialogueIndex < 10) {
+				gp.ui.drawDialogueScreen();
+			} else {
+				scenePhase++;
+			}
 		} else if (scenePhase == 4) {
+			/*actor = getActor(NPC_Kyla.npcName);
+			gp.ui.selectedObject = actor;
+			gp.ui.selectedObject.dialogueSet = 8;
+			gp.ui.drawDialogueScreen();
+		} else if (scenePhase == 5) {*/
 			destroyPlayerDummy();
 			gp.playable.get(0).setWeapon_prime(new Itm_Leif(gp));
 			gp.s.c3Switch[2] = false;
@@ -1039,6 +1049,10 @@ public class CutsceneManager {
 			sceneNum = 0;
 			scenePhase = 0;
 			gp.gameState = GameState.playState;
+			drawStage();
+			actor = getActor(NPC_Kyla.npcName);
+			gp.ui.selectedObject = actor;
+			actor.speak();
 		}
 	}
 	

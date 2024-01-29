@@ -15,7 +15,8 @@ public class Quest_3 extends Quest {
 		name = qName;
 		require = new boolean[1];
 		amount = 1;
-		qnt = 2;
+		reward = new Itm_Bread(gp);
+		qnt = 1;
 		this.gp = gp;
 	}
 	

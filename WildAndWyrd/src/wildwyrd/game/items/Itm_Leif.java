@@ -1,8 +1,5 @@
 package wildwyrd.game.items;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
 import wildwyrd.game.GamePanel;
 
 public class Itm_Leif extends Primary {

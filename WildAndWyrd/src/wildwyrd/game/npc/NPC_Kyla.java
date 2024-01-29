@@ -150,7 +150,7 @@ public class NPC_Kyla extends NPC {
 	
 	public void setDialogueOptions() {
 		options[0] = "What is a Scion?";
-		options[1] = "Does this have anything to do with the mouse I saw in my dream?";
+		options[1] = "The mouse in my dream?";
 		options[2] = "What's with the sword blade?";
 	}
 

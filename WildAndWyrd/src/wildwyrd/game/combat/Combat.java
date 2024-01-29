@@ -28,6 +28,7 @@ public class Combat extends Entity {
 		this.gp = gp;
 		enemies = new ArrayList<Enemy>(5);
 		combatant = new ArrayList<Combatant>(10);
+		skippable = false;
 		//combatant.sort(combatant.compareTo(combatant.get(1)));
 	}
 	

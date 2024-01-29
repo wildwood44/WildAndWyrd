@@ -1,7 +1,6 @@
 package wildwyrd.game.objective;
 
 import wildwyrd.game.GamePanel;
-import wildwyrd.game.items.Itm_Bread;
 
 public class Quest_2 extends Quest {
 
@@ -13,8 +12,7 @@ public class Quest_2 extends Quest {
 		id = qId;
 		name = qName;
 		require = new boolean[2];
-		reward = new Itm_Bread(gp);
-		qnt = 1;
+		qnt = 2;
 		this.gp = gp;
 	}
 	

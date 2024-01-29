@@ -74,6 +74,7 @@ public class Quest extends Entity {
 	}
 	
 	public void reward() {
+		System.out.println(reward);
 		if(reward != null) {
 			for(int i = 0; i < qnt; i++) {
 				gp.player.pickUpObject(reward);
@@ -85,7 +86,6 @@ public class Quest extends Entity {
 	
 	public void progress(int i) {
 		require[i] = true;
-		System.out.println(require[i]);
 		completeQuest();
 	}
 
