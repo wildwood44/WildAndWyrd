@@ -239,10 +239,10 @@ public class GamePanel extends JPanel implements Runnable {
 				//g2.drawImage(background, 0, 0, this);
 				csManager.draw(g2);
 				ui.draw(g2);
-			} else if (gameState == GameState.examineState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.talkingState) {
-				ui.draw(g2);
+			//} else if (gameState == GameState.examineState) {
+				//ui.draw(g2);
+			//} else if (gameState == GameState.talkingState) {
+			//	ui.draw(g2);
 			} else if (gameState == GameState.menuState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.saveState) {
@@ -267,7 +267,7 @@ public class GamePanel extends JPanel implements Runnable {
 				ui.draw(g2);
 			} else if (gameState == GameState.gameOverState) {
 				ui.draw(g2);
-			} else if (gameState == GameState.playState) {
+			} else if (gameState == GameState.playState || gameState == GameState.examineState || gameState == GameState.talkingState) {
 				tileM.draw(g2);
 				//INTERACTIVE TILES
 				for(int i = 0; i < iTile[currentMap.getId()].length; i++) {

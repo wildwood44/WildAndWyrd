@@ -135,6 +135,8 @@ public class EventHandler {
 				c1s_Cutscene(13);
 			} else if (gp.s.swh[12] && gp.s.part == 2) {
 				c1s_Cutscene(14);
+			} else if (gp.s.swh[13] && gp.s.part == 2) {
+				c1s_Cutscene(15);
 			}
 		}
 	}

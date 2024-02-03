@@ -241,7 +241,7 @@ public class Entity {
 			}
 			g2.setComposite(AlphaComposite.SrcOver.derive(alpha));
 			g2.drawImage(image, tempScreenX, tempScreenY, null);
-			if(hasQuest) {
+			if(hasQuest && gp.gameState == GameState.playState) {
 				BufferedImage q_icon = setup("/res/icons/quest_icon",gp.originalTileSize,gp.originalTileSize);
 				g2.drawImage(q_icon, tempScreenX + 10, tempScreenY, null);
 			}
@@ -279,7 +279,7 @@ public class Entity {
 				break;
 			}
 			g2.drawImage(image, tempScreenX, tempScreenY, null);
-			if(hasQuest) {
+			if(hasQuest && gp.gameState == GameState.playState) {
 				BufferedImage q_icon = setup("/res/icons/quest_icon",gp.originalTileSize,gp.originalTileSize);
 				g2.drawImage(q_icon, tempScreenX + 10, tempScreenY, null);
 			}

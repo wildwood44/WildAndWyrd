@@ -10,7 +10,7 @@ import wildwyrd.game.GamePanel;
 
 public class NPC_Gowl_Weasel extends NPC {
 	public static final int npcId = 7;
-	public static final String npcName = "Gowl Rat";
+	public static final String npcName = "Gowl Weasel";
 	public NPC_Gowl_Weasel(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;

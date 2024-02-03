@@ -25,6 +25,8 @@ public class Prop extends Entity {
 	public void setImage(String file) {
 		image = setup(file, width, height);
 	}
+
+	public void getImage() {}
 	
 	public void playLeifAnimation(Graphics2D g2) {
 		this.g2 = g2;

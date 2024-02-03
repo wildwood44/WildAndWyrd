@@ -29,7 +29,11 @@ public class Obj_Window_Down extends Entity {
 	}
 
 	public void interact() {
-		startDialogue(this, 0);
+		if (!gp.s.c3Switch[3] && gp.s.c3Switch[4]) {
+			gp.s.swh[13] = true;
+		} else {
+			startDialogue(this, 0);
+		}
 		gp.keyH.enterPressed = false;
 	}
 }
