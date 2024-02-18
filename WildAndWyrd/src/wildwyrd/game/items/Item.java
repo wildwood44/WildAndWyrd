@@ -6,6 +6,8 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 
 public class Item extends Entity {
+	public int price;
+
 	public Item(GamePanel gp) {
 		super(gp);
 		this.gp = gp;

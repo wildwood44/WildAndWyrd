@@ -33,6 +33,7 @@ public class Obj_Cracked_Wall extends Entity {
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge("The wall was cracked.",1);
 		dialogues[1][0] = new Dialoge("Alder hacked through the cracked daub and broke apart a hole into the shed.",1);
+		dialogues[1][1] = new Dialoge("There were coins in the wall!",1);
 	}
 	
 	public void interact() {
@@ -42,6 +43,7 @@ public class Obj_Cracked_Wall extends Entity {
 				if(gp.obj[gp.currentMap.getId()][i] != null &&
 						gp.obj[gp.currentMap.getId()][i].name == name && destroy) {
 					gp.obj[gp.currentMap.getId()][i] = null;
+					gp.player.pickUpShillings(3);
 					break;
 				}
 			}

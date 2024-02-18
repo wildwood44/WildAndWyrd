@@ -6,15 +6,18 @@ import wildwyrd.game.items.Itm_Bow;
 import wildwyrd.game.items.Itm_Bramble_Leaf;
 import wildwyrd.game.items.Itm_Bread;
 import wildwyrd.game.items.Itm_Bug_Meat;
+import wildwyrd.game.items.Itm_Dried_Apple_Slice;
 import wildwyrd.game.items.Itm_Hazelnut;
 import wildwyrd.game.items.Itm_Hunting_Knife;
 import wildwyrd.game.items.Itm_Leif;
 import wildwyrd.game.items.Itm_P_Mushroom;
 import wildwyrd.game.items.Itm_Primative_Arrow;
+import wildwyrd.game.items.Itm_Travelling_Cloak;
 import wildwyrd.game.npc.NPC;
 import wildwyrd.game.npc.NPC_Cricket;
 import wildwyrd.game.npc.NPC_Dilecto;
 import wildwyrd.game.npc.NPC_Florence;
+import wildwyrd.game.npc.NPC_Jeb;
 import wildwyrd.game.npc.NPC_Kyla;
 import wildwyrd.game.npc.NPC_Thay;
 import wildwyrd.game.npc.NPC_Trissie;
@@ -97,10 +100,12 @@ public class EntityGenerator {
 		case Itm_P_Mushroom.itemId:obj = new Itm_P_Mushroom(gp);break;//102
 		case Itm_Bug_Meat.itemId:obj = new Itm_Bug_Meat(gp);break;//103
 		case Itm_Bread.itemId:obj = new Itm_Bread(gp);break;//104
+		case Itm_Dried_Apple_Slice.itemId:obj = new Itm_Dried_Apple_Slice(gp);break;//105
 		case Itm_Bandage.itemId:obj = new Itm_Bandage(gp);break;//201
 		case Itm_Hunting_Knife.itemId:obj = new Itm_Hunting_Knife(gp);break;//301
 		case Itm_Bow.itemId:obj = new Itm_Bow(gp);break;//302
 		case Itm_Leif.itemId:obj = new Itm_Leif(gp);break;//303
+		case Itm_Travelling_Cloak.itemId:obj = new Itm_Travelling_Cloak(gp);break;//401
 		case Itm_Primative_Arrow.itemId:obj = new Itm_Primative_Arrow(gp);break;//501
 		case Itm_Bramble_Leaf.itemId:obj = new Itm_Bramble_Leaf(gp);break;//601
 		//default
@@ -117,6 +122,7 @@ public class EntityGenerator {
 		case NPC_Kyla.npcId: npc = new NPC_Kyla(gp);break;//3
 		case NPC_Cricket.npcId: npc = new NPC_Cricket(gp);break;//4
 		case NPC_Trissie.npcId: npc = new NPC_Trissie(gp);break;//5
+		case NPC_Jeb.npcId: npc = new NPC_Jeb(gp);break;//6
 		}
 		return npc;
 	}

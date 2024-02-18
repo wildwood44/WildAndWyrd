@@ -1,19 +1,16 @@
 package wildwyrd.game;
 
 import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import wildwyrd.game.items.Item;
-import wildwyrd.game.npc.NPC_Kyla;
 import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.tile.UtilityTool;
 
@@ -52,6 +49,10 @@ public class Entity {
 	public BufferedImage up1, up2, up3, left1, left2, left3, right1, right2, right3, down1, down2, down3, unique;
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
+	//Inventory
+	public ArrayList<Item> inventory = new ArrayList<Item>();
+	public final int inventorySize = 20;
+	//Status
 	public boolean moving = false;
 	public boolean collision = false;
 	public boolean collisionOn = false;
@@ -312,8 +313,23 @@ public class Entity {
 		this.shill = loot;
 	}
 	
+	public void removeFromInventory(Item selectedItem) {
+		if(selectedItem.amount > 1) {
+			selectedItem.amount--;
+		} else {
+			inventory.remove(selectedItem);
+		}
+	}
+	
 	public void interact() {}
-	public void speak() {}
+	public void speak() {
+		facePlayer();
+		gp.ui.choiceSlot = 0;
+		gp.ui.firstValue = 0;
+		startDialogue(this, 0);
+
+		gp.keyH.enterPressed = false;
+	}
 	
 	public void facePlayer() {
 		switch(gp.player.direction) {

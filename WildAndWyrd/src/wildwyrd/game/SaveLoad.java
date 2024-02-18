@@ -20,9 +20,16 @@ public class SaveLoad {
 		this.gp = gp;
 	}
 	
-	public void save() {
+	public void save(int sf) {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
+			if(sf == 1) {
+				oos = new ObjectOutputStream(new FileOutputStream(new File("save1.dat")));
+			} else if(sf == 2) {
+				oos = new ObjectOutputStream(new FileOutputStream(new File("save2.dat")));
+			} else if(sf == 3) {
+				oos = new ObjectOutputStream(new FileOutputStream(new File("save3.dat")));
+			}
 			DataStorage ds = new DataStorage();
 			ds.maxHealth = new int[gp.playable.size()];
 			ds.health = new int[gp.playable.size()];
@@ -135,10 +142,17 @@ public class SaveLoad {
 		}
 	}
 	
-	public void load() {
+	public void load(int sf) {
 		try {
 			//System.out.println("Loaded");
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
+			if(sf == 0) {
+				ois = new ObjectInputStream(new FileInputStream(new File("save1.dat")));
+			} else if(sf == 1) {
+				ois = new ObjectInputStream(new FileInputStream(new File("save2.dat")));
+			} else if(sf == 2) {
+				ois = new ObjectInputStream(new FileInputStream(new File("save3.dat")));
+			}
 			DataStorage ds = (DataStorage)ois.readObject();
 			for(int i = 0; i < gp.playable.size(); i++) {
 				gp.playable.set(i,new Playable(gp, "Alder", ds.maxHealth[i], ds.maxStamina[i],
@@ -158,9 +172,6 @@ public class SaveLoad {
 			}
 		//	gp.player = ds.player;
 			gp.s = ds.story;
-			//for(int i = 0; i < gp.s.c1Switch.length; i++) {
-			//	System.out.println(gp.s.c1Switch[i]);
-			//}
 			gp.currentMap = gp.maps[ds.currentMap];
 			gp.player.direction = ds.direction;
 			gp.player.worldX = ds.worldX;
@@ -208,7 +219,7 @@ public class SaveLoad {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			System.out.println("Load Exception!");
 		}
 	}

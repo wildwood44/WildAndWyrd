@@ -12,6 +12,7 @@ public class En_Dummy extends Enemy {
         desc = "Looks durable but is falling apart.";
 		type = EntityType.Sprite;
 		inRear = true;
+		gp.currentRoom = 3;
 	}
 	
 	public void setAction() {

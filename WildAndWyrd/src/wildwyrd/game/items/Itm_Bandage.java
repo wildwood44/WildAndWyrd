@@ -13,6 +13,7 @@ public class Itm_Bandage extends Status {
 		id = itemId;
 		name = itemName;
 		healthRcvd = 10;
+		price = 5;
 		description = "A cloth bandage to treat wounds.";
 		image = setup("/res/items/img_bandage", gp.tileSize, gp.tileSize);
 

@@ -213,6 +213,13 @@ public class EventHandler {
 		canTouchEvent = false;
 	}
 	
+	public void speak(Entity entity) {
+		if(gp.keyH.enterPressed) {
+			gp.gameState = GameState.dialogueState;
+			entity.speak();
+		}
+	}
+	
 	public void illusion(InteractiveTile iTile) {
 		if(iTile.id == IT_StoneDoor.intId) {}
 	}

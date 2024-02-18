@@ -239,27 +239,12 @@ public class GamePanel extends JPanel implements Runnable {
 				//g2.drawImage(background, 0, 0, this);
 				csManager.draw(g2);
 				ui.draw(g2);
-			//} else if (gameState == GameState.examineState) {
-				//ui.draw(g2);
-			//} else if (gameState == GameState.talkingState) {
-			//	ui.draw(g2);
-			} else if (gameState == GameState.menuState) {
+			} else if (gameState == GameState.menuState || gameState == GameState.saveState ||
+					gameState == GameState.statusState || gameState == GameState.inventoryState ||
+					gameState == GameState.equipState || gameState == GameState.skillState ||
+					gameState == GameState.glossaryState || gameState == GameState.optionsState) {
 				ui.draw(g2);
-			} else if (gameState == GameState.saveState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.statusState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.inventoryState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.equipState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.skillState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.glossaryState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.optionsState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.readingState) {
+			} else if (gameState == GameState.tradeState || gameState == GameState.readingState) {
 				ui.draw(g2);
 			} else if (gameState == GameState.targetState) {
 				ui.draw(g2);

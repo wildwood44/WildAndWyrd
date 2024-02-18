@@ -66,4 +66,8 @@ public class Room extends Entity {
 		this.x = this.roomX;
 		this.y = this.roomY;
 	}
+	
+	public void setRooms(){
+		
+	}
 }

@@ -7,9 +7,14 @@ import javax.imageio.ImageIO;
 
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.GameState;
+import wildwyrd.game.items.Itm_Bandage;
+import wildwyrd.game.items.Itm_Dried_Apple_Slice;
+import wildwyrd.game.items.Itm_Travelling_Cloak;
+import wildwyrd.game.object.Dialoge;
 
 public class NPC_Jeb extends NPC {
-	public static final int npcId = 9;
+	public static final int npcId = 6;
 	public static final String npcName = "Jeb";
 	public NPC_Jeb(GamePanel gp) {
 		super(gp);
@@ -21,6 +26,7 @@ public class NPC_Jeb extends NPC {
 		speed = 1;
 		setDialogue();
 		getImage();
+		setItems();
 	}
 
 	public BufferedImage getSpriteSheet() {
@@ -57,12 +63,31 @@ public class NPC_Jeb extends NPC {
 	}
 	
 	public void setAction() {
-		
+		dialogues[0][0] = new Dialoge("Jeb","Care to buy something?" ,1);
+		dialogues[1][0] = new Dialoge("Jeb","Come again.",1);
+		dialogues[2][0] = new Dialoge("You need a better barter than that.",1);
+		dialogues[2][0] = new Dialoge("You don't have enouth space in your bag.",1);
 	}
 
 	public void setDialogue() {
 	}
 	
+	public void checkConditions() {
+		if(dialogueSet == 0) {
+			
+		}
+	}
+	
+	public void setItems() {
+		inventory.add(new Itm_Bandage(gp));
+		inventory.add(new Itm_Dried_Apple_Slice(gp));
+		inventory.add(new Itm_Travelling_Cloak(gp));
+	}
+	
 	public void speak() {
+		facePlayer();
+		gp.keyH.enterPressed = false;
+		gp.gameState = GameState.tradeState;
+		gp.ui.npc = this;
 	}
 }

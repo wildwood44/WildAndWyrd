@@ -9,6 +9,7 @@ import wildwyrd.game.items.Itm_P_Mushroom;
 import wildwyrd.game.npc.NPC_Cricket;
 import wildwyrd.game.npc.NPC_Thay;
 import wildwyrd.game.rooms.Rm_Blank;
+import wildwyrd.game.rooms.Rm_Cottage;
 import wildwyrd.game.rooms.Rm_Forton;
 import wildwyrd.game.rooms.Rm_Hall_Of_Scion;
 import wildwyrd.game.tile.Map;
@@ -32,6 +33,7 @@ public class AssetSetter {
 		gp.rm[0] = new Rm_Blank(gp);
 		gp.rm[1] = new Rm_Forton(gp);
 		gp.rm[2] = new Rm_Hall_Of_Scion(gp);
+		gp.rm[3] = new Rm_Cottage(gp);
 	}
 
 	public void setObject() {

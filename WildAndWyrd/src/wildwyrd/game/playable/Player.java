@@ -25,9 +25,7 @@ public class Player extends Entity {
 	KeyHandler keyH;
 	public final int screenX;
 	public final int screenY;
-	public ArrayList<Item> inventory = new ArrayList<Item>();
 	private int shillings;
-	public final int inventorySize = 20;
 	public Boolean approval;
 	private long start;
 
@@ -199,14 +197,6 @@ public class Player extends Entity {
 	public void pickUpObject(Item item, int qnt) {
 		for(int i = 1; i <= qnt; i++) {
 			if(canObtainItem(item)) {}
-		}
-	}
-	
-	public void removeFromInventory(Item selectedItem) {
-		if(selectedItem.amount > 1) {
-			selectedItem.amount--;
-		} else {
-			inventory.remove(selectedItem);
 		}
 	}
 	

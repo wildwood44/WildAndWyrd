@@ -18,7 +18,7 @@ public class Projectile extends Weapon {
 			if(!gp.playable.get(0).projectileLoaded()) {
 				gp.playable.get(0).loadProjectile(this);
 				gp.player.removeFromInventory(this);
-				gp.ui.slotCol = 0;
+				gp.ui.playerSlotCol = 0;
 				gp.ui.commandNum = 0;
 			}
 		}

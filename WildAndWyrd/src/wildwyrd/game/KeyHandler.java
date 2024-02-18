@@ -25,6 +25,12 @@ public class KeyHandler implements KeyListener {
 		int code = e.getKeyCode();
 		GameState gameState = gp.gameState;
 		if (gameState == GameState.titleState) {
+			if (code == KeyEvent.VK_ESCAPE) {
+				if(gp.ui.subState == 1 || gp.ui.subState == 2) {
+					gp.ui.commandNum = 1;
+					gp.ui.subState = 0;
+				}
+			}
 			if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
 				gp.ui.commandNum--;
 				if (gp.ui.commandNum < 0) {
@@ -40,47 +46,51 @@ public class KeyHandler implements KeyListener {
 			}
 
 			if (code == KeyEvent.VK_ENTER) {
-				if (gp.ui.commandNum == 0) {
-					//gp = new GamePanel();
-					gp.restart();
-					gp.gameState = GameState.playState;
-				}
-				if (gp.ui.commandNum == 1) {
-					gp.saveLoad.load();
+				if(gp.ui.subState == 0) {
+					if (gp.ui.commandNum == 0) {
+						//gp = new GamePanel();
+						gp.restart();
+						gp.ui.resetSlots();
+						gp.gameState = GameState.playState;
+					}
+					if (gp.ui.commandNum == 1) {
+						gp.ui.commandNum = 0;
+						gp.ui.subState = 1;
+					}
+					if (gp.ui.commandNum == 2) {
+						System.exit(0);
+					}
+				} else if(gp.ui.subState == 1) {
+					gp.saveLoad.load(gp.ui.commandNum);
 					gp.ui.resetSlots();
 					gp.tileM = new TileManager(gp);
 					gp.eHandler = new EventHandler(gp);
 					gp.gameState = GameState.playState;
 				}
-				if (gp.ui.commandNum == 2) {
-					System.exit(0);
-				}
 			}
 		} else if (gp.gameState == GameState.menuState) {
 			switch (e.getKeyCode()) {
 				case KeyEvent.VK_ENTER :
-					if (gp.ui.slotCol == 0) { //Save game
+					if (gp.ui.playerSlotCol == 0) { //Save game
 						gp.gameState = GameState.saveState;
-						gp.playSE(1);
-						gp.saveLoad.save();
-					} else if (gp.ui.slotCol == 1) { //Open status screen
+					} else if (gp.ui.playerSlotCol == 1) { //Open status screen
 						gp.gameState = GameState.statusState;
 						gp.ui.drawStatusScreen();
-					} else if (gp.ui.slotCol == 2) { //Open inventory screen
+					} else if (gp.ui.playerSlotCol == 2) { //Open inventory screen
 						gp.gameState = GameState.inventoryState;
-						gp.ui.drawInventoryScreen();
-					} else if (gp.ui.slotCol == 3) { //Open objectives screen
+						gp.ui.drawInventoryScreen(gp.player, true);
+					} else if (gp.ui.playerSlotCol == 3) { //Open objectives screen
 						gp.ui.resetSlots();
 						gp.gameState = GameState.objectiveState;
 						gp.ui.drawObjectiveScreen();
-					} else if (gp.ui.slotCol == 4) { //Open glossary screen
+					} else if (gp.ui.playerSlotCol == 4) { //Open glossary screen
 						gp.ui.resetSlots();
 						gp.gameState = GameState.glossaryState;
 						gp.ui.drawGlossaryScreen();
-					} else if (gp.ui.slotCol == 5) { //Open options
+					} else if (gp.ui.playerSlotCol == 5) { //Open options
 						gp.ui.resetSlots();
 						gp.gameState = GameState.optionsState;
-					} else if (gp.ui.slotCol == 6) { //Quit game
+					} else if (gp.ui.playerSlotCol == 6) { //Quit game
 						gp.currentRoom = 0;
 						gp.restart();
 						gp.gameState = GameState.titleState;
@@ -92,27 +102,23 @@ public class KeyHandler implements KeyListener {
 				case KeyEvent.VK_UP :
 				case KeyEvent.VK_W :
 					gp.playSE(0);
-					if (gp.ui.slotCol != 0) {
-						--gp.ui.slotCol;
+					if (gp.ui.playerSlotCol != 0) {
+						--gp.ui.playerSlotCol;
 					} else {
-						gp.ui.slotCol = 6;
+						gp.ui.playerSlotCol = 6;
 					}
 					break;
 				case KeyEvent.VK_DOWN :
 				case KeyEvent.VK_S :
 					gp.playSE(0);
-					if (gp.ui.slotCol != 6) {
-						++gp.ui.slotCol;
+					if (gp.ui.playerSlotCol != 6) {
+						++gp.ui.playerSlotCol;
 					} else {
-						gp.ui.slotCol = 0;
+						gp.ui.playerSlotCol = 0;
 					}
 			}
 		} else if (gp.gameState == GameState.saveState) {
-			switch (e.getKeyCode()) {
-			case KeyEvent.VK_ENTER :
-				gp.gameState = GameState.playState;
-				break;
-			}
+			saveState(e.getKeyCode());
 		} else if (gp.gameState == GameState.statusState) {
 			switch (e.getKeyCode()) {
 				case KeyEvent.VK_ESCAPE :
@@ -145,31 +151,7 @@ public class KeyHandler implements KeyListener {
 					break;
 			}
 		} else if (gameState == GameState.inventoryState) {
-			switch (e.getKeyCode()) {
-				case KeyEvent.VK_ESCAPE :
-					gp.ui.resetSlots();
-					gp.gameState = GameState.menuState;
-					break;
-				case KeyEvent.VK_LEFT :
-				case KeyEvent.VK_A :
-					gp.ui.slotCol2 = getNext(gp.ui.slotCol2, 5);
-					break;
-				case KeyEvent.VK_UP :
-				case KeyEvent.VK_W :
-					gp.ui.slotRow2 = getNext(gp.ui.slotRow2, 2);
-					break;
-				case KeyEvent.VK_RIGHT :
-				case KeyEvent.VK_D :
-					gp.ui.slotCol2 = getPrev(gp.ui.slotCol2, 5);
-					break;
-				case KeyEvent.VK_DOWN :
-				case KeyEvent.VK_S :
-					gp.ui.slotRow2 = getPrev(gp.ui.slotRow2, 2);
-					break;
-				case KeyEvent.VK_ENTER :
-					gp.player.selectedItem();
-					break;
-			}
+			playerInventory(code);
 		} else if (gp.gameState == GameState.equipState) {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_ESCAPE :
@@ -256,24 +238,24 @@ public class KeyHandler implements KeyListener {
 				break;
 			case KeyEvent.VK_UP :
 			case KeyEvent.VK_W :
-				if (gp.ui.slotCol != 0) {
-					gp.ui.slotCol--;
+				if (gp.ui.playerSlotCol != 0) {
+					gp.ui.playerSlotCol--;
 				} else if (gp.ui.topValue != 0) {
 					gp.ui.topValue--;
 				} else {
 					gp.ui.topValue = gp.ui.bottomValue - 6;
-					gp.ui.slotCol = 5;
+					gp.ui.playerSlotCol = 5;
 				}
 				break;
 			case KeyEvent.VK_DOWN :
 			case KeyEvent.VK_S :
-				if (gp.ui.slotCol != 5) {
-					gp.ui.slotCol++;
+				if (gp.ui.playerSlotCol != 5) {
+					gp.ui.playerSlotCol++;
 				} else {
-					if (gp.ui.slotCol + gp.ui.topValue != gp.ui.bottomValue - 1) {
+					if (gp.ui.playerSlotCol + gp.ui.topValue != gp.ui.bottomValue - 1) {
 						gp.ui.topValue++;
 					} else {
-						gp.ui.slotCol = 0;
+						gp.ui.playerSlotCol = 0;
 						gp.ui.topValue = 0;
 					}
 				}
@@ -289,7 +271,7 @@ public class KeyHandler implements KeyListener {
 					if (gp.ui.section != 0) {
 						if (gp.glossary.getSize(gp.ui.section) > gp.glossary
 								.getSize(gp.ui.section - 1)) {
-							gp.ui.slotCol = 0;
+							gp.ui.playerSlotCol = 0;
 							gp.ui.topValue = 0;
 						}
 
@@ -297,7 +279,7 @@ public class KeyHandler implements KeyListener {
 					} else {
 						if (gp.glossary.getSize(gp.ui.section) > gp.glossary
 								.getSize(gp.glossary.sections.length - 1)) {
-							gp.ui.slotCol = 0;
+							gp.ui.playerSlotCol = 0;
 							gp.ui.topValue = 0;
 						}
 
@@ -306,13 +288,13 @@ public class KeyHandler implements KeyListener {
 					break;
 				case KeyEvent.VK_UP :
 				case KeyEvent.VK_W :
-					if (gp.ui.slotCol != 0) {
-						gp.ui.slotCol--;
+					if (gp.ui.playerSlotCol != 0) {
+						gp.ui.playerSlotCol--;
 					} else if (gp.ui.topValue != 0) {
 						gp.ui.topValue--;
 					} else {
 						gp.ui.topValue = gp.ui.bottomValue - 6;
-						gp.ui.slotCol = 5;
+						gp.ui.playerSlotCol = 5;
 					}
 					break;
 				case KeyEvent.VK_RIGHT :
@@ -320,13 +302,13 @@ public class KeyHandler implements KeyListener {
 					if (gp.ui.section < gp.glossary.sections.length - 1) {
 						if (gp.glossary.getSize(gp.ui.section) > gp.glossary
 								.getSize(gp.ui.section + 1)) {
-							gp.ui.slotCol = 0;
+							gp.ui.playerSlotCol = 0;
 							gp.ui.topValue = 0;
 							}
 						gp.ui.section++;
 					} else {
 						if (gp.glossary.getSize(gp.ui.section) > gp.glossary.getSize(0)) {
-							gp.ui.slotCol = 0;
+							gp.ui.playerSlotCol = 0;
 							gp.ui.topValue = 0;
 						}
 						gp.ui.section = 0;
@@ -334,19 +316,21 @@ public class KeyHandler implements KeyListener {
 					break;
 				case KeyEvent.VK_DOWN :
 				case KeyEvent.VK_S :
-					if (gp.ui.slotCol != 5) {
-						gp.ui.slotCol++;
+					if (gp.ui.playerSlotCol != 5) {
+						gp.ui.playerSlotCol++;
 					} else {
-						if (gp.ui.slotCol + gp.ui.topValue != gp.ui.bottomValue - 1) {
+						if (gp.ui.playerSlotCol + gp.ui.topValue != gp.ui.bottomValue - 1) {
 							gp.ui.topValue++;
 						} else {
-							gp.ui.slotCol = 0;
+							gp.ui.playerSlotCol = 0;
 							gp.ui.topValue = 0;
 						}
 					}
 				}
 		} else if (gp.gameState == GameState.optionsState) {
 			optionsState(e.getKeyCode());
+		} else if (gp.gameState == GameState.tradeState) {
+			tradeState(e.getKeyCode());
 		} else if (gp.gameState == GameState.readingState) {
 			switch (e.getKeyCode()) {
 			case KeyEvent.VK_ESCAPE :
@@ -366,27 +350,27 @@ public class KeyHandler implements KeyListener {
 			case KeyEvent.VK_UP :
 			case KeyEvent.VK_W :
 				if(!gp.ui.openBook) {
-					gp.ui.slotCol = getNext(gp.ui.slotCol, gp.ui.selectedBookshelf.length - 1);
+					gp.ui.playerSlotCol = getNext(gp.ui.playerSlotCol, gp.ui.selectedBookshelf.length - 1);
 				}
 				break;
 			case KeyEvent.VK_DOWN :
 			case KeyEvent.VK_S :
 				if(!gp.ui.openBook) {
-					gp.ui.slotCol = getPrev(gp.ui.slotCol, gp.ui.selectedBookshelf.length - 1);
+					gp.ui.playerSlotCol = getPrev(gp.ui.playerSlotCol, gp.ui.selectedBookshelf.length - 1);
 				}
 				break;
 			default :
 				if(gp.ui.openBook) {
-					if (gp.ui.slotRow != gp.ui.selectedBookshelf.length - 1) {
+					if (gp.ui.playerSlotRow != gp.ui.selectedBookshelf.length - 1) {
 						gp.playSE(11);
-						gp.ui.slotRow++;
+						gp.ui.playerSlotRow++;
 					} else {
-						gp.ui.slotRow = 0;
+						gp.ui.playerSlotRow = 0;
 					}
-					if(gp.ui.selectedBook.getContent()[gp.ui.slotRow] == null) {
+					if(gp.ui.selectedBook.getContent()[gp.ui.playerSlotRow] == null) {
 						gp.playSE(12);
 						gp.ui.openBook = false;
-						gp.ui.slotRow = 0;
+						gp.ui.playerSlotRow = 0;
 					}
 				}
 				break;
@@ -543,44 +527,44 @@ public class KeyHandler implements KeyListener {
 				case KeyEvent.VK_LEFT :
 				case KeyEvent.VK_A :
 					leftPressed = true;
-					if (gp.ui.slotCol != 0) {
-						gp.ui.slotCol = gp.ui.slotCol - 3;
+					if (gp.ui.playerSlotCol != 0) {
+						gp.ui.playerSlotCol = gp.ui.playerSlotCol - 3;
 						gp.ui.commandNum = gp.ui.commandNum - 2;
 					} else {
-						gp.ui.slotCol = 6;
+						gp.ui.playerSlotCol = 6;
 						gp.ui.commandNum = gp.ui.commandNum + 4;
 					}
 					break;
 				case KeyEvent.VK_UP :
 				case KeyEvent.VK_W :
 					upPressed = true;
-					if (gp.ui.slotRow != 0) {
-						gp.ui.slotRow--;
+					if (gp.ui.playerSlotRow != 0) {
+						gp.ui.playerSlotRow--;
 						gp.ui.commandNum--;
 					} else {
-						gp.ui.slotRow = 1;
+						gp.ui.playerSlotRow = 1;
 						gp.ui.commandNum++;
 					}
 					break;
 				case KeyEvent.VK_RIGHT :
 				case KeyEvent.VK_D :
 					rightPressed = true;
-					if (gp.ui.slotCol != 6) {
-						gp.ui.slotCol = gp.ui.slotCol + 3;
+					if (gp.ui.playerSlotCol != 6) {
+						gp.ui.playerSlotCol = gp.ui.playerSlotCol + 3;
 						gp.ui.commandNum = gp.ui.commandNum + 2;
 					} else {
-						gp.ui.slotCol = 0;
+						gp.ui.playerSlotCol = 0;
 						gp.ui.commandNum = gp.ui.commandNum - 4;
 					}
 					break;
 				case KeyEvent.VK_DOWN :
 				case KeyEvent.VK_S :
 					downPressed = true;
-					if (gp.ui.slotRow != 1) {
-						gp.ui.slotRow++;
+					if (gp.ui.playerSlotRow != 1) {
+						gp.ui.playerSlotRow++;
 						gp.ui.commandNum++;
 					} else {
-						gp.ui.slotRow = 0;
+						gp.ui.playerSlotRow = 0;
 						gp.ui.commandNum--;
 					}
 					break;
@@ -737,7 +721,97 @@ public class KeyHandler implements KeyListener {
 				showDebugText = false;
 			}
 		}
-
+	}
+	
+	public void saveState(int code) {
+		switch (code) {
+		case KeyEvent.VK_ESCAPE :
+			gp.ui.resetSlots();
+			gp.gameState = GameState.menuState;
+			break;
+		case KeyEvent.VK_ENTER :
+			gp.playSE(1);
+			if(gp.ui.commandNum == 0) {
+				gp.saveLoad.save(1);
+			} else if(gp.ui.commandNum == 1) {
+				gp.saveLoad.save(2);
+			} else if(gp.ui.commandNum == 2) {
+				gp.saveLoad.save(3);
+			}
+			gp.saveLoad.save(0);
+			gp.gameState = GameState.playState;
+			break;
+		case KeyEvent.VK_W :
+		case KeyEvent.VK_UP :
+			gp.ui.commandNum--;
+			if(gp.ui.commandNum < 0) {
+				gp.ui.commandNum = 2;
+			}
+			break;
+		case KeyEvent.VK_DOWN :
+		case KeyEvent.VK_S :
+			gp.ui.commandNum++;
+			if(gp.ui.commandNum > 2) {
+				gp.ui.commandNum = 0;
+			}
+			break;
+		}
+	}
+	
+	public void playerInventory(int code){
+		switch (code) {
+		case KeyEvent.VK_ESCAPE :
+			gp.ui.resetSlots();
+			gp.gameState = GameState.menuState;
+			break;
+		case KeyEvent.VK_LEFT :
+		case KeyEvent.VK_A :
+			gp.ui.slotCol2 = getNext(gp.ui.slotCol2, 4);
+			break;
+		case KeyEvent.VK_UP :
+		case KeyEvent.VK_W :
+			gp.ui.slotRow2 = getNext(gp.ui.slotRow2, 3);
+			break;
+		case KeyEvent.VK_RIGHT :
+		case KeyEvent.VK_D :
+			gp.ui.slotCol2 = getPrev(gp.ui.slotCol2, 4);
+			break;
+		case KeyEvent.VK_DOWN :
+		case KeyEvent.VK_S :
+			gp.ui.slotRow2 = getPrev(gp.ui.slotRow2, 3);
+			break;
+		case KeyEvent.VK_ENTER :
+			gp.player.selectedItem();
+			break;
+		}
+	}
+	
+	public void npcInventory(int code){
+		switch (code) {
+		case KeyEvent.VK_ESCAPE :
+			gp.ui.resetSlots();
+			gp.ui.subState = 0;
+			break;
+		case KeyEvent.VK_LEFT :
+		case KeyEvent.VK_A :
+			gp.ui.slotCol2 = getNext(gp.ui.slotCol2, 4);
+			break;
+		case KeyEvent.VK_UP :
+		case KeyEvent.VK_W :
+			gp.ui.slotRow2 = getNext(gp.ui.slotRow2, 3);
+			break;
+		case KeyEvent.VK_RIGHT :
+		case KeyEvent.VK_D :
+			gp.ui.slotCol2 = getPrev(gp.ui.slotCol2, 4);
+			break;
+		case KeyEvent.VK_DOWN :
+		case KeyEvent.VK_S :
+			gp.ui.slotRow2 = getPrev(gp.ui.slotRow2, 3);
+			break;
+		case KeyEvent.VK_ENTER :
+			gp.player.selectedItem();
+			break;
+		}
 	}
 
 	public void optionsState(int code) {
@@ -787,6 +861,60 @@ public class KeyHandler implements KeyListener {
 					gp.playSE(1);
 				}
 			}
+		}
+	}
+
+	public void tradeState(int code) {
+		switch (code) {
+		case KeyEvent.VK_ESCAPE :
+			if(gp.ui.subState == 1 || gp.ui.subState == 2) {
+				gp.ui.subState = 0;
+			}
+			break;
+		case KeyEvent.VK_ENTER : enterPressed = true;break;
+		case KeyEvent.VK_W :
+		case KeyEvent.VK_UP :
+			
+			if(gp.ui.subState == 0) {
+				gp.ui.commandNum--;
+				if(gp.ui.commandNum < 0) {
+					gp.ui.commandNum = 2;
+				}
+			} else if(gp.ui.subState == 1) {
+				npcInventory(code);
+			} else if(gp.ui.subState == 2) {
+				playerInventory(code);
+			}
+			break;
+		case KeyEvent.VK_DOWN :
+		case KeyEvent.VK_S :
+			if(gp.ui.subState == 0) {
+				gp.ui.commandNum++;
+				if(gp.ui.commandNum > 2) {
+					gp.ui.commandNum = 0;
+				}
+			} else if(gp.ui.subState == 1) {
+				npcInventory(code);
+			} else if(gp.ui.subState == 2) {
+				playerInventory(code);
+			}
+			break;
+		case KeyEvent.VK_LEFT :
+		case KeyEvent.VK_A :
+			if(gp.ui.subState == 1) {
+				npcInventory(code);
+			} else if(gp.ui.subState == 2) {
+				playerInventory(code);
+			}
+			break;
+		case KeyEvent.VK_RIGHT :
+		case KeyEvent.VK_D :
+			if(gp.ui.subState == 1) {
+				npcInventory(code);
+			} else if(gp.ui.subState == 2) {
+				playerInventory(code);
+			}
+			break;
 		}
 	}
 

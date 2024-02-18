@@ -9,7 +9,7 @@ import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
 public class NPC_Rat_Siluette extends NPC {
-	public static final int npcId = 6;
+	public static final int npcId = 9;
 	public static final String npcName = "Gowl_Rat";
 	public NPC_Rat_Siluette(GamePanel gp) {
 		super(gp);

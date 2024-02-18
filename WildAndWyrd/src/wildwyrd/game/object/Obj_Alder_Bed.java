@@ -20,6 +20,7 @@ public class Obj_Alder_Bed extends Entity {
 		solidArea.y = 40;
 		solidAreaDefaultY = solidArea.y;
 		image = setup("/res/objects/Img_Box_Bed-1",gp.tileSize,gp.tileSize*2);
+		shill = 2;
 		getImage(image);
 		setDialogue();
 	}

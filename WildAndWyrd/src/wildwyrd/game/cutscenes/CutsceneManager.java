@@ -1273,6 +1273,7 @@ public class CutsceneManager {
 			actor = getActor(PlayerDummy.npcName);
 			gp.player.worldX = actor.worldX;
 			gp.player.worldY = actor.worldY;
+			gp.player.pickUpShillings(10);
 			destroyPlayerDummy();
 			gp.player.drawing = true;
 			gp.s.swh[13] = false;
