@@ -23,7 +23,7 @@ public class AssetSetter {
 	}
 	
 	public void setMaps() {
-		gp.maps[0] = new Map(gp, MapType.INTERIOR, 0, 15, 9);
+		gp.maps[0] = new Map(gp, MapType.INTERIOR, 0, 15, 10);
 		gp.maps[1] = new Map(gp, MapType.INTERIOR, 1, 17, 11);
 		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 19, 12);
 		gp.maps[3] = new Map(gp, MapType.OUTSIDE, 3, 17, 11);

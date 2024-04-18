@@ -1,12 +1,12 @@
 package wildwyrd.game.rooms;
 
 import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.GameState;
 
 public class Room extends Entity {
 	public BufferedImage image;

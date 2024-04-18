@@ -16,6 +16,9 @@ public class Portrate {
 	public BufferedImage image_Kyla;
 	public BufferedImage image_Trissie;
 	public BufferedImage image_Agrimus;
+	public BufferedImage image_Gowl_Rat;
+	public BufferedImage image_Gowl_Weasel;
+	public BufferedImage image_Jeb;
 	
 	public Portrate() {
 		setImages();
@@ -57,6 +60,9 @@ public class Portrate {
 			image_Kyla = ImageIO.read(getClass().getResourceAsStream("/res/portrate/prt_Kyla.png"));
 			image_Trissie = ImageIO.read(getClass().getResourceAsStream("/res/portrate/prt_Trissie.png"));
 			image_Agrimus = ImageIO.read(getClass().getResourceAsStream("/res/portrate/prt_Agrimus.png"));
+			image_Gowl_Rat = ImageIO.read(getClass().getResourceAsStream("/res/portrate/prt_gowl_rat.png"));
+			image_Gowl_Weasel = ImageIO.read(getClass().getResourceAsStream("/res/portrate/prt_gowl_weasel.png"));
+			image_Jeb = ImageIO.read(getClass().getResourceAsStream("/res/portrate/prt_Jeb.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

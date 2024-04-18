@@ -32,6 +32,7 @@ public class KeyHandler implements KeyListener {
 				}
 			}
 			if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+				gp.playSE(0);
 				gp.ui.commandNum--;
 				if (gp.ui.commandNum < 0) {
 					gp.ui.commandNum = 2;
@@ -39,6 +40,7 @@ public class KeyHandler implements KeyListener {
 			}
 
 			if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+				gp.playSE(0);
 				gp.ui.commandNum++;
 				if (gp.ui.commandNum > 2) {
 					gp.ui.commandNum = 0;
@@ -65,6 +67,7 @@ public class KeyHandler implements KeyListener {
 					gp.ui.resetSlots();
 					gp.tileM = new TileManager(gp);
 					gp.eHandler = new EventHandler(gp);
+					gp.playSE(1);
 					gp.gameState = GameState.playState;
 				}
 			}
@@ -74,6 +77,7 @@ public class KeyHandler implements KeyListener {
 					if (gp.ui.playerSlotCol == 0) { //Save game
 						gp.gameState = GameState.saveState;
 					} else if (gp.ui.playerSlotCol == 1) { //Open status screen
+						gp.playSE(4);
 						gp.gameState = GameState.statusState;
 						gp.ui.drawStatusScreen();
 					} else if (gp.ui.playerSlotCol == 2) { //Open inventory screen
@@ -101,7 +105,7 @@ public class KeyHandler implements KeyListener {
 					break;
 				case KeyEvent.VK_UP :
 				case KeyEvent.VK_W :
-					gp.playSE(0);
+					gp.playSE(2);
 					if (gp.ui.playerSlotCol != 0) {
 						--gp.ui.playerSlotCol;
 					} else {
@@ -110,7 +114,7 @@ public class KeyHandler implements KeyListener {
 					break;
 				case KeyEvent.VK_DOWN :
 				case KeyEvent.VK_S :
-					gp.playSE(0);
+					gp.playSE(2);
 					if (gp.ui.playerSlotCol != 6) {
 						++gp.ui.playerSlotCol;
 					} else {
@@ -730,7 +734,7 @@ public class KeyHandler implements KeyListener {
 			gp.gameState = GameState.menuState;
 			break;
 		case KeyEvent.VK_ENTER :
-			gp.playSE(1);
+			gp.playSE(3);
 			if(gp.ui.commandNum == 0) {
 				gp.saveLoad.save(1);
 			} else if(gp.ui.commandNum == 1) {
@@ -867,7 +871,9 @@ public class KeyHandler implements KeyListener {
 	public void tradeState(int code) {
 		switch (code) {
 		case KeyEvent.VK_ESCAPE :
-			if(gp.ui.subState == 1 || gp.ui.subState == 2) {
+			if(gp.ui.subState == 0) {
+				//gp.gameState = GameState.playState;
+			} else if(gp.ui.subState == 1 || gp.ui.subState == 2) {
 				gp.ui.subState = 0;
 			}
 			break;

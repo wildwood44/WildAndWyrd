@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import wildwyrd.game.Entity;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.cutscenes.Portrate;
+import wildwyrd.game.items.Item;
 import wildwyrd.game.objective.Quest;
 
 public class NPC extends Entity {
@@ -19,8 +20,6 @@ public class NPC extends Entity {
 		// TODO Auto-generated constructor stub
 	}
 	
-
-
 	public BufferedImage getSpecialSpriteSheet() {
 		BufferedImage sprite = null;
 
@@ -59,4 +58,7 @@ public class NPC extends Entity {
 	public void getImage() {}
 	
 	public void climbing(boolean isClimbing) {}
+	
+	public Item buy(Item buy) {return null;}
+	public Item sell(Item sell) {return null;}
 }

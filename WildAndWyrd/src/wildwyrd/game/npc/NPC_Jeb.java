@@ -8,15 +8,18 @@ import javax.imageio.ImageIO;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
+import wildwyrd.game.items.Item;
 import wildwyrd.game.items.Itm_Bandage;
 import wildwyrd.game.items.Itm_Dried_Apple_Slice;
+import wildwyrd.game.items.Itm_Hazelnut;
+import wildwyrd.game.items.Itm_P_Mushroom;
 import wildwyrd.game.items.Itm_Travelling_Cloak;
 import wildwyrd.game.object.Dialoge;
 
 public class NPC_Jeb extends NPC {
 	public static final int npcId = 6;
 	public static final String npcName = "Jeb";
-	public NPC_Jeb(GamePanel gp) {
+	public NPC_Jeb(GamePanel gp)  {
 		super(gp);
 		//this.gp = gp;
 		id = npcId;
@@ -63,13 +66,14 @@ public class NPC_Jeb extends NPC {
 	}
 	
 	public void setAction() {
-		dialogues[0][0] = new Dialoge("Jeb","Care to buy something?" ,1);
-		dialogues[1][0] = new Dialoge("Jeb","Come again.",1);
-		dialogues[2][0] = new Dialoge("You need a better barter than that.",1);
-		dialogues[2][0] = new Dialoge("You don't have enouth space in your bag.",1);
 	}
 
 	public void setDialogue() {
+		dialogues[0][0] = new Dialoge("Jeb","Care to buy something?" ,port.image_Jeb);
+		dialogues[1][0] = new Dialoge("Jeb","Come again.",1);
+		dialogues[2][0] = new Dialoge("Jeb","You don't have what i want for that.",1);
+		dialogues[3][0] = new Dialoge("Jeb","You don't have enouth space in your bag.",1);
+		dialogues[4][0] = new Dialoge("Jeb","I just sold you that!",1);
 	}
 	
 	public void checkConditions() {
@@ -82,6 +86,22 @@ public class NPC_Jeb extends NPC {
 		inventory.add(new Itm_Bandage(gp));
 		inventory.add(new Itm_Dried_Apple_Slice(gp));
 		inventory.add(new Itm_Travelling_Cloak(gp));
+	}
+	
+	public Item buy(Item buy) {
+		switch(buy.name){
+		case Itm_Bandage.itemName: return new Itm_P_Mushroom(gp);
+		case Itm_Dried_Apple_Slice.itemName: return new Itm_Hazelnut(gp);
+		default: return null;
+		}
+	}
+	
+	public Item sell(Item sell) {
+		switch(sell.name){
+		case Itm_Hazelnut.itemName: return inventory.get(findItemInInventory(new Itm_Dried_Apple_Slice(gp)));
+		case Itm_P_Mushroom.itemName: return inventory.get(findItemInInventory(new Itm_Bandage(gp)));
+		default: return null;
+		}
 	}
 	
 	public void speak() {

@@ -165,6 +165,7 @@ public class Player extends Entity {
 	}
 	
 	public int pickUpShillings(int i) {
+		gp.playSE(21);
 		shillings += i;
 		return shillings;
 	}
@@ -176,6 +177,10 @@ public class Player extends Entity {
 	
 	public int getShillings() {
 		return shillings;
+	}
+	
+	public void setShillings(int i) {
+		shillings = i;
 	}
 
 	public void pickUpObject(int i) {
@@ -191,12 +196,12 @@ public class Player extends Entity {
 	}
 
 	public void pickUpObject(Item item) {
-		if(canObtainItem(item)) {}
+		if(canObtainItem(item)) {gp.playSE(21);}
 	}
 
 	public void pickUpObject(Item item, int qnt) {
 		for(int i = 1; i <= qnt; i++) {
-			if(canObtainItem(item)) {}
+			if(canObtainItem(item)) {gp.playSE(21);}
 		}
 	}
 	
@@ -245,12 +250,7 @@ public class Player extends Entity {
 	}
 	
 	public void changeInteractiveTile(int i) {
-		//System.out.println(gp.iTile[gp.currentMap.getId()][i] + " " + gp.currentMap.getId() + " " + i);
-		
 		if(i != 999 && gp.iTile[gp.currentMap.getId()][i].transformable == true) {
-			//if(!gp.iTile[gp.currentMap.getId()][i].animationComp) {
-			//	gp.iTile[gp.currentMap.getId()][i].uncoverIllusion();
-			//}
 			if(!gp.iTile[gp.currentMap.getId()][i].illusion) {
 				gp.iTile[gp.currentMap.getId()][i] = gp.iTile[gp.currentMap.getId()][i].transform();
 			}
@@ -259,13 +259,10 @@ public class Player extends Entity {
 	}
 	
 	public void interactiveTileEvent(int i) {
-		//System.out.println(gp.iTile[gp.currentMap.getId()][i] + " " + gp.currentMap.getId() + " " + i);
-		
 		if(i != 999 && gp.iTile[gp.currentMap.getId()][i].illusion == true) {
 			if(!gp.iTile[gp.currentMap.getId()][i].animationComp && gp.iTile[gp.currentMap.getId()][i].illusion) {
 				gp.iTile[gp.currentMap.getId()][i].uncoverIllusion(gp.iTile[gp.currentMap.getId()][i]);
 			}
-			//gp.iTile[gp.currentMap.getId()][i] = gp.iTile[gp.currentMap.getId()][i].transform();
 		}
 	}
 	

@@ -1,6 +1,8 @@
 package wildwyrd.game;
 
 import wildwyrd.game.cutscenes.CutsceneManager;
+import wildwyrd.game.items.Itm_Bug_Meat;
+import wildwyrd.game.items.Itm_Travelling_Cloak;
 import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.object.IT_StoneDoor;
 import wildwyrd.game.tile.InteractiveTile;
@@ -65,7 +67,12 @@ public class EventHandler {
 			if(gp.currentMap.getId() == 0) {
 				//if(hit(0,13,8,"up")) {teleport(gp.maps[1],15,3);}
 				if(hit(0,8,7,"down")) {
-					if(!gp.s.c3Switch[3]) {obsticle(gp.maps[0]);} else {
+					if(!gp.s.c3Switch[3]) {
+						Entity item = new Itm_Travelling_Cloak(gp);
+						if(gp.player.findItemInInventory(item) == 2) {
+							gp.s.swh[14] = true;
+						} else { obsticle(gp.maps[0]);}
+					} else {
 						teleport(gp.maps[2],12,3);
 						gp.playSE(8);
 						if(gp.s.swh[1]) {gp.s.part = 2;}
@@ -137,6 +144,10 @@ public class EventHandler {
 				c1s_Cutscene(14);
 			} else if (gp.s.swh[13] && gp.s.part == 2) {
 				c1s_Cutscene(15);
+			} else if (gp.s.swh[14] && gp.s.part == 3) {
+				c1s_Cutscene(16);
+			} else if (gp.s.swh[15] && gp.s.part == 3) {
+				c1s_Cutscene(17);
 			}
 		}
 	}
@@ -144,21 +155,25 @@ public class EventHandler {
 	public boolean hit(int map, int col, int row, String reqDirection) {
 		boolean hit = false;
 		if(map == gp.currentMap.getId()) {
-			gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
-			gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
-			eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
-			eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
-			if(gp.player.solidArea.intersects(eventRect[map][col][row]) && !eventRect[map][col][row].eventDone) {
-				if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
-					hit = true;
-					previousEventX = gp.player.worldX;
-					previousEventY = gp.player.worldY;
+			//try {
+				gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
+				gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
+				eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
+				eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
+				if(gp.player.solidArea.intersects(eventRect[map][col][row]) && !eventRect[map][col][row].eventDone) {
+					if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
+						hit = true;
+						previousEventX = gp.player.worldX;
+						previousEventY = gp.player.worldY;
+					}
 				}
-			}
-			gp.player.solidArea.x = gp.player.solidAreaDefaultX;
-			gp.player.solidArea.y = gp.player.solidAreaDefaultY;
-			eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
-			eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+				gp.player.solidArea.x = gp.player.solidAreaDefaultX;
+				gp.player.solidArea.y = gp.player.solidAreaDefaultY;
+				eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
+				eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+			//} catch(ArrayIndexOutOfBoundsException e) {
+			//	e.printStackTrace();
+			//}
 		}
 		return hit;
 	}
@@ -166,22 +181,26 @@ public class EventHandler {
 	public boolean hitRow(int map, int row, String reqDirection) {
 		boolean hit = false;
 		if(map == gp.currentMap.getId()) {
-			gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
-			gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
-			int col = gp.player.solidArea.y/gp.tileSize;
-			eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
-			eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
-			if(gp.player.solidArea.y/gp.tileSize == eventRect[map][col][row].y/gp.tileSize && !eventRect[map][col][row].eventDone) {
-				if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
-					hit = true;
-					previousEventX = gp.player.worldX;
-					previousEventY = gp.player.worldY;
+			//try {
+				gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
+				gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
+				int col = gp.player.solidArea.y/gp.tileSize;
+				eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
+				eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
+				if(gp.player.solidArea.y/gp.tileSize == eventRect[map][col][row].y/gp.tileSize && !eventRect[map][col][row].eventDone) {
+					if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
+						hit = true;
+						previousEventX = gp.player.worldX;
+						previousEventY = gp.player.worldY;
+					}
 				}
-			}
-			gp.player.solidArea.x = gp.player.solidAreaDefaultX;
-			gp.player.solidArea.y = gp.player.solidAreaDefaultY;
-			eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
-			eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+				gp.player.solidArea.x = gp.player.solidAreaDefaultX;
+				gp.player.solidArea.y = gp.player.solidAreaDefaultY;
+				eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
+				eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+			//} catch(ArrayIndexOutOfBoundsException e) {
+			//	e.printStackTrace();
+			//}
 		}
 		return hit;
 	}

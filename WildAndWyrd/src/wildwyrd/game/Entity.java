@@ -77,9 +77,12 @@ public class Entity {
 
 	public void update() {
 		collisionOn = false;
-		gp.cChecker.checkTile(this);
-		gp.cChecker.checkObject(this, false);
-		gp.cChecker.checkPlayer(this);
+		if(gp.gameState != GameState.cutsceneState) {
+			//CHECK COLLISION
+			gp.cChecker.checkTile(this);
+			gp.cChecker.checkObject(this, false);
+			gp.cChecker.checkPlayer(this);
+		}
 		if(moving) {
 			if(!collisionOn) {
 				switch(direction) {
@@ -290,6 +293,7 @@ public class Entity {
 
 	public void startDialogue(Entity object, int setNum) {
 		GamePanel gp = this.gp;
+		//gp.ui.returnState = gp.gameState;
 		gp.gameState = GameState.examineState;
 		gp.ui.selectedObject = object;
 		dialogueSet = setNum;
@@ -311,6 +315,25 @@ public class Entity {
 	
 	public void setLoot(int loot) {
 		this.shill = loot;
+	}
+	
+	public boolean inInventory(Entity item) {
+		for(int i = 0; i < inventory.size(); i++) {
+			if(item != null) {
+				if(inventory.get(i).id == item.id) {
+					return true;		
+				}
+			}
+		}
+		return false;
+	}
+	
+	public int findItemInInventory(Entity item) {
+		for(int i = 0; i < inventory.size(); i++) {
+			if(inventory.get(i).id == item.id) {
+				return inventory.get(i).amount;		}
+		}
+		return 0;
 	}
 	
 	public void removeFromInventory(Item selectedItem) {

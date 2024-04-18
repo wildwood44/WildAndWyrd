@@ -87,6 +87,7 @@ public class SaveLoad {
 			ds.worldX = gp.player.worldX;
 			ds.worldY = gp.player.worldY;
 			//Inventory
+			ds.shill = gp.player.getShillings();
 			for(int i = 0; i < gp.player.inventory.size(); i++) {
 				ds.itemId.add(gp.player.inventory.get(i).id);
 				ds.itemAmount.add(gp.player.inventory.get(i).amount);
@@ -176,6 +177,7 @@ public class SaveLoad {
 			gp.player.direction = ds.direction;
 			gp.player.worldX = ds.worldX;
 			gp.player.worldY = ds.worldY;
+			gp.player.setShillings(ds.shill);
 			gp.player.inventory.clear();
 			for(int i = 0; i < ds.itemId.size(); i++) {
 				gp.player.inventory.add(gp.eGenerator.getItem(ds.itemId.get(i)));

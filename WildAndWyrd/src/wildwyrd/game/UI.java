@@ -22,6 +22,7 @@ import wildwyrd.game.combat.CombatStatus;
 import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.items.Item;
+import wildwyrd.game.items.Itm_Bug_Meat;
 import wildwyrd.game.library.Book;
 import wildwyrd.game.npc.NPC;
 import wildwyrd.game.playable.Combatant;
@@ -65,6 +66,7 @@ public class UI {
 	public ArrayList<Entity> droppedItems = new ArrayList<Entity>();;
 	int charIndex = 0;
 	String combinedText = "";
+	public GameState returnState;
 	public JPanel bgPanel[] = new JPanel[10];
 
 	public UI(GamePanel gp) {
@@ -316,7 +318,7 @@ public class UI {
 					gp.keyH.enterPressed = false;
 				}
 			}
-
+			//Read dialogue line
 			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 1) {
 				if (gp.keyH.enterPressed) {
@@ -330,6 +332,7 @@ public class UI {
 							gp.keyH.enterPressed = false;
 						}
 					}
+				//Skip dialogue
 				} else if (gp.keyH.skipPressed) {
 					if(selectedObject.skippable) {
 						charIndex = 0;
@@ -341,6 +344,7 @@ public class UI {
 					}
 				} 
 				selectedObject.checkConditions();
+			// Yes/No options
 			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 2) {
 				if (gp.keyH.enterPressed) {
@@ -368,6 +372,7 @@ public class UI {
 
 				g2.drawString("Yes", x + 20, y + 40);
 				g2.drawString("No", x + 20, y + 80);
+			// Dialogue options
 			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 3) {
 				if (gp.keyH.enterPressed) {
@@ -406,11 +411,13 @@ public class UI {
 				if(firstValue < selectedObject.options.length - 3) {
 					drawDownIcon((int)(width/1.65), 470, 20, 20);
 				}
+			//Initialise combat
 			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 4) {
 				gp.combat.startCombat();
 			}
 		} else {
+			// End dialogue
 			selectedObject.dialogueIndex = 0;
 			if (gp.gameState == GameState.examineState) {
 				gp.gameState = GameState.playState;
@@ -422,6 +429,7 @@ public class UI {
 				g2.drawString(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getSpeaker(), x, y);
 				y += 40;
 			}
+			//Automatic line break
 			for (String line : breakLines(currentDialogue,40)) {
 				g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 				g2.drawString(line, x, y);
@@ -585,7 +593,6 @@ public class UI {
 					g2.drawString(s, amountX, amountY);
 				}
 				slotX += gp.tileSize;
-				System.out.println(i);
 				if (i == 4 || i == 9 || i == 14 || i == 19) {
 					slotX = slotXstart;
 					slotY += gp.tileSize;
@@ -640,7 +647,8 @@ public class UI {
 			drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
 			g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 			g2.setColor(Color.white);
-			g2.drawString("Shillings: " + gp.player.getShillings(), 30, gp.tileSize);
+			//g2.drawString("Shillings: " + gp.player.getShillings(), 30, gp.tileSize);
+			drawCoin(gp.player.getShillings(), 30, gp.tileSize);
 		}
 
 	}
@@ -1042,13 +1050,9 @@ public class UI {
 	}
 	
 	public void trade_select() {
-		int frameX = gp.tileSize * 2;
-		int frameY = gp.tileSize;
-		int frameWidth = gp.tileSize * 8;
-		int frameHeight = gp.tileSize * 4;
-		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
-		
-		//drawDialogueScreen();
+		npc.dialogueSet = 0;
+		selectedObject = npc;
+		drawDialogueScreen();
 		//Draw Window
 		int x = gp.tileSize * 8;
 		int y = gp.tileSize * 4;
@@ -1061,7 +1065,6 @@ public class UI {
 		g2.setColor(Color.WHITE);
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.drawString("Buy", x, y);
-		System.out.println(commandNum);
 		if(commandNum == 0) {
 			g2.drawString(">", x-24, y);
 			if(gp.keyH.enterPressed) {
@@ -1082,7 +1085,7 @@ public class UI {
 			g2.drawString(">", x-24, y);
 			if(gp.keyH.enterPressed) {
 				commandNum = 0;
-				npc.startDialogue(npc, 1);
+				selectedObject.startDialogue(selectedObject, 1);
 			}
 		}
 	}
@@ -1097,6 +1100,7 @@ public class UI {
 		int y = (int)(gp.tileSize * 7);
 		int width = gp.tileSize * 2;
 		int height = gp.tileSize;
+		selectedObject = npc;
 		drawDialogueWindow(x, y, width, height);
 		g2.setColor(Color.WHITE);
 		g2.drawString("[ESC] Back", x+5, y+30);
@@ -1107,33 +1111,59 @@ public class UI {
 		height = (int)(gp.tileSize * 2.5);
 		drawDialogueWindow(x, y, width, height);
 		g2.setColor(Color.WHITE);
-		g2.drawString("Shillings: " + gp.player.getShillings(), x + 25, y + gp.tileSize);
+		//g2.drawString("Shillings: " + gp.player.getShillings(), x + 25, y + gp.tileSize);
+		drawCoin(gp.player.getShillings(), x + 25, y + gp.tileSize/2);
 		// DRAW PRICE WINDOW
 		int itemIndex = getItemIndexOnSlot();
-		if(itemIndex < npc.inventorySize) {
+		if(itemIndex < npc.inventory.size()) {
 			x = (int)(gp.tileSize * 3.5);
 			y = (int)(gp.tileSize * 4.8);
 			width = (int)(gp.tileSize * 2.5);
 			height = gp.tileSize;
 			drawDialogueWindow(x, y, width, height);
-			int price = npc.inventory.get(itemIndex).price;
-			String text = "Price: " + price;
-			x = getXforAlignToRightText(text, gp.tileSize*5 + 20);
-			g2.setColor(Color.WHITE);
-			g2.drawString(text, x, y+34);
-			// BUY AN ITEM
-			if(gp.keyH.enterPressed) {
-				if(price > gp.player.getShillings()) {
-					subState = 0;
-					npc.startDialogue(npc, 2);
-				} else if(gp.player.inventory.size() == gp.player.inventorySize) {
-					subState = 0;
-					npc.startDialogue(npc, 3);
+			try {
+				int price = npc.inventory.get(itemIndex).price;
+				String text = "";
+				if(npc.buy(npc.inventory.get(itemIndex)) != null) {
+					//text = npc.buy(npc.inventory.get(itemIndex)).name;
+					x = getXforAlignToRightText(text, (int)(gp.tileSize*3.5) + 20);
+					g2.drawImage(npc.buy(npc.inventory.get(itemIndex)).image, x, y, null);
+					//drawCoin(price, x, y);
 				} else {
-					gp.player.spendShillings(price);
-					gp.player.pickUpObject(npc.inventory.get(itemIndex));
+					//text = "Price: " + price;
+					x = getXforAlignToRightText(text, (int)(gp.tileSize*3.5) + 20);
+					drawCoin(price, x, y);
 				}
-				
+				g2.drawString(text, x, y+34);
+				// BUY AN ITEM
+				if(gp.keyH.enterPressed) {
+					//Item not in inventory
+					if(!gp.player.inInventory(npc.buy(npc.inventory.get(itemIndex))) && npc.buy(npc.inventory.get(itemIndex)) != null) {
+						subState = 0;
+						selectedObject.startDialogue(selectedObject, 2);
+					//Not enough shillings
+					} else if(price > gp.player.getShillings()) {
+						subState = 0;
+						selectedObject.startDialogue(selectedObject, 2);
+					//Inventory is full
+					} else if(gp.player.inventory.size() == gp.player.inventorySize) {
+						subState = 0;
+						selectedObject.startDialogue(selectedObject, 3);
+					} else {
+						//Trade Items
+						if(npc.buy(npc.inventory.get(itemIndex)) != null) {
+							Item selectedItem = gp.player.inventory.get(gp.player.searchItemInInventory(npc.buy(npc.inventory.get(itemIndex)).id));
+							gp.player.removeFromInventory(selectedItem);
+						//Spend shillings
+						} else {
+							gp.player.spendShillings(price);
+						}
+						gp.player.pickUpObject(npc.inventory.get(itemIndex));
+					}
+					
+				}
+			} catch (IndexOutOfBoundsException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -1148,6 +1178,7 @@ public class UI {
 		int y = (int)(gp.tileSize * 7);
 		int width = gp.tileSize * 2;
 		int height = gp.tileSize;
+		selectedObject = npc;
 		drawDialogueWindow(x, y, width, height);
 		g2.setColor(Color.WHITE);
 		g2.drawString("[ESC] Back", x+5, y+30);
@@ -1157,24 +1188,40 @@ public class UI {
 		width = (int)(gp.tileSize * 5.5);
 		height = (int)(gp.tileSize * 2.5);
 		drawDialogueWindow(x, y, width, height);
-		g2.setColor(Color.WHITE);
-		g2.drawString("Shillings: " + gp.player.getShillings(), x + 25, y + gp.tileSize);
+		drawCoin(gp.player.getShillings(), x + 25, y + gp.tileSize/2);
 		// DRAW PRICE WINDOW
 		int itemIndex = getItemIndexOnSlot();
-		if(itemIndex < npc.inventorySize) {
+		if(itemIndex < gp.player.inventory.size()) {
 			x = (int)(gp.tileSize * 3.5);
 			y = (int)(gp.tileSize * 4.8);
 			width = (int)(gp.tileSize * 2.5);
 			height = gp.tileSize;
 			drawDialogueWindow(x, y, width, height);
-			int price = npc.inventory.get(itemIndex).price;
-			String text = "" + price;
-			x = getXforAlignToRightText(text, gp.tileSize*8-20);
+			String text = "";
+			int price = gp.player.inventory.get(itemIndex).price;
+			if(npc.sell(gp.player.inventory.get(itemIndex)) != null) {
+				//text = "" + npc.sell(gp.player.inventory.get(itemIndex)).name;
+				x = getXforAlignToRightText(text, (int)(gp.tileSize*3.5) + 20);
+				g2.drawImage(npc.sell(gp.player.inventory.get(itemIndex)).image, x, y, null);
+			} else {
+				//text = "" + price;
+				x = getXforAlignToRightText(text, (int)(gp.tileSize*3.5) + 20);
+				drawCoin(price, x, y);
+			}
+			g2.setColor(Color.WHITE);
 			g2.drawString(text, x, y+34);
 			// SELL AN ITEM
 			if(gp.keyH.enterPressed) {
-				gp.player.removeFromInventory(gp.player.inventory.get(itemIndex));
-				gp.player.pickUpShillings(price);
+				if (npc.inInventory(gp.player.inventory.get(itemIndex))) {
+					subState = 0;
+					selectedObject.startDialogue(selectedObject, 4);
+				} else if(npc.sell(gp.player.inventory.get(itemIndex)) != null) {
+					gp.player.pickUpObject(npc.sell(gp.player.inventory.get(itemIndex)));
+					gp.player.removeFromInventory(gp.player.inventory.get(itemIndex));
+				} else {
+					gp.player.pickUpShillings(price);
+					gp.player.removeFromInventory(gp.player.inventory.get(itemIndex));
+				}
 			}
 		}
 	}
@@ -1518,16 +1565,34 @@ public class UI {
 			e.printStackTrace();
 		}
 	}
+	
+	private void drawCoin(int amount, int x, int y) {
+		BufferedImage image;
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/res/items/img_Shillings.png"));
+			if (image != null) {
+				g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+				g2.setColor(Color.WHITE);
+				g2.drawString(": " + amount, x + gp.tileSize, y + gp.tileSize/2);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void drawDialogueWindow(int x, int y, int width, int height) {
-		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-		Color c = new Color(255, 255, 255);
-		g2.setColor(c);
-		g2.fillRoundRect(x, y, width, height, 35, 35);
-		c = new Color(0, 0, 0, 210);
-		g2.setColor(c);
-		g2.setStroke(new BasicStroke(5.0F));
-		g2.fillRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+		try {
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+			Color c = new Color(255, 255, 255);
+			g2.setColor(c);
+			g2.fillRoundRect(x, y, width, height, 35, 35);
+			c = new Color(0, 0, 0, 210);
+			g2.setColor(c);
+			g2.setStroke(new BasicStroke(5.0F));
+			g2.fillRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void drawSubWindow(int x, int y, int width, int height) {
@@ -1556,6 +1621,7 @@ public class UI {
 		g2.setColor(Color.white);
 		g2.drawString(text, x, y);
 		g2.setFont(g2.getFont().deriveFont(1, 40.0F));
+		//New Game
 		text = "New Game";
 		x = getXforCenteredText(text);
 		y = (int) (y + gp.tileSize * 2);
@@ -1563,7 +1629,7 @@ public class UI {
 		if (commandNum == 0) {
 			g2.drawString(">", x - gp.tileSize, y);
 		}
-
+		//Continue Game
 		/*text = "Continue";
 		x = getXforCenteredText(text);
 		y += gp.tileSize;
@@ -1572,7 +1638,7 @@ public class UI {
 			g2.drawString(">", x - gp.tileSize, y);
 
 		}*/
-
+		//Load Game
 		text = "Load Game";
 		x = getXforCenteredText(text);
 		y += gp.tileSize;
@@ -1583,7 +1649,7 @@ public class UI {
 				subState = 1;
 			}
 		}
-
+		//Quit Game
 		text = "Quit";
 		x = getXforCenteredText(text);
 		y += gp.tileSize;

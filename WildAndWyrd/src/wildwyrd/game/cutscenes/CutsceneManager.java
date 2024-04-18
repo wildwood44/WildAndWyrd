@@ -4,7 +4,6 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.EventHandler;
@@ -13,12 +12,13 @@ import wildwyrd.game.GameState;
 import wildwyrd.game.items.Item;
 import wildwyrd.game.items.Itm_Bug_Meat;
 import wildwyrd.game.items.Itm_Leif;
-import wildwyrd.game.items.Projectile;
 import wildwyrd.game.items.Weapon;
 import wildwyrd.game.npc.NPC;
 import wildwyrd.game.npc.NPC_Florence;
 import wildwyrd.game.npc.NPC_Gowl_Rat;
+import wildwyrd.game.npc.NPC_Gowl_Sorcerer;
 import wildwyrd.game.npc.NPC_Gowl_Weasel;
+import wildwyrd.game.npc.NPC_Gowl_Weasel2;
 import wildwyrd.game.npc.NPC_Jeb;
 import wildwyrd.game.npc.NPC_Kyla;
 import wildwyrd.game.npc.NPC_Rat_Siluette;
@@ -70,6 +70,8 @@ public class CutsceneManager {
 			case 13 : scene_c3_3(); break;
 			case 14 : scene_c3_4(); break;
 			case 15 : scene_c3_5(); break;
+			case 16 : scene_c3_6(); break;
+			case 17 : scene_ending(); break;
 		}
 
 	}
@@ -112,6 +114,10 @@ public class CutsceneManager {
 		} else if (scenePhase == 5) {
 			gp.ui.drawDialogueScreen();
 		} else if (scenePhase == 6) {
+			if(fadeOut(0.005f)) {
+				scenePhase++;
+			}
+		} else if (scenePhase == 7) {
 			gp.currentRoom = 0;
 			gp.s.chapter = 1;
 			gp.cutsceneOn = false;
@@ -866,6 +872,7 @@ public class CutsceneManager {
 			if(gp.c.dialogueIndex < 3) {
 				gp.ui.drawDialogueScreen();
 			} else {
+				gp.ui.selectedObject = gp.rm[gp.currentRoom];
 				alpha = 0f;
 				scenePhase++;
 			}
@@ -1201,7 +1208,6 @@ public class CutsceneManager {
 			}
 			projectile.draw(g2);
 			projectile.update();
-			System.out.println(projectile.image +" "+ projectile.worldY);
 			
 		} else if (scenePhase == 6) {
 			if(gp.c.dialogueIndex < 23) {
@@ -1283,10 +1289,114 @@ public class CutsceneManager {
 			gp.c.dialogueIndex = 0;
 			sceneNum = 0;
 			scenePhase = 0;
+			gp.s.part = 3;
 			gp.gameState = GameState.playState;
 		}
 	}
 	//Fleeing the cottage
+	private void scene_c3_6() {
+		if (scenePhase == 0) {
+			if(fadeOut(0.005f)) {
+				scenePhase++;
+			}
+		} else if (scenePhase == 1) {
+			gp.cutsceneOn = true;
+			gp.c.dialogueSet = 14;
+			gp.c.setDialogue();
+			gp.player.drawing = false;
+			gp.ui.selectedObject = gp.c;
+			gp.player.worldX = 8 * gp.tileSize;
+			gp.player.worldY = 5 * gp.tileSize;
+			actor = getActor(NPC_Kyla.npcName);
+			actor.worldX = 8 * gp.tileSize;
+			actor.worldY = 6 * gp.tileSize;
+			changeActorDirection(NPC_Kyla.npcName, "down");
+			actor = getActor(NPC_Florence.npcName);
+			actor.worldX = 7 * gp.tileSize;
+			actor.worldY = 6 * gp.tileSize;
+			changeActorDirection(NPC_Florence.npcName, "down");
+			actor = getActor(NPC_Jeb.npcName);
+			actor.worldX = 9 * gp.tileSize;
+			actor.worldY = 6 * gp.tileSize;
+			createActor(new PlayerDummy(gp), gp.player.worldX, gp.player.worldY, gp.player.direction);
+			gp.player.worldX = 8 * gp.tileSize;
+			gp.player.worldY = 6 * gp.tileSize;
+			scenePhase++;
+		} else if (scenePhase == 2) {
+			drawStage();
+			if(fadeIn(0.05f)) {
+				scenePhase++;
+			}
+			drawBlackBackground(alpha);
+		} else if (scenePhase == 3) {
+			if(gp.c.dialogueIndex < 32) {
+				gp.ui.drawDialogueScreen();
+			} else {
+				drawStage();
+				scenePhase++;
+			}
+		} else if (scenePhase == 4) {
+			if(fadeOut(0.005f)) {
+				scenePhase++;
+			}
+		} else if (scenePhase == 5) {
+			gp.currentMap = gp.maps[2];
+			createActor(new NPC_Gowl_Rat(gp), gp.tileSize * 11, gp.tileSize * 7, "up");
+			createActor(new NPC_Gowl_Weasel(gp), gp.tileSize * 12, gp.tileSize * 7, "up");
+			createActor(new NPC_Gowl_Weasel2(gp), gp.tileSize * 13, gp.tileSize * 7, "up");
+			createActor(new NPC_Gowl_Sorcerer(gp), gp.tileSize * 12, gp.tileSize * 8, "up");
+			actor = getActor(NPC_Gowl_Sorcerer.npcName);
+			gp.player.worldX = gp.tileSize * 11;
+			gp.player.worldY = gp.tileSize * 5;
+			gp.tileM = new TileManager(gp);
+			gp.eHandler = new EventHandler(gp);
+			scenePhase++;
+		} else if (scenePhase == 5) {
+			drawStage();
+			if(fadeIn(0.05f)) {
+				scenePhase++;
+			}
+			drawBlackBackground(alpha);
+		} else if (scenePhase == 6) {
+			drawStage();
+			moveActor(NPC_Gowl_Rat.npcName, "up", 3);
+			moveActor(NPC_Gowl_Weasel.npcName, "up", 3);
+			moveActor(NPC_Gowl_Weasel2.npcName, "up", 3);
+			if (moveActor(NPC_Gowl_Sorcerer.npcName, "up", 4)) {
+				scenePhase++;
+			}
+		} else if (scenePhase == 7) {
+			if(gp.c.dialogueIndex < 42) {
+				gp.ui.drawDialogueScreen();
+			} else {
+				drawStage();
+				scenePhase++;
+			}
+		} else if (scenePhase == 8) {
+			gp.currentRoom = 3;
+			gp.rm[gp.currentRoom].draw(g2);
+			gp.ui.drawDialogueScreen();
+			//scenePhase++;
+		} else if (scenePhase == 9) {
+			if(fadeOut(0.005f)) {
+				scenePhase++;
+			}
+		} else if (scenePhase == 10) {
+			actor = getActor(PlayerDummy.npcName);
+			//gp.player.worldX = actor.worldX;
+			//gp.player.worldY = actor.worldY;
+			//destroyPlayerDummy();
+			//gp.player.drawing = true;
+			gp.s.swh[14] = false;
+			gp.s.c3Switch[5]= false;
+			gp.ui.resetSlots();
+			gp.cutsceneOn = false;
+			gp.c.dialogueIndex = 0;
+			sceneNum = 0;
+			scenePhase = 0;
+			gp.gameState = GameState.playState;
+		}
+	}
 	//End Credits
 	private void scene_ending() {
 		if (scenePhase == 0) {
@@ -1432,6 +1542,11 @@ public class CutsceneManager {
 		}
 		actor.moving = false;
 		return moveComplete;
+	}
+	
+	private void hidePlayer() {
+		gp.player.drawing = false;
+		gp.player.collisionOn = false;
 	}
 	
 	private boolean moveCamera(String direction, int move, int speed) {

@@ -15,11 +15,11 @@ public class Sound {
 	float volume;
 	
 	public Sound() {
-		//Title Menu Up/Down
-		//Title Menu Select
-		soundURL[0] = getClass().getResource("/res/sound/Treecreeper.wav"); // Up/Down
-		soundURL[1] = getClass().getResource("/res/sound/Green_Woodpecker.wav"); // Save
-		//Stats
+		soundURL[0] = getClass().getResource("/res/sound/Robin-1.wav"); //Title Menu Up/Down
+		soundURL[1] = getClass().getResource("/res/sound/blackbird.wav"); //Title Menu Select
+		soundURL[2] = getClass().getResource("/res/sound/Treecreeper.wav"); // Up/Down
+		soundURL[3] = getClass().getResource("/res/sound/Green_Woodpecker.wav"); // Save
+		soundURL[4] = getClass().getResource("/res/sound/Wren.wav"); //Stats
 		//Item
 		//Objectives
 		//Glossary
@@ -36,6 +36,7 @@ public class Sound {
 		//Items
 		//Flee
 		soundURL[20] = getClass().getResource("/res/sound/run.wav"); // Run
+		soundURL[21] = getClass().getResource("/res/sound/Pickup.wav"); // Interact with item
 		//Menu song
 		//Woodland song
 		//Cottage song

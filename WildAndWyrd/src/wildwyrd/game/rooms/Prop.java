@@ -11,6 +11,7 @@ public class Prop extends Entity {
 	GamePanel gp;
 	Graphics2D g2;
 	public boolean withered = false;
+	public BufferedImage[] animation = new BufferedImage[5];
 
 	public Prop(GamePanel gp, int x, int y, int width, int height) {
 		super(gp);
@@ -60,15 +61,15 @@ public class Prop extends Entity {
 		//g2.drawImage(image, width, height, null);
 	}
 	
-	public BufferedImage transform() {
+	public BufferedImage playAnimation(int speed) {
+		BufferedImage result = image;
 		spriteCounter++;
-		int i = 10;
-		if(spriteCounter <= i) {return setup("/res/items/img_Leif1", width, height);}
-		if(spriteCounter > i && spriteCounter <= i*2) {return setup("/res/items/img_Leif2", width, height);}
-		if(spriteCounter > i*2 && spriteCounter <= i*3) {return setup("/res/items/img_Leif3", width, height);}
-		if(spriteCounter > i*3) {setup("/res/items/img_Leif4", width, height);
-		}
-		return setup("/res/items/img_Leif1", width, height);
+		if(spriteCounter <= speed) {result = animation[0];} else {
+		for(int j = 1; j <= animation.length; j++) {
+			if(spriteCounter > speed && spriteCounter <= speed*2) {result = animation[1];} 
+			else {spriteCounter = 0;}
+		}}
+		return result;
 	}
 
 	public void draw(Graphics2D g2) {

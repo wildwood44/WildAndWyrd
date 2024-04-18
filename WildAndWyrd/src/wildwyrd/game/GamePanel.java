@@ -235,6 +235,8 @@ public class GamePanel extends JPanel implements Runnable {
 					ui.drawCombatants(g2);
 				}
 				ui.draw(g2);
+			} else if (gameState == GameState.examineState || gameState == GameState.talkingState) {
+				ui.draw(g2);
 			} else if (gameState == GameState.cutsceneState) {
 				//g2.drawImage(background, 0, 0, this);
 				csManager.draw(g2);
@@ -252,7 +254,7 @@ public class GamePanel extends JPanel implements Runnable {
 				ui.draw(g2);
 			} else if (gameState == GameState.gameOverState) {
 				ui.draw(g2);
-			} else if (gameState == GameState.playState || gameState == GameState.examineState || gameState == GameState.talkingState) {
+			} else if (gameState == GameState.playState) {
 				tileM.draw(g2);
 				//INTERACTIVE TILES
 				for(int i = 0; i < iTile[currentMap.getId()].length; i++) {
