@@ -1329,7 +1329,7 @@ public class CutsceneManager {
 			}
 			drawBlackBackground(alpha);
 		} else if (scenePhase == 3) {
-			if(gp.c.dialogueIndex < 32) {
+			if(gp.c.dialogueIndex < 24) {
 				gp.ui.drawDialogueScreen();
 			} else {
 				drawStage();
@@ -1366,7 +1366,7 @@ public class CutsceneManager {
 				scenePhase++;
 			}
 		} else if (scenePhase == 7) {
-			if(gp.c.dialogueIndex < 42) {
+			if(gp.c.dialogueIndex < 34) {
 				gp.ui.drawDialogueScreen();
 			} else {
 				drawStage();
@@ -1376,7 +1376,6 @@ public class CutsceneManager {
 			gp.currentRoom = 3;
 			gp.rm[gp.currentRoom].draw(g2);
 			gp.ui.drawDialogueScreen();
-			//scenePhase++;
 		} else if (scenePhase == 9) {
 			if(fadeOut(0.005f)) {
 				scenePhase++;
@@ -1388,6 +1387,7 @@ public class CutsceneManager {
 			//destroyPlayerDummy();
 			//gp.player.drawing = true;
 			gp.s.swh[14] = false;
+			gp.s.swh[15] = true;
 			gp.s.c3Switch[5]= false;
 			gp.ui.resetSlots();
 			gp.cutsceneOn = false;
@@ -1542,11 +1542,6 @@ public class CutsceneManager {
 		}
 		actor.moving = false;
 		return moveComplete;
-	}
-	
-	private void hidePlayer() {
-		gp.player.drawing = false;
-		gp.player.collisionOn = false;
 	}
 	
 	private boolean moveCamera(String direction, int move, int speed) {

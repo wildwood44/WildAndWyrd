@@ -216,45 +216,31 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
 	public void drawToTempScreen() {
+		// DEBUG
 		long drawStart = 0L;
 		if (this.keyH.showDebugText) {
 			drawStart = System.nanoTime();
 		}
-
+		// TITLE SCREEN
 		if (gameState == GameState.titleState) {
 			rm[currentRoom].draw(g2);
+			ui.draw(g2);
+		// COMBAT SCREEN
+		} else if (gameState == GameState.dialogueState) {
+			rm[currentRoom].draw(g2);
+			if(combat.inCombat) {
+				ui.drawCombatants(g2);
+			}
 			ui.draw(g2);
 		} else if (gameState == GameState.combatState) {
 			//rm[currentRoom].draw(g2);
 			ui.draw(g2);
 			ui.drawCombatants(g2);
+		// OTHER
 		} else {
-			if (gameState == GameState.dialogueState) {
-				rm[currentRoom].draw(g2);
-				if(combat.inCombat) {
-					ui.drawCombatants(g2);
-				}
-				ui.draw(g2);
-			} else if (gameState == GameState.examineState || gameState == GameState.talkingState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.cutsceneState) {
-				//g2.drawImage(background, 0, 0, this);
+			if (gameState == GameState.cutsceneState) {
 				csManager.draw(g2);
-				ui.draw(g2);
-			} else if (gameState == GameState.menuState || gameState == GameState.saveState ||
-					gameState == GameState.statusState || gameState == GameState.inventoryState ||
-					gameState == GameState.equipState || gameState == GameState.skillState ||
-					gameState == GameState.glossaryState || gameState == GameState.optionsState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.tradeState || gameState == GameState.readingState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.targetState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.rewardState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.gameOverState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.playState) {
+			} else {
 				tileM.draw(g2);
 				//INTERACTIVE TILES
 				for(int i = 0; i < iTile[currentMap.getId()].length; i++) {
@@ -262,6 +248,7 @@ public class GamePanel extends JPanel implements Runnable {
 						iTile[currentMap.getId()][i].draw(g2);
 					}
 				}
+				// ADD ENTITIES TO LIST
 				entityList.add(player);
 				//OBJECTS
 				for (int i = 0; i < obj[currentMap.getId()].length; i++) {
@@ -273,26 +260,43 @@ public class GamePanel extends JPanel implements Runnable {
 				//NPC
 				for (int i = 0; i < npc[currentMap.getId()].length; i++) {
 					if (npc[currentMap.getId()][i] != null) {
-						//entityList.add(npc[currentMap.getId()][i]);
-						npc[currentMap.getId()][i].draw(g2);
+						entityList.add(npc[currentMap.getId()][i]);
+						//npc[currentMap.getId()][i].draw(g2);
 					}
 				}
+				//tileM.draw(g2);
 				Collections.sort(entityList, new Comparator<Entity>() {
 					@Override
 					public int compare(Entity e1, Entity e2) {
 						int result = Integer.compare(e1.worldY, e2.worldY);
 						return result;
 					}
-
+	
 				});
-
+	
 				for (Entity element : entityList) {
 					element.draw(g2);
 				}
 				entityList.clear();
 				ui.draw(g2);
+				if (gameState == GameState.dialogueState) {
+					rm[currentRoom].draw(g2);
+					if(combat.inCombat) {
+						ui.drawCombatants(g2);
+					}
+					ui.draw(g2);
+				}/* else if (gameState == GameState.examineState || gameState == GameState.talkingState) {
+					ui.draw(g2);
+					//NPC
+					for (int i = 0; i < npc[currentMap.getId()].length; i++) {
+						if (npc[currentMap.getId()][i] != null) {
+							//entityList.add(npc[currentMap.getId()][i]);
+							npc[currentMap.getId()][i].draw(g2);
+						}
+					}
+				}*/
+				ui.draw(g2);
 			}
-			ui.draw(g2);
 		}
 
 		if (keyH.showDebugText) {

@@ -43,6 +43,7 @@ public class En_Wasp extends Enemy {
 	}
 	
 	public void defeated() {
+		gp.playSE(19);
 		gp.gameState = GameState.rewardState;
 	}
 	

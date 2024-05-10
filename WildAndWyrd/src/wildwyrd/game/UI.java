@@ -639,8 +639,8 @@ public class UI {
 			}
 		}
 		//Print dialogue window
-			if(entity == gp.player) {
-			frameX = 20;
+		if(entity == gp.player) {
+			frameX = 40;
 			frameY = 25;
 			frameWidth = gp.tileSize * 4;
 			frameHeight = gp.tileSize * 7;
@@ -648,7 +648,7 @@ public class UI {
 			g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 			g2.setColor(Color.white);
 			//g2.drawString("Shillings: " + gp.player.getShillings(), 30, gp.tileSize);
-			drawCoin(gp.player.getShillings(), 30, gp.tileSize);
+			drawCoin(gp.player.getShillings(), frameX + (gp.tileSize/2), frameY + (gp.tileSize/2));
 		}
 
 	}

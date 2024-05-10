@@ -107,10 +107,8 @@ public class Enemy extends Combatant {
 	}
 	
 	public void defeated() {
-		
 	}
 	
 	public void combatResult() {
-		
 	}
 }

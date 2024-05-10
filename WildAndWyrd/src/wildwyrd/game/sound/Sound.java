@@ -35,6 +35,7 @@ public class Sound {
 		//Special
 		//Items
 		//Flee
+		soundURL[19] = getClass().getResource("/res/sound/victory.wav"); //Victory
 		soundURL[20] = getClass().getResource("/res/sound/run.wav"); // Run
 		soundURL[21] = getClass().getResource("/res/sound/Pickup.wav"); // Interact with item
 		//Menu song

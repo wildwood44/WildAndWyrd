@@ -70,10 +70,10 @@ public class NPC_Jeb extends NPC {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge("Jeb","Care to buy something?" ,port.image_Jeb);
-		dialogues[1][0] = new Dialoge("Jeb","Come again.",1);
-		dialogues[2][0] = new Dialoge("Jeb","You don't have what i want for that.",1);
-		dialogues[3][0] = new Dialoge("Jeb","You don't have enouth space in your bag.",1);
-		dialogues[4][0] = new Dialoge("Jeb","I just sold you that!",1);
+		dialogues[1][0] = new Dialoge("Jeb","Come again.",port.image_Jeb);
+		dialogues[2][0] = new Dialoge("Jeb","You don't have what i want for that.",port.image_Jeb);
+		dialogues[3][0] = new Dialoge("Jeb","You don't have enouth space in your bag.",port.image_Jeb);
+		dialogues[4][0] = new Dialoge("Jeb","I just sold you that!",port.image_Jeb);
 	}
 	
 	public void checkConditions() {
