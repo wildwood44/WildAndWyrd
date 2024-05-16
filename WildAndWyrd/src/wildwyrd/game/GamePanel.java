@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import wildwyrd.game.combat.Combat;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.cutscenes.CutsceneManager;
+import wildwyrd.game.effects.DayState;
+import wildwyrd.game.effects.EnvironmentManager;
 import wildwyrd.game.glossary.Glossary;
 import wildwyrd.game.npc.NPC;
 import wildwyrd.game.object.AssetManager;
@@ -67,6 +69,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public AssetManager am = new AssetManager(this);
 	public UI ui = new UI(this);
 	public EventHandler eHandler;
+	public EnvironmentManager eManager = new EnvironmentManager(this);
 	public Room room = new Room(this);
 	public CutsceneManager csManager = new CutsceneManager(this);
 	public Objective objective = new Objective(this);
@@ -77,6 +80,7 @@ public class GamePanel extends JPanel implements Runnable {
 	int playerX = 100;
 	int playerSpeed = 4;
 	public GameState gameState;
+	public DayState dayState;
 	public boolean cutsceneOn = false;
 	public Map currentMap;
 	public Integer selectedObj;
@@ -119,7 +123,9 @@ public class GamePanel extends JPanel implements Runnable {
 		aSetter.setNPC();
 		aSetter.setMaps();
 		aSetter.setInteractiveTile();
+		eManager.setup();
 		gameState = GameState.titleState;
+		dayState = DayState.DAY;
 		currentMap = maps[0];
 		tileM = new TileManager(this);
 		eHandler = new EventHandler(this);
@@ -240,6 +246,8 @@ public class GamePanel extends JPanel implements Runnable {
 		} else {
 			if (gameState == GameState.cutsceneState) {
 				csManager.draw(g2);
+				// Environment
+				eManager.draw(g2);
 			} else {
 				tileM.draw(g2);
 				//INTERACTIVE TILES
@@ -278,23 +286,9 @@ public class GamePanel extends JPanel implements Runnable {
 					element.draw(g2);
 				}
 				entityList.clear();
-				ui.draw(g2);
-				if (gameState == GameState.dialogueState) {
-					rm[currentRoom].draw(g2);
-					if(combat.inCombat) {
-						ui.drawCombatants(g2);
-					}
-					ui.draw(g2);
-				}/* else if (gameState == GameState.examineState || gameState == GameState.talkingState) {
-					ui.draw(g2);
-					//NPC
-					for (int i = 0; i < npc[currentMap.getId()].length; i++) {
-						if (npc[currentMap.getId()][i] != null) {
-							//entityList.add(npc[currentMap.getId()][i]);
-							npc[currentMap.getId()][i].draw(g2);
-						}
-					}
-				}*/
+				// Environment
+				eManager.draw(g2);
+				// UI
 				ui.draw(g2);
 			}
 		}

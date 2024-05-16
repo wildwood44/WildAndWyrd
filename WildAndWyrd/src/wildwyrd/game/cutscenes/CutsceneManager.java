@@ -9,6 +9,7 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.EventHandler;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
+import wildwyrd.game.effects.DayState;
 import wildwyrd.game.items.Item;
 import wildwyrd.game.items.Itm_Bug_Meat;
 import wildwyrd.game.items.Itm_Leif;
@@ -1350,37 +1351,41 @@ public class CutsceneManager {
 			gp.player.worldY = gp.tileSize * 5;
 			gp.tileM = new TileManager(gp);
 			gp.eHandler = new EventHandler(gp);
+			gp.eManager.setDayState(DayState.DUSK);
 			scenePhase++;
-		} else if (scenePhase == 5) {
+		} else if (scenePhase == 6) {
 			drawStage();
 			if(fadeIn(0.05f)) {
 				scenePhase++;
 			}
 			drawBlackBackground(alpha);
-		} else if (scenePhase == 6) {
+		} else if (scenePhase == 7) {
 			drawStage();
+			//gp.eManager.draw(g2);
 			moveActor(NPC_Gowl_Rat.npcName, "up", 3);
 			moveActor(NPC_Gowl_Weasel.npcName, "up", 3);
 			moveActor(NPC_Gowl_Weasel2.npcName, "up", 3);
 			if (moveActor(NPC_Gowl_Sorcerer.npcName, "up", 4)) {
 				scenePhase++;
 			}
-		} else if (scenePhase == 7) {
+		} else if (scenePhase == 8) {
+			drawStage();
+			//gp.eManager.draw(g2);
 			if(gp.c.dialogueIndex < 34) {
 				gp.ui.drawDialogueScreen();
 			} else {
-				drawStage();
+				//drawStage();
 				scenePhase++;
 			}
-		} else if (scenePhase == 8) {
+		} else if (scenePhase == 9) {
 			gp.currentRoom = 3;
 			gp.rm[gp.currentRoom].draw(g2);
 			gp.ui.drawDialogueScreen();
-		} else if (scenePhase == 9) {
+		} else if (scenePhase == 10) {
 			if(fadeOut(0.005f)) {
 				scenePhase++;
 			}
-		} else if (scenePhase == 10) {
+		} else if (scenePhase == 11) {
 			actor = getActor(PlayerDummy.npcName);
 			//gp.player.worldX = actor.worldX;
 			//gp.player.worldY = actor.worldY;
@@ -1401,6 +1406,7 @@ public class CutsceneManager {
 	private void scene_ending() {
 		if (scenePhase == 0) {
 			if(counterReached(300) == true) {
+				gp.eManager.setDayState(DayState.DAY);
 				scenePhase++;
 			}
 		} else if (scenePhase == 1) {

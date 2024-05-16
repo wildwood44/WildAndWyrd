@@ -28,6 +28,7 @@ public class Player extends Entity {
 	private int shillings;
 	public Boolean approval;
 	private long start;
+	public Object currentLight;
 
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
