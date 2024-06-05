@@ -238,7 +238,7 @@ public class GamePanel extends JPanel implements Runnable {
 				ui.drawCombatants(g2);
 			}
 			ui.draw(g2);
-		} else if (gameState == GameState.combatState) {
+		} else if (gameState == GameState.combatState || gameState == GameState.targetState) {
 			//rm[currentRoom].draw(g2);
 			ui.draw(g2);
 			ui.drawCombatants(g2);
@@ -248,6 +248,7 @@ public class GamePanel extends JPanel implements Runnable {
 				csManager.draw(g2);
 				// Environment
 				eManager.draw(g2);
+				ui.draw(g2);
 			} else {
 				tileM.draw(g2);
 				//INTERACTIVE TILES

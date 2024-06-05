@@ -185,7 +185,7 @@ public class NPC_Florence extends NPC {
 				startDialogue(this, 7);
 			} else if(gp.s.c3Switch[3]) {
 				startDialogue(this, 8);
-			} else if(gp.s.c3Switch[4]) {
+			} else if(!gp.s.c3Switch[3]) {
 				System.out.println(hasQuest);
 				if(hasQuest) {
 					startDialogue(this, 10);

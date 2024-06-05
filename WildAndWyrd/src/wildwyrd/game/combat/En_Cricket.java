@@ -11,13 +11,23 @@ public class En_Cricket extends Enemy {
 		super(gp,"Cricket",  20, 10, 0, 8, 90, 10, 23);
         desc = "Big grasshoppers with long antenna. Can jump a fair distance.";
 		type = EntityType.Sprite;
-		//speed = 1;
 		//setDialogue();
 	}
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge(name + " stood wary." ,1);
 		dialogues[1][0] = new Dialoge(name + " fled." ,1);
+		dialogues[2][0] = new Dialoge("Hunt succesful.",1);
+		dialogues[2][1] = new Dialoge("Wasp","Bzz!",1);
+		dialogues[2][2] = new Dialoge("As Alder collected the slain cricket, a loud buzzing came at him from his side. Two hornets came at him.",1);
+		dialogues[2][3] = new Dialoge("Alder","Ahhh!",port.image_Alder);
+		dialogues[2][4] = new Dialoge("",4);
+		dialogues[3][0] = new Dialoge("Alder","No, come back!",port.image_Alder);
+		dialogues[3][1] = new Dialoge("Alder tried in vain to get the cricket, but it had already jumped out of reach.",1);
+		dialogues[3][2] = new Dialoge("Wasp","Bzz!",1);
+		dialogues[3][3] = new Dialoge("The loud buzzing of insect wings came from Alder's side. Two wasps came at him.",1);
+		dialogues[3][4] = new Dialoge("Alder","Ahhh!",port.image_Alder);
+		dialogues[3][5] = new Dialoge("",4);
 	}
 
 	public void getImage() {
@@ -52,6 +62,19 @@ public class En_Cricket extends Enemy {
 	
 	public void combatResult() {
 		gp.combat.cleanup();
+		//gp.combat.addEnemy(new En_Wasp(gp), new En_Wasp(gp));
+		//cricket.combatResponce();
+		/*gp.combat.addEnemy(new En_Wasp(gp), new En_Wasp(gp));
+		dialogueIndex = 0;
+		if(gp.combat.win) {
+			gp.glossary.unlock("invertebrates", "cricket");
+			gp.glossary.unlock("invertebrates", "wasp");
+			startDialogue(this, 2);
+		} else {
+			startDialogue(this, 3);
+		}
+
+		gp.keyH.enterPressed = false;*/
 		cricket.combatResponce();
 	}
 }

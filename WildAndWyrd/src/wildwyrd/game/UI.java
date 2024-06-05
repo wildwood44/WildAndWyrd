@@ -218,41 +218,7 @@ public class UI {
 		x += gp.tileSize;
 		y += gp.tileSize;
 		if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
-			char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().toCharArray();
-			if (charIndex < characters.length) {
-				String s = String.valueOf(characters[charIndex]);
-				combinedText = combinedText + s;
-				currentDialogue = combinedText;
-				charIndex++;
-				//Complete Text
-				if (gp.keyH.enterPressed) {
-					combinedText = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().substring(0, 
-							selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().length() - 1);
-					charIndex = characters.length - 1;
-					gp.keyH.enterPressed = false;
-				}
-			}
-			//Next Dialogue
-			if (gp.keyH.enterPressed == true) {
-				charIndex = 0;
-				combinedText = "";
-				if (gp.gameState == GameState.dialogueState || 
-					gp.gameState == GameState.cutsceneState) {
-					selectedObject.dialogueIndex++;
-					gp.keyH.enterPressed = false;
-				}
-			//Skip Dialogue
-			} else if (gp.keyH.skipPressed) {
-				if(selectedObject.skippable) {
-					charIndex = 0;
-					combinedText = "";
-					if (gp.gameState == GameState.dialogueState ||
-						gp.gameState == GameState.cutsceneState) {
-						selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
-							gp.keyH.skipPressed = false;
-						}
-				}
-			}
+			printDialogueText(x, y, width);
 		} else {
 			//post dialogue
 			selectedObject.dialogueIndex = 0;
@@ -304,118 +270,7 @@ public class UI {
 		x += gp.tileSize;
 		y += gp.tileSize;
 		if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
-			char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
-					.getText().toCharArray();
-			if (charIndex < characters.length) {
-				String s = String.valueOf(characters[charIndex]);
-				combinedText = combinedText + s;
-				currentDialogue = combinedText;
-				charIndex++;
-				if (gp.keyH.enterPressed) {
-					combinedText = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().substring(0, 
-							selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().length() - 1);
-					charIndex = characters.length - 1;
-					gp.keyH.enterPressed = false;
-				}
-			}
-			//Read dialogue line
-			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
-					.getType() == 1) {
-				if (gp.keyH.enterPressed) {
-					if (currentDialogue
-							.length() == selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
-									.getText().length()) {
-						charIndex = 0;
-						combinedText = "";
-						if (gp.gameState == GameState.examineState) {
-							selectedObject.dialogueIndex++;
-							gp.keyH.enterPressed = false;
-						}
-					}
-				//Skip dialogue
-				} else if (gp.keyH.skipPressed) {
-					if(selectedObject.skippable) {
-						charIndex = 0;
-						combinedText = "";
-						if (gp.gameState == GameState.examineState) {
-							selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
-							gp.keyH.skipPressed = false;
-						}
-					}
-				} 
-				selectedObject.checkConditions();
-			// Yes/No options
-			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
-					.getType() == 2) {
-				if (gp.keyH.enterPressed) {
-					charIndex++;
-					if (choiceSlot == 0) {
-						binaryRes = true;
-					} else {
-						binaryRes = false;
-					}
-
-					charIndex = 0;
-					combinedText = "";
-					if (gp.gameState == GameState.examineState) {
-						selectedObject.choiceResponce();
-						selectedObject.dialogueIndex++;
-						gp.keyH.enterPressed = false;
-					}
-				}
-
-				if (choiceSlot == 0) {
-					g2.drawString(">", x, y + 40);
-				} else {
-					g2.drawString(">", x, y + 80);
-				}
-
-				g2.drawString("Yes", x + 20, y + 40);
-				g2.drawString("No", x + 20, y + 80);
-			// Dialogue options
-			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
-					.getType() == 3) {
-				if (gp.keyH.enterPressed) {
-					charIndex = 0;
-					combinedText = "";
-					if (gp.gameState == GameState.examineState) {
-						selectedObject.choiceResponce();
-						gp.keyH.enterPressed = false;
-					}
-				}
-				for(int i = firstValue; i < selectedObject.options.length; i++) {
-					if(y + 30 > 500) {
-						break;
-					}
-					if (choiceSlot == i) {
-						g2.drawString(">", x, y);
-					}
-					int j = 1;
-					if(selectedObject.options[i] != null) {
-						for (String line : selectedObject.options[i].split(":")) {
-							if (j > 1) {
-								y += 30;
-							}
-							g2.setFont(g2.getFont().deriveFont(0, 18.0F));
-							g2.drawString(line, x + 20, y);
-							j++;
-						}
-					}
-					y += 40;
-				}
-				//Display Up arrow
-				if(firstValue > 0) {
-					drawUpIcon((int)(width/1.65), 340, 20, 20);
-				}
-				//Display Down arrow
-				if(firstValue < selectedObject.options.length - 3) {
-					drawDownIcon((int)(width/1.65), 470, 20, 20);
-				}
-			//Initialise combat
-			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
-					.getType() == 4) {
-				gp.combat.startCombat();
-			}
+			printDialogueText(x, y, width);
 		} else {
 			// End dialogue
 			selectedObject.dialogueIndex = 0;
@@ -438,6 +293,145 @@ public class UI {
 		}
 	}
 	
+	public void printDialogueText(int x, int y, int width) {
+		char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+				.getText().toCharArray();
+		if (charIndex < characters.length) {
+			String s = String.valueOf(characters[charIndex]);
+			combinedText = combinedText + s;
+			currentDialogue = combinedText;
+			charIndex++;
+			if (gp.keyH.enterPressed) {
+				combinedText = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().substring(0, 
+						selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().length() - 1);
+				charIndex = characters.length - 1;
+				gp.keyH.enterPressed = false;
+			}
+		}
+		//Read dialogue line
+		if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+				.getType() == 1) {
+			dialogueRes();
+			//selectedObject.checkConditions();
+		// Yes/No options
+		} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+				.getType() == 2) {
+			binaryRes(x, y);
+		// Dialogue options
+		} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+				.getType() == 3) {
+			optionsRes(x, y, width);
+		//Initialise combat
+		} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+				.getType() == 4) {
+			gp.combat.startCombat();
+		}
+	}
+	
+	public void dialogueRes() {
+		if (gp.keyH.enterPressed) {
+			if (currentDialogue
+					.length() == selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+							.getText().length()) {
+				charIndex = 0;
+				combinedText = "";
+				if (gp.gameState == GameState.examineState) {
+					selectedObject.dialogueIndex++;
+					gp.keyH.enterPressed = false;
+				}
+				if (gp.gameState == GameState.dialogueState || 
+						gp.gameState == GameState.cutsceneState) {
+					selectedObject.dialogueIndex++;
+					gp.keyH.enterPressed = false;
+				}
+			}
+		//Skip dialogue
+		} else if (gp.keyH.skipPressed) {
+			if(selectedObject.skippable) {
+				charIndex = 0;
+				combinedText = "";
+				if (gp.gameState == GameState.examineState) {
+					selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
+					gp.keyH.skipPressed = false;
+				}
+				if (gp.gameState == GameState.dialogueState ||
+					gp.gameState == GameState.cutsceneState) {
+					selectedObject.dialogueIndex = selectedObject.dialogues.length - 1;
+					gp.keyH.skipPressed = false;
+				}
+			}
+		} 
+		selectedObject.checkConditions();
+	}
+	
+	public void binaryRes(int x, int y) {
+		if (gp.keyH.enterPressed) {
+			charIndex++;
+			if (choiceSlot == 0) {
+				binaryRes = true;
+			} else {
+				binaryRes = false;
+			}
+
+			charIndex = 0;
+			combinedText = "";
+			//if (gp.gameState == GameState.examineState) {
+				selectedObject.choiceResponce();
+				selectedObject.dialogueIndex++;
+				gp.keyH.enterPressed = false;
+			//}
+		}
+
+		if (choiceSlot == 0) {
+			g2.drawString(">", x, y + 40);
+		} else {
+			g2.drawString(">", x, y + 80);
+		}
+
+		g2.drawString("Yes", x + 20, y + 40);
+		g2.drawString("No", x + 20, y + 80);
+	}
+	
+	public void optionsRes(int x, int y, int width) {
+		if (gp.keyH.enterPressed) {
+			charIndex = 0;
+			combinedText = "";
+			if (gp.gameState == GameState.examineState) {
+				selectedObject.choiceResponce();
+				gp.keyH.enterPressed = false;
+			}
+		}
+		for(int i = firstValue; i < selectedObject.options.length; i++) {
+			if(y + 30 > 500) {
+				break;
+			}
+			if (choiceSlot == i) {
+				g2.drawString(">", x, y);
+			}
+			int j = 1;
+			if(selectedObject.options[i] != null) {
+				for (String line : selectedObject.options[i].split(":")) {
+					if (j > 1) {
+						y += 30;
+					}
+					g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+					g2.drawString(line, x + 20, y);
+					j++;
+				}
+			}
+			y += 40;
+		}
+		//Display Up arrow
+		if(firstValue > 0) {
+			drawUpIcon((int)(width/1.65), 340, 20, 20);
+		}
+		//Display Down arrow
+		if(firstValue < selectedObject.options.length - 3) {
+			drawDownIcon((int)(width/1.65), 470, 20, 20);
+		}
+	}
+	
+	// DRAW PAUSE SCREEN
 	public void drawPauseScreen() {
 		String text = "PAUSED";
 		int x = getXforCenteredText(text);
@@ -650,7 +644,6 @@ public class UI {
 			//g2.drawString("Shillings: " + gp.player.getShillings(), 30, gp.tileSize);
 			drawCoin(gp.player.getShillings(), frameX + (gp.tileSize/2), frameY + (gp.tileSize/2));
 		}
-
 	}
 	
 	public void drawEquipScreen() {
@@ -1531,10 +1524,13 @@ public class UI {
 	}
 
 	private void drawImageWindow(int x, int y, int width, int height) {
+		
 		try {
-			BufferedImage image = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].image;
-			if (image != null) {
-				g2.drawImage(image, x, y, width, height, (ImageObserver) null);
+			if(this.selectedObject.dialogues[this.selectedObject.dialogueSet][this.selectedObject.dialogueIndex] != null) {
+				BufferedImage image = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].image;
+				if (image != null) {
+					g2.drawImage(image, x, y, width, height, (ImageObserver) null);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

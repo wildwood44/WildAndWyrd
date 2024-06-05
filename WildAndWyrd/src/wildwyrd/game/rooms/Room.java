@@ -70,4 +70,11 @@ public class Room extends Entity {
 	public void setRooms(){
 		
 	}
+
+	public void startDialogue(Entity object, int setNum) {
+		GamePanel gp = this.gp;
+		gp.gameState = GameState.dialogueState;
+		gp.ui.selectedObject = object;
+		dialogueSet = setNum;
+	}
 }

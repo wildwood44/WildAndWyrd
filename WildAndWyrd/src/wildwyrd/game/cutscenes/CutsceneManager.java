@@ -603,20 +603,16 @@ public class CutsceneManager {
 			} else {
 				createActor(new NPC_Trissie(gp), (int) (gp.tileSize * 15.1), gp.tileSize * 4, "down");
 				actor = getActor(NPC_Trissie.npcName);
-				actor.climbing(true);
-				actor.getImage();
 				scenePhase++;
 			}
 		} else if (scenePhase == 7) {
-			drawStage();
-			if(moveActor(actor.name, "down", 5)) {
-				actor.climbing(false);
-				actor.getImage();
+			if(actor.climbing("down", 5)) {
 				actor = getActor(PlayerDummy.npcName);
 				changeActorDirection(actor.name, "up");
 				drawStage();
 				scenePhase++;
 			}
+			drawStage();
 		} else if (scenePhase == 8) {
 			if(gp.c.dialogueIndex < 13) {
 				gp.ui.drawDialogueScreen();
@@ -688,7 +684,6 @@ public class CutsceneManager {
 			gp.c.setSprites(gp.c.dialogueSet);
 			scenePhase++;
 		} else if (scenePhase == 2) {
-			//drawRoom();
 			drawStage();
 			if(fadeIn(0.05f)) {
 				scenePhase++;
@@ -1109,6 +1104,7 @@ public class CutsceneManager {
 			destroyActor(NPC_Gowl_Weasel.npcName);
 			destroyActor(NPC_Gowl_Weasel.npcName);
 			destroyActor(NPC_Gowl_Rat.npcName);
+			destroyActor(NPC_Gowl_Rat.npcName);
 			gp.currentMap = gp.maps[0];
 			gp.player.worldX = gp.tileSize * 11;
 			gp.player.worldY = gp.tileSize * 5;
@@ -1234,12 +1230,14 @@ public class CutsceneManager {
 		} else if (scenePhase == 10) {
 			destroyActor(NPC_Jeb.npcName);
 			destroyActor(NPC_Kyla.npcName);
+			destroyActor(NPC_Gowl_Rat.npcName);
 			gp.currentMap = gp.maps[0];
 			gp.player.worldX = gp.tileSize * 8;
 			gp.player.worldY = gp.tileSize * 6;
 			gp.tileM = new TileManager(gp);
 			gp.eHandler = new EventHandler(gp);
 			createActor(new PlayerDummy(gp), gp.player.worldX, gp.player.worldY, gp.player.direction);
+			changeActorDirection(PlayerDummy.npcName, "up");
 			createActor(new NPC_Jeb(gp), gp.tileSize * 8, gp.tileSize * 5, "left");
 			actor = getActor(NPC_Kyla.npcName);
 			actor.worldX = 7 * gp.tileSize;
@@ -1365,16 +1363,15 @@ public class CutsceneManager {
 			moveActor(NPC_Gowl_Rat.npcName, "up", 3);
 			moveActor(NPC_Gowl_Weasel.npcName, "up", 3);
 			moveActor(NPC_Gowl_Weasel2.npcName, "up", 3);
+			System.out.println(getActor(NPC_Gowl_Rat.npcName).worldY + " " + getActor(NPC_Gowl_Weasel.npcName).worldY + " " + getActor(NPC_Gowl_Weasel2.npcName).worldY);
 			if (moveActor(NPC_Gowl_Sorcerer.npcName, "up", 4)) {
 				scenePhase++;
 			}
 		} else if (scenePhase == 8) {
 			drawStage();
-			//gp.eManager.draw(g2);
 			if(gp.c.dialogueIndex < 34) {
 				gp.ui.drawDialogueScreen();
 			} else {
-				//drawStage();
 				scenePhase++;
 			}
 		} else if (scenePhase == 9) {

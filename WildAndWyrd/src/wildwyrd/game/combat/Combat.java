@@ -17,7 +17,7 @@ public class Combat extends Entity {
 	public List<Enemy> enemies;
 	public ArrayList<Combatant> combatant;
 	private int impact;
-	public Boolean inCombat;
+	public Boolean inCombat = false;
 	public boolean win;
 	private int turn = 0;
 	public int target;

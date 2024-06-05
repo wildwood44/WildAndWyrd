@@ -46,7 +46,7 @@ public class Entity {
 	public int staminaRcvd;
 	public String description = "";
 	public String direction = "down";
-	public BufferedImage up1, up2, up3, left1, left2, left3, right1, right2, right3, down1, down2, down3, unique;
+	public BufferedImage up1, up2, up3, left1, left2, left3, right1, right2, right3, down1, down2, down3, altUp1, altUp2, altDown1, altDown2, unique;
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
 	//Inventory
@@ -60,6 +60,7 @@ public class Entity {
 	public boolean stackable = false;
 	public boolean destroy = false;
 	public boolean hasQuest = false;
+	public boolean climbing = false;
 	public int amount = 1;
 	public EntityType type;
 	public Timer timer;
@@ -243,6 +244,17 @@ public class Entity {
 				image = unique;
 				break;
 			}
+			if(climbing) {
+				System.out.println("Is Climbing");
+				switch(direction) {
+				case "up":
+					if(spriteNum == 1) {image = altUp1;}
+					else {image = altUp2;}
+				case "down":
+					if(spriteNum == 1) {image = altDown1;}
+					else {image = altDown2;}
+				}
+			}
 			g2.setComposite(AlphaComposite.SrcOver.derive(alpha));
 			g2.drawImage(image, tempScreenX, tempScreenY, null);
 			if(hasQuest && gp.gameState == GameState.playState) {
@@ -384,6 +396,26 @@ public class Entity {
 			}
 		}
 		return index;
+	}
+	
+	public boolean climbing(String direction, int move) {
+		boolean climbComplete = false;
+		spriteCounter++;
+		switch(direction) {
+		case "up":
+			if(worldY < gp.tileSize * move){
+				climbComplete = true;
+			} else {worldY -= 1;}
+			break;
+		case "down":
+			if(worldY > gp.tileSize * move){
+				climbComplete = true;
+			} else {worldY += 1;}
+			break;
+		}
+		climbing = !climbComplete;
+		System.out.println(climbing);
+		return climbComplete;
 	}
 	
 	public void combatResponce() {}

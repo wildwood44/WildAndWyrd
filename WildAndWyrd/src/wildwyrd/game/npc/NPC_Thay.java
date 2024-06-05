@@ -22,6 +22,9 @@ public class NPC_Thay extends NPC {
 		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;
+		//Size
+		
+		//Conditions
 		contConditions[0] = false;
 		contConditions[1] = false;
 		contConditions[2] = false;

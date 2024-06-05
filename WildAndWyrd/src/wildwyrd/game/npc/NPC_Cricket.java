@@ -15,6 +15,7 @@ import wildwyrd.game.object.Dialoge;
 public class NPC_Cricket extends NPC {
 	public static final int npcId = 4;
 	public static final String npcName = "Cricket";
+	private En_Cricket enemy = new En_Cricket(gp);
 	public NPC_Cricket(GamePanel gp) {
 		super(gp);
 		id = npcId;
@@ -147,9 +148,9 @@ public class NPC_Cricket extends NPC {
 		if(gp.combat.win) {
 			gp.glossary.unlock("invertebrates", "cricket");
 			gp.glossary.unlock("invertebrates", "wasp");
-			startDialogue(this, 1);
+			enemy.startDialogue(enemy, 2);
 		} else {
-			startDialogue(this, 2);
+			enemy.startDialogue(enemy, 3);
 		}
 		for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; ++i) {
 			if(gp.npc[gp.currentMap.getId()][i].id == npcId) {
@@ -158,7 +159,6 @@ public class NPC_Cricket extends NPC {
 			}
 		}
 		gp.keyH.enterPressed = false;
-		//gp.combat.startCombat();
 	}
 
 	public void choiceResponce() {

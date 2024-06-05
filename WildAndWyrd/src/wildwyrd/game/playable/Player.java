@@ -339,6 +339,7 @@ public class Player extends Entity {
 	}
 
 	public void draw(Graphics2D g2) {
+		getQuest();
 		BufferedImage image = null;
 		image = getPlayerImage(4, 0);
 		int x = screenX;

@@ -56,9 +56,7 @@ public class NPC extends Entity {
 	}
 	
 	public void getImage() {}
-	
-	public void climbing(boolean isClimbing) {}
-	
+		
 	public Item buy(Item buy) {return null;}
 	public Item sell(Item sell) {return null;}
 }
