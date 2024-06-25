@@ -210,14 +210,6 @@ public class Combat extends Entity {
 		incrementTurn();
 	}
 	
-	public void openSpecial() {
-		gp.playable.get(0).setCombatStatus(CombatStatus.Specializing);
-	}
-	
-	public void openInventory() {
-		gp.playable.get(0).setCombatStatus(CombatStatus.Using);
-	}
-	
 	public int getTurn() {
 		return turn;
 	}

@@ -132,6 +132,7 @@ public class GamePanel extends JPanel implements Runnable {
 		cChecker = new CollisionChecker(this);
 		tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
 		g2 = (Graphics2D) tempScreen.getGraphics();
+		//playMusic(31);
 		if(fullScreenOn) {
 			setFullScreen();
 		}
@@ -213,6 +214,15 @@ public class GamePanel extends JPanel implements Runnable {
 					//iTile[currentMap.getId()][i].draw(g2);
 				}
 			}
+			for(int i = 0; i < npc[currentMap.getId()].length; i++) {
+				if(npc[currentMap.getId()][i] != null) {
+					npc[currentMap.getId()][i].update();
+					//iTile[currentMap.getId()][i].draw(g2);
+				}
+			}
+		}
+		if (gameState == GameState.pauseState) {
+			
 		}
 		if (gameState == GameState.combatState) {
 			rm[currentRoom].draw(g2);

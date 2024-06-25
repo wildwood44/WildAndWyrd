@@ -376,9 +376,9 @@ public class UI {
 			charIndex = 0;
 			combinedText = "";
 			//if (gp.gameState == GameState.examineState) {
-				selectedObject.choiceResponce();
-				selectedObject.dialogueIndex++;
-				gp.keyH.enterPressed = false;
+			selectedObject.dialogueIndex++;
+			selectedObject.choiceResponce();
+			gp.keyH.enterPressed = false;
 			//}
 		}
 
@@ -1304,6 +1304,11 @@ public class UI {
 					drawCombatInventoryScreen(x,gp.tileSize * 5,width);
 				} else if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Specializing) {
 					drawCombatSpecialScreen(x,gp.tileSize * 5,width);
+				} else if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Escaping) {
+					gp.playSE(18);
+					gp.combat.endCombat();
+					gp.combat.win = false;
+					gp.gameState = GameState.playState;	
 				} else {
 					//Draw combat menu
 					g2.drawString(" Attack", x, y);
@@ -1323,7 +1328,6 @@ public class UI {
 			//If opponent is not alive next turn
 			gp.combat.incrementTurn();
 		}
-		
 	}
 	
 	public void drawCombatInventoryScreen(int x, int y, int width) {

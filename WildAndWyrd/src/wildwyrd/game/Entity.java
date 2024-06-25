@@ -221,31 +221,34 @@ public class Entity {
 			int tempScreenY = screenY;
 			switch(direction) {
 			case "up":
-				if(spriteNum == 1) {image = up1;}
-				if(spriteNum == 2) {image = up2;}
-				if(spriteNum == 3) {image = up3;}
-				break;
-			case "left":
-				if(spriteNum == 1) {image = left1;}
-				if(spriteNum == 2) {image = left2;}
-				if(spriteNum == 3) {image = left3;}
-				break;
-			case "right":
-				if(spriteNum == 1) {image = right1;}
-				if(spriteNum == 2) {image = right2;}
-				if(spriteNum == 3) {image = right3;}
+				if(spriteNum == 1) {image = up1;} 
+				else if(spriteNum == 2) {image = up2;} 
+				else if(spriteNum == 3) {image = up1;}
+				else if(spriteNum == 4) {image = up3;}
 				break;
 			case "down":
-				if(spriteNum == 1) {image = down1;}
-				if(spriteNum == 2) {image = down2;}
-				if(spriteNum == 3) {image = down3;}
+				if(spriteNum == 1) {image = down1;} 
+				else if(spriteNum == 2) {image = down2;} 
+				else if(spriteNum == 3) {image = down1;} 
+				else if(spriteNum == 4) {image = down3;}
+				break;
+			case "left":
+				if(spriteNum == 1) {image = left1;} 
+				else if(spriteNum == 2) {image = left2;}
+				else if(spriteNum == 3) {image = left1;} 
+				else if(spriteNum == 4) {image = left3;}
+				break;
+			case "right":
+				if(spriteNum == 1) {image = right1;} 
+				else if(spriteNum == 2) {image = right2;}
+				else if(spriteNum == 3) {image = right1;}
+				else if(spriteNum == 4) {image = right3;}
 				break;
 			case "unique":
 				image = unique;
 				break;
 			}
 			if(climbing) {
-				System.out.println("Is Climbing");
 				switch(direction) {
 				case "up":
 					if(spriteNum == 1) {image = altUp1;}
@@ -271,24 +274,28 @@ public class Entity {
 			int tempScreenY = screenY;
 			switch(direction) {
 			case "up":
-				if(spriteNum == 1) {image = up1;}
-				if(spriteNum == 2) {image = up2;}
-				if(spriteNum == 3) {image = up3;}
-				break;
-			case "left":
-				if(spriteNum == 1) {image = left1;}
-				if(spriteNum == 2) {image = left2;}
-				if(spriteNum == 3) {image = left3;}
-				break;
-			case "right":
-				if(spriteNum == 1) {image = right1;}
-				if(spriteNum == 2) {image = right2;}
-				if(spriteNum == 3) {image = right3;}
+				if(spriteNum == 1) {image = up1;} 
+				else if(spriteNum == 2) {image = up2;} 
+				else if(spriteNum == 3) {image = up1;}
+				else if(spriteNum == 4) {image = up3;}
 				break;
 			case "down":
-				if(spriteNum == 1) {image = down1;}
-				if(spriteNum == 2) {image = down2;}
-				if(spriteNum == 3) {image = down3;}
+				if(spriteNum == 1) {image = down1;} 
+				else if(spriteNum == 2) {image = down2;} 
+				else if(spriteNum == 3) {image = down1;} 
+				else if(spriteNum == 4) {image = down3;}
+				break;
+			case "left":
+				if(spriteNum == 1) {image = left1;} 
+				else if(spriteNum == 2) {image = left2;}
+				else if(spriteNum == 3) {image = left1;} 
+				else if(spriteNum == 4) {image = left3;}
+				break;
+			case "right":
+				if(spriteNum == 1) {image = right1;} 
+				else if(spriteNum == 2) {image = right2;}
+				else if(spriteNum == 3) {image = right1;}
+				else if(spriteNum == 4) {image = right3;}
 				break;
 			case "unique":
 				image = unique;

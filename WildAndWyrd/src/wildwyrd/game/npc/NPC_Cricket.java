@@ -114,8 +114,8 @@ public class NPC_Cricket extends NPC {
 				break;
 			}
 			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-		}else if(gp.player.worldX < gp.player.screenX ||
-			    gp.player.worldY < gp.player.screenY ||
+		} else if(gp.player.worldX < gp.player.screenX ||
+				gp.player.worldY < gp.player.screenY ||
 			    rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX ||
 			    bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
 			image = getPlayerImage(1, 0);
@@ -165,6 +165,7 @@ public class NPC_Cricket extends NPC {
 		if (gp.ui.choiceSlot == 0) {
 			gp.combat.addEnemy(new En_Cricket(gp));
 			gp.combat.startCombat();
+			dialogueIndex = 0;
 			//gp.gameState = GameState.combatState;
 		}
 

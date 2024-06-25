@@ -34,12 +34,12 @@ public class Sound {
 		//Move
 		//Special
 		//Items
-		//Flee
+		soundURL[18] = getClass().getResource("/res/sound/flee.wav"); //Flee
 		soundURL[19] = getClass().getResource("/res/sound/victory.wav"); //Victory
 		soundURL[20] = getClass().getResource("/res/sound/run.wav"); // Run
 		soundURL[21] = getClass().getResource("/res/sound/Pickup.wav"); // Interact with item
 		//Menu song
-		//Woodland song
+		soundURL[31] = getClass().getResource("/res/music/Casual-Theme.wav"); //Woodland song
 		//Cottage song
 		soundURL[33] = getClass().getResource("/res/music/HallOfTheScion.wav"); // Hall of the Scion
 		
