@@ -10,6 +10,7 @@ import wildwyrd.game.GameState;
 import wildwyrd.game.combat.CombatStatus;
 import wildwyrd.game.items.Weapon;
 import wildwyrd.game.items.WeaponType;
+import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.skill.Skill;
 
 public class Combatant extends Entity implements Comparable<Combatant> {
@@ -41,6 +42,9 @@ public class Combatant extends Entity implements Comparable<Combatant> {
 	protected int actionLockCounter = 0;
 	protected int invincibleCounter = 0;
 	protected int dyingCounter = 0;
+	int screenX = gp.tileSize*4;
+	int screenY = gp.tileSize*2;
+	//public Combatant target;
 	public Combatant(GamePanel gp, String name, int health, int stamina,
 			int baseAttack, int baseDefence, int baseAccuracy, int baseEvasion, int baseSpeed) {
 		super(gp);
@@ -57,6 +61,11 @@ public class Combatant extends Entity implements Comparable<Combatant> {
 		this.baseSpeed = baseSpeed;
 		getImage();
 	}
+
+	public void setDialogue() {
+		//dialogues[0][0] = new Dialoge(name + " Could not escape!",1);
+	}
+	
 	public Entity getHead() {
 		return head;
 	}
@@ -229,9 +238,8 @@ public class Combatant extends Entity implements Comparable<Combatant> {
 	}
 	
 	public void draw(Graphics2D g2) {
-		//BufferedImage image = getImage();
-		int screenX = gp.tileSize*4;
-		int screenY = gp.tileSize*2;
+		screenX = gp.tileSize*4;
+		screenY = gp.tileSize*2;
 		if (inRear) {
 			screenX -= (gp.tileSize*2);
 		}
@@ -289,6 +297,21 @@ public class Combatant extends Entity implements Comparable<Combatant> {
 			alive = false;
 		}
 	}
+	/*public void escapingAnimation(Graphics2D g2) {
+		dyingCounter++;
+		int i = 5;
+		if(dyingCounter <= i) {changeAlpha(g2,0f);}
+		if(dyingCounter > i && dyingCounter <= i*2) {screenX += 10;}
+		if(dyingCounter > i*2 && dyingCounter <= i*3) {screenX += 20;changeAlpha(g2,0.8f);}
+		if(dyingCounter > i*3 && dyingCounter <= i*4) {screenX += 30;changeAlpha(g2,0.6f);}
+		if(dyingCounter > i*4 && dyingCounter <= i*5) {screenX += 40;changeAlpha(g2,0.4f);}
+		if(dyingCounter > i*5 && dyingCounter <= i*6) {screenX += 50;changeAlpha(g2,0.2f);}
+		if(dyingCounter > i*6 && dyingCounter <= i*7) {screenX += 60;changeAlpha(g2,0f);}
+		if(dyingCounter > i*7) {
+			dying = false;
+			alive = false;
+		}
+	}*/
 	
 	public void loadProjectile(Weapon projectile) {
 		if((weapon_second.getWpType() == WeaponType.Bow && projectile.getWpType() == WeaponType.Arrow)||

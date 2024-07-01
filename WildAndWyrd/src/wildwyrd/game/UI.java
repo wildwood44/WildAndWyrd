@@ -223,24 +223,13 @@ public class UI {
 			//post dialogue
 			selectedObject.dialogueIndex = 0;
 			if (gp.gameState == GameState.dialogueState) {
-				if(!gp.combat.enemiesActive()) {
-					//drawCombatants(g2);
-					gp.combat.inCombat = false;
-					gp.combat.win = true;
-				} else if (!gp.combat.playableActive()) {
-					//drawCombatants(g2);
-					gp.combat.inCombat = false;
-					gp.combat.win = false;
-				}
-				if(gp.combat.inCombat) {
-					gp.gameState = GameState.combatState;
-					gp.combat.incrementTurn();
-				} else {
-					gp.combat.endCombat();
-				}
+				combatRes();
 			}
 			if (gp.gameState == GameState.cutsceneState) {
 				gp.csManager.scenePhase++;
+			}
+			if (gp.gameState == GameState.examineState) {
+				gp.gameState = GameState.playState;
 			}
 		}
 		if(selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex] != null) {
@@ -428,6 +417,29 @@ public class UI {
 		//Display Down arrow
 		if(firstValue < selectedObject.options.length - 3) {
 			drawDownIcon((int)(width/1.65), 470, 20, 20);
+		}
+	}
+	
+	public void combatRes() {
+		if(!gp.combat.enemiesActive()) {
+			//drawCombatants(g2);
+			gp.combat.inCombat = false;
+			gp.combat.win = true;
+		} else if (!gp.combat.playableActive()) {
+			//drawCombatants(g2);
+			gp.combat.inCombat = false;
+			gp.combat.win = false;
+		}
+		if(gp.combat.inCombat) {
+			if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Escaping) {
+				gp.gameState = GameState.combatState;
+				gp.playable.get(0).setCombatStatus(CombatStatus.Normal);
+			} else {
+				gp.gameState = GameState.combatState;
+				gp.combat.incrementTurn();
+			}
+		} else {
+			gp.combat.endCombat();
 		}
 	}
 	
@@ -1305,10 +1317,15 @@ public class UI {
 				} else if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Specializing) {
 					drawCombatSpecialScreen(x,gp.tileSize * 5,width);
 				} else if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Escaping) {
-					gp.playSE(18);
-					gp.combat.endCombat();
-					gp.combat.win = false;
-					gp.gameState = GameState.playState;	
+					if(!gp.combat.canFlee()) {
+						gp.combat.escapeFailed();
+						//gp.combat.getCombatant().setCombatStatus(CombatStatus.Normal);
+					} else {
+						gp.playSE(18);
+						gp.combat.endCombat();
+						gp.combat.win = false;
+						gp.gameState = GameState.playState; 
+					}
 				} else {
 					//Draw combat menu
 					g2.drawString(" Attack", x, y);
@@ -1358,7 +1375,6 @@ public class UI {
 				}
 			}
 		}
-		//Display Up arrow
 		if(firstValue > 0) {
 			drawUpIcon((int)(width/1.65), 340, 20, 20);
 		}

@@ -122,7 +122,6 @@ public class KeyHandler implements KeyListener {
 		if (code == KeyEvent.VK_ENTER) {
 			enterPressed = true;
 		}
-
 		if (code == KeyEvent.VK_Q) {
 			skipPressed = true;
 		}
@@ -145,7 +144,6 @@ public class KeyHandler implements KeyListener {
 						if(gp.ui.selectedObject.options.length > 2) {
 							gp.ui.firstValue = gp.ui.choiceSlot - 2;
 						}
-						
 					}
 					if (gp.ui.firstValue > gp.ui.choiceSlot) {
 						gp.ui.firstValue = gp.ui.choiceSlot;

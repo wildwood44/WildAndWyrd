@@ -60,9 +60,6 @@ public class Enemy extends Combatant {
 		
 	}
 
-	public void setDialogue() {
-	}
-
 	public void startDialogue(Entity object, int setNum) {
 		GamePanel gp = this.gp;
 		gp.gameState = GameState.dialogueState;

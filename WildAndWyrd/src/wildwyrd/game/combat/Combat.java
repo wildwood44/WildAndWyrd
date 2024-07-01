@@ -12,8 +12,6 @@ import wildwyrd.game.playable.Combatant;
 
 public class Combat extends Entity {
 	GamePanel gp;
-	public int dialogueSet = 0;
-	public int dialogueIndex = 0;
 	public List<Enemy> enemies;
 	public ArrayList<Combatant> combatant;
 	private int impact;
@@ -21,6 +19,7 @@ public class Combat extends Entity {
 	public boolean win;
 	private int turn = 0;
 	public int target;
+	private boolean canFlee = false;
 	public StringBuilder sb;
 	
 	public Combat(GamePanel gp) {
@@ -29,7 +28,6 @@ public class Combat extends Entity {
 		enemies = new ArrayList<Enemy>(5);
 		combatant = new ArrayList<Combatant>(10);
 		skippable = false;
-		//combatant.sort(combatant.compareTo(combatant.get(1)));
 	}
 	
 	public Combatant getCombatant() {
@@ -44,10 +42,13 @@ public class Combat extends Entity {
 		return combatant.get(index);
 	}
 
-	public void setDialogue() {
-		//dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
-		//dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
-		//dialogues[1][0] = new Dialoge(enemy.name + " was defeated!",1);
+	public void setDialogue(Combatant user, Combatant target) {
+		dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
+		dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
+		dialogues[1][0] = new Dialoge(user.name + " was defeated!",1);
+		dialogues[2][0] = new Dialoge(user.name + " fled!",1);
+		dialogues[3][0] = new Dialoge(target.name + " was out of range!",1);
+		dialogues[4][0] = new Dialoge("There is no running here!", 1);
 	}
 
 	public void startDialogue(Entity object, int setNum) {
@@ -79,6 +80,7 @@ public class Combat extends Entity {
 				combatant.add(e);
 			}
 		}
+		setDialogue(combatant.get(0),enemies.get(0));
 		Collections.sort(combatant);
 	}
 	
@@ -118,9 +120,9 @@ public class Combat extends Entity {
 	
 	public boolean playableActive() {
 		for (Combatant player : gp.playable) {
-			if(player.getCombatStatus() == CombatStatus.Escaping) {
-				return false;
-			}
+			//if(player.getCombatStatus() == CombatStatus.Escaping) {
+				//return false;
+			//}
 			if(player.isAlive()) {
 				return true;
 			}
@@ -152,20 +154,27 @@ public class Combat extends Entity {
 		return enemies;
 	}
 	
+	public void escapeFailed() {
+		gp.keyH.enterPressed = false;
+		startDialogue(this, 4);
+	}
+	
 	public void playerDeath(Combatant p) {
 		p.killed();
 		gp.keyH.enterPressed = false;
-		dialogues[0][0] = new Dialoge(p.name + " was defeated!",1);
-		dialogues[0][1] = null;
-		startDialogue(this, 0);
+		//dialogues[0][0] = new Dialoge(p.name + " was defeated!",1);
+		//dialogues[0][1] = null;
+		setDialogue(p, p);
+		startDialogue(this, 1);
 	}
 	
 	public void enemyDeath(Enemy enemy) {
 		enemy.killed();
 		gp.keyH.enterPressed = false;
-		dialogues[0][0] = new Dialoge(enemy.name + " was defeated!",1);
-		dialogues[0][1] = null;
-		startDialogue(this, 0);
+		//dialogues[0][0] = new Dialoge(enemy.name + " was defeated!",1);
+		//dialogues[0][1] = null;
+		setDialogue(enemy, enemy);
+		startDialogue(this, 1);
 	}
 	
 	public Enemy getTarget() {
@@ -188,10 +197,10 @@ public class Combat extends Entity {
 					impact = 1;
 				}
 			}
-			dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
-			dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
+			//dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
+			//dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
 			target.health -= impact;
-			
+			setDialogue(user, target);
 			startDialogue(this, 0);
 		}else {
 			gp.combat.outOfRange(target);
@@ -200,9 +209,10 @@ public class Combat extends Entity {
 	
 	public void outOfRange(Combatant target) {
 		gp.keyH.enterPressed = false;
-		dialogues[0][0] = new Dialoge(target.name + " was out of range!",1);
-		dialogues[0][1] = null;
-		startDialogue(this, 0);
+		//dialogues[0][0] = new Dialoge(target.name + " was out of range!",1);
+		//dialogues[0][1] = null;
+		setDialogue(target, target);		
+		startDialogue(this, 3);
 	}
 	
 	public void blockAttack() {
@@ -212,6 +222,15 @@ public class Combat extends Entity {
 	
 	public int getTurn() {
 		return turn;
+	}
+	
+	public void setCanFlee(boolean canFlee) {
+		this.canFlee = canFlee;
+	}
+	
+	public boolean canFlee() {
+		System.out.println(canFlee);
+		return canFlee;
 	}
 	
 	public void incrementTurn() {

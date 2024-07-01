@@ -145,9 +145,10 @@ public class NPC_Cricket extends NPC {
 	public void combatResponce() {
 		gp.combat.addEnemy(new En_Wasp(gp), new En_Wasp(gp));
 		dialogueIndex = 0;
+		gp.glossary.unlock("invertebrates", "cricket");
+		gp.glossary.unlock("invertebrates", "wasp");
+		gp.combat.setCanFlee(false);
 		if(gp.combat.win) {
-			gp.glossary.unlock("invertebrates", "cricket");
-			gp.glossary.unlock("invertebrates", "wasp");
 			enemy.startDialogue(enemy, 2);
 		} else {
 			enemy.startDialogue(enemy, 3);
@@ -164,6 +165,7 @@ public class NPC_Cricket extends NPC {
 	public void choiceResponce() {
 		if (gp.ui.choiceSlot == 0) {
 			gp.combat.addEnemy(new En_Cricket(gp));
+			gp.combat.setCanFlee(false);
 			gp.combat.startCombat();
 			dialogueIndex = 0;
 			//gp.gameState = GameState.combatState;

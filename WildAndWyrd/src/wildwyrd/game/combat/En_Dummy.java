@@ -23,6 +23,7 @@ public class En_Dummy extends Enemy {
 		dialogues[0][0] = new Dialoge("To use a ranged weapon like the bow select a supported projectile from items." ,1);
 		dialogues[0][1] = new Dialoge("Now select attack to fire.",1);
 		dialogues[1][0] = new Dialoge("Nice shot!", 1);
+		dialogues[5][0] = new Dialoge("Trissie","It's a dummy, why are you trying to run?!", 1);
 	}
 
 	public void getImage() {
