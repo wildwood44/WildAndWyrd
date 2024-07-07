@@ -138,7 +138,7 @@ public class Cutscene extends Entity {
 			dialogues[dialogueSet][10] = new Dialoge("Alder","Yes, please!", port.image_Alder);
 			dialogues[dialogueSet][11] = new Dialoge("Trissie","You might need them.", port.image_Trissie);
 			dialogues[dialogueSet][12] = new Dialoge("Alder","Huh?", port.image_Alder);
-			dialogues[dialogueSet][13] = new Dialoge("Florence","Triss!", port.image_Florence);
+			dialogues[dialogueSet][13] = new Dialoge("Florence","Oh, Triss! Come in.", port.image_Florence);
 			break;
 		case 7:
 			dialogues[dialogueSet][0] = new Dialoge("Trissie","I'll make this quick!", port.image_Trissie);

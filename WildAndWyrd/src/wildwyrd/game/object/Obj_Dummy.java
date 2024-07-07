@@ -3,6 +3,7 @@ package wildwyrd.game.object;
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.combat.Combat;
 import wildwyrd.game.combat.En_Dummy;
 
 public class Obj_Dummy extends Entity {
@@ -17,7 +18,6 @@ public class Obj_Dummy extends Entity {
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
-		//enemy = new En_Dummy(gp);
 		image = setup("/res/objects/img_dummy",gp.tileSize,gp.tileSize);
 		setDialogue();
 		getImage(image);
@@ -28,8 +28,10 @@ public class Obj_Dummy extends Entity {
 
 	public void interact() {
 		if(!destroy && gp.playable.get(0).getWeapon_second().name != null) {
-			gp.combat.addEnemy(new En_Dummy(gp));
-			gp.combat.startCombat();
+			//gp.combat.addEnemy(new En_Dummy(gp));
+			//gp.combat.startCombat();
+			enemies.add(new En_Dummy(gp));
+			gp.combat = new Combat(gp, false, enemies);
 		}
 	}
 }

@@ -6,10 +6,12 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
+import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.items.Item;
 import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.tile.UtilityTool;
@@ -49,6 +51,7 @@ public class Entity {
 	public BufferedImage up1, up2, up3, left1, left2, left3, right1, right2, right3, down1, down2, down3, altUp1, altUp2, altDown1, altDown2, unique;
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
+	public List<Enemy> enemies = new ArrayList<Enemy>(5);
 	//Inventory
 	public ArrayList<Item> inventory = new ArrayList<Item>();
 	public final int inventorySize = 20;

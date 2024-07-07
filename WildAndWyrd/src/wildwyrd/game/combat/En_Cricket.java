@@ -1,5 +1,7 @@
 package wildwyrd.game.combat;
 
+import java.util.Collections;
+
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
@@ -11,6 +13,7 @@ public class En_Cricket extends Enemy {
 		super(gp,"Cricket",  20, 10, 0, 8, 90, 10, 23);
         desc = "Big grasshoppers with long antenna. Can jump a fair distance.";
 		type = EntityType.Sprite;
+		Collections.addAll(enemies, new En_Wasp(gp), new En_Wasp(gp));
 		//setDialogue();
 	}
 
@@ -45,6 +48,7 @@ public class En_Cricket extends Enemy {
 			if(gp.playable.get(0).getCombatStatus() == CombatStatus.Attacking) {
 				startDialogue(this, 1);
 				setCombatStatus(CombatStatus.Escaping);
+				gp.combat.cr.addFrame(getCombatStatus(), id, this);
 				gp.combat.win = false;
 			} else {
 				startDialogue(this, 0);

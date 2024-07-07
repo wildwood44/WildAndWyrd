@@ -3,13 +3,17 @@ package wildwyrd.game.npc;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.combat.Combat;
 import wildwyrd.game.combat.En_Cricket;
 import wildwyrd.game.combat.En_Wasp;
+import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.object.Dialoge;
 
 public class NPC_Cricket extends NPC {
@@ -143,11 +147,11 @@ public class NPC_Cricket extends NPC {
 	}
 	
 	public void combatResponce() {
-		gp.combat.addEnemy(new En_Wasp(gp), new En_Wasp(gp));
+		//gp.combat.addEnemy(new En_Wasp(gp), new En_Wasp(gp));
 		dialogueIndex = 0;
 		gp.glossary.unlock("invertebrates", "cricket");
 		gp.glossary.unlock("invertebrates", "wasp");
-		gp.combat.setCanFlee(false);
+		//gp.combat.setCanFlee(false);
 		if(gp.combat.win) {
 			enemy.startDialogue(enemy, 2);
 		} else {
@@ -164,9 +168,11 @@ public class NPC_Cricket extends NPC {
 
 	public void choiceResponce() {
 		if (gp.ui.choiceSlot == 0) {
-			gp.combat.addEnemy(new En_Cricket(gp));
-			gp.combat.setCanFlee(false);
-			gp.combat.startCombat();
+			//gp.combat.addEnemy(new En_Cricket(gp));
+			//gp.combat.setCanFlee(false);
+			//gp.combat.startCombat();
+			enemies.add(enemy);
+			gp.combat = new Combat(gp, false, enemies);
 			dialogueIndex = 0;
 			//gp.gameState = GameState.combatState;
 		}

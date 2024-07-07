@@ -648,6 +648,11 @@ public class CutsceneManager {
 				scenePhase++;
 			}
 		} else if (scenePhase == 13) {
+			drawStage();
+			if(gp.player.worldY > gp.tileSize * 7) {
+				scenePhase++;
+			}
+		} else if (scenePhase == 14) {
 			gp.glossary.unlock("mammal", "red squirrel");
 			gp.s.swh[read] = false;
 			gp.s.swh[6] = true;

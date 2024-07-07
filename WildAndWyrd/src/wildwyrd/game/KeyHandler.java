@@ -799,13 +799,13 @@ public class KeyHandler implements KeyListener {
 		case KeyEvent.VK_ENTER :
 			if(gp.ui.slotCol2 == 0 && gp.ui.slotRow2 == 0) {
 				System.out.println("O");
-				gp.playable.get(0).getOffencive().activate();
+				gp.playable.get(0).getOffencive().cast();
 			} else if(gp.ui.slotCol2 == 1 && gp.ui.slotRow2 == 0) {
 				System.out.println("S");
-				gp.playable.get(0).getSupportive().activate();
+				gp.playable.get(0).getSupportive().cast();
 			} else if(gp.ui.slotCol2 == 0 && gp.ui.slotRow2 == 1) {
 				System.out.println("Self");
-				gp.playable.get(0).getSelfie().activate();
+				gp.playable.get(0).getSelfie().cast();
 			}
 			break;
 		}

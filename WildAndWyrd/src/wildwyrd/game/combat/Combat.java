@@ -12,6 +12,7 @@ import wildwyrd.game.playable.Combatant;
 
 public class Combat extends Entity {
 	GamePanel gp;
+	public CombatRecord cr;
 	public List<Enemy> enemies;
 	public ArrayList<Combatant> combatant;
 	private int impact;
@@ -25,9 +26,21 @@ public class Combat extends Entity {
 	public Combat(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		cr = new CombatRecord();
 		enemies = new ArrayList<Enemy>(5);
 		combatant = new ArrayList<Combatant>(10);
 		skippable = false;
+	}
+	
+	public Combat(GamePanel gp, List<Enemy> enemies) {
+		this(gp);
+		addEnemy(enemies);
+		startCombat();
+	}
+	
+	public Combat(GamePanel gp, boolean canFlee, List<Enemy> enemies) {
+		this(gp, enemies);
+		this.canFlee = canFlee;
 	}
 	
 	public Combatant getCombatant() {
@@ -57,9 +70,6 @@ public class Combat extends Entity {
 		gp.ui.selectedObject = object;
 		dialogueSet = setNum;
 	}
-	
-	public void takeDamage() {
-	}
 
 	public void startCombat() {
 		turn = 0;
@@ -82,15 +92,15 @@ public class Combat extends Entity {
 		}
 		setDialogue(combatant.get(0),enemies.get(0));
 		Collections.sort(combatant);
+		gp.playMusic(34);
 	}
-	
+	//End Combat
 	public void endCombat() {
+		cr.playRecord();
 		gp.ui.droppedItems.clear();
 		gp.gameState = GameState.playState;
 		gp.keyH.enterPressed = false;
-		/*for(int i = 0; i < gp.playable.size(); i++) {
-			combatant.remove(gp.playable.get(i));
-		}*/
+		gp.stopMusic();
 		try {
 			//If enemies are all defeated
 			if(!enemiesActive()) {
@@ -146,6 +156,10 @@ public class Combat extends Entity {
 		enemies.add(e1);
 	}
 	
+	public void addEnemy(List<Enemy> e) {
+		enemies.addAll(e);
+	}
+	
 	public void addEnemy(Enemy e1, Enemy e2) {
 		Collections.addAll(enemies,e1,e2);
 	}
@@ -182,12 +196,12 @@ public class Combat extends Entity {
 	}
 	
 	public void dealDamage(Combatant user, Combatant target, int damage) {
+		user.setCombatStatus(CombatStatus.Attacking);
 		if((user.inRange() && target.inRange()) || user.projectileLoaded()) {
 			gp.playSE(13);
 			if(user.projectileLoaded()) {
 				damage = gp.playable.get(0).fireProjectile();
 			}
-			user.setCombatStatus(CombatStatus.Attacking);
 			user.loseStamina(5);
 			gp.keyH.enterPressed = false;
 			impact = damage * 100/(100 + target.baseDefence);
@@ -200,6 +214,7 @@ public class Combat extends Entity {
 			//dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
 			//dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
 			target.health -= impact;
+			cr.addFrame(user.getCombatStatus(), damage, user, target);
 			setDialogue(user, target);
 			startDialogue(this, 0);
 		}else {
@@ -217,6 +232,7 @@ public class Combat extends Entity {
 	
 	public void blockAttack() {
 		gp.playable.get(0).setCombatStatus(CombatStatus.Blocking);
+		cr.addFrame(gp.playable.get(0).getCombatStatus(), 0, gp.playable.get(0));
 		incrementTurn();
 	}
 	
@@ -229,7 +245,6 @@ public class Combat extends Entity {
 	}
 	
 	public boolean canFlee() {
-		System.out.println(canFlee);
 		return canFlee;
 	}
 	

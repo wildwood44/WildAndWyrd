@@ -239,6 +239,7 @@ public class Player extends Entity {
 			Item selectedItem = inventory.get(itemIndex);
 			selectedItem.use();
 			if(gp.gameState == GameState.combatState) {
+				gp.combat.cr.addFrame(gp.combat.getCombatant().getCombatStatus(), selectedItem.healthRcvd, gp.playable.get(0), selectedItem);
 				gp.playable.get(0).setCombatStatus(CombatStatus.Normal);
 				gp.combat.incrementTurn();
 			}

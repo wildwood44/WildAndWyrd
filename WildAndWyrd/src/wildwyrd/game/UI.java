@@ -18,14 +18,15 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import wildwyrd.game.combat.Combat;
 import wildwyrd.game.combat.CombatStatus;
 import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.items.Item;
-import wildwyrd.game.items.Itm_Bug_Meat;
 import wildwyrd.game.library.Book;
 import wildwyrd.game.npc.NPC;
 import wildwyrd.game.playable.Combatant;
+
 public class UI {
 	GamePanel gp;
 	Cutscene c;
@@ -313,7 +314,7 @@ public class UI {
 		//Initialise combat
 		} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 				.getType() == 4) {
-			gp.combat.startCombat();
+			gp.combat = new Combat(gp, false, selectedObject.enemies);
 		}
 	}
 	
@@ -1321,6 +1322,7 @@ public class UI {
 						gp.combat.escapeFailed();
 						//gp.combat.getCombatant().setCombatStatus(CombatStatus.Normal);
 					} else {
+						gp.combat.cr.addFrame(gp.combat.getCombatant().getCombatStatus(), 0, gp.playable.get(0));
 						gp.playSE(18);
 						gp.combat.endCombat();
 						gp.combat.win = false;

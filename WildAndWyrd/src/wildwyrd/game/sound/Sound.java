@@ -42,7 +42,7 @@ public class Sound {
 		soundURL[31] = getClass().getResource("/res/music/Casual-Theme.wav"); //Woodland song
 		//Cottage song
 		soundURL[33] = getClass().getResource("/res/music/HallOfTheScion.wav"); // Hall of the Scion
-		
+		soundURL[34] = getClass().getResource("/res/music/Combat-Theme.wav"); //Combat theme
 	}
 	
 	public void setFile(int i) {

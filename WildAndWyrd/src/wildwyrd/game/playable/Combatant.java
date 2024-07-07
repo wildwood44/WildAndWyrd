@@ -10,7 +10,6 @@ import wildwyrd.game.GameState;
 import wildwyrd.game.combat.CombatStatus;
 import wildwyrd.game.items.Weapon;
 import wildwyrd.game.items.WeaponType;
-import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.skill.Skill;
 
 public class Combatant extends Entity implements Comparable<Combatant> {
@@ -44,7 +43,7 @@ public class Combatant extends Entity implements Comparable<Combatant> {
 	protected int dyingCounter = 0;
 	int screenX = gp.tileSize*4;
 	int screenY = gp.tileSize*2;
-	//public Combatant target;
+	
 	public Combatant(GamePanel gp, String name, int health, int stamina,
 			int baseAttack, int baseDefence, int baseAccuracy, int baseEvasion, int baseSpeed) {
 		super(gp);
@@ -208,11 +207,13 @@ public class Combatant extends Entity implements Comparable<Combatant> {
 		return !inRear;
 	}
 	public void changePos() {
+		setCombatStatus(CombatStatus.Shifting);
 		if(!inRear) {
 			inRear = true;
 		} else {
 			inRear = false;
 		}
+		gp.combat.cr.addFrame(getCombatStatus(), id, gp.playable.get(0), inRear);
 	}
 	public void advance(Combatant target) {
 		if(!target.inRange()) {
@@ -332,6 +333,7 @@ public class Combatant extends Entity implements Comparable<Combatant> {
 	
 	public int fireProjectile() {
 		if(loadedProjectile != null) {
+			setCombatStatus(CombatStatus.RAttacking);
 			int totalDamage = getWeapon_second().attackValue + loadedProjectile.attackValue;
 			loadedProjectile = null;
 			return totalDamage;
