@@ -649,7 +649,8 @@ public class CutsceneManager {
 			}
 		} else if (scenePhase == 13) {
 			drawStage();
-			if(gp.player.worldY > gp.tileSize * 7) {
+			gp.player.worldY += 2;
+			if(gp.player.worldY > gp.tileSize * 6) {
 				scenePhase++;
 			}
 		} else if (scenePhase == 14) {
@@ -954,6 +955,7 @@ public class CutsceneManager {
 				scenePhase++;
 			}
 		} else if (scenePhase == 7) {
+			gp.glossary.unlock("constructs", "sword");
 			destroyPlayerDummy();
 			gp.player.drawing = true;
 			gp.s.swh[9] = false;
@@ -1086,6 +1088,8 @@ public class CutsceneManager {
 			createActor(new NPC_Gowl_Weasel(gp), gp.tileSize * 11, gp.tileSize * 4, "up");
 			createActor(new NPC_Gowl_Rat(gp), gp.tileSize * 12, gp.tileSize * 4, "up");
 			createActor(new NPC_Gowl_Rat(gp), gp.tileSize * 13, gp.tileSize * 3, "up");
+			gp.glossary.unlock("mammal", "weasel");
+			gp.glossary.unlock("mammal", "brown rat");
 			drawStage();
 			scenePhase++;
 		} else if (scenePhase == 4) {
@@ -1350,6 +1354,7 @@ public class CutsceneManager {
 			createActor(new NPC_Gowl_Weasel2(gp), gp.tileSize * 13, gp.tileSize * 7, "up");
 			createActor(new NPC_Gowl_Sorcerer(gp), gp.tileSize * 12, gp.tileSize * 8, "up");
 			actor = getActor(NPC_Gowl_Sorcerer.npcName);
+			gp.glossary.unlock("mammal", "red fox");
 			gp.player.worldX = gp.tileSize * 11;
 			gp.player.worldY = gp.tileSize * 5;
 			gp.tileM = new TileManager(gp);

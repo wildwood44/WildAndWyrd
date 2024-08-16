@@ -19,6 +19,7 @@ public class Portrate {
 	public BufferedImage image_Gowl_Rat;
 	public BufferedImage image_Gowl_Weasel;
 	public BufferedImage image_Jeb;
+	public BufferedImage image_Gowl_Fox_Wiz;
 	
 	public Portrate() {
 		setImages();
@@ -44,6 +45,7 @@ public class Portrate {
 		case "Kyla": return image_Kyla;
 		case "Trissie": return image_Trissie;
 		case "Agrimus": return image_Agrimus;
+		case "Sorcerer Fox": return image_Gowl_Fox_Wiz;
 		default : return null;
 		}
 	}
@@ -62,6 +64,7 @@ public class Portrate {
 			image_Agrimus = ImageIO.read(getClass().getResourceAsStream("/res/portrate/prt_Agrimus.png"));
 			image_Gowl_Rat = ImageIO.read(getClass().getResourceAsStream("/res/portrate/prt_gowl_rat.png"));
 			image_Gowl_Weasel = ImageIO.read(getClass().getResourceAsStream("/res/portrate/prt_gowl_weasel.png"));
+			image_Gowl_Fox_Wiz = ImageIO.read(getClass().getResourceAsStream("/res/portrate/prt_gowl_fox_wizard.png"));
 			image_Jeb = ImageIO.read(getClass().getResourceAsStream("/res/portrate/prt_Jeb.png"));
 		} catch (IOException e) {
 			e.printStackTrace();

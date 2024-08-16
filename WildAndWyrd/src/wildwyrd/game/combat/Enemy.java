@@ -104,6 +104,8 @@ public class Enemy extends Combatant {
 	}
 	
 	public void defeated() {
+		gp.playSE(19);
+		gp.gameState = GameState.rewardState;
 	}
 	
 	public void combatResult() {

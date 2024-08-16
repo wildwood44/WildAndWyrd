@@ -27,6 +27,7 @@ public class NPC_Jeb extends NPC {
 		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;
+		skippable = false;
 		setDialogue();
 		getImage();
 		setItems();

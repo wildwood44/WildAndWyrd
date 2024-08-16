@@ -14,7 +14,6 @@ public class En_Cricket extends Enemy {
         desc = "Big grasshoppers with long antenna. Can jump a fair distance.";
 		type = EntityType.Sprite;
 		Collections.addAll(enemies, new En_Wasp(gp), new En_Wasp(gp));
-		//setDialogue();
 	}
 
 	public void setDialogue() {

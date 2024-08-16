@@ -22,7 +22,7 @@ public class Sound {
 		soundURL[4] = getClass().getResource("/res/sound/Wren.wav"); //Stats
 		//Item
 		//Objectives
-		//Glossary
+		soundURL[7] = getClass().getResource("/res/sound/Magpie.wav"); ///Glossary
 		//Options
 		//Quit
 		soundURL[8] = getClass().getResource("/res/sound/Door.wav"); // Door used

@@ -73,7 +73,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Room room = new Room(this);
 	public CutsceneManager csManager = new CutsceneManager(this);
 	public Objective objective = new Objective(this);
-	public Glossary glossary = new Glossary();
+	public Glossary glossary = new Glossary(this);
 	Config config = new Config(this);
 	Thread gameThread;
 	int playerY = 100;
@@ -241,13 +241,14 @@ public class GamePanel extends JPanel implements Runnable {
 		if (gameState == GameState.titleState) {
 			rm[currentRoom].draw(g2);
 			ui.draw(g2);
-		// COMBAT SCREEN
+		// DIALOGUE
 		} else if (gameState == GameState.dialogueState) {
 			rm[currentRoom].draw(g2);
 			if(combat.inCombat) {
 				ui.drawCombatants(g2);
 			}
 			ui.draw(g2);
+		// COMBAT SCREEN
 		} else if (gameState == GameState.combatState || gameState == GameState.targetState) {
 			//rm[currentRoom].draw(g2);
 			ui.draw(g2);

@@ -78,18 +78,12 @@ public class KeyHandler implements KeyListener {
 		}
 		if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
 			gp.playSE(0);
-			gp.ui.commandNum--;
-			if (gp.ui.commandNum < 0) {
-				gp.ui.commandNum = 2;
-			}
+			gp.ui.commandNum = getNext(gp.ui.commandNum, 2);
 		}
 
 		if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
 			gp.playSE(0);
-			gp.ui.commandNum++;
-			if (gp.ui.commandNum > 2) {
-				gp.ui.commandNum = 0;
-			}
+			gp.ui.commandNum = getPrev(gp.ui.commandNum, 2);
 		}
 
 		if (code == KeyEvent.VK_ENTER) {
@@ -196,9 +190,9 @@ public class KeyHandler implements KeyListener {
 				gp.ui.resetSlots();
 				gp.gameState = GameState.optionsState;
 			} else if (gp.ui.playerSlotCol == 6) { //Quit game
+				gp.gameState = GameState.titleState;
 				gp.currentRoom = 0;
 				gp.restart();
-				gp.gameState = GameState.titleState;
 			}
 			break;
 		case KeyEvent.VK_ESCAPE :
@@ -207,20 +201,12 @@ public class KeyHandler implements KeyListener {
 		case KeyEvent.VK_UP :
 		case KeyEvent.VK_W :
 			gp.playSE(2);
-			if (gp.ui.playerSlotCol != 0) {
-				--gp.ui.playerSlotCol;
-			} else {
-				gp.ui.playerSlotCol = 6;
-			}
+			gp.ui.playerSlotCol = getNext(gp.ui.playerSlotCol, 6);
 			break;
 		case KeyEvent.VK_DOWN :
 		case KeyEvent.VK_S :
 			gp.playSE(2);
-			if (gp.ui.playerSlotCol != 6) {
-				++gp.ui.playerSlotCol;
-			} else {
-				gp.ui.playerSlotCol = 0;
-			}
+			gp.ui.playerSlotCol = getPrev(gp.ui.playerSlotCol, 6);
 	}
 	}
 	
@@ -244,17 +230,11 @@ public class KeyHandler implements KeyListener {
 			break;
 		case KeyEvent.VK_W :
 		case KeyEvent.VK_UP :
-			gp.ui.commandNum--;
-			if(gp.ui.commandNum < 0) {
-				gp.ui.commandNum = 2;
-			}
+			gp.ui.commandNum = getNext(gp.ui.commandNum, 2);
 			break;
 		case KeyEvent.VK_DOWN :
 		case KeyEvent.VK_S :
-			gp.ui.commandNum++;
-			if(gp.ui.commandNum > 2) {
-				gp.ui.commandNum = 0;
-			}
+			gp.ui.commandNum = getPrev(gp.ui.commandNum, 2);
 			break;
 		}
 	}
@@ -405,19 +385,21 @@ public class KeyHandler implements KeyListener {
 			break;
 		case KeyEvent.VK_UP :
 		case KeyEvent.VK_W :
-			if (gp.ui.slotRow2 != 0) {
+			gp.ui.slotRow2 = getPrev(gp.ui.slotRow2, 3);
+			/*if (gp.ui.slotRow2 != 0) {
 				--gp.ui.slotRow2;
 			} else {
 				gp.ui.slotRow2 = 3;
-			}
+			}*/
 			break;
 		case KeyEvent.VK_DOWN :
 		case KeyEvent.VK_S :
-			if (gp.ui.slotRow2 != 3) {
+			gp.ui.slotRow2 = getNext(gp.ui.slotRow2, 3);
+			/*if (gp.ui.slotRow2 != 3) {
 				++gp.ui.slotRow2;
 			} else {
 				gp.ui.slotRow2 = 0;
-			}
+			}*/
 			break;
 		case KeyEvent.VK_RIGHT :
 		case KeyEvent.VK_D :
@@ -541,17 +523,11 @@ public class KeyHandler implements KeyListener {
 		case KeyEvent.VK_ENTER: enterPressed = true; break; 
 		case KeyEvent.VK_UP :
 		case KeyEvent.VK_W :
-			gp.ui.commandNum--;
-			if(gp.ui.commandNum < 0) {
-				gp.ui.commandNum = maxCommandNum;
-			}
+			gp.ui.commandNum = getNext(gp.ui.commandNum, maxCommandNum);
 			break;
 		case KeyEvent.VK_DOWN :
 		case KeyEvent.VK_S :
-			gp.ui.commandNum++;
-			if(gp.ui.commandNum > maxCommandNum) {
-				gp.ui.commandNum = 0;
-			}
+			gp.ui.commandNum = getPrev(gp.ui.commandNum, maxCommandNum);
 			break;
 		case KeyEvent.VK_A :
 			if(gp.ui.subState == 0) {
@@ -594,10 +570,7 @@ public class KeyHandler implements KeyListener {
 		case KeyEvent.VK_W :
 		case KeyEvent.VK_UP :
 			if(gp.ui.subState == 0) {
-				gp.ui.commandNum--;
-				if(gp.ui.commandNum < 0) {
-					gp.ui.commandNum = 2;
-				}
+				gp.ui.commandNum = getNext(gp.ui.commandNum, 2);
 			} else if(gp.ui.subState == 1) {
 				npcInventory(code);
 			} else if(gp.ui.subState == 2) {
@@ -607,10 +580,7 @@ public class KeyHandler implements KeyListener {
 		case KeyEvent.VK_DOWN :
 		case KeyEvent.VK_S :
 			if(gp.ui.subState == 0) {
-				gp.ui.commandNum++;
-				if(gp.ui.commandNum > 2) {
-					gp.ui.commandNum = 0;
-				}
+				gp.ui.commandNum = getPrev(gp.ui.commandNum, 2);
 			} else if(gp.ui.subState == 1) {
 				npcInventory(code);
 			} else if(gp.ui.subState == 2) {
@@ -683,6 +653,7 @@ public class KeyHandler implements KeyListener {
 	}
 	
 	public void combatState(int code) {
+		System.out.println();
 		if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Using) {
 			//Use items in combat menu
 			combatUsingState(code);
@@ -841,6 +812,7 @@ public class KeyHandler implements KeyListener {
 					break;
 				}
 			}
+			break;
 		case KeyEvent.VK_LEFT :
 		case KeyEvent.VK_A :
 			leftPressed = true;
@@ -913,8 +885,9 @@ public class KeyHandler implements KeyListener {
 	public void rewardState(int code) {
 		switch (code) {
 		case KeyEvent.VK_ENTER :
-			gp.combat.enemies.get(0).combatResult();
-			gp.combat.cleanup();
+			//gp.combat.enemies.get(0).combatResult();
+			//gp.combat.cleanup();
+			enterPressed = true;
 			break;
 		}
 	}

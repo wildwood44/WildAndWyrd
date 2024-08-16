@@ -173,6 +173,7 @@ public class NPC_Kyla extends NPC {
 						gp.obj[2][i] = new Obj_Blackberry(gp);
 						gp.obj[2][i].worldX = gp.tileSize * 3;
 						gp.obj[2][i].worldY = gp.tileSize * 4;
+						break;
 					}
 				}
 			}

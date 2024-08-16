@@ -43,11 +43,6 @@ public class En_Wasp extends Enemy {
 		dropItem(new Itm_Bug_Meat(gp));
 	}
 	
-	public void defeated() {
-		gp.playSE(19);
-		gp.gameState = GameState.rewardState;
-	}
-	
 	public void combatResult() {
 		gp.gameState = GameState.playState;
 		gp.s.c1Switch[3] = false;

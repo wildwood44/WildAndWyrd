@@ -39,6 +39,7 @@ public class Obj_Hearth extends Entity {
 		if(gp.objective.quests[1].isAccepted() && !gp.objective.quests[1].require[0]) {
 			startDialogue(this, 1);
 			gp.objective.quests[1].progress(0);
+			gp.glossary.unlock("constructs", "cauldron");
 		} else {
 			//if(gp.player.worldX)
 			startDialogue(this, 0);

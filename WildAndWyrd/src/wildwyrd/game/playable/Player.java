@@ -188,6 +188,11 @@ public class Player extends Entity {
 		if (i != 999) {
 			if (gp.obj[gp.currentMap.getId()][i].type == EntityType.Object && keyH.enterPressed) {
 				gp.obj[gp.currentMap.getId()][i].interact();
+			} else if (gp.obj[gp.currentMap.getId()][i].type == EntityType.PickUp && keyH.enterPressed) {
+				gp.obj[gp.currentMap.getId()][i].interact();
+				if(gp.obj[gp.currentMap.getId()][i].destroy) {
+					gp.obj[gp.currentMap.getId()][i] = null;
+				}
 			} else {
 				if(canObtainItem((Item) gp.obj[gp.currentMap.getId()][i]) == true) {
 				}

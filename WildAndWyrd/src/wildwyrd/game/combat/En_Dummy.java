@@ -44,10 +44,6 @@ public class En_Dummy extends Enemy {
 	public void checkDrop() {
 	}
 	
-	public void defeated() {
-		gp.gameState = GameState.rewardState;
-	}
-	
 	public void combatResult() {
 		gp.gameState = GameState.playState;
 		for (int i = 0; i < gp.obj[gp.currentMap.getId()].length; ++i) {

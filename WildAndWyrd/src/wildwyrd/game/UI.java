@@ -56,6 +56,7 @@ public class UI {
 	public int firstValue = 0;
 	public int bottomValue = 0;
 	public int topValue = 0;
+	public long counter = 0;
 	public boolean openEquipment = false;
 	public boolean openInventory = false;
 	public Entity selectedPlayable;
@@ -84,80 +85,84 @@ public class UI {
 			drawTitleScreen();
 		}
 
-		if (gp.gameState == GameState.playState) {
+		else if (gp.gameState == GameState.playState) {
 			//Integer var2 = gp.selectedObj;
 		}
 
-		if (gp.gameState == GameState.pauseState) {
+		else if (gp.gameState == GameState.pauseState) {
 			drawPauseScreen();
 		}
 
-		if (gp.gameState == GameState.examineState && selectedObject != null) {
+		else if (gp.gameState == GameState.examineState && selectedObject != null) {
 			drawExamineScreen();
 		}
 
-		if (gp.gameState == GameState.dialogueState) {
+		else if (gp.gameState == GameState.dialogueState) {
 			drawDialogueScreen();
 		}
 
-		if (gp.gameState == GameState.menuState) {
+		else if (gp.gameState == GameState.menuState) {
 			drawMenuBarScreen();
 		}
 
-		if (gp.gameState == GameState.saveState) {
+		else if (gp.gameState == GameState.saveState) {
 			drawSaveScreen();
 		}
 
-		if (gp.gameState == GameState.statusState) {
+		else if (gp.gameState == GameState.statusState) {
 			drawStatusScreen();
 		}
 
-		if (gp.gameState == GameState.inventoryState) {
+		else if (gp.gameState == GameState.inventoryState) {
 			drawInventoryScreen(gp.player, true);
 		}
 
-		if (gp.gameState == GameState.equipState) {
+		else if (gp.gameState == GameState.equipState) {
 			drawEquipScreen();
 		}
 
-		if (gp.gameState == GameState.objectiveState) {
+		else if (gp.gameState == GameState.objectiveState) {
 			drawObjectiveScreen();
 		}
 
-		if (gp.gameState == GameState.skillState) {
+		else if (gp.gameState == GameState.skillState) {
 			drawSkillScreen();
 		}
 
-		if (gp.gameState == GameState.glossaryState) {
+		else if (gp.gameState == GameState.glossaryState) {
 			drawGlossaryScreen();
 		}
 
-		if (gp.gameState == GameState.optionsState) {
+		else if (gp.gameState == GameState.optionsState) {
 			drawOptionsScreen();
 		}
 		
-		if (gp.gameState == GameState.tradeState) {
+		else if (gp.gameState == GameState.tradeState) {
 			drawTradeScreen();
 		}
 		
-		if (gp.gameState == GameState.readingState) {
+		else if (gp.gameState == GameState.readingState) {
 			drawBookshelfScreen();
 		}
 		
-		if (gp.gameState == GameState.combatState) {
+		else if (gp.gameState == GameState.combatState) {
 			drawCombatScreen();
 		}
 		
-		if (gp.gameState == GameState.targetState) {
+		else if (gp.gameState == GameState.targetState) {
 			targetCombatant();
 		}
 		
-		if (gp.gameState == GameState.rewardState) {
+		else if (gp.gameState == GameState.rewardState) {
 			drawRewardsScreen();
 		}
 		
-		if (gp.gameState == GameState.gameOverState) {
+		else if (gp.gameState == GameState.gameOverState) {
 			drawGameOverScreen();
+		}
+		
+		if (gp.glossary.isUpdated()) {
+			drawNotification();
 		}
 	}
 
@@ -205,6 +210,25 @@ public class UI {
 		}
 
 		gp.keyH.enterPressed = false;
+	}
+	
+	public void drawNotification() {
+		int x = gp.tileSize * 8;
+		int y = gp.tileSize * 0;
+		int width = gp.tileSize * 3;
+		int height = gp.tileSize;
+		drawDialogueWindow(x, y, width, height);
+		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+		g2.setColor(Color.white);
+		x += 10;
+		y += gp.tileSize/2;
+		g2.setFont(g2.getFont().deriveFont(1, 24.0F));
+		//Automatic line break
+		for (String line : breakLines("Glossary updated",width/2)) {
+			g2.setFont(g2.getFont().deriveFont(0, 18.0F));
+			g2.drawString(line, x, y);
+			y += 30;
+		}
 	}
 
 	public void drawDialogueScreen() {
@@ -284,13 +308,16 @@ public class UI {
 	}
 	
 	public void printDialogueText(int x, int y, int width) {
+		//Print dialogue letter-by-letter
 		char[] characters = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 				.getText().toCharArray();
+		//System.out.println(characters.length);
 		if (charIndex < characters.length) {
 			String s = String.valueOf(characters[charIndex]);
 			combinedText = combinedText + s;
 			currentDialogue = combinedText;
 			charIndex++;
+			//Fill text
 			if (gp.keyH.enterPressed) {
 				combinedText = selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().substring(0, 
 						selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex].getText().length() - 1);
@@ -302,7 +329,6 @@ public class UI {
 		if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 				.getType() == 1) {
 			dialogueRes();
-			//selectedObject.checkConditions();
 		// Yes/No options
 		} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 				.getType() == 2) {
@@ -320,8 +346,7 @@ public class UI {
 	
 	public void dialogueRes() {
 		if (gp.keyH.enterPressed) {
-			if (currentDialogue
-					.length() == selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
+			if (currentDialogue.length() >= selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 							.getText().length()) {
 				charIndex = 0;
 				combinedText = "";
@@ -856,6 +881,7 @@ public class UI {
 		g2.setColor(Color.white);
 		g2.setStroke(new BasicStroke());
 		g2.drawString(gp.glossary.sections[section], 30, gp.tileSize);
+		g2.drawString(gp.glossary.progress() + "%", (int)(gp.tileSize  * 3.5), gp.tileSize);
 		int pos = (int) (gp.tileSize * 0.75D);
 		bottomValue = gp.glossary.getSize(section);
 		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
@@ -1091,6 +1117,8 @@ public class UI {
 			g2.drawString(">", x-24, y);
 			if(gp.keyH.enterPressed) {
 				commandNum = 0;
+				charIndex = 0;
+				System.out.println(selectedObject + " Leaving");
 				selectedObject.startDialogue(selectedObject, 1);
 			}
 		}
@@ -1466,9 +1494,9 @@ public class UI {
 		int frameHeight = gp.tileSize * 4;
 		int x = frameX  + gp.tileSize;
 		int y = frameY  + gp.tileSize;
-		
+		counter++;
 		drawDialogueWindow(frameX, frameY, frameWidth, frameHeight);
-
+		
 		g2.setColor(Color.white);
 		g2.setFont(g2.getFont().deriveFont(28f));
 		Map<String, Integer> hm = new HashMap<String, Integer>();
@@ -1482,6 +1510,15 @@ public class UI {
 			g2.drawString(": " + val.getValue(), (frameWidth - gp.tileSize), y);
 			y += gp.tileSize  / 2;
         }
+        //Press enter to exit reward state after 1/5 of a second
+		if(counter > 200) {
+			g2.drawString("Continue...", x, y + 30);
+			if(gp.keyH.enterPressed) {
+				gp.keyH.enterPressed = false;
+				gp.combat.enemies.get(0).combatResult();
+				gp.combat.cleanup();
+			}
+		}
 	}
 	
 	public void drawGameOverScreen() {

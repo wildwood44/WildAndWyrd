@@ -180,6 +180,7 @@ public class NPC_Cricket extends NPC {
 	}
 	
 	public void speak() {
+		gp.currentRoom = 4;
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
 		startDialogue(this, 0);
