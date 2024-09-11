@@ -66,6 +66,10 @@ public class En_Cricket extends Enemy {
 	
 	public void combatResult() {
 		gp.combat.cleanup();
+		if(cricket == null) {
+			cricket = gp.npc[3][0];
+		}
+		System.out.println(cricket);
 		cricket.combatResponce();
 	}
 }

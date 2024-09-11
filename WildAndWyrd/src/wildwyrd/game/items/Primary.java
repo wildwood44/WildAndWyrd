@@ -16,6 +16,7 @@ public class Primary extends Weapon {
 	}
 
 	public void use() {
+		gp.playSE(17);
 		gp.playable.get(0).setWeapon_prime(this);
 		gp.player.removeFromInventory(this);
 	}

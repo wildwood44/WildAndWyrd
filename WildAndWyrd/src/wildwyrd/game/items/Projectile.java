@@ -16,6 +16,7 @@ public class Projectile extends Weapon {
 	public void use() {
 		if(gp.gameState == GameState.combatState) {
 			if(!gp.playable.get(0).projectileLoaded()) {
+				gp.playSE(17);
 				gp.playable.get(0).loadProjectile(this);
 				gp.player.removeFromInventory(this);
 				gp.ui.playerSlotCol = 0;

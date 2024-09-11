@@ -84,19 +84,15 @@ public class CutsceneManager {
 			gp.ui.drawHeadingScreen("Prologue");
 			gp.ui.drawMessageScreen(
 					"The game will now begin. Press ENTER to continue. You may skip dialogue by pressing Q.");
-			//gp.c.setSprites(0);
 		} else if (scenePhase == 1) {
-			//gp.ui.drawBackground("/res/backgrounds/Forton_Backgound.png");
-			//gp.currentRoom = new Rm_Forton(gp);
 			gp.currentRoom = 1;
 			gp.rm[gp.currentRoom].draw(g2);
-			//gp.c.setCutscene(0, read);
 			gp.c.setDialogue();
 			gp.ui.selectedObject = gp.c;
 			gp.playSE(20);
 			scenePhase++;
 		} else if (scenePhase == 2) {
-			if(counterReached(300)) {
+			if(counterReached(100)) {
 				scenePhase++;
 			}
 		} else if (scenePhase == 3) {
@@ -206,6 +202,7 @@ public class CutsceneManager {
 			gp.player.direction = "down";
 			gp.glossary.unlock("mammal", "wood mouse");
 			gp.glossary.unlock("mammal", "field vole");
+			gp.glossary.unlock("mammal", "mole");
 			gp.glossary.unlock("mammal", "european hedgehog");
 			gp.s.swh[read] = false;
 			gp.s.swh[1] = true;

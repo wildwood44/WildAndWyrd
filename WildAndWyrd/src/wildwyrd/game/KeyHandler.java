@@ -179,16 +179,16 @@ public class KeyHandler implements KeyListener {
 				gp.gameState = GameState.inventoryState;
 				gp.ui.drawInventoryScreen(gp.player, true);
 			} else if (gp.ui.playerSlotCol == 3) { //Open objectives screen
-				gp.ui.resetSlots();
 				gp.gameState = GameState.objectiveState;
+				gp.ui.resetSlots();
 				gp.ui.drawObjectiveScreen();
 			} else if (gp.ui.playerSlotCol == 4) { //Open glossary screen
-				gp.ui.resetSlots();
 				gp.gameState = GameState.glossaryState;
+				gp.ui.resetSlots();
 				gp.ui.drawGlossaryScreen();
 			} else if (gp.ui.playerSlotCol == 5) { //Open options
-				gp.ui.resetSlots();
 				gp.gameState = GameState.optionsState;
+				gp.ui.resetSlots();
 			} else if (gp.ui.playerSlotCol == 6) { //Quit game
 				gp.gameState = GameState.titleState;
 				gp.currentRoom = 0;

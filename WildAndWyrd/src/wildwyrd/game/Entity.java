@@ -59,11 +59,12 @@ public class Entity {
 	public boolean moving = false;
 	public boolean collision = false;
 	public boolean collisionOn = false;
-	public boolean takeDamage = false;
 	public boolean stackable = false;
 	public boolean destroy = false;
-	public boolean hasQuest = false;
+	public boolean drawing = true;
+	public boolean takeDamage = false;
 	public boolean climbing = false;
+	public boolean hasQuest = false;
 	public int amount = 1;
 	public EntityType type;
 	public Timer timer;
@@ -71,7 +72,6 @@ public class Entity {
 	public Item loot;
 	public int shill = 0;
 	public boolean opened = false;
-	public boolean drawing = true;
 	public boolean skippable = true;
 	
 

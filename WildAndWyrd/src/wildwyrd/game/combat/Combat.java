@@ -104,6 +104,7 @@ public class Combat extends Entity {
 		try {
 			//If enemies are all defeated
 			if(!enemiesActive()) {
+				System.out.println("ping");
 				Enemy represent = enemies.get(0);
 				//Set enemy drops
 				for(Enemy enemy : enemies) {
@@ -198,7 +199,6 @@ public class Combat extends Entity {
 	public void dealDamage(Combatant user, Combatant target, int damage) {
 		user.setCombatStatus(CombatStatus.Attacking);
 		if((user.inRange() && target.inRange()) || user.projectileLoaded()) {
-			gp.playSE(13);
 			if(user.projectileLoaded()) {
 				damage = gp.playable.get(0).fireProjectile();
 			}
@@ -206,10 +206,13 @@ public class Combat extends Entity {
 			gp.keyH.enterPressed = false;
 			impact = damage * 100/(100 + target.baseDefence);
 			if(target.getCombatStatus() == CombatStatus.Blocking) {
+				gp.playSE(14);
 				impact = impact / 10;
 				if(impact == 0) {
 					impact = 1;
 				}
+			} else {
+				gp.playSE(13);
 			}
 			//dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
 			//dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);

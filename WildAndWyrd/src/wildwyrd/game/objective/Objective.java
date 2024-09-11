@@ -58,4 +58,8 @@ public class Objective extends Entity {
 		}
 		return "";
 	}
+	
+	public void clearObjective() {
+		
+	}
 }

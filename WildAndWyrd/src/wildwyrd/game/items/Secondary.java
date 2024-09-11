@@ -16,6 +16,7 @@ public class Secondary extends Weapon {
 	}
 
 	public void use() {
+		gp.playSE(17);
 		gp.playable.get(0).setWeapon_second(this);
 		gp.player.removeFromInventory(this);
 	}

@@ -20,20 +20,20 @@ public class Sound {
 		soundURL[2] = getClass().getResource("/res/sound/Treecreeper.wav"); // Up/Down
 		soundURL[3] = getClass().getResource("/res/sound/Green_Woodpecker.wav"); // Save
 		soundURL[4] = getClass().getResource("/res/sound/Wren.wav"); //Stats
-		//Item
+		//Select
 		//Objectives
 		soundURL[7] = getClass().getResource("/res/sound/Magpie.wav"); ///Glossary
 		//Options
 		//Quit
 		soundURL[8] = getClass().getResource("/res/sound/Door.wav"); // Door used
 		soundURL[10] = getClass().getResource("/res/sound/Book_Open.wav"); // Open book
-		soundURL[11] = getClass().getResource("/res/sound/page-flip-01a.wav"); // Turn page
+		soundURL[11] = getClass().getResource("/res/sound/pageflip.wav"); // Turn page
 		soundURL[12] = getClass().getResource("/res/sound/Book_Close.wav"); // Close book
 		soundURL[13] = getClass().getResource("/res/sound/attack.wav"); //Attack
-		//Block
-		//Move
+		soundURL[14] = getClass().getResource("/res/sound/block.wav"); //Block
+		//Advance/Retreat
 		//Special
-		//Items
+		soundURL[17] = getClass().getResource("/res/sound/use.wav"); //Use Items
 		soundURL[18] = getClass().getResource("/res/sound/flee.wav"); //Flee
 		soundURL[19] = getClass().getResource("/res/sound/victory.wav"); //Victory
 		soundURL[20] = getClass().getResource("/res/sound/run.wav"); // Run
