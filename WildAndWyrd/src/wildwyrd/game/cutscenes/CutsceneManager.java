@@ -1070,7 +1070,7 @@ public class CutsceneManager {
 			if(gp.c.dialogueIndex < 1) {
 				gp.ui.drawDialogueScreen();
 			} else {
-				gp.playSE(22);
+				gp.playSE(23);
 				scenePhase++;
 			}
 		} else if (scenePhase == 2) {
@@ -1153,7 +1153,7 @@ public class CutsceneManager {
 					}
 				}
 			}
-		} else if (scenePhase == 12) {
+		} else if (scenePhase == 13) {
 			actor = getActor(PlayerDummy.npcName);
 			gp.player.worldX = actor.worldX;
 			gp.player.worldY = actor.worldY;

@@ -39,6 +39,7 @@ public class Sound {
 		soundURL[20] = getClass().getResource("/res/sound/run.wav"); // Run
 		soundURL[21] = getClass().getResource("/res/sound/Pickup.wav"); // Interact with item
 		soundURL[22] = getClass().getResource("/res/sound/Chime.wav"); //Bell
+		soundURL[23] = getClass().getResource("/res/sound/Unlock.wav"); //Unlock
 		//Unsheathe
 		//Menu song
 		soundURL[31] = getClass().getResource("/res/music/Casual-Theme.wav"); //Woodland song
