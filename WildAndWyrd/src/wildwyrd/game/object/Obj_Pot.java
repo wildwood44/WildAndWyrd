@@ -7,7 +7,7 @@ import wildwyrd.game.items.Item;
 
 public class Obj_Pot extends Entity {
 	GamePanel gp;
-	public static final int objId = 15;
+	public static final int objId = 16;
 	public static final String objName = "Clay Pots";
 
 	public Obj_Pot(GamePanel gp) {

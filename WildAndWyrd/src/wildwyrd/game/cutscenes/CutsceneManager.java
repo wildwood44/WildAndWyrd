@@ -899,6 +899,7 @@ public class CutsceneManager {
 			gp.s.chapter = 3;
 			gp.s.part = 1;
 			gp.gameState = GameState.playState;
+			gp.s.c3Switch[0] = true;
 		}
 	}
 	//Alder has a sword
@@ -1066,16 +1067,30 @@ public class CutsceneManager {
 			changeActorDirection(NPC_Kyla.npcName, "down");
 			scenePhase++;
 		} else if (scenePhase == 1) {
+			if(gp.c.dialogueIndex < 1) {
+				gp.ui.drawDialogueScreen();
+			} else {
+				gp.playSE(22);
+				scenePhase++;
+			}
+		} else if (scenePhase == 2) {
+			if(gp.c.dialogueIndex < 2) {
+				gp.ui.drawDialogueScreen();
+			} else {
+				gp.playSE(22);
+				scenePhase++;
+			}
+		} else if (scenePhase == 3) {
 			if(gp.c.dialogueIndex < 6) {
 				gp.ui.drawDialogueScreen();
 			} else {
 				scenePhase++;
 			}
-		} else if (scenePhase == 2) {
+		} else if (scenePhase == 4) {
 			if(fadeOut(0.05f)) {
 				scenePhase++;
 			}
-		} else if (scenePhase == 3) {
+		} else if (scenePhase == 5) {
 			gp.currentMap = gp.maps[2];
 			gp.player.worldX = gp.tileSize * 11;
 			gp.player.worldY = gp.tileSize * 5;
@@ -1089,24 +1104,24 @@ public class CutsceneManager {
 			gp.glossary.unlock("mammal", "brown rat");
 			drawStage();
 			scenePhase++;
-		} else if (scenePhase == 4) {
+		} else if (scenePhase == 6) {
 			drawBlackBackground(alpha);
 			drawStage();
 			if(fadeIn(0.05f)) {
 				scenePhase++;
 			}
-		} else if (scenePhase == 5) {
+		} else if (scenePhase == 7) {
 			if(gp.c.dialogueIndex < 20) {
 				gp.ui.drawDialogueScreen();
 			} else {
 				scenePhase++;
 			}
-		} else if (scenePhase == 6) {
+		} else if (scenePhase == 8) {
 			drawStage();
 			if(fadeOut(0.05f)) {
 				scenePhase++;
 			}
-		} else if (scenePhase == 7) {
+		} else if (scenePhase == 9) {
 			destroyActor(NPC_Gowl_Weasel.npcName);
 			destroyActor(NPC_Gowl_Weasel.npcName);
 			destroyActor(NPC_Gowl_Rat.npcName);
@@ -1120,15 +1135,15 @@ public class CutsceneManager {
 			changeActorDirection(NPC_Kyla.npcName, "left");
 			drawStage();
 			scenePhase++;
-		} else if (scenePhase == 8) {
+		} else if (scenePhase == 10) {
 			drawStage();
 			if(fadeIn(0.05f)) {
 				scenePhase++;
 			}
 			drawBlackBackground(alpha);
-		} else if (scenePhase == 9) {
+		} else if (scenePhase == 11) {
 			gp.ui.drawDialogueScreen();
-		} else if (scenePhase == 10) {
+		} else if (scenePhase == 12) {
 			drawStage();
 			actor = getActor(NPC_Kyla.npcName);
 			if(moveActor(actor.name, "left", 9)) {
@@ -1138,7 +1153,7 @@ public class CutsceneManager {
 					}
 				}
 			}
-		} else if (scenePhase == 11) {
+		} else if (scenePhase == 12) {
 			actor = getActor(PlayerDummy.npcName);
 			gp.player.worldX = actor.worldX;
 			gp.player.worldY = actor.worldY;

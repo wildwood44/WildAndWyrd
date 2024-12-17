@@ -6,35 +6,39 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
-public class Obj_Chair extends Entity {
+public class Obj_Chair_Right extends Entity {
 	GamePanel gp;
-	public static final int objId = 12;
+	public static final int objId = 13;
 	public static final String objName = "Chair";
 
-	public Obj_Chair(GamePanel gp) {
+	public Obj_Chair_Right(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
 		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
-		solidArea.x = 20;
-		solidArea.y = 40;
+		worldX = gp.tileSize/2;
+		worldY = gp.tileSize/2;
+		x = gp.tileSize;
+		y = gp.tileSize;
+		solidArea.x = gp.tileSize/3;
+		solidArea.y = gp.tileSize/2;
 		solidArea.width = 24;
-		solidArea.height = 24;
+		solidArea.height = 12;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 		direction = getDirection();
-		image = setup("/res/objects/img_chair",gp.tileSize,gp.tileSize);
+		image = setup("/res/objects/img_chair_right",gp.tileSize,gp.tileSize);
 		setDialogue();
 		getImage(image);
 	}
 	
 	public void getImage(BufferedImage image) {
 		down1 = image;
-		left1 = setup("/res/objects/img_chair_left",gp.tileSize,gp.tileSize);
-		right1 = setup("/res/objects/img_chair_right",gp.tileSize,gp.tileSize);
-		up1 = setup("/res/objects/img_chair_back",gp.tileSize,gp.tileSize);
+		//left1 = setup("/res/objects/img_chair_left",gp.tileSize/2,gp.tileSize/2);
+		//right1 = setup("/res/objects/img_chair_right",gp.tileSize/2,gp.tileSize/2);
+		//up1 = setup("/res/objects/img_chair_back",gp.tileSize/2,gp.tileSize/2);
 	}
 
 	public void setDialogue() {

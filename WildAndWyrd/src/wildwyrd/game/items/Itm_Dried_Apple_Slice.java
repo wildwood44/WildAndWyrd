@@ -13,7 +13,7 @@ public class Itm_Dried_Apple_Slice extends Food {
 		id = itemId;
 		name = itemName;
 		staminaRcvd = 20;
-		description = "";
+		description = "A piece of apple, dried to prevet expiration.";
 		price = 1;
 		image = setup("/res/items/img_Dried_Apple_Slice", gp.tileSize, gp.tileSize);
 	}

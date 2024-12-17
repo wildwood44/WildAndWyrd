@@ -655,6 +655,7 @@ public class UI {
 		int textX = frameX + 20;
 		int textY = dFrameY + gp.tileSize;
 		int itemIndex = getItemIndexOnSlot();
+		g2.setFont(g2.getFont().deriveFont(0, 18.0F));
 		g2.setColor(Color.white);
 		//Print item description
 		if (itemIndex < entity.inventory.size()) {
@@ -1145,7 +1146,6 @@ public class UI {
 		height = (int)(gp.tileSize * 2.5);
 		drawDialogueWindow(x, y, width, height);
 		g2.setColor(Color.WHITE);
-		//g2.drawString("Shillings: " + gp.player.getShillings(), x + 25, y + gp.tileSize);
 		drawCoin(gp.player.getShillings(), x + 25, y + gp.tileSize/2);
 		// DRAW PRICE WINDOW
 		int itemIndex = getItemIndexOnSlot();
@@ -1156,15 +1156,13 @@ public class UI {
 			height = gp.tileSize;
 			drawDialogueWindow(x, y, width, height);
 			try {
+				//Draw barter price
 				int price = npc.inventory.get(itemIndex).price;
 				String text = "";
 				if(npc.buy(npc.inventory.get(itemIndex)) != null) {
-					//text = npc.buy(npc.inventory.get(itemIndex)).name;
 					x = getXforAlignToRightText(text, (int)(gp.tileSize*3.5) + 20);
 					g2.drawImage(npc.buy(npc.inventory.get(itemIndex)).image, x, y, null);
-					//drawCoin(price, x, y);
 				} else {
-					//text = "Price: " + price;
 					x = getXforAlignToRightText(text, (int)(gp.tileSize*3.5) + 20);
 					drawCoin(price, x, y);
 				}
@@ -1205,8 +1203,6 @@ public class UI {
 	public void trade_sell() {
 		// DRAW PLAYER INVENTORY
 		drawInventoryScreen(gp.player, true);
-		// DRAW NPC INVENTORY
-		drawInventoryScreen(npc, false);
 		// DRAW HINT WINDOW
 		int x = gp.tileSize *4;
 		int y = (int)(gp.tileSize * 7);
@@ -1217,12 +1213,12 @@ public class UI {
 		g2.setColor(Color.WHITE);
 		g2.drawString("[ESC] Back", x+5, y+30);
 		// DRAW SHILLING WINDOW
-		x = (int)(gp.tileSize*6);
+		/*x = (int)(gp.tileSize*6);
 		y = (gp.tileSize * 5) + 20;
 		width = (int)(gp.tileSize * 5.5);
 		height = (int)(gp.tileSize * 2.5);
 		drawDialogueWindow(x, y, width, height);
-		drawCoin(gp.player.getShillings(), x + 25, y + gp.tileSize/2);
+		drawCoin(gp.player.getShillings(), x + 25, y + gp.tileSize/2);*/
 		// DRAW PRICE WINDOW
 		int itemIndex = getItemIndexOnSlot();
 		if(itemIndex < gp.player.inventory.size()) {
@@ -1325,6 +1321,8 @@ public class UI {
 		int slotYstart = y;
 		int cursorX = slotXstart + gp.tileSize * playerSlotCol;
 		int cursorY = slotYstart + gp.tileSize * playerSlotRow;
+		System.out.println(cursorX + " " + playerSlotCol);
+		System.out.println(cursorY + " " + playerSlotRow);
 		drawCombatants(g2);
 		g2.setFont(g2.getFont().deriveFont(0, 22.0F));
 		g2.setColor(Color.white);
@@ -1405,6 +1403,7 @@ public class UI {
 				}
 			}
 		}
+		//Display Up arrow
 		if(firstValue > 0) {
 			drawUpIcon((int)(width/1.65), 340, 20, 20);
 		}
@@ -1668,11 +1667,17 @@ public class UI {
 	}
 	
 	public void drawTitleMenuScreen() {
-		g2.setBackground(Color.green);
-		g2.setFont(g2.getFont().deriveFont(1, 80.0F));
+		g2.setColor(new Color(0,0,0));
+		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+		//TITLE NAME
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 65.0F));
 		String text = "Wild and Wyrd";
 		int x = getXforCenteredText(text);
 		int y = gp.screenHeight / 3;
+		//SHADOW
+		g2.setColor(Color.gray);
+		g2.drawString(text, x+5, y+5);
+		//MAIN COLOUR
 		g2.setColor(Color.white);
 		g2.drawString(text, x, y);
 		g2.setFont(g2.getFont().deriveFont(1, 40.0F));
@@ -1715,6 +1720,8 @@ public class UI {
 	}
 	
 	public void drawLoadScreen() {
+		g2.setColor(new Color(0,0,0));
+		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 		int frameX = gp.tileSize * 5;
 		int frameY = 25;
 		int frameWidth = gp.tileSize * 6;

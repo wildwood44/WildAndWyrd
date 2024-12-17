@@ -22,4 +22,9 @@ public class Story implements Serializable {
 		c3Switch = new boolean[]{true, true, true, true, true, true, true};
 		branchSwitch = new int[1];
 	}
+	
+	public void progress(int swh) {
+		c1Switch[swh] = false;
+		c1Switch[swh+1] = true;
+	}
 }

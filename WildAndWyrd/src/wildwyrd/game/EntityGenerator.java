@@ -22,12 +22,12 @@ import wildwyrd.game.npc.NPC_Kyla;
 import wildwyrd.game.npc.NPC_Thay;
 import wildwyrd.game.npc.NPC_Trissie;
 import wildwyrd.game.object.Obj_Alder_Bed;
-import wildwyrd.game.object.Obj_Alder_Window;
 import wildwyrd.game.object.Obj_Basin;
 import wildwyrd.game.object.Obj_Blackberry;
 import wildwyrd.game.object.Obj_Bookshelf;
 import wildwyrd.game.object.Obj_Cauldron;
-import wildwyrd.game.object.Obj_Chair;
+import wildwyrd.game.object.Obj_Chair_Left;
+import wildwyrd.game.object.Obj_Chair_Right;
 import wildwyrd.game.object.Obj_Cracked_Wall;
 import wildwyrd.game.object.Obj_Crate;
 import wildwyrd.game.object.Obj_Cupboard;
@@ -72,13 +72,13 @@ public class EntityGenerator {
 		case Obj_Kitchen_Window.objId: obj = new Obj_Kitchen_Window(gp);break;//9
 		case Obj_Basin.objId: obj = new Obj_Basin(gp);break;//10
 		case Obj_Bookshelf.objId: obj = new Obj_Bookshelf(gp);break;//11
-		case Obj_Chair.objId: obj = new Obj_Chair(gp);break;//12
-		case Obj_Table.objId: obj = new Obj_Table(gp);break;//13
-		case Obj_Crate.objId: obj = new Obj_Crate(gp);break;//14
-		case Obj_Pot.objId: obj = new Obj_Pot(gp);break;//15
-		case Obj_Window_Down.objId: obj = new Obj_Window_Down(gp);break;//16
-		case Obj_Worktable.objId: obj = new Obj_Worktable(gp);break;//17
-		case Obj_Alder_Window.objId: obj = new Obj_Alder_Window(gp);break;//18
+		case Obj_Chair_Left.objId: obj = new Obj_Chair_Left(gp);break;//12
+		case Obj_Chair_Right.objId: obj = new Obj_Chair_Right(gp);break;//13
+		case Obj_Table.objId: obj = new Obj_Table(gp);break;//14
+		case Obj_Crate.objId: obj = new Obj_Crate(gp);break;//15
+		case Obj_Pot.objId: obj = new Obj_Pot(gp);break;//16
+		case Obj_Window_Down.objId: obj = new Obj_Window_Down(gp);break;//17
+		case Obj_Worktable.objId: obj = new Obj_Worktable(gp);break;//18
 		case Obj_Alder_Bed.objId: obj = new Obj_Alder_Bed(gp);break;//19
 		case Obj_P_Mushroom.objId: obj = new Obj_P_Mushroom(gp);break;//20
 		case Obj_Rock.objId: obj = new Obj_Rock(gp,0);break;//21

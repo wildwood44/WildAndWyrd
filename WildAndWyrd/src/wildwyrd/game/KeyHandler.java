@@ -938,6 +938,7 @@ public class KeyHandler implements KeyListener {
 			break;
 		case KeyEvent.VK_SPACE:
 			gp.gameState = GameState.pauseState;
+			break;
 		case 82 :
 			switch(gp.currentMap.getId())
 			{

@@ -91,6 +91,7 @@ public class Player extends Entity {
 	public void update() {
 		int objIndex;
 		if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed) {
+			//Get direction
 			if (keyH.upPressed) {
 				direction = "up";
 			} else if (keyH.downPressed) {
@@ -105,7 +106,6 @@ public class Player extends Entity {
 			takeDamage = false;
 			gp.cChecker.checkTile(this);
 			objIndex = gp.cChecker.checkObject(this, true);
-			//pickUpObject(objIndex);
 			int npcIndex = gp.cChecker.checkEntity(this,gp.npc);
 			interactNPC(npcIndex);
 			int iTileIndex = gp.cChecker.checkEntity(this,gp.iTile);
@@ -113,6 +113,7 @@ public class Player extends Entity {
 			
 			gp.eHandler.checkEvent();
 			if (collisionOn == false && keyH.enterPressed == false) {
+				//Movement
 				switch (direction) {
 					case "up":
 						worldY -= speed;
@@ -126,23 +127,24 @@ public class Player extends Entity {
 					case "right":
 						worldX += speed;
 				}
+				//Moving Animation
+				spriteCounter++;
+				if (spriteCounter > 10) {
+					if(spriteNum == 1) {
+						spriteNum = 2;
+					} else if (spriteNum == 2) {
+						spriteNum = 3;
+					} else if (spriteNum == 3) {
+						spriteNum = 4;
+					} else if (spriteNum == 4) {
+						spriteNum = 1;
+					}
+					spriteCounter = 0;
+				}
 			} else {
 				if(takeDamage) {
 					gp.playable.get(0).takeDamage(1);
 				}
-			}
-			spriteCounter++;
-			if (spriteCounter > 10) {
-				if(spriteNum == 1) {
-					spriteNum = 2;
-				} else if (spriteNum == 2) {
-					spriteNum = 3;
-				} else if (spriteNum == 3) {
-					spriteNum = 4;
-				} else if (spriteNum == 4) {
-					spriteNum = 1;
-				}
-				spriteCounter = 0;
 			}
 		} else {
 			spriteNum = 1;

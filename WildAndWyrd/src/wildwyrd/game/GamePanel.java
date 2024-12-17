@@ -239,7 +239,7 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 		// TITLE SCREEN
 		if (gameState == GameState.titleState) {
-			rm[currentRoom].draw(g2);
+			//rm[currentRoom].draw(g2);
 			ui.draw(g2);
 		// DIALOGUE
 		} else if (gameState == GameState.dialogueState) {
