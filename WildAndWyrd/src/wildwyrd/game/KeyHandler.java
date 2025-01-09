@@ -196,6 +196,7 @@ public class KeyHandler implements KeyListener {
 			}
 			break;
 		case KeyEvent.VK_ESCAPE :
+			gp.ui.resetSlots();
 			gp.gameState = GameState.playState;
 			break;
 		case KeyEvent.VK_UP :
@@ -653,7 +654,6 @@ public class KeyHandler implements KeyListener {
 	}
 	
 	public void combatState(int code) {
-		System.out.println();
 		if(gp.combat.getCombatant().getCombatStatus() == CombatStatus.Using) {
 			//Use items in combat menu
 			combatUsingState(code);

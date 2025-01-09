@@ -36,6 +36,7 @@ public class Quest extends Entity {
 				return false;
 			}
 		}
+		gp.playSE(6);
 		return true;
 		
 	}
@@ -46,6 +47,7 @@ public class Quest extends Entity {
 	
 	public boolean submitQuest() {
 		if(completed) {
+			gp.playSE(6);
 			submitted = true;
 			reward();
 		}
@@ -74,7 +76,6 @@ public class Quest extends Entity {
 	}
 	
 	public void reward() {
-		System.out.println(reward);
 		if(reward != null) {
 			for(int i = 0; i < qnt; i++) {
 				gp.player.pickUpObject(reward);

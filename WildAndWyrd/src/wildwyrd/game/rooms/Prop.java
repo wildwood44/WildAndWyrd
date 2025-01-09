@@ -45,6 +45,10 @@ public class Prop extends Entity {
 				e.printStackTrace();
 			}
 		} else {
+			//Sound
+			if(spriteCounter==0) {
+				gp.playSE(24);
+			}
 			spriteCounter++;
 			int i = 30;
 			if(spriteCounter <= i) {setImage("/res/items/img_Leif4");}

@@ -207,6 +207,7 @@ public class Combatant extends Entity implements Comparable<Combatant> {
 		return !inRear;
 	}
 	public void changePos() {
+		gp.playSE(15);
 		setCombatStatus(CombatStatus.Shifting);
 		if(!inRear) {
 			inRear = true;

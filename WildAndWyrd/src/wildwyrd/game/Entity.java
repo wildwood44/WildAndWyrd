@@ -424,7 +424,6 @@ public class Entity {
 			break;
 		}
 		climbing = !climbComplete;
-		System.out.println(climbing);
 		return climbComplete;
 	}
 	

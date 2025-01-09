@@ -21,8 +21,8 @@ public class Sound {
 		soundURL[3] = getClass().getResource("/res/sound/Green_Woodpecker.wav"); // Save
 		soundURL[4] = getClass().getResource("/res/sound/Wren.wav"); //Stats
 		//Select
-		//Objectives
-		soundURL[7] = getClass().getResource("/res/sound/Magpie.wav"); ///Glossary
+		soundURL[6] = getClass().getResource("/res/sound/Goldcrest.wav"); //Objectives
+		soundURL[7] = getClass().getResource("/res/sound/Magpie.wav"); //Glossary
 		//Options
 		//Quit
 		soundURL[8] = getClass().getResource("/res/sound/Door.wav"); // Door used
@@ -31,7 +31,7 @@ public class Sound {
 		soundURL[12] = getClass().getResource("/res/sound/Book_Close.wav"); // Close book
 		soundURL[13] = getClass().getResource("/res/sound/attack.wav"); //Attack
 		soundURL[14] = getClass().getResource("/res/sound/block.wav"); //Block
-		//Advance/Retreat
+		soundURL[15] = getClass().getResource("/res/sound/move.wav"); //Advance/Retreat
 		//Special
 		soundURL[17] = getClass().getResource("/res/sound/use.wav"); //Use Items
 		soundURL[18] = getClass().getResource("/res/sound/flee.wav"); //Flee
@@ -40,7 +40,7 @@ public class Sound {
 		soundURL[21] = getClass().getResource("/res/sound/Pickup.wav"); // Interact with item
 		soundURL[22] = getClass().getResource("/res/sound/Chime.wav"); //Bell
 		soundURL[23] = getClass().getResource("/res/sound/Unlock.wav"); //Unlock
-		//Unsheathe
+		soundURL[24] = getClass().getResource("/res/sound/Unsheathe.wav"); //Unsheathe
 		//Menu song
 		soundURL[31] = getClass().getResource("/res/music/Casual-Theme.wav"); //Woodland song
 		//Cottage song

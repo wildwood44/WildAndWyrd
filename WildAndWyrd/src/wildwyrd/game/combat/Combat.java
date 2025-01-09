@@ -72,6 +72,7 @@ public class Combat extends Entity {
 	}
 
 	public void startCombat() {
+		gp.ui.resetSlots();
 		turn = 0;
 		if(enemies.get(0) != null) {
 			gp.playable.get(0).setCombatStatus(CombatStatus.Normal);
