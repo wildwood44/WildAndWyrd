@@ -91,15 +91,7 @@ public class AssetSetter {
 		gp.obj[0][i].worldY = 2 * gp.tileSize;
 		i++;
 		gp.obj[0][i] = new Obj_Table(gp);
-		gp.obj[0][i].worldX = 8 * gp.tileSize;
-		gp.obj[0][i].worldY = 4 * gp.tileSize;
-		i++;
-		gp.obj[0][i] = new Obj_Chair_Right(gp);
 		gp.obj[0][i].worldX = 7 * gp.tileSize;
-		gp.obj[0][i].worldY = 4 * gp.tileSize;
-		i++;
-		gp.obj[0][i] = new Obj_Chair_Left(gp);
-		gp.obj[0][i].worldX = 9 * gp.tileSize;
 		gp.obj[0][i].worldY = 4 * gp.tileSize;
 		i++;
 		gp.obj[0][i] = new Obj_Oven(gp);

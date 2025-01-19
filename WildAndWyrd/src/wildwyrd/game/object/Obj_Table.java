@@ -16,15 +16,16 @@ public class Obj_Table extends Entity {
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
+		solidArea.x = 32;
 		solidArea.y = 40;
 		solidArea.height = 24;
+		solidArea.width = 128;
+		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
-
-		image = setup("/res/objects/img_table2", gp.tileSize, gp.tileSize);
+		image = setup("/res/objects/img_table2", gp.tileSize*3, gp.tileSize);
 
 		setDialogue();
 		getImage(image);
-		solidArea.width = 60;
 	}
 
 	public void setDialogue() {
