@@ -25,9 +25,8 @@ public class AssetSetter {
 	
 	public void setMaps() {
 		gp.maps[0] = new Map(gp, MapType.INTERIOR, 0, 15, 10);
-		gp.maps[1] = new Map(gp, MapType.INTERIOR, 1, 17, 11);
-		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 19, 12);
-		gp.maps[3] = new Map(gp, MapType.OUTSIDE, 3, 17, 11);
+		gp.maps[1] = new Map(gp, MapType.OUTSIDE, 1, 19, 12);
+		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 17, 11);
 	}
 
 	public void setRooms() {
@@ -129,69 +128,69 @@ public class AssetSetter {
 		gp.obj[0][i].worldX = 11 * gp.tileSize;
 		gp.obj[0][i].worldY = 6 * gp.tileSize;
 		i = 0;
-		gp.obj[2][i] = new Obj_P_Mushroom(gp);
-		gp.obj[2][i].worldX = 10 * gp.tileSize;
-		gp.obj[2][i].worldY = 7 * gp.tileSize;
-		gp.obj[2][i].setLoot(new Itm_P_Mushroom(gp));
+		gp.obj[1][i] = new Obj_P_Mushroom(gp);
+		gp.obj[1][i].worldX = 10 * gp.tileSize;
+		gp.obj[1][i].worldY = 7 * gp.tileSize;
+		gp.obj[1][i].setLoot(new Itm_P_Mushroom(gp));
 		i++;
-		//gp.obj[2][1] = new Plant_1(gp);
-		//gp.obj[2][1].worldX = 14 * gp.tileSize;
-		//gp.obj[2][1].worldY = 7 * gp.tileSize;
-		gp.obj[2][i] = new Obj_Tree(gp);
+		//gp.obj[1][1] = new Plant_1(gp);
+		//gp.obj[1][1].worldX = 14 * gp.tileSize;
+		//gp.obj[1][1].worldY = 7 * gp.tileSize;
+		gp.obj[1][i] = new Obj_Tree(gp);
+		gp.obj[1][i].worldX = 1 * gp.tileSize;
+		gp.obj[1][i].worldY = 7 * gp.tileSize;
+		i++;
+		gp.obj[1][i] = new Obj_SilverBirch(gp);
+		gp.obj[1][i].worldX = 15 * gp.tileSize;
+		gp.obj[1][i].worldY = 4 * gp.tileSize;
+		i++;
+		gp.obj[1][i] = new Obj_Rock(gp, 0);
+		gp.obj[1][i].worldX = 14 * gp.tileSize;
+		gp.obj[1][i].worldY = 9 * gp.tileSize;
+		i++;
+		gp.obj[1][i] = new Obj_Rock(gp, 1);
+		gp.obj[1][i].worldX = 20 * gp.tileSize;
+		gp.obj[1][i].worldY = 5 * gp.tileSize;
+		i++;
+		gp.obj[1][i] = new Obj_Blackberry(gp);
+		gp.obj[1][i].worldX = 3 * gp.tileSize;
+		gp.obj[1][i].worldY = 4 * gp.tileSize;
+		i++;
+		gp.obj[1][i] = new Obj_Blackberry(gp);
+		gp.obj[1][i].worldX = 4 * gp.tileSize;
+		gp.obj[1][i].worldY = 3 * gp.tileSize;
+		i = 0;
+		gp.obj[2][i] = new Obj_SilverBirch(gp);
 		gp.obj[2][i].worldX = 1 * gp.tileSize;
-		gp.obj[2][i].worldY = 7 * gp.tileSize;
+		gp.obj[2][i].worldY = 4 * gp.tileSize;
 		i++;
 		gp.obj[2][i] = new Obj_SilverBirch(gp);
-		gp.obj[2][i].worldX = 15 * gp.tileSize;
-		gp.obj[2][i].worldY = 4 * gp.tileSize;
+		gp.obj[2][i].worldX = 5 * gp.tileSize;
+		gp.obj[2][i].worldY = 8 * gp.tileSize;
 		i++;
-		gp.obj[2][i] = new Obj_Rock(gp, 0);
-		gp.obj[2][i].worldX = 14 * gp.tileSize;
-		gp.obj[2][i].worldY = 9 * gp.tileSize;
-		i++;
-		gp.obj[2][i] = new Obj_Rock(gp, 1);
-		gp.obj[2][i].worldX = 20 * gp.tileSize;
-		gp.obj[2][i].worldY = 5 * gp.tileSize;
-		i++;
-		gp.obj[2][i] = new Obj_Blackberry(gp);
-		gp.obj[2][i].worldX = 3 * gp.tileSize;
-		gp.obj[2][i].worldY = 4 * gp.tileSize;
-		i++;
-		gp.obj[2][i] = new Obj_Blackberry(gp);
-		gp.obj[2][i].worldX = 4 * gp.tileSize;
+		gp.obj[2][i] = new Obj_SilverBirch(gp);
+		gp.obj[2][i].worldX = 9 * gp.tileSize;
 		gp.obj[2][i].worldY = 3 * gp.tileSize;
-		i = 0;
-		gp.obj[3][i] = new Obj_SilverBirch(gp);
-		gp.obj[3][i].worldX = 1 * gp.tileSize;
-		gp.obj[3][i].worldY = 4 * gp.tileSize;
-		i++;
-		gp.obj[3][i] = new Obj_SilverBirch(gp);
-		gp.obj[3][i].worldX = 5 * gp.tileSize;
-		gp.obj[3][i].worldY = 8 * gp.tileSize;
-		i++;
-		gp.obj[3][i] = new Obj_SilverBirch(gp);
-		gp.obj[3][i].worldX = 9 * gp.tileSize;
-		gp.obj[3][i].worldY = 3 * gp.tileSize;
 	}
 	public void setNPC() {
-		//gp.npc[2][0] = new NPC_Florence(gp);
-		//gp.npc[2][0].worldX = gp.tileSize * 11;
-		//gp.npc[2][0].worldY = gp.tileSize * 3;
-		gp.npc[2][0] = new NPC_Thay(gp);
-		gp.npc[2][0].worldX = gp.tileSize * 12;
-		gp.npc[2][0].worldY = gp.tileSize * 8;
-		//gp.npc[2][2] = new NPC_Dilecto(gp);
-		//gp.npc[2][2].worldX = gp.tileSize * 12;
-		//gp.npc[2][2].worldY = gp.tileSize * 4;
-		gp.npc[3][0] = new NPC_Cricket(gp);
-		gp.npc[3][0].worldX = gp.tileSize * 13;
-		gp.npc[3][0].worldY = gp.tileSize * 5;
+		//gp.npc[1][0] = new NPC_Florence(gp);
+		//gp.npc[1][0].worldX = gp.tileSize * 11;
+		//gp.npc[1][0].worldY = gp.tileSize * 3;
+		gp.npc[1][0] = new NPC_Thay(gp);
+		gp.npc[1][0].worldX = gp.tileSize * 12;
+		gp.npc[1][0].worldY = gp.tileSize * 8;
+		//gp.npc[1][2] = new NPC_Dilecto(gp);
+		//gp.npc[1][2].worldX = gp.tileSize * 12;
+		//gp.npc[1][2].worldY = gp.tileSize * 4;
+		gp.npc[2][0] = new NPC_Cricket(gp);
+		gp.npc[2][0].worldX = gp.tileSize * 13;
+		gp.npc[2][0].worldY = gp.tileSize * 5;
 	}
 	public void setInteractiveTile() {
 		int i = 0;
-		gp.iTile[2][i] = new IT_StoneDoor(gp, 12, 2);
+		gp.iTile[1][i] = new IT_StoneDoor(gp, 12, 2);
 		i++;
-		gp.iTile[2][i] = new IT_StoneDoor(gp, 16, 2);
+		gp.iTile[1][i] = new IT_StoneDoor(gp, 16, 2);
 	}
 	public int getRandomNumber(int min, int max) {
 	    return (int) ((Math.random() * (max - min)) + min);

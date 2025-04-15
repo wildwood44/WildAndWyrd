@@ -508,7 +508,7 @@ public class CutsceneManager {
 		} else if (scenePhase == 6) {
 			destroyActor(actor.name);
 			createActor(new NPC_Thay(gp), 3, gp.tileSize * 12, gp.tileSize * 6, "down");
-			gp.currentMap = gp.maps[3];
+			gp.currentMap = gp.maps[2];
 			gp.player.worldX = gp.tileSize * 11;
 			gp.player.worldY = gp.tileSize * 7;
 			drawStage();
@@ -529,7 +529,7 @@ public class CutsceneManager {
 			if(fadeOut(0.005f)) {
 				destroyActor(actor.name);
 				destroyActor(NPC_Rat_Siluette.npcName);
-				gp.currentMap = gp.maps[2];
+				gp.currentMap = gp.maps[1];
 				actor = getActor(PlayerDummy.npcName);
 				gp.player.worldX = actor.worldX;
 				gp.player.worldY = actor.worldY;
@@ -579,7 +579,7 @@ public class CutsceneManager {
 				scenePhase++;
 			}
 		} else if (scenePhase == 4) {
-			gp.currentMap = gp.maps[2];
+			gp.currentMap = gp.maps[1];
 			gp.player.worldX = gp.tileSize * 15;
 			gp.player.worldY = gp.tileSize * 6;
 			gp.tileM = new TileManager(gp);
@@ -968,7 +968,6 @@ public class CutsceneManager {
 	//Florence sees the sword
 	private void scene_c3_2() {
 		if (scenePhase == 0) {
-			System.out.println(gp.s.c3Switch[3]);
 			gp.cutsceneOn = true;
 			gp.c.dialogueSet = 10;
 			gp.c.setDialogue();
@@ -1091,7 +1090,7 @@ public class CutsceneManager {
 				scenePhase++;
 			}
 		} else if (scenePhase == 5) {
-			gp.currentMap = gp.maps[2];
+			gp.currentMap = gp.maps[1];
 			gp.player.worldX = gp.tileSize * 11;
 			gp.player.worldY = gp.tileSize * 5;
 			gp.tileM = new TileManager(gp);
@@ -1177,7 +1176,7 @@ public class CutsceneManager {
 			gp.c.setDialogue();
 			gp.player.drawing = false;
 			gp.ui.selectedObject = gp.c;
-			gp.currentMap = gp.maps[2];
+			gp.currentMap = gp.maps[1];
 			createActor(new NPC_Gowl_Rat(gp), gp.tileSize * 12, gp.tileSize * 4, "down");
 			createActor(new NPC_Jeb(gp), gp.tileSize * 12, gp.tileSize * 9, "up");
 			gp.player.worldX = gp.tileSize * 11;
@@ -1360,7 +1359,7 @@ public class CutsceneManager {
 				scenePhase++;
 			}
 		} else if (scenePhase == 5) {
-			gp.currentMap = gp.maps[2];
+			gp.currentMap = gp.maps[1];
 			createActor(new NPC_Gowl_Rat(gp), gp.tileSize * 11, gp.tileSize * 7, "up");
 			createActor(new NPC_Gowl_Weasel(gp), gp.tileSize * 12, gp.tileSize * 7, "up");
 			createActor(new NPC_Gowl_Weasel2(gp), gp.tileSize * 13, gp.tileSize * 7, "up");
@@ -1385,7 +1384,6 @@ public class CutsceneManager {
 			moveActor(NPC_Gowl_Rat.npcName, "up", 3);
 			moveActor(NPC_Gowl_Weasel.npcName, "up", 3);
 			moveActor(NPC_Gowl_Weasel2.npcName, "up", 3);
-			System.out.println(getActor(NPC_Gowl_Rat.npcName).worldY + " " + getActor(NPC_Gowl_Weasel.npcName).worldY + " " + getActor(NPC_Gowl_Weasel2.npcName).worldY);
 			if (moveActor(NPC_Gowl_Sorcerer.npcName, "up", 4)) {
 				scenePhase++;
 			}

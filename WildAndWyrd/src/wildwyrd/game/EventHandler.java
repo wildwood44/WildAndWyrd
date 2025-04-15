@@ -65,7 +65,6 @@ public class EventHandler {
 		}
 		if(canTouchEvent) {
 			if(gp.currentMap.getId() == 0) {
-				//if(hit(0,13,8,"up")) {teleport(gp.maps[1],15,3);}
 				if(hit(0,8,7,"down")) {
 					if(!gp.s.c3Switch[3]) {
 						Entity item = new Itm_Travelling_Cloak(gp);
@@ -73,37 +72,36 @@ public class EventHandler {
 							gp.s.swh[14] = true;
 						} else { obsticle(gp.maps[0]);}
 					} else {
-						teleport(gp.maps[2],12,3);
+						teleport(gp.maps[1],12,3);
 						gp.playSE(8);
 						if(gp.s.swh[1]) {gp.s.part = 2;}
 					}
 				}
 				if(hit(0,12,7,"down")) {
-					if(!gp.s.c3Switch[3]) {obsticle(gp.maps[0]);} else {gp.playSE(8);teleport(gp.maps[2],16,3);}
+					if(!gp.s.c3Switch[3]) {obsticle(gp.maps[0]);} else {gp.playSE(8);teleport(gp.maps[1],16,3);}
 				}
 			}
 			//else if(gp.currentMap.getId() == 1) {
 			//	if(hit(1,15,4,"down")) {teleport(gp.maps[0],13,9);}
 			//}
-			else if(gp.currentMap.getId() == 2) {
-				if(hit(2,12,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][0]);}
-				if(hit(2,12,2,"up")) {
+			else if(gp.currentMap.getId() == 1) {
+				if(hit(1,12,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][0]);}
+				if(hit(1,12,2,"up")) {
 					gp.playSE(8);
 					teleport(gp.maps[0],8,6); 
 					if(gp.s.chapter == 2 && gp.s.swh[6]) {gp.s.part = 2;}}
-				if(hit(2,16,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][1]);}
-				if(hit(2,16,2,"up")) {gp.playSE(8);teleport(gp.maps[0],12,6);}
-				if(hit(2,14,4,"down")) {}
-				if(hitRow(2,11,"down")) {
+				if(hit(1,16,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][1]);}
+				if(hit(1,16,2,"up")) {gp.playSE(8);teleport(gp.maps[0],12,6);}
+				if(hit(1,14,4,"down")) {}
+				if(hitRow(1,11,"down")) {
 					if(gp.playable.get(0).getWeapon_prime().name != null) {
-						teleport(gp.maps[3],4,1);
-					} else { obsticle(gp.maps[2]); }
+						teleport(gp.maps[2],4,1);
+					} else { obsticle(gp.maps[1]); }
 				}
 			}
-			else if(gp.currentMap.getId() == 3) {
-				if(hitRow(3,0,"up")) {teleport(gp.maps[2],10,11);}
-				if(hitRow(3,10,"down")) {obsticle(gp.maps[3]);};
-				//if(hit(3,13,10,"down")) {obsticle(gp.maps[3]);};
+			else if(gp.currentMap.getId() == 2) {
+				if(hitRow(2,0,"up")) {teleport(gp.maps[1],10,11);}
+				if(hitRow(2,10,"down")) {obsticle(gp.maps[2]);};
 			}
 		}
 	}
@@ -247,9 +245,9 @@ public class EventHandler {
 		gp.gameState = GameState.examineState;
 		if(map.getId() == 0) {
 			eventMaster.startDialogue(eventMaster, 2);
-		} else if(map.getId() == 2) {
+		} else if(map.getId() == 1) {
 			eventMaster.startDialogue(eventMaster, 0);
-		} else if(map.getId() == 3) {
+		} else if(map.getId() == 2) {
 			eventMaster.startDialogue(eventMaster, 1);
 		}
 		gp.keyH.enterPressed = false;

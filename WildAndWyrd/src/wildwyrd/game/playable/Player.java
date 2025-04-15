@@ -55,7 +55,7 @@ public class Player extends Entity {
 	}
 
 	public void setDefaultPositions() {
-		gp.currentMap = gp.maps[2];
+		gp.currentMap = gp.maps[1];
 		gp.tileM = new TileManager(gp);
 		worldX = gp.tileSize * 12;
 		worldY = gp.tileSize * 8;
