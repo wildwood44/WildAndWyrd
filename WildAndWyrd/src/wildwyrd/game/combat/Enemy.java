@@ -20,6 +20,7 @@ public class Enemy extends Combatant {
 	public Enemy(GamePanel gp, String name, int maxHealth, int maxStamina, int baseAttack, int baseDefence, int baseAccuracy, int baseSpeed, int baseEvasion) {
 		super(gp, name, maxHealth, maxStamina, baseAttack, baseDefence, baseAccuracy, baseSpeed, baseEvasion);
 		setDialogue();
+		skippable = false;
 		getImage();
 	}
 	
@@ -57,9 +58,6 @@ public class Enemy extends Combatant {
 	
 	public void setAction() {
 		
-	}
-
-	public void setDialogue() {
 	}
 
 	public void startDialogue(Entity object, int setNum) {
@@ -106,10 +104,10 @@ public class Enemy extends Combatant {
 	}
 	
 	public void defeated() {
-		
+		gp.playSE(19);
+		gp.gameState = GameState.rewardState;
 	}
 	
 	public void combatResult() {
-		
 	}
 }

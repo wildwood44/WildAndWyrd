@@ -28,9 +28,9 @@ public class Obj_Hearth extends Entity {
 
 	public void setDialogue() {
 		dialogues[0][0] = new Dialoge("The hearth warmed the cottage and cooked food.", 1);
-		dialogues[1][0] = new Dialoge("Alder got to work cleaning the hearth using a brush and cloth. By the end his arms were completely blackened by soot.", 1);
-		dialogues[1][2] = new Dialoge("Throw that ash outside.", 1);
-		dialogues[1][3] = new Dialoge("If it gets on the floor, you're cleaning it up.", 1);
+		dialogues[1][0] = new Dialoge("Alder got to work cleaning the cauldron.", 1);
+		dialogues[1][2] = new Dialoge("Make sure it shines.", 1); 
+		dialogues[1][3] = new Dialoge("I don't want any grime in my next meal.", 1);
 		dialogues[2][0] = new Dialoge("A small metal cauldron was suspended above the hearth by a chain. It was empty.", 1);
 	}
 
@@ -39,6 +39,7 @@ public class Obj_Hearth extends Entity {
 		if(gp.objective.quests[1].isAccepted() && !gp.objective.quests[1].require[0]) {
 			startDialogue(this, 1);
 			gp.objective.quests[1].progress(0);
+			gp.glossary.unlock("constructs", "cauldron");
 		} else {
 			//if(gp.player.worldX)
 			startDialogue(this, 0);

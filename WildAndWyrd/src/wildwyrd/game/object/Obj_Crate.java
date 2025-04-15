@@ -6,7 +6,7 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Crate extends Entity {
 	GamePanel gp;
-	public static final int objId = 14;
+	public static final int objId = 15;
 	public static final String objName = "Crate";
 
 	public Obj_Crate(GamePanel gp) {

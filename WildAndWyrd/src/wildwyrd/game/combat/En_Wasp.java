@@ -23,6 +23,7 @@ public class En_Wasp extends Enemy {
 		dialogues[0][0] = new Dialoge("" ,1);
 		dialogues[1][0] = new Dialoge("Alder","Did I anger them?",port.image_Alder);
 		dialogues[1][1] = new Dialoge("Alder was puzzled by the attack but regardless it was time to return to Florence.",1);
+		dialogues[5][0] = new Dialoge("",1);
 	}
 
 	public void getImage() {
@@ -40,10 +41,6 @@ public class En_Wasp extends Enemy {
 	public void checkDrop() {
 		//int i = new Random().nextInt(100)+1;
 		dropItem(new Itm_Bug_Meat(gp));
-	}
-	
-	public void defeated() {
-		gp.gameState = GameState.rewardState;
 	}
 	
 	public void combatResult() {

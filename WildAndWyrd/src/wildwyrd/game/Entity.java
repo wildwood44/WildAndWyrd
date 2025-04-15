@@ -5,10 +5,13 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
+import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.items.Item;
 import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.tile.UtilityTool;
@@ -45,15 +48,23 @@ public class Entity {
 	public int staminaRcvd;
 	public String description = "";
 	public String direction = "down";
-	public BufferedImage up1, up2, up3, left1, left2, left3, right1, right2, right3, down1, down2, down3, unique;
+	public BufferedImage up1, up2, up3, left1, left2, left3, right1, right2, right3, down1, down2, down3, altUp1, altUp2, altDown1, altDown2, unique;
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
+	public List<Enemy> enemies = new ArrayList<Enemy>(5);
+	//Inventory
+	public ArrayList<Item> inventory = new ArrayList<Item>();
+	public final int inventorySize = 20;
+	//Status
 	public boolean moving = false;
 	public boolean collision = false;
 	public boolean collisionOn = false;
-	public boolean takeDamage = false;
 	public boolean stackable = false;
 	public boolean destroy = false;
+	public boolean drawing = true;
+	public boolean takeDamage = false;
+	public boolean climbing = false;
+	public boolean hasQuest = false;
 	public int amount = 1;
 	public EntityType type;
 	public Timer timer;
@@ -61,7 +72,7 @@ public class Entity {
 	public Item loot;
 	public int shill = 0;
 	public boolean opened = false;
-	public boolean drawing = true;
+	public boolean skippable = true;
 	
 
 	public Entity(GamePanel gp) {
@@ -70,9 +81,12 @@ public class Entity {
 
 	public void update() {
 		collisionOn = false;
-		gp.cChecker.checkTile(this);
-		gp.cChecker.checkObject(this, false);
-		gp.cChecker.checkPlayer(this);
+		if(gp.gameState != GameState.cutsceneState) {
+			//CHECK COLLISION
+			gp.cChecker.checkTile(this);
+			gp.cChecker.checkObject(this, false);
+			gp.cChecker.checkPlayer(this);
+		}
 		if(moving) {
 			if(!collisionOn) {
 				switch(direction) {
@@ -183,6 +197,7 @@ public class Entity {
 	}
 
 	public void draw(Graphics2D g2) {
+		getQuest();
 		//BufferedImage image = null;
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
@@ -209,35 +224,49 @@ public class Entity {
 			int tempScreenY = screenY;
 			switch(direction) {
 			case "up":
-				if(spriteNum == 1) {image = up1;}
-				if(spriteNum == 2) {image = up2;}
-				if(spriteNum == 3) {image = up3;}
-				break;
-			case "left":
-				if(spriteNum == 1) {image = left1;}
-				if(spriteNum == 2) {image = left2;}
-				if(spriteNum == 3) {image = left3;}
-				break;
-			case "right":
-				if(spriteNum == 1) {image = right1;}
-				if(spriteNum == 2) {image = right2;}
-				if(spriteNum == 3) {image = right3;}
+				if(spriteNum == 1) {image = up1;} 
+				else if(spriteNum == 2) {image = up2;} 
+				else if(spriteNum == 3) {image = up1;}
+				else if(spriteNum == 4) {image = up3;}
 				break;
 			case "down":
-				if(spriteNum == 1) {image = down1;}
-				if(spriteNum == 2) {image = down2;}
-				if(spriteNum == 3) {image = down3;}
+				if(spriteNum == 1) {image = down1;} 
+				else if(spriteNum == 2) {image = down2;} 
+				else if(spriteNum == 3) {image = down1;} 
+				else if(spriteNum == 4) {image = down3;}
+				break;
+			case "left":
+				if(spriteNum == 1) {image = left1;} 
+				else if(spriteNum == 2) {image = left2;}
+				else if(spriteNum == 3) {image = left1;} 
+				else if(spriteNum == 4) {image = left3;}
+				break;
+			case "right":
+				if(spriteNum == 1) {image = right1;} 
+				else if(spriteNum == 2) {image = right2;}
+				else if(spriteNum == 3) {image = right1;}
+				else if(spriteNum == 4) {image = right3;}
 				break;
 			case "unique":
 				image = unique;
 				break;
 			}
+			if(climbing) {
+				switch(direction) {
+				case "up":
+					if(spriteNum == 1) {image = altUp1;}
+					else {image = altUp2;}
+				case "down":
+					if(spriteNum == 1) {image = altDown1;}
+					else {image = altDown2;}
+				}
+			}
 			g2.setComposite(AlphaComposite.SrcOver.derive(alpha));
 			g2.drawImage(image, tempScreenX, tempScreenY, null);
-			//if(image2 != null) {
-	        //    g2.setComposite(AlphaComposite.SrcOver.derive(1f - alpha));
-			//	g2.drawImage(image2, screenX, screenY, gp.tileSize, gp.tileSize, null);
-			//}
+			if(hasQuest && gp.gameState == GameState.playState) {
+				BufferedImage q_icon = setup("/res/icons/quest_icon",gp.originalTileSize,gp.originalTileSize);
+				g2.drawImage(q_icon, tempScreenX + 10, tempScreenY, null);
+			}
             g2.setComposite(AlphaComposite.SrcOver.derive(1f));
 		}
 		else if(gp.player.worldX < gp.player.screenX ||
@@ -248,39 +277,52 @@ public class Entity {
 			int tempScreenY = screenY;
 			switch(direction) {
 			case "up":
-				if(spriteNum == 1) {image = up1;}
-				if(spriteNum == 2) {image = up2;}
-				if(spriteNum == 3) {image = up3;}
-				break;
-			case "left":
-				if(spriteNum == 1) {image = left1;}
-				if(spriteNum == 2) {image = left2;}
-				if(spriteNum == 3) {image = left3;}
-				break;
-			case "right":
-				if(spriteNum == 1) {image = right1;}
-				if(spriteNum == 2) {image = right2;}
-				if(spriteNum == 3) {image = right3;}
+				if(spriteNum == 1) {image = up1;} 
+				else if(spriteNum == 2) {image = up2;} 
+				else if(spriteNum == 3) {image = up1;}
+				else if(spriteNum == 4) {image = up3;}
 				break;
 			case "down":
-				if(spriteNum == 1) {image = down1;}
-				if(spriteNum == 2) {image = down2;}
-				if(spriteNum == 3) {image = down3;}
+				if(spriteNum == 1) {image = down1;} 
+				else if(spriteNum == 2) {image = down2;} 
+				else if(spriteNum == 3) {image = down1;} 
+				else if(spriteNum == 4) {image = down3;}
+				break;
+			case "left":
+				if(spriteNum == 1) {image = left1;} 
+				else if(spriteNum == 2) {image = left2;}
+				else if(spriteNum == 3) {image = left1;} 
+				else if(spriteNum == 4) {image = left3;}
+				break;
+			case "right":
+				if(spriteNum == 1) {image = right1;} 
+				else if(spriteNum == 2) {image = right2;}
+				else if(spriteNum == 3) {image = right1;}
+				else if(spriteNum == 4) {image = right3;}
 				break;
 			case "unique":
 				image = unique;
 				break;
 			}
-			g2.drawImage(image, tempScreenX, tempScreenY, null); 
+			g2.drawImage(image, tempScreenX, tempScreenY, null);
+			if(hasQuest && gp.gameState == GameState.playState) {
+				BufferedImage q_icon = setup("/res/icons/quest_icon",gp.originalTileSize,gp.originalTileSize);
+				g2.drawImage(q_icon, tempScreenX + 10, tempScreenY, null);
+			}
             g2.setComposite(AlphaComposite.SrcOver.derive(1f));
 		}
 	}
 
 	public void startDialogue(Entity object, int setNum) {
 		GamePanel gp = this.gp;
+		//gp.ui.returnState = gp.gameState;
 		gp.gameState = GameState.examineState;
 		gp.ui.selectedObject = object;
 		dialogueSet = setNum;
+	}
+	
+	public boolean getQuest() {
+		return hasQuest;
 	}
 
 	public void restartDialogue(Dialoge[] object, int getSize) {
@@ -297,23 +339,49 @@ public class Entity {
 		this.shill = loot;
 	}
 	
+	public boolean inInventory(Entity item) {
+		for(int i = 0; i < inventory.size(); i++) {
+			if(item != null) {
+				if(inventory.get(i).id == item.id) {
+					return true;		
+				}
+			}
+		}
+		return false;
+	}
+	
+	public int findItemInInventory(Entity item) {
+		for(int i = 0; i < inventory.size(); i++) {
+			if(inventory.get(i).id == item.id) {
+				return inventory.get(i).amount;		}
+		}
+		return 0;
+	}
+	
+	public void removeFromInventory(Item selectedItem) {
+		if(selectedItem.amount > 1) {
+			selectedItem.amount--;
+		} else {
+			inventory.remove(selectedItem);
+		}
+	}
+	
 	public void interact() {}
-	public void speak() {}
+	public void speak() {
+		facePlayer();
+		gp.ui.choiceSlot = 0;
+		gp.ui.firstValue = 0;
+		startDialogue(this, 0);
+
+		gp.keyH.enterPressed = false;
+	}
 	
 	public void facePlayer() {
 		switch(gp.player.direction) {
-		case "up":
-			direction = "down";
-			break;
-		case "down":
-			direction = "up";
-			break;
-		case "left":
-			direction = "right";
-			break;
-		case "right":
-			direction = "left";
-			break;
+		case "up": direction = "down"; break;
+		case "down": direction = "up"; break;
+		case "left": direction = "right"; break;
+		case "right": direction = "left"; break;
 		}
 	}
 
@@ -338,6 +406,25 @@ public class Entity {
 			}
 		}
 		return index;
+	}
+	
+	public boolean climbing(String direction, int move) {
+		boolean climbComplete = false;
+		spriteCounter++;
+		switch(direction) {
+		case "up":
+			if(worldY < gp.tileSize * move){
+				climbComplete = true;
+			} else {worldY -= 1;}
+			break;
+		case "down":
+			if(worldY > gp.tileSize * move){
+				climbComplete = true;
+			} else {worldY += 1;}
+			break;
+		}
+		climbing = !climbComplete;
+		return climbComplete;
 	}
 	
 	public void combatResponce() {}

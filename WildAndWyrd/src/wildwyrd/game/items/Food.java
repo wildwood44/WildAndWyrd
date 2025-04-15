@@ -14,6 +14,7 @@ public class Food extends Item {
 	
 	public void use() {
 		if(gp.playable.get(0).getStamina() < gp.playable.get(0).getMaxStamina()) {
+			gp.playSE(17);
 			gp.playable.get(0).eat(staminaRcvd);
 			gp.player.removeFromInventory(this);
 		}

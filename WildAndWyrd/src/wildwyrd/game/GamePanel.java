@@ -19,8 +19,11 @@ import javax.swing.JPanel;
 import wildwyrd.game.combat.Combat;
 import wildwyrd.game.cutscenes.Cutscene;
 import wildwyrd.game.cutscenes.CutsceneManager;
+import wildwyrd.game.effects.DayState;
+import wildwyrd.game.effects.EnvironmentManager;
 import wildwyrd.game.glossary.Glossary;
 import wildwyrd.game.npc.NPC;
+import wildwyrd.game.object.AssetManager;
 import wildwyrd.game.object.AssetSetter;
 import wildwyrd.game.objective.Objective;
 import wildwyrd.game.playable.Playable;
@@ -63,18 +66,21 @@ public class GamePanel extends JPanel implements Runnable {
 	public Sound se = new Sound();
 	public CollisionChecker cChecker;
 	public AssetSetter aSetter = new AssetSetter(this);
+	public AssetManager am = new AssetManager(this);
 	public UI ui = new UI(this);
 	public EventHandler eHandler;
+	public EnvironmentManager eManager = new EnvironmentManager(this);
 	public Room room = new Room(this);
 	public CutsceneManager csManager = new CutsceneManager(this);
 	public Objective objective = new Objective(this);
-	public Glossary glossary = new Glossary();
+	public Glossary glossary = new Glossary(this);
 	Config config = new Config(this);
 	Thread gameThread;
 	int playerY = 100;
 	int playerX = 100;
 	int playerSpeed = 4;
 	public GameState gameState;
+	public DayState dayState;
 	public boolean cutsceneOn = false;
 	public Map currentMap;
 	public Integer selectedObj;
@@ -117,13 +123,16 @@ public class GamePanel extends JPanel implements Runnable {
 		aSetter.setNPC();
 		aSetter.setMaps();
 		aSetter.setInteractiveTile();
+		eManager.setup();
 		gameState = GameState.titleState;
+		dayState = DayState.DAY;
 		currentMap = maps[0];
 		tileM = new TileManager(this);
 		eHandler = new EventHandler(this);
 		cChecker = new CollisionChecker(this);
 		tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
 		g2 = (Graphics2D) tempScreen.getGraphics();
+		//playMusic(31);
 		if(fullScreenOn) {
 			setFullScreen();
 		}
@@ -205,6 +214,15 @@ public class GamePanel extends JPanel implements Runnable {
 					//iTile[currentMap.getId()][i].draw(g2);
 				}
 			}
+			for(int i = 0; i < npc[currentMap.getId()].length; i++) {
+				if(npc[currentMap.getId()][i] != null) {
+					npc[currentMap.getId()][i].update();
+					//iTile[currentMap.getId()][i].draw(g2);
+				}
+			}
+		}
+		if (gameState == GameState.pauseState) {
+			
 		}
 		if (gameState == GameState.combatState) {
 			rm[currentRoom].draw(g2);
@@ -214,58 +232,35 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
 	public void drawToTempScreen() {
+		// DEBUG
 		long drawStart = 0L;
 		if (this.keyH.showDebugText) {
 			drawStart = System.nanoTime();
 		}
-
+		// TITLE SCREEN
 		if (gameState == GameState.titleState) {
-			rm[currentRoom].draw(g2);
+			//rm[currentRoom].draw(g2);
 			ui.draw(g2);
-		} else if (gameState == GameState.combatState) {
+		// DIALOGUE
+		} else if (gameState == GameState.dialogueState) {
+			rm[currentRoom].draw(g2);
+			if(combat.inCombat) {
+				ui.drawCombatants(g2);
+			}
+			ui.draw(g2);
+		// COMBAT SCREEN
+		} else if (gameState == GameState.combatState || gameState == GameState.targetState) {
 			//rm[currentRoom].draw(g2);
 			ui.draw(g2);
 			ui.drawCombatants(g2);
+		// OTHER
 		} else {
-			if (gameState == GameState.dialogueState) {
-				rm[currentRoom].draw(g2);
-				if(combat.inCombat) {
-					ui.drawCombatants(g2);
-				}
-				ui.draw(g2);
-			} else if (gameState == GameState.cutsceneState) {
-				//g2.drawImage(background, 0, 0, this);
+			if (gameState == GameState.cutsceneState) {
 				csManager.draw(g2);
+				// Environment
+				eManager.draw(g2);
 				ui.draw(g2);
-			} else if (gameState == GameState.examineState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.talkingState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.menuState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.saveState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.statusState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.inventoryState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.equipState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.skillState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.glossaryState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.optionsState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.readingState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.targetState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.rewardState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.gameOverState) {
-				ui.draw(g2);
-			} else if (gameState == GameState.playState) {
+			} else {
 				tileM.draw(g2);
 				//INTERACTIVE TILES
 				for(int i = 0; i < iTile[currentMap.getId()].length; i++) {
@@ -273,6 +268,7 @@ public class GamePanel extends JPanel implements Runnable {
 						iTile[currentMap.getId()][i].draw(g2);
 					}
 				}
+				// ADD ENTITIES TO LIST
 				entityList.add(player);
 				//OBJECTS
 				for (int i = 0; i < obj[currentMap.getId()].length; i++) {
@@ -284,26 +280,29 @@ public class GamePanel extends JPanel implements Runnable {
 				//NPC
 				for (int i = 0; i < npc[currentMap.getId()].length; i++) {
 					if (npc[currentMap.getId()][i] != null) {
-						//entityList.add(npc[currentMap.getId()][i]);
-						npc[currentMap.getId()][i].draw(g2);
+						entityList.add(npc[currentMap.getId()][i]);
+						//npc[currentMap.getId()][i].draw(g2);
 					}
 				}
+				//tileM.draw(g2);
 				Collections.sort(entityList, new Comparator<Entity>() {
 					@Override
 					public int compare(Entity e1, Entity e2) {
 						int result = Integer.compare(e1.worldY, e2.worldY);
 						return result;
 					}
-
+	
 				});
-
+	
 				for (Entity element : entityList) {
 					element.draw(g2);
 				}
 				entityList.clear();
+				// Environment
+				eManager.draw(g2);
+				// UI
 				ui.draw(g2);
 			}
-			ui.draw(g2);
 		}
 
 		if (keyH.showDebugText) {

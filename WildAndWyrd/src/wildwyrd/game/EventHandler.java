@@ -1,6 +1,8 @@
 package wildwyrd.game;
 
 import wildwyrd.game.cutscenes.CutsceneManager;
+import wildwyrd.game.items.Itm_Bug_Meat;
+import wildwyrd.game.items.Itm_Travelling_Cloak;
 import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.object.IT_StoneDoor;
 import wildwyrd.game.tile.InteractiveTile;
@@ -50,6 +52,8 @@ public class EventHandler {
 		eventMaster.dialogues[1][0] = new Dialoge("Alder once got lost after he strayed too far from the cottage.", 1);
 		eventMaster.dialogues[1][1] = new Dialoge("He spent hours in the dark until Florence found him crying and scared.", 1);
 		eventMaster.dialogues[1][2] = new Dialoge("Kyla had been indifferent to the incident.", 1);
+		eventMaster.dialogues[2][0] = new Dialoge("The Gowls are right outside.", 1);
+		eventMaster.dialogues[2][1] = new Dialoge("Going out would be a death sentence.", 1);
 	}
 
 	public void checkEvent() {
@@ -61,36 +65,43 @@ public class EventHandler {
 		}
 		if(canTouchEvent) {
 			if(gp.currentMap.getId() == 0) {
-				//if(hit(0,13,8,"up")) {teleport(gp.maps[1],15,3);}
 				if(hit(0,8,7,"down")) {
-					teleport(gp.maps[2],12,3);
-					gp.playSE(2);
-					if(gp.s.swh[1]) {gp.s.part = 2;}
+					if(!gp.s.c3Switch[3]) {
+						Entity item = new Itm_Travelling_Cloak(gp);
+						if(gp.player.findItemInInventory(item) == 2) {
+							gp.s.swh[14] = true;
+						} else { obsticle(gp.maps[0]);}
+					} else {
+						teleport(gp.maps[1],12,3);
+						gp.playSE(8);
+						if(gp.s.swh[1]) {gp.s.part = 2;}
+					}
 				}
-				if(hit(0,12,7,"down")) {gp.playSE(2);teleport(gp.maps[2],16,3);}
+				if(hit(0,12,7,"down")) {
+					if(!gp.s.c3Switch[3]) {obsticle(gp.maps[0]);} else {gp.playSE(8);teleport(gp.maps[1],16,3);}
+				}
 			}
 			//else if(gp.currentMap.getId() == 1) {
 			//	if(hit(1,15,4,"down")) {teleport(gp.maps[0],13,9);}
 			//}
-			else if(gp.currentMap.getId() == 2) {
-				if(hit(2,12,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][0]);}
-				if(hit(2,12,2,"up")) {
-					gp.playSE(2);
+			else if(gp.currentMap.getId() == 1) {
+				if(hit(1,12,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][0]);}
+				if(hit(1,12,2,"up")) {
+					gp.playSE(8);
 					teleport(gp.maps[0],8,6); 
 					if(gp.s.chapter == 2 && gp.s.swh[6]) {gp.s.part = 2;}}
-				if(hit(2,16,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][1]);}
-				if(hit(2,16,2,"up")) {gp.playSE(2);teleport(gp.maps[0],12,6);}
-				if(hit(2,14,4,"down")) {}
-				if(hitRow(2,11,"down")) {
+				if(hit(1,16,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][1]);}
+				if(hit(1,16,2,"up")) {gp.playSE(8);teleport(gp.maps[0],12,6);}
+				if(hit(1,14,4,"down")) {}
+				if(hitRow(1,11,"down")) {
 					if(gp.playable.get(0).getWeapon_prime().name != null) {
-						teleport(gp.maps[3],4,1);
-					} else { obsticle(gp.maps[2]); }
+						teleport(gp.maps[2],4,1);
+					} else { obsticle(gp.maps[1]); }
 				}
 			}
-			else if(gp.currentMap.getId() == 3) {
-				if(hitRow(3,0,"up")) {teleport(gp.maps[2],10,11);}
-				if(hitRow(3,10,"down")) {obsticle(gp.maps[3]);};
-				//if(hit(3,13,10,"down")) {obsticle(gp.maps[3]);};
+			else if(gp.currentMap.getId() == 2) {
+				if(hitRow(2,0,"up")) {teleport(gp.maps[1],10,11);}
+				if(hitRow(2,10,"down")) {obsticle(gp.maps[2]);};
 			}
 		}
 	}
@@ -121,28 +132,46 @@ public class EventHandler {
 				c1s_Cutscene(10);
 			}
 		} else if (gp.s.chapter == 3) {
-			c1s_Cutscene(11);
+			if (gp.s.swh[9] && gp.s.part == 1) {
+				c1s_Cutscene(11);
+			} else if (gp.s.swh[10] && gp.s.part == 1) {
+				c1s_Cutscene(12);
+			} else if (gp.s.swh[11] && gp.s.part == 2) {
+				c1s_Cutscene(13);
+			} else if (gp.s.swh[12] && gp.s.part == 2) {
+				c1s_Cutscene(14);
+			} else if (gp.s.swh[13] && gp.s.part == 2) {
+				c1s_Cutscene(15);
+			} else if (gp.s.swh[14] && gp.s.part == 3) {
+				c1s_Cutscene(16);
+			} else if (gp.s.swh[15] && gp.s.part == 3) {
+				c1s_Cutscene(17);
+			}
 		}
 	}
 
 	public boolean hit(int map, int col, int row, String reqDirection) {
 		boolean hit = false;
 		if(map == gp.currentMap.getId()) {
-			gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
-			gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
-			eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
-			eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
-			if(gp.player.solidArea.intersects(eventRect[map][col][row]) && !eventRect[map][col][row].eventDone) {
-				if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
-					hit = true;
-					previousEventX = gp.player.worldX;
-					previousEventY = gp.player.worldY;
+			//try {
+				gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
+				gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
+				eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
+				eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
+				if(gp.player.solidArea.intersects(eventRect[map][col][row]) && !eventRect[map][col][row].eventDone) {
+					if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
+						hit = true;
+						previousEventX = gp.player.worldX;
+						previousEventY = gp.player.worldY;
+					}
 				}
-			}
-			gp.player.solidArea.x = gp.player.solidAreaDefaultX;
-			gp.player.solidArea.y = gp.player.solidAreaDefaultY;
-			eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
-			eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+				gp.player.solidArea.x = gp.player.solidAreaDefaultX;
+				gp.player.solidArea.y = gp.player.solidAreaDefaultY;
+				eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
+				eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+			//} catch(ArrayIndexOutOfBoundsException e) {
+			//	e.printStackTrace();
+			//}
 		}
 		return hit;
 	}
@@ -150,22 +179,26 @@ public class EventHandler {
 	public boolean hitRow(int map, int row, String reqDirection) {
 		boolean hit = false;
 		if(map == gp.currentMap.getId()) {
-			gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
-			gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
-			int col = gp.player.solidArea.y/gp.tileSize;
-			eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
-			eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
-			if(gp.player.solidArea.y/gp.tileSize == eventRect[map][col][row].y/gp.tileSize && !eventRect[map][col][row].eventDone) {
-				if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
-					hit = true;
-					previousEventX = gp.player.worldX;
-					previousEventY = gp.player.worldY;
+			//try {
+				gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
+				gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
+				int col = gp.player.solidArea.y/gp.tileSize;
+				eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
+				eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
+				if(gp.player.solidArea.y/gp.tileSize == eventRect[map][col][row].y/gp.tileSize && !eventRect[map][col][row].eventDone) {
+					if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
+						hit = true;
+						previousEventX = gp.player.worldX;
+						previousEventY = gp.player.worldY;
+					}
 				}
-			}
-			gp.player.solidArea.x = gp.player.solidAreaDefaultX;
-			gp.player.solidArea.y = gp.player.solidAreaDefaultY;
-			eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
-			eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+				gp.player.solidArea.x = gp.player.solidAreaDefaultX;
+				gp.player.solidArea.y = gp.player.solidAreaDefaultY;
+				eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
+				eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+			//} catch(ArrayIndexOutOfBoundsException e) {
+			//	e.printStackTrace();
+			//}
 		}
 		return hit;
 	}
@@ -197,15 +230,24 @@ public class EventHandler {
 		canTouchEvent = false;
 	}
 	
+	public void speak(Entity entity) {
+		if(gp.keyH.enterPressed) {
+			gp.gameState = GameState.dialogueState;
+			entity.speak();
+		}
+	}
+	
 	public void illusion(InteractiveTile iTile) {
 		if(iTile.id == IT_StoneDoor.intId) {}
 	}
 	
 	public void obsticle(Map map) {
 		gp.gameState = GameState.examineState;
-		if(map.getId() == 2) {
+		if(map.getId() == 0) {
+			eventMaster.startDialogue(eventMaster, 2);
+		} else if(map.getId() == 1) {
 			eventMaster.startDialogue(eventMaster, 0);
-		} else if(map.getId() == 3) {
+		} else if(map.getId() == 2) {
 			eventMaster.startDialogue(eventMaster, 1);
 		}
 		gp.keyH.enterPressed = false;

@@ -15,7 +15,7 @@ public class Obj_Blackberry extends Entity {
 		this.gp = gp;
 		id = objId;
 		name = objName;
-		type = EntityType.Object;
+		type = EntityType.PickUp;
 		solidArea.width = 65;
 		solidArea.height = 65;
 		//solidAreaDefaultX = solidArea.x;
@@ -38,21 +38,16 @@ public class Obj_Blackberry extends Entity {
 	}
 	
 	public void interact() {
-		gp.glossary.unlock("plant", "bramble");
-		if(gp.objective.quests[1].isAccepted() && !opened) {
+		gp.glossary.unlock("plants", "bramble");
+		System.out.println(gp.player.itemIsInInventory(id));
+		if(gp.objective.quests[1].isAccepted() && !opened && 
+				!gp.player.itemIsInInventory(Itm_Bramble_Leaf.itemId)) {
 			startDialogue(this, 1);
 			gp.player.pickUpObject(new Itm_Bramble_Leaf(gp));
 			opened = true;
 		} else {
 			startDialogue(this, 0);
 			destroy = true;
-			for(int i = 0; i < gp.obj[gp.currentMap.getId()].length; i++) {
-				if(gp.obj[gp.currentMap.getId()][i] != null &&
-						gp.obj[gp.currentMap.getId()][i].name == name && destroy) {
-					gp.obj[gp.currentMap.getId()][i] = null;
-					break;
-				}
-			}
 			gp.playable.get(0).eat(5);
 		}
 		gp.keyH.enterPressed = false;

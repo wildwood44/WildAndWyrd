@@ -22,6 +22,9 @@ public class NPC_Thay extends NPC {
 		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;
+		//Size
+		
+		//Conditions
 		contConditions[0] = false;
 		contConditions[1] = false;
 		contConditions[2] = false;
@@ -205,7 +208,7 @@ public class NPC_Thay extends NPC {
 			//startDialogue(this, 9);
 		} else if(gp.s.c1Switch[4] == true) {
 			startDialogue(this, 9);
-			gp.glossary.unlock("plant", "plantain");
+			gp.glossary.unlock("plants", "plantain");
 			gp.playable.get(0).heal(5);
 		}
 		gp.keyH.enterPressed = false;

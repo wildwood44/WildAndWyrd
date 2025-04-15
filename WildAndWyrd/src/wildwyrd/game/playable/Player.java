@@ -25,11 +25,10 @@ public class Player extends Entity {
 	KeyHandler keyH;
 	public final int screenX;
 	public final int screenY;
-	public ArrayList<Item> inventory = new ArrayList<Item>();
 	private int shillings;
-	public final int inventorySize = 20;
 	public Boolean approval;
 	private long start;
+	public Object currentLight;
 
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
@@ -56,7 +55,7 @@ public class Player extends Entity {
 	}
 
 	public void setDefaultPositions() {
-		gp.currentMap = gp.maps[2];
+		gp.currentMap = gp.maps[1];
 		gp.tileM = new TileManager(gp);
 		worldX = gp.tileSize * 12;
 		worldY = gp.tileSize * 8;
@@ -92,6 +91,7 @@ public class Player extends Entity {
 	public void update() {
 		int objIndex;
 		if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed) {
+			//Get direction
 			if (keyH.upPressed) {
 				direction = "up";
 			} else if (keyH.downPressed) {
@@ -106,7 +106,6 @@ public class Player extends Entity {
 			takeDamage = false;
 			gp.cChecker.checkTile(this);
 			objIndex = gp.cChecker.checkObject(this, true);
-			//pickUpObject(objIndex);
 			int npcIndex = gp.cChecker.checkEntity(this,gp.npc);
 			interactNPC(npcIndex);
 			int iTileIndex = gp.cChecker.checkEntity(this,gp.iTile);
@@ -114,6 +113,7 @@ public class Player extends Entity {
 			
 			gp.eHandler.checkEvent();
 			if (collisionOn == false && keyH.enterPressed == false) {
+				//Movement
 				switch (direction) {
 					case "up":
 						worldY -= speed;
@@ -127,23 +127,24 @@ public class Player extends Entity {
 					case "right":
 						worldX += speed;
 				}
+				//Moving Animation
+				spriteCounter++;
+				if (spriteCounter > 10) {
+					if(spriteNum == 1) {
+						spriteNum = 2;
+					} else if (spriteNum == 2) {
+						spriteNum = 3;
+					} else if (spriteNum == 3) {
+						spriteNum = 4;
+					} else if (spriteNum == 4) {
+						spriteNum = 1;
+					}
+					spriteCounter = 0;
+				}
 			} else {
 				if(takeDamage) {
 					gp.playable.get(0).takeDamage(1);
 				}
-			}
-			spriteCounter++;
-			if (spriteCounter > 10) {
-				if(spriteNum == 1) {
-					spriteNum = 2;
-				} else if (spriteNum == 2) {
-					spriteNum = 3;
-				} else if (spriteNum == 3) {
-					spriteNum = 4;
-				} else if (spriteNum == 4) {
-					spriteNum = 1;
-				}
-				spriteCounter = 0;
 			}
 		} else {
 			spriteNum = 1;
@@ -167,6 +168,7 @@ public class Player extends Entity {
 	}
 	
 	public int pickUpShillings(int i) {
+		gp.playSE(21);
 		shillings += i;
 		return shillings;
 	}
@@ -179,11 +181,20 @@ public class Player extends Entity {
 	public int getShillings() {
 		return shillings;
 	}
+	
+	public void setShillings(int i) {
+		shillings = i;
+	}
 
 	public void pickUpObject(int i) {
 		if (i != 999) {
 			if (gp.obj[gp.currentMap.getId()][i].type == EntityType.Object && keyH.enterPressed) {
 				gp.obj[gp.currentMap.getId()][i].interact();
+			} else if (gp.obj[gp.currentMap.getId()][i].type == EntityType.PickUp && keyH.enterPressed) {
+				gp.obj[gp.currentMap.getId()][i].interact();
+				if(gp.obj[gp.currentMap.getId()][i].destroy) {
+					gp.obj[gp.currentMap.getId()][i] = null;
+				}
 			} else {
 				if(canObtainItem((Item) gp.obj[gp.currentMap.getId()][i]) == true) {
 				}
@@ -193,20 +204,12 @@ public class Player extends Entity {
 	}
 
 	public void pickUpObject(Item item) {
-		if(canObtainItem(item)) {}
+		if(canObtainItem(item)) {gp.playSE(21);}
 	}
 
 	public void pickUpObject(Item item, int qnt) {
 		for(int i = 1; i <= qnt; i++) {
-			if(canObtainItem(item)) {}
-		}
-	}
-	
-	public void removeFromInventory(Item selectedItem) {
-		if(selectedItem.amount > 1) {
-			selectedItem.amount--;
-		} else {
-			inventory.remove(selectedItem);
+			if(canObtainItem(item)) {gp.playSE(21);}
 		}
 	}
 	
@@ -243,6 +246,7 @@ public class Player extends Entity {
 			Item selectedItem = inventory.get(itemIndex);
 			selectedItem.use();
 			if(gp.gameState == GameState.combatState) {
+				gp.combat.cr.addFrame(gp.combat.getCombatant().getCombatStatus(), selectedItem.healthRcvd, gp.playable.get(0), selectedItem);
 				gp.playable.get(0).setCombatStatus(CombatStatus.Normal);
 				gp.combat.incrementTurn();
 			}
@@ -255,12 +259,7 @@ public class Player extends Entity {
 	}
 	
 	public void changeInteractiveTile(int i) {
-		//System.out.println(gp.iTile[gp.currentMap.getId()][i] + " " + gp.currentMap.getId() + " " + i);
-		
 		if(i != 999 && gp.iTile[gp.currentMap.getId()][i].transformable == true) {
-			//if(!gp.iTile[gp.currentMap.getId()][i].animationComp) {
-			//	gp.iTile[gp.currentMap.getId()][i].uncoverIllusion();
-			//}
 			if(!gp.iTile[gp.currentMap.getId()][i].illusion) {
 				gp.iTile[gp.currentMap.getId()][i] = gp.iTile[gp.currentMap.getId()][i].transform();
 			}
@@ -269,13 +268,10 @@ public class Player extends Entity {
 	}
 	
 	public void interactiveTileEvent(int i) {
-		//System.out.println(gp.iTile[gp.currentMap.getId()][i] + " " + gp.currentMap.getId() + " " + i);
-		
 		if(i != 999 && gp.iTile[gp.currentMap.getId()][i].illusion == true) {
 			if(!gp.iTile[gp.currentMap.getId()][i].animationComp && gp.iTile[gp.currentMap.getId()][i].illusion) {
 				gp.iTile[gp.currentMap.getId()][i].uncoverIllusion(gp.iTile[gp.currentMap.getId()][i]);
 			}
-			//gp.iTile[gp.currentMap.getId()][i] = gp.iTile[gp.currentMap.getId()][i].transform();
 		}
 	}
 	
@@ -351,6 +347,7 @@ public class Player extends Entity {
 	}
 
 	public void draw(Graphics2D g2) {
+		getQuest();
 		BufferedImage image = null;
 		image = getPlayerImage(4, 0);
 		int x = screenX;

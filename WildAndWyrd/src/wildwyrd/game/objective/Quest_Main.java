@@ -2,6 +2,7 @@ package wildwyrd.game.objective;
 
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.items.Itm_Bug_Meat;
+import wildwyrd.game.items.Itm_Travelling_Cloak;
 import wildwyrd.game.Entity;
 
 public class Quest_Main extends Quest {
@@ -43,6 +44,24 @@ public class Quest_Main extends Quest {
 				return "Fight dummy";
 			} else {
 				return "Speak to Trissie";
+			}
+		} else if (gp.s.chapter == 3) {
+			if(gp.s.c3Switch[0]) {
+				return "Talk to Florence";
+			} else if(gp.s.c3Switch[1]) {
+				return "Talk to Kyla";
+			} else if(gp.s.c3Switch[2]) {
+				return "Examine bookshelf";
+			} else if(gp.s.c3Switch[3]) {
+				return "Talk to Kyla";
+			} else if(gp.s.c3Switch[4]) {
+				return "Look out window";
+			} else if(gp.s.c3Switch[5]) {
+				Entity item = new Itm_Travelling_Cloak(gp);
+				if(findItemInInventory(item) >= 2) {
+					return "Leave cottage";
+				}
+				return "Buy 2 traveling cloaks (" + findItemInInventory(item) + "/2)";
 			}
 		}
 		return "";
