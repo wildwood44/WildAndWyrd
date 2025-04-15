@@ -4,15 +4,14 @@ import wildwyrd.game.GamePanel;
 
 public class Quest_1 extends Quest {
 
-	private int qId = 1;
-	private String qName = "Chores";
+	private final int qId = 1;
+	private final String qName = "Chores";
 	
 	public Quest_1(GamePanel gp) {
 		super(gp);
 		id = qId;
 		name = qName;
 		require = new boolean[3];
-		//desc = 
 		this.gp = gp;
 	}
 	

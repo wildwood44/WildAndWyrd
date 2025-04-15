@@ -22,6 +22,7 @@ public class DataStorage implements Serializable {
 	public int currentMap;
 	public int worldX, worldY;
 	//Player inventory
+	public int shill;
 	public ArrayList<Integer> itemId = new ArrayList<>();
 	public ArrayList<Integer> itemAmount = new ArrayList<>();
 	//Equipment

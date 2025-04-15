@@ -6,6 +6,6 @@ public enum GameState {
 	examineState, talkingState, movingState,
 	saveState, statusState, inventoryState, equipState, 
 	glossaryState, objectiveState, skillState, optionsState,
-	readingState, combatState, gameOverState,
+	readingState, tradeState, combatState, gameOverState,
 	targetState, specialState, useItemState, rewardState
 }

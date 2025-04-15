@@ -1,5 +1,6 @@
 package wildwyrd.game.npc;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -14,7 +15,7 @@ import wildwyrd.game.object.Dialoge;
 public class NPC_Trissie extends NPC {
 	public static final int npcId = 5;
 	public static final String npcName = "Trissie";
-	private boolean climbing = false;
+	
 	public NPC_Trissie(GamePanel gp) {
 		super(gp);
 		//this.gp = gp;
@@ -27,6 +28,23 @@ public class NPC_Trissie extends NPC {
 		setDialogue();
 		setDialogueOptions();
 		getImage();
+	}
+	
+	public BufferedImage getSpecialSpriteSheet() {
+		BufferedImage sprite = null;
+		try {
+			sprite = ImageIO.read(getClass().getResourceAsStream("/res/sprite/WildWyrdSpecialSprites.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sprite;
+	}
+
+	public BufferedImage getSpecialImage(int xGrid, int yGrid) {
+		if (image != getSpecialSpriteSheet()) {
+			image = getSpecialSpriteSheet();
+		}
+		return image.getSubimage(xGrid * gp.tileSize, yGrid * gp.tileSize, gp.tileSize, gp.tileSize);
 	}
 
 	public BufferedImage getSpriteSheet() {
@@ -48,28 +66,22 @@ public class NPC_Trissie extends NPC {
 	}
 	
 	public void getImage() {
-		if(climbing) {
-			up1 = getSpecialImage(0, 1);
-			up2 = getSpecialImage(1, 1);
-			up3 = getSpecialImage(1, 1);
-			down1 = getSpecialImage(0, 0);
-			down2 = getSpecialImage(1, 0);
-			down3 = getSpecialImage(1, 0);
-		} else {
-			up1 = getPlayerImage(4, 7);
-			up2 = getPlayerImage(3, 7);
-			up3 = getPlayerImage(5, 7);
-			down1 = getPlayerImage(4, 4);
-			down2 = getPlayerImage(3, 4);
-			down3 = getPlayerImage(5, 4);
-		}
+		altUp1 = getSpecialImage(0, 1);
+		altUp2 = getSpecialImage(1, 1);
+		altDown1 = getSpecialImage(0, 0);
+		altDown2 = getSpecialImage(1, 0);
+		up1 = getPlayerImage(4, 7);
+		up2 = getPlayerImage(3, 7);
+		up3 = getPlayerImage(5, 7);
+		down1 = getPlayerImage(4, 4);
+		down2 = getPlayerImage(3, 4);
+		down3 = getPlayerImage(5, 4);
 		left1 = getPlayerImage(4, 5);
 		left2 = getPlayerImage(3, 5);
 		left3 = getPlayerImage(5, 5);
 		right1 = getPlayerImage(4, 6);
 		right2 = getPlayerImage(3, 6);
 		right3 = getPlayerImage(5, 6);
-		unique = getSpecialImage(0, 1);
 	}
 	
 	public void setAction() {
@@ -117,10 +129,6 @@ public class NPC_Trissie extends NPC {
 		}
 	}
 	
-	public void climbing(boolean isClimbing) {
-		climbing = isClimbing;
-	}
-	
 	public void speak() {
 		facePlayer();
 		gp.ui.choiceSlot = 0;
@@ -137,4 +145,11 @@ public class NPC_Trissie extends NPC {
 		}
 		gp.keyH.enterPressed = false;
 	}
+	
+	/*public void draw(Graphics2D g2) {
+		int tempScreenX = screenX;
+		int tempScreenY = screenY;
+		System.out.println("Ping");
+		super.draw(g2);
+	}*/
 }

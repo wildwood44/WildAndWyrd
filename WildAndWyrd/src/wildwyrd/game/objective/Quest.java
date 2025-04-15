@@ -14,6 +14,7 @@ public class Quest extends Entity {
 	protected boolean completed;
 	protected boolean submitted;
 	public boolean[] require;
+	public int amount;
 	public Item reward;
 	public int qnt;
 
@@ -35,6 +36,7 @@ public class Quest extends Entity {
 				return false;
 			}
 		}
+		gp.playSE(6);
 		return true;
 		
 	}
@@ -43,10 +45,13 @@ public class Quest extends Entity {
 		completed = checkRequirements();
 	}
 	
-	public void submitQuest() {
+	public boolean submitQuest() {
 		if(completed) {
+			gp.playSE(6);
 			submitted = true;
+			reward();
 		}
+		return submitted;
 	}
 	
 	public int findItemInInventory(Entity item) {
@@ -72,17 +77,16 @@ public class Quest extends Entity {
 	
 	public void reward() {
 		if(reward != null) {
-			for(int i = 0; i < amount; i++) {
+			for(int i = 0; i < qnt; i++) {
 				gp.player.pickUpObject(reward);
 			}
 		} else {
-			gp.player.pickUpShillings(amount);
+			gp.player.pickUpShillings(qnt);
 		}
 	}
 	
 	public void progress(int i) {
 		require[i] = true;
-		System.out.println(require[i]);
 		completeQuest();
 	}
 

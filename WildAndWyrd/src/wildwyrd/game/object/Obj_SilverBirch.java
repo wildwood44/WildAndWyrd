@@ -33,6 +33,7 @@ public class Obj_SilverBirch extends Entity {
 	}
 
 	public void interact() {
+		gp.glossary.unlock("plants", "silver birch");
 		startDialogue(this, 0);
 		gp.keyH.enterPressed = false;
 	}

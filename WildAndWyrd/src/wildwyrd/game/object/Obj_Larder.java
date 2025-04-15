@@ -37,7 +37,15 @@ public class Obj_Larder extends Entity {
 
 	public void interact() {
 		gp.glossary.unlock("constructs", "larder");
-		startDialogue(this, 0);
+		if(!gp.objective.quests[3].isAccepted()) {
+			startDialogue(this, 0);
+		} else if (!gp.objective.quests[3].isCompleted()) {
+			startDialogue(this, 1);
+			gp.player.pickUpObject(loot);
+			gp.objective.quests[3].completeQuest();
+		} else {
+			startDialogue(this, 2);
+		}
 		gp.keyH.enterPressed = false;
 	}
 }

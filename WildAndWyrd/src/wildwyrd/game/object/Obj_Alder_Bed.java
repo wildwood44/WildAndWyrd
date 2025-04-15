@@ -20,6 +20,7 @@ public class Obj_Alder_Bed extends Entity {
 		solidArea.y = 40;
 		solidAreaDefaultY = solidArea.y;
 		image = setup("/res/objects/Img_Box_Bed-1",gp.tileSize,gp.tileSize*2);
+		shill = 2;
 		getImage(image);
 		setDialogue();
 	}
@@ -41,6 +42,7 @@ public class Obj_Alder_Bed extends Entity {
 
 	public void interact() {
 		image = setup("/res/objects/Img_Box_Bed-2",gp.tileSize,gp.tileSize*2);
+		gp.glossary.unlock("constructs", "box-bed");
 		getImage(image);
 		if(!gp.s.c1Switch[4] && gp.s.chapter == 1) {
 			gp.player.restoreHealthAndStamina();

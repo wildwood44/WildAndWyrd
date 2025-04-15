@@ -12,23 +12,35 @@ import wildwyrd.game.playable.Combatant;
 
 public class Combat extends Entity {
 	GamePanel gp;
-	public int dialogueSet = 0;
-	public int dialogueIndex = 0;
+	public CombatRecord cr;
 	public List<Enemy> enemies;
 	public ArrayList<Combatant> combatant;
 	private int impact;
-	public Boolean inCombat;
+	public Boolean inCombat = false;
 	public boolean win;
 	private int turn = 0;
 	public int target;
+	private boolean canFlee = false;
 	public StringBuilder sb;
 	
 	public Combat(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		cr = new CombatRecord();
 		enemies = new ArrayList<Enemy>(5);
 		combatant = new ArrayList<Combatant>(10);
-		//combatant.sort(combatant.compareTo(combatant.get(1)));
+		skippable = false;
+	}
+	
+	public Combat(GamePanel gp, List<Enemy> enemies) {
+		this(gp);
+		addEnemy(enemies);
+		startCombat();
+	}
+	
+	public Combat(GamePanel gp, boolean canFlee, List<Enemy> enemies) {
+		this(gp, enemies);
+		this.canFlee = canFlee;
 	}
 	
 	public Combatant getCombatant() {
@@ -43,10 +55,13 @@ public class Combat extends Entity {
 		return combatant.get(index);
 	}
 
-	public void setDialogue() {
-		//dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
-		//dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
-		//dialogues[1][0] = new Dialoge(enemy.name + " was defeated!",1);
+	public void setDialogue(Combatant user, Combatant target) {
+		dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
+		dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
+		dialogues[1][0] = new Dialoge(user.name + " was defeated!",1);
+		dialogues[2][0] = new Dialoge(user.name + " fled!",1);
+		dialogues[3][0] = new Dialoge(target.name + " was out of range!",1);
+		dialogues[4][0] = new Dialoge("There is no running here!", 1);
 	}
 
 	public void startDialogue(Entity object, int setNum) {
@@ -55,11 +70,9 @@ public class Combat extends Entity {
 		gp.ui.selectedObject = object;
 		dialogueSet = setNum;
 	}
-	
-	public void takeDamage() {
-	}
 
 	public void startCombat() {
+		gp.ui.resetSlots();
 		turn = 0;
 		if(enemies.get(0) != null) {
 			gp.playable.get(0).setCombatStatus(CombatStatus.Normal);
@@ -78,22 +91,29 @@ public class Combat extends Entity {
 				combatant.add(e);
 			}
 		}
+		setDialogue(combatant.get(0),enemies.get(0));
 		Collections.sort(combatant);
+		gp.playMusic(34);
 	}
-	
+	//End Combat
 	public void endCombat() {
+		cr.playRecord();
+		gp.ui.droppedItems.clear();
 		gp.gameState = GameState.playState;
 		gp.keyH.enterPressed = false;
-		/*for(int i = 0; i < gp.playable.size(); i++) {
-			combatant.remove(gp.playable.get(i));
-		}*/
+		gp.stopMusic();
 		try {
+			//If enemies are all defeated
 			if(!enemiesActive()) {
+				System.out.println("ping");
 				Enemy represent = enemies.get(0);
+				//Set enemy drops
 				for(Enemy enemy : enemies) {
 					enemy.checkDrop();
 				}
+				//
 				represent.defeated();
+			//If all playable characters are defeated
 			} else if (!playableActive()) {
 				cleanup();
 				gp.gameState = GameState.gameOverState;
@@ -104,7 +124,7 @@ public class Combat extends Entity {
 			System.out.println(ex);
 		}
 	}
-	
+	//Reset stage for next combat
 	public void cleanup() {
 		enemies.clear();
 		combatant.clear();
@@ -112,9 +132,9 @@ public class Combat extends Entity {
 	
 	public boolean playableActive() {
 		for (Combatant player : gp.playable) {
-			if(player.getCombatStatus() == CombatStatus.Escaping) {
-				return false;
-			}
+			//if(player.getCombatStatus() == CombatStatus.Escaping) {
+				//return false;
+			//}
 			if(player.isAlive()) {
 				return true;
 			}
@@ -138,6 +158,10 @@ public class Combat extends Entity {
 		enemies.add(e1);
 	}
 	
+	public void addEnemy(List<Enemy> e) {
+		enemies.addAll(e);
+	}
+	
 	public void addEnemy(Enemy e1, Enemy e2) {
 		Collections.addAll(enemies,e1,e2);
 	}
@@ -146,20 +170,27 @@ public class Combat extends Entity {
 		return enemies;
 	}
 	
+	public void escapeFailed() {
+		gp.keyH.enterPressed = false;
+		startDialogue(this, 4);
+	}
+	
 	public void playerDeath(Combatant p) {
 		p.killed();
 		gp.keyH.enterPressed = false;
-		dialogues[0][0] = new Dialoge(p.name + " was defeated!",1);
-		dialogues[0][1] = null;
-		startDialogue(this, 0);
+		//dialogues[0][0] = new Dialoge(p.name + " was defeated!",1);
+		//dialogues[0][1] = null;
+		setDialogue(p, p);
+		startDialogue(this, 1);
 	}
 	
 	public void enemyDeath(Enemy enemy) {
 		enemy.killed();
 		gp.keyH.enterPressed = false;
-		dialogues[0][0] = new Dialoge(enemy.name + " was defeated!",1);
-		dialogues[0][1] = null;
-		startDialogue(this, 0);
+		//dialogues[0][0] = new Dialoge(enemy.name + " was defeated!",1);
+		//dialogues[0][1] = null;
+		setDialogue(enemy, enemy);
+		startDialogue(this, 1);
 	}
 	
 	public Enemy getTarget() {
@@ -167,24 +198,28 @@ public class Combat extends Entity {
 	}
 	
 	public void dealDamage(Combatant user, Combatant target, int damage) {
+		user.setCombatStatus(CombatStatus.Attacking);
 		if((user.inRange() && target.inRange()) || user.projectileLoaded()) {
 			if(user.projectileLoaded()) {
 				damage = gp.playable.get(0).fireProjectile();
 			}
-			user.setCombatStatus(CombatStatus.Attacking);
 			user.loseStamina(5);
 			gp.keyH.enterPressed = false;
 			impact = damage * 100/(100 + target.baseDefence);
 			if(target.getCombatStatus() == CombatStatus.Blocking) {
+				gp.playSE(14);
 				impact = impact / 10;
 				if(impact == 0) {
 					impact = 1;
 				}
+			} else {
+				gp.playSE(13);
 			}
-			dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
-			dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
+			//dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
+			//dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
 			target.health -= impact;
-			
+			cr.addFrame(user.getCombatStatus(), damage, user, target);
+			setDialogue(user, target);
 			startDialogue(this, 0);
 		}else {
 			gp.combat.outOfRange(target);
@@ -193,26 +228,28 @@ public class Combat extends Entity {
 	
 	public void outOfRange(Combatant target) {
 		gp.keyH.enterPressed = false;
-		dialogues[0][0] = new Dialoge(target.name + " was out of range!",1);
-		dialogues[0][1] = null;
-		startDialogue(this, 0);
+		//dialogues[0][0] = new Dialoge(target.name + " was out of range!",1);
+		//dialogues[0][1] = null;
+		setDialogue(target, target);		
+		startDialogue(this, 3);
 	}
 	
 	public void blockAttack() {
 		gp.playable.get(0).setCombatStatus(CombatStatus.Blocking);
+		cr.addFrame(gp.playable.get(0).getCombatStatus(), 0, gp.playable.get(0));
 		incrementTurn();
-	}
-	
-	public void openSpecial() {
-		gp.playable.get(0).setCombatStatus(CombatStatus.Specializing);
-	}
-	
-	public void openInventory() {
-		gp.playable.get(0).setCombatStatus(CombatStatus.Using);
 	}
 	
 	public int getTurn() {
 		return turn;
+	}
+	
+	public void setCanFlee(boolean canFlee) {
+		this.canFlee = canFlee;
+	}
+	
+	public boolean canFlee() {
+		return canFlee;
 	}
 	
 	public void incrementTurn() {

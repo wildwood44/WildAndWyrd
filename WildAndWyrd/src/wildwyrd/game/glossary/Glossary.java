@@ -14,8 +14,11 @@ public class Glossary {
 	public int dialogueIndex = 0;
 	public int dialogueSet = 0;
 	public String[] sections = new String[]{"constructs", "mammal", "invertebrates", "plants", "folklore"};
+	private boolean updated = false;
+	private int updatedCounter = 0;
 
-	public Glossary() {
+	public Glossary(GamePanel gp) {
+		this.gp = gp;
 		setGlossary(dialogueIndex, "");
 	}
 
@@ -71,7 +74,12 @@ public class Glossary {
 	public void unlock(String section, String name) {
 		try{
 			System.out.println(section + " " + name);
-			getPage(section, name).findGlossaryItem();
+			if(!getPage(section, name).isFound()) {
+				getPage(section, name).findGlossaryItem();
+				gp.playSE(7);
+				updated = true;
+				updatedCounter = 200;
+			}
 		} catch (NullPointerException e) {
 			System.out.println(e);
 		}
@@ -87,5 +95,28 @@ public class Glossary {
 		}
 
 		return count;
+	}
+	
+	public boolean isUpdated() {
+		//If a new page is unlocked
+		updatedCounter--;
+		if(updatedCounter <= 0) {updated = false;}
+		return updated;
+	}
+	
+	public int progress() {
+		int count = 0;
+		int found = 0;
+		for (int i = 0; i < sections.length; i++) {
+			for (int j = 0; j < getSize(i); j++) {
+				if (page[i][j] != null) {
+					count++;
+					if (page[i][j].isFound()) {
+						found++;
+					}
+				}
+			}
+		}
+		return (found * 100) / count;
 	}
 }

@@ -3,18 +3,23 @@ package wildwyrd.game.npc;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
+import wildwyrd.game.combat.Combat;
 import wildwyrd.game.combat.En_Cricket;
 import wildwyrd.game.combat.En_Wasp;
+import wildwyrd.game.combat.Enemy;
 import wildwyrd.game.object.Dialoge;
 
 public class NPC_Cricket extends NPC {
 	public static final int npcId = 4;
 	public static final String npcName = "Cricket";
+	private En_Cricket enemy = new En_Cricket(gp);
 	public NPC_Cricket(GamePanel gp) {
 		super(gp);
 		id = npcId;
@@ -22,6 +27,7 @@ public class NPC_Cricket extends NPC {
 		type = EntityType.Sprite;
 		direction = "down";
 		speed = 1;
+		skippable = false;
 		setDialogue();
 	}
 
@@ -112,8 +118,8 @@ public class NPC_Cricket extends NPC {
 				break;
 			}
 			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-		}else if(gp.player.worldX < gp.player.screenX ||
-			    gp.player.worldY < gp.player.screenY ||
+		} else if(gp.player.worldX < gp.player.screenX ||
+				gp.player.worldY < gp.player.screenY ||
 			    rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX ||
 			    bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
 			image = getPlayerImage(1, 0);
@@ -141,14 +147,15 @@ public class NPC_Cricket extends NPC {
 	}
 	
 	public void combatResponce() {
-		gp.combat.addEnemy(new En_Wasp(gp), new En_Wasp(gp));
+		//gp.combat.addEnemy(new En_Wasp(gp), new En_Wasp(gp));
 		dialogueIndex = 0;
+		gp.glossary.unlock("invertebrates", "cricket");
+		gp.glossary.unlock("invertebrates", "wasp");
+		//gp.combat.setCanFlee(false);
 		if(gp.combat.win) {
-			gp.glossary.unlock("invertebrates", "cricket");
-			gp.glossary.unlock("invertebrates", "wasp");
-			startDialogue(this, 1);
+			enemy.startDialogue(enemy, 2);
 		} else {
-			startDialogue(this, 2);
+			enemy.startDialogue(enemy, 3);
 		}
 		for (int i = 0; i < gp.npc[gp.currentMap.getId()].length; ++i) {
 			if(gp.npc[gp.currentMap.getId()][i].id == npcId) {
@@ -157,19 +164,23 @@ public class NPC_Cricket extends NPC {
 			}
 		}
 		gp.keyH.enterPressed = false;
-		//gp.combat.startCombat();
 	}
 
 	public void choiceResponce() {
 		if (gp.ui.choiceSlot == 0) {
-			gp.combat.addEnemy(new En_Cricket(gp));
-			gp.combat.startCombat();
+			//gp.combat.addEnemy(new En_Cricket(gp));
+			//gp.combat.setCanFlee(false);
+			//gp.combat.startCombat();
+			enemies.add(enemy);
+			gp.combat = new Combat(gp, false, enemies);
+			dialogueIndex = 0;
 			//gp.gameState = GameState.combatState;
 		}
 
 	}
 	
 	public void speak() {
+		gp.currentRoom = 4;
 		gp.ui.choiceSlot = 0;
 		gp.ui.firstValue = 0;
 		startDialogue(this, 0);

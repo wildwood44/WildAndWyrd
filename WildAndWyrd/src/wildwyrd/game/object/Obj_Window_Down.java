@@ -6,7 +6,7 @@ import wildwyrd.game.GamePanel;
 
 public class Obj_Window_Down extends Entity {
 	GamePanel gp;
-	public static final int objId = 16;
+	public static final int objId = 17;
 	public static final String objName = "Window";
 	public Obj_Window_Down(GamePanel gp) {
 		super(gp);
@@ -29,7 +29,11 @@ public class Obj_Window_Down extends Entity {
 	}
 
 	public void interact() {
-		startDialogue(this, 0);
+		if (!gp.s.c3Switch[3] && gp.s.c3Switch[4]) {
+			gp.s.swh[13] = true;
+		} else {
+			startDialogue(this, 0);
+		}
 		gp.keyH.enterPressed = false;
 	}
 }

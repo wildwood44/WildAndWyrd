@@ -15,7 +15,7 @@ public class Obj_P_Mushroom extends Entity {
 		this.gp = gp;
 		id = objId;
 		name = objName;
-		type = EntityType.Object;
+		type = EntityType.PickUp;
 		collision = true;
 
 		image = setup("/res/items/Parasol_Mushroom", gp.tileSize, gp.tileSize);
@@ -40,26 +40,12 @@ public class Obj_P_Mushroom extends Entity {
 				1);
 	}
 
-	public void choiceResponce() {
-		if (gp.ui.choiceSlot == 0) {
-			gp.player.pickUpObject(loot);
-			opened = true;
-			for (int i = 0; i < gp.obj[gp.currentMap.getId()].length; ++i) {
-				if(gp.obj[gp.currentMap.getId()][i].id == objId) {
-					gp.obj[gp.currentMap.getId()][i] = null;
-					break;
-				}
-			}
-		}
-	}
-
 	public void interact() {
+		gp.glossary.unlock("plants", "parasol mushroom");
 		gp.ui.choiceSlot = 0;
-		if (!opened) {
-			startDialogue(this, 0);
-		} else {
-			startDialogue(this, 1);
-		}
+		startDialogue(this, 0);
+		destroy = true;
+		gp.player.pickUpObject(loot);
 		gp.keyH.enterPressed = false;
 	}
 }

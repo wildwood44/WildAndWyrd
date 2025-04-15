@@ -8,7 +8,7 @@ import wildwyrd.game.items.Itm_Bramble_Leaf;
 
 public class Obj_Worktable extends Entity {
 	GamePanel gp;
-	public static final int objId = 17;
+	public static final int objId = 18;
 	public static final String objName = "Worktable";
 
 	public Obj_Worktable(GamePanel gp) {

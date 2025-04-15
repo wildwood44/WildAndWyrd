@@ -21,7 +21,6 @@ public class TileManager {
 		loadMap("/res/maps/map01",0);
 		loadMap("/res/maps/map02",1);
 		loadMap("/res/maps/map03",2);
-		loadMap("/res/maps/map04",3);
 	}
 
 	public void getTileImage() {
