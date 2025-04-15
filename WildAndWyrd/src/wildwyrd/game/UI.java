@@ -305,7 +305,7 @@ public class UI {
 					gp.keyH.enterPressed = false;
 				}
 			}
-
+			//Print basic line of dialogue
 			if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 1) {
 				if (gp.keyH.enterPressed) {
@@ -328,6 +328,7 @@ public class UI {
 					}
 				} 
 				selectedObject.checkConditions();
+			//Print yes/no options
 			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 2) {
 				if (gp.keyH.enterPressed) {
@@ -355,6 +356,7 @@ public class UI {
 
 				g2.drawString("Yes", x + 20, y + 40);
 				g2.drawString("No", x + 20, y + 80);
+			//Print multiple dialogue options
 			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 3) {
 				if (gp.keyH.enterPressed) {
@@ -393,6 +395,7 @@ public class UI {
 				if(firstValue < selectedObject.options.length - 3) {
 					drawDownIcon((int)(width/1.65), 470, 20, 20);
 				}
+			//Start combat
 			} else if (selectedObject.dialogues[selectedObject.dialogueSet][selectedObject.dialogueIndex]
 					.getType() == 4) {
 				gp.combat.startCombat();
