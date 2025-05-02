@@ -13,11 +13,13 @@ import javax.imageio.ImageIO;
 
 import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
+import wildwyrd.game.EventHandler;
 import wildwyrd.game.GamePanel;
 import wildwyrd.game.GameState;
 import wildwyrd.game.KeyHandler;
 import wildwyrd.game.combat.CombatStatus;
 import wildwyrd.game.items.Item;
+import wildwyrd.game.tile.CollisionChecker;
 import wildwyrd.game.tile.TileManager;
 
 public class Player extends Entity {
@@ -55,10 +57,18 @@ public class Player extends Entity {
 	}
 
 	public void setDefaultPositions() {
+		//Default
 		gp.currentMap = gp.maps[1];
 		gp.tileM = new TileManager(gp);
 		worldX = gp.tileSize * 12;
 		worldY = gp.tileSize * 8;
+		//Test
+		gp.currentMap = gp.maps[2];
+		gp.tileM = new TileManager(gp);
+		gp.eHandler = new EventHandler(gp);
+		gp.cChecker = new CollisionChecker(gp);
+		worldX = gp.tileSize * 4;
+		worldY = gp.tileSize * 1;
 		direction = "down";
 	}
 

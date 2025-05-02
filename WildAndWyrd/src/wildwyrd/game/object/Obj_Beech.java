@@ -4,19 +4,19 @@ import wildwyrd.game.Entity;
 import wildwyrd.game.EntityType;
 import wildwyrd.game.GamePanel;
 
-public class Obj_SilverBirch extends Entity {
+public class Obj_Beech extends Entity {
 	GamePanel gp;
-	public static final int objId = 23;
+	public static final int objId = 28;
 	public static final String objName = "Tree";
 
-	public Obj_SilverBirch(GamePanel gp) {
+	public Obj_Beech(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
 		id = objId;
 		name = objName;
 		type = EntityType.Object;
 		collision = true;
-		image = setup("/res/objects/img_silver_birch", gp.tileSize*2, gp.tileSize*2);
+		image = setup("/res/objects/img_beech", gp.tileSize*2, gp.tileSize*2);
 
 		int size = gp.tileSize * 2;
 		solidArea.x = 30;
@@ -33,7 +33,7 @@ public class Obj_SilverBirch extends Entity {
 	}
 
 	public void interact() {
-		gp.glossary.unlock("plants", "silver birch");
+		//gp.glossary.unlock("plants", "beech");
 		startDialogue(this, 0);
 		gp.keyH.enterPressed = false;
 	}

@@ -27,6 +27,17 @@ public class AssetSetter {
 		gp.maps[0] = new Map(gp, MapType.INTERIOR, 0, 15, 10);
 		gp.maps[1] = new Map(gp, MapType.OUTSIDE, 1, 19, 12);
 		gp.maps[2] = new Map(gp, MapType.OUTSIDE, 2, 17, 11);
+		gp.maps[3] = new Map(gp, MapType.OUTSIDE, 3, 13, 9);
+		gp.maps[4] = new Map(gp, MapType.OUTSIDE, 4, 13, 13);
+		gp.maps[5] = new Map(gp, MapType.OUTSIDE, 5, 12, 10);
+		gp.maps[6] = new Map(gp, MapType.OUTSIDE, 6, 12, 9);
+		gp.maps[7] = new Map(gp, MapType.OUTSIDE, 7, 18, 9);
+		gp.maps[8] = new Map(gp, MapType.OUTSIDE, 8, 13, 10);
+		gp.maps[9] = new Map(gp, MapType.OUTSIDE, 9, 18, 9);
+		gp.maps[10] = new Map(gp, MapType.OUTSIDE, 10, 12, 20);
+		gp.maps[11] = new Map(gp, MapType.OUTSIDE, 11, 12, 8);
+		gp.maps[12] = new Map(gp, MapType.OUTSIDE, 12, 12, 8);
+		gp.maps[13] = new Map(gp, MapType.OUTSIDE, 13, 12, 8);
 	}
 
 	public void setRooms() {
@@ -171,6 +182,18 @@ public class AssetSetter {
 		gp.obj[2][i] = new Obj_SilverBirch(gp);
 		gp.obj[2][i].worldX = 9 * gp.tileSize;
 		gp.obj[2][i].worldY = 3 * gp.tileSize;
+		i++;
+		gp.obj[2][i] = new Obj_Beech(gp);
+		gp.obj[2][i].worldX = 6 * gp.tileSize;
+		gp.obj[2][i].worldY = 1 * gp.tileSize;
+		i++;
+		gp.obj[2][i] = new Obj_Beech(gp);
+		gp.obj[2][i].worldX = 10 * gp.tileSize;
+		gp.obj[2][i].worldY = 8 * gp.tileSize;
+		i=0;
+		gp.obj[7][i] = new Obj_Thay_Body(gp);
+		gp.obj[7][i].worldX = 5 * gp.tileSize;
+		gp.obj[7][i].worldY = 4 * gp.tileSize;
 	}
 	public void setNPC() {
 		//gp.npc[1][0] = new NPC_Florence(gp);

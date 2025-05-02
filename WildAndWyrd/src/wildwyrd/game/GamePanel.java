@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int maxWorldRow = 50;
 	//public final int worldWidth = maxWorldCol * tileSize;
 	//public final int worldHeight = maxWorldRow * tileSize;
-	public final int maxMap = 5;
+	public final int maxMap = 15;
 	public final int maxRoom = 5;
 	// FOR FULL SCREEN
 	int screenWidth2 = screenWidth;
@@ -90,9 +90,9 @@ public class GamePanel extends JPanel implements Runnable {
 	public Cutscene c;
 	public Combat combat = new Combat(this);
 	public List<Playable> playable = new ArrayList<Playable>(5);
-	public Entity[][] obj = new Entity[10][25];
-	public NPC[][] npc = new NPC[10][5];
-	public InteractiveTile iTile[][] = new InteractiveTile[10][50];
+	public Entity[][] obj = new Entity[maxMap][25];
+	public NPC[][] npc = new NPC[maxMap][5];
+	public InteractiveTile iTile[][] = new InteractiveTile[maxMap][50];
 	public Room[] rm;
 	public Map[] maps;
 	public SaveLoad saveLoad = new SaveLoad(this);
@@ -156,8 +156,8 @@ public class GamePanel extends JPanel implements Runnable {
 		for(Playable p : playable) {
 			p.setDefaultValues();
 		}
-		obj = new Entity[10][25];
-		npc = new NPC[10][5];
+		obj = new Entity[maxMap][25];
+		npc = new NPC[maxMap][5];
 		s = new Story();
 		player.setDefaultValues();
 		player.setDefaultPositions();

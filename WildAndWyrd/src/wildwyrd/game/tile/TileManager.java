@@ -15,12 +15,23 @@ public class TileManager {
 
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
-		tile = new Tile[50];
+		tile = new Tile[80];
 		mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 		getTileImage();
 		loadMap("/res/maps/map01",0);
 		loadMap("/res/maps/map02",1);
 		loadMap("/res/maps/map03",2);
+		loadMap("/res/maps/map04",3);
+		loadMap("/res/maps/map05",4);
+		loadMap("/res/maps/map06",5);
+		loadMap("/res/maps/map07",6);
+		loadMap("/res/maps/map08",7);
+		loadMap("/res/maps/map09",8);
+		loadMap("/res/maps/map10",9);
+		loadMap("/res/maps/map11",10);
+		loadMap("/res/maps/map12",11);
+		loadMap("/res/maps/map13",12);
+		loadMap("/res/maps/map14",13);
 	}
 
 	public void getTileImage() {
@@ -61,6 +72,10 @@ public class TileManager {
 			setup(12, "Rockwall_Tile", true);
 			setup(13, "bramble_tileset", true);
 			setup(15, "Rockwall_Door4", false);
+			setup(16, "fallen_tree-top_left", true);
+			setup(17, "fallen_tree-top_right", true);
+			setup(18, "fallen_tree-bottom_left", true);
+			setup(19, "fallen_tree-bottom_right", true);
 			setup(20, "dirt_grass_tile", false);
 			setup(21, "dirt_grass_tile-top_left", false);
 			setup(22, "dirt_grass_tile-left", false);
@@ -81,6 +96,36 @@ public class TileManager {
 			setup(47, "nettle_tile-top_right", true, true);
 			setup(48, "nettle_tile-right", true, true);
 			setup(49, "nettle_tile-bottom_right", true, true);
+			setup(50, "ditch_tile_center", false);
+			setup(51, "ditch_tile_top-left", false);
+			setup(52, "ditch_tile_left", false);
+			setup(53, "ditch_tile_bottom-left", false);
+			setup(54, "ditch_tile_top", false);
+			setup(55, "ditch_tile_center", false);
+			setup(56, "ditch_tile_bottom", false);
+			setup(57, "ditch_tile_top-right", false);
+			setup(58, "ditch_tile_right", false);
+			setup(59, "ditch_tile_bottom-right", false);
+			setup(60, "gorse_tile-centre", true);
+			setup(61, "gorse_tile-top_left", true);
+			setup(62, "gorse_tile-left", true);
+			setup(63, "gorse_tile-bottom_left", true);
+			setup(64, "gorse_tile-top", true);
+			setup(65, "gorse_tile-centre", true);
+			setup(66, "gorse_tile-bottom", true);
+			setup(67, "gorse_tile-top_right", true);
+			setup(68, "gorse_tile-right", true);
+			setup(69, "gorse_tile-bottom_right", true);
+			setup(70, "holly_male_tile-centre", true);
+			setup(71, "holly_male_tile-top_left", true);
+			setup(72, "holly_male_tile-left", true);
+			setup(73, "holly_male_tile-bottom_left", true);
+			setup(74, "holly_male_tile-top", true);
+			setup(75, "holly_male_tile-centre", true);
+			setup(76, "holly_male_tile-bottom", true);
+			setup(77, "holly_male_tile-top_right", true);
+			setup(78, "holly_male_tile-right", true);
+			setup(79, "holly_male_tile-bottom_right", true);
 		}
 		
 	}
@@ -111,6 +156,41 @@ public class TileManager {
 	}
 
 	public void loadMap(String filePath, int map) {
+		try {
+			InputStream is = getClass().getResourceAsStream(filePath);
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			int col = 0;
+			int row = 0;
+
+			while (col < gp.maps[map].getMaxWorldCol() && row < gp.currentMap.getMaxWorldRow()) {
+				if (col >= gp.maps[map].getMaxWorldCol()) {
+					break;
+				}
+				if (row >= gp.maps[map].getMaxWorldRow()) {
+					break;
+				}
+				String line = br.readLine();
+				while (true) {
+					if (col >= gp.maps[map].getMaxWorldCol()) {
+						if (col == gp.maps[map].getMaxWorldCol()) {
+							col = 0;
+							++row;
+						}
+						break;
+					}
+					String[] numbers = line.split(" ");
+					int num = Integer.parseInt(numbers[col]);
+					mapTileNum[map][col][row] = num;
+					col++;
+				}
+			}
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void overlayMap(String filePath, int map) {
 		try {
 			InputStream is = getClass().getResourceAsStream(filePath);
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));

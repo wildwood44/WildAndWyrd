@@ -1404,18 +1404,17 @@ public class CutsceneManager {
 			}
 		} else if (scenePhase == 11) {
 			actor = getActor(PlayerDummy.npcName);
-			//gp.player.worldX = actor.worldX;
-			//gp.player.worldY = actor.worldY;
-			//destroyPlayerDummy();
-			//gp.player.drawing = true;
 			gp.s.swh[14] = false;
-			gp.s.swh[15] = true;
+			//gp.s.swh[15] = true;
 			gp.s.c3Switch[5]= false;
 			gp.ui.resetSlots();
 			gp.cutsceneOn = false;
 			gp.c.dialogueIndex = 0;
 			sceneNum = 0;
 			scenePhase = 0;
+			gp.currentMap = gp.maps[2];
+			gp.player.worldX = gp.tileSize * 4;
+			gp.player.worldY = gp.tileSize * 1;
 			gp.gameState = GameState.playState;
 		}
 	}

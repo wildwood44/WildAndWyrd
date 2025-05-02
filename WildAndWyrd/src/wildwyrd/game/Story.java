@@ -13,7 +13,7 @@ public class Story implements Serializable {
 	//public boolean[] PKSwitch = new boolean[]{true, true, true, true, true, true};
 	
 	public Story() {
-		chapter = 0;
+		chapter = 4;
 		part = 1;
 		swh = new boolean[]{true, false, false, false, false, false, false, false, false, false, false,
 			false, false, false, false, false};

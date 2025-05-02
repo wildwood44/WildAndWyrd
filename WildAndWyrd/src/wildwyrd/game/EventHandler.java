@@ -81,9 +81,6 @@ public class EventHandler {
 					if(!gp.s.c3Switch[3]) {obsticle(gp.maps[0]);} else {gp.playSE(8);teleport(gp.maps[1],16,3);}
 				}
 			}
-			//else if(gp.currentMap.getId() == 1) {
-			//	if(hit(1,15,4,"down")) {teleport(gp.maps[0],13,9);}
-			//}
 			else if(gp.currentMap.getId() == 1) {
 				if(hit(1,12,2,"up")) {illusion(gp.iTile[gp.currentMap.getId()][0]);}
 				if(hit(1,12,2,"up")) {
@@ -101,7 +98,51 @@ public class EventHandler {
 			}
 			else if(gp.currentMap.getId() == 2) {
 				if(hitRow(2,0,"up")) {teleport(gp.maps[1],10,11);}
-				if(hitRow(2,10,"down")) {obsticle(gp.maps[2]);};
+				if(hitRow(2,10,"down")) {
+					if(gp.s.chapter<4) {
+						obsticle(gp.maps[2]);
+					} else {
+						teleport(gp.maps[3],7,1);
+					}
+				}
+			}
+			else if(gp.currentMap.getId() == 3) {
+				if(hitRow(3,0,"up")) {teleport(gp.maps[2],12,9);}
+				if(hitRow(3,8,"down")) {teleport(gp.maps[4],7,1);}
+			}
+			else if(gp.currentMap.getId() == 4) {
+				if(hitRow(4,0,"up")) {teleport(gp.maps[3],7,7);}
+				if(hitCol(4,12,"right")) {teleport(gp.maps[5],1,1);}
+			}
+			else if(gp.currentMap.getId() == 5) {
+				if(hitCol(5,0,"left")) {teleport(gp.maps[4],11,4);}
+				if(hitRow(5,9,"down")) {teleport(gp.maps[6],7,1);}
+			}
+			else if(gp.currentMap.getId() == 6) {
+				if(hitRow(6,0,"up")) {teleport(gp.maps[5],7,9);}
+				if(hitCol(6,11,"right")) {teleport(gp.maps[8],0,5);}
+				if(hitCol(6,0,"left")) {teleport(gp.maps[7],17,5);}
+			}
+			else if(gp.currentMap.getId() == 7) {
+				if(hitCol(7,17,"right")) {teleport(gp.maps[6],0,2);}
+				if(hitRow(7,8,"down")) {teleport(gp.maps[9],15,0);}
+			}
+			else if(gp.currentMap.getId() == 8) {
+				if(hitCol(8,0,"left")) {teleport(gp.maps[6],11,2);}
+			}
+			else if(gp.currentMap.getId() == 9) {
+				if(hitRow(9,0,"up")) {teleport(gp.maps[7],2,8);}
+				if(hitRow(9,8,"down")) {teleport(gp.maps[10],7,0);}
+			}
+			else if(gp.currentMap.getId() == 10) {
+				if(hitRow(10,0,"up")) {teleport(gp.maps[9],2,8);}
+				if(hitRow(10,19,"down")) {teleport(gp.maps[11],7,0);}
+			}
+			else if(gp.currentMap.getId() == 11) {
+				if(hitCol(11,0,"left")) {teleport(gp.maps[12],11,4);}
+			}
+			else if(gp.currentMap.getId() == 12) {
+				if(hitCol(12,0,"left")) {teleport(gp.maps[13],11,4);}
 			}
 		}
 	}
@@ -182,10 +223,37 @@ public class EventHandler {
 			//try {
 				gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
 				gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
-				int col = gp.player.solidArea.y/gp.tileSize;
+				int col = gp.player.solidArea.x/gp.tileSize;
 				eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
 				eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
 				if(gp.player.solidArea.y/gp.tileSize == eventRect[map][col][row].y/gp.tileSize && !eventRect[map][col][row].eventDone) {
+					if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
+						hit = true;
+						previousEventX = gp.player.worldX;
+						previousEventY = gp.player.worldY;
+					}
+				}
+				gp.player.solidArea.x = gp.player.solidAreaDefaultX;
+				gp.player.solidArea.y = gp.player.solidAreaDefaultY;
+				eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
+				eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+			//} catch(ArrayIndexOutOfBoundsException e) {
+			//	e.printStackTrace();
+			//}
+		}
+		return hit;
+	}
+	
+	public boolean hitCol(int map, int col, String reqDirection) {
+		boolean hit = false;
+		if(map == gp.currentMap.getId()) {
+			//try {
+				gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
+				gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
+				int row = gp.player.solidArea.y/gp.tileSize;
+				eventRect[map][col][row].x = col * gp.tileSize + eventRect[map][col][row].x;
+				eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
+				if(gp.player.solidArea.x/gp.tileSize == eventRect[map][col][row].x/gp.tileSize && !eventRect[map][col][row].eventDone) {
 					if(gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
 						hit = true;
 						previousEventX = gp.player.worldX;

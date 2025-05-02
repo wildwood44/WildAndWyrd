@@ -23,6 +23,7 @@ import wildwyrd.game.npc.NPC_Thay;
 import wildwyrd.game.npc.NPC_Trissie;
 import wildwyrd.game.object.Obj_Alder_Bed;
 import wildwyrd.game.object.Obj_Basin;
+import wildwyrd.game.object.Obj_Beech;
 import wildwyrd.game.object.Obj_Blackberry;
 import wildwyrd.game.object.Obj_Bookshelf;
 import wildwyrd.game.object.Obj_Cauldron;
@@ -88,6 +89,7 @@ public class EntityGenerator {
 		case Obj_Dummy.objId: obj = new Obj_Dummy(gp);break;//25
 		case Obj_Blackberry.objId: obj = new Obj_Blackberry(gp);break;//26
 		case Obj_Cracked_Wall.objId: obj = new Obj_Cracked_Wall(gp);break;//27
+		case Obj_Beech.objId: obj = new Obj_Beech(gp);break;//28
 		//default
 		}
 		return obj;
