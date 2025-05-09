@@ -178,8 +178,6 @@ public class Combat extends Entity {
 	public void playerDeath(Combatant p) {
 		p.killed();
 		gp.keyH.enterPressed = false;
-		//dialogues[0][0] = new Dialoge(p.name + " was defeated!",1);
-		//dialogues[0][1] = null;
 		setDialogue(p, p);
 		startDialogue(this, 1);
 	}
@@ -187,8 +185,6 @@ public class Combat extends Entity {
 	public void enemyDeath(Enemy enemy) {
 		enemy.killed();
 		gp.keyH.enterPressed = false;
-		//dialogues[0][0] = new Dialoge(enemy.name + " was defeated!",1);
-		//dialogues[0][1] = null;
 		setDialogue(enemy, enemy);
 		startDialogue(this, 1);
 	}
@@ -215,8 +211,6 @@ public class Combat extends Entity {
 			} else {
 				gp.playSE(13);
 			}
-			//dialogues[0][0] = new Dialoge(user.name + " Attacked!",1);
-			//dialogues[0][1] = new Dialoge(target.name + " took " + impact + " damage!",1);
 			target.health -= impact;
 			cr.addFrame(user.getCombatStatus(), damage, user, target);
 			setDialogue(user, target);

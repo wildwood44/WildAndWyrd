@@ -14,8 +14,6 @@ import wildwyrd.game.skill.Skill;
 
 public class Combatant extends Entity implements Comparable<Combatant> {
 	protected String imageUrl;
-	public int maxHealth;
-	public int health = maxHealth;
 	protected int stamina;
 	protected int maxStamina;
 	public int baseAttack;

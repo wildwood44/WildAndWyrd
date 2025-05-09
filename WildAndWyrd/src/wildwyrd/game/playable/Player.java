@@ -29,6 +29,8 @@ public class Player extends Entity {
 	public final int screenY;
 	private int shillings;
 	public Boolean approval;
+	public Boolean canMove = true;
+	public Boolean sliding = false;
 	private long start;
 	public Object currentLight;
 
@@ -100,7 +102,7 @@ public class Player extends Entity {
 
 	public void update() {
 		int objIndex;
-		if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed) {
+		if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed) && canMove) {
 			//Get direction
 			if (keyH.upPressed) {
 				direction = "up";
@@ -155,6 +157,37 @@ public class Player extends Entity {
 				if(takeDamage) {
 					gp.playable.get(0).takeDamage(1);
 				}
+			}
+		//Sliding animation
+		} else if(sliding) {
+			canMove = false;
+			collisionOn = false;
+			gp.cChecker.checkTile(this);
+			spriteCounter++;
+			if (collisionOn == false) {
+				switch(direction) {
+				case "up":
+					worldY -= speed;
+					break;
+				case "down":
+					worldY += speed;
+					break;
+				case "left":
+					worldX -= speed;
+					break;
+				case "right":
+					worldX += speed;
+					break;
+				}
+				if(spriteCounter % 2 == 0) {
+				generateParticles(this, this);
+				}
+			}
+			if(spriteCounter>=20) {
+				sliding=false;
+				spriteCounter = 0;
+				canMove=true;
+				gp.eHandler.checkEvent();
 			}
 		} else {
 			spriteNum = 1;

@@ -15,7 +15,7 @@ public class TileManager {
 
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
-		tile = new Tile[80];
+		tile = new Tile[90];
 		mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 		getTileImage();
 		loadMap("/res/maps/map01",0);
@@ -126,6 +126,16 @@ public class TileManager {
 			setup(77, "holly_male_tile-top_right", true);
 			setup(78, "holly_male_tile-right", true);
 			setup(79, "holly_male_tile-bottom_right", true);
+			setup(80, "wood_ant_nest-centre", true);
+			setup(81, "wood_ant_nest-top_left", false);
+			setup(82, "wood_ant_nest-left", false);
+			setup(83, "wood_ant_nest-bottom_left", false);
+			setup(84, "wood_ant_nest-top", false);
+			setup(85, "wood_ant_nest-centre", false);
+			setup(86, "wood_ant_nest-bottom", false);
+			setup(87, "wood_ant_nest-top_right", false);
+			setup(88, "wood_ant_nest-right", false);
+			setup(89, "wood_ant_nest-bottom_right", false);
 		}
 		
 	}

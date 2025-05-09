@@ -98,6 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public SaveLoad saveLoad = new SaveLoad(this);
 	public EntityGenerator eGenerator = new EntityGenerator(this);
 	public Player player = new Player(this, keyH);
+	public ArrayList<Entity> particleList = new ArrayList<>();
 	public ArrayList<Entity> entityList = new ArrayList<>();
 
 	public GamePanel() {
@@ -208,6 +209,15 @@ public class GamePanel extends JPanel implements Runnable {
 		if (gameState == GameState.playState) {
 			player.update();
 			eHandler.checkCutscene();
+			for(int i = 0; i < particleList.size(); i++) {
+				if(particleList.get(i) != null) {
+					if(particleList.get(i).alive) {
+						particleList.get(i).update();
+					} else {
+						particleList.remove(i);
+					}
+				}
+			}
 			for(int i = 0; i < iTile[currentMap.getId()].length; i++) {
 				if(iTile[currentMap.getId()][i] != null) {
 					iTile[currentMap.getId()][i].update();
@@ -284,7 +294,13 @@ public class GamePanel extends JPanel implements Runnable {
 						//npc[currentMap.getId()][i].draw(g2);
 					}
 				}
-				//tileM.draw(g2);
+				//PARTICLES
+				for (int i = 0; i < particleList.size(); i++) {
+					if (particleList.get(i) != null) {
+						entityList.add(particleList.get(i));
+						//this.obj[1][i].draw(g2, this);
+					}
+				}
 				Collections.sort(entityList, new Comparator<Entity>() {
 					@Override
 					public int compare(Entity e1, Entity e2) {

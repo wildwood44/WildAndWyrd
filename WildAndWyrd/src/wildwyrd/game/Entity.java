@@ -1,6 +1,7 @@
 package wildwyrd.game;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -12,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import wildwyrd.game.combat.Enemy;
+import wildwyrd.game.effects.Particle;
 import wildwyrd.game.items.Item;
 import wildwyrd.game.object.Dialoge;
 import wildwyrd.game.tile.UtilityTool;
@@ -42,6 +44,8 @@ public class Entity {
 	public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
 	public int solidAreaDefaultX = 0;
 	public int solidAreaDefaultY = 0;
+	public int maxHealth;
+	public int health = maxHealth;
 	public int attackValue;
 	public int defenceValue;
 	public int healthRcvd;
@@ -60,6 +64,7 @@ public class Entity {
 	public boolean collision = false;
 	public boolean collisionOn = false;
 	public boolean stackable = false;
+	public boolean alive = true;
 	public boolean destroy = false;
 	public boolean drawing = true;
 	public boolean takeDamage = false;
@@ -311,6 +316,42 @@ public class Entity {
 			}
             g2.setComposite(AlphaComposite.SrcOver.derive(1f));
 		}
+	}
+	//Particles
+	public Color getParticleColor() {
+		Color color = new Color(65,50,50);
+		return color;
+		
+	}
+	
+	public int getParticleSize() {
+		int size = 6;
+		return size;
+		
+	}
+	
+	public int getParticleSpeed() {
+		int speed = 1;
+		return speed;
+		
+	}
+	
+	public int getParticleMaxLife() {
+		int maxLife = 20;
+		return maxLife;
+		
+	}
+	
+	public void generateParticles(Entity generator, Entity target) {
+		Color color = generator.getParticleColor();
+		int size = generator.getParticleSize();
+		int speed = generator.getParticleSpeed();
+		int maxLife = generator.getParticleMaxLife();
+		
+		Particle p1 = new Particle(gp, target, color, size, speed, maxLife, -1, -1);
+		Particle p2 = new Particle(gp, target, color, size, speed, maxLife, 1, -1);
+		gp.particleList.add(p1);
+		gp.particleList.add(p2);
 	}
 
 	public void startDialogue(Entity object, int setNum) {

@@ -191,9 +191,33 @@ public class AssetSetter {
 		gp.obj[2][i].worldX = 10 * gp.tileSize;
 		gp.obj[2][i].worldY = 8 * gp.tileSize;
 		i=0;
+		gp.obj[3][i] = new Obj_Fallen_Tree(gp);
+		gp.obj[3][i].worldX = 9 * gp.tileSize;
+		gp.obj[3][i].worldY = 1 * gp.tileSize;
+		i=0;
 		gp.obj[7][i] = new Obj_Thay_Body(gp);
 		gp.obj[7][i].worldX = 5 * gp.tileSize;
 		gp.obj[7][i].worldY = 4 * gp.tileSize;
+		i++;
+		gp.obj[7][i] = new Obj_Beech(gp);
+		gp.obj[7][i].worldX = 0 * gp.tileSize;
+		gp.obj[7][i].worldY = 7 * gp.tileSize;
+		i=0;
+		gp.obj[9][i] = new Obj_Beech(gp);
+		gp.obj[9][i].worldX = 0 * gp.tileSize;
+		gp.obj[9][i].worldY = 4 * gp.tileSize;
+		i++;
+		gp.obj[9][i] = new Obj_Beech(gp);
+		gp.obj[9][i].worldX = 1 * gp.tileSize;
+		gp.obj[9][i].worldY = 5 * gp.tileSize;
+		i++;
+		gp.obj[9][i] = new Obj_Beech(gp);
+		gp.obj[9][i].worldX = 0 * gp.tileSize;
+		gp.obj[9][i].worldY = 7 * gp.tileSize;
+		i=0;
+		gp.obj[10][i] = new Obj_SilverBirch(gp);
+		gp.obj[10][i].worldX = 0 * gp.tileSize;
+		gp.obj[10][i].worldY = 0 * gp.tileSize;
 	}
 	public void setNPC() {
 		//gp.npc[1][0] = new NPC_Florence(gp);
