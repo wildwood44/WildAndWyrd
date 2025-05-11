@@ -225,98 +225,67 @@ public class Entity {
 			worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
 			worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
 			worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-			int tempScreenX = screenX;
-			int tempScreenY = screenY;
-			switch(direction) {
-			case "up":
-				if(spriteNum == 1) {image = up1;} 
-				else if(spriteNum == 2) {image = up2;} 
-				else if(spriteNum == 3) {image = up1;}
-				else if(spriteNum == 4) {image = up3;}
-				break;
-			case "down":
-				if(spriteNum == 1) {image = down1;} 
-				else if(spriteNum == 2) {image = down2;} 
-				else if(spriteNum == 3) {image = down1;} 
-				else if(spriteNum == 4) {image = down3;}
-				break;
-			case "left":
-				if(spriteNum == 1) {image = left1;} 
-				else if(spriteNum == 2) {image = left2;}
-				else if(spriteNum == 3) {image = left1;} 
-				else if(spriteNum == 4) {image = left3;}
-				break;
-			case "right":
-				if(spriteNum == 1) {image = right1;} 
-				else if(spriteNum == 2) {image = right2;}
-				else if(spriteNum == 3) {image = right1;}
-				else if(spriteNum == 4) {image = right3;}
-				break;
-			case "unique":
-				image = unique;
-				break;
-			}
-			if(climbing) {
-				switch(direction) {
-				case "up":
-					if(spriteNum == 1) {image = altUp1;}
-					else {image = altUp2;}
-				case "down":
-					if(spriteNum == 1) {image = altDown1;}
-					else {image = altDown2;}
-				}
-			}
-			g2.setComposite(AlphaComposite.SrcOver.derive(alpha));
-			g2.drawImage(image, tempScreenX, tempScreenY, null);
-			if(hasQuest && gp.gameState == GameState.playState) {
-				BufferedImage q_icon = setup("/res/icons/quest_icon",gp.originalTileSize,gp.originalTileSize);
-				g2.drawImage(q_icon, tempScreenX + 10, tempScreenY, null);
-			}
-            g2.setComposite(AlphaComposite.SrcOver.derive(1f));
+			display(g2, screenX, screenY);
 		}
 		else if(gp.player.worldX < gp.player.screenX ||
 			    gp.player.worldY < gp.player.screenY ||
 			    rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX ||
 			    bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
-			int tempScreenX = screenX;
-			int tempScreenY = screenY;
-			switch(direction) {
-			case "up":
-				if(spriteNum == 1) {image = up1;} 
-				else if(spriteNum == 2) {image = up2;} 
-				else if(spriteNum == 3) {image = up1;}
-				else if(spriteNum == 4) {image = up3;}
-				break;
-			case "down":
-				if(spriteNum == 1) {image = down1;} 
-				else if(spriteNum == 2) {image = down2;} 
-				else if(spriteNum == 3) {image = down1;} 
-				else if(spriteNum == 4) {image = down3;}
-				break;
-			case "left":
-				if(spriteNum == 1) {image = left1;} 
-				else if(spriteNum == 2) {image = left2;}
-				else if(spriteNum == 3) {image = left1;} 
-				else if(spriteNum == 4) {image = left3;}
-				break;
-			case "right":
-				if(spriteNum == 1) {image = right1;} 
-				else if(spriteNum == 2) {image = right2;}
-				else if(spriteNum == 3) {image = right1;}
-				else if(spriteNum == 4) {image = right3;}
-				break;
-			case "unique":
-				image = unique;
-				break;
-			}
-			g2.drawImage(image, tempScreenX, tempScreenY, null);
-			if(hasQuest && gp.gameState == GameState.playState) {
-				BufferedImage q_icon = setup("/res/icons/quest_icon",gp.originalTileSize,gp.originalTileSize);
-				g2.drawImage(q_icon, tempScreenX + 10, tempScreenY, null);
-			}
-            g2.setComposite(AlphaComposite.SrcOver.derive(1f));
+			display(g2, screenX, screenY);
 		}
 	}
+	
+	public void display(Graphics2D g2, int screenX, int screenY) {
+		int tempScreenX = screenX;
+		int tempScreenY = screenY;
+		switch(direction) {
+		case "up":
+			if(spriteNum == 1) {image = up1;} 
+			else if(spriteNum == 2) {image = up2;} 
+			else if(spriteNum == 3) {image = up1;}
+			else if(spriteNum == 4) {image = up3;}
+			break;
+		case "down":
+			if(spriteNum == 1) {image = down1;} 
+			else if(spriteNum == 2) {image = down2;} 
+			else if(spriteNum == 3) {image = down1;} 
+			else if(spriteNum == 4) {image = down3;}
+			break;
+		case "left":
+			if(spriteNum == 1) {image = left1;} 
+			else if(spriteNum == 2) {image = left2;}
+			else if(spriteNum == 3) {image = left1;} 
+			else if(spriteNum == 4) {image = left3;}
+			break;
+		case "right":
+			if(spriteNum == 1) {image = right1;} 
+			else if(spriteNum == 2) {image = right2;}
+			else if(spriteNum == 3) {image = right1;}
+			else if(spriteNum == 4) {image = right3;}
+			break;
+		case "unique":
+			image = unique;
+			break;
+		}
+		if(climbing) {
+			switch(direction) {
+			case "up":
+				if(spriteNum == 1) {image = altUp1;}
+				else {image = altUp2;}
+			case "down":
+				if(spriteNum == 1) {image = altDown1;}
+				else {image = altDown2;}
+			}
+		}
+		g2.setComposite(AlphaComposite.SrcOver.derive(alpha));
+		g2.drawImage(image, tempScreenX, tempScreenY, null);
+		if(hasQuest && gp.gameState == GameState.playState) {
+			BufferedImage q_icon = setup("/res/icons/quest_icon",gp.originalTileSize,gp.originalTileSize);
+			g2.drawImage(q_icon, tempScreenX + 10, tempScreenY, null);
+		}
+        g2.setComposite(AlphaComposite.SrcOver.derive(1f));
+	}
+	
 	//Particles
 	public Color getParticleColor() {
 		Color color = new Color(65,50,50);

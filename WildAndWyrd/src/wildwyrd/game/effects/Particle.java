@@ -45,15 +45,8 @@ public class Particle extends Entity {
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
 		x = screenX;
 		y = screenY;
-		if (screenX > worldX) {
-			x = worldX;
-		}
 
-		if (screenY > worldY) {
-			y = worldY;
-		}
-
-		int rightOffset = gp.screenWidth - screenX;
+		/*int rightOffset = gp.screenWidth - screenX;
 		if (rightOffset > gp.currentMap.getWorldWidth() - gp.player.worldX) {
 			x = gp.screenWidth - (gp.currentMap.getWorldWidth() - worldX);
 		}
@@ -61,7 +54,7 @@ public class Particle extends Entity {
 		int bottomOffset = gp.screenHeight - screenY;
 		if (bottomOffset > gp.currentMap.getWorldHeight() - gp.player.worldY) {
 			y = gp.screenHeight - (gp.currentMap.getWorldHeight() - worldY);
-		}
+		}*/
 		g2.setColor(color);
 		g2.fillRect(x, y, size, size);
 	}

@@ -235,9 +235,17 @@ public class AssetSetter {
 	}
 	public void setInteractiveTile() {
 		int i = 0;
-		gp.iTile[1][i] = new IT_StoneDoor(gp, 12, 2);
+		gp.iTile[1][i] = new IT_StoneDoor(gp);
+		gp.iTile[1][i].worldX = gp.tileSize * 12;
+		gp.iTile[1][i].worldY = gp.tileSize * 2;
 		i++;
-		gp.iTile[1][i] = new IT_StoneDoor(gp, 16, 2);
+		gp.iTile[1][i] = new IT_StoneDoor(gp);
+		gp.iTile[1][i].worldX = gp.tileSize * 16;
+		gp.iTile[1][i].worldX = gp.tileSize * 2;
+		i = 0;
+		gp.iTile[8][i] = new IT_Ant_Nest(gp);
+		gp.iTile[8][i].worldX = gp.tileSize * 5;
+		gp.iTile[8][i].worldY = gp.tileSize * 6;
 	}
 	public int getRandomNumber(int min, int max) {
 	    return (int) ((Math.random() * (max - min)) + min);

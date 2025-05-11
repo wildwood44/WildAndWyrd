@@ -13,13 +13,13 @@ public class InteractiveTile extends Entity {
 	public boolean animationComp = false;
 	public boolean eventActive = false;
 	
-	public InteractiveTile(GamePanel gp, int col, int row) {
+	public InteractiveTile(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
 		//solidArea.x = 48;
-		solidArea.y = 10;
+		//solidArea.y = 10;
 		//solidAreaDefaultX = solidArea.x;
-		solidAreaDefaultY = solidArea.y;
+		//solidAreaDefaultY = solidArea.y;
 	}
 	
 	public boolean isCorrectItem(Entity entity) {

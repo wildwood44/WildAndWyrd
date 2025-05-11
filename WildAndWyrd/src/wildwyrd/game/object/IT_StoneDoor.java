@@ -9,13 +9,11 @@ public class IT_StoneDoor extends InteractiveTile {
 	public static final int intId = 1;
 	public static final String objName = "Cottage door";
 
-	public IT_StoneDoor(GamePanel gp, int col, int row) {
-		super(gp, col, row);
+	public IT_StoneDoor(GamePanel gp) {
+		super(gp);
 		this.gp = gp;
 		id = intId;
 		name = objName;
-		worldX = gp.tileSize * col;
-		worldY = gp.tileSize * row;
 		illusion = true;
 		image = setup("/res/objects/Rockwall_Door1", gp.tileSize, gp.tileSize);
 		image2 = setup("/res/objects/Rockwall_Door4", gp.tileSize, gp.tileSize);
@@ -40,7 +38,7 @@ public class IT_StoneDoor extends InteractiveTile {
 	}
 	
 	public InteractiveTile transform() {
-		InteractiveTile tile = new IT_StoneDoor2(gp,worldX/gp.tileSize,worldY/gp.tileSize);
+		InteractiveTile tile = new IT_StoneDoor2(gp);
 		illusion = false;
 		return tile;
 	}

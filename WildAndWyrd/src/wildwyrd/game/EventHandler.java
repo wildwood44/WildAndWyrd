@@ -23,8 +23,7 @@ public class EventHandler {
 	public EventHandler(GamePanel gp) {
 		this.gp = gp;
 		eventMaster = new Entity(gp);
-		eventRect = new EventRect[gp.maxMap][gp.currentMap.getMaxWorldCol()][gp.currentMap.getMaxWorldRow()];// new
-																												// Rectangle();
+		eventRect = new EventRect[gp.maxMap][gp.currentMap.getMaxWorldCol()][gp.currentMap.getMaxWorldRow()];// new Rectangle();
 		int map = 0;
 		int col = 0;
 		int row = 0;
@@ -187,6 +186,9 @@ public class EventHandler {
 				if (hitCol(8, 0, "left")) {
 					teleport(gp.maps[6], 11, 2);
 				}
+				if (hit(8, 5, 6, "any")) {
+					woodAnts();
+				}
 			} else if (gp.currentMap.getId() == 9) {
 				if (hitRow(9, 0, "up")) {
 					teleport(gp.maps[7], 2, 8);
@@ -201,13 +203,44 @@ public class EventHandler {
 				if (hitRow(10, 19, "down")) {
 					teleport(gp.maps[11], 7, 0);
 				}
+			//The Ditch
 			} else if (gp.currentMap.getId() == 11) {
 				if (hitCol(11, 0, "left")) {
 					teleport(gp.maps[12], 11, 4);
 				}
+				if (hitRow(11, 0, "any")) {
+					slide("down", 2);
+				}
+				if (hitRow(11, 1, "any")) {
+					slide("down", 2);
+				}
+				if (hitRow(11, 2, "any")) {
+					slide("down", 2);
+				}
+				if (hitCol(11, 9, "any")) {
+					slide("left", 9);
+				}
+				if (hitCol(11, 10, "any")) {
+					slide("left", 9);
+				}
+				if (hitCol(11, 11, "any")) {
+					slide("left", 9);
+				}
+				if (hitRow(11, 5, "any")) {
+					slide("up", 5);
+				}
+				if (hitRow(11, 6, "any")) {
+					slide("up", 5);
+				}
+				if (hitRow(11, 7, "any")) {
+					slide("up", 5);
+				}
 			} else if (gp.currentMap.getId() == 12) {
 				if (hitCol(12, 0, "left")) {
 					teleport(gp.maps[13], 11, 4);
+				}
+				if (hitCol(12, 11, "right")) {
+					teleport(gp.maps[11], 0, 4);
 				}
 			} else if (gp.currentMap.getId() == 13) {
 				if (hitCol(13, 11, "right")) {
@@ -398,6 +431,12 @@ public class EventHandler {
 		gp.player.sliding = true;
 		gp.player.direction = direction;
 		gp.player.canMove = false;
+		canTouchEvent = false;
+	}
+
+	public void woodAnts() {
+		eventMaster.generateParticles(eventMaster, eventMaster);
+		eventMaster.draw(null);
 		canTouchEvent = false;
 	}
 }
