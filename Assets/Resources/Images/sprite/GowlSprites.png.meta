@@ -1,0 +1,1066 @@
+fileFormatVersion: 2
+guid: bb3b23627ec94424ead43749dccf684a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7847982579591495483
+    second: GowlSprites_0
+  - first:
+      213: 2588804786788987089
+    second: GowlSprites_1
+  - first:
+      213: -6502656849437719967
+    second: GowlSprites_2
+  - first:
+      213: -8555122863091668806
+    second: GowlSprites_3
+  - first:
+      213: 8296071767776641088
+    second: GowlSprites_4
+  - first:
+      213: -8066155827472577055
+    second: GowlSprites_5
+  - first:
+      213: 7758951326484882992
+    second: GowlSprites_6
+  - first:
+      213: 4175190205229222944
+    second: GowlSprites_7
+  - first:
+      213: 8856899624693858781
+    second: GowlSprites_8
+  - first:
+      213: -3019036340271800035
+    second: GowlSprites_9
+  - first:
+      213: -4582580257558142130
+    second: GowlSprites_10
+  - first:
+      213: 8463817598286135435
+    second: GowlSprites_11
+  - first:
+      213: 2254744906759813530
+    second: GowlSprites_12
+  - first:
+      213: -2966624641718464550
+    second: GowlSprites_13
+  - first:
+      213: -7661611255290882808
+    second: GowlSprites_14
+  - first:
+      213: 2201375401053894878
+    second: GowlSprites_15
+  - first:
+      213: -590574486560234655
+    second: GowlSprites_16
+  - first:
+      213: -5832772234033794316
+    second: GowlSprites_17
+  - first:
+      213: 6712652085816607586
+    second: GowlSprites_18
+  - first:
+      213: 281740928537953108
+    second: GowlSprites_19
+  - first:
+      213: -4030568797841123771
+    second: GowlSprites_20
+  - first:
+      213: -5187370009793756722
+    second: GowlSprites_21
+  - first:
+      213: -34080417960839686
+    second: GowlSprites_22
+  - first:
+      213: -3386325575017391929
+    second: GowlSprites_23
+  - first:
+      213: 9169627738938755094
+    second: GowlSprites_24
+  - first:
+      213: 7466244543446943134
+    second: GowlSprites_25
+  - first:
+      213: 8077937143901683043
+    second: GowlSprites_26
+  - first:
+      213: -1656529246137550676
+    second: GowlSprites_27
+  - first:
+      213: 965410839591623674
+    second: GowlSprites_28
+  - first:
+      213: -3744940682619878146
+    second: GowlSprites_29
+  - first:
+      213: -2117755759119894743
+    second: GowlSprites_30
+  - first:
+      213: -1211870866477015840
+    second: GowlSprites_31
+  - first:
+      213: -7973258694935847391
+    second: GowlSprites_32
+  - first:
+      213: 4592171144236859031
+    second: GowlSprites_33
+  - first:
+      213: -3557202813596027707
+    second: GowlSprites_34
+  - first:
+      213: 6964243975288579375
+    second: GowlSprites_35
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GowlSprites_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 461
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c0cefb9c6d561390800000000000000
+      internalID: -7847982579591495483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 462
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d0736dcc384de320800000000000000
+      internalID: 2588804786788987089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_2
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 461
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16201094c0ce1c5a0800000000000000
+      internalID: -6502656849437719967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_3
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 462
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab8299f3519164980800000000000000
+      internalID: -8555122863091668806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_4
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 463
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 040497d7151912370800000000000000
+      internalID: 8296071767776641088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_5
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 462
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1edcc80e2024f0090800000000000000
+      internalID: -8066155827472577055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_6
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 397
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0366dac6f155dab60800000000000000
+      internalID: 7758951326484882992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_7
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 397
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02cc06cde5141f930800000000000000
+      internalID: 4175190205229222944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_8
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 397
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd10b2568470aea70800000000000000
+      internalID: 8856899624693858781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_9
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 399
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d11aa1ea17a3a16d0800000000000000
+      internalID: -3019036340271800035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_10
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 399
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e43678909876760c0800000000000000
+      internalID: -4582580257558142130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_11
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 399
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b808b8d2345857570800000000000000
+      internalID: 8463817598286135435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_12
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 333
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a993a8aeb867a4f10800000000000000
+      internalID: 2254744906759813530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_13
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 333
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adf43703b9e64d6d0800000000000000
+      internalID: -2966624641718464550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_14
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 333
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8059041082d7ca590800000000000000
+      internalID: -7661611255290882808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_15
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 335
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed8b91d834bdc8e10800000000000000
+      internalID: 2201375401053894878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_16
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 335
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1632b2b22abddc7f0800000000000000
+      internalID: -590574486560234655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_17
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 335
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f277a67e84dd0fa0800000000000000
+      internalID: -5832772234033794316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_18
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 268
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26342e3c181282d50800000000000000
+      internalID: 6712652085816607586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_19
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 269
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 453813cb1e1f8e300800000000000000
+      internalID: 281740928537953108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_20
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 268
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54618e1880b8018c0800000000000000
+      internalID: -4030568797841123771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_21
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 268
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec18abfb572c208b0800000000000000
+      internalID: -5187370009793756722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_22
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 269
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af5b5a95a0ce68ff0800000000000000
+      internalID: -34080417960839686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_23
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 268
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c8944fb4da5101d0800000000000000
+      internalID: -3386325575017391929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_24
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 206
+        width: 18
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 618430688df014f70800000000000000
+      internalID: 9169627738938755094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_25
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 207
+        width: 18
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e958a5abadd6d9760800000000000000
+      internalID: 7466244543446943134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_26
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 206
+        width: 18
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36d713c98099a1070800000000000000
+      internalID: 8077937143901683043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_27
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 141
+        width: 19
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca8fce36d63d209e0800000000000000
+      internalID: -1656529246137550676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_28
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 141
+        width: 19
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afb9b2c2b04d56d00800000000000000
+      internalID: 965410839591623674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_29
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 141
+        width: 19
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef4888b6a4c470cc0800000000000000
+      internalID: -3744940682619878146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_30
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 77
+        width: 19
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 927fe908b583c92e0800000000000000
+      internalID: -2117755759119894743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_31
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 77
+        width: 19
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ec1ef12ed19e2fe0800000000000000
+      internalID: -1211870866477015840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_32
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 77
+        width: 19
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12edd0a067b495190800000000000000
+      internalID: -7973258694935847391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_33
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 12
+        width: 18
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79e7908435baabf30800000000000000
+      internalID: 4592171144236859031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_34
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 14
+        width: 18
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c4b69d43e642aec0800000000000000
+      internalID: -3557202813596027707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GowlSprites_35
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 12
+        width: 18
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f25ea345ff6f5a060800000000000000
+      internalID: 6964243975288579375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      GowlSprites_0: -7847982579591495483
+      GowlSprites_1: 2588804786788987089
+      GowlSprites_10: -4582580257558142130
+      GowlSprites_11: 8463817598286135435
+      GowlSprites_12: 2254744906759813530
+      GowlSprites_13: -2966624641718464550
+      GowlSprites_14: -7661611255290882808
+      GowlSprites_15: 2201375401053894878
+      GowlSprites_16: -590574486560234655
+      GowlSprites_17: -5832772234033794316
+      GowlSprites_18: 6712652085816607586
+      GowlSprites_19: 281740928537953108
+      GowlSprites_2: -6502656849437719967
+      GowlSprites_20: -4030568797841123771
+      GowlSprites_21: -5187370009793756722
+      GowlSprites_22: -34080417960839686
+      GowlSprites_23: -3386325575017391929
+      GowlSprites_24: 9169627738938755094
+      GowlSprites_25: 7466244543446943134
+      GowlSprites_26: 8077937143901683043
+      GowlSprites_27: -1656529246137550676
+      GowlSprites_28: 965410839591623674
+      GowlSprites_29: -3744940682619878146
+      GowlSprites_3: -8555122863091668806
+      GowlSprites_30: -2117755759119894743
+      GowlSprites_31: -1211870866477015840
+      GowlSprites_32: -7973258694935847391
+      GowlSprites_33: 4592171144236859031
+      GowlSprites_34: -3557202813596027707
+      GowlSprites_35: 6964243975288579375
+      GowlSprites_4: 8296071767776641088
+      GowlSprites_5: -8066155827472577055
+      GowlSprites_6: 7758951326484882992
+      GowlSprites_7: 4175190205229222944
+      GowlSprites_8: 8856899624693858781
+      GowlSprites_9: -3019036340271800035
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,3 @@
+1$ purple_potion, moth_icon$ Phantom Cloak: Apply it to a user or object worn by the user to conceal their form, sound, scent in darkness.
+2$ gold_potion, butterfly_icon$ Golden dip: Pour into a container, then add an object into the solution. The solution shall drain, and the object will be turned to solid gold.
+3$ pink_potion, wasp_icon$ Amortorque: When consumed, the drinker will be obsessed with being with and pleasing the one who has given their blood to the creation of this potion. £NOTICE: It is in the best interest of the reader to know, love potions are illegal in almost every known community in Albion. Usage of this potion will be met with a penalty within the respected laws of said communities.

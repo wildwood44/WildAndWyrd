@@ -1,0 +1,2392 @@
+fileFormatVersion: 2
+guid: 346d4a05297208d4c8aeadcd8dbbc902
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9023176652327574520
+    second: WildWyrdSprites_0
+  - first:
+      213: 1009980753975488361
+    second: WildWyrdSprites_1
+  - first:
+      213: -8651953926760574968
+    second: WildWyrdSprites_2
+  - first:
+      213: -9101170143344826992
+    second: WildWyrdSprites_3
+  - first:
+      213: 2263499902365687630
+    second: WildWyrdSprites_4
+  - first:
+      213: 5927266030726830975
+    second: WildWyrdSprites_5
+  - first:
+      213: 5837754176882681646
+    second: WildWyrdSprites_6
+  - first:
+      213: -3740423221834087881
+    second: WildWyrdSprites_7
+  - first:
+      213: 3359346384621043894
+    second: WildWyrdSprites_8
+  - first:
+      213: 2773260321161075841
+    second: WildWyrdSprites_9
+  - first:
+      213: 9149062364056865133
+    second: WildWyrdSprites_10
+  - first:
+      213: 8317174711202538638
+    second: WildWyrdSprites_11
+  - first:
+      213: 7328182316879121073
+    second: WildWyrdSprites_12
+  - first:
+      213: 7337929238843516594
+    second: WildWyrdSprites_13
+  - first:
+      213: 6070799324872970464
+    second: WildWyrdSprites_14
+  - first:
+      213: -1509692665300993391
+    second: WildWyrdSprites_15
+  - first:
+      213: -5180027610617359460
+    second: WildWyrdSprites_16
+  - first:
+      213: -1518383644425504199
+    second: WildWyrdSprites_17
+  - first:
+      213: -1338909279692310137
+    second: WildWyrdSprites_18
+  - first:
+      213: 4025561271211197889
+    second: WildWyrdSprites_19
+  - first:
+      213: 8994846509724498903
+    second: WildWyrdSprites_20
+  - first:
+      213: 2416530651018620967
+    second: WildWyrdSprites_21
+  - first:
+      213: -339921397501838549
+    second: WildWyrdSprites_22
+  - first:
+      213: 3159800860367258643
+    second: WildWyrdSprites_23
+  - first:
+      213: -3413443536142915349
+    second: WildWyrdSprites_24
+  - first:
+      213: 8249595638110653478
+    second: WildWyrdSprites_25
+  - first:
+      213: -6002170551416591439
+    second: WildWyrdSprites_26
+  - first:
+      213: 3793164806834868322
+    second: WildWyrdSprites_27
+  - first:
+      213: 50789086960949417
+    second: WildWyrdSprites_28
+  - first:
+      213: 6094676427567361425
+    second: WildWyrdSprites_29
+  - first:
+      213: 4938120579306648277
+    second: WildWyrdSprites_30
+  - first:
+      213: 4356966467475274118
+    second: WildWyrdSprites_31
+  - first:
+      213: 4569260656666228234
+    second: WildWyrdSprites_32
+  - first:
+      213: 4467842564227219284
+    second: WildWyrdSprites_33
+  - first:
+      213: -4247665444057464474
+    second: WildWyrdSprites_34
+  - first:
+      213: -5868753337743452641
+    second: WildWyrdSprites_35
+  - first:
+      213: -4815923969320355625
+    second: WildWyrdSprites_36
+  - first:
+      213: -7971822440501085875
+    second: WildWyrdSprites_37
+  - first:
+      213: 6723507957620783841
+    second: WildWyrdSprites_38
+  - first:
+      213: -8062314261023329474
+    second: WildWyrdSprites_39
+  - first:
+      213: 4094822286099424831
+    second: WildWyrdSprites_40
+  - first:
+      213: 3573797695981645091
+    second: WildWyrdSprites_41
+  - first:
+      213: -5997383306092882740
+    second: WildWyrdSprites_42
+  - first:
+      213: 1160342322364618632
+    second: WildWyrdSprites_43
+  - first:
+      213: -7256506740264043963
+    second: WildWyrdSprites_44
+  - first:
+      213: 383288674226009573
+    second: WildWyrdSprites_45
+  - first:
+      213: 3763390806220669408
+    second: WildWyrdSprites_46
+  - first:
+      213: 2985451388655763011
+    second: WildWyrdSprites_47
+  - first:
+      213: -1953191245723971153
+    second: WildWyrdSprites_48
+  - first:
+      213: 8375917600851930237
+    second: WildWyrdSprites_49
+  - first:
+      213: -3194600227575969919
+    second: WildWyrdSprites_50
+  - first:
+      213: 2699254876620595115
+    second: WildWyrdSprites_51
+  - first:
+      213: -5510257033304682333
+    second: WildWyrdSprites_52
+  - first:
+      213: 4234401960210468802
+    second: WildWyrdSprites_53
+  - first:
+      213: -7188815964952335540
+    second: WildWyrdSprites_54
+  - first:
+      213: 6822410275211826379
+    second: WildWyrdSprites_55
+  - first:
+      213: 5494634746315143465
+    second: WildWyrdSprites_56
+  - first:
+      213: 4475768996584239781
+    second: WildWyrdSprites_57
+  - first:
+      213: 3787723390882738873
+    second: WildWyrdSprites_58
+  - first:
+      213: 1909044769565929368
+    second: WildWyrdSprites_59
+  - first:
+      213: -4690387019591485539
+    second: WildWyrdSprites_60
+  - first:
+      213: 2797178534500825635
+    second: WildWyrdSprites_61
+  - first:
+      213: 1783067179291897174
+    second: WildWyrdSprites_62
+  - first:
+      213: 7569933227511057326
+    second: WildWyrdSprites_63
+  - first:
+      213: -669671767750562152
+    second: WildWyrdSprites_64
+  - first:
+      213: -3116873059548351527
+    second: WildWyrdSprites_65
+  - first:
+      213: 5484471582236085915
+    second: WildWyrdSprites_66
+  - first:
+      213: -506641260240709069
+    second: WildWyrdSprites_67
+  - first:
+      213: -7047925037283577989
+    second: WildWyrdSprites_68
+  - first:
+      213: 8981786853953359088
+    second: WildWyrdSprites_69
+  - first:
+      213: -234285642349697526
+    second: WildWyrdSprites_70
+  - first:
+      213: -8684880392009807561
+    second: WildWyrdSprites_71
+  - first:
+      213: -6032125814359488119
+    second: WildWyrdSprites_72
+  - first:
+      213: 807862885726099852
+    second: WildWyrdSprites_73
+  - first:
+      213: 6553422451828136647
+    second: WildWyrdSprites_74
+  - first:
+      213: 5064961888328757642
+    second: WildWyrdSprites_75
+  - first:
+      213: 5552686808823946330
+    second: WildWyrdSprites_76
+  - first:
+      213: -5614668571069742878
+    second: WildWyrdSprites_77
+  - first:
+      213: 5572298955776012020
+    second: WildWyrdSprites_78
+  - first:
+      213: -7684885552521143307
+    second: WildWyrdSprites_79
+  - first:
+      213: 8071734290084333177
+    second: WildWyrdSprites_80
+  - first:
+      213: -4945726018063085202
+    second: WildWyrdSprites_81
+  - first:
+      213: 1262373801565043089
+    second: WildWyrdSprites_82
+  - first:
+      213: 749727611757898750
+    second: WildWyrdSprites_83
+  - first:
+      213: 2011119638566430892
+    second: WildWyrdSprites_84
+  - first:
+      213: 8913611359187205849
+    second: WildWyrdSprites_85
+  - first:
+      213: 3291002359753307582
+    second: WildWyrdSprites_86
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WildWyrdSprites_0
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 462
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 804aa6c34ac37c280800000000000000
+      internalID: -9023176652327574520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_1
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 462
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96fa0b6052c240e00800000000000000
+      internalID: 1009980753975488361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_2
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 462
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 800d36e5eb51ee780800000000000000
+      internalID: -8651953926760574968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 460
+        width: 26
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0956a8589f522b180800000000000000
+      internalID: -9101170143344826992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_4
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 460
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4f53ad2b21996f10800000000000000
+      internalID: 2263499902365687630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_5
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 460
+        width: 26
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7b56ba0d01e14250800000000000000
+      internalID: 5927266030726830975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_6
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 455
+        width: 28
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e27252f7e7ed30150800000000000000
+      internalID: 5837754176882681646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_7
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 456
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73205f8b5e8571cc0800000000000000
+      internalID: -3740423221834087881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_8
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 455
+        width: 28
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b084dcfcbbce9e20800000000000000
+      internalID: 3359346384621043894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_9
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 459
+        width: 23
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18cdd7891999c7620800000000000000
+      internalID: 2773260321161075841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_10
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 460
+        width: 23
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d69418d0fbff7fe70800000000000000
+      internalID: 9149062364056865133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_11
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 459
+        width: 23
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e84e614655a8c6370800000000000000
+      internalID: 8317174711202538638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_12
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 396
+        width: 22
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ba01e6adfee2b560800000000000000
+      internalID: 7328182316879121073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_13
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 396
+        width: 22
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b66834c3cf85d560800000000000000
+      internalID: 7337929238843516594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_14
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 396
+        width: 22
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e01cbd42dfcf3450800000000000000
+      internalID: 6070799324872970464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_15
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 392
+        width: 20
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19ab8b4058e7c0be0800000000000000
+      internalID: -1509692665300993391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_16
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 392
+        width: 20
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c93df664558dc18b0800000000000000
+      internalID: -5180027610617359460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_17
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 392
+        width: 20
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93a3141ce1e9deae0800000000000000
+      internalID: -1518383644425504199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_18
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 396
+        width: 23
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 789377d9a1d3b6de0800000000000000
+      internalID: -1338909279692310137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_19
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 396
+        width: 23
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c50d18d5aaadd730800000000000000
+      internalID: 4025561271211197889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_20
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 395
+        width: 23
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7db7a4d6e3d14dc70800000000000000
+      internalID: 8994846509724498903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_21
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 332
+        width: 22
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 720fec2e2dd398120800000000000000
+      internalID: 2416530651018620967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_22
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 332
+        width: 22
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2b395a3a4b584bf0800000000000000
+      internalID: -339921397501838549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_23
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 332
+        width: 22
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3140a23242ed9db20800000000000000
+      internalID: 3159800860367258643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_24
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 328
+        width: 20
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be82957603301a0d0800000000000000
+      internalID: -3413443536142915349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_25
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 328
+        width: 20
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62c823e46837c7270800000000000000
+      internalID: 8249595638110653478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_26
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 328
+        width: 20
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bbe0813fa104bca0800000000000000
+      internalID: -6002170551416591439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_27
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 332
+        width: 23
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 260d7e57b4704a430800000000000000
+      internalID: 3793164806834868322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_28
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 332
+        width: 23
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a816cec76074b000800000000000000
+      internalID: 50789086960949417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_29
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 331
+        width: 23
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d691e7be3a49450800000000000000
+      internalID: 6094676427567361425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_30
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 269
+        width: 26
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d27e9be08ab78440800000000000000
+      internalID: 4938120579306648277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_31
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 269
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 689f6200bed077c30800000000000000
+      internalID: 4356966467475274118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_32
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 269
+        width: 26
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0632c6bb56496f30800000000000000
+      internalID: 4569260656666228234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_33
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 263
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45f3229f327f00e30800000000000000
+      internalID: 4467842564227219284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_34
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 264
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 661c042a8c24d05c0800000000000000
+      internalID: -4247665444057464474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_35
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 263
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f16d96deeeffd8ea0800000000000000
+      internalID: -5868753337743452641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_36
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 267
+        width: 23
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d8fe5f6aa66a2db0800000000000000
+      internalID: -4815923969320355625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_37
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 268
+        width: 23
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d49f1751ab56e5190800000000000000
+      internalID: -7971822440501085875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_38
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 267
+        width: 23
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1eabf726dd2be4d50800000000000000
+      internalID: 6723507957620783841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_39
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 206
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e33732445e7ec1090800000000000000
+      internalID: -8062314261023329474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_40
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 208
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f362f458c2bb3d830800000000000000
+      internalID: 4094822286099424831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_41
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 206
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32d6818d11ea89130800000000000000
+      internalID: 3573797695981645091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_42
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 208
+        width: 10
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc4d97a98a305cca0800000000000000
+      internalID: -5997383306092882740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_43
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 210
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8871566c13d5a1010800000000000000
+      internalID: 1160342322364618632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_44
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 208
+        width: 10
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54a755cf095bb4b90800000000000000
+      internalID: -7256506740264043963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_45
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 209
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e5fba9b407b15500800000000000000
+      internalID: 383288674226009573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_46
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 210
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e101cbbfff3a3430800000000000000
+      internalID: 3763390806220669408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_47
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 209
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34ef50b68347e6920800000000000000
+      internalID: 2985451388655763011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_48
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 209
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa1583419eed4e4e0800000000000000
+      internalID: -1953191245723971153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_49
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 210
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7ca8b23eac3d3470800000000000000
+      internalID: 8375917600851930237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_50
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 209
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 187c3fbc4008aa3d0800000000000000
+      internalID: -3194600227575969919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_51
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 144
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baf163f420ea57520800000000000000
+      internalID: 2699254876620595115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_52
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 144
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a0d6cc3c62a783b0800000000000000
+      internalID: -5510257033304682333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_53
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 144
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cf0092e52e93ca30800000000000000
+      internalID: 4234401960210468802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_54
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 146
+        width: 12
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4beb55c7f13c3c90800000000000000
+      internalID: -7188815964952335540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_55
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 146
+        width: 12
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc4d9f5aff11eae50800000000000000
+      internalID: 6822410275211826379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_56
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 146
+        width: 12
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 929f1a0a03dd04c40800000000000000
+      internalID: 5494634746315143465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_57
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 145
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a23c1250302d1e30800000000000000
+      internalID: 4475768996584239781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_58
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 145
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b2f0051b52b09430800000000000000
+      internalID: 3787723390882738873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_59
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 145
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89f6b467a1a4e7a10800000000000000
+      internalID: 1909044769565929368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_60
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 146
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d97752e3bd568eeb0800000000000000
+      internalID: -4690387019591485539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_61
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 146
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32af44a9e0391d620800000000000000
+      internalID: 2797178534500825635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_62
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 146
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65de958072abeb810800000000000000
+      internalID: 1783067179291897174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_63
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 80
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eab0937c92ecd0960800000000000000
+      internalID: 7569933227511057326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_64
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 80
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89eae174319d4b6f0800000000000000
+      internalID: -669671767750562152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_65
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 80
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d3b2ab5774aeb4d0800000000000000
+      internalID: -3116873059548351527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_66
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 82
+        width: 12
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9e08e798d1cc1c40800000000000000
+      internalID: 5484471582236085915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_67
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 82
+        width: 12
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33adbc6457c08f8f0800000000000000
+      internalID: -506641260240709069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_68
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 82
+        width: 12
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7f6125258db03e90800000000000000
+      internalID: -7047925037283577989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_69
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 81
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fcc92e5e87b5ac70800000000000000
+      internalID: 8981786853953359088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_70
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 81
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a06a5c71376afbcf0800000000000000
+      internalID: -234285642349697526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_71
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 81
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73900854c4b197780800000000000000
+      internalID: -8684880392009807561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_72
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 82
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98983aa0885994ca0800000000000000
+      internalID: -6032125814359488119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_73
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 82
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c891deaa30b163b00800000000000000
+      internalID: 807862885726099852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_74
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 82
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ca19489ffe62fa50800000000000000
+      internalID: 6553422451828136647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_75
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 15
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a813aba800c5a4640800000000000000
+      internalID: 5064961888328757642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_76
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 17
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5cd2f4bb3b1f0d40800000000000000
+      internalID: 5552686808823946330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_77
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 15
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e086d1bea0b412b0800000000000000
+      internalID: -5614668571069742878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_78
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 15
+        width: 10
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fe2f418068c45d40800000000000000
+      internalID: 5572298955776012020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_79
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 17
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fb12766e4dc95590800000000000000
+      internalID: -7684885552521143307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_80
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 15
+        width: 10
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97601d9229f840070800000000000000
+      internalID: 8071734290084333177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_81
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 16
+        width: 8
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6151f0e3604d5bb0800000000000000
+      internalID: -4945726018063085202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_82
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 17
+        width: 8
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1993b00c84ad48110800000000000000
+      internalID: 1262373801565043089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_83
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 16
+        width: 8
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efba1296a41976a00800000000000000
+      internalID: 749727611757898750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_84
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 15
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca86099e7aee8eb10800000000000000
+      internalID: 2011119638566430892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_85
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 16
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9de7d3a0e4283bb70800000000000000
+      internalID: 8913611359187205849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WildWyrdSprites_86
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 15
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb57110b53dfbad20800000000000000
+      internalID: 3291002359753307582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      WildWyrdSprites_0: -9023176652327574520
+      WildWyrdSprites_1: 1009980753975488361
+      WildWyrdSprites_10: 9149062364056865133
+      WildWyrdSprites_11: 8317174711202538638
+      WildWyrdSprites_12: 7328182316879121073
+      WildWyrdSprites_13: 7337929238843516594
+      WildWyrdSprites_14: 6070799324872970464
+      WildWyrdSprites_15: -1509692665300993391
+      WildWyrdSprites_16: -5180027610617359460
+      WildWyrdSprites_17: -1518383644425504199
+      WildWyrdSprites_18: -1338909279692310137
+      WildWyrdSprites_19: 4025561271211197889
+      WildWyrdSprites_2: -8651953926760574968
+      WildWyrdSprites_20: 8994846509724498903
+      WildWyrdSprites_21: 2416530651018620967
+      WildWyrdSprites_22: -339921397501838549
+      WildWyrdSprites_23: 3159800860367258643
+      WildWyrdSprites_24: -3413443536142915349
+      WildWyrdSprites_25: 8249595638110653478
+      WildWyrdSprites_26: -6002170551416591439
+      WildWyrdSprites_27: 3793164806834868322
+      WildWyrdSprites_28: 50789086960949417
+      WildWyrdSprites_29: 6094676427567361425
+      WildWyrdSprites_3: -9101170143344826992
+      WildWyrdSprites_30: 4938120579306648277
+      WildWyrdSprites_31: 4356966467475274118
+      WildWyrdSprites_32: 4569260656666228234
+      WildWyrdSprites_33: 4467842564227219284
+      WildWyrdSprites_34: -4247665444057464474
+      WildWyrdSprites_35: -5868753337743452641
+      WildWyrdSprites_36: -4815923969320355625
+      WildWyrdSprites_37: -7971822440501085875
+      WildWyrdSprites_38: 6723507957620783841
+      WildWyrdSprites_39: -8062314261023329474
+      WildWyrdSprites_4: 2263499902365687630
+      WildWyrdSprites_40: 4094822286099424831
+      WildWyrdSprites_41: 3573797695981645091
+      WildWyrdSprites_42: -5997383306092882740
+      WildWyrdSprites_43: 1160342322364618632
+      WildWyrdSprites_44: -7256506740264043963
+      WildWyrdSprites_45: 383288674226009573
+      WildWyrdSprites_46: 3763390806220669408
+      WildWyrdSprites_47: 2985451388655763011
+      WildWyrdSprites_48: -1953191245723971153
+      WildWyrdSprites_49: 8375917600851930237
+      WildWyrdSprites_5: 5927266030726830975
+      WildWyrdSprites_50: -3194600227575969919
+      WildWyrdSprites_51: 2699254876620595115
+      WildWyrdSprites_52: -5510257033304682333
+      WildWyrdSprites_53: 4234401960210468802
+      WildWyrdSprites_54: -7188815964952335540
+      WildWyrdSprites_55: 6822410275211826379
+      WildWyrdSprites_56: 5494634746315143465
+      WildWyrdSprites_57: 4475768996584239781
+      WildWyrdSprites_58: 3787723390882738873
+      WildWyrdSprites_59: 1909044769565929368
+      WildWyrdSprites_6: 5837754176882681646
+      WildWyrdSprites_60: -4690387019591485539
+      WildWyrdSprites_61: 2797178534500825635
+      WildWyrdSprites_62: 1783067179291897174
+      WildWyrdSprites_63: 7569933227511057326
+      WildWyrdSprites_64: -669671767750562152
+      WildWyrdSprites_65: -3116873059548351527
+      WildWyrdSprites_66: 5484471582236085915
+      WildWyrdSprites_67: -506641260240709069
+      WildWyrdSprites_68: -7047925037283577989
+      WildWyrdSprites_69: 8981786853953359088
+      WildWyrdSprites_7: -3740423221834087881
+      WildWyrdSprites_70: -234285642349697526
+      WildWyrdSprites_71: -8684880392009807561
+      WildWyrdSprites_72: -6032125814359488119
+      WildWyrdSprites_73: 807862885726099852
+      WildWyrdSprites_74: 6553422451828136647
+      WildWyrdSprites_75: 5064961888328757642
+      WildWyrdSprites_76: 5552686808823946330
+      WildWyrdSprites_77: -5614668571069742878
+      WildWyrdSprites_78: 5572298955776012020
+      WildWyrdSprites_79: -7684885552521143307
+      WildWyrdSprites_8: 3359346384621043894
+      WildWyrdSprites_80: 8071734290084333177
+      WildWyrdSprites_81: -4945726018063085202
+      WildWyrdSprites_82: 1262373801565043089
+      WildWyrdSprites_83: 749727611757898750
+      WildWyrdSprites_84: 2011119638566430892
+      WildWyrdSprites_85: 8913611359187205849
+      WildWyrdSprites_86: 3291002359753307582
+      WildWyrdSprites_9: 2773260321161075841
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
